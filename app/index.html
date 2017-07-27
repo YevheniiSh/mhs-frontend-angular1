@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp" class="no-js">
+<html lang="en" ng-app="mhs" class="no-js">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,8 +13,8 @@
 </head>
 <body>
 <ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
-    <li><a href="#!/view2">view2</a></li>
+    <li><a href="#!/example-admin">view1</a></li>
+    <li><a href="#!/example">view2</a></li>
 </ul>
 
 <div ng-view></div>
@@ -24,8 +24,10 @@
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="app.js"></script>
-<script src="view1/view1.js"></script>
-<script src="view2/view2.js"></script>
+<script src="player/player.js"></script>
+<script src="admin/admin.js"></script>
+<script src="player/some-feature/SomeFeatureController.js"></script>
+<script src="admin/some-admin-feature/SomeAdminFeatureController.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>
