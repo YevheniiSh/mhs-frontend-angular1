@@ -1,6 +1,6 @@
 angular.module('mhs.admin')
     .controller('AddTeamsController', AddTeamsController);
-function AddTeamsController() {
+function AddTeamsController($rootScope, $location) {
     var ctrl = this;
 
     // This would be loaded by $http etc.
@@ -29,6 +29,8 @@ function AddTeamsController() {
     ctrl.saveTeams = function () {
         let teamBuilder = new TeamBuilder(ctrl.teams);
         teamBuilder.setTeams();
+        $rootScope.teams = ctrl.teams;
+        $location.path('/setup-game-type');
     };
 
     /*ctrl.deleteHero = function(hero) {
