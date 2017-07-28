@@ -6,4 +6,10 @@ angular
             controller: 'GameTypeController',
             controllerAs: 'gameType'
         });
+        $routeProvider.when('/add-teams', {
+            templateUrl: 'admin/add-teams/add-teams.html',
+            controller: 'AddTeamsController',
+            controllerAs: 'addTeams',
+            css:'admin/add-teams/add-teams.css'
+        });
     }]);
