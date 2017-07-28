@@ -1,11 +1,10 @@
 angular
     .module('mhs.admin', ['ngRoute', 'ui.router'])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/test', {
-            templateUrl: 'admin/game-build/test/test.html',
-            controller: 'TestController',
-            controllerAs: 'test',
-            name:'BuildGame'
+        $routeProvider.when('/setup-game-type', {
+            templateUrl: 'admin/game-build/game-type/game-type.html',
+            controller: 'GameTypeController',
+            controllerAs: 'gameType'
         });
         $routeProvider.when('/add-teams', {
             templateUrl: 'admin/add-teams/add-teams.html',
