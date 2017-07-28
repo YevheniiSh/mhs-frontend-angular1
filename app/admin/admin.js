@@ -9,6 +9,7 @@ angular
         $routeProvider.when('/add-teams', {
             templateUrl: 'admin/add-teams/add-teams.html',
             controller: 'AddTeamsController',
-            controllerAs: 'addTeams'
+            controllerAs: 'addTeams',
+            css:'admin/add-teams/add-teams.css'
         });
     }]);

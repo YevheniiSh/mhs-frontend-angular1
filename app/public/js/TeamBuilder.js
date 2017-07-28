@@ -7,9 +7,10 @@ class Team {
 
 class TeamBuilder {
 
-    constructor(teams) {
+    constructor(teams, router) {
         this.teamService = new TeamService(DbConnection.getConnection());
         this.teams = teams;
+        this.router = router;
     }
 
     getTeamsNames() {
@@ -40,7 +41,8 @@ class TeamBuilder {
                 localStorage.setItem("teams", JSON.stringify(teams));
             }
         ).then(function () {
-            document.location.href = 'admin/typeGame.html'
+            //ToDo routing
+            this.router.navigate('/teams');
         });
     }
 }

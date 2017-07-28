@@ -39,12 +39,12 @@ function AddTeamsController() {
     };*/
 };
 
-angular.module('mhs.admin')
-    .component('addTeams', {
-        controller: 'AddTeamsController',
-        templateUrl: 'admin/add-teams/add-teams.html',
-        bindings:{
-            teams : '='
-
-        }
-    });
+// angular.module('mhs.admin')
+//     .component('addTeams', {
+//         controller: 'AddTeamsController',
+//         templateUrl: 'admin/add-teams/add-teams.html',
+//         bindings:{
+//             teams : '='
+//
+//         }
+//     });

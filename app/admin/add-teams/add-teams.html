@@ -1,7 +1,8 @@
-<div ng-repeat="team in addTeams.teams">
+<div class="container">
+<div  class="form-group" ng-repeat="team in addTeams.teams">
     <label class="control-label">Team{{$index+1}}</label>
     <div class="input-group">
-        <input type="text" placeholder="Team1" ng-model='team.name'}>
+        <input type="text" placeholder="Team1" class="form-control" ng-model='team.name'}>
         <span class="input-group-btn" ng-click="addTeams.deleteTeam($index)">
                 <button class="btn btn-primary" type="button">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -19,4 +20,5 @@
     <div class="col-md-12">
         <button ng-click="addTeams.saveTeams()" class="form-control btn btn-info btn-next btn-block">Next</button>
     </div>
+</div>
 </div>

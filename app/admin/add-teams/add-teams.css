@@ -1,0 +1,16 @@
+.btn-add {
+    border-radius: 100%;
+    float: right;
+}
+
+.btn-next {
+    margin-top: 50px;
+}
+
+.row{
+    margin-bottom: 15px;
+}
+
+.container {
+    max-width: 500px;
+}
