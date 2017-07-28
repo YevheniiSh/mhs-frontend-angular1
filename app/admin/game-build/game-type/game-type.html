@@ -1,0 +1,40 @@
+<!--<link rel="stylesheet" href="../css/bootstrap.css" media="screen">-->
+<!--<link rel="stylesheet" href="../css/typeGame.css" media="screen">-->
+<!--<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>-->
+<!--<script src="../js/typeGame.js"></script>-->
+<!--<script src="../js/Game.js"></script>-->
+<!--<script src="../js/GameBuilder.js"></script>-->
+<!--<script src="../js/GameRound.js"></script>-->
+<!--<script src="../js/GameTeam.js"></script>-->
+<!--<script src="../js/services/GameService.js"></script>-->
+<!--<script src="../js/DbConnection.js"></script>-->
+
+<div class="container">
+    <div class="game-type">
+        <div class="game-tour">
+            <div class="form-group">
+                <label class="control-label" for="number-tour">Number of tours</label>
+                <input class="form-control" id="number-tour" type="number" value="3" min="1" max="10"
+                       oninput="onChangeRounds()">
+            </div>
+        </div>
+
+        <template id="roundRow">
+            <div class="form-group">
+                <label class="control-label">Number of questions to 1 tour
+                    <input class="form-control" type="number" value="10" min="1" max="20">
+                </label>
+            </div>
+        </template>
+
+        <div class="game-questions">
+            <div id="rows">
+                <div>
+                </div>
+
+                <button id="game-build" class="btn btn-default" onclick="buildListener()">Build</button>
+            </div>
+
+        </div>
+    </div>
+</div>

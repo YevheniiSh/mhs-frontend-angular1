@@ -2,13 +2,12 @@
 
 // Declare app level module which depends on views, and components
 angular.module('mhs', [
-  'ngRoute',
+    'ngRoute',
     'mhs.admin',
     'mhs.player',
     'mhs.version'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
+]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/view1'});
+    $routeProvider.otherwise({redirectTo: '/view1'});
 }]);

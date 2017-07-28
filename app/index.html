@@ -13,13 +13,13 @@
 </head>
 <body>
 <ul class="menu">
-    <li><a href="#!/example-admin">view1</a></li>
+    <li><a href="#!/build-game">view1</a></li>
     <li><a href="#!/example">view2</a></li>
 </ul>
 
 <div ng-view></div>
 
-<div>Angular seed app: v<span app-version></span></div>
+<!--<div>Angular seed app: v<span app-version></span></div>-->
 
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
@@ -27,9 +27,13 @@
 <script src="player/player.js"></script>
 <script src="admin/admin.js"></script>
 <script src="player/some-feature/SomeFeatureController.js"></script>
-<script src="admin/some-admin-feature/SomeAdminFeatureController.js"></script>
+<script src="admin/game-build/game-type/GameTypeController.js"></script>
+<script src="admin/game-build/game-type/game-type-component.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>
+
+
+<script src="admin/game-build/test/TestController.js"></script>
 </body>
 </html>
