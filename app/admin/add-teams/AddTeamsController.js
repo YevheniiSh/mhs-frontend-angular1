@@ -17,6 +17,15 @@ function AddTeamsController() {
         ctrl.teams.push({name:'Team'+(ctrl.teams.length+1)});
     };
 
+    ctrl.deleteTeam = function (index) {
+        if(ctrl.teams.length > 2){
+            ctrl.teams.splice(index, 1);
+        }
+        else {
+            alert('min number of teams is 2');
+        }
+    };
+
     /*ctrl.deleteHero = function(hero) {
         var idx = ctrl.list.indexOf(hero);
         if (idx >= 0) {
