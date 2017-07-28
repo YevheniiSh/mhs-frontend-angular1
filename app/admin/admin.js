@@ -11,4 +11,9 @@ angular
             controller: 'TestController',
             controllerAs: 'test'
         });
+        $routeProvider.when('/add-teams', {
+            templateUrl: 'admin/add-teams/add-teams.html',
+            controller: 'AddTeamsController',
+            controllerAs: 'addTeams'
+        });
     }]);
