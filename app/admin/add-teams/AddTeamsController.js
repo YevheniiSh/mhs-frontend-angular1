@@ -31,12 +31,14 @@ function AddTeamsController($rootScope, $location) {
 
         let teamBuilder = new TeamBuilder(new TeamService(DbConnection.getConnection()), ctrl.teams);
         teamBuilder.setTeams()
-            .then(teams => {
-                $rootScope.teams = ctrl.teams;
-                $location.path('/setup-game-type');
-            console.log(teams);
-
-        });
+            .then((res) => {
+                    $rootScope.teams = res;
+                    $location.path('/setup-game-type');
+                    $rootScope.$apply();
+                },
+                (err) => {
+                    console.error(err);
+                });
     };
 
     /*ctrl.deleteHero = function(hero) {
@@ -45,7 +47,7 @@ function AddTeamsController($rootScope, $location) {
             ctrl.list.splice(idx, 1);
         }
     };*/
-};
+}
 
 // angular.module('mhs.admin')
 //     .component('addTeams', {

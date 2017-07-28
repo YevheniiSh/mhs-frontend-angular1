@@ -41,7 +41,6 @@ class TeamBuilder {
                 console.log("Creating teams array");
                 return teams;
             });
-
     }
 }
 
