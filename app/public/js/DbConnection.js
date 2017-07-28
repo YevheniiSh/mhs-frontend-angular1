@@ -1,12 +1,12 @@
 class DbConnection {
     static getConnection() {
         const config = {
-            apiKey: "AIzaSyDaYN78sZJpVnNdVx8_wlhNzl5xfv7gCqM",
-            authDomain: "testproj-cd085.firebaseapp.com",
-            databaseURL: "https://testproj-cd085.firebaseio.com",
-            projectId: "testproj-cd085",
-            storageBucket: "testproj-cd085.appspot.com",
-            messagingSenderId: "743525828232"
+            apiKey: "AIzaSyBj9d2KAMg7QmWfLCK1VwZ-jNH2LzZf65M",
+            authDomain: "madheadshow-e3ad4.firebaseapp.com",
+            databaseURL: "https://madheadshow-e3ad4.firebaseio.com",
+            projectId: "madheadshow-e3ad4",
+            storageBucket: "madheadshow-e3ad4.appspot.com",
+            messagingSenderId: "564839865401"
         };
         const app = firebase.initializeApp(config);
         return app.database();

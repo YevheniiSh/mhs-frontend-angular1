@@ -14,7 +14,7 @@ function AddTeamsController() {
     ];
 
     ctrl.addTeam = function() {
-        ctrl.teams.push({name:'Team'+(ctrl.teams.length+1)});
+        ctrl.teams.push({name:'Team'});
     };
 
     ctrl.deleteTeam = function (index) {
@@ -26,6 +26,11 @@ function AddTeamsController() {
         }
     };
 
+    ctrl.saveTeams = function () {
+        let teamBuilder = new TeamBuilder(ctrl.teams);
+        teamBuilder.setTeams();
+    };
+
     /*ctrl.deleteHero = function(hero) {
         var idx = ctrl.list.indexOf(hero);
         if (idx >= 0) {
@@ -34,11 +39,12 @@ function AddTeamsController() {
     };*/
 };
 
-// angular.module('mhs.admin')
-//     .component('addTeams', {
-//         controller: AddTeamsController,
-//         templateUrl: 'admin/add-teams/add-teams.html',
-//         bindings:{
-//             teams : '='
-//         }
-//     });
+angular.module('mhs.admin')
+    .component('addTeams', {
+        controller: 'AddTeamsController',
+        templateUrl: 'admin/add-teams/add-teams.html',
+        bindings:{
+            teams : '='
+
+        }
+    });

@@ -7,9 +7,9 @@ class Team {
 
 class TeamBuilder {
 
-    constructor(teamService) {
-        this.teamService = teamService;
-        this.teams = this.getTeamsInputs();
+    constructor(teams) {
+        this.teamService = new TeamService(DbConnection.getConnection());
+        this.teams = teams;
     }
 
     getTeamsNames() {
@@ -25,8 +25,8 @@ class TeamBuilder {
     build() {
         let promises = [];
         let teamService = this.teamService;
-        this.getTeamsInputs().forEach(function (input) {
-            promises.push(teamService.save({name: input.value}))
+        this.getTeamsNames().forEach(function (team) {
+            promises.push(teamService.save({name: team.name}));
         })
         return promises;
     }
