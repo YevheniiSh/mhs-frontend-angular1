@@ -9,6 +9,8 @@ function GameTypeController() {
     let quizSequenceNumber = 1;
 
     vm.changeRoundCount = function (count) {
+        quizSequenceNumber = 1;
+        rounds.splice(0, rounds.length);
         for (let i = 0; i < count; i++) {
             let quiz = {sequenceNumber: quizSequenceNumber++, quizzess: 10};
             rounds.push(quiz);
