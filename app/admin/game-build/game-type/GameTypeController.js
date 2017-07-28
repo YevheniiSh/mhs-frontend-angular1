@@ -1,16 +1,9 @@
 angular
     .module('mhs.admin')
-    .component('gameType', {
-        controller() {
-            let vm = this;
-            createGameType(vm);
-        },
-        templateUrl: 'admin/game-build/game-type/game-type.html',
-        css: 'admin/game-build/game-type/game-type.css'
-    });
+    .controller('GameTypeController', GameTypeController);
 
-function createGameType(vm) {
-
+function GameTypeController() {
+    let vm = this;
     let rounds = [];
     let quizSequenceNumber = 1;
 
