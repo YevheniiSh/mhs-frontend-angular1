@@ -12,7 +12,7 @@
         <div ng-repeat="round in gameType.rounds">
             <div class="form-group">
                 <label class="control-label">Number of questions to {{round.sequenceNumber}} tour
-                    <input class="form-control" type="number" ng-model="game.quizCount" ng-value="round.quizzess"
+                    <input class="form-control" type="number" ng-model="round.quizzess" ng-value="round.quizzess"
                            min="1" max="20">
                 </label>
             </div>
@@ -23,7 +23,7 @@
                 <div>
                 </div>
 
-                <button id="game-build" class="btn btn-default" onclick="buildListener()">Build</button>
+                <button id="game-build" class="btn btn-default" ng-click="gameType.buildGame()">Build</button>
             </div>
 
         </div>

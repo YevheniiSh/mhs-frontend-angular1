@@ -1,6 +1,6 @@
-class Game{
-    constructor(game){
-        if(game === undefined){
+class Game {
+    constructor(game) {
+        if (game === undefined) {
             this.currentRound = 1;
             this.currentQuiz = 1;
             this.teams = [];
@@ -22,21 +22,20 @@ class Game{
     }
 
 
-
-    getRoundsQuantity(){
+    getRoundsQuantity() {
         return rounds.length;
     }
 
-    getGameResult(){
-       let gameResults = this.resultService.getResultsById();
+    getGameResult() {
+        let gameResults = this.resultService.getResultsById();
 
     }
 
-    getRoundResult(){
+    getRoundResult() {
 
     }
 
-    getTeamResult(teamId){
+    getTeamResult(teamId) {
         let teamResult = this.resultService.getTeamResults(teamId, this.id);
     }
 }

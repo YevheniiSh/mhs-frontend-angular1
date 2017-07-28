@@ -1,9 +1,9 @@
 class GameBuilder {
     constructor(game) {
-        if(game === undefined){
+        if (game === undefined) {
             this.game = new Game();
         }
-        else{
+        else {
             this.game = new Game(game);
         }
 

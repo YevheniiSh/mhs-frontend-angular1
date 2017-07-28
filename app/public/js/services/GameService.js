@@ -21,16 +21,7 @@ class GameService {
 
     save(game) {
         game = this.convertForFirebase(game);
-        return this.gameRef
-            .push(game)
-            .then(
-                (res) => {
-                    return res;
-                },
-                (err) => {
-                    console.log(err);
-                    return err;
-                });
+        return this.gameRef.push(game);
     };
 
     getCurrentRound(gameId) {
@@ -82,7 +73,7 @@ class GameService {
                 });
     }
 
-    setCurrentRound(currentRound,gameId){
+    setCurrentRound(currentRound, gameId) {
         return this.gameRef.child(`${gameId}/currentRound`)
             .set(currentRound)
             .then(() => {
@@ -93,7 +84,7 @@ class GameService {
             });
     }
 
-    setCurrentQuiz(currentQuiz,gameId){
+    setCurrentQuiz(currentQuiz, gameId) {
         return this.gameRef.child(`${gameId}/currentQuiz`)
             .set(currentQuiz)
             .then(() => {

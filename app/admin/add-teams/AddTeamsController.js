@@ -1,5 +1,6 @@
 angular.module('mhs.admin')
     .controller('AddTeamsController', AddTeamsController);
+
 function AddTeamsController($rootScope, $location) {
     var ctrl = this;
 
@@ -13,12 +14,12 @@ function AddTeamsController($rootScope, $location) {
         }
     ];
 
-    ctrl.addTeam = function() {
-        ctrl.teams.push({name:'Team'});
+    ctrl.addTeam = function () {
+        ctrl.teams.push({name: 'Team'});
     };
 
     ctrl.deleteTeam = function (index) {
-        if(ctrl.teams.length > 2){
+        if (ctrl.teams.length > 2) {
             ctrl.teams.splice(index, 1);
         }
         else {
@@ -27,10 +28,17 @@ function AddTeamsController($rootScope, $location) {
     };
 
     ctrl.saveTeams = function () {
-        let teamBuilder = new TeamBuilder(ctrl.teams);
-        teamBuilder.setTeams();
-        $rootScope.teams = ctrl.teams;
-        $location.path('/setup-game-type');
+
+        let teamBuilder = new TeamBuilder(new TeamService(DbConnection.getConnection()), ctrl.teams);
+        teamBuilder.setTeams()
+            .then((res) => {
+                    $rootScope.teams = res;
+                    $location.path('/setup-game-type');
+                    $rootScope.$apply();
+                },
+                (err) => {
+                    console.error(err);
+                });
     };
 
     /*ctrl.deleteHero = function(hero) {
@@ -39,7 +47,7 @@ function AddTeamsController($rootScope, $location) {
             ctrl.list.splice(idx, 1);
         }
     };*/
-};
+}
 
 // angular.module('mhs.admin')
 //     .component('addTeams', {
