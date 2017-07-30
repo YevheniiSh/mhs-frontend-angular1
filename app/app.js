@@ -8,7 +8,8 @@ angular.module('mhs', [
     'mhs.version',
     'angularCSS'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
+    $locationProvider.html5Mode(true);
+    $locationProvider.hashPrefix('');
 
     $routeProvider.otherwise({redirectTo: '/view1'});
 }]);
