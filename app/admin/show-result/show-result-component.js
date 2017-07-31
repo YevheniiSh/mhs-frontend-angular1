@@ -17,6 +17,11 @@ angular.module('showResult')
                     teamName: 'Girls',
                     rounds: [{roundNumber: 1, score: 7}, {roundNumber: 2, score: 1}, {roundNumber: 3, score: 6}],
                     total: 14
+                },
+                {
+                    teamName: 'Boys',
+                    rounds: [{roundNumber: 1, score: 10}, {roundNumber: 2, score: 5}, {roundNumber: 3, score: 6}],
+                    total: 21
                 }];
             console.log(TeamService);
 

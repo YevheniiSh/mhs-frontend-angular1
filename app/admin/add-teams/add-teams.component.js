@@ -10,7 +10,6 @@ angular.module('addTeams')
 
             console.log(TeamService);
 
-            // This would be loaded by $http etc.
             this.teams = [
                 {
                     name: 'Superman',

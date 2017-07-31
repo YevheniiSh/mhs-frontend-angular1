@@ -1,12 +1,16 @@
-<table>
+<table class="table table-striped table-hover ">
+    <thead>
     <tr>
         <th>Teams</th>
         <th ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
         <th>Total</th>
     </tr>
-    <tr ng-repeat="teamResult in $ctrl.results">
+    </thead>
+    <tbody>
+    <tr ng-repeat="teamResult in $ctrl.results | orderBy:'-total'" ng-class-odd="'success'" ng-class-even="'warning'">
         <td>{{teamResult.teamName}}</td>
         <td ng-repeat="round in teamResult.rounds">{{round.score}}</td>
         <td>{{teamResult.total}}</td>
     </tr>
+    </tbody>
 </table>
