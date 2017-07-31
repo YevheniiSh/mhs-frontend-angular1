@@ -19,9 +19,17 @@ class GameService {
                 })
     }
 
-    save(game) {
-        game = this.convertForFirebase(game);
-        return this.gameRef.push(game);
+    save(game, gameId) {
+        if (gameId === undefined) {
+            game = this.convertForFirebase(game);
+            return this.gameRef.push(game);
+        }
+        else {
+            game = this.convertForFirebase(game);
+            this.gameRef.child(gameId).set(game);
+            return gameId;
+        }
+
     };
 
     getCurrentRound(gameId) {
