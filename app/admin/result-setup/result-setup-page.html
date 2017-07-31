@@ -1,20 +1,22 @@
-<div class="container" ng-app="result-setup" ng-controller="ResultSetupController">
+<div class="container" ng-controller="ResultSetupController">
     <div id="header">
         <h2>Round #{{resultSetup.currentRound}}</h2>
-        <h1>Question #{{resultSetup.currentQuiz}}</h1>
+        <h1>Question #{{resultSetup.quizNumber}}</h1>
     </div>
     <div class="form-group row">
         <ul id="team-list">
             <li ng-repeat="team in resultSetup.teams">
                 <label>
-                    {{team}}<input type="number" class="form-control">
+                    {{team}}<input type="number" ng-model="resultSetup.teamsScore[$index]" class="form-control">
                 </label>
             </li>
         </ul>
     </div>
 
     <div id="control-panel" class="form-inline ">
-        <button ng-repeat="quiz in resultSetup.quizzes" class="btn btn-success">{{quiz}}</button>
-        <button ng-click="resultSetup.buildResult()" class="btn btn-success submit-button">Next</button>
+        <button ng-repeat="quiz in resultSetup.quizzes" class="btn" ng-class="{'btn-info':resultSetup.quizNumber == quiz.number,'btn-success':quiz.answered}" ng-click="resultSetup.setQuiz(quiz.number)">
+            {{quiz.number}}
+        </button>
+        <button ng-click="resultSetup.setResult()" class="btn btn-success submit-button">Next</button>
     </div>
 </div>
