@@ -34,29 +34,42 @@ angular.module('addTeams')
             };
 
             this.saveTeams = function () {
-                this.teams.map(item => item.name)
-                    .filter((value, index, self) => self.indexOf(value) === index);
+                let unique = [...new Set(this.teams.map(item => item.name))];
 
-                console.log(this.teams);
+                if (unique.length < this.teams.length) {
+                    alert('You have entered teams with same name. Remove dublicate');
+                }
+                else {
+                    this.teams = [];
 
-                let teamBuilder = new TeamBuilder(TeamService, this.teams);
-                teamBuilder.setTeams()
-                    .then((res) => {
-                        $rootScope.teams = res;
-                        return res;
-
-                    })
-                    .then((teams) => {
-                        let game = new GameBuilder().addTeams(teams).buildGame();
-                        return GameService.save(game);
-                    })
-                    .then((gameId) => {
-                        console.log(gameId.key);
-
-                        $location.path('/setup-game-type/' + gameId.key);
-                        $rootScope.$apply();
+                    unique.forEach(item => {
+                        this.teams.push({name: item});
                     });
+                    this.save();
+                }
+
+
             };
+
+                this.save = function () {
+                    let teamBuilder = new TeamBuilder(TeamService, this.teams);
+                    teamBuilder.setTeams()
+                        .then((res) => {
+                            $rootScope.teams = res;
+                            return res;
+
+                        })
+                        .then((teams) => {
+                            let game = new GameBuilder().addTeams(teams).buildGame();
+                            return GameService.save(game);
+                        })
+                        .then((gameId) => {
+                            console.log(gameId.key);
+
+                            $location.path('/setup-game-type/' + gameId.key);
+                            $rootScope.$apply();
+                        });
+                }
 
         }]
 
