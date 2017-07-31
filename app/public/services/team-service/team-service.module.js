@@ -1,1 +1,1 @@
-angular.module('teamFactory', []);
+angular.module('teamFactory', ['firebaseConnection']);
