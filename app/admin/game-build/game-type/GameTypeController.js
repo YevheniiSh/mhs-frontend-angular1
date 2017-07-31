@@ -2,7 +2,7 @@ angular
     .module('mhs.admin')
     .controller('GameTypeController', GameTypeController);
 
-function GameTypeController($rootScope) {
+function GameTypeController($routeParams) {
     let vm = this;
     let rounds = [];
     let quizSequenceNumber = 1;
@@ -20,10 +20,10 @@ function GameTypeController($rootScope) {
 
     vm.buildGame = function () {
         let gameBuilder = new GameBuilder();
-        gameBuilder.addTeams($rootScope.teams);
         gameBuilder.addRoundsArray(rounds);
         let game = gameBuilder.buildGame();
-        console.log(game);
-        new GameService(DbConnection.getConnection()).save(game);
+
+        console.log($routeParams.gameId);
+        new GameService(DbConnection.getConnection()).save((game));
     }
 }
