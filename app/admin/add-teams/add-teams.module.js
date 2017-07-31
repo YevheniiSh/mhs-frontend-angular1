@@ -1,1 +1,1 @@
-angular.module('addTeams', ['service']);
+angular.module('addTeams', ['teamFactory']);
