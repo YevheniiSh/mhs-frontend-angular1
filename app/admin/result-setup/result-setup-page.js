@@ -27,11 +27,11 @@ function ResultSetupController(resultSetupService) {
     };
     vm.setResult = function () {
         let results =[];
-        // angular.forEach(vm.teams,function(team,key){
-        //     results.push(new Result(vm.currentRound,vm.quizNumber,team.key));
-        //     results[key].setScore(teamsScore[key]);
-        //     resultSetupService.setData(results[key]);
-        // })
+        angular.forEach(vm.teams,function(team,key){
+            // results.push(new Result(vm.currentRound,vm.quizNumber,team.key));
+            // results[key].setScore(teamsScore[key]);
+            // resultSetupService.setData(results[key]);
+        })
         vm.quizzes[vm.quizNumber - 1].answered = true;
         if (vm.quizNumber - 1 != vm.quizzes.length) {
             vm.quizNumber++;
