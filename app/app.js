@@ -7,7 +7,8 @@ angular.module('mhs', [
     'mhs.player',
     'mhs.version',
     'angularCSS',
-    'teamFactory'
+    'teamFactory',
+    'gameFactory'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 

@@ -1,9 +1,9 @@
 angular.module('addTeams')
     .component('addTeams', {
         templateUrl: 'admin/add-teams/add-teams.html',
-        controller: ['TeamServiceFactory', '$rootScope', '$location', function (TeamServiceFactory, $rootScope, $location) {
+        controller: ['TeamServiceFactory', 'GameServiceFactory', '$rootScope', '$location', function (TeamService, GameService, $rootScope, $location) {
 
-            console.log(TeamServiceFactory);
+            console.log(TeamService);
 
             // This would be loaded by $http etc.
             this.teams = [
@@ -30,7 +30,7 @@ angular.module('addTeams')
 
             this.saveTeams = function () {
 
-                let teamBuilder = new TeamBuilder(TeamServiceFactory, this.teams);
+                let teamBuilder = new TeamBuilder(TeamService, this.teams);
                 teamBuilder.setTeams()
                     .then((res) => {
                         $rootScope.teams = res;
@@ -39,9 +39,7 @@ angular.module('addTeams')
                     })
                     .then((teams) => {
                         let game = new GameBuilder().addTeams(teams).buildGame();
-                        let letGameService = new GameService(DbConnection.getConnection());
-
-                        return letGameService.save(game);
+                        return GameService.save(game);
                     })
                     .then((gameId) => {
                         console.log(gameId.key);
