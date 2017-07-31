@@ -23,4 +23,8 @@ angular
             controllerAs: 'editResult',
             css:'admin/result-editor/result-editor.css'
         });
+        $routeProvider.when('/show-result', {
+            template: '<show-result></show-result>',
+            css:'admin/show-result/show-result.css'
+        });
     }]);
