@@ -1,5 +1,5 @@
 'use strict';
-angular.module('mhs.admin').factory('resultSetupService',function ($q) {
+angular.module('mhs.admin').factory('resultSetupService', function ($q) {
     let gameService = new GameService(DbConnection.getConnection());
     return {
         getData: function () {
@@ -10,12 +10,14 @@ angular.module('mhs.admin').factory('resultSetupService',function ($q) {
                 });
             return defer.promise;
         },
-        setData: function (result) {
+        setData: function (roundNumber, quizNumber, teamId, score) {
             let defer = $q.defer();
-            resultService.saveResult(result,'-KqClHrHpGmoZRcKfOZI').then((resultKey) =>{
+            let result = new Result(roundNumber, quizNumber, teamId);
+            result.setScore(score)
+            resultService.saveResult(result, '-KqClHrHpGmoZRcKfOZI').then((resultKey) => {
                 defer.resolve(resultKey);
             });
             return defer;
         }
     }
-})
+});
