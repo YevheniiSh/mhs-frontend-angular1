@@ -11,5 +11,9 @@ function dbConnection(){
         messagingSenderId: "743525828232"
     };
 
-    return firebase.initializeApp(config).database;
+    if (!firebase.apps.length) {
+        return firebase.initializeApp(config).database();
+    } else {
+        return firebase.database();
+    }
 }
