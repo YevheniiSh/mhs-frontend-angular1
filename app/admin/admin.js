@@ -1,5 +1,5 @@
 angular
-    .module('mhs.admin', ['ngRoute'])
+    .module('mhs.admin', ['ngRoute', 'addTeams'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type', {
             templateUrl: 'admin/game-build/game-type/game-type.html',
@@ -7,9 +7,7 @@ angular
             controllerAs: 'gameType'
         });
         $routeProvider.when('/add-teams', {
-            templateUrl: 'admin/add-teams/add-teams.html',
-            controller: 'AddTeamsController',
-            controllerAs: 'addTeams',
+            template: '<add-teams></add-teams>',
             css:'admin/add-teams/add-teams.css'
         });
     }]);
