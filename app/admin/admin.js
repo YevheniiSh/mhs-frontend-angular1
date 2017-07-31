@@ -15,11 +15,11 @@ angular
             template: '<result-setup></result-setup>',
             css: 'admin/result-setup/result-setup-page.css'
         });
-        $routeProvider.when('/edit-result', {
+        $routeProvider.when('/edit-result/', {
             template: '<result-editor></result-editor>',
             css:'admin/result-editor/result-editor.css'
         });
-        $routeProvider.when('/show-result', {
+        $routeProvider.when('/show-result/:gameId', {
             template: '<show-result></show-result>',
             css:'admin/show-result/show-result.css'
         });
