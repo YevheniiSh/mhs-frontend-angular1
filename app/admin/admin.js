@@ -11,10 +11,8 @@ angular
             template: '<add-teams></add-teams>',
             css:'admin/add-teams/add-teams.css'});
 
-        $routeProvider.when('/result-setup', {
-            templateUrl: 'admin/result-setup/result-setup-page.html',
-            controller: 'ResultSetupController',
-            controllerAs: 'resultSetup',
+        $routeProvider.when('/result-setup/:gameId', {
+            template: '<result-setup></result-setup>',
             css: 'admin/result-setup/result-setup-page.css'
         });
         $routeProvider.when('/edit-result', {

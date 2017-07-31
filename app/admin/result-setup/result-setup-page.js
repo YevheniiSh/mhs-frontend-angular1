@@ -26,9 +26,10 @@ angular.module('resultSetup')
             };
             vm.setResult = function () {
                 let results = [];
-                angular.forEach(vm.teams, function (team, key) {
-                    results.push(new Result(vm.currentRound,vm.quizNumber,team.key));
-                    resultSetupService.setData(results[key]);
+                angular.forEach(vm.teams, function (team, index) {
+                    results.push(new Result(vm.currentRound,vm.quizNumber,team.id));
+                    console.log(results);
+                    //resultSetupService.setData(results[key]);
                 })
                 vm.quizzes[vm.quizNumber - 1].answered = true;
                 if (vm.quizNumber - 1 != vm.quizzes.length) {
