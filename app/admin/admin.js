@@ -1,6 +1,6 @@
 'use strict';
 angular
-    .module('mhs.admin', ['ngRoute', 'addTeams', 'teamFactory'])
+    .module('mhs.admin', ['ngRoute', 'addTeams', 'teamFactory', 'showResult'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
             templateUrl: 'admin/game-build/game-type/game-type.html',
@@ -16,9 +16,7 @@ angular
             css: 'admin/result-setup/result-setup-page.css'
         });
         $routeProvider.when('/edit-result', {
-            templateUrl: 'admin/result-editor/result-editor.html',
-            controller: 'resultEditorCtrl',
-            controllerAs: 'editResult',
+            template: '<result-editor></result-editor>',
             css:'admin/result-editor/result-editor.css'
         });
         $routeProvider.when('/show-result', {

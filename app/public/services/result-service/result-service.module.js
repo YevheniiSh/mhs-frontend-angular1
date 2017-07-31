@@ -1,1 +1,1 @@
-angular.module('resultFactory', ['firebaseConnection']);
+angular.module('resultService', ['firebaseConnection']);

@@ -1,6 +1,5 @@
-angular.module('resultFactory').factory('ResultServiceFactory', ['dbConnection',
+angular.module('resultService').factory('ResultServiceFactory', ['dbConnection',
     function (dbConn) {
-        let ts = new ResultService(dbConn);
-        return ts;
+        return new ResultService(dbConn);
     }]
 );
