@@ -10,4 +10,10 @@ angular
             template: '<add-teams></add-teams>',
             css:'admin/add-teams/add-teams.css'
         });
+        $routeProvider.when('/edit-result', {
+            templateUrl: 'admin/result-editor/result-editor.html',
+            controller: 'resultEditorCtrl',
+            controllerAs: 'editResult',
+            css:'admin/result-editor/result-editor.css'
+        });
     }]);
