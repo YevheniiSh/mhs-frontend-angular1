@@ -1,6 +1,6 @@
 'use strict';
-angular.module('mhs.admin').factory('resultSetupService', function ($q) {
-    var gameService = new GameService(DbConnection.getConnection());
+angular.module('resultSetup').factory('resultSetupService', ['GameServiceFactory','$q','$routeParams',
+    function (gameFactory,$q,$routeParams) {
     var service = {
         getData: getData,
         setData: setData
@@ -8,21 +8,20 @@ angular.module('mhs.admin').factory('resultSetupService', function ($q) {
 
     function getData() {
         let defer = $q.defer();
-        gameService.getGameById('-KqClHrHpGmoZRcKfOZI')
+        gameFactory.getGameById($routeParams.gameId)
             .then((game) => {
                 defer.resolve(game.val());
             });
         return defer.promise;
     }
-    function setData(result) {
+    function setData(result,score) {
         let defer = $q.defer();
-        let result = new Result(roundNumber, quizNumber, teamId);
         result.setScore(score)
-        resultService.saveResult(result, '-KqClHrHpGmoZRcKfOZI').then((resultKey) => {
+        gameFactory.saveResult(result, $routeParams.gameId).then((resultKey) => {
             defer.resolve(resultKey);
         });
         return defer.promise;
     }
 
     return service;
-});
+}]);
