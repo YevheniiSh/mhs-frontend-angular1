@@ -1,7 +1,9 @@
 angular.module('addTeams')
     .component('addTeams', {
         templateUrl: 'admin/add-teams/add-teams.html',
-        controller: function AddTeamsController($rootScope, $location) {
+        controller: ['TeamServiceFactory', '$rootScope', '$location', function (TeamServiceFactory, $rootScope, $location) {
+
+            console.log(TeamServiceFactory);
 
             // This would be loaded by $http etc.
             this.teams = [
@@ -28,7 +30,7 @@ angular.module('addTeams')
 
             this.saveTeams = function () {
 
-                let teamBuilder = new TeamBuilder(new TeamService(DbConnection.getConnection()), this.teams);
+                let teamBuilder = new TeamBuilder(TeamServiceFactory, this.teams);
                 teamBuilder.setTeams()
                     .then((res) => {
                         $rootScope.teams = res;
@@ -49,6 +51,6 @@ angular.module('addTeams')
                     });
             };
 
-        }
+        }]
 
     });

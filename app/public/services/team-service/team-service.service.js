@@ -1,5 +1,7 @@
-angular.module('teamService').factory('TeamService', ['$dbConnection',
-    function ($dbConnection) {
-        return new TeamService($dbConnection);
+angular.module('service').factory('TeamServiceFactory',
+    function () {
+        let ts = new TeamService(DbConnection.getConnection());
+        console.log(ts);
+        return ts;
     }
-]);
+);

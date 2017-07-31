@@ -1,1 +1,1 @@
-angular.module('core', ['teamService']);
+angular.module('service', []);

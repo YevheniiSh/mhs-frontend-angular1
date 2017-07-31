@@ -6,7 +6,8 @@ angular.module('mhs', [
     'mhs.admin',
     'mhs.player',
     'mhs.version',
-    'angularCSS'
+    'angularCSS',
+    'service'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
