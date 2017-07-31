@@ -45,7 +45,7 @@ angular.module('addTeams')
                         console.log(gameId.key);
 
                         $location.path('/setup-game-type/' + gameId.key);
-                            $rootScope.$apply();
+                        $rootScope.$apply();
                     });
             };
 
