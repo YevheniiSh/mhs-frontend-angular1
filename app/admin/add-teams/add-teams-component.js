@@ -31,13 +31,22 @@ angular.module('addTeams')
                 let teamBuilder = new TeamBuilder(new TeamService(DbConnection.getConnection()), this.teams);
                 teamBuilder.setTeams()
                     .then((res) => {
-                            $rootScope.teams = res;
-                            $location.path('/setup-game-type');
+                        $rootScope.teams = res;
+                        return res;
+
+                    })
+                    .then((teams) => {
+                        let game = new GameBuilder().addTeams(teams).buildGame();
+                        let letGameService = new GameService(DbConnection.getConnection());
+
+                        return letGameService.save(game);
+                    })
+                    .then((gameId) => {
+                        console.log(gameId.key);
+
+                        $location.path('/setup-game-type/' + gameId.key);
                             $rootScope.$apply();
-                        },
-                        (err) => {
-                            console.error(err);
-                        });
+                    });
             };
 
         }

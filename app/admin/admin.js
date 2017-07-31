@@ -1,7 +1,7 @@
 angular
     .module('mhs.admin', ['ngRoute', 'addTeams'])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/setup-game-type', {
+        $routeProvider.when('/setup-game-type/:gameId', {
             templateUrl: 'admin/game-build/game-type/game-type.html',
             controller: 'GameTypeController',
             controllerAs: 'gameType'
