@@ -1,7 +1,12 @@
 angular.module('addTeams')
     .component('addTeams', {
         templateUrl: 'admin/add-teams/add-teams.html',
-        controller: ['TeamServiceFactory', 'GameServiceFactory', '$rootScope', '$location', function (TeamService, GameService, $rootScope, $location) {
+        controller: ['TeamServiceFactory',
+            'GameServiceFactory',
+            '$rootScope',
+            '$location',
+
+            function (TeamService, GameService, $rootScope, $location) {
 
             console.log(TeamService);
 
@@ -29,6 +34,10 @@ angular.module('addTeams')
             };
 
             this.saveTeams = function () {
+                this.teams.map(item => item.name)
+                    .filter((value, index, self) => self.indexOf(value) === index);
+
+                console.log(this.teams);
 
                 let teamBuilder = new TeamBuilder(TeamService, this.teams);
                 teamBuilder.setTeams()
