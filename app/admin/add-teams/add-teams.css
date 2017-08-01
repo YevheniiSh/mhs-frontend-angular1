@@ -24,7 +24,7 @@ label{
 }
 
 select{
-    width: 24%;
+    width: 27%;
     float: right;
 }
 .add-team-form{
@@ -34,4 +34,9 @@ select{
 #select-group{
     padding-top: 3%;
     border-top:1px solid lightgrey;
+}
+
+#or{
+    padding-left: 12%;
+    padding-bottom: 3%;
 }
