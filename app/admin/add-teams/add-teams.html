@@ -10,7 +10,7 @@
     </div>
 
     <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" name="teams"
-            ng-options="item as item.name for item in $ctrl.teamFire track by item.teamId"
+            ng-options="item as item.name for item in $ctrl.teamsFromDB track by item.teamId"
             ng-model="$ctrl.selected"></select>
     <button class="btn btn-info" ng-click="$ctrl.addTeam()">Add to game</button>
 
