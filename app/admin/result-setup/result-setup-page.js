@@ -42,8 +42,9 @@ angular.module('resultSetup')
 
                 });
                 vm.quizzes[vm.quizNumber - 1].answered = true;
-                if (vm.quizNumber - 1 !== vm.quizzes.length) {
+                if (vm.quizNumber  !== vm.quizzes.length) {
                     vm.quizNumber++;
+                    vm.setQuiz(vm.quizNumber);
                 }
             };
         }
