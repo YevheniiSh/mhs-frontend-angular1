@@ -18,10 +18,14 @@ angular.module('resultSetup')
                     vm.quizzes = [];
                     vm.teams = game.teams;
                     let quizCount = game.rounds[$routeParams.roundNumber];
-                    console.log(quizCount);
                     for (let i = 1; i <= quizCount; i++) {
                         vm.quizzes.push({number: i, answered: false});
                     }
+                    angular.forEach(game.results ,function(result){
+                        if(result.round == vm.currentRound){
+                            vm.quizzes[result.quiz - 1].answered = true;
+                        }
+                    });
                     if ($routeParams.quizNumber > parseInt(quizCount)){
                         vm.setQuiz(1);
                     }else{
