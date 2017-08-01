@@ -24,17 +24,17 @@ angular.module('showResult')
                         teamRounds.push({roundNumber: round, score: roundResult[team].rounds[round]});
                         totalResult += roundResult[team].rounds[round];
                     }
-                    result.push({teamName: team, rounds: teamRounds, total: totalResult});
+                    result.push({teamId: team, rounds: teamRounds, total: totalResult});
                 }
                 return result;
             }
 
-            function replaceTeamIds(score) {
+            function setTeamName(score) {
                 return GameService.getGameTeams($routeParams.gameId)
                     .then((teams) => {
                         score.forEach(teamScore => {
                             teams.forEach(team => {
-                                if (teamScore.teamName === team.teamId) {
+                                if (teamScore.teamId === team.teamId) {
                                     teamScore.teamName = team.name;
                                 }
                                 ;
@@ -46,10 +46,11 @@ angular.module('showResult')
 
             ResultService.getGameResults($routeParams.gameId)
                 .then(parseTeamResult)
-                .then(replaceTeamIds)
+                .then(setTeamName)
                 .then((result) => {
                     this.results = result;
                     $rootScope.$apply();
+                    console.log(result);
                 });
         }]
 
