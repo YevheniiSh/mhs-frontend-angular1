@@ -1,32 +1,34 @@
 <div class="container">
-    <div class="form-group" ng-repeat="team in $ctrl.teams">
-        <label class="control-label team-name">Team{{$index+1}}</label>
-        <div class="form-group">
+    <div class="add-team-form">
+        <div class="form-group" ng-repeat="team in $ctrl.teams">
+            <label class="control-label team-name">Team{{$index+1}}</label>
+            <div class="form-group">
                 <label>{{team.name}}</label>
                 <button class="btn btn-primary btn-delete" type="button" ng-click="$ctrl.deleteTeam($index)">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
+            </div>
         </div>
-    </div>
 
-    <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" name="teams"
-            ng-options="item as item.name for item in $ctrl.teamsFromDB track by item.teamId"
-            ng-model="$ctrl.selected"></select>
-    <button class="btn btn-info" ng-click="$ctrl.addTeam()">Add to game</button>
+        <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" name="teams"
+                ng-options="item as item.name for item in $ctrl.teamsFromDB track by item.teamId"
+                ng-model="$ctrl.selected"></select>
+        <button class="btn btn-info" ng-click="$ctrl.addTeam()">Add to game</button>
 
-    <div class="form-group">
-        <label class="control-label">Input addons</label>
-        <div class="input-group">
-            <input type="text" class="form-control" ng-model='$ctrl.newTeamName'>
-            <span class="input-group-btn">
+        <div class="form-group">
+            <label class="control-label">Input addons</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model='$ctrl.newTeamName'>
+                <span class="input-group-btn">
       <button class="btn btn-info" type="button" ng-click="$ctrl.newTeam()">Add new team</button>
     </span>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <button ng-click="$ctrl.saveTeams()" class="form-control btn btn-info btn-next btn-block">Next</button>
+        <div class="row">
+            <div class="col-md-12">
+                <button ng-click="$ctrl.saveTeams()" class="form-control btn btn-info btn-next btn-block">Next</button>
+            </div>
         </div>
     </div>
 </div>

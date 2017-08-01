@@ -21,3 +21,10 @@ label{
     padding: 5px;
     font-size: 16px;
 }
+
+select{
+    width: 100px;
+}
+.add-team-form{
+    padding-top: 10%;
+}
