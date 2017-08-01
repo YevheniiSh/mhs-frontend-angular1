@@ -10,7 +10,7 @@ angular.module('addTeams')
 
                 console.log(TeamService);
 
-                this.selected = {};
+                this.selected = null;
 
                 this.teams = [
                     // {
@@ -36,7 +36,7 @@ angular.module('addTeams')
                     this.teamsFromDB = this.teamsFromDB.filter((element) => {
                         return element.teamId !== this.selected.teamId;
                     });
-                    this.selected = {};
+                    this.selected = null;
                 };
 
                 this.newTeam = function () {
