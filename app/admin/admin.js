@@ -1,6 +1,6 @@
 'use strict';
 angular
-    .module('mhs.admin', ['ngRoute', 'addTeams', 'gameType', 'teamFactory', 'gameFactory', 'showResult'])
+    .module('mhs.admin', ['ngRoute', 'addTeams', 'gameType', 'teamFactory', 'gameFactory', 'showResult', 'mhs.admin.roundStatus'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
             template: '<game-type></game-type>',
@@ -29,5 +29,8 @@ angular
         $routeProvider.when('/show-team-result/:gameId/:teamId', {
             template: '<show-team-result></show-team-result>',
             css: 'admin/show-team-result/show-team-result.css'
+        });
+        $routeProvider.when('/round-status/:gameId', {
+            template: '<round-status></round-status>',
         });
     }]);
