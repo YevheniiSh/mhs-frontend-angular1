@@ -14,15 +14,16 @@ angular.module('showTeamResult')
                 })
                 res.forEach((quizResult) => {
                     roundsResult[quizResult.round].quizzes[quizResult.quiz] = quizResult.score;
-                    roundsResult[quizResult.round].total +=quizResult.score;
                 })
                 let result = [];
                 for (let round in roundsResult) {
                     let roundQuizzes = [];
+                    let totalResult = 0;
                     for(let quiz in roundsResult[round].quizzes){
                         roundQuizzes.push({quizNum:quiz,score:roundsResult[round].quizzes[quiz]})
+                        totalResult += roundsResult[round].quizzes[quiz];
                     }
-                    result.push({roundNum: round, quizzes: roundQuizzes, total: round.total});
+                    result.push({roundNum: round, quizzes: roundQuizzes, total: totalResult});
                 }
                 return result;
             }
@@ -33,6 +34,7 @@ angular.module('showTeamResult')
                 .then(parseTeamResult)
                 .then((res) => {
                     this.roundsResult = res;
+                    console.log(res);
                 })
         }]
 
