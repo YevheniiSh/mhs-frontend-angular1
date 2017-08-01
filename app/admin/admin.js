@@ -1,27 +1,27 @@
 'use strict';
 angular
-    .module('mhs.admin', ['ngRoute', 'addTeams','gameType', 'teamFactory', 'gameFactory', 'showResult'])
+    .module('mhs.admin', ['ngRoute', 'addTeams', 'gameType', 'teamFactory', 'gameFactory', 'showResult', 'mhs.admin.roundStatus'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
-            // templateUrl: 'admin/game-build/game-type/game-type.html',
-            // controller: 'GameTypeController',
-            // controllerAs: 'gameType',
             template: '<game-type></game-type>'
         });
         $routeProvider.when('/add-teams', {
             template: '<add-teams></add-teams>',
-            css:'admin/add-teams/add-teams.css'});
-
+            css: 'admin/add-teams/add-teams.css'
+        });
         $routeProvider.when('/result-setup/:gameId', {
             template: '<result-setup></result-setup>',
             css: 'admin/result-setup/result-setup-page.css'
         });
         $routeProvider.when('/edit-result/', {
             template: '<result-editor></result-editor>',
-            css:'admin/result-editor/result-editor.css'
+            css: 'admin/result-editor/result-editor.css'
         });
         $routeProvider.when('/show-result/:gameId', {
             template: '<show-result></show-result>',
-            css:'admin/show-result/show-result.css'
+            css: 'admin/show-result/show-result.css'
+        });
+        $routeProvider.when('/round-status/:gameId', {
+            template: '<round-status></round-status>',
         });
     }]);
