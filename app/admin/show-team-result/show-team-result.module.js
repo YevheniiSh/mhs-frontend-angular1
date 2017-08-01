@@ -1,0 +1,1 @@
+angular.module('showTeamResult', ['resultService', 'gameFactory', 'firebaseConnection']);
