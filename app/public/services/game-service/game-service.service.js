@@ -1,141 +1,153 @@
 angular
     .module('gameFactory')
-    .factory('GameServiceFactory', ['dbConnection', function (dbConnection) {
+    .factory('GameServiceFactory', ['$firebaseArray', 'firebaseDataService', '$firebaseObject',
+        function ($firebaseArray, firebaseDataService, $firebaseObject) {
 
-        let gameRef = dbConnection.ref().child('games');
+            let gameRef = firebaseDataService.games;
 
-        let gameFactory = {};
+            let gameFactory = {
+                getGameById: getGameById,
+                save: save,
+                getCurrentRound: getCurrentRound,
+                getCurrentQuiz: getCurrentQuiz,
+                getGameTeams: getGameTeams,
+                setCurrentRound: setCurrentRound,
+                setCurrentQuiz: setCurrentQuiz,
+                convertForFirebase: convertForFirebase,
+                convertFromFirebase: convertFromFirebase
+            };
+            return gameFactory;
 
-        gameFactory.getGameById = function (gameId) {
-            return gameRef
-                .child(gameId)
-                .once('value')
-                .then(
-                    (res) => {
-                        return gameFactory.convertFromFirebase(res);
-                    },
-                    (err) => {
-                        console.log(err);
-                        return err;
-                    })
-        };
+            function getGameById(gameId) {
+                return $firebaseObject(gameRef.child(gameId)).$loaded();
 
-        gameFactory.save = function (game, gameId) {
-            if (gameId === undefined) {
-                game = gameFactory.convertForFirebase(game);
-                return gameRef.push(game);
+                // return gameRef
+                //     .child(gameId)
+                //     .once('value')
+                //     .then(
+                //         (res) => {
+                //             return gameFactory.convertFromFirebase(res);
+                //         },
+                //         (err) => {
+                //             console.log(err);
+                //             return err;
+                //         })
             }
-            else {
-                game = gameFactory.convertForFirebase(game);
-                gameRef.child(gameId).set(game);
-                return gameId;
+
+            function save(game, gameId) {
+                if (gameId === undefined) {
+                    game = gameFactory.convertForFirebase(game);
+                    return gameRef.push(game);
+                }
+                else {
+                    game = gameFactory.convertForFirebase(game);
+                    gameRef.child(gameId).set(game);
+                    return gameId;
+                }
+
             }
 
-        };
-
-        gameFactory.getCurrentRound = function (gameId) {
-            return gameRef
-                .child(gameId)
-                .child('currentRound')
-                .once('value')
-                .then(
-                    (res) => {
-                        return res;
-                    },
-                    (err) => {
-                        console.log(err);
-                        return err;
-                    }
-                )
-        };
-
-        gameFactory.getCurrentQuiz = function (gameId) {
-            return gameRef
-                .child(gameId)
-                .child('currentQuiz')
-                .once('value')
-                .then(
-                    (res) => {
-                        return res;
-                    },
-                    (err) => {
-                        console.log(err);
-                        return err;
-                    }
-                )
-        };
-
-        gameFactory.getGameTeams = function (gameId) {
-            return gameRef
-                .child(`/${gameId}/teams`)
-                .once('value')
-                .then((res) => {
-                        let teams = [];
-                        for (let key in res.val()) {
-                            teams.push({teamId: key, name: res.val()[key]})
+            function getCurrentRound(gameId) {
+                return gameRef
+                    .child(gameId)
+                    .child('currentRound')
+                    .once('value')
+                    .then(
+                        (res) => {
+                            return res;
+                        },
+                        (err) => {
+                            console.log(err);
+                            return err;
                         }
-                        return teams;
-                    },
-                    (err) => {
+                    )
+            }
+
+            function getCurrentQuiz(gameId) {
+                return gameRef
+                    .child(gameId)
+                    .child('currentQuiz')
+                    .once('value')
+                    .then(
+                        (res) => {
+                            return res;
+                        },
+                        (err) => {
+                            console.log(err);
+                            return err;
+                        }
+                    )
+            }
+
+            function getGameTeams(gameId) {
+                return $firebaseArray(gameRef.child(`/${gameId}/teams`))
+                    .$loaded()
+                    .then((res) => {
+                        return res.map((team) => {
+                            return {teamId: team.$id, name: team.$value}
+                        });
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
+            }
+
+            function setCurrentRound(currentRound, gameId) {
+                let obj = new $firebaseObject(gameRef.child(`${gameId}/currentRound`));
+                obj.$value = currentRound;
+                obj.$save();
+                return obj
+                    .$loaded()
+                    .then((res) => {
+                        return res.$value;
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
+            }
+
+            function setCurrentQuiz(currentQuiz, gameId) {
+                return gameRef.child(`${gameId}/currentQuiz`)
+                    .set(currentQuiz)
+                    .then(() => {
+                        return currentQuiz;
+                    }, (err) => {
                         console.log(err);
                         return err;
                     });
-        };
-
-        gameFactory.setCurrentRound = function (currentRound, gameId) {
-            return gameRef.child(`${gameId}/currentRound`)
-                .set(currentRound)
-                .then(() => {
-                    return currentRound;
-                }, (err) => {
-                    console.log(err);
-                    return err;
-                });
-        };
-
-        gameFactory.setCurrentQuiz = function (currentQuiz, gameId) {
-            return gameRef.child(`${gameId}/currentQuiz`)
-                .set(currentQuiz)
-                .then(() => {
-                    return currentQuiz;
-                }, (err) => {
-                    console.log(err);
-                    return err;
-                });
-        };
-
-        gameFactory.convertForFirebase = function (game) {
-            let temp = {};
-            for (let i = 0; i < game.teams.length; i++) {
-                temp[game.teams[i].id] = game.teams[i].name;
             }
-            game.teams = temp;
 
-            let roundsTemp = {};
-            for (let i = 0; i < game.rounds.length; i++) {
-                roundsTemp[game.rounds[i].id] = game.rounds[i].quantityOfQuestions;
+            function convertForFirebase(game) {
+                let temp = {};
+                for (let i = 0; i < game.teams.length; i++) {
+                    temp[game.teams[i].id] = game.teams[i].name;
+                }
+                game.teams = temp;
+
+                let roundsTemp = {};
+                for (let i = 0; i < game.rounds.length; i++) {
+                    roundsTemp[game.rounds[i].id] = game.rounds[i].quantityOfQuestions;
+                }
+                game.rounds = roundsTemp;
+
+                return game;
             }
-            game.rounds = roundsTemp;
 
-            return game;
-        };
+            function convertFromFirebase(game) {
+                let roundTemp = [];
+                for (let key in game.rounds) {
+                    roundTemp.push(new GameRound(key, game.rounds[key]));
+                }
+                game.rounds = roundTemp;
 
-        gameFactory.convertFromFirebase = function (game) {
-            let roundTemp = [];
-            for (let key in game.rounds) {
-                roundTemp.push(new GameRound(key, game.rounds[key]));
+                let teamsTemp = [];
+                for (let key in game.teams) {
+                    teamsTemp.push(new GameTeam(key, game.teams[key]));
+                }
+                game.teams = teamsTemp;
+
+                //ToDo convert from results
+
+                return game;
             }
-            game.rounds = roundTemp;
-
-            let teamsTemp = [];
-            for (let key in game.teams) {
-                teamsTemp.push(new GameTeam(key, game.teams[key]));
-            }
-            game.teams = teamsTemp;
-
-            //ToDo convert from results
-
-            return game;
-        };
-        return gameFactory;
-    }]);
+        }]);
