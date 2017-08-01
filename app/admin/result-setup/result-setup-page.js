@@ -3,7 +3,7 @@ angular.module('resultSetup')
     .component('resultSetup', {
         templateUrl: 'admin/result-setup/result-setup-page.html',
         controller: function ResultSetupController(resultSetupService, $routeParams) {
-            var vm = this;
+            let vm = this;
             let gameId = $routeParams.gameId;
             vm.quizNumber = $routeParams.quizNumber;
             vm.currentRound = $routeParams.roundNumber;
@@ -20,18 +20,18 @@ angular.module('resultSetup')
             vm.setQuiz = function (quizNumber) {
                 vm.quizNumber = quizNumber;
                 vm.teamsScore = [];
-                resultSetupService.getQuizResult(gameId,vm.currentRound,vm.quizNumber)
-                    .then((results)=>{
-                    angular.forEach(results,function (result) {
-                        vm.teamsScore.push(result.score);
-                    })
+                resultSetupService.getQuizResult(gameId, vm.currentRound, vm.quizNumber)
+                    .then((results) => {
+                        angular.forEach(results, function (result) {
+                            vm.teamsScore.push(result.score);
+                        })
                     })
             };
             vm.setResult = function () {
                 let results = [];
                 angular.forEach(vm.teams, function (team, key) {
                     results.push(new Result(vm.currentRound, vm.quizNumber, key));
-                })
+                });
                 angular.forEach(results, function (result, key) {
                     if (vm.teamsScore[key]) {
                         resultSetupService.setQuizResult(result, vm.teamsScore[key]);
@@ -40,9 +40,9 @@ angular.module('resultSetup')
                         resultSetupService.setQuizResult(result, 0);
                     }
 
-                })
+                });
                 vm.quizzes[vm.quizNumber - 1].answered = true;
-                if (vm.quizNumber - 1 != vm.quizzes.length) {
+                if (vm.quizNumber - 1 !== vm.quizzes.length) {
                     vm.quizNumber++;
                 }
             };
