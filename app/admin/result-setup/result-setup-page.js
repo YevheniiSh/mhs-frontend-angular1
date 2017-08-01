@@ -2,7 +2,7 @@
 angular.module('resultSetup')
     .component('resultSetup', {
         templateUrl: 'admin/result-setup/result-setup-page.html',
-        controller: function ResultSetupController(resultSetupService,$routeParams,$location,$scope) {
+        controller: function ResultSetupController(resultSetupService,$routeParams,$location,$scope,$window) {
             let vm = this;
             vm.mode = $routeParams.mode;
             if (vm.mode == 'edit') {
@@ -48,7 +48,12 @@ angular.module('resultSetup')
                 });
                 vm.quizzes[vm.quizNumber - 1].answered = true;
                 angular.forEach(results, function (result,key) {
-                    promices.push(resultSetupService.setQuizResult(result,vm.teamsScore[key]));
+                    if(vm.teamsScore[key] == undefined){
+                        promices.push(resultSetupService.setQuizResult(result,0));
+                    }else {
+                        promices.push(resultSetupService.setQuizResult(result,vm.teamsScore[key]));
+                    }
+
                 });
                 Promise.all(promices)
                     .then(()=>{
@@ -66,7 +71,7 @@ angular.module('resultSetup')
                     }).then($scope.$apply);
             };
             vm.back = function () {
-                $location.history.back();
+                $window.history.back();
             }
         }
     });
