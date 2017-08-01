@@ -1,6 +1,6 @@
 'use strict';
 angular
-    .module('mhs.admin', ['ngRoute', 'addTeams','gameType', 'teamFactory', 'gameFactory', 'showResult'])
+    .module('mhs.admin', ['ngRoute', 'addTeams','gameType', 'teamFactory', 'gameFactory', 'showResult','showTeamResult'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
             // templateUrl: 'admin/game-build/game-type/game-type.html',
