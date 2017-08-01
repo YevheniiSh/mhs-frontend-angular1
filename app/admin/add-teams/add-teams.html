@@ -9,9 +9,9 @@
                 </button>
             </div>
         </div>
-        <label class="control-label">Select team</label>
-        <div class="form-group">
 
+        <div id = select-group class="form-group">
+            <label  class="control-label">Select team:</label>
             <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" name="teams"
                     ng-options="item as item.name for item in $ctrl.teamsFromDB track by item.teamId"
                     ng-model="$ctrl.selected"
@@ -23,8 +23,9 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label">Input team</label>
+            <label class="control-label">Input team:</label>
             <div class="input-group">
+
                 <input type="text" class="form-control" ng-model='$ctrl.newTeamName'>
                 <span class="input-group-btn">
       <button class="btn btn-info" type="button" ng-click="$ctrl.newTeam()">Add new team</button>
