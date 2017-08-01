@@ -1,4 +1,7 @@
-.btn-add {
+#container,html{
+    height: 100%;
+}
+.btn-delete {
     border-radius: 100%;
     float: right;
 }
@@ -13,4 +16,8 @@
 
 .container {
     max-width: 500px;
+}
+label{
+    padding: 5px;
+    font-size: 16px;
 }

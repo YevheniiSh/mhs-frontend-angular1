@@ -1,21 +1,14 @@
 <div class="container">
     <div class="form-group" ng-repeat="team in $ctrl.teams">
-    <label class="control-label">Team{{$index+1}}</label>
-    <div class="input-group">
-        <input type="text" placeholder="Team1" class="form-control" ng-model='team.name' }>
-        </input>
-        <span class="input-group-btn" ng-click="$ctrl.deleteTeam($index)">
-                <button class="btn btn-primary" type="button">
+        <label class="control-label team-name">Team{{$index+1}}</label>
+        <div class="form-group">
+                <label>{{team.name}}</label>
+                <button class="btn btn-primary btn-delete" type="button" ng-click="$ctrl.deleteTeam($index)">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
-            </span>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <a id="addButton" class="btn btn-success btn-add" ng-click="$ctrl.addTeam()">+</a>
-    </div>
-</div>
+
     <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" name="teams"
             ng-options="item as item.name for item in $ctrl.teamFire track by item.teamId"
             ng-model="$ctrl.selected"></select>
@@ -32,8 +25,8 @@
     </div>
 
     <div class="row">
-    <div class="col-md-12">
-        <button ng-click="$ctrl.saveTeams()" class="form-control btn btn-info btn-next btn-block">Next</button>
+        <div class="col-md-12">
+            <button ng-click="$ctrl.saveTeams()" class="form-control btn btn-info btn-next btn-block">Next</button>
+        </div>
     </div>
-</div>
 </div>
