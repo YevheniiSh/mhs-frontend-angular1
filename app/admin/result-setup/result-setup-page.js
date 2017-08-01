@@ -26,10 +26,18 @@ angular.module('resultSetup')
             };
             vm.setResult = function () {
                 let results = [];
-                angular.forEach(vm.teams, function (team, index) {
-                    results.push(new Result(vm.currentRound,vm.quizNumber,team.id));
+                angular.forEach(vm.teams, function (team, key) {
+                    results.push(new Result(vm.currentRound,vm.quizNumber,key));
                     console.log(results);
-                    //resultSetupService.setData(results[key]);
+                })
+                angular.forEach(results, function (result,key) {
+                    if (vm.teamsScore[key]){
+                        results[key].setScore(vm.teamsScore[key]);
+                    }
+                    else{
+                        results[key].setScore(0);
+                    }
+
                 })
                 vm.quizzes[vm.quizNumber - 1].answered = true;
                 if (vm.quizNumber - 1 != vm.quizzes.length) {
