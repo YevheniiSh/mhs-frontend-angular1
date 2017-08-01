@@ -15,6 +15,7 @@ angular.module('resultSetup')
             vm.currentRound = $routeParams.roundNumber;
             resultSetupService.getData(gameId)
                 .then((game) => {
+                    vm.game = game;
                     vm.quizzes = [];
                     vm.teams = game.teams;
                     let quizCount = game.rounds[$routeParams.roundNumber];
@@ -68,8 +69,13 @@ angular.module('resultSetup')
                             }
                         }else {
                             if (vm.mode == 'play') {
-                                resultSetupService.roundIncrement(vm.currentRound, gameId);
-                                $location.path('/round-status/' + gameId);
+                                if(vm.currentRound < vm.game.rounds.length-1) {
+                                    console.log(vm.game.rounds.length);
+                                    resultSetupService.roundIncrement(vm.currentRound, gameId);
+                                    $location.path('/round-status/' + gameId);
+                                }else {
+                                    $location.path('/round-status/' + gameId);
+                                }
                             }
                         }
                     }).then($scope.$apply);
