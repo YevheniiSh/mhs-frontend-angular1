@@ -11,16 +11,16 @@ angular.module('showTeamResult')
                 let roundsResult = {};
                 res.forEach((quizResult) => {
                     roundsResult[quizResult.round] = {quizzes: {}, total: 0};
-                })
+                });
                 res.forEach((quizResult) => {
                     roundsResult[quizResult.round].quizzes[quizResult.quiz] = quizResult.score;
-                })
+                });
                 let result = [];
                 for (let round in roundsResult) {
                     let roundQuizzes = [];
                     let totalResult = 0;
-                    for(let quiz in roundsResult[round].quizzes){
-                        roundQuizzes.push({quizNum:quiz,score:roundsResult[round].quizzes[quiz]})
+                    for (let quiz in roundsResult[round].quizzes) {
+                        roundQuizzes.push({quizNum: quiz, score: roundsResult[round].quizzes[quiz]})
                         totalResult += roundsResult[round].quizzes[quiz];
                     }
                     result.push({roundNum: round, quizzes: roundQuizzes, total: totalResult.toFixed(1)});
@@ -37,14 +37,14 @@ angular.module('showTeamResult')
                 .then(parseTeamResult)
                 .then((res) => {
                     this.roundsResult = res;
-                    console.log(res)
+                    console.log(res);
                     $rootScope.$apply();
-                })
+                });
 
             this.quizIndex = 0;
 
             TeamService.getById($routeParams.teamId)
-                .then(team=>{
+                .then(team => {
                     this.teamName = team.name;
                     $rootScope.$apply();
                 })

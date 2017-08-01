@@ -58,8 +58,8 @@ angular.module('addTeams')
                 };
 
                 this.removeDuplicates = function (originalArray, prop) {
-                    var newArray = [];
-                    var lookupObject = {};
+                    let newArray = [];
+                    let lookupObject = {};
 
                     for (var i in originalArray) {
                         lookupObject[originalArray[i][prop]] = originalArray[i];
@@ -69,7 +69,7 @@ angular.module('addTeams')
                         newArray.push(lookupObject[i]);
                     }
                     return newArray;
-                }
+                };
 
                 this.saveTeams = function () {
 

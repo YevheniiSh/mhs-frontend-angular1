@@ -5,9 +5,9 @@ angular.module('resultSetup')
         controller: function ResultSetupController(resultSetupService, $routeParams, $location, $scope, $window) {
             let vm = this;
             vm.mode = $routeParams.mode;
-            if (vm.mode == 'edit') {
+            if (vm.mode === 'edit') {
                 vm.buttonType = 'Upgrade';
-            } else if (vm.mode == 'play') {
+            } else if (vm.mode === 'play') {
                 vm.buttonType = 'Next';
             }
             let gameId = $routeParams.gameId;
@@ -23,13 +23,13 @@ angular.module('resultSetup')
                         vm.quizzes.push({number: i, answered: false});
                     }
                     angular.forEach(game.results, function (result) {
-                        if (result.round == vm.currentRound) {
+                        if (result.round === vm.currentRound) {
                             vm.quizzes[result.quiz - 1].answered = true;
                         }
                     });
                     if ($routeParams.quizNumber > parseInt(quizCount)) {
                         vm.setQuiz(1);
-                    }else{
+                    } else {
                         vm.setQuiz($routeParams.quizNumber);
                     }
                     vm.teamsScore = [];
@@ -53,7 +53,7 @@ angular.module('resultSetup')
                 });
                 vm.quizzes[vm.quizNumber - 1].answered = true;
                 angular.forEach(results, function (result, key) {
-                    if (vm.teamsScore[key] == undefined) {
+                    if (vm.teamsScore[key] === undefined) {
                         promices.push(resultSetupService.setQuizResult(result, 0));
                     } else {
                         promices.push(resultSetupService.setQuizResult(result, vm.teamsScore[key]));
@@ -63,12 +63,12 @@ angular.module('resultSetup')
                 Promise.all(promices)
                     .then(() => {
                         if (vm.quizNumber < vm.quizzes.length) {
-                            if (vm.mode == 'play') {
+                            if (vm.mode === 'play') {
                                 vm.quizNumber++;
                                 vm.setQuiz(vm.quizNumber);
                             }
                         } else {
-                            if (vm.mode == 'play') {
+                            if (vm.mode === 'play') {
                                 if (vm.currentRound < vm.game.rounds.length - 1) {
                                     console.log(vm.game.rounds.length);
                                     resultSetupService.roundIncrement(vm.currentRound, gameId);
