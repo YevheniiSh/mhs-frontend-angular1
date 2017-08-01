@@ -55,5 +55,8 @@ angular.module('resultSetup')
                         }
                     }).then($scope.$apply);
             };
+            vm.back = function(){
+                $location.path('/round-status/' + gameId);
+            }
         }
     });
