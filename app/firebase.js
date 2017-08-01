@@ -3,12 +3,12 @@ angular.module('firebaseConnection', [])
 
 function dbConnection(){
     const config = {
-        apiKey: "AIzaSyBW1FbVas8nNwUp8jU8gqWjhpjqdFqIa3g",
-        authDomain: "fir-testproject-902dd.firebaseapp.com",
-        databaseURL: "https://fir-testproject-902dd.firebaseio.com",
-        projectId: "fir-testproject-902dd",
-        storageBucket: "fir-testproject-902dd.appspot.com",
-        messagingSenderId: "844314677599"
+        apiKey: "AIzaSyBj9d2KAMg7QmWfLCK1VwZ-jNH2LzZf65M",
+        authDomain: "madheadshow-e3ad4.firebaseapp.com",
+        databaseURL: "https://madheadshow-e3ad4.firebaseio.com",
+        projectId: "madheadshow-e3ad4",
+        storageBucket: "madheadshow-e3ad4.appspot.com",
+        messagingSenderId: "564839865401"
     };
 
     if (!firebase.apps.length) {
