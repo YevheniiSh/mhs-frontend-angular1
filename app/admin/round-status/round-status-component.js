@@ -1,5 +1,5 @@
 angular
-    .module('mhs.admin.roundStatus')
+    .module('roundStatus')
     .component('roundStatus', {
         templateUrl: 'admin/round-status/round-status.html',
         css: 'admin/round-status/round-status.css',
