@@ -23,8 +23,8 @@ angular
                     .child(teamId)
                     .set(team)
                     .then(
-                        (res) => {
-                            return res;
+                        () => {
+                            return {key: teamId};
                         },
                         (err) => {
                             console.log(err);
