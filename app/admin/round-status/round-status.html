@@ -23,7 +23,6 @@
                     </div>
                     <div class="panel-body current">
                         <a ng-hide="!$ctrl.currentRound"
-                           href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound}}/1"
                            class="btn btn-round-panel btn-danger">Round {{$ctrl.currentRound}}</a>
                     </div>
                 </div>
@@ -35,7 +34,6 @@
                     </div>
                     <div class="panel-body future">
                         <a ng-repeat="nextRound in $ctrl.nextRounds"
-                           href="#!/result-setup/{{$ctrl.gameId}}/{{nextRound}}/1"
                            class="btn btn-round-panel btn-silver">Round
                             {{nextRound}}</a>
                     </div>
