@@ -22,9 +22,10 @@ input {
     margin-left: 30%;
     max-width: 110px;
 }
-#game-build{
- margin-top: 10px;
-    font-size:15px;
+
+#game-build {
+    margin-top: 10px;
+    font-size: 15px;
     height: 40px;
     width: 150px;
 }

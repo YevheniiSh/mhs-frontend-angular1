@@ -1,2 +1,2 @@
 angular
-    .module('mhs.admin.roundStatus', ['firebaseConnection']);
+    .module('roundStatus', ['firebaseConnection']);

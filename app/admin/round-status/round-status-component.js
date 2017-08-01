@@ -1,5 +1,5 @@
 angular
-    .module('mhs.admin.roundStatus')
+    .module('roundStatus')
     .component('roundStatus', {
         templateUrl: 'admin/round-status/round-status.html',
         css: 'admin/round-status/round-status.css',
@@ -13,6 +13,7 @@ function RoundStatusController($routeParams, RoundStatusService) {
 
     vm.nextRounds = nextRounds;
     vm.prevRounds = prevRounds;
+    vm.gameId = $routeParams.gameId;
 
     RoundStatusService
         .getCurrentRound($routeParams.gameId)
