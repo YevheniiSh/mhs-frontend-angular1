@@ -32,26 +32,21 @@ h1 {
     float: right;
 }
 
-.btn-info::after {
+.nav-btn > .btn:hover::after, .nav-btn > .btn-info::after {
     position: absolute;
     content: "";
     width: 30px;
     height: 5px;
     margin-left: -20px;
     margin-top: 30px;
-    background-color: #FFBA10;
-
 }
 
-.btn:hover::after {
-    position: absolute;
-    content: "";
-    width: 30px;
-    height: 5px;
-    margin-left: -20px;
-    margin-top: 30px;
-    background-color: #D4D4D4;
+.nav-btn > .btn-info::after {
+    background-color: #FFBA10;
+}
 
+.nav-btn > .btn:hover::after {
+    background-color: #D4D4D4;
 }
 
 
