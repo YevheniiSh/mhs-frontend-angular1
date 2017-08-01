@@ -1,0 +1,46 @@
+<div class="container">
+    <header id="round-header"><h1>Rounds</h1></header>
+    <div class="col-md-11 col-md-offset-2">
+
+        <div id="round-status-panel">
+            <div class="col-md-3 round-panel">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Previously</h3>
+                    </div>
+                    <div class="panel-body past">
+                        <a ng-repeat="prevRound in $ctrl.prevRounds" href="#" class="btn btn-round-panel btn-success">Round
+                            {{prevRound}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 round-panel">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Current</h3>
+                    </div>
+                    <div class="panel-body current">
+                        <a href="#" class="btn btn-round-panel btn-danger">Round {{$ctrl.currentRound}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 round-panel">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Next</h3>
+                    </div>
+                    <div class="panel-body future">
+                        <a ng-repeat="nextRound in $ctrl.nextRounds" href="#" class="btn btn-round-panel btn-silver">Round
+                            {{nextRound}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-md-offset-2 round-button-panel" onclick="">
+            <a href="#" class="btn btn-success btn-lg btn-block">
+                <span class="start-ico">START</span><i class="fa fa-flag-o"></i>
+            </a>
+        </div>
+    </div>
+</div>

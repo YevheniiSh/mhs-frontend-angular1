@@ -26,8 +26,12 @@ class TeamBuilder {
         let promises = [];
         let teamService = this.teamService;
         this.getTeamsNames().forEach(function (team) {
-            promises.push(teamService.save({name: team.name}));
-        })
+            if (team.teamId === undefined) {
+
+                promises.push(teamService.save({name: team.name}));
+
+            } else promises.push(teamService.updateTeamById(team.teamId, {name: team.name}));
+        });
         return promises;
     }
 

@@ -1,0 +1,21 @@
+.btn-round-panel {
+    width: 100%;
+    margin: 3px 0 3px;
+}
+
+.round-button-panel {
+    padding-top: 70px;
+}
+
+.start-ico {
+    padding-right: 10px;
+}
+
+.round-panel {
+    padding: 0 20px 0 20px;
+}
+
+#round-header h1 {
+    padding: 20px 0 70px 10px;
+    text-align: center;
+}
