@@ -15,7 +15,10 @@
             <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" name="teams"
                     ng-options="item as item.name for item in $ctrl.teamsFromDB track by item.teamId"
                     ng-model="$ctrl.selected"
-                    ng-change="$ctrl.addTeam()"></select>
+                    ng-change="$ctrl.addTeam()">
+                <option value="" label="Choose team" disabled selected="selected">
+                </option>
+            </select>
 
         </div>
 
