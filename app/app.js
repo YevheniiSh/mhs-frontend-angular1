@@ -9,7 +9,8 @@ angular.module('mhs', [
     'angularCSS',
     'teamFactory',
     'gameFactory',
-    'firebaseConnection'
+    'firebaseConnection',
+    'resultSetup'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 

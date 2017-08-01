@@ -5,3 +5,6 @@ bower_components/
 tmp
 .DS_Store
 .idea
+
+app/firebase.js
+app/public/js/DbConnection.js
