@@ -3,29 +3,26 @@
         <div class="game-tour">
             <div class="form-group">
                 <label class="control-label" for="number-tour">Number of tours</label>
-                <input class="form-control" ng-model="game.roundCount"
-                       ng-change="gameType.changeRoundCount(game.roundCount)"
+                <input class="form-control" ng-model="$ctrl.roundCount"
+                       ng-change="$ctrl.changeRoundCount($ctrl.roundCount)"
                        id="number-tour" type="number" value="3" min="1" max="10">
-            </div>
-        </div>
-
-        <div ng-repeat="round in gameType.rounds">
-            <div class="form-group">
-                <label class="control-label">Number of questions to {{round.sequenceNumber}} tour
-                    <input class="form-control" type="number" ng-model="round.quizzess" ng-value="round.quizzess"
-                           min="1" max="20">
-                </label>
-            </div>
-        </div>
-
-        <div class="game-questions">
-            <div id="rows">
                 <div>
+
+                    <button id="game-build" class="btn btn-default" ng-click="$ctrl.buildGame()">Build</button>
                 </div>
 
-                <button id="game-build" class="btn btn-default" ng-click="gameType.buildGame()">Build</button>
             </div>
 
+            <div ng-repeat="round in $ctrl.rounds">
+                <div class="form-group">
+                    <label class="control-label">Number of questions to {{round.sequenceNumber}} tour
+                        <input class="form-control" type="number" ng-model="round.quizzess" ng-value="round.quizzess"
+                               min="1" max="20">
+                    </label>
+                </div>
+            </div>
         </div>
+
     </div>
+</div>
 </div>

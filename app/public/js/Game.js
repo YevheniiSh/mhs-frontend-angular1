@@ -12,11 +12,16 @@ class Game {
             this.currentRound = game.currentRound;
             this.currentQuiz = game.currentQuiz;
             this.teams = game.teams;
-            this.rounds = game.rounds;
-            this.results = game.results;
 
+            if (game.rounds === undefined) {
+                this.rounds = [];
+            } else this.rounds = game.rounds;
 
-            this.convertFromFirebase();
+            if (game.results === undefined) {
+                this.results = [];
+            } else this.results = game.results;
+
+            // this.convertFromFirebase();
         }
 
     }

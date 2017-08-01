@@ -1,6 +1,10 @@
 'use strict';
-angular.module('resultSetup').factory('resultSetupService', ['GameServiceFactory','$q','$routeParams',
-    function (gameFactory,$q,$routeParams) {
+angular.module('resultSetup').factory('resultSetupService', [
+    'GameServiceFactory',
+    'ResultServiceFactory',
+    '$q',
+    '$routeParams',
+    function (gameFactory,ResultServiceFactory,$q,$routeParams) {
     var service = {
         getData: getData,
         setData: setData
@@ -17,10 +21,13 @@ angular.module('resultSetup').factory('resultSetupService', ['GameServiceFactory
     function setData(result,score) {
         let defer = $q.defer();
         result.setScore(score)
-        gameFactory.saveResult(result, $routeParams.gameId).then((resultKey) => {
+        ResultServiceFactory.saveResult(result, $routeParams.gameId).then((resultKey) => {
             defer.resolve(resultKey);
         });
         return defer.promise;
+    }
+    function getQuizResult() {
+
     }
 
     return service;
