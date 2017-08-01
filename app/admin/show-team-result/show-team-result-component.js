@@ -28,7 +28,9 @@ angular.module('showTeamResult')
                 return result;
             }
 
-
+            this.getGameStatistic = function () {
+                $location.path(`/show-team-result/${$routeParams.gameId}`);
+            }
 
             ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId)
                 .then(parseTeamResult)
