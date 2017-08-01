@@ -11,7 +11,7 @@ angular
             css: 'admin/add-teams/add-teams.css'
         });
 
-        $routeProvider.when('/result-setup/:gameId/:roundNumber/:quizNumber/:mod', {
+        $routeProvider.when('/result-setup/:gameId/:roundNumber/:quizNumber/:mode', {
             template: '<result-setup></result-setup>',
             css: 'admin/result-setup/result-setup-page.css'
         });
