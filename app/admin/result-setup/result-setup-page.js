@@ -2,7 +2,7 @@
 angular.module('resultSetup')
     .component('resultSetup', {
         templateUrl: 'admin/result-setup/result-setup-page.html',
-        controller: function ResultSetupController(resultSetupService,$routeParams,$location,$scope) {
+        controller: function ResultSetupController(resultSetupService,$routeParams,$location,$scope,$window) {
             let vm = this;
             vm.mode = $routeParams.mode;
             if (vm.mode == 'edit') {
@@ -71,7 +71,7 @@ angular.module('resultSetup')
                     }).then($scope.$apply);
             };
             vm.back = function () {
-                $location.history.back();
+                $window.history.back();
             }
         }
     });
