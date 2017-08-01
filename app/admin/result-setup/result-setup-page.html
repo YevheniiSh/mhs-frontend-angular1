@@ -15,9 +15,12 @@
     </div>
 
     <div id="control-panel" class="form-inline ">
-        <button ng-repeat="quiz in $ctrl.quizzes" class="btn" ng-class="{'btn-info':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}" ng-click="$ctrl.setQuiz(quiz.number)">
-            {{quiz.number}}
-        </button>
+        <div class="nav-btn">
+            <button ng-repeat="quiz in $ctrl.quizzes" class="btn" ng-class="{'btn-info':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}" ng-click="$ctrl.setQuiz(quiz.number)">
+                {{quiz.number}}
+            </button>
+        </div>
+
         <button ng-click="$ctrl.setResult()" class="btn btn-success submit-button">Next</button>
     </div>
 </div>
