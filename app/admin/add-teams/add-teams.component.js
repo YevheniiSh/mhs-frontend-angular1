@@ -8,49 +8,54 @@ angular.module('addTeams')
 
             function (TeamService, GameService, $rootScope, $location) {
 
-            console.log(TeamService);
+                console.log(TeamService);
 
-                this.selected = {};
+                this.selected = null;
 
-            this.teams = [
-                // {
-                //     name: 'Superman',
-                // },
-                // {
-                //     name: 'Batman',
-                // }
-            ];
+                this.teams = [
+                    // {
+                    //     name: 'Superman',
+                    // },
+                    // {
+                    //     name: 'Batman',
+                    // }
+                ];
 
-                this.teamFire = [];
+                this.teamsFromDB = [];
 
                 TeamService.getAllTeams().then((res) => {
                     for (let key in res) {
-                        this.teamFire.push({teamId: key, name: res[key].name});
+                        this.teamsFromDB.push({teamId: key, name: res[key].name});
                     }
                     $rootScope.$apply();
                 });
 
-                console.log(this.teamFire);
-
-            this.addTeam = function () {
-                console.log(this.selected);
-                this.teams.push(this.selected);
-                this.selected = {};
-            };
+                this.addTeam = function () {
+                    console.log(this.selected);
+                    this.teams.push(this.selected);
+                    this.teamsFromDB = this.teamsFromDB.filter((element) => {
+                        return element.teamId !== this.selected.teamId;
+                    });
+                    this.selected = null;
+                };
 
                 this.newTeam = function () {
                     this.teams.push({name: this.newTeamName});
                     this.newTeamName = '';
                 };
 
-            this.deleteTeam = function (index) {
-                if (this.teams.length > 2) {
-                    this.teams.splice(index, 1);
-                }
-                else {
-                    alert('min number of teams is 2');
-                }
-            };
+                this.deleteTeam = function (index) {
+                    if (this.teams.length > 2) {
+                        let removedItem = this.teams.splice(index, 1)[0];
+                        console.log(removedItem);
+                        if (removedItem.teamId !== undefined) {
+                            this.teamsFromDB.push({teamId: removedItem.teamId, name: removedItem.name});
+                        }
+                    }
+                    else {
+                        alert('min number of teams is 2');
+                    }
+                };
 
                 this.removeDuplicates = function (originalArray, prop) {
                     var newArray = [];
@@ -66,29 +71,29 @@ angular.module('addTeams')
                     return newArray;
                 }
 
-            this.saveTeams = function () {
+                this.saveTeams = function () {
 
 
-                let unique = this.removeDuplicates(this.teams, "name");
-                // console.log("uniqueArray is: " + JSON.stringify(uniqueArray));
-                //
-                // let unique = [...new Set(this.teams.map(item => {return {teamId:item.teamId, name:item.name}}))];
+                    let unique = this.removeDuplicates(this.teams, "name");
+                    // console.log("uniqueArray is: " + JSON.stringify(uniqueArray));
+                    //
+                    // let unique = [...new Set(this.teams.map(item => {return {teamId:item.teamId, name:item.name}}))];
 
-                console.log(unique);
-                if (unique.length < this.teams.length) {
-                    alert('You have entered teams with same name. Remove dublicate');
-                }
-                else {
-                    this.teams = [];
+                    console.log(unique);
+                    if (unique.length < this.teams.length) {
+                        alert('You have entered teams with same name. Remove dublicate');
+                    }
+                    else {
+                        this.teams = [];
 
-                    unique.forEach(item => {
-                        this.teams.push({id: item.teamId, name: item.name});
-                    });
-                    this.save();
-                }
+                        unique.forEach(item => {
+                            this.teams.push({id: item.teamId, name: item.name});
+                        });
+                        this.save();
+                    }
 
 
-            };
+                };
 
                 this.save = function () {
                     let teamBuilder = new TeamBuilder(TeamService, this.teams);
@@ -109,6 +114,6 @@ angular.module('addTeams')
                         });
                 }
 
-        }]
+            }]
 
     });

@@ -33,9 +33,19 @@ angular.module('resultSetup').factory('resultSetupService', [
             return defer.promise;
         }
 
+        function roundIncrement(roundNumber,gameId) {
+            roundNumber++;
+            let defer = $q.defer();
+            gameFactory.setCurrentRound(roundNumber,gameId)
+                .then((res)=>{
+                defer.resolve(res);
+                })
+        }
+
         return {
             getData: getData,
             setQuizResult: setQuizResult,
-            getQuizResult: getQuizResult
+            getQuizResult: getQuizResult,
+            roundIncrement:roundIncrement
         };
     }]);
