@@ -30,7 +30,4 @@ angular
             template: '<show-team-result></show-team-result>',
             css: 'admin/show-team-result/show-team-result.css'
         });
-        $routeProvider.when('/round-status/:gameId', {
-            template: '<round-status></round-status>',
-        });
     }]);
