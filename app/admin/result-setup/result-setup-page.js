@@ -5,9 +5,9 @@ angular.module('resultSetup')
         controller: function ResultSetupController(resultSetupService,$routeParams,$location,$scope) {
             let vm = this;
             vm.mode = $routeParams.mode;
-            if(vm.mode == 'edit'){
+            if (vm.mode == 'edit') {
                 vm.buttonType = 'Upgrade';
-            }else if(vm.mode == 'play'){
+            } else if (vm.mode == 'play') {
                 vm.buttonType = 'Next';
             }
             let gameId = $routeParams.gameId;
@@ -53,12 +53,12 @@ angular.module('resultSetup')
                 Promise.all(promices)
                     .then(()=>{
                         if (vm.quizNumber  < vm.quizzes.length) {
-                            if(vm.mode == 'play') {
+                            if (vm.mode == 'play') {
                                 vm.quizNumber++;
                                 vm.setQuiz(vm.quizNumber);
                             }
                         }else {
-                            if(vm.mode == 'play') {
+                            if (vm.mode == 'play') {
                                 resultSetupService.roundIncrement(vm.currentRound, gameId);
                                 $location.path('/round-status/' + gameId);
                             }
