@@ -4,6 +4,12 @@ angular.module('resultSetup')
         templateUrl: 'admin/result-setup/result-setup-page.html',
         controller: function ResultSetupController(resultSetupService,$routeParams,$location,$scope) {
             let vm = this;
+            vm.mode = $routeParams.mode;
+            if (vm.mode == 'edit') {
+                vm.buttonType = 'Upgrade';
+            } else if (vm.mode == 'play') {
+                vm.buttonType = 'Next';
+            }
             let gameId = $routeParams.gameId;
             vm.quizNumber = $routeParams.quizNumber;
             vm.currentRound = $routeParams.roundNumber;
@@ -47,13 +53,20 @@ angular.module('resultSetup')
                 Promise.all(promices)
                     .then(()=>{
                         if (vm.quizNumber  < vm.quizzes.length) {
-                            vm.quizNumber++;
-                            vm.setQuiz(vm.quizNumber);
+                            if (vm.mode == 'play') {
+                                vm.quizNumber++;
+                                vm.setQuiz(vm.quizNumber);
+                            }
                         }else {
-                            $location.path('/round-status/' + gameId);
+                            if (vm.mode == 'play') {
+                                resultSetupService.roundIncrement(vm.currentRound, gameId);
+                                $location.path('/round-status/' + gameId);
+                            }
                         }
-                    })
-                    .then($scope.$apply);
+                    }).then($scope.$apply);
             };
+            vm.back = function () {
+                $location.history.back();
+            }
         }
     });

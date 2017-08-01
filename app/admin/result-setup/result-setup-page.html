@@ -1,6 +1,7 @@
 <div class="container">
     <div id="header">
         <h2>Round #{{$ctrl.currentRound}}</h2>
+        <button class="btn btn-success" ng-if="$ctrl.mode == 'edit'" ng-click="$ctrl.back()">Back</button>
         <h1>Question #{{$ctrl.quizNumber}}</h1>
     </div>
     <div class="form-group row">
@@ -14,9 +15,14 @@
     </div>
 
     <div id="control-panel" class="form-inline ">
-        <button ng-repeat="quiz in $ctrl.quizzes" class="btn" ng-class="{'btn-info':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}" ng-click="$ctrl.setQuiz(quiz.number)">
-            {{quiz.number}}
-        </button>
-        <button ng-click="$ctrl.setResult()" class="btn btn-success submit-button">Next</button>
+        <div class="nav-btn">
+            <button ng-repeat="quiz in $ctrl.quizzes" class="btn"
+                    ng-class="{'btn-info':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}"
+                    ng-click="$ctrl.setQuiz(quiz.number)">
+                {{quiz.number}}
+            </button>
+        </div>
+
+        <button ng-click="$ctrl.setResult()" class="btn btn-success submit-button">{{$ctrl.buttonType}}</button>
     </div>
 </div>

@@ -28,7 +28,7 @@ angular.module('showResult')
                         teamRounds.push({roundNumber: round, score: roundResult[team].rounds[round]});
                         totalResult += roundResult[team].rounds[round];
                     }
-                    result.push({teamId: team, rounds: teamRounds, total: totalResult});
+                    result.push({teamId: team, rounds: teamRounds, total: totalResult.toFixed(1)});
                 }
                 return result;
             }
@@ -40,8 +40,7 @@ angular.module('showResult')
                             teams.forEach(team => {
                                 if (teamScore.teamId === team.teamId) {
                                     teamScore.teamName = team.name;
-                                }
-                                ;
+                                };
                             });
                         })
                         return score;

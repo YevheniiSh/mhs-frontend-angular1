@@ -8,3 +8,5 @@ tmp
 
 app/firebase.js
 app/public/js/DbConnection.js
+firebase.json
+.firebaserc
