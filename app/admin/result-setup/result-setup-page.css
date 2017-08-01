@@ -1,29 +1,58 @@
-h1{
+h1 {
     border-bottom: solid lightgrey 1px;
     text-align: center;
     padding-bottom: 20px;
 }
-#team-list{
+
+#team-list {
     list-style: none;
 }
 
-#team-list label{
+#team-list label {
     width: 40%;
     font-size: 14pt;
 }
-#team-list input{
+
+#team-list input {
     width: 60px;
     display: inline-block;
     margin-left: 50px;
     float: right;
 }
-#control-panel{
+
+#control-panel {
     margin-top: 10%;
 }
 
-#control-panel button{
+#control-panel button {
     margin: 2px 2px;
 }
-.submit-button{
+
+.submit-button {
     float: right;
 }
+
+.btn-info::after {
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 5px;
+    margin-left: -20px;
+    margin-top: 30px;
+    background-color: #FFBA10;
+
+}
+
+.btn:hover::after {
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 5px;
+    margin-left: -20px;
+    margin-top: 30px;
+    background-color: #D4D4D4;
+
+}
+
+
+
