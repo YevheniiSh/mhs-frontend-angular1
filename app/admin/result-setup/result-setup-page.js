@@ -50,10 +50,10 @@ angular.module('resultSetup')
                             vm.quizNumber++;
                             vm.setQuiz(vm.quizNumber);
                         }else {
+                            resultSetupService.roundIncrement(vm.currentRound,gameId);
                             $location.path('/round-status/' + gameId);
                         }
-                    })
-                    .then($scope.$apply);
+                    }).then($scope.$apply);
             };
         }
     });
