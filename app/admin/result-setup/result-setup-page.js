@@ -48,7 +48,12 @@ angular.module('resultSetup')
                 });
                 vm.quizzes[vm.quizNumber - 1].answered = true;
                 angular.forEach(results, function (result,key) {
-                    promices.push(resultSetupService.setQuizResult(result,vm.teamsScore[key]));
+                    if(vm.teamsScore[key] == undefined){
+                        promices.push(resultSetupService.setQuizResult(result,0));
+                    }else {
+                        promices.push(resultSetupService.setQuizResult(result,vm.teamsScore[key]));
+                    }
+
                 });
                 Promise.all(promices)
                     .then(()=>{
