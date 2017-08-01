@@ -27,17 +27,9 @@ angular.module('gameType')
                             .getGameById(gameId)
                             .then((res) => {
                                 let game = GameService.convertFromFirebase(res.val());
-
-
                                 let gameBuilder = new GameBuilder(game);
-                                let roundArray = [];
 
-                                for (let i = 0; i < rounds.length; i++) {
-
-                                    roundArray.push(rounds[i].quizzess);
-                                }
-                                gameBuilder.addRoundsArray(roundArray);
-
+                                addRoundsToGameBuilder(rounds, gameBuilder);
                                 GameService.save(gameBuilder.game, gameId);
 
                                 $location.path('/round-status/' + gameId);
@@ -48,3 +40,14 @@ angular.module('gameType')
                 }]
         }
     );
+
+function addRoundsToGameBuilder(rounds, gameBuilder) {
+    let roundArray = [];
+
+    for (let i = 0; i < rounds.length; i++) {
+
+        roundArray.push(rounds[i].quizzess);
+    }
+    gameBuilder.addRoundsArray(roundArray);
+
+}
