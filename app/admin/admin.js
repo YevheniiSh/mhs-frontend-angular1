@@ -11,11 +11,11 @@ angular
             css: 'admin/add-teams/add-teams.css'
         });
 
-        $routeProvider.when('/result-setup/:gameId', {
+        $routeProvider.when('/result-setup/:gameId/:roundNumber/:quizNumber', {
             template: '<result-setup></result-setup>',
             css: 'admin/result-setup/result-setup-page.css'
         });
-        $routeProvider.when('/edit-result/', {
+        $routeProvider.when('/edit-result/:gameId', {
             template: '<result-editor></result-editor>',
             css: 'admin/result-editor/result-editor.css'
         });
