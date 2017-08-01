@@ -46,7 +46,11 @@ angular.module('addTeams')
 
                 this.deleteTeam = function (index) {
                     if (this.teams.length > 2) {
-                        this.teams.splice(index, 1);
+                        let removedItem = this.teams.splice(index, 1)[0];
+                        console.log(removedItem);
+                        if (removedItem.teamId !== undefined) {
+                            this.teamsFromDB.push({teamId: removedItem.teamId, name: removedItem.name});
+                        }
                     }
                     else {
                         alert('min number of teams is 2');
