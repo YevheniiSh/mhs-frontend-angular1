@@ -1,11 +1,12 @@
 'use strict';
 angular
-    .module('mhs.admin', ['ngRoute', 'addTeams', 'teamFactory'])
+    .module('mhs.admin', ['ngRoute', 'addTeams','gameType', 'teamFactory', 'gameFactory'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
-            templateUrl: 'admin/game-build/game-type/game-type.html',
-            controller: 'GameTypeController',
-            controllerAs: 'gameType'
+            // templateUrl: 'admin/game-build/game-type/game-type.html',
+            // controller: 'GameTypeController',
+            // controllerAs: 'gameType',
+            template: '<game-type></game-type>'
         });
         $routeProvider.when('/add-teams', {
             template: '<add-teams></add-teams>',

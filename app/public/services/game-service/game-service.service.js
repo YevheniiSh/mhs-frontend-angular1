@@ -1,4 +1,4 @@
-angular.module('gameFactory').factory('GameServiceFactory', function () {
-    let gs = new GameService(DbConnection.getConnection());
+angular.module('gameFactory').factory('GameServiceFactory', ['dbConnection', function (dbConnection) {
+    let gs = new GameService(dbConnection);
     return gs;
-});
+}]);
