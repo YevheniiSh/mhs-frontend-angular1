@@ -5,16 +5,21 @@ angular.module('resultSetup')
         controller: function ResultSetupController(resultSetupService, $routeParams) {
             let vm = this;
             let gameId = $routeParams.gameId;
-            vm.quizNumber = $routeParams.quizNumber;
             vm.currentRound = $routeParams.roundNumber;
-            vm.teamsScore = [];
             resultSetupService.getData(gameId)
                 .then((game) => {
                     vm.quizzes = [];
                     vm.teams = game.teams;
-                    for (let i = 1; i <= game.rounds[parseInt(game.currentRound)]; i++) {
+                    let quizCount = game.rounds[$routeParams.roundNumber];
+                    for (let i = 1; i <= quizCount; i++) {
                         vm.quizzes.push({number: i, answered: false});
                     }
+                    if ($routeParams.quizNumber > vm.quizCount){
+                        vm.quizNumber = 1;
+                    }else{
+                        vm.quizNumber = $routeParams.quizNumber;
+                    }
+                    vm.teamsScore = [];
                 });
 
             vm.setQuiz = function (quizNumber) {
@@ -39,7 +44,6 @@ angular.module('resultSetup')
                     else {
                         resultSetupService.setQuizResult(result, 0);
                     }
-
                 });
                 vm.quizzes[vm.quizNumber - 1].answered = true;
                 if (vm.quizNumber  !== vm.quizzes.length) {
