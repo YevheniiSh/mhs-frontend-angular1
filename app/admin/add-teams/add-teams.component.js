@@ -10,6 +10,8 @@ angular.module('addTeams')
 
             console.log(TeamService);
 
+                this.selected = {};
+
             this.teams = [
                 // {
                 //     name: 'Superman',
@@ -23,7 +25,7 @@ angular.module('addTeams')
 
                 TeamService.getAllTeams().then((res) => {
                     for (let key in res) {
-                        this.teams.push({teamId: key, name: res[key].name});
+                        this.teamFire.push({teamId: key, name: res[key].name});
                     }
                     $rootScope.$apply();
                 });
@@ -31,8 +33,15 @@ angular.module('addTeams')
                 console.log(this.teamFire);
 
             this.addTeam = function () {
-                this.teams.push({name: 'Team'});
+                console.log(this.selected);
+                this.teams.push(this.selected);
+                this.selected = {};
             };
+
+                this.newTeam = function () {
+                    this.teams.push({name: this.newTeamName});
+                    this.newTeamName = '';
+                };
 
             this.deleteTeam = function (index) {
                 if (this.teams.length > 2) {
@@ -85,7 +94,6 @@ angular.module('addTeams')
                     let teamBuilder = new TeamBuilder(TeamService, this.teams);
                     teamBuilder.setTeams()
                         .then((res) => {
-                            $rootScope.teams = res;
                             return res;
 
                         })
