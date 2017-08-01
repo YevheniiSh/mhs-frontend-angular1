@@ -23,7 +23,7 @@ angular.module('showTeamResult')
                         roundQuizzes.push({quizNum:quiz,score:roundsResult[round].quizzes[quiz]})
                         totalResult += roundsResult[round].quizzes[quiz];
                     }
-                    result.push({roundNum: round, quizzes: roundQuizzes, total: totalResult});
+                    result.push({roundNum: round, quizzes: roundQuizzes, total: totalResult.toFixed(1)});
                 }
                 return result;
             }
