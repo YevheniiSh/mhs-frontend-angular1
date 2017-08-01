@@ -1,5 +1,5 @@
 angular
-    .module('mhs.admin.roundStatus')
+    .module('roundStatus')
     .factory('RoundStatusService', ['dbConnection', '$q', function (firebaseConnection, $q) {
         let gameRef = firebaseConnection.ref().child('games');
         return {

@@ -1,1 +1,2 @@
-angular.module('resultSetup', ['teamFactory', 'gameFactory', 'firebaseConnection']);
+angular
+    .module('resultSetup', ['teamFactory', 'gameFactory', 'firebaseConnection']);
