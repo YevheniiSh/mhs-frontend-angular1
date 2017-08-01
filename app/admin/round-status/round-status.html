@@ -1,8 +1,9 @@
 <div class="container">
     <header id="round-header"><h1>Rounds</h1></header>
     <div class="col-md-11 col-md-offset-2">
+        <div class="row">
 
-        <div id="round-status-panel">
+            <div id="round-status-panel">
             <div class="col-md-3 round-panel">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -40,18 +41,21 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-5 col-md-offset-2 round-button-panel" onclick="" ng-if="!$ctrl.checked">
-            <a href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound}}/1"
-               class="btn btn-success btn-lg btn-block">
-                <span class="start-ico">START</span><i class="fa fa-flag-o"></i>
-            </a>
         </div>
-        <div class="col-md-5 col-md-offset-2 round-button-panel" onclick="" ng-if="$ctrl.checked">
-            <a href="#!/show-result/{{$ctrl.gameId}}"
-               class="btn btn-success btn-lg btn-block">
-                <span class="start-ico">Show results</span><i class="fa fa-flag-o"></i>
-            </a>
+        <div class="row">
+
+            <div class="col-md-5 col-md-offset-2 round-button-panel" onclick="" ng-if="!$ctrl.checked">
+                <a href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound}}/1"
+                   class="btn btn-success btn-lg btn-block">
+                    <span class="start-ico">START</span><i class="fa fa-flag-o"></i>
+                </a>
+            </div>
+            <div class="col-md-5 col-md-offset-2 round-button-panel" onclick="" ng-if="$ctrl.checked">
+                <a href="#!/show-result/{{$ctrl.gameId}}"
+                   class="btn btn-success btn-lg btn-block">
+                    <span class="start-ico">Show results</span><i class="fa fa-flag-o"></i>
+                </a>
+            </div>
         </div>
     </div>
 </div>
