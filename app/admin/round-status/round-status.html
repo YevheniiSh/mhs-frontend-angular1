@@ -22,7 +22,8 @@
                         <h3 class="panel-title">Current</h3>
                     </div>
                     <div class="panel-body current">
-                        <a href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound}}/1"
+                        <a ng-hide="!$ctrl.currentRound"
+                           href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound}}/1"
                            class="btn btn-round-panel btn-danger">Round {{$ctrl.currentRound}}</a>
                     </div>
                 </div>
@@ -43,7 +44,8 @@
         </div>
 
         <div class="col-md-5 col-md-offset-2 round-button-panel" onclick="">
-            <a href="#" class="btn btn-success btn-lg btn-block">
+            <a href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound}}/1"
+               class="btn btn-success btn-lg btn-block">
                 <span class="start-ico">START</span><i class="fa fa-flag-o"></i>
             </a>
         </div>
