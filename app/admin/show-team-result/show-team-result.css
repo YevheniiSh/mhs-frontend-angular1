@@ -1,12 +1,11 @@
-#container,html{
-    height: 100%;
-}
+
 button.btn{
     font-size: 10px;
     float:right;
 }
 td#quizzes{
     font-size: 24px;
+    padding: 0;
 }
 td{
     font-size: 24px;
@@ -21,12 +20,6 @@ h1{
     padding-bottom: 2%;
     border-bottom: solid 1px;
     text-align: center;
-}
-.res{
-    float:right;
-}
-.tt{
-    text-align:center;
 }
 a{
     display: inline-block;
@@ -43,26 +36,40 @@ a{
     margin:auto;
     width: 350px;
 }
-.green{
-    background: #9AFFA5;
+
+#total, #round{
+    vertical-align: middle;
 }
 td.ng-binding{
     font-size: 35px;
     width: 200px;
     text-align: center;
-
 }
 td.total-point{
     font-weight: bold;
 }
-@media (max-width:700px){
-    .quiz-block{
-        width: auto;
-    }
-}
+
 .green-total{
     color: green;
 }
 .red{
     color: red;
+}
+
+@media (max-width:700px){
+    .quiz-block{
+        width: auto;
+    }
+    td.ng-binding{
+        font-size: 15px;
+        width: 50px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    th{
+        font-size: 15px;
+    }
+    a{
+
+    }
 }
