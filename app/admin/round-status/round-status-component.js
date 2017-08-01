@@ -13,6 +13,7 @@ function RoundStatusController($routeParams, RoundStatusService) {
 
     vm.nextRounds = nextRounds;
     vm.prevRounds = prevRounds;
+    vm.gameId = $routeParams.gameId;
 
     RoundStatusService
         .getCurrentRound($routeParams.gameId)
