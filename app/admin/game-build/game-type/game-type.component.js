@@ -17,10 +17,6 @@ angular.module('gameType')
                             rounds.push(quiz);
                         }
 
-                        GameService
-                            .getGameById($routeParams.gameId)
-                            .then(res => console.log(res))
-
                     };
 
                     vm.rounds = rounds;
@@ -31,6 +27,7 @@ angular.module('gameType')
                             .getGameById(gameId)
                             .then((res) => {
                                 let gameBuilder = new GameBuilder(res);
+
                                 addRoundsToGameBuilder(rounds, gameBuilder);
                                 GameService.save(gameBuilder.game, gameId);
 
@@ -47,6 +44,7 @@ function addRoundsToGameBuilder(rounds, gameBuilder) {
     let roundArray = [];
 
     for (let i = 0; i < rounds.length; i++) {
+
         roundArray.push(rounds[i].quizzess);
     }
     gameBuilder.addRoundsArray(roundArray);
