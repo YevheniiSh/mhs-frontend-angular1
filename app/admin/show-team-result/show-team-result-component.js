@@ -1,7 +1,7 @@
 angular.module('showTeamResult')
     .component('showTeamResult', {
         templateUrl: 'admin/show-team-result/show-team-result.html',
-        controller: ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$rootScope', '$location', function (ResultService, GameService, $routeParams, $rootScope, $location) {
+        controller: ['ResultServiceFactory', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location', function (ResultService, TeamService, $routeParams, $rootScope, $location) {
 
             function parseTeamResult(teamResults) {
                 let res = [];
@@ -37,7 +37,12 @@ angular.module('showTeamResult')
                 .then((res) => {
                     this.roundsResult = res;
                     $rootScope.$apply();
-                    console.log(res);
+                })
+
+            TeamService.getById($routeParams.teamId)
+                .then(team=>{
+                    this.teamName = team.name;
+                    $rootScope.$apply();
                 })
         }]
 
