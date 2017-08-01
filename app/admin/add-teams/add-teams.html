@@ -2,7 +2,11 @@
     <div class="form-group" ng-repeat="team in $ctrl.teams">
     <label class="control-label">Team{{$index+1}}</label>
     <div class="input-group">
-        <input type="text" placeholder="Team1" class="form-control" ng-model='team.name'}>
+        <!--<input type="text" placeholder="Team1" class="form-control" ng-model='team.name'}>-->
+        <input list="teams" id="teamSelect" ng-model='team.name'></input>
+        <datalist id="teams">
+            <option ng-repeat="option in $ctrl.teams" value="{{option.name}}">{{option.teamId}}</option>
+        </datalist>
         <span class="input-group-btn" ng-click="$ctrl.deleteTeam($index)">
                 <button class="btn btn-primary" type="button">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
