@@ -20,18 +20,6 @@ angular
 
             function getGameById(gameId) {
                 return $firebaseObject(gameRef.child(gameId)).$loaded();
-
-                // return gameRef
-                //     .child(gameId)
-                //     .once('value')
-                //     .then(
-                //         (res) => {
-                //             return gameFactory.convertFromFirebase(res);
-                //         },
-                //         (err) => {
-                //             console.log(err);
-                //             return err;
-                //         })
             }
 
             function save(game, gameId) {

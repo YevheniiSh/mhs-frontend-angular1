@@ -1,39 +1,41 @@
 <div class="container">
-    <div class="form-group" ng-repeat="team in $ctrl.teams">
-    <label class="control-label">Team{{$index+1}}</label>
-    <div class="input-group">
-        <input type="text" placeholder="Team1" class="form-control" ng-model='team.name' }>
-        </input>
-        <span class="input-group-btn" ng-click="$ctrl.deleteTeam($index)">
-                <button class="btn btn-primary" type="button">
+    <div class="add-team-form">
+        <div class="form-group" ng-repeat="team in $ctrl.teams">
+            <label class="control-label team-name">Team{{$index+1}}</label>
+            <div class="form-group">
+                <label>{{team.name}}</label>
+                <button class="btn btn-primary btn-delete" type="button" ng-click="$ctrl.deleteTeam($index)">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
-            </span>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <a id="addButton" class="btn btn-success btn-add" ng-click="$ctrl.addTeam()">+</a>
-    </div>
-</div>
-    <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" name="teams"
-            ng-options="item as item.name for item in $ctrl.teamsFromDB track by item.teamId"
-            ng-model="$ctrl.selected"></select>
-    <button class="btn btn-info" ng-click="$ctrl.addTeam()">Add to game</button>
+            </div>
+        </div>
 
-    <div class="form-group">
-        <label class="control-label">Input addons</label>
-        <div class="input-group">
-            <input type="text" class="form-control" ng-model='$ctrl.newTeamName'>
-            <span class="input-group-btn">
-      <button class="btn btn-info" type="button" ng-click="$ctrl.newTeam()">Add new team</button>
-    </span>
+        <div id=select-group class="form-group">
+            <label class="control-label">Select exist team:</label>
+            <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" name="teams"
+                    ng-options="item as item.name for item in $ctrl.teamsFromDB track by item.teamId"
+                    ng-model="$ctrl.selected"
+                    ng-change="$ctrl.addTeam()">
+                <option value="" label="Choose team" disabled selected="selected">
+                </option>
+            </select>
+
+        </div>
+        <label id="or">or</label>
+        <div class="form-group">
+            <label class="control-label">Input new team:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model='$ctrl.newTeamName'>
+                <span class="input-group-btn">
+                    <button class="btn btn-info" type="button" ng-click="$ctrl.newTeam()">Add new team</button>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button ng-click="$ctrl.saveTeams()" class="form-control btn btn-info btn-next btn-block">Next</button>
+            </div>
         </div>
     </div>
-
-    <div class="row">
-    <div class="col-md-12">
-        <button ng-click="$ctrl.saveTeams()" class="form-control btn btn-info btn-next btn-block">Next</button>
-    </div>
-</div>
 </div>

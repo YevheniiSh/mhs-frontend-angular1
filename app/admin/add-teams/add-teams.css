@@ -1,10 +1,15 @@
-.btn-add {
+#container, html {
+    height: 100%;
+}
+
+.btn-delete {
     border-radius: 100%;
     float: right;
 }
 
 .btn-next {
     margin-top: 50px;
+
 }
 
 .row{
@@ -13,4 +18,28 @@
 
 .container {
     max-width: 500px;
+}
+
+label {
+    padding: 5px;
+    font-size: 16px;
+}
+
+select {
+    width: 27%;
+    float: right;
+}
+
+.add-team-form {
+    padding-top: 10%;
+}
+
+#select-group {
+    padding-top: 3%;
+    border-top: 1px solid lightgrey;
+}
+
+#or {
+    padding-left: 12%;
+    padding-bottom: 3%;
 }
