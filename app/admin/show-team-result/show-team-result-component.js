@@ -29,13 +29,14 @@ angular.module('showTeamResult')
             }
 
             this.getGameStatistic = function () {
-                $location.path(`/show-team-result/${$routeParams.gameId}`);
+                $location.path(`/show-result/${$routeParams.gameId}`);
             }
 
             ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId)
                 .then(parseTeamResult)
                 .then((res) => {
                     this.roundsResult = res;
+                    $rootScope.$apply();
                     console.log(res);
                 })
         }]

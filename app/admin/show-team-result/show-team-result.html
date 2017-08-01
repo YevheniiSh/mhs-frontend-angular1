@@ -1,1 +1,25 @@
-something
+
+<div class="container" xmlns:orderBy="http://www.w3.org/1999/xhtml">
+    <h1>Team result</h1>
+    <table class="table table-sm table-striped table-hover ">
+        <thead>
+            <th>Rounds</th>
+                <th ng-repeat="round in $ctrl.roundsResult">
+                <th></th>
+            </th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="round in $ctrl.roundsResult">
+                <th>{{round.roundNum}}</th>
+                <th ng-repeat="quiz in round.quizzes">{{quiz.score}}</th>
+                <th></th>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr ng-repeat="round in $ctrl.roundsResult">
+                <th>{{round.total}}</th>
+            </tr>
+        </tfoot>
+    </table>
+    <button class="btn btn-success" ng-click="$ctrl.getGameStatistic()">Back</button>
+</div>
