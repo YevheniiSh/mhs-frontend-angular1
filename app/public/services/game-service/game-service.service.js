@@ -5,7 +5,7 @@ angular
 
             let gameRef = firebaseDataService.games;
 
-            let gameFactory = {
+            return {
                 getGameById: getGameById,
                 save: save,
                 getCurrentRound: getCurrentRound,
@@ -16,21 +16,38 @@ angular
                 convertForFirebase: convertForFirebase,
                 convertFromFirebase: convertFromFirebase
             };
-            return gameFactory;
 
             function getGameById(gameId) {
                 return $firebaseObject(gameRef.child(gameId)).$loaded();
             }
 
+            function saveGame(obj, game) {
+                obj.$value = game;
+                obj.$save();
+                return obj
+                    .$loaded()
+                    .then((res) => {
+                        return res.$id;
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
+            }
+
             function save(game, gameId) {
                 if (gameId === undefined) {
-                    game = gameFactory.convertForFirebase(game);
-                    return gameRef.push(game);
+                    let obj = new $firebaseObject(gameRef.push());
+                    return saveGame(obj, game);
                 }
                 else {
-                    game = gameFactory.convertForFirebase(game);
-                    gameRef.child(gameId).set(game);
-                    return gameId;
+                    let obj = new $firebaseObject(gameRef.child(gameId));
+                    //todo - we must rework this!
+                    let rounds = {};
+                    for (let i = 0; i < game.rounds.length; i++) {
+                        rounds[game.rounds[i].id] = game.rounds[i].quantityOfQuestions;
+                    }
+                    game.rounds = rounds;
+                    return saveGame(obj, game);
                 }
 
             }
