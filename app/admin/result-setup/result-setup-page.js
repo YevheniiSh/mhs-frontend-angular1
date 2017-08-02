@@ -2,11 +2,11 @@
 angular.module('resultSetup')
     .component('resultSetup', {
         templateUrl: 'admin/result-setup/result-setup-page.html',
-        controller: function ResultSetupController(resultSetupService,$routeParams,$location,$scope) {
+        controller: function ResultSetupController(resultSetupService,$routeParams,$location,$scope,$window) {
             let vm = this;
             vm.mode = $routeParams.mode;
             if (vm.mode == 'edit') {
-                vm.buttonType = 'Upgrade';
+                vm.buttonType = 'Save';
             } else if (vm.mode == 'play') {
                 vm.buttonType = 'Next';
             }
@@ -18,10 +18,14 @@ angular.module('resultSetup')
                     vm.quizzes = [];
                     vm.teams = game.teams;
                     let quizCount = game.rounds[$routeParams.roundNumber];
-                    console.log(quizCount);
                     for (let i = 1; i <= quizCount; i++) {
                         vm.quizzes.push({number: i, answered: false});
                     }
+                    angular.forEach(game.results ,function(result){
+                        if(result.round == vm.currentRound){
+                            vm.quizzes[result.quiz - 1].answered = true;
+                        }
+                    });
                     if ($routeParams.quizNumber > parseInt(quizCount)){
                         vm.setQuiz(1);
                     }else{
@@ -48,7 +52,12 @@ angular.module('resultSetup')
                 });
                 vm.quizzes[vm.quizNumber - 1].answered = true;
                 angular.forEach(results, function (result,key) {
-                    promices.push(resultSetupService.setQuizResult(result,vm.teamsScore[key]));
+                    if(vm.teamsScore[key] == undefined){
+                        promices.push(resultSetupService.setQuizResult(result,0));
+                    }else {
+                        promices.push(resultSetupService.setQuizResult(result,vm.teamsScore[key]));
+                    }
+
                 });
                 Promise.all(promices)
                     .then(()=>{
@@ -66,7 +75,7 @@ angular.module('resultSetup')
                     }).then($scope.$apply);
             };
             vm.back = function () {
-                $location.history.back();
+                $window.history.back();
             }
         }
     });
