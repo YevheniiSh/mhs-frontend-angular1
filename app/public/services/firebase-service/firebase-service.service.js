@@ -22,6 +22,6 @@ function firebaseDataService() {
     return {
         root: root,
         games: root.child('games'),
-        // teams: root.child('teams')
+        teams: root.child('teams')
     };
 }

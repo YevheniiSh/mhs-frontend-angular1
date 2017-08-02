@@ -1,7 +1,7 @@
 angular
     .module('gameFactory')
-    .factory('GameServiceFactory', ['$firebaseArray', 'firebaseDataService', '$firebaseObject',
-        function ($firebaseArray, firebaseDataService, $firebaseObject) {
+    .factory('GameServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService',
+        function ($firebaseArray, $firebaseObject, firebaseDataService) {
 
             let gameRef = firebaseDataService.games;
 

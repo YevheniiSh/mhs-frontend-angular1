@@ -46,7 +46,6 @@ angular.module('showTeamResult')
             TeamService.getById($routeParams.teamId)
                 .then(team => {
                     this.teamName = team.name;
-                    $rootScope.$apply();
                 })
         }]
 
