@@ -1,17 +1,16 @@
 .game-type {
-    margin-top: 25%;
+    margin-top: 10%;
 }
 
 .game-tour {
     max-width: 300px;
-    margin-left: 40%;
+    margin:auto;
     font-size: 20px;
     text-align: center;
 }
 
 .game-questions {
     max-width: 300px;
-    margin-left: 40%;
 
     font-size: 20px;
     text-align: center;
