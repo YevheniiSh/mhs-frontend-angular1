@@ -12,9 +12,7 @@ angular
                 getCurrentQuiz: getCurrentQuiz,
                 getGameTeams: getGameTeams,
                 setCurrentRound: setCurrentRound,
-                setCurrentQuiz: setCurrentQuiz,
-                convertForFirebase: convertForFirebase,
-                convertFromFirebase: convertFromFirebase
+                setCurrentQuiz: setCurrentQuiz
             };
 
             function getGameById(gameId) {
@@ -120,39 +118,5 @@ angular
                         console.log(err);
                         return err;
                     });
-            }
-
-            function convertForFirebase(game) {
-                let temp = {};
-                for (let i = 0; i < game.teams.length; i++) {
-                    temp[game.teams[i].id] = game.teams[i].name;
-                }
-                game.teams = temp;
-
-                let roundsTemp = {};
-                for (let i = 0; i < game.rounds.length; i++) {
-                    roundsTemp[game.rounds[i].id] = game.rounds[i].quantityOfQuestions;
-                }
-                game.rounds = roundsTemp;
-
-                return game;
-            }
-
-            function convertFromFirebase(game) {
-                let roundTemp = [];
-                for (let key in game.rounds) {
-                    roundTemp.push(new GameRound(key, game.rounds[key]));
-                }
-                game.rounds = roundTemp;
-
-                let teamsTemp = [];
-                for (let key in game.teams) {
-                    teamsTemp.push(new GameTeam(key, game.teams[key]));
-                }
-                game.teams = teamsTemp;
-
-                //ToDo convert from results
-
-                return game;
             }
         }]);
