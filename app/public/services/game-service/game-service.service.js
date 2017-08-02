@@ -44,6 +44,11 @@ angular
                     for (let i = 0; i < game.rounds.length; i++) {
                         rounds[game.rounds[i].id] = game.rounds[i].quantityOfQuestions;
                     }
+                    let teams = {};
+                    for (let i = 0; i < game.teams.length; i++) {
+                        teams[game.teams[i].id] = game.teams[i].name;
+                    }
+                    game.teams = teams;
                     game.rounds = rounds;
                     return saveGame(obj, game);
                 }
