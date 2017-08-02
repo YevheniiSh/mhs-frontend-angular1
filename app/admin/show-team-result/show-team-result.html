@@ -4,8 +4,8 @@
     <table class="table table-sm table-striped table-hover ">
         <thead>
         <th>Round</th>
-        <th>Round</th>
-        <th>Round</th>
+        <th>Quizzes</th>
+        <th>Total</th>
         </thead>
         <tbody>
             <tr ng-repeat="round in $ctrl.roundsResult">
@@ -16,7 +16,7 @@
                                     ng-class="{'btn-success': quiz.score>0, 'btn-primary': quiz.score<0}"
                                                 >{{quiz.score}}
                 </a></div></td>
-                <td id="total" ng-class="{'green-total':round.total>0,'red':round.total<0}">{{round.total}}</td>
+                <td id="total" ng-class="{'green-total':round.total>0,'red-total':round.total<0}">{{round.total}}</td>
             </tr>
         </tbody>
     </table>
