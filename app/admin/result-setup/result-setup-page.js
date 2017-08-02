@@ -6,7 +6,7 @@ angular.module('resultSetup')
             let vm = this;
             vm.mode = $routeParams.mode;
             if (vm.mode == 'edit') {
-                vm.buttonType = 'Upgrade';
+                vm.buttonType = 'Save';
             } else if (vm.mode == 'play') {
                 vm.buttonType = 'Next';
             }
