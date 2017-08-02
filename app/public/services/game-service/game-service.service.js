@@ -51,35 +51,25 @@ angular
             }
 
             function getCurrentRound(gameId) {
-                return gameRef
-                    .child(gameId)
-                    .child('currentRound')
-                    .once('value')
-                    .then(
-                        (res) => {
-                            return res;
-                        },
-                        (err) => {
-                            console.log(err);
-                            return err;
-                        }
-                    )
+                return getStatus(gameId, 'currentRound');
             }
 
             function getCurrentQuiz(gameId) {
-                return gameRef
-                    .child(gameId)
-                    .child('currentQuiz')
-                    .once('value')
-                    .then(
-                        (res) => {
-                            return res;
-                        },
-                        (err) => {
-                            console.log(err);
-                            return err;
-                        }
-                    )
+                return getStatus(gameId, 'currentQuiz');
+            }
+
+            function getStatus(gameId, status) {
+                let currentRoundRef = gameRef
+                    .child(`${gameId}/${status}`);
+
+                return new $firebaseObject(currentRoundRef)
+                    .$loaded()
+                    .then((res) => {
+                        return res.$value;
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
             }
 
             function getGameTeams(gameId) {
@@ -110,12 +100,15 @@ angular
             }
 
             function setCurrentQuiz(currentQuiz, gameId) {
-                return gameRef.child(`${gameId}/currentQuiz`)
-                    .set(currentQuiz)
-                    .then(() => {
-                        return currentQuiz;
+                let obj = new $firebaseObject(gameRef.child(`${gameId}/currentQuiz`));
+                obj.$value = currentQuiz;
+                obj.$save();
+                return obj
+                    .$loaded()
+                    .then((res) => {
+                        return res.$value;
                     }, (err) => {
-                        console.log(err);
+                        console.error(err);
                         return err;
                     });
             }
