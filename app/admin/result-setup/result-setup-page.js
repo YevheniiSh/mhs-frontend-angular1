@@ -10,6 +10,11 @@ angular.module('resultSetup')
             } else if (vm.mode == 'play') {
                 vm.buttonType = 'Next';
             }
+
+            vm.switchBool=function () {
+               this.saved = false;
+            }
+
             let gameId = $routeParams.gameId;
             vm.quizNumber = $routeParams.quizNumber;
             vm.currentRound = $routeParams.roundNumber;
@@ -35,6 +40,7 @@ angular.module('resultSetup')
                 });
 
             vm.setQuiz = function (quizNumber) {
+                vm.saved = false;
                 vm.quizNumber = quizNumber;
                 vm.teamsScore = [];
                 resultSetupService.getQuizResult(gameId, vm.currentRound, vm.quizNumber)
@@ -61,6 +67,7 @@ angular.module('resultSetup')
                 });
                 Promise.all(promices)
                     .then(()=>{
+                        vm.saved = true;
                         if (vm.quizNumber  < vm.quizzes.length) {
                             if (vm.mode == 'play') {
                                 vm.quizNumber++;

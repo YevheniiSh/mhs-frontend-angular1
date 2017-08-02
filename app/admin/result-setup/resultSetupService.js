@@ -33,12 +33,12 @@ angular.module('resultSetup').factory('resultSetupService', [
             return defer.promise;
         }
 
-        function roundIncrement(roundNumber,gameId) {
+        function roundIncrement(roundNumber, gameId) {
             roundNumber++;
             let defer = $q.defer();
-            gameFactory.setCurrentRound(roundNumber,gameId)
-                .then((res)=>{
-                defer.resolve(res);
+            gameFactory.setCurrentRound(roundNumber, gameId)
+                .then((res) => {
+                    defer.resolve(res);
                 })
         }
 
@@ -46,6 +46,6 @@ angular.module('resultSetup').factory('resultSetupService', [
             getData: getData,
             setQuizResult: setQuizResult,
             getQuizResult: getQuizResult,
-            roundIncrement:roundIncrement
+            roundIncrement: roundIncrement
         };
     }]);
