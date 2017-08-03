@@ -107,10 +107,9 @@ angular.module('addTeams')
                             return GameService.save(game);
                         })
                         .then((gameId) => {
-                            console.log(gameId.key);
+                            console.log(gameId);
 
-                            $location.path('/setup-game-type/' + gameId.key);
-                            $rootScope.$apply();
+                            $location.path('/setup-game-type/' + gameId);
                         });
                 }
 

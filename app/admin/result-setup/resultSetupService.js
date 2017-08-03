@@ -9,7 +9,7 @@ angular.module('resultSetup').factory('resultSetupService', [
             let defer = $q.defer();
             gameFactory.getGameById(gameId)
                 .then((game) => {
-                    defer.resolve(game.val());
+                    defer.resolve(game);
                 });
             return defer.promise;
         }
