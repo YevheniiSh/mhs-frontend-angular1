@@ -1,12 +1,13 @@
 <h1>Sign in!</h1>
-<form ng-submit='$ctrl.login()'>
+
     <div class="form-group">
-        <label for="email">Email address</label>
-        <input id="email" ng-model='$ctrl.email' type="email" placeholder="Email" required>
+        <label for="email">E-mail</label>
+        <input id="email" ng-model='$ctrl.email' type="email" placeholder="E-mail" required>
     </div>
     <div class="form-group">
         <label for="password">Password</label>
         <input id="password" ng-model='$ctrl.password' type="password" placeholder="Password" required>
     </div>
-    <button class="btn btn-success">Sign in</button>
-</form>
+    <button class="btn btn-success" ng-click="$ctrl.login()">Sign in</button>
+    <button class="btn btn-success" ng-click="$ctrl.logout()">Sign out</button>
+    <button class="btn btn-success" ng-click="$ctrl.currentUser()">get current user</button>

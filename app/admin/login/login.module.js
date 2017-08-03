@@ -1,1 +1,1 @@
-angular.module('login',['firebaseConnection']);
+angular.module('login',[]);
