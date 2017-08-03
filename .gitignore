@@ -6,7 +6,6 @@ tmp
 .DS_Store
 .idea
 
-app/firebase.js
-app/public/js/DbConnection.js
+app/dbConfig.js
 firebase.json
 .firebaserc
