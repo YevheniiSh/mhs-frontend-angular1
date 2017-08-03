@@ -4,8 +4,6 @@ angular
         'firebase',
         'addTeams',
         'gameType',
-        'teamFactory',
-        'gameFactory',
         'showResult',
         'roundStatus',
         'showTeamResult',
@@ -40,6 +38,7 @@ angular
             css: 'admin/show-team-result/show-team-result.css'
         });
         $routeProvider.when('/login', {
-            template: '<login></login>'
+            template: '<login></login>',
+            css: 'admin/login/login.css'
         });
     }]);
