@@ -9,10 +9,10 @@ angular.module('login')
                     auth.signInWithEmailAndPassword(this.email, this.password)
                         .then(()=>{
                             $window.history.back();
-                            this.hasErr = false;
+                            this.successfull = true;
                         })
                         .catch(function (error) {
-                        this.hasErr = true;
+                        this.successfull = false;
                     })
                 };
 
