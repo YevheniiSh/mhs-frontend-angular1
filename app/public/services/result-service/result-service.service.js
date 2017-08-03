@@ -1,8 +1,8 @@
 angular
     .module('resultService')
-    .factory('ResultServiceFactory', ['dbConnection', function (dbConnection) {
+    .factory('ResultServiceFactory', ['firebaseDataService', function (firebaseDataService) {
 
-            let ref = dbConnection.ref().child("games");
+        let ref = firebaseDataService.games;
 
             let resultFactory = {};
 
