@@ -4,8 +4,6 @@ angular
         'firebase',
         'addTeams',
         'gameType',
-        'teamFactory',
-        'gameFactory',
         'showResult',
         'roundStatus',
         'showTeamResult',
