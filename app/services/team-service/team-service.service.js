@@ -68,28 +68,11 @@ angular
                     .child(`${gameId}/teams`))
                     .$loaded()
                     .then((res) => {
-                        console.log(res);
                         return res;
                     }, (err) => {
                         console.error(err);
                         return err;
                     });
-
-
-                // return connection
-                //     .ref()
-                //     .child('games')
-                //     .child(gameId)
-                //     .child('teams')
-                //     .once('value')
-                //     .then(
-                //         (res) => {
-                //             return res.val();
-                //         },
-                //         (err) => {
-                //             console.log(err);
-                //             return err;
-                //         });
             }
         }]
     );
