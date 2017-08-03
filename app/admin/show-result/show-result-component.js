@@ -3,8 +3,11 @@ angular.module('showResult')
         templateUrl: 'admin/show-result/show-result.html',
         controller: ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$rootScope', '$location', function (ResultService, GameService, $routeParams, $rootScope, $location) {
 
+            let gameStatus = $routeParams.gameStatus;
+
+            console.log(gameStatus);
             this.getDetails = function (teamResult) {
-                $location.path(`/show-team-result/${$routeParams.gameId}/${teamResult.teamId}`);
+                $location.path(`/show-team-result/${$routeParams.gameId}/${teamResult.teamId}/${gameStatus}`);
             };
 
             function parseTeamsResult(gameResults) {
@@ -28,13 +31,14 @@ angular.module('showResult')
                         teamRounds.push({roundNumber: round, score: roundResult[team].rounds[round].toFixed(1)});
                         totalResult += roundResult[team].rounds[round];
                     }
-                    result.push({teamId: team, rounds: teamRounds, total: totalResult.toFixed(1)    });
+                    result.push({teamId: team, rounds: teamRounds, total: totalResult.toFixed(1)});
                 }
                 return result;
             }
 
             function setTeamName(score) {
-                return GameService.getGameTeams($routeParams.gameId)
+                console.log(gameStatus);
+                return GameService.getGameTeams($routeParams.gameId, gameStatus)
                     .then((teams) => {
                         score.forEach(teamScore => {
                             teams.forEach(team => {
@@ -47,7 +51,7 @@ angular.module('showResult')
                     })
             }
 
-            ResultService.getGameResults($routeParams.gameId)
+            ResultService.getGameResults($routeParams.gameId, gameStatus)
                 .then(parseTeamsResult)
                 .then(setTeamName)
                 .then((result) => {

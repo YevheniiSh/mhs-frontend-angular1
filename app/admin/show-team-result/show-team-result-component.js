@@ -3,6 +3,8 @@ angular.module('showTeamResult')
         templateUrl: 'admin/show-team-result/show-team-result.html',
         controller: ['ResultServiceFactory', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location', function (ResultService, TeamService, $routeParams, $rootScope, $location) {
 
+            let gameStatus = $routeParams.gameStatus;
+
             function parseTeamResult(teamResults) {
                 let res = [];
                 for (let key in teamResults) {
@@ -19,8 +21,8 @@ angular.module('showTeamResult')
                 for (let round in roundsResult) {
                     let roundQuizzes = [];
                     let totalResult = 0;
-                    for(let quiz in roundsResult[round].quizzes){
-                        roundQuizzes.push({quizNum:quiz,score:roundsResult[round].quizzes[quiz]})
+                    for (let quiz in roundsResult[round].quizzes) {
+                        roundQuizzes.push({quizNum: quiz, score: roundsResult[round].quizzes[quiz]})
                         totalResult += roundsResult[round].quizzes[quiz];
                     }
                     result.push({roundNum: round, quizzes: roundQuizzes, total: totalResult.toFixed(1)});
@@ -29,11 +31,11 @@ angular.module('showTeamResult')
             }
 
             this.getGameStatistic = function () {
-                $location.path(`/show-result/${$routeParams.gameId}`);
+                $location.path(`/show-result/${$routeParams.gameId}/${gameStatus}`);
             };
             this.url = $routeParams.gameId;
 
-            ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId)
+            ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId, $routeParams.gameStatus)
                 .then(parseTeamResult)
                 .then((res) => {
                     this.roundsResult = res;
@@ -42,7 +44,7 @@ angular.module('showTeamResult')
             this.quizIndex = 0;
 
             TeamService.getById($routeParams.teamId)
-                .then(team=>{
+                .then(team => {
                     this.teamName = team.name;
                 })
         }]

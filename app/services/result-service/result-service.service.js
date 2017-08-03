@@ -2,13 +2,15 @@ angular
     .module('resultService')
     .factory('ResultServiceFactory', ['firebaseDataService', function (firebaseDataService) {
 
-        let ref = firebaseDataService.games;
+        let currentRef = firebaseDataService.currentGames;
+        let finishedRef = firebaseDataService.finishedGames;
+
 
             let resultFactory = {};
 
             resultFactory.saveResult = function (result, gameId) {
                 let resultKey = result.round + "_" + result.quiz + "_" + result.teamId;
-                return ref.child(`${gameId}/results/${resultKey}`)
+                return currentRef.child(`${gameId}/results/${resultKey}`)
                     .set(result)
                     .then(() => {
                         return resultKey;
@@ -18,7 +20,14 @@ angular
                     });
             };
 
-            resultFactory.filter = function (filter, gameId) {
+        resultFactory.filter = function (filter, gameId, gameStatus) {
+            let ref;
+            if (gameStatus === 'current') {
+                ref = currentRef;
+            }
+            else if (gameStatus === 'finished') {
+                ref = finishedRef;
+            }
                 return ref.child(`/${gameId}/results`)
                     .orderByChild(filter.by).equalTo(filter.val)
                     .once('value')
@@ -31,7 +40,18 @@ angular
                         });
             };
 
-            resultFactory.getGameResults = function (gameId) {
+        resultFactory.getGameResults = function (gameId, gameStatus) {
+            let ref;
+
+            if (gameStatus === 'current') {
+                console.log(gameStatus);
+
+                ref = currentRef;
+            }
+            else if (gameStatus === 'finished') {
+                ref = finishedRef;
+            }
+
                 return ref.child(`/${gameId}/results`)
                     .once('value')
                     .then((res) => {
@@ -44,7 +64,7 @@ angular
             };
 
             resultFactory.getByRoundAndQuiz = function (roundId, quizId, gameId) {
-                return ref.child(`/${gameId}/results/`)
+                return currentRef.child(`/${gameId}/results/`)
                     .orderByKey().startAt(`${roundId}_${quizId}_`).endAt(`${roundId}_${quizId}_~`)
                     .once('value')
                     .then((res) => {

@@ -17,6 +17,10 @@ function RoundStatusController($routeParams, RoundStatusService, GameService) {
     vm.prevRounds = prevRounds;
     vm.gameId = $routeParams.gameId;
 
+    vm.onFinished = function () {
+        GameService.finishGame(vm.gameId);
+    }
+
     GameService
         .getCurrentRound($routeParams.gameId)
         .then((currentRound) => {
