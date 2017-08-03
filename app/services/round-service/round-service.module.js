@@ -1,1 +1,1 @@
-angular.module('roundService', ['firebaseConnection']);
+angular.module('roundService', []);

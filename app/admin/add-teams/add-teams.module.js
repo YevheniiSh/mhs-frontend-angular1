@@ -1,1 +1,1 @@
-angular.module('addTeams', ['teamFactory', 'gameFactory', 'firebaseConnection']);
+angular.module('addTeams', ['teamFactory', 'gameFactory']);

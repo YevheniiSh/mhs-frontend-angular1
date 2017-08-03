@@ -1,1 +1,1 @@
-angular.module('showResult', ['resultService', 'gameFactory', 'firebaseConnection']);
+angular.module('showResult', ['resultService', 'gameFactory']);

@@ -4,12 +4,12 @@ angular
 
 function firebaseDataService() {
     const config = {
-        apiKey: "AIzaSyDlmBFGxhXo5KdhA0FbBYdOs99j8UvDN6I",
-        authDomain: "test-99525.firebaseapp.com",
-        databaseURL: "https://test-99525.firebaseio.com",
-        projectId: "test-99525",
-        storageBucket: "test-99525.appspot.com",
-        messagingSenderId: "734509405972"
+        apiKey: "AIzaSyBW1FbVas8nNwUp8jU8gqWjhpjqdFqIa3g",
+        authDomain: "fir-testproject-902dd.firebaseapp.com",
+        databaseURL: "https://fir-testproject-902dd.firebaseio.com",
+        projectId: "fir-testproject-902dd",
+        storageBucket: "fir-testproject-902dd.appspot.com",
+        messagingSenderId: "844314677599"
     };
 
     if (!firebase.apps.length) {

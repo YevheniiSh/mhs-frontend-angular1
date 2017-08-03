@@ -25,10 +25,10 @@ angular.module('showResult')
                     let teamRounds = [];
                     let totalResult = 0;
                     for (let round in roundResult[team].rounds) {
-                        teamRounds.push({roundNumber: round, score: roundResult[team].rounds[round]});
+                        teamRounds.push({roundNumber: round, score: roundResult[team].rounds[round].toFixed(1)});
                         totalResult += roundResult[team].rounds[round];
                     }
-                    result.push({teamId: team, rounds: teamRounds, total: totalResult.toFixed(1)});
+                    result.push({teamId: team, rounds: teamRounds, total: totalResult.toFixed(1)    });
                 }
                 return result;
             }

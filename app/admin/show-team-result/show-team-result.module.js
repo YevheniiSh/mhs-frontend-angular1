@@ -1,1 +1,1 @@
-angular.module('showTeamResult', ['resultService', 'gameFactory', 'firebaseConnection']);
+angular.module('showTeamResult', ['resultService', 'gameFactory']);

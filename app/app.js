@@ -9,7 +9,6 @@ angular.module('mhs', [
     'angularCSS',
     'teamFactory',
     'gameFactory',
-    'firebaseConnection',
     'resultSetup',
     'firebaseDataService'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
