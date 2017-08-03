@@ -5,7 +5,7 @@ angular.module('showResult')
 
             this.getDetails = function (teamResult) {
                 $location.path(`/show-team-result/${$routeParams.gameId}/${teamResult.teamId}`);
-            }
+            };
 
             function parseTeamsResult(gameResults) {
                 let res = [];
@@ -15,11 +15,11 @@ angular.module('showResult')
                 let roundResult = {};
                 res.forEach((quizResult) => {
                     roundResult[quizResult.teamId] = {rounds: {}, total: 0};
-                })
+                });
                 res.forEach((quizResult) => {
                     let roundScore = roundResult[quizResult.teamId].rounds[quizResult.round];
                     roundResult[quizResult.teamId].rounds[quizResult.round] = roundScore + quizResult.score || quizResult.score;
-                })
+                });
                 let result = [];
                 for (let team in roundResult) {
                     let teamRounds = [];
@@ -40,9 +40,9 @@ angular.module('showResult')
                             teams.forEach(team => {
                                 if (teamScore.teamId === team.teamId) {
                                     teamScore.teamName = team.name;
-                                };
+                                }
                             });
-                        })
+                        });
                         return score;
                     })
             }

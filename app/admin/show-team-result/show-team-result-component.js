@@ -37,15 +37,13 @@ angular.module('showTeamResult')
                 .then(parseTeamResult)
                 .then((res) => {
                     this.roundsResult = res;
-                    $rootScope.$apply();
-                })
+                });
 
             this.quizIndex = 0;
 
             TeamService.getById($routeParams.teamId)
                 .then(team=>{
                     this.teamName = team.name;
-                    $rootScope.$apply();
                 })
         }]
 
