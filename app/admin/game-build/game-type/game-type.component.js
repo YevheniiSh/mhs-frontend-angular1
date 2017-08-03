@@ -40,8 +40,6 @@ angular.module('gameType')
                                 GameService.save(gameBuilder.game, gameId);
                                 $location.path('/round-status/' + gameId);
                             });
-                        console.log(roundNames);
-                        debugger;
                     };
 
                 }]
