@@ -43,6 +43,8 @@ angular.module('showTeamResult')
 
             this.quizIndex = 0;
 
+            this.quizIndex = 0;
+
             TeamService.getById($routeParams.teamId)
                 .then(team => {
                     this.teamName = team.name;

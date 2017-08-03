@@ -4,22 +4,22 @@
     <table class="table table-sm table-striped table-hover ">
         <thead>
         <th>Round</th>
-        <th>Round</th>
-        <th>Round</th>
+
+        <th>Quizzes</th>
+        <th>Total</th>
         </thead>
         <tbody>
             <tr ng-repeat="round in $ctrl.roundsResult">
                 <td id="round">Round №{{round.roundNum}}</td>
-                <td id="quizzes">
-                    <div class="quiz-block"><a class="btn-silver"
-                                               ng-href="/#!/result-setup/{{$ctrl.url}}/{{round.roundNum}}/{{quiz.quizNum}}/edit"
-                                               ng-repeat="quiz in round.quizzes track by   $index"
-                                               ng-init="$ctrl.quizIndex = $index"
-                                               ng-class="{'btn-success': quiz.score>0, 'btn-primary': quiz.score<0}"
-                    >{{quiz.score}}
-                    </a></div>
-                </td>
-                <td id="total" ng-class="{'green-total':round.total>0,'red':round.total<0}">{{round.total}}</td>
+
+                <td id="quizzes"><div class="quiz-block"><a class="btn-silver" ng-href="/#!/result-setup/{{$ctrl.url}}/{{round.roundNum}}/{{quiz.quizNum}}/edit"
+                                    ng-repeat="quiz in round.quizzes track by   $index"
+                                    ng-init="$ctrl.quizIndex = $index"
+                                    ng-class="{'btn-success': quiz.score>0, 'btn-primary': quiz.score<0}"
+                                                >{{quiz.score}}
+                </a></div></td>
+                <td id="total" ng-class="{'green-total':round.total>0,'red-total':round.total<0}">{{round.total}}</td>
+
             </tr>
         </tbody>
     </table>
