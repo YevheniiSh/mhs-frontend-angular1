@@ -27,7 +27,6 @@ angular.module('addTeams')
                     for (let key in res) {
                         this.teamsFromDB.push({teamId: key, name: res[key].name});
                     }
-                    $rootScope.$apply();
                 });
 
                 this.addTeam = function () {

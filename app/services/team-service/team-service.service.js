@@ -53,25 +53,14 @@ angular
             }
 
             function getAllTeams() {
-                // return $firebaseArray(teamRef)
-                //     .$loaded()
-                //     .then((res) => {
-                //         console.log(res)
-                //     }, (err) => {
-                //         console.error(err);
-                //         return err;
-                //     })
-
-                return teamRef
-                    .once('value')
-                    .then(
-                        (res) => {
-                            return res.val();
-                        },
-                        (err) => {
-                            console.log(err);
-                            return err;
-                        });
+                return $firebaseArray(teamRef)
+                    .$loaded()
+                    .then((res) => {
+                        return res;
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    })
             }
 
             function getByGame(gameId) {
