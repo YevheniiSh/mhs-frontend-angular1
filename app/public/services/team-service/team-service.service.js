@@ -1,40 +1,68 @@
 angular
     .module('teamFactory')
-    .factory('TeamServiceFactory', ['dbConnection', function (dbConnection) {
+    .factory('TeamServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService',
+        function ($firebaseArray, $firebaseObject, firebaseDataService) {
 
-            let teamRef = dbConnection.ref().child('teams');
-            let teamFactory = {};
+            let teamRef = firebaseDataService.teams;
 
-            teamFactory.save = function (team) {
-                return teamRef
-                    .push(team)
-                    .then(
-                        (res) => {
-                            return res;
-                        },
-                        (err) => {
-                            console.log(err);
-                            return err;
-                        });
+            return {
+                save: save,
+                updateTeamById: updateTeamById,
+                getById: getById,
+                getAllTeams: getAllTeams,
+                getByGame: getByGame
             };
 
-            teamFactory.updateTeamById = function (teamId, team) {
-                return teamRef
-                    .child(teamId)
-                    .set(team)
-                    .then(
-                        () => {
-                            return {key: teamId};
-                        },
-                        (err) => {
-                            console.log(err);
-                            return err;
-                        });
-            };
+            function save(team) {
+                let obj = new $firebaseObject(teamRef.push());
+                obj.$value = team;
+                obj.$save();
+                return obj
+                    .$loaded()
+                    .then((res) => {
+                        return {key: res.$id, name: res.name};
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
+            }
 
-            teamFactory.getById = function (id) {
+            function updateTeamById(teamId, team) {
+                let obj = new $firebaseObject(teamRef.child(teamId));
+                obj.$value = team;
+                obj.$save();
+                return obj
+                    .$loaded()
+                    .then((res) => {
+                        return {key: res.$id};
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    })
+            }
+
+            function getById(id) {
+                return new $firebaseObject(teamRef.child(id))
+                    .$loaded()
+                    .then((res) => {
+                        return res;
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
+            }
+
+            function getAllTeams() {
+                // return $firebaseArray(teamRef)
+                //     .$loaded()
+                //     .then((res) => {
+                //         console.log(res)
+                //     }, (err) => {
+                //         console.error(err);
+                //         return err;
+                //     })
+
                 return teamRef
-                    .child(id)
                     .once('value')
                     .then(
                         (res) => {
@@ -44,22 +72,9 @@ angular
                             console.log(err);
                             return err;
                         });
-            };
+            }
 
-            teamFactory.getAllTeams = function () {
-                return teamRef
-                    .once('value')
-                    .then(
-                        (res) => {
-                            return res.val();
-                        },
-                        (err) => {
-                            console.log(err);
-                            return err;
-                        });
-            };
-
-            teamFactory.getByGame = function (gameId) {
+            function getByGame(gameId) {
                 return connection
                     .ref()
                     .child('games')
@@ -74,7 +89,6 @@ angular
                             console.log(err);
                             return err;
                         });
-            };
-            return teamFactory;
+            }
         }]
     );
