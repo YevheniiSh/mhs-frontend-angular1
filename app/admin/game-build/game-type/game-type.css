@@ -1,15 +1,15 @@
 .game-type {
-    margin-top: 10%;
+    margin-top: 30px;
 }
 
 .game-tour {
     margin: auto;
-    font-size: 20px;
+    font-size: 12px;
     text-align: center;
 }
 
 .game-rounds {
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .form-group {
