@@ -4,16 +4,18 @@ angular.module('login')
         controller: [
             'userAuthService',
             '$window',
-            function (auth, $window) {
+            '$scope',
+            function (auth, $window,$scope) {
                 this.login = function () {
                     auth.signInWithEmailAndPassword(this.email, this.password)
-                        .then(()=>{
-                            $window.history.back();
-                            this.successfull = true;
+                        .then((user)=>{
+                            console.log(user.email);
+                            // $window.history.back();
                         })
                         .catch(function (error) {
-                        this.successfull = false;
-                    })
+                        this.successfull = 'Error';
+                        console.log(error.message);
+                    });
                 };
 
             }]
