@@ -3,11 +3,7 @@ angular.module('userAuthService')
         let auth = firebaseDataService.auth;
         return {
             signInWithEmailAndPassword: function (email, pass) {
-                return auth.signInWithEmailAndPassword(email, pass).then(function (firebaseUser) {
-                    console.log("Signed in as:", firebaseUser.uid);
-                }).catch(function (error) {
-                    console.error("Authentication failed:", error);
-                });
+                return auth.signInWithEmailAndPassword(email, pass);
             },
             isAuthenticated: function () {
                 let firebaseUser = auth.currentUser;
