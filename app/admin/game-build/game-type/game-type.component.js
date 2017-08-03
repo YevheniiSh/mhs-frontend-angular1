@@ -8,17 +8,17 @@ angular.module('gameType')
                     let vm = this;
                     let rounds = [];
                     let quizSequenceNumber = 1;
-
+                    let roundNames = [];
                     vm.changeRoundCount = function (count) {
                         quizSequenceNumber = 1;
                         rounds.splice(0, rounds.length);
                         for (let i = 0; i < count; i++) {
-                            let quiz = {sequenceNumber: quizSequenceNumber++, quizzess: 10};
+                            let quiz = {sequenceNumber: quizSequenceNumber++, quizzess: 10, roundName: "text"};
                             rounds.push(quiz);
                         }
 
-                    };
 
+                    };
                     vm.rounds = rounds;
 
                     vm.buildGame = function () {
@@ -32,6 +32,8 @@ angular.module('gameType')
                                 GameService.save(gameBuilder.game, gameId);
                                 $location.path('/round-status/' + gameId);
                             });
+                        console.log(roundNames)
+                        debugger;
                     };
 
                 }]

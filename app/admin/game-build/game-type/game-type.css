@@ -3,23 +3,29 @@
 }
 
 .game-tour {
-    max-width: 300px;
-    margin:auto;
+    margin: auto;
     font-size: 20px;
     text-align: center;
 }
 
-.game-questions {
-    max-width: 300px;
-
-    font-size: 20px;
-    text-align: center;
+.game-rounds {
     margin-top: 40px;
 }
 
+.form-group {
+    display: inline-block;
+}
+
 input {
-    margin-left: 30%;
-    max-width: 110px;
+    margin: auto;
+}
+
+.rounds-count{
+    width: 100px;
+}
+
+.round-name {
+    width: 150px;
 }
 
 #game-build {
