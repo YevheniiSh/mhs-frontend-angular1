@@ -3,13 +3,11 @@ angular.module('login')
     templateUrl: "admin/login/login.html",
     controller: [
         'userAuthService',
-        '$location',
-        function (auth, $location) {
+        '$window',
+        function (auth, $window) {
             this.login = function () {
                 auth.signInWithEmailAndPassword(this.email, this.password);
-            };
-            this.logout = function () {
-                auth.signOut();
+                $window.history.back();
             };
 
         }]
