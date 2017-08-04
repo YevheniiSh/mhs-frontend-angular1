@@ -63,8 +63,11 @@
                     <span class="start-ico">FINISH GAME</span><i class="fa fa-flag-o"></i>
                 </a>
             </div>
-            <div class="col-md-5 col-md-offset-2 round-button-panel" ng-click="$ctrl.onPublished()">
-                      <span class="start-ico">Publish results</span><!--<i class="fa fa-flag-o"></i>-->
+            <div class="col-md-5 col-md-offset-2 round-button-panel" ng-click="$ctrl.onPublished()" ng-if="!$ctrl.checked">
+                <span class="btn btn-primary btn-lg btn-block">
+                    <span class="start-ico">Publish results</span>
+                </span>
+
             </div>
         </div>
     </div>
