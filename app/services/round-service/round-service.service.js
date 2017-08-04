@@ -1,14 +1,17 @@
 angular
     .module('roundService')
-    .factory('RoundStatusService', ['firebaseDataService', '$q', function (firebaseDataService, $q) {
-        let gameRef = firebaseDataService.currentGames;
+    .factory('RoundStatusService', ['$firebaseArray', 'firebaseDataService', '$q', 'GameServiceFactory', function ($firebaseArray, firebaseDataService, $q, gameService) {
+        let currentGameRef = firebaseDataService.currentGames;
+        let finishedGameRef = firebaseDataService.finishedGames;
+
         return {
             getRounds: getRounds,
+            getRoundNames: getRoundNames
         };
 
         function getRounds(gameId) {
             let deferred = $q.defer();
-            gameRef
+            currentGameRef
                 .child(`/${gameId}/rounds`)
                 .once('value')
                 .then((res) => {
@@ -17,5 +20,13 @@ angular
                     deferred.reject(err);
                 });
             return deferred.promise;
+        }
+
+        function getRoundNames(gameId) {
+            return gameService.getGameRef(gameId)
+                .then((ref) => {
+                    let fbObj = new $firebaseArray(ref.child(gameId).child('rounds'));
+                    return fbObj.$loaded();
+                });
         }
     }]);
