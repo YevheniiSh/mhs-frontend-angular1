@@ -17,6 +17,7 @@ angular
                 setCurrentRound: setCurrentRound,
                 setCurrentQuiz: setCurrentQuiz,
                 finishGame: finishGame,
+                publishGame: publishGame,
                 getGameRef: getGameRef
             };
 
@@ -172,5 +173,14 @@ angular
                         console.error(err);
                         return err;
                     });
+            }
+
+            function publishGame(gameId) {
+                getCurrentGameById(gameId).then((res) => {
+                    console.log(res);
+                    let obj = new $firebaseObject(finishedGameRef.child(gameId));
+                    obj.$value = getObject(res);
+                    obj.$save();
+                });
             }
         }]);
