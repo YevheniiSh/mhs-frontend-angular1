@@ -17,7 +17,8 @@ angular
                 setCurrentRound: setCurrentRound,
                 setCurrentQuiz: setCurrentQuiz,
                 finishGame: finishGame,
-                getGameRef: getGameRef
+                getGameRef: getGameRef,
+                getAllFinishedGames: getAllFinishedGames
             };
 
             function getGameRef(gameId) {
@@ -45,6 +46,11 @@ angular
 
             function getFinishedGameById(gameId) {
                 return new $firebaseObject(finishedGameRef.child(gameId))
+                    .$loaded();
+            }
+
+            function getAllFinishedGames() {
+                return new $firebaseArray(finishedGameRef)
                     .$loaded();
             }
 

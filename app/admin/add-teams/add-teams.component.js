@@ -8,19 +8,9 @@ angular.module('addTeams')
 
             function (TeamService, GameService, $rootScope, $location) {
 
-                console.log(TeamService);
-
                 this.selected = null;
 
-                this.teams = [
-                    // {
-                    //     name: 'Superman',
-                    // },
-                    // {
-                    //     name: 'Batman',
-                    // }
-                ];
-
+                this.teams = [];
                 this.teamsFromDB = [];
 
                 TeamService.getAllTeams().then((res) => {
