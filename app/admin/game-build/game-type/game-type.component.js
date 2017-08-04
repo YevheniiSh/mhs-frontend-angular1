@@ -2,12 +2,15 @@
 angular.module('gameType')
     .component('gameType', {
             templateUrl: 'admin/game-build/game-type/game-type.html',
-            controller: ['GameServiceFactory', '$routeParams', '$location', '$rootScope',
-                function (GameService, $routeParams, $location, $rootScope) {
+            controller: ['GameServiceFactory', '$routeParams', '$location',
+                function (GameService, $routeParams, $location) {
+
 
                     let vm = this;
+
                     let rounds = [];
                     vm.rounds = rounds;
+                    vm.gameDate = new Date();
 
                     let quizSequenceNumber;
 
@@ -30,14 +33,19 @@ angular.module('gameType')
                     };
 
                     vm.buildGame = function () {
+
                         let gameId = $routeParams.gameId;
                         GameService
                             .getGameById(gameId)
                             .then((res) => {
                                 let gameBuilder = new GameBuilder(res);
 
+                                gameBuilder.addDate(vm.gameDate);
+
                                 addRoundsToGameBuilder(rounds, gameBuilder);
+
                                 GameService.save(gameBuilder.game, gameId);
+
                                 $location.path('/round-status/' + gameId);
                             });
                     };
@@ -45,6 +53,7 @@ angular.module('gameType')
                 }]
         }
     );
+
 
 function addRoundsToGameBuilder(rounds, gameBuilder) {
     let roundArray = [];

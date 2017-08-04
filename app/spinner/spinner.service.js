@@ -1,7 +1,5 @@
-let app = angular
-    .module('mhs');
-
-app.service('LoadingInterceptor',
+angular
+    .module('mhs').service('LoadingInterceptor',
     ['$q', '$rootScope', '$log',
         function ($q, $rootScope, $log) {
             'use strict';
@@ -25,8 +23,6 @@ app.service('LoadingInterceptor',
                     return $q.reject(rejection);
                 }
             }
-        }]);
-
-app.config(['$httpProvider', function ($httpProvider) {
+        }]).config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('LoadingInterceptor');
 }]);

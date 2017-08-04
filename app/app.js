@@ -12,7 +12,7 @@ angular.module('mhs', [
     'resultSetup',
     'firebaseDataService',
     'userAuthService',
-    'internalisation'
+    'internalisation',
 ]).config(['$locationProvider', '$routeProvider',
     function ($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');
