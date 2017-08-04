@@ -12,7 +12,12 @@ angular
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
             template: '<game-type></game-type>',
-            css: 'admin/game-build/game-type/game-type.css'
+            css: 'admin/game-build/game-type/game-type.css',
+            resolve: {
+                currentUser: ['userAuthService', function (auth) {
+                    return auth.currentUser();
+                }]
+            }
         });
         $routeProvider.when('/add-teams', {
             template: '<add-teams></add-teams>',
