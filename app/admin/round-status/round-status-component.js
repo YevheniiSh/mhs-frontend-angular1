@@ -3,10 +3,10 @@ angular
     .component('roundStatus', {
         templateUrl: 'admin/round-status/round-status.html',
         css: 'admin/round-status/round-status.css',
-        controller: ['$routeParams', 'RoundStatusService', 'GameServiceFactory', RoundStatusController]
+        controller: ['$routeParams', 'RoundStatusService', 'GameServiceFactory', 'ResultServiceFactory', RoundStatusController]
     });
 
-function RoundStatusController($routeParams, RoundStatusService, GameService) {
+function RoundStatusController($routeParams, RoundStatusService, GameService, ResultService) {
     let vm = this;
     let nextRounds = [];
     let prevRounds = [];
@@ -18,7 +18,11 @@ function RoundStatusController($routeParams, RoundStatusService, GameService) {
     vm.gameId = $routeParams.gameId;
 
     vm.onFinished = function () {
-        GameService.finishGame(vm.gameId);
+        ResultService.setGameWinner(vm.gameId)
+            .then((res) => {
+                GameService.finishGame(vm.gameId);
+            });
+
     };
 
     GameService
