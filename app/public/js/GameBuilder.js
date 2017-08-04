@@ -14,14 +14,14 @@ class GameBuilder {
         this.game.id = id;
     }
 
-    addRound(id, numberOfQuestion) {
-        this.game.rounds.push(new GameRound(id, numberOfQuestion));
+    addRound(id, numberOfQuestion, name) {
+        this.game.rounds.push(new GameRound(id, numberOfQuestion, name));
         return this;
     }
 
     addRoundsArray(rounds) {
         for (let i = 0; i < rounds.length; i++) {
-            let newRound = new GameRound(i+1, rounds[i]);
+            let newRound = new GameRound(rounds[i].sequenceNumber, rounds[i].quizzess, rounds[i].roundName);
             this.game.rounds.push(newRound);
         }
         return this;
@@ -38,6 +38,14 @@ class GameBuilder {
             this.game.teams.push(gameTeam);
         }
         return this;
+    }
+
+    addDate(date) {
+        this.game.date = date;
+    }
+
+    addLocation(location) {
+        this.game.location = location;
     }
 
     addResult(result) {

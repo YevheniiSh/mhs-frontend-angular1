@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-let app = angular.module('mhs', [
+angular.module('mhs', [
     'ngRoute',
     'mhs.admin',
     'mhs.player',
@@ -11,12 +11,12 @@ let app = angular.module('mhs', [
     'gameFactory',
     'resultSetup',
     'firebaseDataService',
+    'userAuthService',
+    'internalisation',
     'userAuthService'
-
-]);
-
-app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
-    $routeProvider.otherwise({redirectTo: '/add-teams'});
-}]);
+]).config(['$locationProvider', '$routeProvider',
+    function ($locationProvider, $routeProvider) {
+        $locationProvider.hashPrefix('!');
+        $routeProvider.otherwise({redirectTo: '/add-teams'});
+    }]);
 

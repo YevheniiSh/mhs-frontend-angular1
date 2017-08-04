@@ -7,8 +7,10 @@ angular.module('gameType')
 
                     let vm = this;
                     let rounds = [];
-                    let quizSequenceNumber = 1;
-                    let roundNames = [];
+                    vm.rounds = rounds;
+
+                    let quizSequenceNumber;
+
                     vm.changeRoundCount = function (count) {
                         quizSequenceNumber = 1;
 
@@ -19,15 +21,13 @@ angular.module('gameType')
                                 rounds.push(tempRounds[i])
 
                             } else {
-                                let quiz = {sequenceNumber: quizSequenceNumber++, quizzess: 10, roundName: "text"};
+                                let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: "text"};
                                 rounds.push(quiz);
                             }
-
+                            quizSequenceNumber++
                         }
-
-
+                        tempRounds.slice(0, tempRounds.length)
                     };
-                    vm.rounds = rounds;
 
                     vm.buildGame = function () {
                         let gameId = $routeParams.gameId;
@@ -50,7 +50,7 @@ function addRoundsToGameBuilder(rounds, gameBuilder) {
     let roundArray = [];
 
     for (let i = 0; i < rounds.length; i++) {
-        roundArray.push(rounds[i].quizzess);
+        roundArray.push(rounds[i]);
     }
     gameBuilder.addRoundsArray(roundArray);
 

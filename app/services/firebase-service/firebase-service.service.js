@@ -15,6 +15,8 @@ function firebaseDataService(config) {
         auth: firebase.auth(),
         root: root,
         games: root.child('games'),
-        teams: root.child('teams')
+        teams: root.child('teams'),
+        currentGames: root.child('games').child('current'),
+        finishedGames: root.child('games').child('finished')
     };
 }

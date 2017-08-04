@@ -3,20 +3,72 @@ angular
     .factory('GameServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService',
         function ($firebaseArray, $firebaseObject, firebaseDataService) {
 
-            let gameRef = firebaseDataService.games;
+            let currentGameRef = firebaseDataService.currentGames;
+            let finishedGameRef = firebaseDataService.finishedGames;
+
+            let ref;
 
             return {
-                getGameById: getGameById,
+                getGameById: getCurrentGameById,
                 save: save,
                 getCurrentRound: getCurrentRound,
                 getCurrentQuiz: getCurrentQuiz,
                 getGameTeams: getGameTeams,
                 setCurrentRound: setCurrentRound,
-                setCurrentQuiz: setCurrentQuiz
+                setCurrentQuiz: setCurrentQuiz,
+                finishGame: finishGame,
+                getGameRef: getGameRef
             };
 
-            function getGameById(gameId) {
-                return $firebaseObject(gameRef.child(gameId)).$loaded();
+            function getGameRef(gameId) {
+                return getCurrentGameById(gameId)
+                    .then((res) => {
+                        console.log(res.$value);
+                        if (res.$value !== null) {
+                            return ref = currentGameRef;
+
+                        }
+                        else {
+                            return ref = finishedGameRef;
+                        }
+                    })
+                    .catch(() => {
+                        console.log('error');
+                        ref = finishedGameRef
+                    });
+            }
+
+            function getCurrentGameById(gameId) {
+                return new $firebaseObject(currentGameRef.child(gameId))
+                    .$loaded();
+            }
+
+            function getFinishedGameById(gameId) {
+                return new $firebaseObject(finishedGameRef.child(gameId))
+                    .$loaded();
+            }
+
+            function finishGame(gameId) {
+                getCurrentGameById(gameId).then((res) => {
+                    console.log(res);
+                    let obj = new $firebaseObject(finishedGameRef.child(gameId));
+                    obj.$value = getObject(res);
+                    obj.$save();
+                    res.$remove();
+                });
+
+
+            }
+
+            function getObject(obj) {
+                let newObj = {};
+                for (let key in obj) {
+                    if (key.indexOf('$') < 0 && obj.hasOwnProperty(key)) {
+                        newObj[key] = obj[key];
+                    }
+                    ;
+                }
+                return newObj;
             }
 
             function saveGame(obj, game) {
@@ -34,15 +86,18 @@ angular
 
             function save(game, gameId) {
                 if (gameId === undefined) {
-                    let obj = new $firebaseObject(gameRef.push());
+                    let obj = new $firebaseObject(currentGameRef.push());
                     return saveGame(obj, game);
                 }
                 else {
-                    let obj = new $firebaseObject(gameRef.child(gameId));
+                    let obj = new $firebaseObject(currentGameRef.child(gameId));
                     //todo - we must rework this!
                     let rounds = {};
                     for (let i = 0; i < game.rounds.length; i++) {
-                        rounds[game.rounds[i].id] = game.rounds[i].quantityOfQuestions;
+                        rounds[game.rounds[i].id] = {
+                            numberOfQuestions: game.rounds[i].numberOfQuestions,
+                            name: game.rounds[i].name
+                        };
                     }
                     let teams = {};
                     for (let i = 0; i < game.teams.length; i++) {
@@ -64,7 +119,7 @@ angular
             }
 
             function getStatus(gameId, status) {
-                let currentRoundRef = gameRef
+                let currentRoundRef = currentGameRef
                     .child(`${gameId}/${status}`);
 
                 return new $firebaseObject(currentRoundRef)
@@ -78,7 +133,8 @@ angular
             }
 
             function getGameTeams(gameId) {
-                return $firebaseArray(gameRef.child(`/${gameId}/teams`))
+                getGameRef(gameId)
+                return $firebaseArray(ref.child(`/${gameId}/teams`))
                     .$loaded()
                     .then((res) => {
                         return res.map((team) => {
@@ -91,7 +147,7 @@ angular
             }
 
             function setCurrentRound(currentRound, gameId) {
-                let obj = new $firebaseObject(gameRef.child(`${gameId}/currentRound`));
+                let obj = new $firebaseObject(currentGameRef.child(`${gameId}/currentRound`));
                 obj.$value = currentRound;
                 obj.$save();
                 return obj
@@ -105,7 +161,7 @@ angular
             }
 
             function setCurrentQuiz(currentQuiz, gameId) {
-                let obj = new $firebaseObject(gameRef.child(`${gameId}/currentQuiz`));
+                let obj = new $firebaseObject(currentGameRef.child(`${gameId}/currentQuiz`));
                 obj.$value = currentQuiz;
                 obj.$save();
                 return obj

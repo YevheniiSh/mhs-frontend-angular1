@@ -22,7 +22,7 @@ angular.module('resultSetup')
                 .then((game) => {
                     vm.quizzes = [];
                     vm.teams = game.teams;
-                    let quizCount = game.rounds[$routeParams.roundNumber];
+                    let quizCount = game.rounds[$routeParams.roundNumber].numberOfQuestions;
                     for (let i = 1; i <= quizCount; i++) {
                         vm.quizzes.push({number: i, answered: false});
                     }

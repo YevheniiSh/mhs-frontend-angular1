@@ -11,8 +11,8 @@ angular.module('login')
                             $location.path("/add-teams");
                         })
                         .catch(error => {
-                        this.errMessage = 'Invalid e-mail or password';
-                    });
+                            this.errMessage = 'Invalid e-mail or password';
+                        });
                 };
 
             }]

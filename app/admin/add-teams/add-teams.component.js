@@ -22,9 +22,9 @@ angular.module('addTeams')
                 this.teamsFromDB = [];
 
                 TeamService.getAllTeams().then((res) => {
-                    for (let key in res) {
-                        this.teamsFromDB.push({teamId: key, name: res[key].name});
-                    }
+                    angular.forEach(res, (team) => {
+                        this.teamsFromDB.push({teamId: team.$id, name: team.name})
+                    });
                 });
 
                 this.addTeam = function () {

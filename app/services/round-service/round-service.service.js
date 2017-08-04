@@ -1,7 +1,7 @@
 angular
     .module('roundService')
     .factory('RoundStatusService', ['firebaseDataService', '$q', function (firebaseDataService, $q) {
-        let gameRef = firebaseDataService.games;
+        let gameRef = firebaseDataService.currentGames;
         return {
             getRounds: getRounds,
         };
