@@ -36,7 +36,7 @@ angular
                     })
                     .catch(() => {
                         console.log('error');
-                        ref = finishedGameRef
+                        return ref = finishedGameRef
                     });
             }
 
