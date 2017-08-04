@@ -11,8 +11,9 @@
                     <button id="game-build" class="btn btn-default" ng-click="$ctrl.buildGame()">Build</button>
                 </div>
 
-                <md-datepicker ng-model="$ctrl.gameDate"
-                               md-placeholder="Enter date"></md-datepicker>
+                <!--<md-datepicker ng-model="$ctrl.gameDate"-->
+                               <!--md-placeholder="Enter date"></md-datepicker>-->
+                <input type="date" ng-model="$ctrl.gameDate">
             </div>
 
             <div ng-repeat="round in $ctrl.rounds">
