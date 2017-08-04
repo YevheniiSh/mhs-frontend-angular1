@@ -21,15 +21,13 @@ angular.module('gameType')
                                 rounds.push(tempRounds[i])
 
                             } else {
-                                let quiz = {sequenceNumber: quizSequenceNumber++, quizzess: 10, roundName: "text"};
+                                let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: "text"};
                                 rounds.push(quiz);
                             }
-
+                            quizSequenceNumber++
                         }
-
-
+                        tempRounds.slice(0, tempRounds.length)
                     };
-
 
                     vm.buildGame = function () {
                         let gameId = $routeParams.gameId;
