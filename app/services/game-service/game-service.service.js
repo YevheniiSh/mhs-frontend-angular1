@@ -19,7 +19,8 @@ angular
                 finishGame: finishGame,
                 publishGame: publishGame,
                 getGameRef: getGameRef,
-                getAllFinishedGames: getAllFinishedGames
+                getAllFinishedGames: getAllFinishedGames,
+                getGameStatus: getGameStatus
             };
 
             function getGameRef(gameId) {
@@ -37,6 +38,24 @@ angular
                     .catch(() => {
                         console.log('error');
                         return ref = finishedGameRef
+                    });
+            }
+
+            function getGameStatus(gameId) {
+                return getCurrentGameById(gameId)
+                    .then((res) => {
+                        console.log(res.$value);
+                        if (res.$value !== null) {
+                            return 'current';
+
+                        }
+                        else {
+                            return 'finished';
+                        }
+                    })
+                    .catch(() => {
+                        console.log('error');
+                        return 'finished';
                     });
             }
 
