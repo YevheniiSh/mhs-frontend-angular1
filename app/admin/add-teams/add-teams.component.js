@@ -8,10 +8,8 @@ angular.module('addTeams')
 
             function (TeamService, GameService, $rootScope, $location) {
 
-                console.log(TeamService);
 
                 this.selected = null;
-
                 this.teams = [
                     // {
                     //     name: 'Superman',
