@@ -8,7 +8,7 @@
       "finished":{
         "$gameId":{
           ".read": true,
-    			".write": "auth != null && (!data.exists() || !newData.exists())"
+    			".write": "auth != null && (!data.child('winner').exists() || !newData.exists())"
         }
 
       }
