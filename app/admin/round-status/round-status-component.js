@@ -19,7 +19,7 @@ function RoundStatusController($routeParams, RoundStatusService, GameService) {
 
     vm.onFinished = function () {
         GameService.finishGame(vm.gameId);
-    }
+    };
 
     GameService
         .getCurrentRound($routeParams.gameId)

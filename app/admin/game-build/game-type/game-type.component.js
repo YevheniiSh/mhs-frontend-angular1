@@ -7,8 +7,10 @@ angular.module('gameType')
 
                     let vm = this;
                     let rounds = [];
-                    let quizSequenceNumber = 1;
-                    let roundNames = [];
+                    vm.rounds = rounds;
+
+                    let quizSequenceNumber;
+
                     vm.changeRoundCount = function (count) {
                         quizSequenceNumber = 1;
 
@@ -27,9 +29,10 @@ angular.module('gameType')
 
 
                     };
-                    vm.rounds = rounds;
+
 
                     vm.buildGame = function () {
+                        debugger;
                         let gameId = $routeParams.gameId;
                         GameService
                             .getGameById(gameId)
