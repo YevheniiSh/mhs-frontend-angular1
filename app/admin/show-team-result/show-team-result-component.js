@@ -54,8 +54,6 @@ angular.module('showTeamResult')
                     .then(parseTeamResult)
                     .then((res) => {
                         this.roundsResult = res;
-                        console.log(this.roundsResult);
-                        $rootScope.$apply();
                     });
 
                 TeamService.getById($routeParams.teamId)
