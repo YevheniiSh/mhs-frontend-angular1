@@ -7,10 +7,9 @@ angular
         'showResult',
         'roundStatus',
         'showTeamResult',
-        'userAuthService',
-
-        'login'])
-    .config(['$routeProvider', function ($routeProvider,) {
+        'login',
+        'login-panel'])
+    .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
             template: '<game-type></game-type>',
             css: 'admin/game-build/game-type/game-type.css'
@@ -18,8 +17,8 @@ angular
         $routeProvider.when('/add-teams', {
             template: '<add-teams></add-teams>',
             css: 'admin/add-teams/add-teams.css',
-            resolve:{
-                currentUser:['userAuthService',function(auth){
+            resolve: {
+                currentUser: ['userAuthService', function (auth) {
                     return auth.currentUser();
                 }]
             }
@@ -28,8 +27,8 @@ angular
         $routeProvider.when('/result-setup/:gameId/:roundNumber/:quizNumber/:mode', {
             template: '<result-setup></result-setup>',
             css: 'admin/result-setup/result-setup-page.css',
-            resolve:{
-                currentUser:['userAuthService',function(auth){
+            resolve: {
+                currentUser: ['userAuthService', function (auth) {
                     return auth.currentUser();
                 }]
             }
@@ -37,8 +36,8 @@ angular
         $routeProvider.when('/edit-result/:gameId', {
             template: '<result-editor></result-editor>',
             css: 'admin/result-editor/result-editor.css',
-            resolve:{
-                currentUser:['userAuthService',function(auth){
+            resolve: {
+                currentUser: ['userAuthService', function (auth) {
                     return auth.currentUser();
                 }]
             }
@@ -49,8 +48,8 @@ angular
         });
         $routeProvider.when('/round-status/:gameId', {
             template: '<round-status></round-status>',
-            resolve:{
-                currentUser:['userAuthService',function(auth){
+            resolve: {
+                currentUser: ['userAuthService', function (auth) {
                     return auth.currentUser();
                 }]
             }
@@ -63,9 +62,12 @@ angular
             template: '<login></login>',
             css: 'admin/login/login.css'
         });
+        $routeProvider.when('/login-panel', {
+            template: '<login-panel></login-panel>'
+        });
     }])
-    .run(["$rootScope", "$location", function($rootScope, $location) {
-        $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
+    .run(["$rootScope", "$location", function ($rootScope, $location) {
+        $rootScope.$on("$routeChangeError", function (event, next, previous, error) {
 
             $location.path("/login");
         });

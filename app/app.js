@@ -12,11 +12,9 @@ angular.module('mhs', [
     'resultSetup',
     'firebaseDataService',
     'userAuthService',
-    'internalisation',
-    'userAuthService'
+    'internalisation'
 ]).config(['$locationProvider', '$routeProvider',
     function ($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');
         $routeProvider.otherwise({redirectTo: '/add-teams'});
     }]);
-
