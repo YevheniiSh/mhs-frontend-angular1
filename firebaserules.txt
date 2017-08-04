@@ -1,0 +1,22 @@
+{
+  "rules": {
+    "games":{
+      "current":{
+        ".read": "auth != null",
+    		".write": "auth != null"
+      },
+      "finished":{
+        "$gameId":{
+          ".read": true,
+    			".write": "auth != null && (!data.exists() || !newData.exists())"
+        }
+
+      }
+
+    },
+      "teams":{
+        ".read": true,
+    		".write": "auth != null"
+      }
+  }
+}

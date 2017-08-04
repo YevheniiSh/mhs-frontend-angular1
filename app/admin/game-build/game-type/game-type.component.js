@@ -32,7 +32,6 @@ angular.module('gameType')
 
 
                     vm.buildGame = function () {
-                        debugger;
                         let gameId = $routeParams.gameId;
                         GameService
                             .getGameById(gameId)

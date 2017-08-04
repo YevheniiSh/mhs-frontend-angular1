@@ -21,7 +21,7 @@ class GameBuilder {
 
     addRoundsArray(rounds) {
         for (let i = 0; i < rounds.length; i++) {
-            let newRound = new GameRound(rounds[i].sequenceNumber, rounds[i].quizzess, rounds[i].name);
+            let newRound = new GameRound(rounds[i].sequenceNumber, rounds[i].quizzess, rounds[i].roundName);
             this.game.rounds.push(newRound);
         }
         return this;
