@@ -10,9 +10,11 @@ angular.module('mhs', [
     'teamFactory',
     'gameFactory',
     'resultSetup',
-    'firebaseDataService'
-]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
-
-    $routeProvider.otherwise({redirectTo: '/add-teams'});
-}]);
+    'firebaseDataService',
+    'userAuthService',
+    'internalisation'
+]).config(['$locationProvider', '$routeProvider',
+    function ($locationProvider, $routeProvider) {
+        $locationProvider.hashPrefix('!');
+        $routeProvider.otherwise({redirectTo: '/add-teams'});
+    }]);

@@ -1,7 +1,7 @@
 angular
     .module('teamFactory')
-    .factory('TeamServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService',
-        function ($firebaseArray, $firebaseObject, firebaseDataService) {
+    .factory('TeamServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService', '$q',
+        function ($firebaseArray, $firebaseObject, firebaseDataService, $q) {
 
             let teamRef = firebaseDataService.teams;
 
@@ -53,42 +53,37 @@ angular
             }
 
             function getAllTeams() {
-                // return $firebaseArray(teamRef)
-                //     .$loaded()
-                //     .then((res) => {
-                //         console.log(res)
-                //     }, (err) => {
-                //         console.error(err);
-                //         return err;
-                //     })
-
-                return teamRef
-                    .once('value')
-                    .then(
-                        (res) => {
-                            return res.val();
-                        },
-                        (err) => {
-                            console.log(err);
-                            return err;
+                return new $firebaseArray(teamRef)
+                    .$loaded()
+                    .then((res) => {
+                        let teams = [];
+                        angular.forEach(res, (team) => {
+                            teams.push(team);
                         });
+                        return teams;
+
+
+                        // res.$ref(teamRef.child('/asddfs')).$add({name: 'pipi'})
+                        //     .$loaded()
+                        //     .then(() => {
+                        //         res.$ref(teamRef.child('-KqbzkyiHJAXc-e9ipiP')).remove();
+                        //     })
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
             }
 
             function getByGame(gameId) {
-                return connection
-                    .ref()
-                    .child('games')
-                    .child(gameId)
-                    .child('teams')
-                    .once('value')
-                    .then(
-                        (res) => {
-                            return res.val();
-                        },
-                        (err) => {
-                            console.log(err);
-                            return err;
-                        });
+                return new $firebaseObject(firebaseDataService.games
+                    .child(`${gameId}/teams`))
+                    .$loaded()
+                    .then((res) => {
+                        return res;
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
             }
         }]
     );

@@ -25,12 +25,21 @@
 <div ng-view></div>
 
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+
+<script src="internalisation/internalisation.module.js"></script>
+<script src="internalisation/internalisation.service.js"></script>
+
 <script src="bower_components/angularfire/dist/angularfire.js"></script>
 
 <script src="services/firebase-service/firebase-service.module.js"></script>
 <script src="services/firebase-service/firebase-service.service.js"></script>
+<script src="services/firebase-service/dbConfig.js"></script>
+
+<script src="services/user-auth-service/user-auth-service.module.js"></script>
+<script src="services/user-auth-service/user-auth-service.service.js"></script>
 
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-css/angular-css.js"></script>
@@ -43,7 +52,6 @@
 <script src="app.js"></script>
 <script src="player/player.js"></script>
 <script src="admin/admin.js"></script>
-<script src="firebase.js"></script>
 <script src="admin/add-teams/add-teams.module.js"></script>
 
 
