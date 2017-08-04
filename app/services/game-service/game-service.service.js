@@ -94,7 +94,10 @@ angular
                     //todo - we must rework this!
                     let rounds = {};
                     for (let i = 0; i < game.rounds.length; i++) {
-                        rounds[game.rounds[i].id] = game.rounds[i].quantityOfQuestions;
+                        rounds[game.rounds[i].id] = {
+                            numberOfQuestions: game.rounds[i].numberOfQuestions,
+                            name: game.rounds[i].name
+                        };
                     }
                     let teams = {};
                     for (let i = 0; i < game.teams.length; i++) {
@@ -130,17 +133,6 @@ angular
             }
 
             function getGameTeams(gameId) {
-                // console.log(gameStatus);
-                //
-                // if (gameStatus === 'current') {
-                //     console.log(gameStatus);
-                //
-                //     ref = currentGameRef;
-                // }
-                // else if (gameStatus === 'finished') {
-                //     console.log(gameStatus);
-                //     ref = finishedGameRef;
-                // }
                 getGameRef(gameId)
                 return $firebaseArray(ref.child(`/${gameId}/teams`))
                     .$loaded()

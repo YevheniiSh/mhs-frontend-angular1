@@ -50,7 +50,7 @@ function addRoundsToGameBuilder(rounds, gameBuilder) {
     let roundArray = [];
 
     for (let i = 0; i < rounds.length; i++) {
-        roundArray.push(rounds[i].quizzess);
+        roundArray.push(rounds[i]);
     }
     gameBuilder.addRoundsArray(roundArray);
 

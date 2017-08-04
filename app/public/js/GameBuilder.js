@@ -14,14 +14,14 @@ class GameBuilder {
         this.game.id = id;
     }
 
-    addRound(id, numberOfQuestion) {
-        this.game.rounds.push(new GameRound(id, numberOfQuestion));
+    addRound(id, numberOfQuestion, name) {
+        this.game.rounds.push(new GameRound(id, numberOfQuestion, name));
         return this;
     }
 
     addRoundsArray(rounds) {
         for (let i = 0; i < rounds.length; i++) {
-            let newRound = new GameRound(i+1, rounds[i]);
+            let newRound = new GameRound(rounds[i].sequenceNumber, rounds[i].quizzess, rounds[i].name);
             this.game.rounds.push(newRound);
         }
         return this;

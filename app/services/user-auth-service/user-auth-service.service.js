@@ -8,7 +8,7 @@ angular.module('userAuthService')
                     .then((user) => {
                         defer.resolve(user);
                     })
-                    .catch((er) =>{
+                    .catch((er) => {
                         defer.reject(er);
                     })
                 return defer.promise;

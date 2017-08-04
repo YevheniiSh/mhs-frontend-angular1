@@ -1,6 +1,7 @@
-#login-panel{
+#login-panel {
     margin-top: 20px;
 }
-.error-message{
+
+.error-message {
     color: red;
 }

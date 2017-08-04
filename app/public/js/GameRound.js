@@ -1,6 +1,7 @@
 class GameRound{
-    constructor(id, quantityOfQuestions){
+    constructor(id, quantityOfQuestions, roundName) {
         this.id = id;
-        this.quantityOfQuestions = quantityOfQuestions;
+        this.numberOfQuestions = quantityOfQuestions;
+        this.name = roundName;
     }
 }

@@ -1,1 +1,1 @@
-angular.module('userAuthService',[])
+angular.module('userAuthService', [])
