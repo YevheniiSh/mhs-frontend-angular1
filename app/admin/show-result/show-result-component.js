@@ -3,11 +3,9 @@ angular.module('showResult')
         templateUrl: 'admin/show-result/show-result.html',
         controller: ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$rootScope', '$location', function (ResultService, GameService, $routeParams, $rootScope, $location) {
 
-            let gameStatus = $routeParams.gameStatus;
 
-            console.log(gameStatus);
             this.getDetails = function (teamResult) {
-                $location.path(`/show-team-result/${$routeParams.gameId}/${teamResult.teamId}/${gameStatus}`);
+                $location.path(`/show-team-result/${$routeParams.gameId}/${teamResult.teamId}`);
             };
 
             function parseTeamsResult(gameResults) {
@@ -37,8 +35,7 @@ angular.module('showResult')
             }
 
             function setTeamName(score) {
-                console.log(gameStatus);
-                return GameService.getGameTeams($routeParams.gameId, gameStatus)
+                return GameService.getGameTeams($routeParams.gameId)
                     .then((teams) => {
                         score.forEach(teamScore => {
                             teams.forEach(team => {
@@ -51,7 +48,7 @@ angular.module('showResult')
                     })
             }
 
-            ResultService.getGameResults($routeParams.gameId, gameStatus)
+            ResultService.getGameResults($routeParams.gameId)
                 .then(parseTeamsResult)
                 .then(setTeamName)
                 .then((result) => {

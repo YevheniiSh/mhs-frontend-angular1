@@ -3,8 +3,6 @@ angular.module('showTeamResult')
         templateUrl: 'admin/show-team-result/show-team-result.html',
         controller: ['ResultServiceFactory', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location', function (ResultService, TeamService, $routeParams, $rootScope, $location) {
 
-            let gameStatus = $routeParams.gameStatus;
-
             function parseTeamResult(teamResults) {
                 let res = [];
                 for (let key in teamResults) {
@@ -31,7 +29,7 @@ angular.module('showTeamResult')
             }
 
             this.getGameStatistic = function () {
-                $location.path(`/show-result/${$routeParams.gameId}/${gameStatus}`);
+                $location.path(`/show-result/${$routeParams.gameId}`);
             };
             this.url = $routeParams.gameId;
 

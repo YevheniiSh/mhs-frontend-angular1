@@ -6,6 +6,8 @@ angular
             let currentGameRef = firebaseDataService.currentGames;
             let finishedGameRef = firebaseDataService.finishedGames;
 
+            let ref;
+
             return {
                 getGameById: getCurrentGameById,
                 save: save,
@@ -14,11 +16,35 @@ angular
                 getGameTeams: getGameTeams,
                 setCurrentRound: setCurrentRound,
                 setCurrentQuiz: setCurrentQuiz,
-                finishGame: finishGame
+                finishGame: finishGame,
+                getGameRef: getGameRef
             };
+
+            function getGameRef(gameId) {
+                return getCurrentGameById(gameId)
+                    .then((res) => {
+                        console.log(res.$value);
+                        if (res.$value !== null) {
+                            return ref = currentGameRef;
+
+                        }
+                        else {
+                            return ref = finishedGameRef;
+                        }
+                    })
+                    .catch(() => {
+                        console.log('error');
+                        ref = finishedGameRef
+                    });
+            }
 
             function getCurrentGameById(gameId) {
                 return new $firebaseObject(currentGameRef.child(gameId))
+                    .$loaded();
+            }
+
+            function getFinishedGameById(gameId) {
+                return new $firebaseObject(finishedGameRef.child(gameId))
                     .$loaded();
             }
 
@@ -103,19 +129,19 @@ angular
                     });
             }
 
-            function getGameTeams(gameId, gameStatus) {
-                let ref;
-                console.log(gameStatus);
-
-                if (gameStatus === 'current') {
-                    console.log(gameStatus);
-
-                    ref = currentGameRef;
-                }
-                else if (gameStatus === 'finished') {
-                    console.log(gameStatus);
-                    ref = finishedGameRef;
-                }
+            function getGameTeams(gameId) {
+                // console.log(gameStatus);
+                //
+                // if (gameStatus === 'current') {
+                //     console.log(gameStatus);
+                //
+                //     ref = currentGameRef;
+                // }
+                // else if (gameStatus === 'finished') {
+                //     console.log(gameStatus);
+                //     ref = finishedGameRef;
+                // }
+                getGameRef(gameId)
                 return $firebaseArray(ref.child(`/${gameId}/teams`))
                     .$loaded()
                     .then((res) => {

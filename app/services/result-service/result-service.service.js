@@ -1,6 +1,6 @@
 angular
     .module('resultService')
-    .factory('ResultServiceFactory', ['firebaseDataService', function (firebaseDataService) {
+    .factory('ResultServiceFactory', ['firebaseDataService', 'GameServiceFactory', function (firebaseDataService, gameService) {
 
         let currentRef = firebaseDataService.currentGames;
         let finishedRef = firebaseDataService.finishedGames;
@@ -20,15 +20,11 @@ angular
                     });
             };
 
-        resultFactory.filter = function (filter, gameId, gameStatus) {
-            let ref;
-            if (gameStatus === 'current') {
-                ref = currentRef;
-            }
-            else if (gameStatus === 'finished') {
-                ref = finishedRef;
-            }
-                return ref.child(`/${gameId}/results`)
+        resultFactory.filter = function (filter, gameId) {
+            let ref = gameService.getGameRef(gameId);
+            console.log(ref);
+            return ref.then((res) => {
+                return res.child(`/${gameId}/results`)
                     .orderByChild(filter.by).equalTo(filter.val)
                     .once('value')
                     .then((res) => {
@@ -38,21 +34,15 @@ angular
                             console.log(err);
                             return err;
                         });
+            });
             };
 
-        resultFactory.getGameResults = function (gameId, gameStatus) {
-            let ref;
+        resultFactory.getGameResults = function (gameId) {
+            let ref = gameService.getGameRef(gameId);
 
-            if (gameStatus === 'current') {
-                console.log(gameStatus);
-
-                ref = currentRef;
-            }
-            else if (gameStatus === 'finished') {
-                ref = finishedRef;
-            }
-
-                return ref.child(`/${gameId}/results`)
+            return ref.then((res) => {
+                console.log(res);
+                return res.child(`/${gameId}/results`)
                     .once('value')
                     .then((res) => {
                             return res.val();
@@ -61,6 +51,8 @@ angular
                             console.log(err);
                             return err;
                         });
+            })
+
             };
 
             resultFactory.getByRoundAndQuiz = function (roundId, quizId, gameId) {

@@ -28,14 +28,14 @@ angular
             template: '<result-editor></result-editor>',
             css: 'admin/result-editor/result-editor.css'
         });
-        $routeProvider.when('/show-result/:gameId/:gameStatus', {
+        $routeProvider.when('/show-result/:gameId', {
             template: '<show-result></show-result>',
             css: 'admin/show-result/show-result.css'
         });
         $routeProvider.when('/round-status/:gameId', {
             template: '<round-status></round-status>',
         });
-        $routeProvider.when('/show-team-result/:gameId/:teamId/:gameStatus', {
+        $routeProvider.when('/show-team-result/:gameId/:teamId', {
             template: '<show-team-result></show-team-result>',
             css: 'admin/show-team-result/show-team-result.css'
         });
