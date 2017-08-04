@@ -12,15 +12,7 @@ angular.module('addTeams')
 
                 this.selected = null;
 
-                this.teams = [
-                    // {
-                    //     name: 'Superman',
-                    // },
-                    // {
-                    //     name: 'Batman',
-                    // }
-                ];
-
+                this.teams = [];
                 this.teamsFromDB = [];
 
                 TeamService.getAllTeams().then((res) => {

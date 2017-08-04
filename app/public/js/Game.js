@@ -8,7 +8,7 @@ class Game {
             this.results = [];
             this.date = "";
             this.location = "";
-            this.winner = "";
+            this.winner = null;
         }
         else {
             this.currentRound = game.currentRound;
@@ -17,7 +17,7 @@ class Game {
             this.date = game.date;
             this.location = game.location;
             if (game.winner === undefined) {
-                this.winner = "";
+                this.winner = null;
             }
             else {
                 this.winner = game.winner;

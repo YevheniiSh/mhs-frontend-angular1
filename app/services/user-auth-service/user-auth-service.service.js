@@ -1,5 +1,5 @@
 angular.module('userAuthService')
-    .factory('userAuthService', ['firebaseDataService', '$q', function (firebaseDataService, $q) {
+    .factory('userAuthService', ['firebaseDataService','$firebaseAuth', '$q', function (firebaseDataService, $firebaseAuth, $q) {
         let auth = firebaseDataService.auth;
         return {
             signInWithEmailAndPassword: function (email, pass) {
@@ -20,6 +20,22 @@ angular.module('userAuthService')
                 } else {
                     return false;
                 }
+            },
+
+            currentUser: function () {
+                return $q((resolve, reject) => {
+                    setTimeout(() => {
+                        let firebaseUser = auth.currentUser;
+                        if (firebaseUser) {
+                            console.log(firebaseUser.email);
+                            resolve(firebaseUser);
+                        } else {
+                            console.log('Not sign in');
+                            reject(firebaseUser);
+                        }
+                    }, 300)
+                });
+
             },
             signOut: function () {
                 auth.signOut().then(function () {

@@ -17,7 +17,9 @@ angular
                 setCurrentRound: setCurrentRound,
                 setCurrentQuiz: setCurrentQuiz,
                 finishGame: finishGame,
-                getGameRef: getGameRef
+                publishGame: publishGame,
+                getGameRef: getGameRef,
+                getAllFinishedGames: getAllFinishedGames
             };
 
             function getGameRef(gameId) {
@@ -45,6 +47,11 @@ angular
 
             function getFinishedGameById(gameId) {
                 return new $firebaseObject(finishedGameRef.child(gameId))
+                    .$loaded();
+            }
+
+            function getAllFinishedGames() {
+                return new $firebaseArray(finishedGameRef)
                     .$loaded();
             }
 
@@ -172,5 +179,14 @@ angular
                         console.error(err);
                         return err;
                     });
+            }
+
+            function publishGame(gameId) {
+                getCurrentGameById(gameId).then((res) => {
+                    console.log(res);
+                    let obj = new $firebaseObject(finishedGameRef.child(gameId));
+                    obj.$value = getObject(res);
+                    obj.$save();
+                });
             }
         }]);

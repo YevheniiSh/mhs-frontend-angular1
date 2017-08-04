@@ -47,6 +47,11 @@ td#quizzes{
 #total, #round{
     vertical-align: middle;
 }
+
+#round {
+    text-align: left;
+}
+
 .green-total{
     color: green;
 }
