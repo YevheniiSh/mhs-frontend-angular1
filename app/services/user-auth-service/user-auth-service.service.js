@@ -13,6 +13,7 @@ angular.module('userAuthService')
                     })
                 return defer.promise;
             },
+
             isAuthenticated: function () {
                 let firebaseUser = auth.currentUser;
                 if (firebaseUser) {
@@ -38,12 +39,15 @@ angular.module('userAuthService')
 
             },
             signOut: function () {
-                auth.signOut().then(function () {
-                    console.log("Signed out");
-                }).catch(function (error) {
-                    console.error("Signed out failed:", error);
-                });
-
+                let defer = $q.defer();
+                auth.signOut()
+                    .then((user) => {
+                        defer.resolve(user);
+                    })
+                    .catch((er) => {
+                        defer.reject(er);
+                    })
+                return defer.promise;
             }
         };
     }]);
