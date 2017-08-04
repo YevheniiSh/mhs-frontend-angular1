@@ -1,5 +1,5 @@
 angular.module('userAuthService')
-    .factory('userAuthService', ['firebaseDataService','$firebaseAuth', '$q', function (firebaseDataService, $firebaseAuth, $q) {
+    .factory('userAuthService', ['firebaseDataService', '$firebaseAuth', '$q', function (firebaseDataService, $firebaseAuth, $q) {
         let auth = firebaseDataService.auth;
         return {
             signInWithEmailAndPassword: function (email, pass) {

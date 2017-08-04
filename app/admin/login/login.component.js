@@ -7,7 +7,7 @@ angular.module('login')
             function (auth, $location) {
                 this.login = function () {
                     auth.signInWithEmailAndPassword(this.email, this.password)
-                        .then((user)=>{
+                        .then((user) => {
                             $location.path("/add-teams");
                         })
                         .catch(error => {
