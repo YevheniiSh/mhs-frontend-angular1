@@ -6,20 +6,21 @@
                     <h3 class="panel-title">Please sign in</h3>
                 </div>
                 <div class="panel-body">
-                    <form>
+                    <form ng-submit="$ctrl.login()">
                         <fieldset>
                             <div class="form-group">
-                                <p class="panel-title">Wrong information {{$ctrl.successfull}}</p>
+                                <p class="panel-title error-message">{{$ctrl.errMessage}}</p>
                             </div>
                             <div class="form-group">
                                 <input id="email" ng-model='$ctrl.email' type="email" placeholder="E-mail" required
                                        class="form-control">
                             </div>
                             <div class="form-group">
-                                <input id="password" ng-model='$ctrl.password' type="password" placeholder="Password" required
+                                <input id="password" ng-model='$ctrl.password' type="password" placeholder="Password"
+                                       required
                                        class="form-control">
                             </div>
-                            <button class="btn btn-success" ng-click="$ctrl.login()">Sign in</button>
+                            <button type="submit" class="btn btn-success">Sign in</button>
                         </fieldset>
                     </form>
                 </div>

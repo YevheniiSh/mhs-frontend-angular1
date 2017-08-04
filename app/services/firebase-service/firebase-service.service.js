@@ -1,16 +1,8 @@
 angular
     .module('firebaseDataService')
-    .factory('firebaseDataService', [firebaseDataService]);
+    .factory('firebaseDataService', ['dbConfig', firebaseDataService]);
 
-function firebaseDataService() {
-    const config = {
-        apiKey: "AIzaSyBW1FbVas8nNwUp8jU8gqWjhpjqdFqIa3g",
-        authDomain: "fir-testproject-902dd.firebaseapp.com",
-        databaseURL: "https://fir-testproject-902dd.firebaseio.com",
-        projectId: "fir-testproject-902dd",
-        storageBucket: "fir-testproject-902dd.appspot.com",
-        messagingSenderId: "844314677599"
-    };
+function firebaseDataService(config) {
 
     if (!firebase.apps.length) {
         firebase.initializeApp(config).database();

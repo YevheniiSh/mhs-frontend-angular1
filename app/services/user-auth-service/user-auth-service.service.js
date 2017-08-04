@@ -1,9 +1,17 @@
 angular.module('userAuthService')
-    .factory('userAuthService', ['firebaseDataService', function (firebaseDataService) {
+    .factory('userAuthService', ['firebaseDataService', '$q', function (firebaseDataService, $q) {
         let auth = firebaseDataService.auth;
         return {
             signInWithEmailAndPassword: function (email, pass) {
-                return auth.signInWithEmailAndPassword(email, pass);
+                let defer = $q.defer();
+                auth.signInWithEmailAndPassword(email, pass)
+                    .then((user) => {
+                        defer.resolve(user);
+                    })
+                    .catch((er) =>{
+                        defer.reject(er);
+                    })
+                return defer.promise;
             },
             isAuthenticated: function () {
                 let firebaseUser = auth.currentUser;
