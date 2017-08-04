@@ -40,6 +40,14 @@ class GameBuilder {
         return this;
     }
 
+    addDate(date) {
+        this.game.date = date;
+    }
+
+    addLocation(location) {
+        this.game.location = location;
+    }
+
     addResult(result) {
         this.game.results.push(result);
         return this;
