@@ -14,14 +14,14 @@ class GameBuilder {
         this.game.id = id;
     }
 
-    addRound(id, numberOfQuestion) {
-        this.game.rounds.push(new GameRound(id, numberOfQuestion));
+    addRound(id, numberOfQuestion, name) {
+        this.game.rounds.push(new GameRound(id, numberOfQuestion, name));
         return this;
     }
 
     addRoundsArray(rounds) {
         for (let i = 0; i < rounds.length; i++) {
-            let newRound = new GameRound(i+1, rounds[i]);
+            let newRound = new GameRound(rounds[i].sequenceNumber, rounds[i].quizzess, rounds[i].roundName);
             this.game.rounds.push(newRound);
         }
         return this;
@@ -40,6 +40,14 @@ class GameBuilder {
         return this;
     }
 
+    addDate(date) {
+        this.game.date = convertDate(date);
+    }
+
+    addLocation(location) {
+        this.game.location = location;
+    }
+
     addResult(result) {
         this.game.results.push(result);
         return this;
@@ -55,4 +63,17 @@ class GameBuilder {
     buildGame() {
         return this.game;
     }
+}
+function convertDate(date) {
+    let dd = date.getDate();
+    let mm = date.getMonth()+1; //January is 0!
+
+    let yyyy = date.getFullYear();
+    if(dd<10){
+        dd='0'+dd;
+    }
+    if(mm<10){
+        mm='0'+mm;
+    }
+    return dd+'/'+mm+'/'+yyyy;
 }

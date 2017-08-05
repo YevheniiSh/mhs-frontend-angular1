@@ -2,52 +2,52 @@
 angular.module('gameType')
     .component('gameType', {
             templateUrl: 'admin/game-build/game-type/game-type.html',
-            controller: ['GameServiceFactory', '$routeParams', '$location', '$rootScope',
-                function (GameService, $routeParams, $location, $rootScope) {
+            controller: ['GameServiceFactory', '$routeParams', '$location',
+                function (GameService, $routeParams, $location) {
+
 
                     let vm = this;
+
                     let rounds = [];
-                    let quizSequenceNumber = 1;
+                    vm.rounds = rounds;
+                    vm.gameDate = new Date();
+
+                    let quizSequenceNumber;
 
                     vm.changeRoundCount = function (count) {
                         quizSequenceNumber = 1;
-                        rounds.splice(0, rounds.length);
-                        for (let i = 0; i < count; i++) {
-                            let quiz = {sequenceNumber: quizSequenceNumber++, quizzess: 10};
-                            rounds.push(quiz);
-                        }
 
+                        let tempRounds = rounds.splice(0, rounds.length);
+
+                        for (let i = 0; i < count; i++) {
+                            if (tempRounds.length > i) {
+                                rounds.push(tempRounds[i])
+
+                            } else {
+                                let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: "text"};
+                                rounds.push(quiz);
+                            }
+                            quizSequenceNumber++
+                        }
+                        tempRounds.slice(0, tempRounds.length)
                     };
 
-                    vm.rounds = rounds;
-
                     vm.buildGame = function () {
+
                         let gameId = $routeParams.gameId;
                         GameService
                             .getGameById(gameId)
                             .then((res) => {
-                                let game = GameService.convertFromFirebase(res.val());
-                                let gameBuilder = new GameBuilder(game);
+                                let gameBuilder = new GameBuilder(res);
 
-                                addRoundsToGameBuilder(rounds, gameBuilder);
+                                gameBuilder.addDate(vm.gameDate);
+                                gameBuilder.addRoundsArray(rounds);
                                 GameService.save(gameBuilder.game, gameId);
 
                                 $location.path('/round-status/' + gameId);
-                                $rootScope.$apply();
                             });
                     };
 
                 }]
         }
     );
-
-function addRoundsToGameBuilder(rounds, gameBuilder) {
-    let roundArray = [];
-
-    for (let i = 0; i < rounds.length; i++) {
-
-        roundArray.push(rounds[i].quizzess);
-    }
-    gameBuilder.addRoundsArray(roundArray);
-
-}

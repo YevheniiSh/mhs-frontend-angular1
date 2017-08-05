@@ -1,2 +1,2 @@
 angular
-    .module('roundStatus', ['firebaseConnection']);
+    .module('roundStatus', ['roundService']);

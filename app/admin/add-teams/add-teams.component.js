@@ -8,26 +8,15 @@ angular.module('addTeams')
 
             function (TeamService, GameService, $rootScope, $location) {
 
-                console.log(TeamService);
-
                 this.selected = null;
 
-                this.teams = [
-                    // {
-                    //     name: 'Superman',
-                    // },
-                    // {
-                    //     name: 'Batman',
-                    // }
-                ];
-
+                this.teams = [];
                 this.teamsFromDB = [];
 
                 TeamService.getAllTeams().then((res) => {
-                    for (let key in res) {
-                        this.teamsFromDB.push({teamId: key, name: res[key].name});
-                    }
-                    $rootScope.$apply();
+                    angular.forEach(res, (team) => {
+                        this.teamsFromDB.push({teamId: team.$id, name: team.name})
+                    });
                 });
 
                 this.addTeam = function () {
@@ -107,10 +96,9 @@ angular.module('addTeams')
                             return GameService.save(game);
                         })
                         .then((gameId) => {
-                            console.log(gameId.key);
+                            console.log(gameId);
 
-                            $location.path('/setup-game-type/' + gameId.key);
-                            $rootScope.$apply();
+                            $location.path('/setup-game-type/' + gameId);
                         });
                 }
 

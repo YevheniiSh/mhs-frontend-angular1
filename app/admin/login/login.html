@@ -1,0 +1,30 @@
+<div class="container">
+    <div id="login-panel" class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please sign in</h3>
+                </div>
+                <div class="panel-body">
+                    <form ng-submit="$ctrl.login()">
+                        <fieldset>
+                            <div class="form-group">
+                                <p class="panel-title error-message">{{$ctrl.errMessage}}</p>
+                            </div>
+                            <div class="form-group">
+                                <input id="email" ng-model='$ctrl.email' type="email" placeholder="E-mail" required
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input id="password" ng-model='$ctrl.password' type="password" placeholder="Password"
+                                       required
+                                       class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-success">Sign in</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

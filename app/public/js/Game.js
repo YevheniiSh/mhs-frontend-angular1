@@ -6,12 +6,23 @@ class Game {
             this.teams = [];
             this.rounds = [];
             this.results = [];
-
+            this.date = "";
+            this.location = "";
+            this.winner = null;
         }
         else {
             this.currentRound = game.currentRound;
             this.currentQuiz = game.currentQuiz;
             this.teams = game.teams;
+            this.date = game.date;
+            this.location = game.location;
+            if (game.winner === undefined) {
+                this.winner = null;
+            }
+            else {
+                this.winner = game.winner;
+            }
+
 
             if (game.rounds === undefined) {
                 this.rounds = [];

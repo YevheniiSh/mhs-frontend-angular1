@@ -24,6 +24,7 @@
                     </div>
                     <div class="panel-body current">
                         <a ng-hide="!$ctrl.currentRound"
+                           href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound}}/1/edit"
                            class="btn btn-round-panel btn-danger">Round {{$ctrl.currentRound}}</a>
                     </div>
                 </div>
@@ -55,6 +56,19 @@
                    class="btn btn-danger btn-lg btn-block">
                     <span class="start-ico">Show results</span><!--<i class="fa fa-flag-o"></i>-->
                 </a>
+            </div>
+            <div class="col-md-5 col-md-offset-2 round-button-panel" ng-click="$ctrl.onFinished()"
+                 ng-if="$ctrl.checked">
+                <a href="#!/show-result/{{$ctrl.gameId}}"
+                   class="btn btn-warning btn-lg btn-block">
+                    <span class="start-ico">FINISH GAME</span><i class="fa fa-flag-o"></i>
+                </a>
+            </div>
+            <div class="col-md-5 col-md-offset-2 round-button-panel" ng-click="$ctrl.onPublished()" ng-if="!$ctrl.checked">
+                <span class="btn btn-primary btn-lg btn-block">
+                    <span class="start-ico">Publish results</span>
+                </span>
+
             </div>
         </div>
     </div>

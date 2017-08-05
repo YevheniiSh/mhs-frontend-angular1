@@ -4,6 +4,7 @@
         <button class="btn btn-success" ng-if="$ctrl.mode == 'edit'" ng-click="$ctrl.back()">Back</button>
         <h1>Question #{{$ctrl.quizNumber}}</h1>
     </div>
+
     <div class="form-group row">
         <ul id="team-list">
             <li ng-repeat="team in $ctrl.teams">
@@ -13,11 +14,14 @@
             </li>
         </ul>
     </div>
-
+    <div class="alert alert-success" ng-if="$ctrl.saved">
+        <button type="button" class="close" data-ng-click="$ctrl.switchBool()" >×</button>
+        <strong>Saved!</strong>
+    </div>
     <div id="control-panel" class="form-inline ">
         <div class="nav-btn">
             <button ng-repeat="quiz in $ctrl.quizzes" class="btn"
-                    ng-class="{'btn-info':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}"
+                    ng-class="{'btn-info btn-selected':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}"
                     ng-click="$ctrl.setQuiz(quiz.number)">
                 {{quiz.number}}
             </button>
@@ -25,4 +29,6 @@
 
         <button ng-click="$ctrl.setResult()" class="btn btn-success submit-button">{{$ctrl.buttonType}}</button>
     </div>
+
+
 </div>

@@ -1,26 +1,31 @@
 .game-type {
-    margin-top: 25%;
+    margin-top: 30px;
 }
 
 .game-tour {
-    max-width: 300px;
-    margin-left: 40%;
-    font-size: 20px;
+    margin: auto;
+    font-size: 12px;
     text-align: center;
 }
 
-.game-questions {
-    max-width: 300px;
-    margin-left: 40%;
+.game-rounds {
+    margin-top: 10px;
+}
 
-    font-size: 20px;
-    text-align: center;
-    margin-top: 40px;
+.form-group {
+    display: inline-block;
 }
 
 input {
-    margin-left: 30%;
-    max-width: 110px;
+    margin: auto;
+}
+
+.rounds-count {
+    width: 100px;
+}
+
+.round-name {
+    width: 150px;
 }
 
 #game-build {
