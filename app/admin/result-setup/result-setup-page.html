@@ -4,18 +4,22 @@
         <button class="btn btn-success" ng-if="$ctrl.mode == 'edit'" ng-click="$ctrl.back()">Back</button>
         <h1>Question #{{$ctrl.quizNumber}}</h1>
     </div>
-
+    <div class="checkbox">
+        <label id = "manual-input"><input type="checkbox" ng-model="$ctrl.isManualInput">Manual input</label>
+    </div>
     <div class="form-group row">
         <ul id="team-list">
             <li ng-repeat="team in $ctrl.teams">
                 <label>
-                    {{team}}<input type="number" ng-model="$ctrl.teamsScore[$index]" class="form-control">
+                    <input type="checkbox" ng-model="$ctrl.teamsScore[$index]" ng-if="!$ctrl.isManualInput">
+                    {{team}}
+                    <input type="number" ng-model="$ctrl.teamsScore[$index]" class="form-control" ng-if="$ctrl.isManualInput">
                 </label>
             </li>
         </ul>
     </div>
     <div class="alert alert-success" ng-if="$ctrl.saved">
-        <button type="button" class="close" data-ng-click="$ctrl.switchBool()" >×</button>
+        <button type="button" class="close" data-ng-click="$ctrl.switchBool()">×</button>
         <strong>Saved!</strong>
     </div>
     <div id="control-panel" class="form-inline ">
