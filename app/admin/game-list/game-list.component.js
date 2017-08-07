@@ -21,8 +21,11 @@
                 .getAllFinishedGames()
                 .then((games) => {
                     this.games = games;
+                    this.games.forEach((item) => {
+                        item.date = new Date(item.date);
+                    });
                 })
-        }
+        };
 
         vm.auth = false;
         userService.currentUser().then((res) => {
