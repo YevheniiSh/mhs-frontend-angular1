@@ -4,10 +4,12 @@ angular.module('login')
         controller: [
             'userAuthService',
             '$location',
-            function (auth, $location) {
+            '$rootScope',
+            function (auth, $location, $rootScope) {
                 this.login = function () {
                     auth.signInWithEmailAndPassword(this.email, this.password)
                         .then((user) => {
+                            $rootScope.currentUser = user.email;
                             $location.path("/add-teams");
                         })
                         .catch(error => {
