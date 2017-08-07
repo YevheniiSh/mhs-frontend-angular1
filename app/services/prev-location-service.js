@@ -8,9 +8,8 @@ angular
             history.push($location.$$path);
         });
 
-        $rootScope.back = function () {
-            let prevUrl = history.length > 1 ? history.splice(-2)[0] : "/";
-            $location.path(prevUrl);
+        $rootScope.getPreviousLocation = function () {
+            return history.length > 1 ? history.splice(-2)[0] : "/";
         };
 
     });
