@@ -21,16 +21,19 @@
             </select>
 
         </div>
-        <label id = "or">or</label>
-        <div class="form-group">
-            <label class="control-label">Input new team:</label>
-            <div class="input-group">
-                <input type="text" class="form-control" ng-model='$ctrl.newTeamName'>
-                <span class="input-group-btn">
-                    <button  class="btn btn-info" type="button" ng-click="$ctrl.newTeam()">Add new team</button>
+        <label id="or">or</label>
+        <form ng-submit="$ctrl.newTeam()">
+            <div class="form-group">
+                <label class="control-label">Input new team:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model='$ctrl.newTeamName' minlength="1" maxlength="20"
+                           required>
+                    <span class="input-group-btn">
+                    <button class="btn btn-info" type="submit">Add new team</button>
                 </span>
+                </div>
             </div>
-        </div>
+        </form>
 
         <div class="row">
             <div class="col-md-12">
