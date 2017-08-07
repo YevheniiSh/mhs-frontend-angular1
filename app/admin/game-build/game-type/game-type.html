@@ -1,14 +1,14 @@
 <div class="container">
     <div class="game-type">
-        <form class="game-tour">
+        <form class="game-tour" ng-submit="$ctrl.buildGame()">
             <div class="form-group">
                 <label class="control-label" for="number-tour">Number of tours</label>
                 <input class="form-control rounds-count" ng-model="$ctrl.roundCount"
                        ng-change="$ctrl.changeRoundCount($ctrl.roundCount)"
-                       id="number-tour" type="number" value="3" min="1" max="10">
+                       id="number-tour" type="number" value="3" min="1" max="10" required>
                 <div>
 
-                    <button id="game-build" class="btn btn-default" ng-click="$ctrl.buildGame()">Build</button>
+                    <button id="game-build" class="btn btn-default" type="submit">Build</button>
                 </div>
                 <label>
                     <input type="date" ng-model="$ctrl.gameDate">
@@ -19,13 +19,13 @@
                 <div class="form-group game-rounds">
                     <label class="control-label"> Tour name #{{round.sequenceNumber}}
                         <input class="form-control round-name" ng-model="round.roundName"
-                               ng-value="round.roundName">
+                               ng-value="round.roundName" maxlength="20" minlength="3" required>
                     </label>
 
                     <label class="control-label">Number of questions
                         <input class="form-control rounds-count" type="number" ng-model="round.quizzess"
                                ng-value="round.quizzess"
-                               min="1" max="20">
+                               min="1" max="20" required>
                     </label>
                 </div>
             </div>
