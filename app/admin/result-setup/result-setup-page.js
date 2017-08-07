@@ -56,7 +56,7 @@ angular.module('resultSetup')
                     if (vm.teamsScore[key] == undefined) {
                         promices.push(resultSetupService.setQuizResult(result, 0));
                     } else {
-                        promices.push(resultSetupService.setQuizResult(result, vm.teamsScore[key]));
+                        promices.push(resultSetupService.setQuizResult(result, +(vm.teamsScore[key])));
                     }
 
                 });
