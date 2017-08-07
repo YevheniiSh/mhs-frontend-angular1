@@ -10,7 +10,7 @@
         <tbody>
         <tr ng-repeat="game in $ctrl.games | orderBy:'-date'">
             <td>{{game.date}}</td>
-            <td><i class="fa fa-trophy" aria-hidden="true"></i> {{game.winner.name}}</td>
+            <td><i class="fa fa-trophy"></i> {{game.winner.name}}</td>
             <td>{{game.winner.score}}</td>
         </tr>
         </tbody>
