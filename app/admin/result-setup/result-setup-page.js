@@ -2,10 +2,8 @@
 angular.module('resultSetup')
     .component('resultSetup', {
         templateUrl: 'admin/result-setup/result-setup-page.html',
-        controller: function ResultSetupController(resultSetupService, $routeParams, $location, $scope, $window) {
+        controller: function ResultSetupController(GameServiceFactory, resultSetupService, $routeParams, $location, $scope, $window) {
             let vm = this;
-            this.isManualInput = false;
-
             let gameId = $routeParams.gameId;
             vm.quizNumber = $routeParams.quizNumber;
             vm.selectedRound = $routeParams.roundNumber;
@@ -38,9 +36,13 @@ angular.module('resultSetup')
                 vm.teamsScore = [];
                 resultSetupService.getQuizResult(gameId, vm.selectedRound, vm.quizNumber)
                     .then((results) => {
-                        angular.forEach(results, function (result) {
-                            vm.teamsScore.push(result.score);
-                        })
+                        GameServiceFactory.getCurrentQuiz(gameId)
+                            .then(currentQuiz => {
+                                $location.path(`/result-setup/${gameId}/${vm.selectedRound}/${vm.quizNumber}`);
+                                angular.forEach(results, function (result) {
+                                    vm.teamsScore.push(result.score);
+                                })
+                            })
                     })
             };
             vm.setResult = function () {
@@ -54,7 +56,7 @@ angular.module('resultSetup')
                     if (vm.teamsScore[key] == undefined) {
                         promices.push(resultSetupService.setQuizResult(result, 0));
                     } else {
-                        promices.push(resultSetupService.setQuizResult(result, +(vm.teamsScore[key])));
+                        promices.push(resultSetupService.setQuizResult(result, vm.teamsScore[key]));
                     }
 
                 });
@@ -64,10 +66,13 @@ angular.module('resultSetup')
                         if (vm.quizNumber < vm.quizzes.length) {
                             vm.quizNumber++;
                             vm.setQuiz(vm.quizNumber);
+                            GameServiceFactory.setCurrentQuiz(vm.quizNumber, gameId)
 
                         } else {
-                            resultSetupService.roundIncrement(vm.selectedRound, gameId);
-                            $location.path('/round-status/' + gameId);
+                            GameServiceFactory.setCurrentQuiz(1, gameId).then(() => {
+                                resultSetupService.roundIncrement(vm.selectedRound, gameId);
+                                $location.path('/round-status/' + gameId);
+                            })
 
                         }
                     }).then($scope.$apply);
