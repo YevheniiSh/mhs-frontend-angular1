@@ -46,12 +46,61 @@ angular.module('showTeamResult')
                     .then(parseTeamResult)
                     .then((res) => {
                         this.roundsResult = res;
+                        console.log(this.roundsResult);
                     });
 
                 TeamService.getById($routeParams.teamId)
                     .then(team => {
                         this.teamName = team.name;
-                    })
+                    });
+
+                this.gameId = $routeParams.gameId;
+                this.teamId = $routeParams.teamId;
+
+
+                this.showRoundAndQuiz = function (round, quiz) {
+                    this.info = "R "+ round + " Q " + quiz + " "+ this.gameId  + " " + this.teamId ;
+                };
+
+
+                this.setTeamResult = function(round, quiz) {
+                    let score = parseInt(quiz.score);
+                    let quizNum = parseInt(quiz.quizNum);
+                    let roundNum = parseInt(round.roundNum);
+
+                    let result = {
+                        quiz: quizNum,
+                        round: roundNum,
+                        score: score,
+                        teamId: this.teamId
+                    };
+                    round.total = parseInt(round.total) + score;
+                    ResultService.saveResult(result, this.gameId);
+                };
+
+                this.totalColor = function (round) {
+                    let total = parseInt(round.total);
+
+                    if(total === 0) {
+                        return 'silver-total'
+                    } else if (total > 0){
+                        return 'green-total'
+                    } else {
+                        return 'red-total'
+                    }
+                };
+                this.quizColor = function(quiz) {
+                    let score = parseInt(quiz.score);
+
+                    if (score === 0) {
+                        return 'btn-silver';
+                    } else if (score > 0) {
+                        return 'btn-success';
+                    } else {
+                        return 'btn-primary';
+                    }
+                };
+
             }]
 
     });

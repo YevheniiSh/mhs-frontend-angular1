@@ -3,17 +3,26 @@
     angular.module('game-list')
         .component('gameList', {
             templateUrl: 'admin/game-list/game-list.html',
-            controller: ['GameServiceFactory', 'userAuthService', GameServiceFactory]
+            controller: GameList
         });
 
-    function GameServiceFactory(gameFactory, userService) {
-        let vm = this;
+    GameList.$inject = ['GameServiceFactory', '$location', 'userAuthService'];
 
-        gameFactory
-            .getAllFinishedGames()
-            .then((games) => {
-                this.games = games;
-            });
+    function GameList(gameFactory, $location, userService) {
+        let vm = this;
+        vm.$onInit = onInit;
+
+        vm.openGameInfo = function (gameId) {
+            $location.path('/show-result/' + gameId)
+        };
+
+        function onInit() {
+            gameFactory
+                .getAllFinishedGames()
+                .then((games) => {
+                    this.games = games;
+                })
+        }
 
         vm.auth = false;
         userService.currentUser().then((res) => {
@@ -23,6 +32,4 @@
         });
         console.log(this.auth);
     }
-
-
 })();
