@@ -8,7 +8,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="game in $ctrl.games | orderBy:'-date'" ng-click="$ctrl.openGameInfo(game.$id)">
+        <tr class="game-row" ng-repeat="game in $ctrl.games | orderBy:'-date'" ng-click="$ctrl.openGameInfo(game.$id)">
             <td>{{game.date}}</td>
             <td><i class="fa fa-trophy"></i> {{game.winner.name}}</td>
             <td>{{game.winner.score}}</td>
