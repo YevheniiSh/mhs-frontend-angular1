@@ -16,5 +16,5 @@ angular.module('mhs', [
 ]).config(['$locationProvider', '$routeProvider',
     function ($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');
-        $routeProvider.otherwise({redirectTo: '/add-teams'});
+        $routeProvider.otherwise({redirectTo: '/game-list'});
     }]);

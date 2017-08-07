@@ -1,0 +1,18 @@
+<div class="container">
+    <table class="table table-sm table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Game date</th>
+            <th>Winner team</th>
+            <th>Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="game-row" ng-repeat="game in $ctrl.games | orderBy:'-date'" ng-click="$ctrl.openGameInfo(game.$id)">
+            <td>{{game.date}}</td>
+            <td><i class="fa fa-trophy"></i> {{game.winner.name}}</td>
+            <td>{{game.winner.score}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

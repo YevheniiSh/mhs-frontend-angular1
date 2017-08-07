@@ -4,11 +4,13 @@ angular.module('login')
         controller: [
             'userAuthService',
             '$location',
-            function (auth, $location) {
+            '$rootScope',
+            function (auth, $location, $rootScope) {
                 this.login = function () {
                     auth.signInWithEmailAndPassword(this.email, this.password)
                         .then((user) => {
-                            $location.path("/add-teams");
+                            $rootScope.currentUser = user.email;
+                            $location.path("/game-list");
                         })
                         .catch(error => {
                             this.errMessage = 'Invalid e-mail or password';
