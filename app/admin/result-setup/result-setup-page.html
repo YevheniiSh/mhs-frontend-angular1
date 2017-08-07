@@ -1,14 +1,14 @@
 <div class="container">
     <div id="header">
-        <h2>Round #{{$ctrl.selectedRound}}</h2>
-        <h1>Question #{{$ctrl.quizNumber}}</h1>
+        <h2>Round #{{$ctrl.selectedRound.number}}: {{$ctrl.selectedRound.name}}</h2>
+        <h1>Question #{{$ctrl.selectedQuiz}}</h1>
     </div>
     <div class="checkbox">
         <label id = "manual-input"><input type="checkbox" ng-model="$ctrl.isManualInput">Manual input</label>
     </div>
     <div class="form-group row">
         <ul id="team-list">
-            <li ng-repeat="team in $ctrl.teams">
+            <li ng-repeat="team in $ctrl.game.teams">
                 <label>
                     <input type="checkbox" ng-model="$ctrl.teamsScore[$index]" ng-if="!$ctrl.isManualInput">
                     {{team}}
@@ -19,15 +19,12 @@
     </div>
     <div id="control-panel" class="form-inline ">
         <div class="nav-btn">
-            <button ng-repeat="quiz in $ctrl.quizzes" class="btn"
-                    ng-class="{'btn-info btn-selected':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}"
-                    ng-click="$ctrl.setQuiz(quiz.number)">
-                {{quiz.number}}
+            <button ng-repeat="quiz in $ctrl.range($ctrl.selectedRound.numberOfQuestions) track by $index" class="btn"
+                    ng-class="$ctrl.getQuizClass($index+1)"
+                    ng-click="$ctrl.setQuiz($index+1)">
+                {{$index+1}}
             </button>
         </div>
-
         <button ng-click="$ctrl.setResult()" class="btn btn-success submit-button">Next</button>
     </div>
-
-
 </div>
