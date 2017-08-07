@@ -71,9 +71,11 @@ angular
             template: '<login-panel></login-panel>'
         });
     }])
-    .run(["$rootScope", "$location", function ($rootScope, $location) {
-        $rootScope.$on("$routeChangeError", function (event, next, previous, error) {
-
+    .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
+        $rootScope.$on("$routeChangeError", function () {
             $location.path("/login");
         });
+        userAuthService.currentUser().then((res) => {
+            $rootScope.currentUser = res.email;
+        })
     }]);
