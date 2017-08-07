@@ -9,7 +9,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="teamResult in $ctrl.results | orderBy:'-total'" ng-class-odd="'success'"
+        <tr ng-repeat="teamResult in $ctrl.results" ng-class-odd="'success'"
             ng-class-even="'warning'" ng-click="$ctrl.getDetails(teamResult)">
             <td>{{teamResult.teamName}}</td>
             <td ng-repeat="round in teamResult.rounds">{{round.score}}</td>

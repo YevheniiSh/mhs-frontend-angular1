@@ -8,7 +8,8 @@ angular
         'roundStatus',
         'showTeamResult',
         'login',
-        'login-panel'])
+        'login-panel',
+        'game-list'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
             template: '<game-type></game-type>',
@@ -69,6 +70,10 @@ angular
         });
         $routeProvider.when('/login-panel', {
             template: '<login-panel></login-panel>'
+        });
+        $routeProvider.when('/game-list', {
+            template: '<game-list></game-list>',
+            css:'admin/game-list/game-list.css'
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {

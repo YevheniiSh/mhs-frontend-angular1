@@ -8,15 +8,11 @@ angular.module('showTeamResult')
 
                     return RoundService.getRoundNames($routeParams.gameId)
                         .then((rounds) => {
-                            let res = [];
-                            for (let key in teamResults) {
-                                res.push(teamResults[key]);
-                            }
                             let roundsResult = {};
-                            res.forEach((quizResult) => {
+                            teamResults.forEach((quizResult) => {
                                 roundsResult[quizResult.round] = {quizzes: {}, total: 0};
                             });
-                            res.forEach((quizResult) => {
+                            teamResults.forEach((quizResult) => {
                                 roundsResult[quizResult.round].quizzes[quizResult.quiz] = quizResult.score;
                             });
                             let result = [];
@@ -30,15 +26,11 @@ angular.module('showTeamResult')
                                 result.push({roundNum: round, quizzes: roundQuizzes, total: totalResult.toFixed(1)});
                             }
 
-                            console.log(result);
-
                             result.forEach((item, index) => {
-                                console.log(rounds);
 
                                 item['roundName'] = rounds[index].name;
                             });
 
-                            console.log(result);
                             return result;
                         });
 
