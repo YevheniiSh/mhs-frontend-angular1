@@ -18,17 +18,19 @@ angular.module('resultSetup')
 
             let gameId = $routeParams.gameId;
             vm.quizNumber = $routeParams.quizNumber;
-            vm.currentRound = $routeParams.roundNumber;
+            vm.selectedRound = $routeParams.roundNumber;
             resultSetupService.getData(gameId)
                 .then((game) => {
                     vm.quizzes = [];
                     vm.teams = game.teams;
+                    vm.currentRound = game.currentRound;
+                    vm.currentQuiz = game.currentQuiz;
                     let quizCount = game.rounds[$routeParams.roundNumber].numberOfQuestions;
                     for (let i = 1; i <= quizCount; i++) {
                         vm.quizzes.push({number: i, answered: false});
                     }
                     angular.forEach(game.results ,function(result){
-                        if(result.round == vm.currentRound){
+                        if(result.round == vm.selectedRound){
                             vm.quizzes[result.quiz - 1].answered = true;
                         }
                     });
@@ -44,7 +46,7 @@ angular.module('resultSetup')
                 vm.saved = false;
                 vm.quizNumber = quizNumber;
                 vm.teamsScore = [];
-                resultSetupService.getQuizResult(gameId, vm.currentRound, vm.quizNumber)
+                resultSetupService.getQuizResult(gameId, vm.selectedRound, vm.quizNumber)
                     .then((results) => {
                         angular.forEach(results, function (result) {
                             vm.teamsScore.push(result.score);
@@ -55,7 +57,7 @@ angular.module('resultSetup')
                 let results = [];
                 let promices = [];
                 angular.forEach(vm.teams, function (team, key) {
-                    results.push(new Result(vm.currentRound, vm.quizNumber, key));
+                    results.push(new Result(vm.selectedRound, vm.quizNumber, key));
                 });
                 vm.quizzes[vm.quizNumber - 1].answered = true;
                 angular.forEach(results, function (result,key) {
@@ -72,11 +74,12 @@ angular.module('resultSetup')
                         if (vm.quizNumber  < vm.quizzes.length) {
                             if (vm.mode == 'play') {
                                 vm.quizNumber++;
+
                                 vm.setQuiz(vm.quizNumber);
                             }
                         }else {
                             if (vm.mode == 'play') {
-                                resultSetupService.roundIncrement(vm.currentRound, gameId);
+                                resultSetupService.roundIncrement(vm.selectedRound, gameId);
                                 $location.path('/round-status/' + gameId);
                             }
                         }
