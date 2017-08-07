@@ -15,7 +15,7 @@ angular.module('showResult')
                 });
 
             this.onBack = function () {
-                $window.history.back();
+                $location.path(`/round-status/${$routeParams.gameId}`);
             }
         }]
 
