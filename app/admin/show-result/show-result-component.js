@@ -11,7 +11,6 @@ angular.module('showResult')
             ResultService.getParsedResults($routeParams.gameId)
                 .then((result) => {
                     this.results = result;
-                    $rootScope.$apply();
                     console.log(result);
                 });
         }]
