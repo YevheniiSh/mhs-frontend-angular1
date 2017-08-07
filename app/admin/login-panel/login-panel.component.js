@@ -9,6 +9,7 @@ function LoginPanel(userAuthService, $location, $rootScope) {
         userAuthService.signOut()
             .then(() => {
                 $rootScope.currentUser = null;
+                $location.path('/login');
             });
     }
 }
