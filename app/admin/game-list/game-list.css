@@ -1,17 +1,34 @@
-#container,html{
+#container, html {
     height: 100%;
 }
-td{
+
+button.btn {
+    font-size: 10px;
+    width: 25px;
+    height: 25px;
+    float: left;
+}
+
+td {
     font-size: 24px;
 }
 
-th{
+th {
     font-size: 28px;
 }
-h1{
+
+h1 {
     margin-top: 10%;
     margin-bottom: 3%;
     padding-bottom: 2%;
     border-bottom: solid 1px;
     text-align: center;
+}
+
+i {
+    color: goldenrod;
+}
+
+.game-row {
+    cursor: pointer;
 }

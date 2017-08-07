@@ -1,9 +1,9 @@
-<div class="login-panel">
-    <div ng-show="$ctrl.user">
+<div class="login-panel row">
+    <div ng-show="$root.currentUser">
         <a class="btn btn-success btn-xs" ng-click="$ctrl.logOut()">Logout</a>
-        <p>Hello, {{$ctrl.user}}</p>
+        <p>Hello, {{$root.currentUser}}</p>
     </div>
-    <div ng-hide="$ctrl.user">
+    <div ng-hide="$root.currentUser">
         <a class="btn btn-success btn-xs" ng-href="/#!/login">Login</a>
         <p>Welcome, please log in </p>
     </div>

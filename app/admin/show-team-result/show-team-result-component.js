@@ -1,22 +1,28 @@
 angular.module('showTeamResult')
     .component('showTeamResult', {
         templateUrl: 'admin/show-team-result/show-team-result.html',
-        controller: ['ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location',
-            function (ResultService, RoundService, TeamService, $routeParams, $rootScope, $location) {
+        controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location',
+            function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location) {
+                this.gameStatus = true;
+
+                this.gameId = $routeParams.gameId;
+                this.teamId = $routeParams.teamId;
+
+                GameService.getGameStatus(this.gameId).then(status =>{
+                    if(status === "current") this.gameStatus = false;
+                    if(status === "finished") this.gameStatus = true;
+                });
+
                 function parseTeamResult(teamResults) {
                     console.log(teamResults);
 
                     return RoundService.getRoundNames($routeParams.gameId)
                         .then((rounds) => {
-                            let res = [];
-                            for (let key in teamResults) {
-                                res.push(teamResults[key]);
-                            }
                             let roundsResult = {};
-                            res.forEach((quizResult) => {
+                            teamResults.forEach((quizResult) => {
                                 roundsResult[quizResult.round] = {quizzes: {}, total: 0};
                             });
-                            res.forEach((quizResult) => {
+                            teamResults.forEach((quizResult) => {
                                 roundsResult[quizResult.round].quizzes[quizResult.quiz] = quizResult.score;
                             });
                             let result = [];
@@ -30,19 +36,13 @@ angular.module('showTeamResult')
                                 result.push({roundNum: round, quizzes: roundQuizzes, total: totalResult.toFixed(1)});
                             }
 
-                            console.log(result);
-
                             result.forEach((item, index) => {
-                                console.log(rounds);
 
                                 item['roundName'] = rounds[index].name;
                             });
 
-                            console.log(result);
                             return result;
                         });
-
-
                 }
 
                 this.getGameStatistic = function () {
@@ -54,12 +54,57 @@ angular.module('showTeamResult')
                     .then(parseTeamResult)
                     .then((res) => {
                         this.roundsResult = res;
+                        console.log(this.roundsResult);
                     });
 
                 TeamService.getById($routeParams.teamId)
                     .then(team => {
                         this.teamName = team.name;
-                    })
+                    });
+
+                this.showRoundAndQuiz = function (round, quiz) {
+                    this.info = "R "+ round + " Q " + quiz + " "+ this.gameId  + " " + this.teamId ;
+                };
+
+
+                this.setTeamResult = function(round, quiz) {
+                    let score = parseInt(quiz.score);
+                    let quizNum = parseInt(quiz.quizNum);
+                    let roundNum = parseInt(round.roundNum);
+
+                    let result = {
+                        quiz: quizNum,
+                        round: roundNum,
+                        score: score,
+                        teamId: this.teamId
+                    };
+                    round.total = parseInt(round.total) + score;
+                    ResultService.saveResult(result, this.gameId);
+                };
+
+                this.totalColor = function (round) {
+                    let total = parseInt(round.total);
+
+                    if(total === 0) {
+                        return 'silver-total'
+                    } else if (total > 0){
+                        return 'green-total'
+                    } else {
+                        return 'red-total'
+                    }
+                };
+                this.quizColor = function(quiz) {
+                    let score = parseInt(quiz.score);
+
+                    if (score === 0) {
+                        return 'btn-silver';
+                    } else if (score > 0) {
+                        return 'btn-success';
+                    } else {
+                        return 'btn-primary';
+                    }
+                };
+
             }]
 
     });

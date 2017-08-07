@@ -20,7 +20,7 @@ function RoundStatusController($routeParams, $location, RoundStatusService, Game
     GameService.getGameStatus(vm.gameId)
         .then((status) => {
             if (status === 'finished') {
-                $location.path('/add-teams');
+                $location.path('/game-list');
             }
         });
 
@@ -44,11 +44,11 @@ function RoundStatusController($routeParams, $location, RoundStatusService, Game
                 .getRounds($routeParams.gameId)
                 .then((rounds) => {
                     console.log(rounds);
-                    Object.keys(rounds).forEach(key => {
-                        if (key > currentRound) nextRounds.push(key);
-                        if (key < currentRound) prevRounds.push(key);
+                    rounds.forEach((item) => {
+                        if (item.$id > currentRound) nextRounds.push(item.$id);
+                        if (item.$id < currentRound) prevRounds.push(item.$id);
                     });
-                    if (prevRounds.length === rounds.length - 1) {
+                    if (prevRounds.length === rounds.length) {
                         vm.checked = true;
                     }
                     else {

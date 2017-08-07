@@ -1,0 +1,24 @@
+<div class="container">
+    <a ng-href="/#!/add-teams" class="col-md-5 col-md-offset-4 round-button-panel" ng-if="$ctrl.auth">
+                <span class="btn btn-info btn-lg btn-block">
+                    <span class="start-ico">Start game</span>
+                </span>
+
+    </a>
+    <table class="table table-sm table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Game date</th>
+            <th>Winner team</th>
+            <th>Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="game-row" ng-repeat="game in $ctrl.games | orderBy:'-date'" ng-click="$ctrl.openGameInfo(game.$id)">
+            <td>{{game.date.toLocaleDateString()}}</td>
+            <td><i class="fa fa-trophy"></i> {{game.winner.name}}</td>
+            <td>{{game.winner.score}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

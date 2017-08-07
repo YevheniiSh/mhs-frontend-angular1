@@ -34,7 +34,7 @@ angular.module('userAuthService')
                             console.log('Not sign in');
                             reject(firebaseUser);
                         }
-                    }, 300)
+                    }, 350)
                 });
 
             },

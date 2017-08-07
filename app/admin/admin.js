@@ -8,7 +8,8 @@ angular
         'roundStatus',
         'showTeamResult',
         'login',
-        'login-panel'])
+        'login-panel',
+        'game-list'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
             template: '<game-type></game-type>',
@@ -29,7 +30,7 @@ angular
             }
         });
 
-        $routeProvider.when('/result-setup/:gameId/:roundNumber/:quizNumber/:mode', {
+        $routeProvider.when('/result-setup/:gameId/:roundNumber/:quizNumber', {
             template: '<result-setup></result-setup>',
             css: 'admin/result-setup/result-setup-page.css',
             resolve: {
@@ -70,10 +71,16 @@ angular
         $routeProvider.when('/login-panel', {
             template: '<login-panel></login-panel>'
         });
+        $routeProvider.when('/game-list', {
+            template: '<game-list></game-list>',
+            css:'admin/game-list/game-list.css'
+        });
     }])
-    .run(["$rootScope", "$location", function ($rootScope, $location) {
-        $rootScope.$on("$routeChangeError", function (event, next, previous, error) {
-
+    .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
+        $rootScope.$on("$routeChangeError", function () {
             $location.path("/login");
         });
+        userAuthService.currentUser().then((res) => {
+            $rootScope.currentUser = res.email;
+        })
     }]);
