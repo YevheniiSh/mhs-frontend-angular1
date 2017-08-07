@@ -30,7 +30,7 @@ angular
             }
         });
 
-        $routeProvider.when('/result-setup/:gameId/:roundNumber/:quizNumber/:mode', {
+        $routeProvider.when('/result-setup/:gameId/:roundNumber/:quizNumber', {
             template: '<result-setup></result-setup>',
             css: 'admin/result-setup/result-setup-page.css',
             resolve: {
