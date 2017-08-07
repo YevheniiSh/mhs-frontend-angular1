@@ -1,7 +1,7 @@
 angular
     .module('mhs').service('LoadingInterceptor',
-    ['$q', '$rootScope', '$log',
-        function ($q, $rootScope, $log) {
+    ['$q', '$rootScope',
+        function ($q, $rootScope) {
             'use strict';
             return {
                 request: function (config) {
@@ -10,7 +10,6 @@ angular
                 },
                 requestError: function (rejection) {
                     $rootScope.loading = false;
-                    $log.error('Request error:', rejection);
                     return $q.reject(rejection);
                 },
                 response: function (response) {
@@ -19,7 +18,6 @@ angular
                 },
                 responseError: function (rejection) {
                     $rootScope.loading = false;
-                    $log.error('Response error:', rejection);
                     return $q.reject(rejection);
                 }
             }
