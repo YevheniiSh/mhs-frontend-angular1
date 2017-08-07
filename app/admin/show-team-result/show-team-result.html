@@ -2,9 +2,9 @@
     <h1>{{$ctrl.teamName}} result</h1>
     <table class="table table-sm table-striped table-hover ">
         <thead>
-        <th>Round</th>
-        <th>Quizzes</th>
-        <th>Total</th>
+            <th>Round</th>
+            <th>Quizzes</th>
+            <th>Total</th>
         </thead>
         <tbody>
             <tr ng-repeat="round in $ctrl.roundsResult">
@@ -14,6 +14,7 @@
                             <input
                                 type="number"
                                 ng-model="quiz.score"
+                                ng-disabled="$ctrl.gameStatus"
                                 ng-repeat="quiz in round.quizzes"
                                 ng-change="$ctrl.setTeamResult(round,quiz)"
                                 ng-class="$ctrl.quizColor(quiz)"

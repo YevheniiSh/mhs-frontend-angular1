@@ -1,8 +1,18 @@
 angular.module('showTeamResult')
     .component('showTeamResult', {
         templateUrl: 'admin/show-team-result/show-team-result.html',
-        controller: ['ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location',
-            function (ResultService, RoundService, TeamService, $routeParams, $rootScope, $location) {
+        controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location',
+            function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location) {
+                this.gameStatus = true;
+
+                this.gameId = $routeParams.gameId;
+                this.teamId = $routeParams.teamId;
+
+                GameService.getGameStatus(this.gameId).then(status =>{
+                    if(status === "current") this.gameStatus = false;
+                    if(status === "finished") this.gameStatus = true;
+                });
+
                 function parseTeamResult(teamResults) {
                     console.log(teamResults);
 
@@ -33,8 +43,6 @@ angular.module('showTeamResult')
 
                             return result;
                         });
-
-
                 }
 
                 this.getGameStatistic = function () {
@@ -53,10 +61,6 @@ angular.module('showTeamResult')
                     .then(team => {
                         this.teamName = team.name;
                     });
-
-                this.gameId = $routeParams.gameId;
-                this.teamId = $routeParams.teamId;
-
 
                 this.showRoundAndQuiz = function (round, quiz) {
                     this.info = "R "+ round + " Q " + quiz + " "+ this.gameId  + " " + this.teamId ;
