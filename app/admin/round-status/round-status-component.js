@@ -20,7 +20,7 @@ function RoundStatusController($routeParams, $location, RoundStatusService, Game
     GameService.getGameStatus(vm.gameId)
         .then((status) => {
             if (status === 'finished') {
-                $location.path('/add-teams');
+                $location.path('/game-list');
             }
         });
 

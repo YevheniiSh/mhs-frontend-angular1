@@ -1,7 +1,7 @@
 angular.module('showResult')
     .component('showResult', {
         templateUrl: 'admin/show-result/show-result.html',
-        controller: ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$rootScope', '$location', function (ResultService, GameService, $routeParams, $rootScope, $location) {
+        controller: ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$rootScope', '$location', '$window', function (ResultService, GameService, $routeParams, $rootScope, $location, $window) {
 
 
             this.getDetails = function (teamResult) {
@@ -14,6 +14,10 @@ angular.module('showResult')
                     $rootScope.$apply();
                     console.log(result);
                 });
+
+            this.onBack = function () {
+                $window.history.back();
+            }
         }]
 
     });
