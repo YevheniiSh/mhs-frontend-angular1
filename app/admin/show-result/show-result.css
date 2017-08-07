@@ -1,12 +1,6 @@
 #container,html{
     height: 100%;
 }
-button.btn{
-    font-size: 10px;
-    width:25px;
-    height: 25px;
-    float:left;
-}
 td{
     font-size: 24px;
 }
