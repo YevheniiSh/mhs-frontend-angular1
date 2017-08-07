@@ -8,6 +8,9 @@ angular.module('game-list')
                     angular.forEach(games, (game)=>{
                         this.games.push(game);
                     });
+                }).then(()=>{
+                    this.games.sort();
+                    console.log(this.games)
                 })
 
             }]
