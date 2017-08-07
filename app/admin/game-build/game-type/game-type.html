@@ -1,6 +1,6 @@
 <div class="container">
     <div class="game-type">
-        <div class="game-tour">
+        <form class="game-tour">
             <div class="form-group">
                 <label class="control-label" for="number-tour">Number of tours</label>
                 <input class="form-control rounds-count" ng-model="$ctrl.roundCount"
@@ -10,10 +10,9 @@
 
                     <button id="game-build" class="btn btn-default" ng-click="$ctrl.buildGame()">Build</button>
                 </div>
-
-                <!--<md-datepicker ng-model="$ctrl.gameDate"-->
-                               <!--md-placeholder="Enter date"></md-datepicker>-->
-                <input type="date" ng-model="$ctrl.gameDate">
+                <label>
+                    <input type="date" ng-model="$ctrl.gameDate">
+                </label>
             </div>
 
             <div ng-repeat="round in $ctrl.rounds">
@@ -30,7 +29,7 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </form>
 
     </div>
 </div>

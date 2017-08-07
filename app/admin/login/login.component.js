@@ -10,7 +10,7 @@ angular.module('login')
                     auth.signInWithEmailAndPassword(this.email, this.password)
                         .then((user) => {
                             $rootScope.currentUser = user.email;
-                            $location.path("/game-list");
+                            $rootScope.back();
                         })
                         .catch(error => {
                             this.errMessage = 'Invalid e-mail or password';
