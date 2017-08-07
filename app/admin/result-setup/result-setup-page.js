@@ -36,7 +36,7 @@ angular.module('resultSetup')
                     }else{
                         vm.setQuiz($routeParams.quizNumber);
                     }
-                    vm.teamsScore = [];
+                        vm.teamsScore = [];
                 });
 
             vm.setQuiz = function (quizNumber) {
@@ -83,6 +83,26 @@ angular.module('resultSetup')
             };
             vm.back = function () {
                 $window.history.back();
+            };
+
+            this.gameId = $routeParams.gameId;
+            this.inp = {
+                value:0,
+            };
+
+            this.showRoundAndQuiz = function (teamId) {
+                this.info = "R "+ this.currentRound + " Q " + this.quizNumber + " "+ this.gameId  + " " + teamId ;
+            };
+
+            this.setTeamResult = function(team, $index) {
+                this.inp.value = score;
+                let result = {
+                    quiz: this.quizNumber,
+                    round: this.gameId,
+                    score: this.teamsScore[$index],
+                    teamId: team
+                };
+                ResultService.saveResult(result, this.gameId);
             }
         }
     });

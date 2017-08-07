@@ -9,15 +9,25 @@
         <tbody>
             <tr ng-repeat="round in $ctrl.roundsResult">
                 <td id="round">{{round.roundNum}}. {{round.roundName}}</td>
-                <td id="quizzes"><div class="quiz-block"><a class="btn-silver" ng-href="/#!/result-setup/{{$ctrl.url}}/{{round.roundNum}}/{{quiz.quizNum}}/edit"
-                                    ng-repeat="quiz in round.quizzes track by   $index"
-                                    ng-init="$ctrl.quizIndex = $index"
-                                    ng-class="{'btn-success': quiz.score>0, 'btn-primary': quiz.score<0}"
-                                                >{{quiz.score}}
-                </a></div></td>
-                <td id="total" ng-class="{'green-total':round.total>0,'red-total':round.total<0}">{{round.total}}</td>
+                <td id="quizzes">
+                    <div class="quiz-block">
+                            <input
+                                type="number"
+                                ng-model="quiz.score"
+                                ng-repeat="quiz in round.quizzes"
+                                ng-change="$ctrl.setTeamResult(round,quiz)"
+                                ng-class="$ctrl.quizColor(quiz)"
+                                uib-tooltip = "aslfkj">
+                    </div>
+                </td>
+                <td id="total" ng-model="round.total" ng-class="$ctrl.totalColor(round)">{{round.total}}</td>
             </tr>
         </tbody>
     </table>
     <button class="btn btn-success" ng-click="$ctrl.getGameStatistic()">Back</button>
-</div>
+</div><!--
+ng-model-options="{
+'updateOn': 'default blur',
+'debounce': {
+'default': 500,
+'blur': 0 }}">-->

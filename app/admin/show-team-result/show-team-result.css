@@ -12,7 +12,7 @@ h1{
     border-bottom: solid 1px;
     text-align: center;
 }
-a{
+input{
     display: inline-block;
     width: 60px;
     margin: 10px;
@@ -22,6 +22,14 @@ a{
     background: #b3b3ff;
     color: #ffffff;
     text-align:center;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:hover{
+
 }
 .container,html{
     height: 100%;
@@ -51,7 +59,12 @@ td#quizzes{
 #round {
     text-align: left;
 }
-
+#total{
+    vertical-align: middle;
+}
+.silver-total{
+    color:#D4D4D4;
+}
 .green-total{
     color: green;
 }
@@ -61,6 +74,9 @@ td#quizzes{
 .quiz-block{
     margin:auto;
     width: 350px;
+}
+.inp-res{
+
 }
 .container{
     margin-bottom: 50px;

@@ -7,9 +7,11 @@
 
     <div class="form-group row">
         <ul id="team-list">
-            <li ng-repeat="team in $ctrl.teams">
+            {{$ctrl.info}}
+
+            <li ng-repeat="(teamId, teamName) in $ctrl.teams">
                 <label>
-                    {{team}}<input type="number" ng-model="$ctrl.teamsScore[$index]" class="form-control">
+                    {{teamName}}<input type="number" ng-model="$ctrl.teamsScore[$index]" ng-mousemove="$ctrl.showRoundAndQuiz(teamId, $index)" class="form-control">
                 </label>
             </li>
         </ul>
