@@ -25,16 +25,8 @@ angular
             let ref = gameService.getGameRef(gameId);
             console.log(ref);
             return ref.then((res) => {
-                return res.child(`/${gameId}/results`)
-                    .orderByChild(filter.by).equalTo(filter.val)
-                    .once('value')
-                    .then((res) => {
-                            return res.val();
-                        },
-                        (err) => {
-                            console.log(err);
-                            return err;
-                        });
+                let firebaseArr = new $firebaseArray(res.child(`/${gameId}/results`).orderByChild(filter.by).equalTo(filter.val));
+                return firebaseArr.$loaded();
             });
             };
 
@@ -43,15 +35,8 @@ angular
 
             return ref.then((res) => {
                 console.log(res);
-                return res.child(`/${gameId}/results`)
-                    .once('value')
-                    .then((res) => {
-                            return res.val();
-                        },
-                        (err) => {
-                            console.log(err);
-                            return err;
-                        });
+                let firebaseArr = new $firebaseArray(res.child(`/${gameId}/results`));
+                return firebaseArr.$loaded();
             })
 
             };
@@ -62,15 +47,11 @@ angular
             };
 
         resultFactory.parseTeamsResult = function (gameResults) {
-            let res = [];
-            for (let key in gameResults) {
-                res.push(gameResults[key]);
-            }
             let roundResult = {};
-            res.forEach((quizResult) => {
+            gameResults.forEach((quizResult) => {
                 roundResult[quizResult.teamId] = {rounds: {}, total: 0};
             });
-            res.forEach((quizResult) => {
+            gameResults.forEach((quizResult) => {
                 let roundScore = roundResult[quizResult.teamId].rounds[quizResult.round];
                 roundResult[quizResult.teamId].rounds[quizResult.round] = roundScore + quizResult.score || quizResult.score;
             });
