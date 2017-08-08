@@ -28,17 +28,8 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-input:hover{
-
-}
 .container,html{
     height: 100%;
-}
-button.btn{
-    font-size: 10px;
-    float:right;
-}
-table.table.table-sm.table-striped{
 }
 td.ng-binding{
     font-size: 33px;
@@ -65,34 +56,7 @@ td#quizzes{
 .silver-total{
     color:#D4D4D4;
 }
-.green-total{
-    color: green;
-}
-.red-total{
-    color: red;
-}
 .quiz-block{
     margin:auto;
     width: 350px;
-}
-.inp-res{
-
-}
-.container{
-    margin-bottom: 50px;
-}
-
-@media (max-width:700px){
-    th{
-        font-size: 15px;
-    }
-    td.ng-binding{
-        font-size: 15px;
-        width: 50px;
-        text-align: center;
-        vertical-align: middle;
-    }
-    .quiz-block{
-        width: auto;
-    }
 }

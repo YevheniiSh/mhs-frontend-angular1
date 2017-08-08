@@ -99,9 +99,9 @@ angular.module('showTeamResult')
                     if (total === 0) {
                         return 'silver-total'
                     } else if (total > 0) {
-                        return 'green-total'
+                        return 'text-success'
                     } else {
-                        return 'red-total'
+                        return 'text-danger'
                     }
                 };
                 this.quizColor = function (quiz) {
@@ -111,7 +111,7 @@ angular.module('showTeamResult')
                     } else if (score > 0) {
                         return 'btn-success';
                     } else {
-                        return 'btn-primary';
+                        return 'btn-danger';
                     }
                 };
             }]

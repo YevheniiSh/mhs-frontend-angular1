@@ -21,7 +21,7 @@
     <div id="control-panel" class="form-inline ">
         <div class="nav-btn">
             <button ng-repeat="quiz in $ctrl.quizzes" class="btn"
-                    ng-class="{'btn-info btn-selected':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}"
+                    ng-class="{'btn-selected':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}"
                     ng-click="$ctrl.setQuiz(quiz.number)">
                 {{quiz.number}}
             </button>

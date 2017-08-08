@@ -1,4 +1,5 @@
 <div class="container">
+    <button class="btn btn-success" ng-click="$ctrl.getGameStatistic()">Back</button>
     <h1>{{$ctrl.teamName}} result</h1>
     <table class="table table-sm table-striped table-hover ">
         <thead>
@@ -18,17 +19,12 @@
                                 ng-repeat="quiz in round.quizzes"
                                 ng-change="$ctrl.setTeamResult(round,quiz)"
                                 ng-class="$ctrl.quizColor(quiz)"
-                                uib-tooltip = "aslfkj">
+                                ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                                uib-tooltip = "№ {{quiz.quizNum}}">
                     </div>
                 </td>
                 <td id="total" ng-model="round.total" ng-class="$ctrl.totalColor(round)">{{round.total}}</td>
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-success" ng-click="$ctrl.getGameStatistic()">Back</button>
-</div><!--
-ng-model-options="{
-'updateOn': 'default blur',
-'debounce': {
-'default': 500,
-'blur': 0 }}">-->
+</div>
