@@ -17,17 +17,24 @@
     <div class="col-md-5">
         <div class="add-team-form">
 
-            <form ng-submit="$ctrl.addTeamToDb()">
+            <form name="myForm" ng-submit="$ctrl.addTeamToDb()">
                 <div class="form-group">
                     <label class="control-label">Input new team:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" ng-model='$ctrl.newTeamName' minlength="1"
+                        <input type="text" class="form-control" name="teamName" ng-model='$ctrl.newTeamName'
+                               minlength="1"
                                maxlength="20"
-                               required>
+                               required
+                               team-validator>
                         <span class="input-group-btn">
-                    <button class="btn btn-info" type="submit">Save team</button>
-                </span>
+                            <button class="btn btn-info" ng-disabled="myForm.$invalid || myForm.$pending" type="submit">Save team</button>
+                        </span>
+
                     </div>
+                </div>
+                <div>
+                    <span ng-show="myForm.$pending.teamName">Checking if this name is available...</span>
+                    <span class="text-danger" ng-show="myForm.$error.teamName">This team name is already taken!</span>
                 </div>
             </form>
 
