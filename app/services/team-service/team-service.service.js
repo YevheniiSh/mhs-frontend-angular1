@@ -10,7 +10,8 @@ angular
                 updateTeamById: updateTeamById,
                 getById: getById,
                 getAllTeams: getAllTeams,
-                getByGame: getByGame
+                getByGame: getByGame,
+                isTeamNameExist: isTeamNameExist
             };
 
             function save(team) {
@@ -67,6 +68,10 @@ angular
                         console.error(err);
                         return err;
                     });
+            }
+
+            function isTeamNameExist(teamName) {
+                return new $firebaseArray(firebaseDataService.teams.orderByChild('name').equalTo(teamName)).$loaded();
             }
         }]
     );
