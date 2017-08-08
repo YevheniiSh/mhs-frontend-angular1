@@ -1,13 +1,13 @@
 <div class="container">
     <div class="col-md-5">
         <div class="navbar">
-            <a class = "btn btn-info">All</a>
-            <a class = "btn btn-info">Selected</a>
-            <a class = "btn btn-info">Other</a>
+            <a class="btn btn-info" ng-click="$ctrl.resetFilter()">All</a>
+            <a class="btn btn-info" ng-click="$ctrl.setFilter(true)">Selected</a>
+            <a class="btn btn-info" ng-click="$ctrl.setFilter(false)">Other</a>
         </div>
         <input type="text" ng-model="search" class="form-control" placeholder="Search">
         <div class="scroll-panel">
-            <ul ng-repeat="team in $ctrl.teamsFromDB |orderBy:'name'| filter:search">
+            <ul ng-repeat="team in $ctrl.teamsFromDB |orderBy:'name'| filter:search |filter:$ctrl.filter">
                 <li class="btn list-item" ng-class="{'selected':team.selected}" ng-click="$ctrl.onClick(team)">
                     {{team.name}}
                 </li>

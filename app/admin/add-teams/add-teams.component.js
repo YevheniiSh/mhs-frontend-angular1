@@ -87,6 +87,16 @@ angular.module('addTeams')
                     this.save();
                 };
 
+                this.filter = {};
+
+                this.resetFilter = function () {
+                    this.filter = {};
+                };
+
+                this.setFilter = function (selected) {
+                    this.filter = {selected: selected};
+                };
+
                 this.addTeamToDb = function () {
                     let teamBuilder = new TeamBuilder(TeamService, [{name: this.newTeamName}]);
                     teamBuilder.setTeams()
