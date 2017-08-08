@@ -1,9 +1,12 @@
 <div class="container">
     <div class="col-md-1"></div>
     <div class="col-md-5">
+        <div class="navbar">
+
+        </div>
         <div class = "scroll-panel">
             <ul ng-repeat="team in $ctrl.teamsFromDB">
-                <li class="btn" ng-class="{'selected':team.selected}" ng-click="$ctrl.onClick(team)">{{team.name}}</li>
+                <li class="btn list-item" ng-class="{'selected':team.selected}" ng-click="$ctrl.onClick(team)">{{team.name}}</li>
             </ul>
         </div>
     </div>
@@ -19,7 +22,7 @@
                                maxlength="20"
                                required>
                         <span class="input-group-btn">
-                    <button class="btn btn-info" type="submit">Add new team</button>
+                    <button class="btn btn-info" type="submit">Save team</button>
                 </span>
                     </div>
                 </div>
@@ -27,7 +30,8 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <button ng-click="$ctrl.saveTeams()" class="form-control btn btn-info btn-next btn-block">Next
+                    <button ng-click="$ctrl.saveTeams()" class="form-control btn btn-info btn-next btn-block">
+                        Save game
                     </button>
                 </div>
             </div>
