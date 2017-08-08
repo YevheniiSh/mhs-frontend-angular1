@@ -36,7 +36,7 @@ function GameType(GameService, $routeParams, $location) {
             if (tempRounds.length > i) {
                 rounds.push(tempRounds[i])
             } else {
-                let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 7, roundName: ""};
+                let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: ""};
                 rounds.push(quiz);
             }
             quizSequenceNumber++
@@ -56,6 +56,10 @@ function GameType(GameService, $routeParams, $location) {
 
                 $location.path('/round-status/' + gameId);
             });
+    };
+    vm.deleteRound = function (index) {
+
+        rounds.splice(index - 1, 1);
     };
     vm.ChangeCalendarStatus = function () {
         (vm.isCalendarVisible) ?

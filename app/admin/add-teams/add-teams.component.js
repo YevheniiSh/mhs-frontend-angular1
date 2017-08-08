@@ -29,52 +29,10 @@ angular.module('addTeams')
                     });
                 };
 
-
-                // this.addTeam = function () {
-                //     console.log(this.selected);
-                //     this.teams.push(this.selected);
-                //     this.teamsFromDB = this.teamsFromDB.filter((element) => {
-                //         return element.teamId !== this.selected.teamId;
-                //     });
-                //     this.selected = null;
-                // };
-                //
-                // this.newTeam = function () {
-                //     this.teams.push({name: this.newTeamName});
-                //     this.newTeamName = '';
-                // };
-
                 this.onClick = function (item) {
                     item.selected = !item.selected;
                     console.log(item);
                 };
-
-                // this.deleteTeam = function (index) {
-                //     if (this.teams.length > 2) {
-                //         let removedItem = this.teams.splice(index, 1)[0];
-                //         console.log(removedItem);
-                //         if (removedItem.teamId !== undefined) {
-                //             this.teamsFromDB.push({teamId: removedItem.teamId, name: removedItem.name});
-                //         }
-                //     }
-                //     else {
-                //         alert('min number of teams is 2');
-                //     }
-                // };
-
-                // this.removeDuplicates = function (originalArray, prop) {
-                //     var newArray = [];
-                //     var lookupObject = {};
-                //
-                //     for (var i in originalArray) {
-                //         lookupObject[originalArray[i][prop]] = originalArray[i];
-                //     }
-                //
-                //     for (i in lookupObject) {
-                //         newArray.push(lookupObject[i]);
-                //     }
-                //     return newArray;
-                // };
 
                 this.saveTeams = function () {
 
@@ -103,7 +61,7 @@ angular.module('addTeams')
                         .then((res) => {
                             console.log(res);
                             res.forEach((item) => {
-                                this.teamsFromDB.unshift({teamId: item.$id, name: item.name, selected: false});
+                                this.teamsFromDB.unshift({teamId: item.id, name: item.name, selected: false});
                             });
                             this.newTeamName = '';
                             return res;
