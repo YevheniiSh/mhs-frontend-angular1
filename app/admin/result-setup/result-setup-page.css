@@ -1,7 +1,9 @@
 h1 {
-    border-bottom: solid lightgrey 1px;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    padding-bottom: 2%;
+    border-bottom: solid 1px;
     text-align: center;
-    padding-bottom: 20px;
 }
 
 #team-list {

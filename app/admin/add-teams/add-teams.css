@@ -14,17 +14,13 @@
 .row{
     margin-bottom: 15px;
 }
-
-.container {
-    max-width: 500px;
-}
 label{
     padding: 5px;
     font-size: 16px;
 }
 
 select{
-    width: 27%;
+    width: 30%;
     float: right;
 }
 .add-team-form{
