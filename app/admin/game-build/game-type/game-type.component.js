@@ -26,13 +26,17 @@ angular.module('gameType')
                                 rounds.push(tempRounds[i])
 
                             } else {
-                                let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 7, roundName: ""};
+                                let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: ""};
                                 rounds.push(quiz);
                             }
                             quizSequenceNumber++
                         }
+
                         tempRounds.slice(0, tempRounds.length)
+
                     };
+
+
 
                     vm.buildGame = function () {
 
@@ -49,11 +53,13 @@ angular.module('gameType')
                                 $location.path('/round-status/' + gameId);
                             });
                     };
+                    vm.deleteRound = function (index) {
+
+                        rounds.splice(index - 1, 1);
+                    };
                     vm.ChangeCalendarStatus = function () {
                         (vm.isCalendarVisible) ?
                             vm.isCalendarVisible = false : vm.isCalendarVisible = true;
-
-
                     }
 
                 }]
