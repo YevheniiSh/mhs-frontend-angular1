@@ -35,3 +35,7 @@ select{
     font-size: 20px;
     font-weight: bold;
 }
+.list-item{
+    border-radius: 50%;
+    border:solid 1px lightblue;
+}
