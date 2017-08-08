@@ -11,6 +11,8 @@ function RoundStatusController($routeParams, $location, RoundStatusService, Game
     let nextRounds = [];
     let prevRounds = [];
 
+    vm.startRoundTooltip = false;
+
     vm.checked = false;
 
     vm.nextRounds = nextRounds;
@@ -26,7 +28,7 @@ function RoundStatusController($routeParams, $location, RoundStatusService, Game
 
     vm.onFinished = function () {
         ResultService.setGameWinner(vm.gameId)
-            .then((res) => {
+            .then(() => {
                 GameService.finishGame(vm.gameId);
             });
 
@@ -34,7 +36,7 @@ function RoundStatusController($routeParams, $location, RoundStatusService, Game
 
     vm.onPublished = function () {
         GameService.publishGame(vm.gameId);
-    }
+    };
 
     GameService
         .getCurrentRound($routeParams.gameId)
@@ -45,15 +47,19 @@ function RoundStatusController($routeParams, $location, RoundStatusService, Game
                 .then((rounds) => {
                     console.log(rounds);
                     rounds.forEach((item) => {
-                        if (item.$id > currentRound) nextRounds.push(item.$id);
-                        if (item.$id < currentRound) prevRounds.push(item.$id);
+                        if (item.$id > currentRound) {
+                            nextRounds.push(item);
+                        } else if (item.$id < currentRound) {
+                            prevRounds.push(item);
+                        } else {
+                            vm.currentRound = item;
+                        }
                     });
                     if (prevRounds.length === rounds.length) {
                         vm.checked = true;
                     }
-                    else {
-                        vm.currentRound = currentRound;
-                    }
+                    vm.startRoundTooltip = 'Click to start';
+
                 })
 
         }, (err) => {
