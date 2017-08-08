@@ -1,10 +1,10 @@
 <div class="login-panel row">
     <div ng-show="$root.currentUser">
-        <a class="btn btn-success btn-xs" ng-click="$ctrl.logOut()">Logout</a>
+        <a style="font-size: 15px" class="btn btn-info btn-xs" ng-click="$ctrl.logOut()">Logout <i style="font-size: 15px" class="fa fa-sign-out"></i></a>
         <p>Hello, {{$root.currentUser}}</p>
     </div>
     <div ng-hide="$root.currentUser">
-        <a class="btn btn-success btn-xs" ng-href="/#!/login">Login</a>
+        <a style="font-size: 15px" class="btn btn-success btn-xs" ng-href="/#!/login">Login <i style="font-size: 15px" class="fa fa-sign-in"></i></a>
         <p>Welcome, please log in </p>
     </div>
 </div>
