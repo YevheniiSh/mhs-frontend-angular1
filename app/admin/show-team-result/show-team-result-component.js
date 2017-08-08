@@ -84,7 +84,6 @@ angular.module('showTeamResult')
 
                 this.totalColor = function (round) {
                     let total = parseInt(round.total);
-
                     if(total === 0) {
                         return 'silver-total'
                     } else if (total > 0){
@@ -95,7 +94,6 @@ angular.module('showTeamResult')
                 };
                 this.quizColor = function(quiz) {
                     let score = parseInt(quiz.score);
-
                     if (score === 0) {
                         return 'btn-silver';
                     } else if (score > 0) {
@@ -104,7 +102,5 @@ angular.module('showTeamResult')
                         return 'btn-primary';
                     }
                 };
-
             }]
-
     });

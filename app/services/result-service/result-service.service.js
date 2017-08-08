@@ -46,6 +46,8 @@ angular
                 return resultObj.$loaded();
             };
 
+
+
         resultFactory.parseTeamsResult = function (gameResults) {
             let roundResult = {};
             gameResults.forEach((quizResult) => {
