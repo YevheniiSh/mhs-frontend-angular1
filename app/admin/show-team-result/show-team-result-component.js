@@ -4,10 +4,7 @@ angular.module('showTeamResult')
         controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location',
             function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location) {
                 let vm = this;
-
-
                 this.$onInit = onInit;
-
                 function onInit() {
                     vm.gameStatus = true;
 
@@ -15,8 +12,12 @@ angular.module('showTeamResult')
                     vm.teamId = $routeParams.teamId;
 
                     GameService.getGameStatus(this.gameId).then(status => {
-                        if (status === "current") vm.gameStatus = false;
-                        if (status === "finished") vm.gameStatus = true;
+                        if (status === "current") {
+                            vm.gameStatus = false;
+                        }
+                        if (status === "finished"){
+                             vm.gameStatus = true;
+                        }
                     });
 
                     vm.getResults();
@@ -53,7 +54,6 @@ angular.module('showTeamResult')
                             return result;
                         });
                 }
-
                 vm.getGameStatistic = function () {
                     $location.path(`/show-result/${$routeParams.gameId}`);
                 };
@@ -63,8 +63,14 @@ angular.module('showTeamResult')
                     ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId)
                         .then(parseTeamResult)
                         .then((res) => {
-                            vm.roundsResult = res;
-                            console.log(this.roundsResult);
+                            vm.teamTotal = 0;
+
+                            vm.roundsResult = res
+                            angular.forEach(res,(round)=>{
+                                if (round.total){
+                                    vm.teamTotal += parseFloat(round.total);
+                                }
+                            });
                         });
 
                     TeamService.getById($routeParams.teamId)
@@ -73,16 +79,10 @@ angular.module('showTeamResult')
                         });
                 };
 
-
-                vm.showRoundAndQuiz = function (round, quiz) {
-                    vm.info = "R " + round + " Q " + quiz + " " + vm.gameId + " " + vm.teamId;
-                };
-
-
                 vm.setTeamResult = function (round, quiz) {
-                    let score = parseInt(quiz.score);
-                    let quizNum = parseInt(quiz.quizNum);
-                    let roundNum = parseInt(round.roundNum);
+                    let score = parseFloat(quiz.score);
+                    let quizNum = parseFloat(quiz.quizNum);
+                    let roundNum = parseFloat(round.roundNum);
 
                     let result = {
                         quiz: quizNum,
@@ -95,7 +95,7 @@ angular.module('showTeamResult')
                 };
 
                 this.totalColor = function (round) {
-                    let total = parseInt(round.total);
+                    let total = parseFloat(round.total);
                     if (total === 0) {
                         return 'silver-total'
                     } else if (total > 0) {
@@ -105,7 +105,7 @@ angular.module('showTeamResult')
                     }
                 };
                 this.quizColor = function (quiz) {
-                    let score = parseInt(quiz.score);
+                    let score = parseFloat(quiz.score);
 
                     if (score === 0) {
                         return 'btn-silver';
@@ -115,5 +115,6 @@ angular.module('showTeamResult')
                         return 'btn-danger';
                     }
                 };
+
             }]
     });
