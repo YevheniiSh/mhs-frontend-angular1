@@ -38,51 +38,52 @@ angular.module('addTeams')
                 //     });
                 //     this.selected = null;
                 // };
-
-                this.newTeam = function () {
-                    this.teams.push({name: this.newTeamName});
-                    this.newTeamName = '';
-                };
+                //
+                // this.newTeam = function () {
+                //     this.teams.push({name: this.newTeamName});
+                //     this.newTeamName = '';
+                // };
 
                 this.onClick = function (item) {
                     item.selected = !item.selected;
                     console.log(item);
                 };
 
-                this.deleteTeam = function (index) {
-                    if (this.teams.length > 2) {
-                        let removedItem = this.teams.splice(index, 1)[0];
-                        console.log(removedItem);
-                        if (removedItem.teamId !== undefined) {
-                            this.teamsFromDB.push({teamId: removedItem.teamId, name: removedItem.name});
-                        }
-                    }
-                    else {
-                        alert('min number of teams is 2');
-                    }
-                };
+                // this.deleteTeam = function (index) {
+                //     if (this.teams.length > 2) {
+                //         let removedItem = this.teams.splice(index, 1)[0];
+                //         console.log(removedItem);
+                //         if (removedItem.teamId !== undefined) {
+                //             this.teamsFromDB.push({teamId: removedItem.teamId, name: removedItem.name});
+                //         }
+                //     }
+                //     else {
+                //         alert('min number of teams is 2');
+                //     }
+                // };
 
-                this.removeDuplicates = function (originalArray, prop) {
-                    var newArray = [];
-                    var lookupObject = {};
-
-                    for (var i in originalArray) {
-                        lookupObject[originalArray[i][prop]] = originalArray[i];
-                    }
-
-                    for (i in lookupObject) {
-                        newArray.push(lookupObject[i]);
-                    }
-                    return newArray;
-                };
+                // this.removeDuplicates = function (originalArray, prop) {
+                //     var newArray = [];
+                //     var lookupObject = {};
+                //
+                //     for (var i in originalArray) {
+                //         lookupObject[originalArray[i][prop]] = originalArray[i];
+                //     }
+                //
+                //     for (i in lookupObject) {
+                //         newArray.push(lookupObject[i]);
+                //     }
+                //     return newArray;
+                // };
 
                 this.saveTeams = function () {
 
                     this.teamsFromDB.forEach((item) => {
-                        if (item.selected = true) {
+                        if (item.selected === true) {
                             this.teams.push({id: item.teamId, name: item.name});
                         }
                     });
+                    console.log(this.teams);
                     this.save();
                 };
 
