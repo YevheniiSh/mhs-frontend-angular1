@@ -44,15 +44,19 @@ angular.module('resultSetup')
                                 $location.path(`/result-setup/${gameId}/${vm.selectedRound}/${vm.quizNumber}`);
                                 angular.forEach(results, function (result) {
                                     vm.teamsScore.push(result.score);
-                                    if (result.score === 1 || result.score === 0) {
-                                        vm.isManualInput = false;
-                                    } else {
-                                        vm.isManualInput = true;
-                                    }
+                                    vm.isManualInput = getInputType(results);
                                 });
                             })
                     });
             };
+
+            function getInputType(results) {
+                let maxScore = 0;
+                angular.forEach(results, (result) => {
+                    if (maxScore < result.score) maxScore = result.score;
+                });
+                return !(maxScore === 1 || maxScore === 0);
+            }
 
             vm.setResult = function () {
                 let results = [];
@@ -65,7 +69,7 @@ angular.module('resultSetup')
                     if (vm.teamsScore[key] === undefined) {
                         promices.push(resultSetupService.setQuizResult(result, 0));
                     } else {
-                        promices.push(resultSetupService.setQuizResult(result, vm.teamsScore[key] ? 1 : 0));
+                        promices.push(resultSetupService.setQuizResult(result, vm.teamsScore[key]));
                     }
                 });
                 Promise.all(promices)
