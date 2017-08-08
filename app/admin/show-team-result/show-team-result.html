@@ -1,19 +1,19 @@
 <div class="container">
     <button class="btn btn-success" ng-click="$ctrl.getGameStatistic()">Back</button>
-    <h1>{{$ctrl.teamName}} result</h1>
+    <h1>{{$ctrl.teamName}} : {{$ctrl.teamTotal.toFixed(1)}}</h1>
     <table class="table table-sm table-striped table-hover ">
         <thead>
             <th>Round</th>
             <th>Quizzes</th>
-            <th>Total</th>
+            <th class="total">Total</th>
         </thead>
         <tbody>
             <tr ng-repeat="round in $ctrl.roundsResult">
                 <td id="round">{{round.roundNum}}. {{round.roundName}}</td>
-                <td id="quizzes">
-                    <div class="quiz-block">
+                <td id="quiz-block">
                             <input
                                 type="number"
+                                id="inp"
                                 ng-model="quiz.score"
                                 ng-disabled="$ctrl.gameStatus"
                                 ng-repeat="quiz in round.quizzes"
@@ -21,7 +21,6 @@
                                 ng-class="$ctrl.quizColor(quiz)"
                                 ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
                                 uib-tooltip = "№ {{quiz.quizNum}}">
-                    </div>
                 </td>
                 <td id="total" ng-model="round.total" ng-class="$ctrl.totalColor(round)">{{round.total}}</td>
             </tr>
