@@ -11,8 +11,7 @@ angular.module('showResult')
             ResultService.getParsedResults($routeParams.gameId)
                 .then((result) => {
                     this.results = result;
-                    console.log(result);
-                });
+             });
 
             this.onBack = function () {
                 $location.path(`/round-status/${$routeParams.gameId}`);

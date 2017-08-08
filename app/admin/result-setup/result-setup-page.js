@@ -94,10 +94,6 @@ angular.module('resultSetup')
 
             this.gameId = $routeParams.gameId;
 
-            this.showRoundAndQuiz = function (teamId, score) {
-                this.info = "R " + this.currentRound + " Q " + this.quizNumber + " " + this.gameId + " " + teamId + " SCORE " + score;
-            };
-
             this.setTeamResult = function (score, teamId){
 
                 let result = {
