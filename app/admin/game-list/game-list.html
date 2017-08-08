@@ -1,10 +1,9 @@
 <div class="container">
-    <a ng-href="/#!/add-teams" class="col-md-5 col-md-offset-4 round-button-panel" ng-if="$ctrl.auth">
-                <span class="btn btn-info btn-lg btn-block">
-                    <span class="start-ico">Start game</span>
-                </span>
-
-    </a>
+    <div class="row">
+        <a class="start-button" ng-href="/#!/add-teams" ng-if="$ctrl.auth">
+            <button class="btn btn-info">Start game</button>
+        </a>
+    </div>
     <table class="table table-sm table-striped table-hover">
         <thead>
         <tr>
