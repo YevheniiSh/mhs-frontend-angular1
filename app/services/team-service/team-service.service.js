@@ -54,24 +54,7 @@ angular
 
             function getAllTeams() {
                 return new $firebaseArray(teamRef)
-                    .$loaded()
-                    .then((res) => {
-                        let teams = [];
-                        angular.forEach(res, (team) => {
-                            teams.push(team);
-                        });
-                        return teams;
-
-
-                        // res.$ref(teamRef.child('/asddfs')).$add({name: 'pipi'})
-                        //     .$loaded()
-                        //     .then(() => {
-                        //         res.$ref(teamRef.child('-KqbzkyiHJAXc-e9ipiP')).remove();
-                        //     })
-                    }, (err) => {
-                        console.error(err);
-                        return err;
-                    });
+                    .$loaded();
             }
 
             function getByGame(gameId) {
