@@ -2,7 +2,7 @@
 angular.module('resultSetup')
     .component('resultSetup', {
         templateUrl: 'admin/result-setup/result-setup-page.html',
-        controller: function ResultSetupController(GameServiceFactory, resultSetupService, $routeParams, $location, $scope, $window) {
+        controller: function ResultSetupController(ResultServiceFactory, GameServiceFactory, resultSetupService, $routeParams, $location, $scope, $window) {
             let vm = this;
             let gameId = $routeParams.gameId;
             vm.isManualInput = false;
@@ -44,15 +44,19 @@ angular.module('resultSetup')
                                 $location.path(`/result-setup/${gameId}/${vm.selectedRound}/${vm.quizNumber}`);
                                 angular.forEach(results, function (result) {
                                     vm.teamsScore.push(result.score);
-                                    if (result.score === 1 || result.score === 0) {
-                                        vm.isManualInput = false;
-                                    } else {
-                                        vm.isManualInput = true;
-                                    }
+                                    vm.isManualInput = getInputType(results);
                                 });
                             })
                     });
             };
+
+            function getInputType(results) {
+                let maxScore = 0;
+                angular.forEach(results, (result) => {
+                    if (maxScore < result.score) maxScore = result.score;
+                });
+                return !(maxScore === 1 || maxScore === 0);
+            }
 
             vm.setResult = function () {
                 let results = [];
@@ -65,7 +69,7 @@ angular.module('resultSetup')
                     if (vm.teamsScore[key] === undefined) {
                         promices.push(resultSetupService.setQuizResult(result, 0));
                     } else {
-                        promices.push(resultSetupService.setQuizResult(result, vm.teamsScore[key] ? 1 : 0));
+                        promices.push(resultSetupService.setQuizResult(result, vm.teamsScore[key]));
                     }
                 });
                 Promise.all(promices)
@@ -89,23 +93,20 @@ angular.module('resultSetup')
             };
 
             this.gameId = $routeParams.gameId;
-            this.inp = {
-                value: 0,
+
+            this.showRoundAndQuiz = function (teamId, score) {
+                this.info = "R " + this.currentRound + " Q " + this.quizNumber + " " + this.gameId + " " + teamId + " SCORE " + score;
             };
 
-            this.showRoundAndQuiz = function (teamId) {
-                this.info = "R " + this.currentRound + " Q " + this.quizNumber + " " + this.gameId + " " + teamId;
-            };
+            this.setTeamResult = function (score, teamId){
 
-            this.setTeamResult = function (team, $index) {
-                this.inp.value = score;
                 let result = {
                     quiz: this.quizNumber,
-                    round: this.gameId,
-                    score: this.teamsScore[$index],
-                    teamId: team
+                    round: this.currentRound,
+                    score: score,
+                    teamId: teamId
                 };
-                ResultService.saveResult(result, this.gameId);
+                ResultServiceFactory.saveResult(result, this.gameId);
             }
         }
     });

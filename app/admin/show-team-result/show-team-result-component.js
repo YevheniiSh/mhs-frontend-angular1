@@ -106,6 +106,7 @@ angular.module('showTeamResult')
                 };
                 this.quizColor = function (quiz) {
                     let score = parseInt(quiz.score);
+
                     if (score === 0) {
                         return 'btn-silver';
                     } else if (score > 0) {

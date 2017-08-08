@@ -1,6 +1,7 @@
 angular.module('login-panel')
     .component('loginPanel', {
         templateUrl: "admin/login-panel/login-panel.html",
+        css: 'admin/login-panel/login-panel.css',
         controller: ['userAuthService', '$location', '$rootScope', LoginPanel]
     });
 
