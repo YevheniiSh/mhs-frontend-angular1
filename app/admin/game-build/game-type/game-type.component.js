@@ -11,8 +11,10 @@ angular.module('gameType')
                     let rounds = [];
                     vm.rounds = rounds;
                     vm.gameDate = new Date();
+                    vm.isCalendarVisible = false;
 
                     let quizSequenceNumber;
+
 
                     vm.changeRoundCount = function (count) {
                         quizSequenceNumber = 1;
@@ -24,7 +26,7 @@ angular.module('gameType')
                                 rounds.push(tempRounds[i])
 
                             } else {
-                                let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: "text"};
+                                let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 7, roundName: ""};
                                 rounds.push(quiz);
                             }
                             quizSequenceNumber++
@@ -47,6 +49,12 @@ angular.module('gameType')
                                 $location.path('/round-status/' + gameId);
                             });
                     };
+                    vm.ChangeCalendarStatus = function () {
+                        (vm.isCalendarVisible) ?
+                            vm.isCalendarVisible = false : vm.isCalendarVisible = true;
+
+
+                    }
 
                 }]
         }

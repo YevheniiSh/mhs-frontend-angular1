@@ -37,7 +37,7 @@ h1 {
 
 .btn-selected::after{
     position:absolute;
-    bottom: -10px;
+    bottom: -6px;
     height: 2px;
     left: 0px;
     right: 0px;
