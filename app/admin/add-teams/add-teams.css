@@ -31,12 +31,11 @@ select{
     padding-top: 10%;
 }
 
-#select-group{
-    padding-top: 3%;
-    border-top:1px solid lightgrey;
-}
-
 #or{
     padding-left: 12%;
     padding-bottom: 3%;
+}
+#team-name{
+    font-size: 20px;
+    font-weight: bold;
 }
