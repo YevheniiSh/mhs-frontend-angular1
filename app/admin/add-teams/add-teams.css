@@ -39,7 +39,7 @@ select {
 }
 
 .scroll-panel{
-    height: 600px;
+    height: 500px;
     overflow: auto;
     white-space: nowrap;
     border: solid 2px lightgrey;
