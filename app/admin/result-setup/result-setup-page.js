@@ -19,6 +19,13 @@
             selectedRound.number = $routeParams.roundNumber;
             vm.selectedRound = selectedRound;
             vm.selectedQuiz = selectedQuiz;
+            vm.results = [];
+            angular.forEach(vm.game.teams, (team, key) => {
+                vm.results.push(resultSetupService.createResult(
+                    $routeParams.gameId,
+                    $routeParams.roundNumber,
+                    key));
+            });
         }
 
         function getGame() {
@@ -43,22 +50,6 @@
             vm.selectedQuiz = quizNumber;
             $location.path(`/result-setup/${vm.game.$id}/${vm.selectedRound.number}/${vm.selectedQuiz}`);
         };
-
-        // vm.getQuizClass = function (quizNumber) {
-        //     if (quizNumber === selectedQuiz) return 'btn btn-info';
-        //     angular.forEach(vm.game.results,(result)=>{
-        //         if (result.round == vm.selectedRound && result.quiz == quizNumber){
-        //             return 'btn btn-success';
-        //         }
-        //     })
-        //     getGame()
-        //         .then((res) => {
-        //             for (let i = 0; i < res.results.length; i++) {
-        //                 if (res.results[i].round == vm.selectedRound && res.results[i].quiz == quizNumber) {
-        //                     return 'btn btn-success';
-        //                 }
-        //             }
-        //         })
-        // };
+        vm.next()
     }
 })();

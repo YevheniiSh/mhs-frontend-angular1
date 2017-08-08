@@ -14,9 +14,8 @@ angular.module('resultSetup').factory('resultSetupService', [
             return defer.promise;
         }
 
-        function setQuizResult(result, score) {
+        function setQuizResult(result) {
             let defer = $q.defer();
-            result.setScore(score);
             ResultServiceFactory.saveResult(result, $routeParams.gameId).then((resultKey) => {
                 defer.resolve(resultKey);
             });
@@ -42,10 +41,20 @@ angular.module('resultSetup').factory('resultSetupService', [
                 })
         }
 
+        function createResult(gameId, round, teamId, score) {
+            return {
+                gameId: gameId,
+                round: round,
+                teamId: teamId,
+                score: score
+            }
+        }
+
         return {
             getData: getData,
             setQuizResult: setQuizResult,
             getQuizResult: getQuizResult,
-            roundIncrement: roundIncrement
+            roundIncrement: roundIncrement,
+            createResult: createResult
         };
     }]);
