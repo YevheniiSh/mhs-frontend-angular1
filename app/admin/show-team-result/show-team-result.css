@@ -15,6 +15,7 @@ input#inp{
     margin: 5px;
     padding-left: 5px;
     padding-right: 5px;
+    border:none;
     border-radius: 30%;
     color: #ffffff;
     text-align:center;
@@ -36,7 +37,7 @@ td.total-point{
     font-weight: bold;
 }
 td#quiz-block{
-    width: 130px;
+    width: 360px;
     font-size: 24px;
     padding: 0;
 }
@@ -51,10 +52,11 @@ td#round{
     text-align: left;
 }
 #total{
+    text-align: right;
     vertical-align: middle;
 }
 th.total{
-    text-align: center;
+    text-align: right;
 }
 .silver-total{
     color:#D4D4D4;

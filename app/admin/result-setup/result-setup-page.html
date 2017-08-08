@@ -9,7 +9,7 @@
     </div>
     <div class="form-group row">
         <ul id="team-list">
-            <li ng-repeat="(teamId, teamName) in $ctrl.teams">
+            <li class="col-md-6" ng-repeat="(teamId, teamName) in $ctrl.teams">
                 <label>
                     <input type="checkbox" ng-model="$ctrl.teamsScore[$index]" parse-int ng-true-value="1"
                            ng-false-value="0" ng-if="!$ctrl.isManualInput"
