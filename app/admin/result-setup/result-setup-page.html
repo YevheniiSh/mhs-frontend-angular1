@@ -2,17 +2,21 @@
     <div id="header">
         <h2>Round #{{$ctrl.selectedRound}}</h2>
         <h1>Question #{{$ctrl.quizNumber}}</h1>
+        {{$ctrl.info}}
     </div>
     <div class="checkbox">
         <label id = "manual-input"><input type="checkbox" ng-model="$ctrl.isManualInput">Manual input</label>
     </div>
     <div class="form-group row">
         <ul id="team-list">
-            <li ng-repeat="team in $ctrl.teams">
+            <li class="col-md-6" ng-repeat="(teamId, teamName) in $ctrl.teams">
                 <label>
-                    <input type="checkbox" ng-model="$ctrl.teamsScore[$index]" ng-if="!$ctrl.isManualInput">
-                    {{team}}
-                    <input type="number" ng-model="$ctrl.teamsScore[$index]" class="form-control" ng-if="$ctrl.isManualInput">
+                    <input type="checkbox" ng-model="$ctrl.teamsScore[$index]" parse-int ng-true-value="1"
+                           ng-false-value="0" ng-if="!$ctrl.isManualInput"
+                           ng-change="$ctrl.setTeamResult($ctrl.teamsScore[$index],teamId)">
+                    {{teamName}}
+                    <input type="number" ng-model="$ctrl.teamsScore[$index]" class="form-control" ng-if="$ctrl.isManualInput"
+                    ng-change="$ctrl.setTeamResult($ctrl.teamsScore[$index],teamId)">
                 </label>
             </li>
         </ul>
@@ -20,7 +24,7 @@
     <div id="control-panel" class="form-inline ">
         <div class="nav-btn">
             <button ng-repeat="quiz in $ctrl.quizzes" class="btn"
-                    ng-class="{'btn-info btn-selected':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}"
+                    ng-class="{'btn-selected':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered}"
                     ng-click="$ctrl.setQuiz(quiz.number)">
                 {{quiz.number}}
             </button>

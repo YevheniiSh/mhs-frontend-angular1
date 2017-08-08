@@ -1,36 +1,44 @@
 /* app css stylesheet */
 
 .menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+    list-style: none;
+    border-bottom: 0.1em solid black;
+    margin-bottom: 2em;
+    padding: 0 0 0.5em;
 }
 
 .menu:before {
-  content: "[";
+    content: "[";
 }
 
 .menu:after {
-  content: "]";
+    content: "]";
 }
 
 .menu > li {
-  display: inline;
+    display: inline;
 }
 
 .menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+    content: "|";
+    padding-right: 0.3em;
 }
-.login-panel{
-  padding-right: 20px;
-  padding-top: 10px;
+
+.login-panel {
+    padding-right: 20px;
+    padding-top: 5px;
+    float: right;
 }
-.login-panel p{
-  float: right;
+
+.main-panel {
+    margin-top: 30px;
 }
-.login-panel a{
-  float: right;
-  margin-left: 10px;
+
+.login-panel p {
+    float: right;
+}
+
+.login-panel a {
+    float: right;
+    margin-left: 10px;
 }

@@ -9,7 +9,8 @@ angular
         'showTeamResult',
         'login',
         'login-panel',
-        'game-list'])
+        'game-list',
+        'ui.bootstrap'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
             template: '<game-type></game-type>',
