@@ -1,9 +1,9 @@
 <div class="container">
     <div class="col-md-5">
         <div class="navbar">
-            <a class="btn btn-info"     ng-class="" ng-click="$ctrl.resetFilter()">All</a>
-            <a class="btn btn-info" ng-class="{'selected-tabs':$ctrl.filter.selected===true}" ng-click="$ctrl.setFilter(true)">Selected</a>
-            <a class="btn btn-info" ng-class="{'selected-tabs':$ctrl.filter.selected===false}"ng-click="$ctrl.setFilter(false)">Other</a>
+            <a class="btn btn-info" ng-click="$ctrl.resetFilter()">All</a>
+            <a class="btn btn-info" ng-click="$ctrl.setFilter(true)">Selected</a>
+            <a class="btn btn-info" ng-click="$ctrl.setFilter(false)">Other</a>
         </div>
         <input type="text" ng-model="search" class="form-control" placeholder="Search">
         <div class="scroll-panel">
