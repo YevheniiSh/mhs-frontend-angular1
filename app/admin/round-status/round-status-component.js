@@ -58,10 +58,8 @@ function RoundStatusController($routeParams, $location, RoundStatusService, Game
                     if (prevRounds.length === rounds.length) {
                         vm.checked = true;
                     }
-                    vm.startRoundTooltip = 'Click to start';
-
-                })
-
+                });
+            vm.startRoundTooltip = 'Click to start';
         }, (err) => {
             console.error(err)
         });
