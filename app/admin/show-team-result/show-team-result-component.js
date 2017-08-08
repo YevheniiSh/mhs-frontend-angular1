@@ -3,15 +3,24 @@ angular.module('showTeamResult')
         templateUrl: 'admin/show-team-result/show-team-result.html',
         controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location',
             function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location) {
-                this.gameStatus = true;
+                let vm = this;
 
-                this.gameId = $routeParams.gameId;
-                this.teamId = $routeParams.teamId;
 
-                GameService.getGameStatus(this.gameId).then(status =>{
-                    if(status === "current") this.gameStatus = false;
-                    if(status === "finished") this.gameStatus = true;
-                });
+                this.$onInit = onInit;
+
+                function onInit() {
+                    vm.gameStatus = true;
+
+                    vm.gameId = $routeParams.gameId;
+                    vm.teamId = $routeParams.teamId;
+
+                    GameService.getGameStatus(this.gameId).then(status => {
+                        if (status === "current") vm.gameStatus = false;
+                        if (status === "finished") vm.gameStatus = true;
+                    });
+
+                    vm.getResults();
+                }
 
                 function parseTeamResult(teamResults) {
                     console.log(teamResults);
@@ -45,29 +54,32 @@ angular.module('showTeamResult')
                         });
                 }
 
-                this.getGameStatistic = function () {
+                vm.getGameStatistic = function () {
                     $location.path(`/show-result/${$routeParams.gameId}`);
                 };
-                this.url = $routeParams.gameId;
+                vm.url = $routeParams.gameId;
 
-                ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId)
-                    .then(parseTeamResult)
-                    .then((res) => {
-                        this.roundsResult = res;
-                        console.log(this.roundsResult);
-                    });
+                vm.getResults = function () {
+                    ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId)
+                        .then(parseTeamResult)
+                        .then((res) => {
+                            vm.roundsResult = res;
+                            console.log(this.roundsResult);
+                        });
 
-                TeamService.getById($routeParams.teamId)
-                    .then(team => {
-                        this.teamName = team.name;
-                    });
-
-                this.showRoundAndQuiz = function (round, quiz) {
-                    this.info = "R "+ round + " Q " + quiz + " "+ this.gameId  + " " + this.teamId ;
+                    TeamService.getById($routeParams.teamId)
+                        .then(team => {
+                            vm.teamName = team.name;
+                        });
                 };
 
 
-                this.setTeamResult = function(round, quiz) {
+                vm.showRoundAndQuiz = function (round, quiz) {
+                    vm.info = "R " + round + " Q " + quiz + " " + vm.gameId + " " + vm.teamId;
+                };
+
+
+                vm.setTeamResult = function (round, quiz) {
                     let score = parseInt(quiz.score);
                     let quizNum = parseInt(quiz.quizNum);
                     let roundNum = parseInt(round.roundNum);
@@ -76,23 +88,23 @@ angular.module('showTeamResult')
                         quiz: quizNum,
                         round: roundNum,
                         score: score,
-                        teamId: this.teamId
+                        teamId: vm.teamId
                     };
-                    round.total = parseInt(round.total) + score;
-                    ResultService.saveResult(result, this.gameId);
+                    ResultService.saveResult(result, vm.gameId);
+                    vm.getResults();
                 };
 
                 this.totalColor = function (round) {
                     let total = parseInt(round.total);
-                    if(total === 0) {
+                    if (total === 0) {
                         return 'silver-total'
-                    } else if (total > 0){
+                    } else if (total > 0) {
                         return 'green-total'
                     } else {
                         return 'red-total'
                     }
                 };
-                this.quizColor = function(quiz) {
+                this.quizColor = function (quiz) {
                     let score = parseInt(quiz.score);
                     if (score === 0) {
                         return 'btn-silver';
