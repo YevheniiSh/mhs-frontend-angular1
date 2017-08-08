@@ -46,6 +46,7 @@ angular.module('addTeams')
 
                 this.onClick = function (item) {
                     item.selected = !item.selected;
+                    console.log(item);
                 };
 
                 this.deleteTeam = function (index) {

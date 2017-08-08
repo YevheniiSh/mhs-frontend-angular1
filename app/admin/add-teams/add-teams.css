@@ -1,6 +1,7 @@
-#container,html{
+#container, html {
     height: 100%;
 }
+
 .btn-delete {
     border-radius: 100%;
     float: right;
@@ -10,31 +11,45 @@
     margin-top: 50px;
 }
 
-.row{
+.row {
     margin-bottom: 15px;
 }
-label{
+
+label {
     font-size: 16px;
 }
 
-select{
+select {
     width: 30%;
     float: right;
 }
-.add-team-form{
+
+.add-team-form {
     padding-top: 10%;
 }
 
-#or{
+#or {
     padding-left: 12%;
     padding-bottom: 3%;
 }
-#team-name{
+
+#team-name {
     font-size: 20px;
     font-weight: bold;
 }
-.list-item{
+
+.list-item {
     border-radius: 10px;
-    border:solid 3px lightblue;
+    border: solid 3px lightblue;
     padding: 10px;
+}
+
+.scroll-panel{
+    height: 700px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.selected{
+    background-color: green;
 }

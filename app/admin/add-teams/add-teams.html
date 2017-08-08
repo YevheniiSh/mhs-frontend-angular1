@@ -1,18 +1,17 @@
 <div class="container">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <div class = "scroll-panel">
+            <ul ng-repeat="team in $ctrl.teamsFromDB">
+                <li class="btn" ng-class="{'selected':team.selected}" ng-click="$ctrl.onClick(team)">{{team.name}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
         <div class="add-team-form">
-            <div id=select-group class="form-group">
-                <label class="control-label">Select exist team:</label>
-                <select class="btn btn-info dropdown-toggle" data-toggle="dropdown" name="teams"
-                        ng-options="item as item.name for item in $ctrl.teamsFromDB track by item.teamId"
-                        ng-model="$ctrl.selected"
-                        ng-change="$ctrl.addTeam()">
-                    <option value="" label="Choose team" disabled selected="selected">
-                    </option>
-                </select>
-            </div>
-            <label id="or">or</label>
-            <form ng-submit="$ctrl.newTeam()">
+
+            <form ng-submit="$ctrl.addTeamToDb()">
                 <div class="form-group">
                     <label class="control-label">Input new team:</label>
                     <div class="input-group">
