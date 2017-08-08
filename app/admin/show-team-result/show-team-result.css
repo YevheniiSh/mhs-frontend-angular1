@@ -7,9 +7,6 @@ th{
 h1{
     border-bottom: solid 1px;
 }
-.btn-silver{
- height: 40px;
-}
 input#inp{
     height: 31px;
     font-size: 17px;
@@ -31,7 +28,7 @@ input[type=number]::-webkit-outer-spin-button {
     height: 100%;
 }
 td.ng-binding{
-    font-size: 33px;
+    font-size: 20px;
     width: 200px;
     text-align: center;
 }
@@ -44,7 +41,7 @@ td#quiz-block{
     padding: 0;
 }
 td#round{
-    font-size: 23px;
+    font-size: 20px;
 }
 #total, #round{
     vertical-align: middle;
