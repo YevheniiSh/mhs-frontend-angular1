@@ -57,3 +57,6 @@ h1 {
     font-size: 14pt;
 }
 
+input[type=checkbox]{
+    transform: scale(1.5);
+}
