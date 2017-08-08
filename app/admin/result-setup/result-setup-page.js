@@ -5,6 +5,7 @@
             templateUrl: 'admin/result-setup/result-setup-page.html',
             controller: ResultSetupController
         });
+
     ResultSetupController.$inject = ['GameServiceFactory', 'resultSetupService', '$routeParams', '$location'];
 
     function ResultSetupController(GameServiceFactory, resultSetupService, $routeParams, $location) {
@@ -13,20 +14,44 @@
 
         let selectedQuiz = parseInt($routeParams.quizNumber);
 
-        function renderGameParams(res) {
-            vm.game = res;
-            let selectedRound = res.rounds[$routeParams.roundNumber];
+        function initQuizResults() {
+            angular.forEach(vm.game.teams, (team, key) => {
+                let resultId = [$routeParams.roundNumber, $routeParams.quizNumber, key].join('_');
+                vm.results[resultId] = resultSetupService.buildResult(
+                    $routeParams.roundNumber,
+                    $routeParams.quizNumber,
+                    key);
+            });
+        }
+
+        function initQuiz(game) {
+            vm.game = game;
+            let selectedRound = game.rounds[$routeParams.roundNumber];
             selectedRound.number = $routeParams.roundNumber;
             vm.selectedRound = selectedRound;
             vm.selectedQuiz = selectedQuiz;
-            vm.results = [];
-            angular.forEach(vm.game.teams, (team, key) => {
-                vm.results.push(resultSetupService.createResult(
-                    $routeParams.gameId,
-                    $routeParams.roundNumber,
-                    key));
-            });
+            initQuizResults();
         }
+
+        function assignAnswers() {
+            resultSetupService
+                .getQuizResult($routeParams.gameId, $routeParams.roundNumber, selectedQuiz)
+                .then((res) => {
+                    let results = [];
+                    res.forEach((result) => {
+                        results.push(result);
+                    });
+                    angular.extend(vm.results, results);
+                })
+        }
+
+        vm.setQuiz = function (quizNumber) {
+            vm.selectedQuiz = quizNumber;
+            // initQuizResults();
+            // assignAnswers();
+            $location.path(`/result-setup/${$routeParams.gameId}/${$routeParams.roundNumber}/${quizNumber}`);
+        };
+
 
         function getGame() {
             return GameServiceFactory
@@ -34,10 +59,10 @@
         }
 
         function onInit() {
+            vm.results = [];
             getGame()
-                .then((res) => {
-                    renderGameParams(res);
-                });
+                .then(initQuiz)
+                .then(assignAnswers);
         }
 
         vm.isManualInput = false;
@@ -45,11 +70,5 @@
         vm.range = function (n) {
             return new Array(n);
         };
-
-        vm.setQuiz = function (quizNumber) {
-            vm.selectedQuiz = quizNumber;
-            $location.path(`/result-setup/${vm.game.$id}/${vm.selectedRound.number}/${vm.selectedQuiz}`);
-        };
-        vm.next()
     }
 })();

@@ -41,7 +41,7 @@ angular.module('resultSetup').factory('resultSetupService', [
                 })
         }
 
-        function createResult(gameId, round, teamId, score) {
+        function buildResult(gameId, round, teamId, score) {
             return {
                 gameId: gameId,
                 round: round,
@@ -50,11 +50,12 @@ angular.module('resultSetup').factory('resultSetupService', [
             }
         }
 
+
         return {
             getData: getData,
             setQuizResult: setQuizResult,
             getQuizResult: getQuizResult,
             roundIncrement: roundIncrement,
-            createResult: createResult
+            buildResult: buildResult
         };
     }]);

@@ -8,7 +8,7 @@
     </div>
     <div class="form-group row">
         <ul id="team-list">
-            <li ng-repeat="result in $ctrl.results">
+            <li class="col-md-6" ng-repeat="result in $ctrl.results">
                 <label>
                     <input type="checkbox" ng-model="result.score" ng-if="!$ctrl.isManualInput">
                     {{$ctrl.game.teams[result.teamId]}}

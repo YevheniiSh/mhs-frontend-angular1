@@ -8,18 +8,26 @@ angular
 
             let resultFactory = {};
 
-            resultFactory.saveResult = function (result, gameId) {
-                let resultKey = result.round + "_" + result.quiz + "_" + result.teamId;
-                let resultObj = new $firebaseObject(currentRef.child(`${gameId}/results/${resultKey}`));
-                resultObj.$value = result;
-                return resultObj.$save()
-                    .then(() => {
+        function resultKey(result) {
+            return [result.round, result.quiz, result.teamId].join('_');
+        }
+
+        resultFactory.saveResult = function (result, gameId) {
+            let resultKey = resultKey(result);
+            let resultRef = currentRef.child(`${gameId}/results/${resultKey}`);
+            let resultObj = new $firebaseObject(resultRef);
+            resultObj.$value = result;
+            return resultObj.$save()
+                .then(
+                    () => {
                         return resultKey;
-                    }, (err) => {
+                    },
+                    (err) => {
                         console.log(err);
-                        return err;
-                    });
-            };
+                        throw err;
+                    }
+                );
+        };
 
         resultFactory.filter = function (filter, gameId) {
             let ref = gameService.getGameRef(gameId);
@@ -42,7 +50,12 @@ angular
             };
 
             resultFactory.getByRoundAndQuiz = function (roundId, quizId, gameId) {
-                let resultObj = new $firebaseObject(currentRef.child(`/${gameId}/results/`).orderByKey().startAt(`${roundId}_${quizId}_`).endAt(`${roundId}_${quizId}_~`));
+                let resultRef = currentRef
+                    .child(`/${gameId}/results/`)
+                    .orderByKey()
+                    .startAt(`${roundId}_${quizId}_`)
+                    .endAt(`${roundId}_${quizId}_~`);
+                let resultObj = new $firebaseObject(resultRef);
                 return resultObj.$loaded();
             };
 
