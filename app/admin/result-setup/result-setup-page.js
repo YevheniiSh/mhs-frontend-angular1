@@ -2,7 +2,7 @@
 angular.module('resultSetup')
     .component('resultSetup', {
         templateUrl: 'admin/result-setup/result-setup-page.html',
-        controller: function ResultSetupController(GameServiceFactory, resultSetupService, $routeParams, $location, $scope, $window) {
+        controller: function ResultSetupController(ResultServiceFactory, GameServiceFactory, resultSetupService, $routeParams, $location, $scope, $window) {
             let vm = this;
             let gameId = $routeParams.gameId;
             vm.isManualInput = false;
@@ -93,23 +93,20 @@ angular.module('resultSetup')
             };
 
             this.gameId = $routeParams.gameId;
-            this.inp = {
-                value: 0,
+
+            this.showRoundAndQuiz = function (teamId, score) {
+                this.info = "R " + this.currentRound + " Q " + this.quizNumber + " " + this.gameId + " " + teamId + " SCORE " + score;
             };
 
-            this.showRoundAndQuiz = function (teamId) {
-                this.info = "R " + this.currentRound + " Q " + this.quizNumber + " " + this.gameId + " " + teamId;
-            };
+            this.setTeamResult = function (score, teamId){
 
-            this.setTeamResult = function (team, $index) {
-                this.inp.value = score;
                 let result = {
                     quiz: this.quizNumber,
-                    round: this.gameId,
-                    score: this.teamsScore[$index],
-                    teamId: team
+                    round: this.currentRound,
+                    score: score,
+                    teamId: teamId
                 };
-                ResultService.saveResult(result, this.gameId);
+                ResultServiceFactory.saveResult(result, this.gameId);
             }
         }
     });
