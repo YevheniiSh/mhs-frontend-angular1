@@ -45,6 +45,7 @@ select {
     border: solid 2px lightgrey;
     border-radius: 10px;
     padding-top: 20px ;
+    margin-top: 10px;
 }
 
 .selected{
@@ -73,9 +74,3 @@ select {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
 }
-
-.navbar{
-    border: 1px solid lightgrey;
-    border-radius: 10px;
-}
-
