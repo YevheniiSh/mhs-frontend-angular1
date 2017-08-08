@@ -11,19 +11,18 @@ h1 {
 }
 
 #team-list label {
-    width: 40%;
     font-size: 14pt;
+    height: 36px;
 }
 
 #team-list input {
-    width: 70px;
+    width: 60px;
     display: inline-block;
-    margin-left: 50px;
-    float: right;
+    margin-right: 5px;
+    float: left
 }
 
 #control-panel {
-    margin-top: 10%;
 }
 
 #control-panel button {
