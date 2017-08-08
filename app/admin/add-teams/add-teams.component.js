@@ -8,29 +8,44 @@ angular.module('addTeams')
 
             function (TeamService, GameService, $rootScope, $location) {
 
+                let vm = this;
+
                 this.selected = null;
 
                 this.teams = [];
                 this.teamsFromDB = [];
 
-                TeamService.getAllTeams().then((res) => {
-                    angular.forEach(res, (team) => {
-                        this.teamsFromDB.push({teamId: team.$id, name: team.name})
-                    });
-                });
+                this.$onInit = onInit;
 
-                this.addTeam = function () {
-                    console.log(this.selected);
-                    this.teams.push(this.selected);
-                    this.teamsFromDB = this.teamsFromDB.filter((element) => {
-                        return element.teamId !== this.selected.teamId;
+                function onInit() {
+                    vm.getTeams();
+                }
+
+                this.getTeams = function () {
+                    TeamService.getAllTeams().then((res) => {
+                        angular.forEach(res, (team) => {
+                            this.teamsFromDB.push({teamId: team.$id, name: team.name, selected: false});
+                        });
                     });
-                    this.selected = null;
                 };
+
+
+                // this.addTeam = function () {
+                //     console.log(this.selected);
+                //     this.teams.push(this.selected);
+                //     this.teamsFromDB = this.teamsFromDB.filter((element) => {
+                //         return element.teamId !== this.selected.teamId;
+                //     });
+                //     this.selected = null;
+                // };
 
                 this.newTeam = function () {
                     this.teams.push({name: this.newTeamName});
                     this.newTeamName = '';
+                };
+
+                this.onClick = function (item) {
+                    item.selected = !item.selected;
                 };
 
                 this.deleteTeam = function (index) {
@@ -58,30 +73,29 @@ angular.module('addTeams')
                         newArray.push(lookupObject[i]);
                     }
                     return newArray;
-                }
+                };
 
                 this.saveTeams = function () {
 
-
-                    let unique = this.removeDuplicates(this.teams, "name");
-                    // console.log("uniqueArray is: " + JSON.stringify(uniqueArray));
-                    //
-                    // let unique = [...new Set(this.teams.map(item => {return {teamId:item.teamId, name:item.name}}))];
-
-                    console.log(unique);
-                    if (unique.length < this.teams.length) {
-                        alert('You have entered teams with same name. Remove dublicate');
-                    }
-                    else {
-                        this.teams = [];
-
-                        unique.forEach(item => {
+                    this.teamsFromDB.forEach((item) => {
+                        if (item.selected = true) {
                             this.teams.push({id: item.teamId, name: item.name});
-                        });
-                        this.save();
-                    }
+                        }
+                    });
+                    this.save();
+                };
 
-
+                this.addTeamToDb = function () {
+                    let teamBuilder = new TeamBuilder(TeamService, [{name: this.newTeamName}]);
+                    teamBuilder.setTeams()
+                        .then((res) => {
+                            console.log(res);
+                            res.forEach((item) => {
+                                this.teamsFromDB.push({teamId: item.$id, name: item.name, selected: false});
+                            });
+                            this.newTeamName = '';
+                            return res;
+                        })
                 };
 
                 this.save = function () {
@@ -104,4 +118,5 @@ angular.module('addTeams')
 
             }]
 
-    });
+    })
+;
