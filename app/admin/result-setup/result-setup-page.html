@@ -10,7 +10,8 @@
         <ul id="team-list">
             <li ng-repeat="team in $ctrl.teams">
                 <label>
-                    <input type="checkbox" ng-model="$ctrl.teamsScore[$index]" ng-if="!$ctrl.isManualInput">
+                    <input type="checkbox" ng-model="$ctrl.teamsScore[$index]" parse-int ng-true-value="1"
+                           ng-false-value="0" ng-if="!$ctrl.isManualInput">
                     {{team}}
                     <input type="number" ng-model="$ctrl.teamsScore[$index]" class="form-control" ng-if="$ctrl.isManualInput">
                 </label>

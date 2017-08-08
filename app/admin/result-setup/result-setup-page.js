@@ -5,6 +5,7 @@ angular.module('resultSetup')
         controller: function ResultSetupController(GameServiceFactory, resultSetupService, $routeParams, $location, $scope, $window) {
             let vm = this;
             let gameId = $routeParams.gameId;
+            vm.isManualInput = false;
             vm.quizNumber = $routeParams.quizNumber;
             vm.selectedRound = $routeParams.roundNumber;
             resultSetupService.getData(gameId)
@@ -27,24 +28,32 @@ angular.module('resultSetup')
                     } else {
                         vm.setQuiz($routeParams.quizNumber);
                     }
-                        vm.teamsScore = [];
+                    vm.teamsScore = [];
                 });
 
             vm.setQuiz = function (quizNumber) {
                 vm.saved = false;
                 vm.quizNumber = quizNumber;
                 vm.teamsScore = [];
-                resultSetupService.getQuizResult(gameId, vm.selectedRound, vm.quizNumber)
+                resultSetupService
+                    .getQuizResult(gameId, vm.selectedRound, vm.quizNumber)
                     .then((results) => {
-                        GameServiceFactory.getCurrentQuiz(gameId)
-                            .then(currentQuiz => {
+                        GameServiceFactory
+                            .getCurrentQuiz(gameId)
+                            .then(() => {
                                 $location.path(`/result-setup/${gameId}/${vm.selectedRound}/${vm.quizNumber}`);
                                 angular.forEach(results, function (result) {
                                     vm.teamsScore.push(result.score);
-                                })
+                                    if (result.score === 1 || result.score === 0) {
+                                        vm.isManualInput = false;
+                                    } else {
+                                        vm.isManualInput = true;
+                                    }
+                                });
                             })
-                    })
+                    });
             };
+
             vm.setResult = function () {
                 let results = [];
                 let promices = [];
@@ -53,12 +62,11 @@ angular.module('resultSetup')
                 });
                 vm.quizzes[vm.quizNumber - 1].answered = true;
                 angular.forEach(results, function (result, key) {
-                    if (vm.teamsScore[key] == undefined) {
+                    if (vm.teamsScore[key] === undefined) {
                         promices.push(resultSetupService.setQuizResult(result, 0));
                     } else {
-                        promices.push(resultSetupService.setQuizResult(result, +(vm.teamsScore[key])));
+                        promices.push(resultSetupService.setQuizResult(result, vm.teamsScore[key] ? 1 : 0));
                     }
-
                 });
                 Promise.all(promices)
                     .then(() => {
@@ -67,7 +75,6 @@ angular.module('resultSetup')
                             vm.quizNumber++;
                             vm.setQuiz(vm.quizNumber);
                             GameServiceFactory.setCurrentQuiz(vm.quizNumber, gameId)
-
                         } else {
                             GameServiceFactory.setCurrentQuiz(1, gameId).then(() => {
                                 resultSetupService.roundIncrement(vm.selectedRound, gameId);
@@ -75,7 +82,7 @@ angular.module('resultSetup')
                             })
 
                         }
-                    }).then($scope.$apply);
+                    });
             };
             vm.back = function () {
                 $window.history.back();
@@ -83,14 +90,14 @@ angular.module('resultSetup')
 
             this.gameId = $routeParams.gameId;
             this.inp = {
-                value:0,
+                value: 0,
             };
 
             this.showRoundAndQuiz = function (teamId) {
-                this.info = "R "+ this.currentRound + " Q " + this.quizNumber + " "+ this.gameId  + " " + teamId ;
+                this.info = "R " + this.currentRound + " Q " + this.quizNumber + " " + this.gameId + " " + teamId;
             };
 
-            this.setTeamResult = function(team, $index) {
+            this.setTeamResult = function (team, $index) {
                 this.inp.value = score;
                 let result = {
                     quiz: this.quizNumber,
