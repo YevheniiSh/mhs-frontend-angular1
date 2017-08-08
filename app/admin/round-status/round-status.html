@@ -1,6 +1,6 @@
 <div class="container">
     <header id="round-header"><h1>Rounds</h1></header>
-    <div class="">
+    <div>
         <div class="row">
             <div id="round-status-panel">
                 <div class="col-md-4 round-panel">
@@ -24,11 +24,8 @@
                                href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound.$id}}/1"
                                class="btn btn-round-panel btn-warning" tooltip-append-to-body="true"
                                uib-tooltip="{{$ctrl.startRoundTooltip}}" tooltip-is-open="true">
-
                                 {{$ctrl.currentRound.$id}}. {{$ctrl.currentRound.name}}
-                                <!--<i class="fa fa-flag-o start-ico"></i>-->
                             </a>
-
                         </div>
                     </div>
                 </div>
