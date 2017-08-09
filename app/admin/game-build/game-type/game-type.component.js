@@ -25,26 +25,27 @@ function GameType(GameService, $routeParams, $location) {
             })
     }
 
-    let quizSequenceNumber;
+    let quizSequenceNumber = 1;
 
-    vm.changeRoundCount = function (count) {
-        quizSequenceNumber = 1;
-
-        let tempRounds = rounds.splice(0, rounds.length);
-
-        for (let i = 0; i < count; i++) {
-            if (tempRounds.length > i) {
-                rounds.push(tempRounds[i])
-            } else {
-                let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: ""};
-                rounds.push(quiz);
+    vm.addRound = function () {
+        let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: ""};
+        quizSequenceNumber++;
+        rounds.push(quiz);
+        debugger;
+    };
+    vm.deleteRound = function (index) {
+        if (rounds.length >= index) {
+            for (let i = index - 1; i < rounds.length; i++) {
+                rounds[i].sequenceNumber--;
             }
-            quizSequenceNumber++
+            quizSequenceNumber--;
         }
-        tempRounds.slice(0, tempRounds.length)
+
+        rounds.splice(index - 1, 1);
     };
 
     vm.buildGame = function () {
+        debugger;
         GameService
             .getGameById(gameId)
             .then((res) => {
@@ -57,12 +58,8 @@ function GameType(GameService, $routeParams, $location) {
                 $location.path('/round-status/' + gameId);
             });
     };
-    vm.deleteRound = function (index) {
 
-        rounds.splice(index - 1, 1);
-    };
     vm.ChangeCalendarStatus = function () {
-        (vm.isCalendarVisible) ?
-            vm.isCalendarVisible = false : vm.isCalendarVisible = true;
+        vm.isCalendarVisible ? vm.isCalendarVisible = false : vm.isCalendarVisible = true;
     }
 }
