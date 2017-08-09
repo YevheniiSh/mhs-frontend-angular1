@@ -1,24 +1,6 @@
-.game-type {
-    margin-top: 30px;
-}
-
-/*.game-tour {*/
-/*margin: auto;*/
-
-/*}*/
 
 label {
     font-size: 16px;
-}
-
-.rounds-count {
-    display: inline;
-    /*float: right;*/
-    /*width: 400px;*/
-}
-
-.rounds-count-label {
-    padding-top: 5px;
 }
 
 .data-picker {
@@ -30,10 +12,10 @@ label {
     z-index: 100;
 }
 
-.data-picker-label{
-    margin-top: 20px;
-    margin-bottom: 20px;
+.data-picker-label {
+    margin-bottom: 5px;
 }
+
 .round-number {
     max-width: 20px;
     max-height: 15px;
@@ -53,6 +35,6 @@ label {
 
 /*input[type=number]::-webkit-inner-spin-button,*/
 /*input[type=number]::-webkit-outer-spin-button {*/
-    /*-webkit-appearance: none;*/
-    /*margin: 0;*/
+/*-webkit-appearance: none;*/
+/*margin: 0;*/
 /*}*/

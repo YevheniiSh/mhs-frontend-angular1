@@ -6,7 +6,7 @@ h1 {
     text-align: center;
 }
 h2{
-    margin-bottom: 5px;
+    margin-bottom: 0;
 }
 
 #team-list {
@@ -15,7 +15,7 @@ h2{
 
 #team-list label {
     font-size: 14pt;
-    height: 36px;
+    height: 32px;
 }
 
 #team-list input {
