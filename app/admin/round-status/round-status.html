@@ -1,6 +1,6 @@
 <div class="container">
     <header id="round-header"><h1>Rounds</h1></header>
-    <div class="">
+    <div>
         <div class="row">
             <div id="round-status-panel">
                 <div class="col-md-4 round-panel">
@@ -10,8 +10,7 @@
                         </div>
                         <div class="panel-body past">
                             <a ng-repeat="prevRound in $ctrl.prevRounds"
-                               class="btn btn-round-panel btn-success">Round
-                                {{prevRound}}</a>
+                               class="btn btn-round-panel btn-success">{{prevRound.$id}}. {{prevRound.name}}</a>
                         </div>
                     </div>
                 </div>
@@ -22,8 +21,11 @@
                         </div>
                         <div class="panel-body current">
                             <a ng-hide="!$ctrl.currentRound"
-                               href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound}}/1"
-                               class="btn btn-round-panel btn-warning"> Start Round {{$ctrl.currentRound}}</a>
+                               href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound.$id}}/1"
+                               class="btn btn-round-panel btn-warning" tooltip-append-to-body="true"
+                               uib-tooltip="{{$ctrl.startRoundTooltip}}" tooltip-is-open="true">
+                                {{$ctrl.currentRound.$id}}. {{$ctrl.currentRound.name}}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -34,25 +36,17 @@
                         </div>
                         <div class="panel-body future">
                             <a ng-repeat="nextRound in $ctrl.nextRounds"
-                               class="btn btn-round-panel btn-silver">Round
-                                {{nextRound}}</a>
+                               class="btn btn-round-panel btn-silver">{{nextRound.$id}}. {{nextRound.name}}</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-
-            <!--<div class="col-md-5 col-md-offset-2 round-button-panel" onclick="" ng-if="!$ctrl.checked">-->
-            <!--<a href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound}}/1"-->
-            <!--class="btn btn-success btn-lg btn-block">-->
-            <!--<span class="start-ico">START</span><i class="fa fa-flag-o"></i>-->
-            <!--</a>-->
-            <!--</div>-->
             <div class="col-md-4 col-md-offset-4 round-button-panel" onclick="">
                 <a href="#!/show-result/{{$ctrl.gameId}}"
                    class="btn btn-info btn-lg btn-block">
-                    <span class="start-ico">Show results</span><!--<i class="fa fa-flag-o"></i>-->
+                    <span>Show results</span><!--<i class="fa fa-flag-o"></i>-->
                 </a>
             </div>
             <div class="col-md-4 col-md-offset-4 round-button-panel" ng-click="$ctrl.onFinished()"
@@ -62,11 +56,6 @@
                     <span class="start-ico">FINISH GAME</span><i class="fa fa-flag-checkered" aria-hidden="true"></i>
                 </a>
             </div>
-            <!--<div class="col-md-5 col-md-offset-2 round-button-panel" ng-click="$ctrl.onPublished()" ng-if="!$ctrl.checked">-->
-            <!--<span class="btn btn-info btn-lg btn-block">-->
-            <!--<span class="start-ico">Publish results</span>-->
-            <!--</span>-->
-            <!--</div>-->
         </div>
     </div>
 </div>

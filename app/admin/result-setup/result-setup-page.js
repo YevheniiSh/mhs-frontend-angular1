@@ -15,6 +15,7 @@ angular.module('resultSetup')
                     vm.currentRound = game.currentRound;
                     vm.currentQuiz = game.currentQuiz;
                     let quizCount = game.rounds[$routeParams.roundNumber].numberOfQuestions;
+                    vm.round = game.rounds[$routeParams.roundNumber];
                     for (let i = 1; i <= quizCount; i++) {
                         vm.quizzes.push({number: i, answered: false});
                     }
@@ -93,10 +94,6 @@ angular.module('resultSetup')
             };
 
             this.gameId = $routeParams.gameId;
-
-            this.showRoundAndQuiz = function (teamId, score) {
-                this.info = "R " + this.currentRound + " Q " + this.quizNumber + " " + this.gameId + " " + teamId + " SCORE " + score;
-            };
 
             this.setTeamResult = function (score, teamId){
 

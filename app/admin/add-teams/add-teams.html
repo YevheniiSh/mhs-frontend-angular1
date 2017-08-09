@@ -1,36 +1,47 @@
 <div class="container">
-    <div class="col-md-1"></div>
     <div class="col-md-5">
         <div class="navbar">
-
+            <a class="btn btn-info" ng-click="$ctrl.resetFilter()">All</a>
+            <a class="btn btn-info" ng-click="$ctrl.setFilter(true)">Selected</a>
+            <a class="btn btn-info" ng-click="$ctrl.setFilter(false)">Other</a>
         </div>
-        <div class = "scroll-panel">
-            <ul ng-repeat="team in $ctrl.teamsFromDB">
-                <li class="btn list-item" ng-class="{'selected':team.selected}" ng-click="$ctrl.onClick(team)">{{team.name}}</li>
+        <input type="text" ng-model="search" class="form-control" placeholder="Search">
+        <div class="scroll-panel">
+            <ul ng-repeat="team in $ctrl.teamsFromDB |orderBy:'name'| filter:search |filter:$ctrl.filter">
+                <li class="btn list-item" ng-class="{'selected':team.selected}" ng-click="$ctrl.onClick(team)">
+                    {{team.name}}
+                </li>
             </ul>
         </div>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-md-2"></div>
     <div class="col-md-5">
         <div class="add-team-form">
-
-            <form ng-submit="$ctrl.addTeamToDb()">
+            <form name="myForm" ng-submit="$ctrl.addTeamToDb()">
                 <div class="form-group">
-                    <label class="control-label">Input new team:</label>
+                    <label class="control-label">Enter new team:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" ng-model='$ctrl.newTeamName' minlength="1"
+                        <input type="text" class="form-control" name="teamName" ng-model='$ctrl.newTeamName'
+                               minlength="1"
                                maxlength="20"
-                               required>
+                               required
+                               team-validator>
                         <span class="input-group-btn">
-                    <button class="btn btn-info" type="submit">Save team</button>
-                </span>
+                            <button class="btn btn-info" ng-disabled="myForm.$invalid || myForm.$pending" type="submit">Save team</button>
+                        </span>
+
                     </div>
+                </div>
+                <div>
+                    <span ng-show="myForm.$pending.teamName">Checking if this name is available...</span>
+                    <span class="text-danger" ng-show="myForm.$error.teamName">This team name is already taken!</span>
                 </div>
             </form>
 
             <div class="row">
                 <div class="col-md-12">
-                    <button ng-click="$ctrl.saveTeams()" class="form-control btn btn-info btn-next btn-block">
+                    <button ng-click="$ctrl.saveTeams()"
+                            class="form-control btn btn-info btn-next btn-block">
                         Save game
                     </button>
                 </div>

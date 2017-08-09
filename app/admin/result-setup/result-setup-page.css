@@ -1,9 +1,12 @@
 h1 {
-    margin-top: 5%;
+    margin-top: 5px;
     margin-bottom: 3%;
     padding-bottom: 2%;
     border-bottom: solid 1px;
     text-align: center;
+}
+h2{
+    margin-bottom: 0;
 }
 
 #team-list {
@@ -12,17 +15,18 @@ h1 {
 
 #team-list label {
     font-size: 14pt;
-    height: 36px;
+    height: 32px;
 }
 
 #team-list input {
-    width: 60px;
+    width: 70px;
     display: inline-block;
-    margin-right: 5px;
-    float: left
+    margin-right: 10px;
+    float: left;
 }
 
 #control-panel {
+    margin-top: 5px;
 }
 
 #control-panel button {
@@ -36,7 +40,7 @@ h1 {
 
 .btn-selected::after{
     position:absolute;
-    bottom: -10px;
+    bottom: -6px;
     height: 2px;
     left: 0px;
     right: 0px;
@@ -56,3 +60,6 @@ h1 {
     font-size: 14pt;
 }
 
+input[type=checkbox]{
+    transform: scale(1.5);
+}
