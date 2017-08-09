@@ -20,7 +20,8 @@ angular
                 publishGame: publishGame,
                 getGameRef: getGameRef,
                 getAllFinishedGames: getAllFinishedGames,
-                getGameStatus: getGameStatus
+                getGameStatus: getGameStatus,
+                getDate:getDate,
             };
 
             function getGameRef(gameId) {
@@ -41,6 +42,7 @@ angular
                     });
             }
 
+
             function getGameStatus(gameId) {
                 return getCurrentGameById(gameId)
                     .then((res) => {
@@ -57,6 +59,11 @@ angular
                         console.log('error');
                         return 'finished';
                     });
+            }
+
+
+            function getDate(gameStatus, gameId) {
+              return new $firebaseObject(firebaseDataService.games.child(gameStatus).child(gameId).child('date')).$loaded();
             }
 
             function getCurrentGameById(gameId) {
@@ -208,4 +215,5 @@ angular
                     obj.$save();
                 });
             }
+
         }]);
