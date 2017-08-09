@@ -14,9 +14,11 @@ angular.module('showTeamResult')
                     GameService.getGameStatus(this.gameId).then(status => {
                         if (status === "current") {
                             vm.gameStatus = false;
+                            GameService.getDate(status,this.gameId).then(v=>this.date = new Date(v.$value).toLocaleDateString())
                         }
                         if (status === "finished"){
                              vm.gameStatus = true;
+                            GameService.getDate(status,this.gameId).then(v=>this.date = new Date(v.$value).toLocaleDateString())
                         }
                     });
 

@@ -61,3 +61,9 @@ th.total{
 .silver-total{
     color:#D4D4D4;
 }
+.date{
+    float: right;
+}
+.team-total{
+   color: #0085ff;
+}
