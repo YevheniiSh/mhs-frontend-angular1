@@ -7,9 +7,9 @@
             controller: RoundStatusController
         });
 
-    RoundStatusController.$inject = ['$routeParams', '$location', 'RoundStatusService', 'GameServiceFactory', 'ResultServiceFactory', '$timeout'];
+    RoundStatusController.$inject = ['$routeParams', '$location', 'RoundStatusService', 'GameServiceFactory', 'ResultServiceFactory'];
 
-    function RoundStatusController($routeParams, $location, RoundStatusService, GameService, ResultService, $timeout) {
+    function RoundStatusController($routeParams, $location, RoundStatusService, GameService, ResultService) {
         let vm = this;
         let nextRounds = [];
         let prevRounds = [];
@@ -62,9 +62,6 @@
                             vm.checked = true;
                         }
                     });
-                $timeout(() => {
-                    vm.startRoundTooltip = 'Click to start';
-                }, 1000)
             }, (err) => {
                 console.error(err)
             });
