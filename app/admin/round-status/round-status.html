@@ -22,8 +22,9 @@
                         <div class="panel-body current">
                             <a ng-hide="!$ctrl.currentRound"
                                href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound.$id}}/1"
-                               class="btn btn-round-panel btn-warning" tooltip-append-to-body="true"
-                               uib-tooltip="{{$ctrl.startRoundTooltip}}" tooltip-is-open="true">
+                               class="btn btn-round-panel btn-warning" tooltip-popup-delay="1000"
+                               tooltip-append-to-body="true"
+                               uib-tooltip="Click to start" tooltip-is-open="true">
                                 {{$ctrl.currentRound.$id}}. {{$ctrl.currentRound.name}}
                             </a>
                         </div>
@@ -53,7 +54,7 @@
                  ng-if="$ctrl.checked">
                 <a href="#!/show-result/{{$ctrl.gameId}}"
                    class="btn btn-warning btn-lg btn-block">
-                    <span class="start-ico">FINISH GAME</span><i class="fa fa-flag-checkered" aria-hidden="true"></i>
+                    <span class="start-ico">FINISH GAME</span><i class="fa fa-flag-checkered"></i>
                 </a>
             </div>
         </div>
