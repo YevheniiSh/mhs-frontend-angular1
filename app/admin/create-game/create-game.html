@@ -1,0 +1,16 @@
+<div class="col-md-3">
+    <label class="control-label data-picker-label" for="game-calendar"
+           ng-click="$ctrl.ChangeCalendarStatus()">
+        <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+        <div class="data-picker" ng-show="$ctrl.isCalendarVisible">
+            <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"></div>
+        </div>
+        <span> {{$ctrl.gameDate.toLocaleDateString()}}</span>
+    </label>
+    <div class="col-md-9">
+        <button id="game-build" class=" btn btn-info btn-block"
+                ng-click="$ctrl.createGame()">
+            Build
+        </button>
+    </div>
+</div>
