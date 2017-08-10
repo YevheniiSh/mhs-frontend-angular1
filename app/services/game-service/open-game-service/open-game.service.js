@@ -19,7 +19,11 @@
         }
 
         function getOpenGameById(gameId) {
-            return new $firebaseObject(openGamesRef.child(gameId)).$loaded();
+            return new $firebaseObject(openGamesRef.child(gameId))
+                .$loaded()
+                .then((res) => {
+                    return res.$value;
+                })
         }
     }
 })();
