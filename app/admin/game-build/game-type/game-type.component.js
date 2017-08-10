@@ -31,7 +31,6 @@ function GameType(GameService, $routeParams, $location) {
         let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: ""};
         quizSequenceNumber++;
         rounds.push(quiz);
-        debugger;
     };
     vm.deleteRound = function (index) {
         if (rounds.length >= index) {
@@ -45,7 +44,6 @@ function GameType(GameService, $routeParams, $location) {
     };
 
     vm.buildGame = function () {
-        debugger;
         GameService
             .getGameById(gameId)
             .then((res) => {
