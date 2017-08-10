@@ -10,11 +10,19 @@
         let openGamesRef = firebaseDataService.openGames;
 
         return {
-            getAllOpenGames: getAllOpenGames
+            getAllOpenGames: getAllOpenGames,
+            createNewGame: createNewGame
         };
 
         function getAllOpenGames() {
             return new $firebaseArray(openGamesRef).$loaded();
+        }
+
+        function createNewGame(game) {
+            let obj = new $firebaseObject(openGamesRef.push());
+            obj.$value = game;
+            obj.$save();
+            return obj.$loaded();
         }
     }
 })();

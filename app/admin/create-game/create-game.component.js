@@ -1,21 +1,21 @@
 angular.module('createGame')
     .component('createGame', {
         templateUrl: 'admin/create-game/create-game.html',
-        css: 'create-game.css',
+        css: 'admin/create-game/create-game.css',
         controller: ['TeamServiceFactory',
-            'GameServiceFactory',
+            'OpenGameServiceFactory',
             '$rootScope',
             '$location',
 
-            function (TeamService, GameService, $rootScope, $location) {
+            function (TeamService, OpenGameServiceFactory, $rootScope, $location) {
 
                 this.isCalendarVisible = false;
                 this.gameDate = new Date();
+                this.gameBuilder = new GameBuilder();
 
-
-                this.createGame = function () {
-                    let game = new GameBuilder().addDate(this.gameDate).buildGame();
-                    GameService.save(game)
+                this.createNewGame = function () {
+                    let game = this.gameBuilder.addDate(this.gameDate).buildGame();
+                    OpenGameServiceFactory.createNewGame(game)
                         .then((res) => {
                             console.log(res);
                         });
