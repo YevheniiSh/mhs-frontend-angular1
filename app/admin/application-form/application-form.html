@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
 
-</body>
-</html>
+
+        <form ng-submit="">
+
+
+            <label for="team-name" class=" control-label"> Team name</label>
+            <input id="team-name" class="form-control" type="text" maxlength="35" minlength="5" required>
+
+
+            <label for="captain-name" class="control-label"> Captain full name </label>
+            <input id="captain-name" class="form-control" type="text" maxlength="35" minlength="5" required>
+
+
+            <label for="captain-number" class="control-label"> Captain phone number </label>
+            <input id="captain-number" class="form-control" type="text" maxlength="35" minlength="5" required>
+
+
+            <label for="team-size" class="control-label"> Team size </label>
+            <input id="team-size" class="form-control" type="number" min="4" max="10" required>
+
+
+            <button class=" btn btn-success btn-block" type="submit"> Submit</button>
+        </form>
+    </div>
+</div>
+</div>
