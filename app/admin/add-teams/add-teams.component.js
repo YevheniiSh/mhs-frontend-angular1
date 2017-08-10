@@ -61,7 +61,7 @@ angular.module('addTeams')
                         .then((res) => {
                             console.log(res);
                             res.forEach((item) => {
-                                this.teamsFromDB.unshift({teamId: item.id, name: item.name, selected: false});
+                                this.teamsFromDB.unshift({teamId: item.id, name: item.name, selected: true});
                             });
                             this.newTeamName = '';
                             return res;
