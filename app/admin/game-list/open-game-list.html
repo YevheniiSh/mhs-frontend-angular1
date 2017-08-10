@@ -1,0 +1,12 @@
+<table class="table table-sm table-hover">
+    <thead>
+    <tr>
+        <th>Game date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="game-row" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
+        <td>{{openGame.date.toLocaleDateString()}}</td>
+    </tr>
+    </tbody>
+</table>

@@ -6,14 +6,15 @@
             controller: OpenGameList
         });
 
-    OpenGameList.$inject = ['GameServiceFactory', '$location', 'userAuthService'];
+    OpenGameList.$inject = ['OpenGameServiceFactory', '$location', 'userAuthService'];
 
-    function OpenGameList(gameFactory, $location, userService) {
+    function OpenGameList(openGameFactory, $location, userService) {
         let vm = this;
         vm.$onInit = onInit;
-
         function onInit() {
-
+            openGameFactory.getAllOpenGames().then((games) => {
+                vm.openGames = games;
+            })
         };
     }
 })();
