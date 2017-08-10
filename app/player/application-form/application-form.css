@@ -1,0 +1,8 @@
+.form-control.ng-invalid {
+    color:white;
+    background: red;
+}
+.form-control {
+    transition:all linear 0.5s;
+    background: transparent;
+}

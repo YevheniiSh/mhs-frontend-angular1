@@ -14,8 +14,16 @@
 
 
             <label for="captain-number" class="control-label"> Captain phone number </label>
-            <input id="captain-number" class="form-control" type="text" maxlength="35" minlength="5" required>
-
+            <input id="captain-number" class="form-control" type="text" maxlength="35"
+                   minlength="5" placeholder="380681517068" ng-model="phone"
+                   ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
+                   ng-model-options="{
+ 'updateOn': 'default blur',
+ 'debounce': {
+   'default': 1500,
+   'blur': 0
+ }
+}">
 
             <label for="team-size" class="control-label"> Team size </label>
             <input id="team-size" class="form-control" type="number" min="4" max="10" required>
