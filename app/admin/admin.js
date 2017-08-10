@@ -10,7 +10,6 @@ angular
         'login',
         'login-panel',
         'game-list',
-        'applicationForm',
         'ui.bootstrap'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
@@ -77,9 +76,6 @@ angular
             template: '<game-list></game-list>',
             css:'admin/game-list/game-list.css'
         });
-        $routeProvider.when('/registration',{
-            template:'<application-form></application-form>'
-        })
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
         $rootScope.$on("$routeChangeError", function () {
