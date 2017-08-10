@@ -12,19 +12,19 @@
         let vm = this;
         vm.$onInit = onInit;
 
-        vm.openGameInfo = function (gameId) {
-            $location.path('/show-result/' + gameId)
-        };
+        // vm.openGameInfo = function (gameId) {
+        //     $location.path('/show-result/' + gameId)
+        // };
 
         function onInit() {
-            gameFactory
-                .getAllFinishedGames()
-                .then((games) => {
-                    this.games = games;
-                    this.games.forEach((item) => {
-                        item.date = new Date(item.date);
-                    });
-                })
+            // gameFactory
+            //     .getAllFinishedGames()
+            //     .then((games) => {
+            //         this.games = games;
+            //         this.games.forEach((item) => {
+            //             item.date = new Date(item.date);
+            //         });
+            //     })
         };
 
         vm.auth = false;
