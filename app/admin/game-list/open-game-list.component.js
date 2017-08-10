@@ -14,6 +14,9 @@
         function onInit() {
             openGameFactory.getAllOpenGames().then((games) => {
                 vm.openGames = games;
+                vm.openGames.forEach((item) => {
+                    item.date = new Date(item.date);
+                });
             })
         };
     }
