@@ -4,11 +4,11 @@
         .component('finishedGameList',
             {
                 templateUrl: 'admin/game-list/finished-game.html',
-                controller: FinishedGameList
+                controller: FinishedGameListController
             });
-    FinishedGameList.$inject = ['GameServiceFactory', '$location', 'userAuthService'];
+    FinishedGameListController.$inject = ['GameServiceFactory', '$location', 'userAuthService'];
 
-    function FinishedGameList(gameFactory, $location, userService) {
+    function FinishedGameListController(gameFactory, $location, userService) {
         let vm = this;
         vm.$onInit = onInit;
 
