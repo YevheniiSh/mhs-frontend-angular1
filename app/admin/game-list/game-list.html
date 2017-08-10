@@ -4,5 +4,13 @@
             <button class="btn btn-info">Start game</button>
         </a>
     </div>
-    <finished-game-list></finished-game-list>
+
+    <uib-tabset active="activeForm">
+        <uib-tab heading="Finished games">
+            <finished-game-list></finished-game-list>
+        </uib-tab>
+        <uib-tab heading="Open games">
+            list of open games
+        </uib-tab>
+    </uib-tabset>
 </div>
