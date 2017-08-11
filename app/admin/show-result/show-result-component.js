@@ -4,14 +4,10 @@ angular.module('showResult')
         controller: ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$rootScope', '$location', '$window','userAuthService', function (ResultService, GameService, $routeParams, $rootScope, $location, $window,auth) {
 
 
-            this.getDetails = function (teamResult) {
-                $location.path(`/show-team-result/${$routeParams.gameId}/${teamResult.teamId}`);
+            this.showTeamResult = function () {
+                $window.open($window.location.origin + `/#!/game-result/${$routeParams.gameId}`, ``, `width=auto,height=auto`);
             };
 
-            ResultService.getParsedResults($routeParams.gameId)
-                .then((result) => {
-                    this.results = result;
-             });
 
             this.onBack = function () {
                 auth.currentUser()

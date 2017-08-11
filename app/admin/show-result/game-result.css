@@ -1,0 +1,21 @@
+.container, html {
+    height: 100%;
+}
+
+td.new-window-td.ng-binding {
+    font-size: 1em;
+}
+
+th.new-window-th {
+    font-size: 1.3em;
+}
+
+h1#game-result{
+    margin: 0;
+}
+
+button.btn.btn-success {
+    margin-left: 1%;
+}
+
+

@@ -1,6 +1,6 @@
 angular.module('showTeamResult')
     .component('showTeamResult', {
-        templateUrl: 'admin/show-team-result/show-team-result.html',
+        templateUrl: 'admin/show-team-result/show-game-result.html',
         controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location',
             function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location) {
                 let vm = this;

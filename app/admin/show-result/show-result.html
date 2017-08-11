@@ -1,23 +1,7 @@
 <div class="container">
     <div class="row">
         <button class="btn btn-success" ng-click="$ctrl.onBack()">Back</button>
+        <button class="btn btn-info" ng-click="$ctrl.showTeamResult()">Show results</button>
     </div>
-    <h1>Game result</h1>
-    <table class="table table-sm table-striped table-hover ">
-        <thead>
-        <tr>
-            <th>Teams</th>
-            <th ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
-            <th>Total</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="teamResult in $ctrl.results"
-            ng-click="$ctrl.getDetails(teamResult)">
-            <td>{{teamResult.teamName}}</td>
-            <td ng-repeat="round in teamResult.rounds">{{round.score}}</td>
-            <td>{{teamResult.total}}</td>
-        </tr>
-        </tbody>
-    </table>
+     <game-result></game-result>
 </div>

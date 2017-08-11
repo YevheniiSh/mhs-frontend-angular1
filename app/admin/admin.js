@@ -63,7 +63,7 @@ angular
         });
         $routeProvider.when('/show-team-result/:gameId/:teamId', {
             template: '<show-team-result></show-team-result>',
-            css: 'admin/show-team-result/show-team-result.css'
+            css: 'admin/show-team-result/show-game-result.css'
         });
         $routeProvider.when('/login', {
             template: '<login></login>',
@@ -75,6 +75,12 @@ angular
         $routeProvider.when('/game-list', {
             template: '<game-list></game-list>',
             css:'admin/game-list/game-list.css'
+        });
+        $routeProvider.when('/game-result/:gameId', {
+            template: '<game-result></game-result>',
+            css:'admin/show-result/game-result.css',
+            controller: 'presentationModeController'
+
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {

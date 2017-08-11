@@ -1,0 +1,20 @@
+<div class="container game-result">
+    <h1 id="game-result">Game result</h1>
+    <table class="table table-sm table-striped table-hover ">
+        <thead>
+        <tr>
+            <th class="new-window-th">Teams</th>
+            <th class="new-window-th" ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
+            <th class="new-window-th">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  ng-repeat="teamResult in $ctrl.results"
+             ng-click="$ctrl.getDetails(teamResult)">
+            <td class="new-window-td" >{{teamResult.teamName}}</td>
+            <td class="new-window-td" ng-repeat="round in teamResult.rounds">{{round.score}}</td>
+            <td class="new-window-td" >{{teamResult.total}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
