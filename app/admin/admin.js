@@ -11,6 +11,7 @@ angular
         'login-panel',
         'game-list',
         'createGame',
+        'configGame',
         'ui.bootstrap'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
@@ -79,6 +80,9 @@ angular
         });
         $routeProvider.when('/create-game', {
             template: '<create-game></create-game>',
+        });
+        $routeProvider.when('/config-game/:gameId', {
+            template: '<config-game></config-game>',
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
