@@ -12,7 +12,9 @@ angular
         'game-list',
         'createGame',
         'configGame',
-        'ui.bootstrap'])
+        'ui.bootstrap',
+        'teamList',
+        'navbar'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
             template: '<game-type></game-type>',
@@ -70,12 +72,13 @@ angular
             template: '<login></login>',
             css: 'admin/login/login.css'
         });
-        $routeProvider.when('/login-panel', {
-            template: '<login-panel></login-panel>'
-        });
         $routeProvider.when('/game-list', {
             template: '<game-list></game-list>',
-            css:'admin/game-list/game-list.css'
+            css: 'admin/game-list/game-list.css'
+        });
+        $routeProvider.when('/all-teams', {
+            template: '<team-list></team-list>',
+            css: 'admin/team-list/team-list.css'
         });
         $routeProvider.when('/create-game', {
             template: '<create-game></create-game>',
