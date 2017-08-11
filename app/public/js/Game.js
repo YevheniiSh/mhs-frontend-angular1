@@ -7,7 +7,7 @@ class Game {
             this.rounds = [];
             this.results = [];
             this.date = "";
-            this.location = "";
+            this.location = null;
             this.winner = null;
         }
         else {
