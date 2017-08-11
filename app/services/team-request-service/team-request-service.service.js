@@ -8,6 +8,7 @@ angular.module('teamRequestService')
             return {
                 save: save,
                 getTeamRequest: getTeamRequest,
+                getTeamRequestStatus: getTeamRequestStatus,
                 getAllTeamRequestsByGameId: getAllTeamRequestsByGameId
             }
 
@@ -54,6 +55,14 @@ angular.module('teamRequestService')
                             throw err;
                         }
                     )
+            }
+
+            function getTeamRequestStatus(gameId, requestId) {
+                let requestStatus = new $firebaseObject(openGameRef.child(`${gameId}/requests/${requestId}/status`));
+                return requestStatus.$loaded()
+                    .then((res) => {
+                        return res.$value;
+                    });
             }
         }]
     );
