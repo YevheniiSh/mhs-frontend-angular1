@@ -14,9 +14,18 @@
         <td>{{openGame.location}}</td>
 
         <td>
-            <button class="btn btn-info game-button" ng-if="!$ctrl.auth">Register</button>
-            <button class="btn btn-info game-button">Start</button>
-            <button class="btn btn-info game-button" ng-if="$ctrl.auth">Config</button>
+            <button class="btn btn-info game-button"
+                    ng-click="$ctrl.registerToGame(openGame.$id)"
+                    ng-if="!$ctrl.auth">Register
+            </button>
+            <button class="btn btn-info game-button"
+                    ng-click="$ctrl.startGame(openGame.$id)"
+                    ng-if="$ctrl.auth">Start
+            </button>
+            <button class="btn btn-info game-button"
+                    ng-if="$ctrl.auth"
+                    ng-click="$ctrl.configGame(openGame.$id)">Config
+            </button>
         </td>
 
     </tr>
