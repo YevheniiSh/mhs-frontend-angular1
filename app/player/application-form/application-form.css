@@ -1,14 +1,14 @@
 #team-name{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
-#captin-name{
-    margin-bottom: 10px;
+#captain-name{
+    margin-bottom: 20px;
 }
 #captain-phone{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 #team-size{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     width: 75px;
 }
 .form-control.ng-invalid.ng-not-empty{

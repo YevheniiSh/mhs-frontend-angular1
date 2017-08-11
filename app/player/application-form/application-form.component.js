@@ -22,7 +22,7 @@ angular.module('applicationForm')
                         fullName: vm.fullName,
                         phone: vm.phone,
                         teamSize: vm.teamSize,
-                        status: "",          //TODO реализовать методы для изменения состояния
+                        status: "unconfirmed", //TODO реализовать методы для изменения состояния
                         teamId: "",         // TODO проверять есть ли такая команда
                         date: new Date().toDateString()
                     })
