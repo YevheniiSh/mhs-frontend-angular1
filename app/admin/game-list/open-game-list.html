@@ -1,3 +1,4 @@
+<button class="btn btn-info start-button" ng-if="$ctrl.auth">Create new game</button>
 <table class="table table-sm table-hover">
     <thead>
     <tr>
@@ -11,6 +12,10 @@
         <td>{{openGame.date.toLocaleDateString()}}</td>
         <td>{{openGame.time}}</td>
         <td>{{openGame.location}}</td>
+        <td>
+            <button class="btn btn-info" ng-if="!$ctrl.auth">Register</button>
+            <button class="btn btn-info" ng-if="$ctrl.auth">Config</button>
+        </td>
     </tr>
     </tbody>
 </table>

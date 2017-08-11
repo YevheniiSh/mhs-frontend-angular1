@@ -19,5 +19,12 @@
                 });
             })
         };
+
+        vm.auth = false;
+        userService.currentUser().then((res) => {
+            vm.auth = true;
+        }).catch((err) => {
+            vm.auth = false;
+        });
     }
 })();
