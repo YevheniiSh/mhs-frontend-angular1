@@ -6,9 +6,9 @@
             controller: OpenGameList
         });
 
-    OpenGameList.$inject = ['OpenGameServiceFactory', '$location', 'userAuthService'];
+    OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location', 'userAuthService'];
 
-    function OpenGameList(openGameFactory, $location, userService) {
+    function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService) {
         let vm = this;
         vm.$onInit = onInit;
         function onInit() {
@@ -31,19 +31,25 @@
             let gameId = game.$id;
             let rounds = openGameFactory.getRounds(gameId);
             let teams = openGameFactory.getTeams(gameId);
+            Promise.all([rounds, teams]).then((res) => {
+                console.log(res);
+                if (res[0].length < 2) {
+                    game.invalid = true;
+                    game.error = 'Configurate rounds';
+                    $rootScope.$apply();
+                } else if (res[1].length < 2) {
+                    game.invalid = true;
+                    game.error = 'Configurate teams';
+                    $rootScope.$apply();
+                } else {
+                    gameServiceFactory.startGame(gameId);
+                    $location.path('/round-status/' + gameId);
+                }
+            });
 
-            if (rounds.length < 2) {
-                game.invalid = true;
-                game.error = 'Configurate rounds';
-            } else if (teams.length < 2) {
-                game.invalid = true;
-                game.error = 'Configurate teams';
-            } else {
-                //ToDo Start game here
-            }
-            console.log(teams);
-            //$location.path('/.../' + gameId)
+
         };
+
         vm.configGame = function (gameId) {
             console.log(gameId);
             $location.path('/config-game/' + gameId)
