@@ -87,7 +87,7 @@ select {
 }
 
 .animate-teams.ng-enter {
-    transition: 0.7s linear all;
+    transition: 0.4s linear all;
     opacity: 0;
     transform: translateX(-100%);
 }
@@ -98,7 +98,7 @@ select {
 }
 
 .animate-teams.ng-leave {
-    transition: 0.35s linear all;
+    transition: 0.2s linear all;
     opacity: 1;
     transform: translateX(0);
 }
@@ -110,7 +110,7 @@ select {
 
 
 .animate-requests.ng-enter {
-    transition: 0.7s linear all;
+    transition: 0.4s linear all;
     opacity: 0;
     transform: translateX(100%);
 }
@@ -121,7 +121,7 @@ select {
 }
 
 .animate-requests.ng-leave {
-    transition: 0.35s linear all;
+    transition: 0.2s linear all;
     opacity: 1;
     transform: translateX(0);
 }
