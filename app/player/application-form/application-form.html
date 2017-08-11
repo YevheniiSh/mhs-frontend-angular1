@@ -41,7 +41,7 @@
             <input id="captain-phone" class="form-control" placeholder="xxx xxx xxxx"
                    type="text" ng-model="$ctrl.phone" name="phone" maxlength="13" minlength="10"
                    ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
-                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}">
+                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}" required>
 
             <label for="team-size" class="control-label"> Team size </label>
             <input id="team-size" ng-model="$ctrl.teamSize" class="form-control" type="number" min="2" max="15" required>

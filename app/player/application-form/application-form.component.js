@@ -25,7 +25,8 @@ angular.module('applicationForm')
                         status: "unconfirmed", //TODO реализовать методы для изменения состояния
                         teamId: "",         // TODO проверять есть ли такая команда
                         date: new Date().toDateString()
-                    })
+                    });
+                    $location.path('/game-list')
                 };
 
             }
