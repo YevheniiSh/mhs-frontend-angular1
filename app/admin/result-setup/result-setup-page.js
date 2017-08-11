@@ -29,7 +29,7 @@ angular.module('resultSetup')
                     } else {
                         vm.setQuiz($routeParams.quizNumber);
                     }
-                    vm.teamsScore = [];
+
                 });
 
             vm.setQuiz = function (quizNumber) {
@@ -103,6 +103,7 @@ angular.module('resultSetup')
                     score: score,
                     teamId: teamId
                 };
+                console.log(result)
                 ResultServiceFactory.saveResult(result, this.gameId);
             }
         }
