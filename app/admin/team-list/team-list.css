@@ -15,7 +15,7 @@
 .list-item {
     text-align: left;
     width: 97%;
-    margin: 0px;
+    margin: 0;
     font-size: 16px;
     font-weight: bold;
 }
@@ -36,4 +36,31 @@
 
 .selected-tabs {
     background-color: silver;
+}
+
+.editable-team {
+    border: none;
+    outline: none;
+}
+
+.team-name-changed-alert {
+    position: fixed;
+    right: 6.4%;
+    top: 16%;
+    width: 200px;
+    height: 53px;
+    display: block;
+    z-index: 99999999;
+}
+
+.editable-icon {
+    display: none;
+}
+
+.editable-team:focus + .editable-icon {
+    display: inline;
+}
+
+.editable-team:hover + .editable-icon {
+    display: inline;
 }

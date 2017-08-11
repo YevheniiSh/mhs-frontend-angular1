@@ -1,9 +1,24 @@
 <div class="container">
-    <input type="text" ng-model="search" class="form-control" placeholder="Search">
+    <script type="text/ng-template" id="alert.html">
+        <div ng-transclude></div>
+    </script>
+
+    <div ng-show="$ctrl.showAlert" uib-alert template-url="alert.html" class="alert-success team-name-changed-alert"
+         role="alert">
+        <button type="button" class="close" ng-click="$ctrl.hideAlert()">
+            <span>×</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <span>Team name changed</span>
+    </div>
+
+    <input ng-model="search" class="form-control" placeholder="Search">
     <div class="scroll-panel">
         <ul ng-repeat="team in $ctrl.teams |orderBy:'name'| filter:search">
-            <li class="btn list-item" ng-click="$ctrl.onClick(team)">
-                {{team.name}}
+            <li class="btn list-item">
+                <input class="editable-team" ng-change="$ctrl.changeTeamName(team)"
+                       ng-model="team.name" title="Edit team name">
+                <i class="fa fa-pencil-square editable-icon"></i>
             </li>
         </ul>
     </div>

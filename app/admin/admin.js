@@ -11,7 +11,6 @@ angular
         'login-panel',
         'game-list',
         'ui.bootstrap',
-        'renameTeam',
         'teamList',
         'navbar'])
     .config(['$routeProvider', function ($routeProvider) {

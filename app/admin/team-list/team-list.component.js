@@ -1,21 +1,40 @@
-angular.module('teamList')
-    .component('teamList', {
-            templateUrl: 'admin/team-list/team-list.html',
-            controller: ['TeamServiceFactory', '$routeParams', '$rootScope', '$location',
-                function (TeamService, $routeParams, $rootScope, $location) {
-                    let vm = this;
-                    vm.selected = null;
+(function () {
+    angular
+        .module('teamList')
+        .component('teamList', {
+                templateUrl: 'admin/team-list/team-list.html',
+                controller: TeamList
+            }
+        );
 
-                    TeamService.getAllTeams().then((arr) => {
-                        vm.teams = arr;
-                        console.log(vm.teams);
-                    });
+    TeamList.$inject = ['TeamServiceFactory', '$timeout'];
 
-                    vm.onClick = function (team) {
-                        vm.selected = team;
-                        console.log(vm.selected);
-                    }
-                }
-            ]
+    function TeamList(TeamService, $timeout) {
+        let vm = this;
+        vm.$onInit = onInit;
+        vm.showAlert = false;
+
+        function onInit() {
+            TeamService.getAllTeams()
+                .then((arr) => {
+                    vm.teams = arr;
+                });
         }
-    );
+
+        vm.changeTeamName = function (team) {
+            showAlert();
+            TeamService.changeTeamName(team.$id, team.name);
+        };
+
+        function showAlert() {
+            vm.showAlert = true;
+            $timeout(() => {
+                vm.showAlert = false;
+            }, 2000);
+        }
+
+        vm.hideAlert = function () {
+            vm.showAlert = false;
+        }
+    }
+})();
