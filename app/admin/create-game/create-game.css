@@ -6,3 +6,16 @@
     min-height: 290px;
     z-index: 100;
 }
+
+.data-picker-label {
+    margin-bottom: 5px;
+}
+
+.time-picker {
+    position: fixed;
+
+    display: inline-block;
+    margin-top: 40px;
+    min-height: 290px;
+    z-index: 100;
+}

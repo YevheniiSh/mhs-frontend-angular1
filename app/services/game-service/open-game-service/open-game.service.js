@@ -11,7 +11,10 @@
 
         return {
             getAllOpenGames: getAllOpenGames,
-            createNewGame: createNewGame
+            createNewGame: createNewGame,
+            addTeams: addTeams,
+            addRequest: addRequest,
+            addRounds: addRounds
         };
 
         function getAllOpenGames() {
@@ -22,7 +25,9 @@
             let obj = new $firebaseObject(openGamesRef.push());
             obj.$value = game;
             obj.$save();
-            return obj.$loaded();
+            return obj.$loaded().then(() => {
+                return obj.$id;
+            });
         }
 
         // function convertAllForFirebase(game) {
@@ -45,7 +50,7 @@
         function convertTeamsForFirebase(teams) {
             let team = {};
             for (let i = 0; i < teams.length; i++) {
-                teams[teams[i].id] = teams[i].name;
+                team[teams[i].id] = teams[i].name;
             }
             return team;
         }
@@ -53,12 +58,12 @@
         function convertRoundsForFirebase(rounds) {
             let round = {};
             for (let i = 0; i < rounds.length; i++) {
-                rounds[rounds[i].id] = {
+                round[rounds[i].id] = {
                     numberOfQuestions: rounds[i].numberOfQuestions,
                     name: rounds[i].name
                 };
             }
-            return round
+            return round;
         }
 
         // function saveGame(game, gameId) {
