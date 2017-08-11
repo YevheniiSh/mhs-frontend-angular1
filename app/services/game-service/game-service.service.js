@@ -14,7 +14,6 @@ angular
                 // save: save,
                 getCurrentRound: getCurrentRound,
                 getCurrentQuiz: getCurrentQuiz,
-                getGameTeams: getGameTeams,
                 setCurrentRound: setCurrentRound,
                 setCurrentQuiz: setCurrentQuiz,
                 finishGame: finishGame,
@@ -23,8 +22,25 @@ angular
                 getAllFinishedGames: getAllFinishedGames,
                 getGameStatus: getGameStatus,
                 getDate:getDate,
-                startGame:startGame
+                startGame:startGame,
+                addTeamToGame:addTeamToGame
             };
+
+
+            function addTeamToGame(gameId, team){
+                let obj = new $firebaseObject(openedGameRef.child(`${gameId}/teams/`));
+                let teamFB = {[team.key]: team.name};
+                obj.$value = teamFB;
+                obj.$save();
+                return obj
+                    .$loaded()
+                    .then((res) => {
+                        return res.$value;
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
+            }
 
             function startGame(gameId) {
                 openGameServiceFactory.getOpenGameById(gameId).then((res) => {
@@ -168,20 +184,6 @@ angular
                     .$loaded()
                     .then((res) => {
                         return res.$value;
-                    }, (err) => {
-                        console.error(err);
-                        return err;
-                    });
-            }
-
-            function getGameTeams(gameId) {
-                getGameRef(gameId)
-                return $firebaseArray(ref.child(`/${gameId}/teams`))
-                    .$loaded()
-                    .then((res) => {
-                        return res.map((team) => {
-                            return {teamId: team.$id, name: team.$value}
-                        });
                     }, (err) => {
                         console.error(err);
                         return err;
