@@ -12,6 +12,8 @@
         return {
             getAllOpenGames: getAllOpenGames,
             createNewGame: createNewGame,
+            addTeams: addTeams,
+            addRequest: addRequest,
             addRounds: addRounds
         };
 
@@ -23,7 +25,9 @@
             let obj = new $firebaseObject(openGamesRef.push());
             obj.$value = game;
             obj.$save();
-            return obj.$loaded();
+            return obj.$loaded().then(() => {
+                return obj.$id;
+            });
         }
 
         // function convertAllForFirebase(game) {
@@ -46,7 +50,7 @@
         function convertTeamsForFirebase(teams) {
             let team = {};
             for (let i = 0; i < teams.length; i++) {
-                teams[teams[i].id] = teams[i].name;
+                team[teams[i].id] = teams[i].name;
             }
             return team;
         }

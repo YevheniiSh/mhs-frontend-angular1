@@ -81,7 +81,7 @@ angular
         $routeProvider.when('/create-game', {
             template: '<create-game></create-game>',
         });
-        $routeProvider.when('/config-game/:gameId', {
+            $routeProvider.when('/config-game/:gameId', {
             template: '<config-game></config-game>',
         });
     }])
