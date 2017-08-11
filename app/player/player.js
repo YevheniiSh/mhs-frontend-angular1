@@ -8,7 +8,7 @@ angular
             controller: 'SomeFeatureController'
         });
 
-        $routeProvider.when('/registration',{
+        $routeProvider.when('/registration/:gameId',{
             template:'<application-form></application-form>'
         });
     }]);

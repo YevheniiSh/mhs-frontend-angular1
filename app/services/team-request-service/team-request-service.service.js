@@ -8,6 +8,10 @@ angular.module('teamRequestService')
             return {
                 save: save,
                 getTeamRequest: getTeamRequest,
+                getTeamRequestStatus: getTeamRequestStatus,
+                setArchivedStatus: setArchivedStatus,
+                setConfirmedStatus: setConfirmedStatus,
+                setUnconfirmedStatus: setUnconfirmedStatus,
                 getAllTeamRequestsByGameId: getAllTeamRequestsByGameId
             }
 
@@ -54,6 +58,36 @@ angular.module('teamRequestService')
                             throw err;
                         }
                     )
+            }
+
+            function getTeamRequestStatus(gameId, requestId) {
+                let requestStatus = new $firebaseObject(openGameRef.child(`${gameId}/requests/${requestId}/status`));
+                return requestStatus.$loaded()
+                    .then((res) => {
+                        return res.$value;
+                    });
+            }
+
+            function setStatus(gameId, requestId, status) {
+                let requestStatus = new $firebaseObject(openGameRef.child(`${gameId}/requests/${requestId}/status`));
+                requestStatus.$value = status;
+                console.log(requestStatus);
+                return requestStatus.$save()
+                    .then((res) => {
+                        return res.$value;
+                    });
+            }
+
+            function setArchivedStatus(gameId, requestId) {
+                return setStatus(gameId, requestId, 'archived');
+            }
+
+            function setConfirmedStatus(gameId, requestId) {
+                return setStatus(gameId, requestId, 'confirmed');
+            }
+
+            function setUnconfirmedStatus(gameId, requestId) {
+                return setStatus(gameId, requestId, 'unconfirmed');
             }
         }]
     );

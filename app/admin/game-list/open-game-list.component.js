@@ -33,7 +33,7 @@
 
         vm.registerToGame = function (gameId) {
             console.log(gameId);
-            //$location.path('/.../' + gameId)
+            $location.path('/registration/' + gameId)
         };
 
         vm.startGame = function (game) {
