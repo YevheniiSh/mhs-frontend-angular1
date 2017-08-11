@@ -10,7 +10,7 @@ angular.module('addTeams')
             '$routeParams',
             function (teamRequestService, openGameService,teamService,gameService, $location, $routeParams) {
                 let vm = this;
-                let gameId = $routeParams.gameId;
+                vm.gameId = $routeParams.gameId;
                 vm.$onInit = onInit;
 
                 function onInit() {
@@ -22,8 +22,8 @@ angular.module('addTeams')
                     if(!request.teamId){
                         teamService.save({name:request.teamName})
                             .then(res=>{
-                                gameService.addTeamToGame(gameId,res)
-                                teamRequestService.setConfirmedStatus(gameId,request.$id)
+                                gameService.addTeamToGame(vm.gameId,res)
+                                teamRequestService.setConfirmedStatus(vm.gameId,request.$id)
                             })
                     }
 
@@ -31,14 +31,14 @@ angular.module('addTeams')
                 }
 
                 vm.getRequests = function () {
-                    teamRequestService.getAllTeamRequestsByGameId(gameId)
+                    teamRequestService.getAllTeamRequestsByGameId(vm.gameId)
                         .then((res) => {
                             vm.requests = res;
                         })
                 };
 
                 vm.getTeams = function () {
-                    openGameService.getTeams(gameId)
+                    openGameService.getTeams(vm.gameId)
                         .then(res=>{
                             console.log(res);
                             vm.teams = res;
@@ -47,11 +47,11 @@ angular.module('addTeams')
                 }
 
                 vm.archivateRequest = function (requestId) {
-                    teamRequestService.setArchivedStatus(gameId, requestId)
+                    teamRequestService.setArchivedStatus(vm.gameId, requestId)
                 }
 
                 vm.unArchivateRequest = function (requestId) {
-                    teamRequestService.setUnconfirmedStatus(gameId, requestId)
+                    teamRequestService.setUnconfirmedStatus(vm.gameId, requestId)
                 }
             }]
 
