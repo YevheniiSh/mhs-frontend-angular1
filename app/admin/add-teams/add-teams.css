@@ -79,3 +79,53 @@ select {
     background-color:silver;
 }
 
+.animate-teams, .animate-requests {
+    line-height: 30px;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.animate-teams.ng-enter {
+    transition: 0.7s linear all;
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.animate-teams.ng-enter.ng-enter-active {
+    opacity: 1 ;
+    transform: translateX(0);
+}
+
+.animate-teams.ng-leave {
+    transition: 0.35s linear all;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animate-teams.ng-leave.ng-leave-active {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+
+.animate-requests.ng-enter {
+    transition: 0.7s linear all;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.animate-requests.ng-enter.ng-enter-active {
+    opacity: 1 ;
+    transform: translateX(0);
+}
+
+.animate-requests.ng-leave {
+    transition: 0.35s linear all;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animate-requests.ng-leave.ng-leave-active {
+    opacity: 0;
+    transform: translateX(100%);
+}
