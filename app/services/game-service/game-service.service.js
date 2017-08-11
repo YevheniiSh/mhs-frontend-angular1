@@ -42,7 +42,7 @@ angular
 
             function addTeamToGame(gameId, team){
                 let resultObj = new $firebaseObject(openedGameRef.child(`${gameId}/teams/${team.key}`));
-                resultObj.$value = team.name;
+                resultObj.$value = {name:team.name, requestId:team.requestId};
                 return resultObj.$save()
                     .then(() => {
                         return team.key;
