@@ -2,16 +2,15 @@
     height: 100%;
 }
 td{
-    font-size: 24px;
+    font-size: 20px;
+    PADDING: 2PX;
 }
 
 th{
-    font-size: 28px;
+    font-size: 23px;
 }
 h1{
-    margin-top: 5%;
-    margin-bottom: 3%;
-    padding-bottom: 2%;
+
     border-bottom: solid 1px;
     text-align: center;
 }

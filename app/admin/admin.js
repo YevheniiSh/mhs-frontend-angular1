@@ -10,6 +10,8 @@ angular
         'login',
         'login-panel',
         'game-list',
+        'createGame',
+        'configGame',
         'ui.bootstrap',
         'teamList',
         'navbar'])
@@ -25,7 +27,6 @@ angular
         });
         $routeProvider.when('/add-teams', {
             template: '<add-teams></add-teams>',
-            css: 'admin/add-teams/add-teams.css',
             resolve: {
                 currentUser: ['userAuthService', function (auth) {
                     return auth.currentUser();
@@ -78,6 +79,12 @@ angular
         $routeProvider.when('/all-teams', {
             template: '<team-list></team-list>',
             css: 'admin/team-list/team-list.css'
+        });
+        $routeProvider.when('/create-game', {
+            template: '<create-game></create-game>',
+        });
+            $routeProvider.when('/config-game/:gameId', {
+            template: '<config-game></config-game>',
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {

@@ -2,8 +2,9 @@
     height: 100%;
 }
 
+
 .start-button {
-    padding-left: 20px;
+    margin-top: 10px;
 }
 
 td {
@@ -28,4 +29,12 @@ h1 {
 
 .game-row {
     cursor: pointer;
+}
+.game-button{
+    float: right;
+    margin-left: 10px;
+}
+
+.error {
+    font-size: 14px;
 }
