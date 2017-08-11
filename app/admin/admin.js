@@ -12,6 +12,7 @@ angular
         'game-list',
         'ui.bootstrap',
         'renameTeam',
+        'teamList',
         'navbar'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
@@ -74,6 +75,10 @@ angular
         $routeProvider.when('/game-list', {
             template: '<game-list></game-list>',
             css: 'admin/game-list/game-list.css'
+        });
+        $routeProvider.when('/all-teams', {
+            template: '<team-list></team-list>',
+            css: 'admin/team-list/team-list.css'
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
