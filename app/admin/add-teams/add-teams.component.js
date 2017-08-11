@@ -47,11 +47,11 @@ angular.module('addTeams')
                 }
 
                 vm.archivateRequest = function (requestId) {
-                    teamRequestService.setArchivedStatus(vm.gameId, requestId)
+                    teamRequestService.setArchivedStatus(gameId, requestId)
                 }
 
                 vm.unArchivateRequest = function (requestId) {
-                    teamRequestService.setUnconfirmedStatus(vm.gameId, requestId)
+                    teamRequestService.setUnconfirmedStatus(gameId, requestId)
                 }
             }]
 
