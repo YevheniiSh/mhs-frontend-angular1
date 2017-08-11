@@ -15,6 +15,8 @@
             addTeams: addTeams,
             addRequest: addRequest,
             addRounds: addRounds,
+            getRounds: getRounds,
+            getTeams: getTeams,
             getOpenGameById: getOpenGameById
         };
 
@@ -108,6 +110,17 @@
             obj.$save();
             return obj.$loaded();
 
+        }
+
+        function getRounds(gameId) {
+            let obj = new $firebaseArray(openGamesRef.child(gameId).child('rounds'));
+            return obj;
+
+        }
+
+        function getTeams(gameId) {
+            let obj = new $firebaseArray(openGamesRef.child(gameId).child('teams'));
+            return obj;
         }
 
     }

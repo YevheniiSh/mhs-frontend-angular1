@@ -22,9 +22,10 @@
                     ng-click="$ctrl.configGame(openGame.$id)">Config
             </button>
             <button class="btn btn-info game-button"
-                    ng-click="$ctrl.startGame(openGame.$id)"
+                    ng-click="$ctrl.startGame(openGame)"
                     ng-if="$ctrl.auth">Start
             </button>
+            <span class="error text-danger" ng-if="openGame.invalid">{{openGame.error}}</span>
         </td>
     </tr>
     </tbody>
