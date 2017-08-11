@@ -2,7 +2,7 @@
     <div class="col-md-6 col-md-offset-3">
 
 
-        <form ng-submit="" name="request">
+        <form ng-submit="$ctrl.saveRequest()" name="request">
 
 
             <div class="team-name-spans">
@@ -13,7 +13,7 @@
                   Maximum 40 characters</span>
             </div>
             <input id="team-name" class="form-control" placeholder="Team name"
-                   type="text" name="team" ng-model="team" ng-maxlength="35" minlength="2"
+                   type="text" name="team" ng-model="$ctrl.teamName" ng-maxlength="35" minlength="2"
                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
                    required>
 
@@ -25,7 +25,7 @@
                   Maximum 40 characters</span>
             </div>
             <input id="captain-name" class="form-control" placeholder="John Doe"
-                   name="name" ng-model="name" ng-maxlength="40" minlength="3"
+                   name="name" ng-model="$ctrl.fullName" ng-maxlength="40" minlength="3"
                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}"
                    required>
 
@@ -39,12 +39,12 @@
               Wrong format</span>
             </div>
             <input id="captain-phone" class="form-control" placeholder="xxx xxx xxxx"
-                   type="text" ng-model="phone" name="phone" maxlength="13" minlength="10"
+                   type="text" ng-model="$ctrl.phone" name="phone" maxlength="13" minlength="10"
                    ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}">
 
             <label for="team-size" class="control-label"> Team size </label>
-            <input id="team-size" class="form-control" type="number" min="2" max="15" required>
+            <input id="team-size" ng-model="$ctrl.teamSize" class="form-control" type="number" min="2" max="15" required>
 
             <button class=" btn btn-success btn-block" type="submit"> Submit</button>
         </form>
