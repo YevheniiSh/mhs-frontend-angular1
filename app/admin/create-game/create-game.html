@@ -9,7 +9,7 @@
                     </label>
                     <span> {{$ctrl.gameDate.toLocaleDateString()}}</span>
                 </div>
-                <div class="data-picker" ng-show="$ctrl.isCalendarVisible">
+                <div class="picker" ng-show="$ctrl.isCalendarVisible">
                     <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"></div>
                 </div>
 
@@ -24,7 +24,7 @@
                     <span> {{$ctrl.gameTime.toLocaleTimeString()}}</span>
                 </div>
 
-                <div class="time-picker" ng-show="$ctrl.isTimeVisible">
+                <div class="picker" ng-show="$ctrl.isTimeVisible">
                     <div uib-timepicker name="time" ng-model="$ctrl.gameTime" class="well well-sm"></div>
                 </div>
             </div>
