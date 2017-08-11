@@ -45,6 +45,11 @@ class GameBuilder {
         return this;
     }
 
+    addTime(time) {
+        this.game.time = convertTime(time);
+        return this;
+    }
+
     addLocation(location) {
         this.game.location = location;
         return this;
@@ -78,4 +83,17 @@ function convertDate(date) {
         mm='0'+mm;
     }
     return mm + '/' + dd + '/' + yyyy;
+}
+
+function convertTime(time) {
+    let hh = time.getHours();
+    let mm = time.getMinutes();
+
+    if (hh < 10) {
+        hh = '0' + hh;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    return hh + ':' + mm;
 }
