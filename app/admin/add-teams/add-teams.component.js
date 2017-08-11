@@ -19,6 +19,14 @@ angular.module('addTeams')
                             vm.requests=res;
                         })
                 };
+
+                vm.archivateRequest = function (requestId) {
+                    teamRequestService.setArchivedStatus(vm.gameId, requestId)
+                }
+
+                vm.unArchivateRequest = function (requestId) {
+                    teamRequestService.setUnconfirmedStatus(vm.gameId, requestId)
+                }
             }]
 
     })
