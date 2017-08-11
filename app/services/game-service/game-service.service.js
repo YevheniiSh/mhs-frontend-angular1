@@ -29,16 +29,13 @@ angular
 
 
             function addTeamToGame(gameId, team){
-                let obj = new $firebaseArray(openedGameRef.child(`${gameId}/teams/`));
-                let teamFB = {[team.key]: team.name};
-                obj.$add = teamFB;
-                obj.$save();
-                return obj
-                    .$loaded()
-                    .then((res) => {
-                        return res.$value;
+                let resultObj = new $firebaseObject(openedGameRef.child(`${gameId}/teams/${team.key}`));
+                resultObj.$value = team.name;
+                return resultObj.$save()
+                    .then(() => {
+                        return team.key;
                     }, (err) => {
-                        console.error(err);
+                        console.log(err);
                         return err;
                     });
             }

@@ -22,6 +22,7 @@ angular.module('addTeams')
                     if(!request.teamId){
                         teamService.save({name:request.teamName})
                             .then(res=>{
+                                console.log(request.teamId)
                                 gameService.addTeamToGame(vm.gameId,res)
                                 teamRequestService.setConfirmedStatus(vm.gameId,request.$id)
                             })
