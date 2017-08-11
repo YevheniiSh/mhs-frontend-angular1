@@ -42,10 +42,12 @@ class GameBuilder {
 
     addDate(date) {
         this.game.date = convertDate(date);
+        return this;
     }
 
     addLocation(location) {
         this.game.location = location;
+        return this;
     }
 
     addResult(result) {
