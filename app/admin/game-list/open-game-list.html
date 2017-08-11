@@ -1,0 +1,33 @@
+<button class="btn btn-info start-button" ng-if="$ctrl.auth">Create new game</button>
+<table class="table table-sm table-hover">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Location</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="game-row" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
+        <td>{{openGame.date.toLocaleDateString()}}</td>
+        <td>{{openGame.time}}</td>
+        <td>{{openGame.location}}</td>
+
+        <td>
+            <button class="btn btn-info game-button"
+                    ng-click="$ctrl.registerToGame(openGame.$id)"
+                    ng-if="!$ctrl.auth">Register
+            </button>
+            <button class="btn btn-info game-button"
+                    ng-click="$ctrl.startGame(openGame.$id)"
+                    ng-if="$ctrl.auth">Start
+            </button>
+            <button class="btn btn-info game-button"
+                    ng-if="$ctrl.auth"
+                    ng-click="$ctrl.configGame(openGame.$id)">Config
+            </button>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
