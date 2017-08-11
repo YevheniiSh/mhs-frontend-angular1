@@ -2,32 +2,49 @@
     <div class="col-md-6 col-md-offset-3">
 
 
-        <form ng-submit="">
+        <form ng-submit="" name="request">
 
 
-            <label for="team-name" class=" control-label"> Team name</label>
-            <input id="team-name" class="form-control" type="text" maxlength="35" minlength="5" required>
+            <div class="team-name-spans">
+                <label for="team-name" class="control-label"> Team name </label>
+                <span ng-show="request.team.$error.minlength" class="err">
+                  Minimum 3 characters</span>
+                <span ng-show="request.team.$error.maxlength" class="err">
+                  Maximum 40 characters</span>
+            </div>
+            <input id="team-name" class="form-control" placeholder="Team name"
+                   type="text" name="team" ng-model="team" ng-maxlength="35" minlength="2"
+                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
+                   required>
 
+            <div class="captain-name-spans">
+                <label for="captain-name" class="control-label"> Captain full name </label>
+                <span ng-show="request.name.$error.minlength" class="err">
+                  Minimum 3 characters</span>
+                <span ng-show="request.name.$error.maxlength" class="err">
+                  Maximum 40 characters</span>
+            </div>
+            <input id="captain-name" class="form-control" placeholder="John Doe"
+                   name="name" ng-model="name" ng-maxlength="40" minlength="3"
+                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}"
+                   required>
 
-            <label for="captain-name" class="control-label"> Captain full name </label>
-            <input id="captain-name" class="form-control" type="text" maxlength="35" minlength="5" required>
-
-
-            <label for="captain-phone" class="control-label"> Captain phone number </label>
-            <input id="captain-phone" class="form-control" type="text" maxlength="35"
-                   minlength="5" placeholder="380681517068" ng-model="phone"
+            <div class="phone-spans">
+                <span ng-show="request.phone.$error.minlength" class="err">
+                  Minimum 10 numbers</span>
+                <span ng-show="request.phone.$error.maxlength" class="err">
+                  Maximum 13 numbers</span>
+                <label for="captain-phone" class="control-label"> Captain phone number </label>
+                <span ng-show="request.phone.$invalid && !(request.phone.$error.minlength || request.phone.$error.maxlength)" class="err">
+              Wrong format</span>
+            </div>
+            <input id="captain-phone" class="form-control" placeholder="xxx xxx xxxx"
+                   type="text" ng-model="phone" name="phone" maxlength="13" minlength="10"
                    ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
-                   ng-model-options="{
- 'updateOn': 'default blur',
- 'debounce': {
-   'default': 1500,
-   'blur': 0
- }
-}">
+                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}">
 
             <label for="team-size" class="control-label"> Team size </label>
-            <input id="team-size" class="form-control" type="number" min="4" max="10" required>
-
+            <input id="team-size" class="form-control" type="number" min="2" max="15" required>
 
             <button class=" btn btn-success btn-block" type="submit"> Submit</button>
         </form>
