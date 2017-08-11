@@ -6,9 +6,9 @@
                 templateUrl: 'admin/game-list/finished-game.html',
                 controller: FinishedGameListController
             });
-    FinishedGameListController.$inject = ['GameServiceFactory', '$location', 'userAuthService'];
+    FinishedGameListController.$inject = ['GameServiceFactory', '$location'];
 
-    function FinishedGameListController(gameFactory, $location, userService) {
+    function FinishedGameListController(gameFactory, $location) {
         let vm = this;
         vm.$onInit = onInit;
 
