@@ -65,14 +65,14 @@
         }
 
         function convertRoundsForFirebase(rounds) {
-            let round = {};
+            let convertedRounds = {};
             for (let i = 0; i < rounds.length; i++) {
-                round[rounds[i].id] = {
-                    numberOfQuestions: rounds[i].numberOfQuestions,
-                    name: rounds[i].name
+                convertedRounds[rounds[i].sequenceNumber] = {
+                    numberOfQuestions: rounds[i].quizzess,
+                    name: rounds[i].roundName
                 };
             }
-            return round;
+            return convertedRounds
         }
 
         // function saveGame(game, gameId) {
