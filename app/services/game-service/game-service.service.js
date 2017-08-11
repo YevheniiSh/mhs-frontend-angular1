@@ -28,7 +28,7 @@ angular
                 addTeamToGame:addTeamToGame
             };
 
-            function getGameTeams() {
+            function getGameTeams(gameId) {
                 getGameRef(gameId)
                 return $firebaseArray(ref.child(`/${gameId}/teams`))
                     .$loaded()
