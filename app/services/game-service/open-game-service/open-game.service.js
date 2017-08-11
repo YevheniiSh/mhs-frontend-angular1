@@ -11,11 +11,20 @@
 
         return {
             getAllOpenGames: getAllOpenGames,
+            getOpenGameById: getOpenGameById,
             createNewGame: createNewGame
         };
 
         function getAllOpenGames() {
             return new $firebaseArray(openGamesRef).$loaded();
+        }
+
+        function getOpenGameById(gameId) {
+            return new $firebaseObject(openGamesRef.child(gameId))
+                .$loaded()
+                .then((res) => {
+                    return res.$value;
+                })
         }
 
         function createNewGame(game) {
