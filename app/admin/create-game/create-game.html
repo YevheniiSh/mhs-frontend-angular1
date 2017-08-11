@@ -1,0 +1,50 @@
+<div class="container">
+    <form name="createForm">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-3">
+                <div ng-click="$ctrl.ChangeCalendarStatus()">
+                    <label class="control-label data-picker-label" for="game-calendar"
+                           ng-click="$ctrl.ChangeCalendarStatus()">
+                        <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+                    </label>
+                    <span> {{$ctrl.gameDate.toLocaleDateString()}}</span>
+                </div>
+                <div class="picker" ng-show="$ctrl.isCalendarVisible">
+                    <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"></div>
+                </div>
+
+
+            </div>
+            <div class="col-md-4">
+                <div ng-click="$ctrl.ChangeTimeStatus()">
+                    <label class="control-label data-picker-label" for="game-time"
+                    >
+                        <i id="game-time" class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
+                    </label>
+                    <span> {{$ctrl.gameTime.toLocaleTimeString()}}</span>
+                </div>
+
+                <div class="picker" ng-show="$ctrl.isTimeVisible">
+                    <div uib-timepicker name="time" ng-model="$ctrl.gameTime" class="well well-sm"></div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="location">
+                    <input class="form-control" ng-model="$ctrl.location"
+                           maxlength="34"
+                           name="location"
+                           required placeholder="Location"></div>
+
+            </div>
+            <div class="row">
+                <button id="game-build" type="submit" class=" btn btn-info btn-block"
+                        ng-click="$ctrl.createNewGame()" ng-disabled="createForm.$invalid">
+                    Create game
+                </button>
+            </div>
+            <div class="row">
+                <span class="text-danger" ng-show="createForm.$error.time">You've been entered wrong time</span>
+            </div>
+        </div>
+    </form>
+</div>

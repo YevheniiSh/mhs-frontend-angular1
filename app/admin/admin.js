@@ -10,6 +10,8 @@ angular
         'login',
         'login-panel',
         'game-list',
+        'createGame',
+        'configGame',
         'ui.bootstrap'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
@@ -23,7 +25,6 @@ angular
         });
         $routeProvider.when('/add-teams', {
             template: '<add-teams></add-teams>',
-            css: 'admin/add-teams/add-teams.css',
             resolve: {
                 currentUser: ['userAuthService', function (auth) {
                     return auth.currentUser();
@@ -75,6 +76,12 @@ angular
         $routeProvider.when('/game-list', {
             template: '<game-list></game-list>',
             css:'admin/game-list/game-list.css'
+        });
+        $routeProvider.when('/create-game', {
+            template: '<create-game></create-game>',
+        });
+            $routeProvider.when('/config-game/:gameId', {
+            template: '<config-game></config-game>',
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {

@@ -34,3 +34,7 @@ h1 {
     float: right;
     margin-left: 10px;
 }
+
+.error {
+    font-size: 14px;
+}
