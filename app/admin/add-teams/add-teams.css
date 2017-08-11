@@ -40,7 +40,8 @@ select {
 
 .scroll-panel{
     height: 500px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     white-space: nowrap;
     border: solid 2px lightgrey;
     border-radius: 10px;
