@@ -52,6 +52,11 @@ angular.module('addTeams')
 
                 vm.unArchivateRequest = function (requestId) {
                     teamRequestService.setUnconfirmedStatus(vm.gameId, requestId)
+                };
+
+                vm.unConfirmRequest = function (requestId) {
+                    gameService.removeTeamFromGame(vm.gameId, requestId);
+                    teamRequestService.setUnconfirmedStatus(vm.gameId, requestId);
                 }
             }]
 

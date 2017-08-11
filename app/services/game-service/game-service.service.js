@@ -23,14 +23,15 @@ angular
                 getGameStatus: getGameStatus,
                 getDate:getDate,
                 startGame:startGame,
+                removeTeamFromGame: removeTeamFromGame,
                 addTeamToGame:addTeamToGame
             };
 
 
             function addTeamToGame(gameId, team){
-                let obj = new $firebaseObject(openedGameRef.child(`${gameId}/teams/`));
+                let obj = new $firebaseArray(openedGameRef.child(`${gameId}/teams/`));
                 let teamFB = {[team.key]: team.name};
-                obj.$value = teamFB;
+                obj.$add = teamFB;
                 obj.$save();
                 return obj
                     .$loaded()
@@ -40,6 +41,12 @@ angular
                         console.error(err);
                         return err;
                     });
+            }
+
+            function removeTeamFromGame(gameId, teamId) {
+                let obj = new $firebaseObject(openedGameRef.child(`${gameId}/teams/${teamId}`));
+                obj.$remove();
+                return obj.$loaded();
             }
 
             function startGame(gameId) {
