@@ -1,10 +1,11 @@
 angular
     .module('gameFactory')
-    .factory('GameServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService',
-        function ($firebaseArray, $firebaseObject, firebaseDataService) {
+    .factory('GameServiceFactory', ['OpenGameServiceFactory','$firebaseArray', '$firebaseObject', 'firebaseDataService',
+        function (openGameServiceFactory,$firebaseArray, $firebaseObject, firebaseDataService) {
 
             let currentGameRef = firebaseDataService.currentGames;
             let finishedGameRef = firebaseDataService.finishedGames;
+            let openedGameRef = firebaseDataService.openGames;
 
             let ref;
 
@@ -22,7 +23,18 @@ angular
                 getAllFinishedGames: getAllFinishedGames,
                 getGameStatus: getGameStatus,
                 getDate:getDate,
+                startGame:startGame
             };
+
+            function startGame(gameId) {
+                openGameServiceFactory.getOpenGameById(gameId).then((res) => {
+                    let obj = new $firebaseObject(currentGameRef.child(gameId));
+                    obj.$value = getObject(res);
+                    obj.$save();
+                    res.$remove();
+                });
+            }
+
 
             function getGameRef(gameId) {
                 return getCurrentGameById(gameId)
@@ -89,8 +101,6 @@ angular
                     obj.$save();
                     res.$remove();
                 });
-
-
             }
 
             function getObject(obj) {
@@ -98,8 +108,7 @@ angular
                 for (let key in obj) {
                     if (key.indexOf('$') < 0 && obj.hasOwnProperty(key)) {
                         newObj[key] = obj[key];
-                    }
-                    ;
+                    };
                 }
                 return newObj;
             }
