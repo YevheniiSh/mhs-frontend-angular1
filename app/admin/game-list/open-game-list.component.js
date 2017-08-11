@@ -20,13 +20,28 @@
             })
         };
 
+        vm.invalid = false;
+
         vm.registerToGame = function (gameId) {
             console.log(gameId);
             //$location.path('/.../' + gameId)
         };
 
-        vm.startGame = function (gameId) {
-            console.log(gameId);
+        vm.startGame = function (game) {
+            let gameId = game.$id;
+            let rounds = openGameFactory.getRounds(gameId);
+            let teams = openGameFactory.getTeams(gameId);
+
+            if (rounds.length < 2) {
+                game.invalid = true;
+                game.error = 'Configurate rounds';
+            } else if (teams.length < 2) {
+                game.invalid = true;
+                game.error = 'Configurate teams';
+            } else {
+                //ToDo Start game here
+            }
+            console.log(teams);
             //$location.path('/.../' + gameId)
         };
         vm.configGame = function (gameId) {
