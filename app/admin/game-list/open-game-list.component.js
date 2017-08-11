@@ -31,7 +31,7 @@
         };
         vm.configGame = function (gameId) {
             console.log(gameId);
-            //$location.path('/.../' + gameId)
+            $location.path('/config-game/' + gameId)
         };
 
         vm.auth = false;

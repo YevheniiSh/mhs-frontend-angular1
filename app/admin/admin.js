@@ -25,7 +25,6 @@ angular
         });
         $routeProvider.when('/add-teams', {
             template: '<add-teams></add-teams>',
-            css: 'admin/add-teams/add-teams.css',
             resolve: {
                 currentUser: ['userAuthService', function (auth) {
                     return auth.currentUser();
