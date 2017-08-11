@@ -11,18 +11,30 @@
 
         return {
             getAllOpenGames: getAllOpenGames,
-            createNewGame: createNewGame
+            createNewGame: createNewGame,
+            addTeams: addTeams,
+            addRequest: addRequest,
+            addRounds: addRounds,
+            getRounds: getRounds,
+            getTeams: getTeams,
+            getOpenGameById: getOpenGameById
         };
 
         function getAllOpenGames() {
             return new $firebaseArray(openGamesRef).$loaded();
         }
 
+        function getOpenGameById(gameId) {
+            return new $firebaseObject(openGamesRef.child(gameId)).$loaded()
+        }
+
         function createNewGame(game) {
             let obj = new $firebaseObject(openGamesRef.push());
             obj.$value = game;
             obj.$save();
-            return obj.$loaded();
+            return obj.$loaded().then(() => {
+                return obj.$id;
+            });
         }
 
         // function convertAllForFirebase(game) {
@@ -45,20 +57,20 @@
         function convertTeamsForFirebase(teams) {
             let team = {};
             for (let i = 0; i < teams.length; i++) {
-                teams[teams[i].id] = teams[i].name;
+                team[teams[i].id] = teams[i].name;
             }
             return team;
         }
 
         function convertRoundsForFirebase(rounds) {
-            let round = {};
+            let convertedRounds = {};
             for (let i = 0; i < rounds.length; i++) {
-                rounds[rounds[i].id] = {
-                    numberOfQuestions: rounds[i].numberOfQuestions,
-                    name: rounds[i].name
+                convertedRounds[rounds[i].sequenceNumber] = {
+                    numberOfQuestions: rounds[i].quizzess,
+                    name: rounds[i].roundName
                 };
             }
-            return round
+            return convertedRounds
         }
 
         // function saveGame(game, gameId) {
@@ -98,6 +110,17 @@
             obj.$save();
             return obj.$loaded();
 
+        }
+
+        function getRounds(gameId) {
+            let obj = new $firebaseArray(openGamesRef.child(gameId).child('rounds'));
+            return obj;
+
+        }
+
+        function getTeams(gameId) {
+            let obj = new $firebaseArray(openGamesRef.child(gameId).child('teams'));
+            return obj;
         }
 
     }
