@@ -14,17 +14,26 @@
         function onInit() {
             openGameFactory.getAllOpenGames().then((games) => {
                 vm.openGames = games;
-                vm.openGames.forEach((item) => {
-                    item.date = new Date(item.date);
+                vm.parseDate();
+                console.log(vm.openGames);
+
+                vm.openGames.$watch((event) => {
+                    vm.parseDate();
                 });
             })
+        };
+
+        vm.parseDate = function () {
+            vm.openGames.forEach((item) => {
+                item.date = new Date(item.date);
+            });
         };
 
         vm.invalid = false;
 
         vm.registerToGame = function (gameId) {
             console.log(gameId);
-            //$location.path('/.../' + gameId)
+            $location.path('/registration/' + gameId)
         };
 
         vm.startGame = function (game) {
