@@ -10,7 +10,9 @@ angular
         'login',
         'login-panel',
         'game-list',
-        'ui.bootstrap'])
+        'ui.bootstrap',
+        'renameTeam',
+        'navbar'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/setup-game-type/:gameId', {
             template: '<game-type></game-type>',
@@ -69,12 +71,9 @@ angular
             template: '<login></login>',
             css: 'admin/login/login.css'
         });
-        $routeProvider.when('/login-panel', {
-            template: '<login-panel></login-panel>'
-        });
         $routeProvider.when('/game-list', {
             template: '<game-list></game-list>',
-            css:'admin/game-list/game-list.css'
+            css: 'admin/game-list/game-list.css'
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
