@@ -30,3 +30,7 @@ h1 {
 .game-row {
     cursor: pointer;
 }
+.game-button{
+    float: right;
+    margin-left: 10px;
+}

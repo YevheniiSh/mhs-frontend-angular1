@@ -20,6 +20,20 @@
             })
         };
 
+        vm.registerToGame = function (gameId) {
+            console.log(gameId);
+            //$location.path('/.../' + gameId)
+        };
+
+        vm.startGame = function (gameId) {
+            console.log(gameId);
+            //$location.path('/.../' + gameId)
+        };
+        vm.configGame = function (gameId) {
+            console.log(gameId);
+            //$location.path('/.../' + gameId)
+        };
+
         vm.auth = false;
         userService.currentUser().then((res) => {
             vm.auth = true;
