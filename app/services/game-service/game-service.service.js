@@ -23,7 +23,8 @@ angular
                 getAllFinishedGames: getAllFinishedGames,
                 getGameStatus: getGameStatus,
                 getDate:getDate,
-                startGame:startGame
+                startGame: startGame,
+                getRoundByGameAndId: getRoundByGameAndId
             };
 
             function startGame(gameId) {
@@ -154,6 +155,15 @@ angular
 
             function getCurrentRound(gameId) {
                 return getStatus(gameId, 'currentRound');
+            }
+
+            function getRoundByGameAndId(gameId, roundId) {
+                return new $firebaseObject(
+                    currentGameRef
+                        .child(gameId)
+                        .child('rounds')
+                        .child(roundId)
+                ).$loaded();
             }
 
             function getCurrentQuiz(gameId) {

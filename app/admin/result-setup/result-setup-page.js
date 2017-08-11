@@ -6,22 +6,33 @@
             controller: ResultSetupController
         });
 
-    ResultSetupController.$inject = ['GameServiceFactory', 'resultSetupService', '$routeParams', '$location'];
+    ResultSetupController.$inject = [
+        'GameServiceFactory',
+        'resultSetupService',
+        '$routeParams',
+        '$location'
+    ];
 
     function ResultSetupController(GameServiceFactory, resultSetupService, $routeParams, $location) {
         let vm = this;
+
+        vm.results = [];
         vm.$onInit = onInit;
 
         let selectedQuiz = parseInt($routeParams.quizNumber);
 
         function initQuizResults() {
+
             angular.forEach(vm.game.teams, (team, key) => {
                 let resultId = [$routeParams.roundNumber, $routeParams.quizNumber, key].join('_');
                 vm.results[resultId] = resultSetupService.buildResult(
+                    $routeParams.gameId,
                     $routeParams.roundNumber,
                     $routeParams.quizNumber,
                     key);
             });
+
+            console.log(resultSetupService.initQuizResults($routeParams.gameId, $routeParams.roundNumber, $routeParams.quizNumber));
         }
 
         function initQuiz(game) {
@@ -42,13 +53,18 @@
                         results.push(result);
                     });
                     angular.extend(vm.results, results);
+                    console.log(vm.results)
+                })
+            resultSetupService.gameFactoty.getRoundByGameAndId($routeParams.gameId, 1)
+                .then((res) => {
+                    console.log(res)
                 })
         }
 
         vm.setQuiz = function (quizNumber) {
             vm.selectedQuiz = quizNumber;
-            // initQuizResults();
-            // assignAnswers();
+            initQuizResults();
+            assignAnswers();
             $location.path(`/result-setup/${$routeParams.gameId}/${$routeParams.roundNumber}/${quizNumber}`);
         };
 
@@ -59,7 +75,6 @@
         }
 
         function onInit() {
-            vm.results = [];
             getGame()
                 .then(initQuiz)
                 .then(assignAnswers);

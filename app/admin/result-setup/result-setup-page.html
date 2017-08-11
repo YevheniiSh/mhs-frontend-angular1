@@ -11,7 +11,7 @@
             <li class="col-md-6" ng-repeat="result in $ctrl.results">
                 <label>
                     <input type="checkbox" ng-model="result.score" ng-if="!$ctrl.isManualInput">
-                    {{$ctrl.game.teams[result.teamId]}}
+                    {{result.teamId}}
                     <input type="number" ng-model="result.score" class="form-control" ng-if="$ctrl.isManualInput">
                 </label>
             </li>
