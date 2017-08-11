@@ -2,6 +2,7 @@
 angular.module('gameType')
     .component('gameType', {
         templateUrl: 'admin/game-build/game-type/game-type.html',
+        css:'admin/game-build/game-type/game-type.css',
         controller: GameType
     });
 
