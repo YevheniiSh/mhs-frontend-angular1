@@ -3,13 +3,22 @@
         <div ng-transclude></div>
     </script>
 
-    <div ng-show="$ctrl.showAlert" uib-alert template-url="alert.html" class="alert-success team-name-changed-alert"
+    <div ng-show="$ctrl.showSuccessAlert" uib-alert template-url="alert.html"
+         class="alert-success team-name-changed-alert"
          role="alert">
         <button type="button" class="close" ng-click="$ctrl.hideAlert()">
             <span>×</span>
             <span class="sr-only">Close</span>
         </button>
         <span>Team name changed</span>
+    </div>
+    <div ng-show="$ctrl.showErrorAlert" uib-alert template-url="alert.html" class="alert-danger team-name-changed-alert"
+         role="alert">
+        <button type="button" class="close" ng-click="$ctrl.hideAlert()">
+            <span>×</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <span>Team name already exits</span>
     </div>
 
     <input ng-model="search" class="form-control" placeholder="Search">

@@ -12,7 +12,8 @@
     function TeamList(TeamService, $timeout) {
         let vm = this;
         vm.$onInit = onInit;
-        vm.showAlert = false;
+        vm.showSuccessAlert = false;
+        vm.showErrorAlert = false;
 
         function onInit() {
             TeamService.getAllTeams()
@@ -21,20 +22,43 @@
                 });
         }
 
-        vm.changeTeamName = function (team) {
-            showAlert();
-            TeamService.changeTeamName(team.$id, team.name);
-        };
+        function checkTeamNameCoincidence(teamName) {
+            return TeamService
+                .getAllTeams()
+                .then((res) => {
+                    for (team of res) {
+                        if (team.name === teamName.toString()) return true;
+                    }
+                    return false;
+                });
+        }
 
-        function showAlert() {
-            vm.showAlert = true;
+        function showSuccessAlert() {
             $timeout(() => {
-                vm.showAlert = false;
+                vm.showSuccessAlert = false;
             }, 2000);
         }
 
+        vm.changeTeamName = function (team) {
+            checkTeamNameCoincidence(team.name)
+                .then((res) => {
+                    if (!res) {
+                        TeamService
+                            .changeTeamName(team.$id, team.name)
+                            .then(() => {
+                                vm.showSuccessAlert = true;
+                                vm.showErrorAlert = false;
+                                showSuccessAlert();
+                            });
+                    } else {
+                        vm.showErrorAlert = true;
+                    }
+                });
+        };
+
         vm.hideAlert = function () {
-            vm.showAlert = false;
+            vm.showSuccessAlert = false;
+            vm.showErrorAlert = false;
         }
     }
 })();
