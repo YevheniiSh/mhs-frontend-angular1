@@ -1,6 +1,7 @@
-#container,html{
+#container, html {
     height: 100%;
 }
+
 .btn-delete {
     border-radius: 100%;
     float: right;
@@ -8,35 +9,73 @@
 
 .btn-next {
     margin-top: 50px;
-
 }
 
-.row{
+.row {
     margin-bottom: 15px;
 }
 
-.container {
-    max-width: 500px;
-}
-label{
-    padding: 5px;
+label {
     font-size: 16px;
 }
 
-select{
-    width: 27%;
+select {
+    width: 30%;
     float: right;
 }
-.add-team-form{
+
+.add-team-form {
     padding-top: 10%;
 }
 
-#select-group{
-    padding-top: 3%;
-    border-top:1px solid lightgrey;
-}
-
-#or{
+#or {
     padding-left: 12%;
     padding-bottom: 3%;
 }
+
+#team-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.scroll-panel{
+    height: 500px;
+    overflow: auto;
+    white-space: nowrap;
+    border: solid 2px lightgrey;
+    border-radius: 10px;
+    padding-top: 20px ;
+    margin-top: 10px;
+}
+
+.selected{
+    background-color: #5bc0de;
+}
+
+.list-item{
+    text-align: left;
+    width: 97%;
+    margin: 0px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.scroll-panel::-webkit-scrollbar {
+    width: 16px;
+}
+
+.scroll-panel::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+.scroll-panel::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+}
+
+.selected-tabs{
+    background-color:silver;
+}
+

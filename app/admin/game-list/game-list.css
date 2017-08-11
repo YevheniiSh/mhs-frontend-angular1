@@ -2,11 +2,9 @@
     height: 100%;
 }
 
-button.btn {
-    font-size: 10px;
-    width: 25px;
-    height: 25px;
-    float: left;
+
+.start-button {
+    margin-top: 10px;
 }
 
 td {
@@ -25,10 +23,18 @@ h1 {
     text-align: center;
 }
 
-i {
+#trophy {
     color: goldenrod;
 }
 
 .game-row {
     cursor: pointer;
+}
+.game-button{
+    float: right;
+    margin-left: 10px;
+}
+
+.error {
+    font-size: 14px;
 }

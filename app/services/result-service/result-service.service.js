@@ -59,14 +59,16 @@ angular
                 return resultObj.$loaded();
             };
 
+
+
         resultFactory.parseTeamsResult = function (gameResults) {
             let roundResult = {};
             gameResults.forEach((quizResult) => {
                 roundResult[quizResult.teamId] = {rounds: {}, total: 0};
             });
             gameResults.forEach((quizResult) => {
-                let roundScore = roundResult[quizResult.teamId].rounds[quizResult.round];
-                roundResult[quizResult.teamId].rounds[quizResult.round] = roundScore + quizResult.score || quizResult.score;
+                let roundScore = roundResult[quizResult.teamId].rounds[quizResult.round] || 0;
+                roundResult[quizResult.teamId].rounds[quizResult.round] = roundScore + quizResult.score;
             });
             let result = [];
             for (let team in roundResult) {

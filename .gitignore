@@ -7,7 +7,6 @@ tmp
 .idea
 
 app/dbConfig.js
-firebase.json
 .firebaserc
 
 app/services/firebase-service/dbConfig.js

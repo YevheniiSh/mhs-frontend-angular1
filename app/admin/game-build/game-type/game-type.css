@@ -1,36 +1,40 @@
-.game-type {
-    margin-top: 30px;
+
+label {
+    font-size: 16px;
 }
 
-.game-tour {
-    margin: auto;
-    font-size: 12px;
-    text-align: center;
-}
+.data-picker {
+    position: fixed;
 
-.game-rounds {
-    margin-top: 10px;
-}
-
-.form-group {
     display: inline-block;
+    margin-top: 40px;
+    min-height: 290px;
+    z-index: 100;
 }
 
-input {
-    margin: auto;
+.data-picker-label {
+    margin-bottom: 5px;
 }
 
-.rounds-count {
-    width: 100px;
+.round-number {
+    max-width: 20px;
+    max-height: 15px;
 }
 
 .round-name {
-    width: 150px;
+    max-width: 300px;
 }
 
 #game-build {
     margin-top: 10px;
-    font-size: 15px;
-    height: 40px;
-    width: 150px;
 }
+
+.count-quest {
+    max-width: 140px;
+}
+
+/*input[type=number]::-webkit-inner-spin-button,*/
+/*input[type=number]::-webkit-outer-spin-button {*/
+/*-webkit-appearance: none;*/
+/*margin: 0;*/
+/*}*/

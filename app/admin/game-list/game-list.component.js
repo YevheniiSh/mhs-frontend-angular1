@@ -6,23 +6,10 @@
             controller: GameList
         });
 
-    GameList.$inject = ['GameServiceFactory', '$location', 'userAuthService'];
+    GameList.$inject = ['$location', 'userAuthService'];
 
-    function GameList(gameFactory, $location, userService) {
+    function GameList($location, userService) {
         let vm = this;
-        vm.$onInit = onInit;
-
-        vm.openGameInfo = function (gameId) {
-            $location.path('/show-result/' + gameId)
-        };
-
-        function onInit() {
-            gameFactory
-                .getAllFinishedGames()
-                .then((games) => {
-                    this.games = games;
-                })
-        }
 
         vm.auth = false;
         userService.currentUser().then((res) => {
@@ -30,6 +17,5 @@
         }).catch((err) => {
             vm.auth = false;
         });
-        console.log(this.auth);
     }
 })();

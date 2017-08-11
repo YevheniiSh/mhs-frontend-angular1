@@ -15,28 +15,29 @@ angular.module('userAuthService')
             },
 
             isAuthenticated: function () {
-                let firebaseUser = auth.currentUser;
-                if (firebaseUser) {
-                    return true;
-                } else {
-                    return false;
-                }
+                let defer = $q.defer();
+                auth.onAuthStateChanged(function(user) {
+                    if (user) {
+                        defer.resolve(true);
+                    } else {
+                        defer.reject(false);
+                    }
+
+                });
+                return defer.promise;
             },
 
             currentUser: function () {
-                return $q((resolve, reject) => {
-                    setTimeout(() => {
-                        let firebaseUser = auth.currentUser;
-                        if (firebaseUser) {
-                            console.log(firebaseUser.email);
-                            resolve(firebaseUser);
-                        } else {
-                            console.log('Not sign in');
-                            reject(firebaseUser);
-                        }
-                    }, 350)
-                });
+                let defer = $q.defer();
+                auth.onAuthStateChanged(function(user) {
+                    if (user) {
+                        defer.resolve(user);
+                    } else {
+                        defer.reject(null);
+                    }
 
+                });
+                return defer.promise;
             },
             signOut: function () {
                 let defer = $q.defer();

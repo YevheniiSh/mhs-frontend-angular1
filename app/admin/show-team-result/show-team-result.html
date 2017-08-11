@@ -1,33 +1,32 @@
 <div class="container">
-    <h1>{{$ctrl.teamName}} result</h1>
+    <button class="btn btn-success" ng-click="$ctrl.getGameStatistic()">Back</button>
+    <h1>{{$ctrl.teamName}} : <span class="team-total"> {{$ctrl.teamTotal.toFixed(1)}}</span> <span class="date">{{$ctrl.date}}</span></h1>
     <table class="table table-sm table-striped table-hover ">
         <thead>
-        <th>Round</th>
-        <th>Quizzes</th>
-        <th>Total</th>
+            <th>Round</th>
+            <th>Quizzes</th>
+            <th class="total">Total</th>
         </thead>
         <tbody>
             <tr ng-repeat="round in $ctrl.roundsResult">
                 <td id="round">{{round.roundNum}}. {{round.roundName}}</td>
-                <td id="quizzes">
-                    <div class="quiz-block">
+                <td id="quiz-block">
                             <input
                                 type="number"
+                                id="inp"
                                 ng-model="quiz.score"
+                                ng-disabled="$ctrl.gameStatus"
                                 ng-repeat="quiz in round.quizzes"
                                 ng-change="$ctrl.setTeamResult(round,quiz)"
                                 ng-class="$ctrl.quizColor(quiz)"
-                                uib-tooltip = "aslfkj">
-                    </div>
+                                ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+                                uib-tooltip = "№ {{quiz.quizNum}}"
+                                min="-20"
+                                max="20"
+                            >
                 </td>
                 <td id="total" ng-model="round.total" ng-class="$ctrl.totalColor(round)">{{round.total}}</td>
             </tr>
         </tbody>
     </table>
-    <button class="btn btn-success" ng-click="$ctrl.getGameStatistic()">Back</button>
-</div><!--
-ng-model-options="{
-'updateOn': 'default blur',
-'debounce': {
-'default': 500,
-'blur': 0 }}">-->
+</div>

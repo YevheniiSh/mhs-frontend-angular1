@@ -3,23 +3,20 @@ td{
 }
 th{
     font-size: 28px;
-    text-align: center;
 }
 h1{
-    margin-top: 10%;
-    margin-bottom: 3%;
-    padding-bottom: 2%;
     border-bottom: solid 1px;
-    text-align: center;
 }
-input{
+input#inp{
+    height: 31px;
+    font-size: 17px;
     display: inline-block;
-    width: 60px;
-    margin: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 44px;
+    margin: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border:none;
     border-radius: 30%;
-    background: #b3b3ff;
     color: #ffffff;
     text-align:center;
 }
@@ -28,29 +25,24 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-input:hover{
-
-}
 .container,html{
     height: 100%;
 }
-button.btn{
-    font-size: 10px;
-    float:right;
-}
-table.table.table-sm.table-striped{
-}
 td.ng-binding{
-    font-size: 33px;
+    font-size: 20px;
     width: 200px;
     text-align: center;
 }
 td.total-point{
     font-weight: bold;
 }
-td#quizzes{
+td#quiz-block{
+    width: 360px;
     font-size: 24px;
     padding: 0;
+}
+td#round{
+    font-size: 20px;
 }
 #total, #round{
     vertical-align: middle;
@@ -60,39 +52,18 @@ td#quizzes{
     text-align: left;
 }
 #total{
+    text-align: right;
     vertical-align: middle;
+}
+th.total{
+    text-align: right;
 }
 .silver-total{
     color:#D4D4D4;
 }
-.green-total{
-    color: green;
+.date{
+    float: right;
 }
-.red-total{
-    color: red;
-}
-.quiz-block{
-    margin:auto;
-    width: 350px;
-}
-.inp-res{
-
-}
-.container{
-    margin-bottom: 50px;
-}
-
-@media (max-width:700px){
-    th{
-        font-size: 15px;
-    }
-    td.ng-binding{
-        font-size: 15px;
-        width: 50px;
-        text-align: center;
-        vertical-align: middle;
-    }
-    .quiz-block{
-        width: auto;
-    }
+.team-total{
+   color: #0085ff;
 }

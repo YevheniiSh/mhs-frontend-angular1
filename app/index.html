@@ -15,16 +15,14 @@
     <link rel="stylesheet" type="text/css" href="public/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="public/css/bootstrapSilverButton.css">
     <script src="https://use.fontawesome.com/50300bbbf7.js"></script>
-
     <script src="public/js/GameResultParser.js"></script>
 
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
 
 </head>
 <body>
-<login-panel></login-panel>
 <div data-ng-if="loading" class="lds-css ng-scope">
-    <div class="lds-spinner" style="100%;height:100%">
+    <div class="lds-spinner" style="height:100%">
         <div></div>
         <div></div>
         <div></div>
@@ -40,13 +38,19 @@
     </div>
 </div>
 
-<div ng-show="!loading" ng-view></div>
+<div class="container">
+    <div class="main-panel">
+        <login-panel></login-panel>
+        <div ng-show="!loading" ng-view></div>
+    </div>
+</div>
 
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-translate/angular-translate.js"></script>
 <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-
+<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="internalisation/internalisation.module.js"></script>
 <script src="internalisation/internalisation.service.js"></script>
 
@@ -65,21 +69,32 @@
 <script src="services/game-service/game-service.module.js"></script>
 <script src="services/game-service/game-service.service.js"></script>
 <script src="services/result-service/result-service.module.js"></script>
+<script src="services/team-request-service/team-request-service.module.js"></script>
+<script src="services/team-request-service/team-request-service.service.js"></script>
+<script src="admin/create-game/create-game.module.js"></script>
 <script src="services/result-service/result-service.service.js"></script>
 <script src="app.js"></script>
 <script src="player/player.js"></script>
 <script src="admin/admin.js"></script>
 
-<script src="spinner/spinner.service.js"></script>
+<script src="services/prev-location-service.js"></script>
 
+<script src="spinner/spinner.service.js"></script>
+<script src="player/application-form/application-form.module.js"></script>
+<script src="player/application-form/application-form.component.js"></script>
 <script src="admin/add-teams/add-teams.module.js"></script>
 
+<script src="services/game-service/open-game-service/open-game.module.js"></script>
+<script src="services/game-service/open-game-service/open-game.service.js"></script>
 
 <script src="admin/show-result/show-result.module.js"></script>
 <script src="admin/show-result/show-result-component.js"></script>
 
+<script src="admin/create-game/create-game.component.js"></script>
+
 <script src="admin/show-team-result/show-team-result.module.js"></script>
 <script src="admin/show-team-result/show-team-result-component.js"></script>
+<script src="admin/add-teams/team-exist.directive.js"></script>
 
 <script src="player/some-feature/SomeFeatureController.js"></script>
 <script src="admin/game-build/game-type/game-type.module.js"></script>
@@ -90,6 +105,9 @@
 <script src="admin/result-setup/result-setup.module.js"></script>
 <script src="admin/result-setup/resultSetupService.js"></script>
 <script src="admin/result-setup/result-setup-page.js"></script>
+
+<script src="admin/game-build/config-game/config-game.module.js"></script>
+<script src="admin/game-build/config-game/config-game.component.js"></script>
 
 <script src="admin/add-teams/add-teams.component.js"></script>
 <script src="public/js/TeamBuilder.js"></script>
@@ -107,6 +125,8 @@
 <script src="admin/login-panel/login-panel.component.js"></script>
 <script src="admin/game-list/game-list.module.js"></script>
 <script src="admin/game-list/game-list.component.js"></script>
+<script src="admin/game-list/finished-game.component.js"></script>
+<script src="admin/game-list/open-game-list.component.js"></script>
 
 <script src="services/round-service/round-service.module.js"></script>
 <script src="services/round-service/round-service.service.js"></script>

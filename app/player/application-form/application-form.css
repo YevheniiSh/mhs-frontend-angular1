@@ -1,0 +1,25 @@
+#team-name{
+    margin-bottom: 20px;
+}
+#captain-name{
+    margin-bottom: 20px;
+}
+#captain-phone{
+    margin-bottom: 20px;
+}
+#team-size{
+    margin-bottom: 20px;
+    width: 75px;
+}
+.form-control.ng-invalid.ng-not-empty{
+    border-color: #ff9b9b;
+    box-shadow: 0 0 20px 0 #ff9b9b;
+}
+form { display: block; width: 550px; margin: auto; }
+input{ margin-top: 5px;}
+span.err { color: #f00;
+    float: right;}
+label{
+    margin: 0;
+}
+

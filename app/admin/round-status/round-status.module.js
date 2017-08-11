@@ -1,2 +1,2 @@
 angular
-    .module('roundStatus', ['roundService']);
+    .module('roundStatus', ['roundService', 'ui.bootstrap.tooltip']);
