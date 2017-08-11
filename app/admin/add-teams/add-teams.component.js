@@ -55,9 +55,9 @@ angular.module('addTeams')
                     teamRequestService.setUnconfirmedStatus(vm.gameId, requestId)
                 };
 
-                vm.unConfirmRequest = function (requestId) {
-                    gameService.removeTeamFromGame(vm.gameId, requestId);
-                    teamRequestService.setUnconfirmedStatus(vm.gameId, requestId);
+                vm.unConfirmRequest = function (team) {
+                    gameService.removeTeamFromGame(vm.gameId, team.$id);
+                    teamRequestService.setUnconfirmedStatus(vm.gameId, team.requestId);
                 }
             }]
 
