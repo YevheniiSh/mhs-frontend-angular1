@@ -8,7 +8,7 @@ angular.module('addTeams')
             'GameServiceFactory',
             '$location',
             '$routeParams',
-            function (teamRequestService, openGameService,teamService,gameService, $location, $routeParams) {
+            function (teamRequestService, openGameService, teamService, gameService, $location, $routeParams) {
                 let vm = this;
                 vm.gameId = $routeParams.gameId;
                 vm.$onInit = onInit;
@@ -18,14 +18,25 @@ angular.module('addTeams')
                     vm.getTeams()
                 }
 
-                vm.addTeamToGame = function(request){
-                    if(!request.teamId){
-                        teamService.save({name:request.teamName})
-                            .then(res=>{
-                                res.requestId=request.$id;
-                                gameService.addTeamToGame(vm.gameId,res)
-                                teamRequestService.setConfirmedStatus(vm.gameId,request.$id)
+                vm.addTeamToGame = function (request) {
+                    if (!request.teamId) {
+                        teamService.save({name: request.teamName})
+                            .then(res => {
+                                res.requestId = request.$id;
+                                request.teamId = res.key;
+                                gameService.addTeamToGame(vm.gameId, res)
+                                teamRequestService.setConfirmedStatus(vm.gameId, request.$id)
+                                teamRequestService.updateTeamId(vm.gameId, request)
+
                             })
+                    } else {
+                        gameService.addTeamToGame(vm.gameId,
+                            {
+                                name: request.teamName,
+                                requestId: request.$id,
+                                key: request.teamId
+                            })
+                        teamRequestService.setConfirmedStatus(vm.gameId, request.$id)
                     }
 
 
@@ -40,7 +51,7 @@ angular.module('addTeams')
 
                 vm.getTeams = function () {
                     openGameService.getTeams(vm.gameId)
-                        .then(res=>{
+                        .then(res => {
                             console.log(res);
                             vm.teams = res;
                         })
