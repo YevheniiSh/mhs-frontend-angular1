@@ -4,7 +4,7 @@ angular
         'firebase',
         'addTeams',
         'gameType',
-        'showResult',
+        'gameResultsPage',
         'roundStatus',
         'showTeamResult',
         'login',
@@ -49,10 +49,6 @@ angular
                 }]
             }
         });
-        $routeProvider.when('/show-result/:gameId', {
-            template: '<show-result></show-result>',
-            css: 'admin/show-result/show-result.css'
-        });
         $routeProvider.when('/round-status/:gameId', {
             template: '<round-status></round-status>',
             resolve: {
@@ -60,10 +56,6 @@ angular
                     return auth.currentUser();
                 }]
             }
-        });
-        $routeProvider.when('/show-team-result/:gameId/:teamId', {
-            template: '<show-team-result></show-team-result>',
-            css: 'admin/show-team-result/show-game-result.css'
         });
         $routeProvider.when('/login', {
             template: '<login></login>',
@@ -76,11 +68,20 @@ angular
             template: '<game-list></game-list>',
             css:'admin/game-list/game-list.css'
         });
-        $routeProvider.when('/game-result/:gameId', {
-            template: '<game-result></game-result>',
-            css:'admin/show-result/game-result.css',
+        $routeProvider.when('/games/:gameId/results-page', {
+            template: '<game-results-page></game-results-page>',
+            css: 'admin/game-results/game-results-p' +
+            'age.css'
+        });
+        $routeProvider.when('/games/:gameId/results', {
+            template: '<game-results></game-results>',
+            css:'admin/game-results/game-results.css',
             controller: 'presentationModeController'
 
+        });
+        $routeProvider.when('/show-team-result/:gameId/:teamId', {
+            template: '<show-team-result></show-team-result>',
+            css: 'admin/show-team-result/show-team-result.css'
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {

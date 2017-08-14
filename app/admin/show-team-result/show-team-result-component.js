@@ -1,6 +1,6 @@
 angular.module('showTeamResult')
     .component('showTeamResult', {
-        templateUrl: 'admin/show-team-result/show-game-result.html',
+        templateUrl: 'admin/show-team-result/show-team-result.html',
         controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location',
             function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location) {
                 let vm = this;
@@ -57,7 +57,7 @@ angular.module('showTeamResult')
                         });
                 }
                 vm.getGameStatistic = function () {
-                    $location.path(`/show-result/${$routeParams.gameId}`);
+                    $location.path(`/games/${$routeParams.gameId}/results-page`);
                 };
                 vm.url = $routeParams.gameId;
 

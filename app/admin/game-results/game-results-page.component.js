@@ -1,11 +1,11 @@
-angular.module('showResult')
-    .component('showResult', {
-        templateUrl: 'admin/show-result/show-result.html',
+angular.module('gameResultsPage')
+    .component('gameResultsPage', {
+        templateUrl: 'admin/game-results/game-results-page.html',
         controller: ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$rootScope', '$location', '$window','userAuthService', function (ResultService, GameService, $routeParams, $rootScope, $location, $window,auth) {
 
 
             this.showTeamResult = function () {
-                $window.open($window.location.origin + `/#!/game-result/${$routeParams.gameId}`, ``, `width=auto,height=auto`);
+                $window.open($window.location.origin + `/#!/games/${$routeParams.gameId}/results`, ``, `width=auto,height=auto`);
             };
 
 
