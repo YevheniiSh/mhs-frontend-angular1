@@ -18,26 +18,23 @@ function GameType(GameService, $routeParams, $location) {
 
     let quizSequenceNumber = 1;
 
-        GameService.getRounds(gameId).then((res) => {
-            for (let i = 0; i < res.length; i++) {
-                rounds.push({
-                    sequenceNumber: res[i].$id,
-                    quizzess: res[i].numberOfQuestions,
-                    roundName: res[i].name
-                });
-                quizSequenceNumber++;
-            }
-        });
+    GameService.getRounds(gameId).then((res) => {
+        console.log(res);
+        for (let i = 0; i < res.length; i++) {
+            rounds.push(res[i]);
+            quizSequenceNumber++;
+        }
+    });
 
     vm.addRound = function () {
-        let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: ""};
+        let quiz = {$id: quizSequenceNumber, numberOfQuestions: 10, name: ""};
         quizSequenceNumber++;
         rounds.push(quiz);
     };
     vm.deleteRound = function (index) {
         if (rounds.length >= index) {
             for (let i = index - 1; i < rounds.length; i++) {
-                rounds[i].sequenceNumber--;
+                rounds[i].$id--;
             }
             quizSequenceNumber--;
         }

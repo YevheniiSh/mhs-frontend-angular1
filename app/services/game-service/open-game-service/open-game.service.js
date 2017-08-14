@@ -65,9 +65,9 @@
         function convertRoundsForFirebase(rounds) {
             let convertedRounds = {};
             for (let i = 0; i < rounds.length; i++) {
-                convertedRounds[rounds[i].sequenceNumber] = {
-                    numberOfQuestions: rounds[i].quizzess,
-                    name: rounds[i].roundName
+                convertedRounds[rounds[i].$id] = {
+                    numberOfQuestions: rounds[i].numberOfQuestions,
+                    name: rounds[i].name
                 };
             }
             return convertedRounds
