@@ -6,9 +6,9 @@
             controller: TeamRegister
         });
 
-    TeamRegister.$inject = ['TeamServiceFactory', 'GameServiceFactory', '$routeParams', '$window', '$location', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope'];
+    TeamRegister.$inject = ['teamRequestService', 'TeamServiceFactory', 'GameServiceFactory', '$routeParams', '$window', '$location', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope'];
 
-    function TeamRegister(TeamService, GameService, $routeParams, $window, $location, gameRequestServiceFactory, OpenGameService, $scope) {
+    function TeamRegister(teamRequestService, TeamService, GameService, $routeParams, $window, $location, gameRequestServiceFactory, OpenGameService, $scope) {
         let vm = this;
         vm.$onInit = onInit;
         let gameId = $routeParams.gameId;
@@ -114,5 +114,16 @@
 
             watchSelectedTeam();
         }
+        //
+        // function checkPhone(phone){
+        //     teamRequestService.getTeamRequests(vm.selectedTeam.$id)
+        //         .then(requests=>{
+        //             requests.forEach(request=>{
+        //                 if (request.phone.endsWith(phone)){
+        //                     console.log("true");
+        //                 }
+        //             })
+        //         })
+        // }
     }
 })();

@@ -22,7 +22,11 @@ angular.module('addTeams')
                     if (!request.teamId) {
                         teamService.save({name: request.teamName})
                             .then(res => {
+                                console.log(request);
                                 res.requestId = request.$id;
+                                res.fullName = request.fullName;
+                                res.phone = request.phone;
+                                res.teamSize = request.teamSize;
                                 gameService.addTeamToGame(vm.gameId, res);
                                 gameRequestService.setConfirmedStatus(vm.gameId, request.$id);
                                 request.teamId = res.key;
@@ -34,7 +38,10 @@ angular.module('addTeams')
                             {
                                 name: request.teamName,
                                 requestId: request.$id,
-                                key: request.teamId
+                                key: request.teamId,
+                                fullName: request.fullName,
+                                teamSize: request.teamSize,
+                                phone: request.phone
                             })
                         teamRequestService.save(request)
                         gameRequestService.setConfirmedStatus(vm.gameId, request.$id)

@@ -11,6 +11,8 @@ angular.module('createGame')
 
                 this.isCalendarVisible = false;
                 this.isTimeVisible = false;
+                this.options = {};
+                this.options.minDate = new Date();
                 this.gameDate = new Date();
                 this.gameTime = new Date();
                 this.gameTime.setSeconds(0);
@@ -20,16 +22,38 @@ angular.module('createGame')
                 this.createNewGame = function () {
                     let game = this.gameBuilder.addDate(this.gameDate).addTime(this.gameTime).addLocation(this.location).buildGame();
 
-                    OpenGameServiceFactory.createNewGame(game);
+                    OpenGameServiceFactory.createNewGame(game)
+                        .then(() => {
+                            this.location = null;
+                        });
+                    this.isCalendarVisible = false;
+                    this.isTimeVisible = false;
 
                 };
 
                 this.ChangeCalendarStatus = function () {
-                    this.isCalendarVisible ? this.isCalendarVisible = false : this.isCalendarVisible = true;
+                    if (this.isCalendarVisible) {
+                        this.isCalendarVisible = false;
+                    } else if (this.isTimeVisible) {
+                        this.isTimeVisible = false;
+                        this.isCalendarVisible = true;
+                    }
+                    else {
+                        this.isCalendarVisible = true;
+                    }
                 };
 
                 this.ChangeTimeStatus = function () {
-                    this.isTimeVisible ? this.isTimeVisible = false : this.isTimeVisible = true;
+                    if (this.isTimeVisible) {
+                        this.isTimeVisible = false;
+                    }
+                    else if (this.isCalendarVisible) {
+                        this.isTimeVisible = true;
+                        this.isCalendarVisible = false;
+                    }
+                    else {
+                        this.isTimeVisible = true;
+                    }
                 };
 
             }]

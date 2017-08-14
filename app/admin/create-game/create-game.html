@@ -3,14 +3,14 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="col-md-3">
                 <div ng-click="$ctrl.ChangeCalendarStatus()">
-                    <label class="control-label data-picker-label" for="game-calendar"
-                           ng-click="$ctrl.ChangeCalendarStatus()">
+                    <label class="control-label data-picker-label" for="game-calendar">
                         <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
                     </label>
                     <span> {{$ctrl.gameDate.toLocaleDateString()}}</span>
                 </div>
                 <div class="picker" ng-show="$ctrl.isCalendarVisible">
-                    <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"></div>
+                    <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
+                         datepicker-options="$ctrl.options"></div>
                 </div>
 
 

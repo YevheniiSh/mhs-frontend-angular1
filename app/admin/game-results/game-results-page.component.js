@@ -1,13 +1,13 @@
-angular.module('showResult')
-    .component('showResult', {
-        templateUrl: 'admin/show-result/show-result.html',
+angular.module('gameResultsPage')
+    .component('gameResultsPage', {
+        templateUrl: 'admin/game-results/game-results-page.html',
         controller: ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$rootScope', '$location', '$window','userAuthService', function (ResultService, GameService, $routeParams, $rootScope, $location, $window,auth) {
 
 
             this.$onInit = onInit;
 
-            this.getDetails = function (teamResult) {
-                $location.path(`/show-team-result/${$routeParams.gameId}/${teamResult.teamId}`);
+            this.teamResults = function () {
+                $window.open($window.location.origin + `/#!/games/${$routeParams.gameId}/results-presentation`, ``, `width=${screen.availWidth},height=${screen.availHeight}`);
             };
 
             function onInit() {
