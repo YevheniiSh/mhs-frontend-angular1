@@ -7,7 +7,7 @@ angular.module('gameResultsPage')
             this.$onInit = onInit;
 
             this.teamResults = function () {
-                $window.open($window.location.origin + `/#!/games/${$routeParams.gameId}/results-presentation`, ``, `width=auto,height=auto`);
+                $window.open($window.location.origin + `/#!/games/${$routeParams.gameId}/results-presentation`, ``, `width=${screen.availWidth},height=${screen.availHeight}`);
             };
 
             function onInit() {
