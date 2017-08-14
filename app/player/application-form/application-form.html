@@ -53,8 +53,8 @@
                   Minimum 10 numbers</span>
                 <span ng-show="request.phone.$error.maxlength" class="err">
                   Maximum 13 numbers</span>
-                <!--<span ng-show="request.phone.$invalid && !(request.phone.$error.minlength || request.phone.$error.maxlength)" class="err">-->
-                <!--Wrong format</span>-->
+                <span ng-show="request.phone.$invalid && request.phone.$dirty && request.phone.$isEmpty && !(request.phone.$error.minlength || request.phone.$error.maxlength)" class="err">
+                              Wrong format</span>
 
                 <label for="captain-phone" class="control-label"> Captain phone number </label>
             </div>
