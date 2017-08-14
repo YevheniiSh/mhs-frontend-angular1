@@ -19,7 +19,19 @@
             vm.phone = '';
             vm.teamSize = 4;
             vm.submitted = false;
+            vm.isAutocomplete = false;
             vm.selectedTeam = {};
+        }
+
+
+        function onInit() {
+            initRegisterForm();
+
+            getGameDate();
+
+            getTeams();
+
+            watchSelectedTeam();
         }
 
         function watchSelectedTeam() {
@@ -38,12 +50,29 @@
         }
 
         function setupVerifyByPhoneNumber(team) {
-            vm.verifyNumber = '';
-            teamRequestService
-                .getTeamRequests(team.$id)
-                .then((res) => {
-                    console.log(res)
-                })
+            vm.last3digits = '';
+            $scope.$watch(() => {
+                return vm.last3digits;
+            }, (last3digits) => {
+                // if (last3digits.length === 3) {
+                //     teamRequestService
+                //         .getTeamRequests(gameId)
+                //         .then((res) => {
+                //             res.forEach((req) => {
+                //                 if (req.teamId === team.$id) {
+                //                     if (phoneMatchCheck(req.phone, last3digits)) {
+                //                         saveTeam(req);
+                //                     }
+                //                 }
+                //             })
+                //         })
+                // }
+            });
+        }
+
+        function phoneMatchCheck(originalPhone, last3digits, lastDigitsCount = 3) {
+            let origLast3digits = originalPhone.substring(originalPhone.length - lastDigitsCount, originalPhone.length);
+            return parseInt(last3digits) === parseInt(origLast3digits);
         }
 
         vm.cancelVerifyByNumber = function () {
@@ -120,27 +149,5 @@
                     vm.teams = res;
                 });
         }
-
-        function onInit() {
-            initRegisterForm();
-
-            getGameDate();
-
-            getTeams();
-
-            watchSelectedTeam();
-        }
-
-        //
-        // function checkPhone(phone){
-        //     teamRequestService.getTeamRequests(vm.selectedTeam.$id)
-        //         .then(requests=>{
-        //             requests.forEach(request=>{
-        //                 if (request.phone.endsWith(phone)){
-        //                     console.log("true");
-        //                 }
-        //             })
-        //         })
-        // }
     }
 })();
