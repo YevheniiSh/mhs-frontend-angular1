@@ -2,11 +2,19 @@
 angular.module('resultSetup').factory('resultSetupService', [
     'GameServiceFactory',
     'ResultServiceFactory',
-    '$q',
-    '$routeParams',
-    function (gameFactory, ResultServiceFactory, $q, $routeParams) {
-        function getData(gameId) {
-            return gameFactory.getGameById(gameId);
+    function (gameFactory, ResultServiceFactory) {
+
+        function getGameTeams(gameId) {
+            return gameFactory.getGameTeams(gameId)
+                .then(
+                    (teams) => {
+                        return teams;
+                    },
+                    (err) => {
+                        console.log(err);
+                        throw err;
+                    }
+                )
         }
 
         function setQuizResult(result) {
@@ -56,7 +64,7 @@ angular.module('resultSetup').factory('resultSetupService', [
 
         return {
             getRound: getRound,
-            getData: getData,
+            getGameTeams: getGameTeams,
             setQuizResult: setQuizResult,
             getQuizResult: getQuizResult,
             roundIncrement: roundIncrement,
