@@ -19,34 +19,48 @@
             vm.phone = '';
             vm.teamSize = 4;
             vm.submitted = false;
-            vm.selectedTeam = '';
+            vm.selectedTeam = {};
         }
 
-        function getSelectedTeam() {
+        function watchSelectedTeam() {
             $scope.$watch(() => {
                 return vm.selectedTeam;
-            }, (newValue) => {
-                console.log(newValue);
+            }, (team) => {
+                // console.log(team);
             });
         }
 
+        vm.getTeamName = function (teamName) {
+            vm.teamName = teamName;
+        };
+
         vm.saveRequest = function () {
-            gameRequestServiceFactory.save(gameId, {
-                teamName: vm.selectedTeam.originalObject.name,
+            let team = {
                 fullName: vm.fullName,
                 phone: vm.phone,
                 teamSize: vm.teamSize,
                 status: "unconfirmed", //TODO реализовать методы для изменения состояния
-                teamId: vm.selectedTeam.originalObject.$id,
                 date: new Date().toDateString()
-            }).then(() => {
-                vm.submitted = true;
-                setTimeout(() => {
-                    $window.history.back();
-                }, 2000);
+            };
 
-            });
-            // console.log(vm.selectedTeam)
+            if (vm.selectedTeam.originalObject !== undefined || Object.keys(vm.selectedTeam).length) {
+                team.teamName = vm.selectedTeam.originalObject.name;
+                team.teamId = vm.selectedTeam.originalObject.$id;
+            } else {
+                team.teamName = vm.teamName;
+                TeamService.save({name: vm.teamName})
+                    .then((res) => {
+                        team.teamId = res.key;
+                    });
+            }
+
+            gameRequestServiceFactory.save(gameId, team)
+                .then(() => {
+                    vm.submitted = true;
+                    setTimeout(() => {
+                        $window.history.back();
+                    }, 2000);
+                });
         };
 
         vm.onBack = function () {
@@ -77,7 +91,7 @@
 
             getTeams();
 
-            getSelectedTeam();
+            watchSelectedTeam();
         }
     }
 })();
