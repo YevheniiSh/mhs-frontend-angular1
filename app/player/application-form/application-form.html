@@ -64,8 +64,10 @@
                    ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}" required>
 
-            <label for="captain-phone-validation">Enter 3 last numbers from your phone number</label>
-            <input id="captain-phone-validation" type="number" maxlength="3">
+            <div ng-show="$ctrl.isAutocomplete">
+                <label for="captain-phone-validation">Enter 3 last numbers from your phone number</label>
+                <input id="captain-phone-validation" type="tel" maxlength="3">
+            </div>
 
             <label for="team-size" class="control-label"> Team size </label>
             <input id="team-size" ng-model="$ctrl.teamSize" class="form-control" type="number" min="2" max="15"

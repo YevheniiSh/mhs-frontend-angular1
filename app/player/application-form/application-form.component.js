@@ -56,10 +56,10 @@
             }, (last3digits) => {
                 // if (last3digits.length === 3) {
                 //     teamRequestService
-                //         .getTeamRequests(gameId)
+                //         .getTeamRequests(team.$id)
                 //         .then((res) => {
                 //             res.forEach((req) => {
-                //                 if (req.teamId === team.$id) {
+                //                 if (req.teamId === team.$id) { // ???
                 //                     if (phoneMatchCheck(req.phone, last3digits)) {
                 //                         saveTeam(req);
                 //                     }
@@ -70,8 +70,8 @@
             });
         }
 
-        function phoneMatchCheck(originalPhone, last3digits, lastDigitsCount = 3) {
-            let origLast3digits = originalPhone.substring(originalPhone.length - lastDigitsCount, originalPhone.length);
+        function phoneMatchCheck(originalPhoneNumber, last3digits, lastDigitsCount = 3) {
+            let origLast3digits = originalPhoneNumber.substring(originalPhoneNumber.length - lastDigitsCount, originalPhoneNumber.length);
             return parseInt(last3digits) === parseInt(origLast3digits);
         }
 
