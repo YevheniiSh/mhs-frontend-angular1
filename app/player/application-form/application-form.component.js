@@ -8,6 +8,7 @@ angular.module('applicationForm')
             '$window',
             '$location',
             'teamRequestServiceFactory',
+            'OpenGameServiceFactory',
 
             function (TeamService, GameService, $routeParams, $window, $location, TeamRequestService, OpenGameService) {
                 let vm = this;
