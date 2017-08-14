@@ -24,17 +24,17 @@
             <!--ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"-->
             <!--required>-->
             <span><b>Team Name</b></span>
-            <angucomplete id="team-name"
-                          placeholder="Team name"
-                          pause="100"
-                          selectedobject="$ctrl.selectedTeam"
-                          localdata="$ctrl.teams"
-                          searchfields="name"
-                          titlefield="name"
-                          minlength="2"
-                          ng-maxlength="35"
-                          inputclass="form-control form-control-small">
-            </angucomplete>
+            <angucomplete-alt id="team-name"
+                              placeholder="Team name"
+                              pause="100"
+                              selected-object="$ctrl.selectedTeam"
+                              local-data="$ctrl.teams"
+                              search-fields="name"
+                              title-field="name"
+                              minlength="2"
+                              input-changed="$ctrl.getTeamName"
+                              input-class="form-control form-control-small">
+            </angucomplete-alt>
 
             <div class="captain-name-spans">
                 <label for="captain-name" class="control-label"> Captain full name </label>

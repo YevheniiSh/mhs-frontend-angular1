@@ -1,1 +1,1 @@
-angular.module('applicationForm', ['angucomplete']);
+angular.module('applicationForm', ['angucomplete-alt']);

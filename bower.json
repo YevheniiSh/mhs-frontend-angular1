@@ -17,6 +17,6 @@
     "angular-translate": "^2.15.2",
     "angular-material": "^1.1.4",
     "angular-bootstrap": "^2.5.0",
-    "angucomplete": "*"
+    "angucomplete-alt": "^3.0.0"
   }
 }

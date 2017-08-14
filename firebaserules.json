@@ -10,7 +10,7 @@
     		".write": "auth != null"
       },
       "finished":{
-        ".read": true,
+        ".read": "true",
         "$gameId":{
     			".write": "auth != null && (!data.child('winner').exists() || !newData.exists())"
         }
@@ -19,8 +19,8 @@
 
     },
       "teams":{
-        ".read": true,
-    		".write": "auth != null"
+        ".read": "true",
+        ".write": "true"
       }
   }
 }
