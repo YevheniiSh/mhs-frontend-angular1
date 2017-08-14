@@ -13,7 +13,7 @@
         vm.$onInit = onInit;
 
         vm.openGameInfo = function (gameId) {
-            $location.path('/show-result/' + gameId)
+            $location.path('/games/' + gameId + '/results')
         };
 
         function onInit() {
