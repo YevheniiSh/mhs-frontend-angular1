@@ -1,1 +1,1 @@
-angular.module('applicationForm', []);
+angular.module('applicationForm', ['angucomplete']);

@@ -1,29 +1,49 @@
-#team-name{
+#team-name {
     margin-bottom: 20px;
 }
-#captain-name{
+
+#captain-name {
     margin-bottom: 20px;
 }
-#captain-phone{
+
+#captain-phone {
     margin-bottom: 20px;
 }
-#team-size{
+
+#team-size {
     margin-bottom: 20px;
     width: 75px;
 }
-.form-control.ng-invalid.ng-not-empty{
+
+.form-control.ng-invalid.ng-not-empty {
     border-color: #ff9b9b;
     box-shadow: 0 0 20px 0 #ff9b9b;
 }
-.header{
+
+.header {
     text-align: center;
     margin-bottom: 20px;
 }
-form { display: block; width: 550px; margin: auto; }
-input{ margin-top: 5px;}
-span.err { color: #f00;
-    float: right;}
-label{
+
+form {
+    display: block;
+    width: 550px;
+    margin: auto;
+}
+
+input {
+    margin-top: 5px;
+}
+
+span.err {
+    color: #f00;
+    float: right;
+}
+
+label {
     margin: 0;
 }
 
+#team-name_dropdown {
+    width: 95%;
+}

@@ -12,17 +12,30 @@
             </div>
 
 
-            <div class="team-name-spans">
-                <label for="team-name" class="control-label"> Team name </label>
-                <span ng-show="request.team.$error.minlength" class="err">
-                  Minimum 3 characters</span>
-                <span ng-show="request.team.$error.maxlength" class="err">
-                  Maximum 40 characters</span>
-            </div>
-            <input id="team-name" class="form-control" placeholder="Team name"
-                   type="text" name="team" ng-model="$ctrl.teamName" ng-maxlength="35" minlength="2"
-                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
-                   required>
+            <!--<div class="team-name-spans">-->
+            <!--<label for="team-name" class="control-label"> Team name </label>-->
+            <!--<span ng-show="request.team.$error.minlength" class="err">-->
+            <!--Minimum 3 characters</span>-->
+            <!--<span ng-show="request.team.$error.maxlength" class="err">-->
+            <!--Maximum 40 characters</span>-->
+            <!--</div>-->
+            <!--<input id="team-name" class="form-control" placeholder="Team name"-->
+            <!--type="text" name="team" ng-model="$ctrl.teamName" ng-maxlength="35" minlength="2"-->
+            <!--ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"-->
+            <!--required>-->
+            <span><b>Team Name</b></span>
+            <angucomplete id="team-name"
+                          placeholder="Team name"
+                          pause="100"
+                          selectedobject="team"
+                          localdata="$ctrl.teams"
+                          searchfields="name"
+                          titlefield="name"
+                          minlength="2"
+                          ng-maxlength="35"
+                          ng-model="$ctrl.teamName"
+                          inputclass="form-control form-control-small">
+            </angucomplete>
 
             <div class="captain-name-spans">
                 <label for="captain-name" class="control-label"> Captain full name </label>
@@ -42,7 +55,7 @@
                 <span ng-show="request.phone.$error.maxlength" class="err">
                   Maximum 13 numbers</span>
                 <!--<span ng-show="request.phone.$invalid && !(request.phone.$error.minlength || request.phone.$error.maxlength)" class="err">-->
-                              <!--Wrong format</span>-->
+                <!--Wrong format</span>-->
 
                 <label for="captain-phone" class="control-label"> Captain phone number </label>
             </div>
@@ -52,7 +65,8 @@
                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}" required>
 
             <label for="team-size" class="control-label"> Team size </label>
-            <input id="team-size" ng-model="$ctrl.teamSize" class="form-control" type="number" min="2" max="15" required>
+            <input id="team-size" ng-model="$ctrl.teamSize" class="form-control" type="number" min="2" max="15"
+                   required>
 
             <button class=" btn btn-success btn-block" type="submit"> Submit</button>
             <div class="alert alert-dismissible alert-success" ng-show="$ctrl.submitted">

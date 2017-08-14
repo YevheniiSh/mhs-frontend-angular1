@@ -30,36 +30,46 @@
                 status: "unconfirmed", //TODO реализовать методы для изменения состояния
                 teamId: "",         // TODO проверять есть ли такая команда
                 date: new Date().toDateString()
-            })
-                .then(() => {
-                    vm.submitted = true;
-                    setTimeout(() => {
-                        $window.history.back();
-                    }, 2000);
+            }).then(() => {
+                vm.submitted = true;
+                setTimeout(() => {
+                    $window.history.back();
+                }, 2000);
 
-                })
+            })
         };
 
-        vm.tets = function () {
-            TeamService.getAllTeams()
-                .then((res) => {
-                    let auto = res.filter((team) => {
-                        return team.name.startsWith(vm.teamName);
-                    });
-                    console.log(auto)
-                })
+        vm.onChange = function () {
+            console.log(vm.teamName)
         };
 
         vm.onBack = function () {
             $window.history.back();
         };
 
+        function getGameDate() {
+            OpenGameService
+                .getOpenGameById(gameId)
+                .then((res) => {
+                        vm.gameDate = new Date(res.date).toLocaleDateString()
+                    }
+                );
+        }
+
+        function getTeams() {
+            TeamService
+                .getAllTeams()
+                .then((res) => {
+                    vm.teams = res;
+                });
+        }
+
         function onInit() {
             initRegisterForm();
-            OpenGameService.getOpenGameById(gameId).then((res) => {
-                    vm.gameDate = new Date(res.date).toLocaleDateString()
-                }
-            )
+
+            getGameDate();
+
+            getTeams();
         }
     }
 })();
