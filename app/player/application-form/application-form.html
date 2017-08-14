@@ -37,7 +37,7 @@
             </div>
             <input id="captain-name" class="form-control" placeholder="John Doe"
                    name="name" ng-model="$ctrl.fullName" ng-maxlength="40" minlength="3"
-                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}"
+                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
                    required>
 
             <div class="phone-spans">
@@ -45,7 +45,7 @@
                   Minimum 10 numbers</span>
                 <span ng-show="request.phone.$error.maxlength" class="err">
                   Maximum 13 numbers</span>
-                <span ng-show="request.phone.$invalid && request.phone.$dirty && request.phone.$isEmpty && !(request.phone.$error.minlength || request.phone.$error.maxlength)" class="err">
+                <span ng-show="request.phone.$invalid && request.phone.$dirty && !(request.phone.$error.minlength || request.phone.$error.maxlength) && !(request.phone.$error.required && request.phone.$touched)" class="err">
                               Wrong format</span>
                 <span ng-show="request.phone.$error.required && request.phone.$touched" class="err">
                   Field can not be empty</span>
