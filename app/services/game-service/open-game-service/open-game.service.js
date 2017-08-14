@@ -120,7 +120,7 @@
 
         function getTeams(gameId) {
             let obj = new $firebaseArray(openGamesRef.child(gameId).child('teams'));
-            return obj;
+            return obj.$loaded();
         }
 
     }

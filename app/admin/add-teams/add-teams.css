@@ -38,22 +38,33 @@ select {
     font-weight: bold;
 }
 
-.scroll-panel{
-    height: 500px;
+.request-details {
+    margin-left: 5%;
+    font-size: 14px;
+    padding: 5px;
+    width: 70%;
+}
+
+.request-details p {
+    margin: 0;
+}
+
+.scroll-panel {
+    height: 400px;
     overflow-y: auto;
     overflow-x: hidden;
     white-space: nowrap;
     border: solid 2px lightgrey;
     border-radius: 10px;
-    padding-top: 20px ;
+    padding-top: 20px;
     margin-top: 10px;
 }
 
-.selected{
+.selected {
     background-color: #5bc0de;
 }
 
-.list-item{
+.list-item {
     text-align: left;
     width: 70%;
     margin: 0px;
@@ -61,23 +72,22 @@ select {
     font-weight: bold;
 }
 
-
 .scroll-panel::-webkit-scrollbar {
     width: 16px;
 }
 
 .scroll-panel::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
 }
 
 .scroll-panel::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.6);
 }
 
-.selected-tabs{
-    background-color:silver;
+.selected-tabs {
+    background-color: silver;
 }
 
 .animate-teams, .animate-requests {
@@ -87,18 +97,18 @@ select {
 }
 
 .animate-teams.ng-enter {
-    transition: 0.7s linear all;
+    transition: 0.4s linear all;
     opacity: 0;
     transform: translateX(-100%);
 }
 
 .animate-teams.ng-enter.ng-enter-active {
-    opacity: 1 ;
+    opacity: 1;
     transform: translateX(0);
 }
 
 .animate-teams.ng-leave {
-    transition: 0.35s linear all;
+    transition: 0.2s linear all;
     opacity: 1;
     transform: translateX(0);
 }
@@ -108,20 +118,19 @@ select {
     transform: translateX(-100%);
 }
 
-
 .animate-requests.ng-enter {
-    transition: 0.7s linear all;
+    transition: 0.4s linear all;
     opacity: 0;
     transform: translateX(100%);
 }
 
 .animate-requests.ng-enter.ng-enter-active {
-    opacity: 1 ;
+    opacity: 1;
     transform: translateX(0);
 }
 
 .animate-requests.ng-leave {
-    transition: 0.35s linear all;
+    transition: 0.2s linear all;
     opacity: 1;
     transform: translateX(0);
 }
@@ -129,4 +138,27 @@ select {
 .animate-requests.ng-leave.ng-leave-active {
     opacity: 0;
     transform: translateX(100%);
+}
+
+.request-details.ng-hide-add {
+    transition: 0.2s linear all;
+    opacity: 1;
+    transform: translateY(0);
+
+}
+
+.request-details.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+    transform: translateY(-50%);
+}
+
+.request-details.ng-hide-remove {
+    transition: 0.2s linear all;
+    opacity: 0;
+    transform: translateY(-50%);
+}
+
+.request-details.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+    transform: translateY(0);
 }
