@@ -36,19 +36,19 @@
                               input-class="form-control form-control-small">
             </angucomplete-alt>
 
-            <div ng-show="$ctrl.isAutocomplete" class="captain-name-spans">
+            <div ng-hide="$ctrl.isAutocomplete" class="captain-name-spans">
                 <label for="captain-name" class="control-label"> Captain full name </label>
                 <span ng-show="request.name.$error.minlength" class="err">
                   Minimum 3 characters</span>
                 <span ng-show="request.name.$error.maxlength" class="err">
                   Maximum 40 characters</span>
             </div>
-            <input ng-show="$ctrl.isAutocomplete" id="captain-name" class="form-control" placeholder="John Doe"
+            <input ng-hide="$ctrl.isAutocomplete" id="captain-name" class="form-control" placeholder="John Doe"
                    name="name" ng-model="$ctrl.fullName" ng-maxlength="40" minlength="3"
                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}"
                    required>
 
-            <div ng-show="$ctrl.isAutocomplete" class="phone-spans">
+            <div ng-hide="$ctrl.isAutocomplete" class="phone-spans">
                 <span ng-show="request.phone.$error.minlength" class="err">
                   Minimum 10 numbers</span>
                 <span ng-show="request.phone.$error.maxlength" class="err">
@@ -59,7 +59,7 @@
 
                 <label for="captain-phone" class="control-label"> Captain phone number </label>
             </div>
-            <input ng-show="$ctrl.isAutocomplete" id="captain-phone" class="form-control" placeholder="xxx xxx xxxx"
+            <input ng-hide="$ctrl.isAutocomplete" id="captain-phone" class="form-control" placeholder="xxx xxx xxxx"
                    type="text" ng-model="$ctrl.phone" name="phone" maxlength="13" minlength="10"
                    ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}" required>

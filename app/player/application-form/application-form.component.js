@@ -26,19 +26,24 @@
             $scope.$watch(() => {
                 return vm.selectedTeam;
             }, (team) => {
-                setupVerifyByPhoneNumber(team.originalObject);
+                if (vm.selectedTeam === undefined) {
+                    vm.isAutocomplete = false;
+                    return;
+                }
+                if (Object.keys(vm.selectedTeam).length !== 0) {
+                    vm.isAutocomplete = true;
+                    setupVerifyByPhoneNumber(team.originalObject);
+                }
             });
         }
 
         function setupVerifyByPhoneNumber(team) {
             vm.verifyNumber = '';
-            vm.isAutocomplete = true;
-            console.log(vm.isAutocomplete)
-            // teamRequestService
-            //     .getTeamRequests(team.$id)
-            //     .then((res) => {
-            //
-            //     })
+            teamRequestService
+                .getTeamRequests(team.$id)
+                .then((res) => {
+                    console.log(res)
+                })
         }
 
         vm.cancelVerifyByNumber = function () {
