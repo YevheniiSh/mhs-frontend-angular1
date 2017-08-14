@@ -19,12 +19,14 @@ angular
                 finishGame: finishGame,
                 publishGame: publishGame,
                 getGameRef: getGameRef,
+                getAllCurrentGames: getAllCurrentGames,
                 getAllFinishedGames: getAllFinishedGames,
                 getGameStatus: getGameStatus,
                 getDate:getDate,
                 startGame:startGame,
                 getGameTeams: getGameTeams,
                 removeTeamFromGame: removeTeamFromGame,
+                reOpenGame: reOpenGame,
                 addTeamToGame:addTeamToGame
             };
 
@@ -67,6 +69,15 @@ angular
             function startGame(gameId) {
                 openGameServiceFactory.getOpenGameById(gameId).then((res) => {
                     let obj = new $firebaseObject(currentGameRef.child(gameId));
+                    obj.$value = getObject(res);
+                    obj.$save();
+                    res.$remove();
+                });
+            }
+
+            function reOpenGame(gameId) {
+                getCurrentGameById(gameId).then((res) => {
+                    let obj = new $firebaseObject(openedGameRef.child(gameId));
                     obj.$value = getObject(res);
                     obj.$save();
                     res.$remove();
@@ -128,6 +139,11 @@ angular
 
             function getAllFinishedGames() {
                 return new $firebaseArray(finishedGameRef)
+                    .$loaded();
+            }
+
+            function getAllCurrentGames() {
+                return new $firebaseArray(currentGameRef)
                     .$loaded();
             }
 

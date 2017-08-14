@@ -4,6 +4,9 @@
         <uib-tab heading="Open games">
             <open-game-list></open-game-list>
         </uib-tab>
+        <uib-tab heading="Current games" ng-if="$ctrl.auth">
+            <current-game-list></current-game-list>
+        </uib-tab>
         <uib-tab heading="Finished games">
             <finished-game-list></finished-game-list>
         </uib-tab>
