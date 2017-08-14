@@ -18,6 +18,8 @@
                   Minimum 3 characters</span>
                 <span ng-show="request.team.$error.maxlength" class="err">
                   Maximum 40 characters</span>
+                <span ng-show="request.team.$error.required && request.team.$touched" class="err">
+                  Field can not be empty</span>
             </div>
             <input id="team-name" class="form-control" placeholder="Team name"
                    type="text" name="team" ng-model="$ctrl.teamName" ng-maxlength="35" minlength="2"
@@ -30,6 +32,8 @@
                   Minimum 3 characters</span>
                 <span ng-show="request.name.$error.maxlength" class="err">
                   Maximum 40 characters</span>
+                <span ng-show="request.name.$error.required && request.name.$touched" class="err">
+                  Field can not be empty</span>
             </div>
             <input id="captain-name" class="form-control" placeholder="John Doe"
                    name="name" ng-model="$ctrl.fullName" ng-maxlength="40" minlength="3"
@@ -43,7 +47,8 @@
                   Maximum 13 numbers</span>
                 <span ng-show="request.phone.$invalid && request.phone.$dirty && request.phone.$isEmpty && !(request.phone.$error.minlength || request.phone.$error.maxlength)" class="err">
                               Wrong format</span>
-
+                <span ng-show="request.phone.$error.required && request.phone.$touched" class="err">
+                  Field can not be empty</span>
                 <label for="captain-phone" class="control-label"> Captain phone number </label>
             </div>
             <input id="captain-phone" class="form-control" placeholder="xxx xxx xxxx"
