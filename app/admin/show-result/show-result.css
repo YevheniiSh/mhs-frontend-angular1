@@ -1,0 +1,16 @@
+/*.container,html{*/
+/*height: 100%;*/
+/*}*/
+td{
+    font-size: 20px;
+    PADDING: 2PX;
+}
+
+th{
+    font-size: 23px;
+}
+h1{
+
+    border-bottom: solid 1px;
+    text-align: center;
+}

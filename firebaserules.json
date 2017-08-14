@@ -1,6 +1,10 @@
 {
   "rules": {
     "games":{
+      "open":{
+        ".read": "true",
+    		".write": "true"
+      },
       "current":{
         ".read": "auth != null",
     		".write": "auth != null"

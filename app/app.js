@@ -13,6 +13,8 @@ angular.module('mhs', [
     'firebaseDataService',
     'userAuthService',
     'internalisation',
+    'openGameService',
+    'gameRequestService'
 ]).config(['$locationProvider', '$routeProvider',
     function ($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');

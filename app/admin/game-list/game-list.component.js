@@ -33,6 +33,5 @@
         }).catch((err) => {
             vm.auth = false;
         });
-        console.log(this.auth);
     }
 })();

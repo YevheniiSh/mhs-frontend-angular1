@@ -10,63 +10,46 @@ angular
         'login',
         'login-panel',
         'game-list',
-        'ui.bootstrap'])
+        'createGame',
+        'configGame',
+        'ui.bootstrap',
+        'teamList',
+        'navbar'])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/setup-game-type/:gameId', {
-            template: '<game-type></game-type>',
-            css: 'admin/game-build/game-type/game-type.css',
-            resolve: {
-                currentUser: ['userAuthService', function (auth) {
-                    return auth.currentUser();
-                }]
-            }
-        });
-        $routeProvider.when('/add-teams', {
-            template: '<add-teams></add-teams>',
-            css: 'admin/add-teams/add-teams.css',
-            resolve: {
-                currentUser: ['userAuthService', function (auth) {
-                    return auth.currentUser();
-                }]
-            }
-        });
+
+        let isAuth = {
+            currentUser: ['userAuthService', function (auth) {
+                return auth.currentUser();
+            }]
+        };
 
         $routeProvider.when('/result-setup/:gameId/:roundNumber/:quizNumber', {
             template: '<result-setup></result-setup>',
             css: 'admin/result-setup/result-setup-page.css',
-            resolve: {
-                currentUser: ['userAuthService', function (auth) {
-                    return auth.currentUser();
-                }]
-            }
-        });
-        $routeProvider.when('/edit-result/:gameId', {
-            template: '<result-editor></result-editor>',
-            css: 'admin/result-editor/result-editor.css',
-            resolve: {
-                currentUser: ['userAuthService', function (auth) {
-                    return auth.currentUser();
-                }]
-            }
+            resolve: isAuth
         });
         $routeProvider.when('/round-status/:gameId', {
             template: '<round-status></round-status>',
-            resolve: {
-                currentUser: ['userAuthService', function (auth) {
-                    return auth.currentUser();
-                }]
-            }
+            resolve: isAuth
         });
         $routeProvider.when('/login', {
             template: '<login></login>',
             css: 'admin/login/login.css'
         });
-        $routeProvider.when('/login-panel', {
-            template: '<login-panel></login-panel>'
-        });
         $routeProvider.when('/game-list', {
             template: '<game-list></game-list>',
-            css:'admin/game-list/game-list.css'
+            css: 'admin/game-list/game-list.css'
+        });
+        $routeProvider.when('/all-teams', {
+            template: '<team-list></team-list>',
+            css: 'admin/team-list/team-list.css'
+        });
+        $routeProvider.when('/create-game', {
+            template: '<create-game></create-game>',
+        });
+        $routeProvider.when('/config-game/:gameId', {
+            template: '<config-game></config-game>',
+            resolve: isAuth
         });
         $routeProvider.when('/games/:gameId/results', {
             template: '<game-results-page></game-results-page>',
