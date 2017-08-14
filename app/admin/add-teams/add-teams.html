@@ -4,7 +4,7 @@
             <uib-tab heading="Unconfirmed">
                 <ul class="scroll-panel">
                     <li class="animate-requests"
-                        ng-repeat="team in $ctrl.requests |orderBy:'teamName'| filter:{status:'unconfirmed'}">
+                        ng-repeat="team in $ctrl.requests | filter:{status:'unconfirmed'}">
                         <span class="btn list-item" ng-click="showDetails = ! showDetails">{{team.teamName}}</span>
                         <span class="btn" ng-click="$ctrl.archivateRequest(team.$id)">
                             <i class="fa fa-archive" aria-hidden="true"></i>
@@ -24,7 +24,7 @@
             <uib-tab heading="Archived">
                 <ul class="scroll-panel">
                     <li class="animate-requests"
-                        ng-repeat="team in $ctrl.requests |orderBy:'teamName'| filter:{status:'archived'}"
+                        ng-repeat="team in $ctrl.requests | filter:{status:'archived'}"
                     >
                         <span class="btn list-item" ng-click="showDetails = ! showDetails">{{team.teamName}}</span>
                         <span class="btn" ng-click="$ctrl.unArchivateRequest(team.$id)"><i class="fa fa-archive"
