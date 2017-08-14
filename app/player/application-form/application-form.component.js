@@ -26,9 +26,24 @@
             $scope.$watch(() => {
                 return vm.selectedTeam;
             }, (team) => {
-                // console.log(team);
+                setupVerifyByPhoneNumber(team.originalObject);
             });
         }
+
+        function setupVerifyByPhoneNumber(team) {
+            vm.verifyNumber = '';
+            vm.isAutocomplete = true;
+            console.log(vm.isAutocomplete)
+            // teamRequestService
+            //     .getTeamRequests(team.$id)
+            //     .then((res) => {
+            //
+            //     })
+        }
+
+        vm.cancelVerifyByNumber = function () {
+            vm.isAutocomplete = false;
+        };
 
         vm.getTeamName = function (teamName) {
             vm.teamName = teamName;
@@ -43,7 +58,7 @@
                 date: new Date().toDateString()
             };
 
-            if (vm.selectedTeam === undefined) {
+            if (vm.selectedTeam === undefined || Object.keys(vm.selectedTeam).length === 0) {
                 TeamService
                     .checkTeamNameCoincidence(vm.teamName)
                     .then((res) => {
@@ -57,10 +72,6 @@
                             saveTeam(team);
                         } else {
                             team.teamName = vm.teamName;
-                            TeamService.save({name: vm.teamName})
-                                .then((res) => {
-                                    team.teamId = res.key;
-                                });
                             saveTeam(team);
                         }
                     });
@@ -114,6 +125,7 @@
 
             watchSelectedTeam();
         }
+
         //
         // function checkPhone(phone){
         //     teamRequestService.getTeamRequests(vm.selectedTeam.$id)
