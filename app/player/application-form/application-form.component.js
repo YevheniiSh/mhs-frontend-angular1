@@ -5,15 +5,16 @@ angular.module('applicationForm')
         controller: ['TeamServiceFactory',
             'GameServiceFactory',
             '$routeParams',
-            '$location',
+            '$window',
             'teamRequestServiceFactory',
 
-            function (TeamService, GameService, $routeParams, $location, TeamRequestService) {
+            function (TeamService, GameService, $routeParams, $window, TeamRequestService) {
                 let vm = this;
                 vm.teamName = "";
                 vm.fullName = "";
                 vm.phone = "";
                 vm.teamSize = 4;
+                vm.submitted = false;
                 let gameId = $routeParams.gameId;
 
                 vm.saveRequest = function () {
@@ -26,6 +27,13 @@ angular.module('applicationForm')
                         teamId: "",         // TODO проверять есть ли такая команда
                         date: new Date().toDateString()
                     })
+                        .then((res) => {
+                            vm.submitted = true;
+                            setTimeout(() => {
+                                $window.history.back();
+                            }, 2000);
+
+                        })
                 };
 
             }
