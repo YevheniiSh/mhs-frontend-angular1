@@ -22,12 +22,12 @@ angular
                 return auth.currentUser();
             }]
         };
-        $routeProvider.when('/result-setup/:gameId/:roundNumber/:quizNumber', {
+        $routeProvider.when('/games/:gameId/rounds/:roundNumber/:quizNumber', {
             template: '<result-setup></result-setup>',
             css: 'admin/result-setup/result-setup-page.css',
             resolve: isAuth
         });
-        $routeProvider.when('/round-status/:gameId', {
+        $routeProvider.when('/games/:gameId/rounds', {
             template: '<round-status></round-status>',
             resolve: isAuth
         });
@@ -35,18 +35,18 @@ angular
             template: '<login></login>',
             css: 'admin/login/login.css'
         });
-        $routeProvider.when('/game-list', {
+        $routeProvider.when('/games', {
             template: '<game-list></game-list>',
             css: 'admin/game-list/game-list.css'
         });
-        $routeProvider.when('/all-teams', {
+        $routeProvider.when('/teams', {
             template: '<team-list></team-list>',
             css: 'admin/team-list/team-list.css'
         });
         $routeProvider.when('/create-game', {
             template: '<create-game></create-game>',
         });
-        $routeProvider.when('/config-game/:gameId', {
+        $routeProvider.when('/config/:gameId', {
             template: '<config-game></config-game>',
             resolve: isAuth
         });

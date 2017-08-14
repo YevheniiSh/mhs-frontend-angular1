@@ -57,6 +57,8 @@
         function onInit() {
             initRegisterForm();
             OpenGameService.getOpenGameById(gameId).then((res) => {
+                if(res.date === undefined)
+                    $location.path(`/games`);
                     vm.gameDate = new Date(res.date).toLocaleDateString()
                 }
             )
