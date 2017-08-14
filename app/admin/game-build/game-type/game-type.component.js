@@ -43,7 +43,13 @@ function GameType(GameService, $routeParams, $location) {
     };
 
     vm.saveRounds = function () {
-        GameService.addRounds(gameId, rounds)
+        vm.submitted = false;
+        GameService.addRounds(gameId, rounds);
+        vm.submitted = true;
     };
+
+    vm.dissmiss = function () {
+        vm.submitted = false;
+    }
 
 }
