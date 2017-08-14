@@ -15,6 +15,10 @@
     border-color: #ff9b9b;
     box-shadow: 0 0 20px 0 #ff9b9b;
 }
+.header{
+    text-align: center;
+    margin-bottom: 20px;
+}
 form { display: block; width: 550px; margin: auto; }
 input{ margin-top: 5px;}
 span.err { color: #f00;
