@@ -11,7 +11,8 @@ angular
                 getById: getById,
                 getAllTeams: getAllTeams,
                 getByGame: getByGame,
-                isTeamNameExist: isTeamNameExist
+                isTeamNameExist: isTeamNameExist,
+                changeTeamName: changeTeamName,
             };
 
             function save(team) {
@@ -72,6 +73,16 @@ angular
 
             function isTeamNameExist(teamName) {
                 return new $firebaseArray(firebaseDataService.teams.orderByChild('name').equalTo(teamName)).$loaded();
+            }
+
+            function changeTeamName(teamId, newTeamName) {
+                let obj = $firebaseObject(teamRef.child(teamId));
+                obj.name = newTeamName;
+                obj.$save();
+                return obj.$loaded()
+                    .then((res) => {
+                        return res;
+                    })
             }
         }]
     );
