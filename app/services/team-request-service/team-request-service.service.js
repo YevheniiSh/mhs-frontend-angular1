@@ -20,6 +20,7 @@ angular.module('teamRequestService')
             function updateTeamId(gameId, request) {
                 let requestTeamId = new $firebaseObject(openGameRef.child(`${gameId}/requests/${request.$id}/teamId/`));
                 requestTeamId.$value = request.teamId;
+                console.log(request.teamId);
                 return requestTeamId.$save()
                     .then((res) => {
                         return res.$value;
