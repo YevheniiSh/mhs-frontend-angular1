@@ -1,2 +1,7 @@
 .login-panel {
+    padding-top: 12px;
+}
+
+.auth-info {
+    padding-top: 2px;
 }

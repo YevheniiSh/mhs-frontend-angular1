@@ -6,9 +6,10 @@ angular.module('applicationForm')
             'GameServiceFactory',
             '$routeParams',
             '$window',
+            '$location',
             'teamRequestServiceFactory',
 
-            function (TeamService, GameService, $routeParams, $window, TeamRequestService) {
+            function (TeamService, GameService, $routeParams, $window, $location, TeamRequestService, OpenGameService) {
                 let vm = this;
                 vm.teamName = "";
                 vm.fullName = "";
@@ -36,6 +37,14 @@ angular.module('applicationForm')
                         })
                 };
 
+                vm.onBack = function () {
+                    $location.path(`/game-list`);
+                };
+
+                OpenGameService.getOpenGameById(gameId).then((res) => {
+                        vm.gameDate = new Date(res.date).toLocaleDateString()
+                    }
+                )
             }
         ]
     });

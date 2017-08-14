@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-3 content">
         <form ng-submit="$ctrl.saveRounds()">
 
             <div ng-hide="$ctrl.rounds.length <1">
@@ -11,8 +11,8 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="round in $ctrl.rounds">
-                        <td class="round-number">
-                            {{round.sequenceNumber}}
+                        <td class="td-round-number">
+                            <div class="round-number">{{round.sequenceNumber}}</div>
                         </td>
                         <td>
                             <div class="round-name">
@@ -35,12 +35,12 @@
             </div>
 
             <a ng-hide="$ctrl.rounds.length >9"
-               ng-click="$ctrl.addRound()" class=" btn btn-success btn-block"> Add
+               ng-click="$ctrl.addRound()" class=" btn btn-info btn-block"> Add
                 Round
             </a>
-            <button ng-hide="$ctrl.rounds.length <1" id="game-build" class=" btn btn-info btn-block"
+            <button ng-hide="$ctrl.rounds.length <1" id="btn-save" class="btn btn-success btn-block"
                     type="submit">
-                Build
+                Save
             </button>
 
         </form>

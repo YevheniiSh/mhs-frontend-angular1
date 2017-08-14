@@ -39,8 +39,8 @@
 </div>
 
 <div class="container">
+    <navbar></navbar>
     <div class="main-panel">
-        <login-panel></login-panel>
         <div ng-show="!loading" ng-view></div>
     </div>
 </div>
@@ -74,6 +74,8 @@
 <script src="services/team-request-service/team-request-service.service.js"></script>
 <script src="admin/create-game/create-game.module.js"></script>
 <script src="services/result-service/result-service.service.js"></script>
+<script src="admin/team-list/team-list.module.js"></script>
+<script src="admin/team-list/team-list.component.js"></script>
 <script src="app.js"></script>
 <script src="player/player.js"></script>
 <script src="admin/admin.js"></script>
@@ -132,5 +134,8 @@
 <script src="services/round-service/round-service.module.js"></script>
 <script src="services/round-service/round-service.service.js"></script>
 <script src="services/firebase-service/dbConfig.js"></script>
+
+<script src="admin/navbar/navbar.module.js"></script>
+<script src="admin/navbar/navbar.component.js"></script>
 </body>
 </html>
