@@ -39,21 +39,42 @@
                 fullName: vm.fullName,
                 phone: vm.phone,
                 teamSize: vm.teamSize,
-                status: "unconfirmed", //TODO реализовать методы для изменения состояния
+                status: "unconfirmed",
                 date: new Date().toDateString()
             };
 
-            if (vm.selectedTeam.originalObject !== undefined || Object.keys(vm.selectedTeam).length) {
-                team.teamName = vm.selectedTeam.originalObject.name;
-                team.teamId = vm.selectedTeam.originalObject.$id;
-            } else {
-                team.teamName = vm.teamName;
-                TeamService.save({name: vm.teamName})
+            if (vm.selectedTeam === undefined) {
+                TeamService
+                    .checkTeamNameCoincidence(vm.teamName)
                     .then((res) => {
-                        team.teamId = res.key;
+                        if (res) {
+                            vm.teams.forEach((teamFromAllTeams) => {
+                                if (teamFromAllTeams.name === vm.teamName) {
+                                    team.teamName = teamFromAllTeams.name;
+                                    team.teamId = teamFromAllTeams.$id;
+                                }
+                            });
+                            saveTeam(team);
+                        } else {
+                            team.teamName = vm.teamName;
+                            TeamService.save({name: vm.teamName})
+                                .then((res) => {
+                                    team.teamId = res.key;
+                                });
+                            saveTeam(team);
+                        }
                     });
+                return;
             }
 
+            if (Object.keys(vm.selectedTeam).length !== 0) {
+                team.teamName = vm.selectedTeam.originalObject.name;
+                team.teamId = vm.selectedTeam.originalObject.$id;
+                saveTeam(team);
+            }
+        };
+
+        function saveTeam(team) {
             gameRequestServiceFactory.save(gameId, team)
                 .then(() => {
                     vm.submitted = true;
@@ -61,7 +82,7 @@
                         $window.history.back();
                     }, 2000);
                 });
-        };
+        }
 
         vm.onBack = function () {
             $window.history.back();
