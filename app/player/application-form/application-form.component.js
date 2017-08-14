@@ -6,29 +6,38 @@
             controller: TeamRegister
         });
 
-    TeamRegister.$inject = ['TeamServiceFactory', 'GameServiceFactory', '$routeParams', '$window', '$location', 'gameRequestServiceFactory', 'OpenGameServiceFactory'];
+    TeamRegister.$inject = ['TeamServiceFactory', 'GameServiceFactory', '$routeParams', '$window', '$location', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope'];
 
-    function TeamRegister(TeamService, GameService, $routeParams, $window, $location, gameRequestServiceFactory, OpenGameService) {
+    function TeamRegister(TeamService, GameService, $routeParams, $window, $location, gameRequestServiceFactory, OpenGameService, $scope) {
         let vm = this;
         vm.$onInit = onInit;
         let gameId = $routeParams.gameId;
 
         function initRegisterForm() {
-            vm.teamName = "";
-            vm.fullName = "";
-            vm.phone = "";
+            vm.teamName = '';
+            vm.fullName = '';
+            vm.phone = '';
             vm.teamSize = 4;
             vm.submitted = false;
+            vm.selectedTeam = '';
+        }
+
+        function getSelectedTeam() {
+            $scope.$watch(() => {
+                return vm.selectedTeam;
+            }, (newValue) => {
+                console.log(newValue);
+            });
         }
 
         vm.saveRequest = function () {
             gameRequestServiceFactory.save(gameId, {
-                teamName: vm.teamName,
+                teamName: vm.selectedTeam.originalObject.name,
                 fullName: vm.fullName,
                 phone: vm.phone,
                 teamSize: vm.teamSize,
                 status: "unconfirmed", //TODO реализовать методы для изменения состояния
-                teamId: "",         // TODO проверять есть ли такая команда
+                teamId: vm.selectedTeam.originalObject.$id,
                 date: new Date().toDateString()
             }).then(() => {
                 vm.submitted = true;
@@ -36,11 +45,8 @@
                     $window.history.back();
                 }, 2000);
 
-            })
-        };
-
-        vm.onChange = function () {
-            console.log(vm.teamName)
+            });
+            // console.log(vm.selectedTeam)
         };
 
         vm.onBack = function () {
@@ -70,6 +76,8 @@
             getGameDate();
 
             getTeams();
+
+            getSelectedTeam();
         }
     }
 })();
