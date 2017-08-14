@@ -22,16 +22,10 @@
         let selectedQuiz = parseInt($routeParams.quizNumber);
 
         function initQuizResults() {
-
-            angular.forEach(vm.game.teams, (team, key) => {
-                let resultId = [$routeParams.roundNumber, $routeParams.quizNumber, key].join('_');
-                vm.results[resultId] = resultSetupService.buildResult(
-                    $routeParams.gameId,
-                    $routeParams.roundNumber,
-                    $routeParams.quizNumber,
-                    key);
-            });
-
+            resultSetupService.initQuizResults('-KrUOSGCVrIPwT4QsaYS', 1, 1)
+                .then((res) => {
+                    console.log(res)
+                });
             console.log(resultSetupService.initQuizResults($routeParams.gameId, $routeParams.roundNumber, $routeParams.quizNumber));
         }
 
