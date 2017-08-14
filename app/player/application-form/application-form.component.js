@@ -38,7 +38,7 @@ angular.module('applicationForm')
                 };
 
                 vm.onBack = function () {
-                    $location.path(`/game-list`);
+                    $window.history.back();
                 };
 
                 OpenGameService.getOpenGameById(gameId).then((res) => {
