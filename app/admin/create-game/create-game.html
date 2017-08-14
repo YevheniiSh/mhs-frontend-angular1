@@ -9,7 +9,8 @@
                     <span> {{$ctrl.gameDate.toLocaleDateString()}}</span>
                 </div>
                 <div class="picker" ng-show="$ctrl.isCalendarVisible">
-                    <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"></div>
+                    <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
+                         datepicker-options="$ctrl.options"></div>
                 </div>
 
 
