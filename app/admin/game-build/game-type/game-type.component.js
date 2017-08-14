@@ -2,7 +2,7 @@
 angular.module('gameType')
     .component('gameType', {
         templateUrl: 'admin/game-build/game-type/game-type.html',
-        css:'admin/game-build/game-type/game-type.css',
+        css: 'admin/game-build/game-type/game-type.css',
         controller: GameType
     });
 
@@ -10,21 +10,24 @@ GameType.$inject = ['OpenGameServiceFactory', '$routeParams', '$location'];
 
 function GameType(GameService, $routeParams, $location) {
     let vm = this;
-    // vm.$onInit = onInit;
+
 
     let rounds = [];
     vm.rounds = rounds;
     let gameId = $routeParams.gameId;
 
-    // function onInit() {
-    //     GameService
-    //         .getGameById(gameId)
-    //         .then((res) => {
-    //             if (res.rounds !== undefined) $location.path('/round-status/' + gameId);
-    //         })
-    // }
-
     let quizSequenceNumber = 1;
+
+        GameService.getRounds(gameId).then((res) => {
+            for (let i = 0; i < res.length; i++) {
+                rounds.push({
+                    sequenceNumber: res[i].$id,
+                    quizzess: res[i].numberOfQuestions,
+                    roundName: res[i].name
+                });
+                quizSequenceNumber++;
+            }
+        });
 
     vm.addRound = function () {
         let quiz = {sequenceNumber: quizSequenceNumber, quizzess: 10, roundName: ""};

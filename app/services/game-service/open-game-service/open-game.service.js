@@ -114,7 +114,7 @@
 
         function getRounds(gameId) {
             let obj = new $firebaseArray(openGamesRef.child(gameId).child('rounds'));
-            return obj;
+            return obj.$loaded();
 
         }
 
