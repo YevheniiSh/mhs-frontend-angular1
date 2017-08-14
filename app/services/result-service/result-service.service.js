@@ -13,9 +13,11 @@ angular
         }
 
         resultFactory.saveResult = function (result, gameId) {
-            let resultKey = resultKey(result);
-            let resultRef = currentRef.child(`${gameId}/results/${resultKey}`);
+            let resultKey = [result.round, result.quiz, result.teamId].join('_');
+            let resultRef = currentRef.child(`${gameId}/results/${resultKey}/`);
+            console.log(result);
             let resultObj = new $firebaseObject(resultRef);
+            console.log(resultKey)
             resultObj.$value = result;
             return resultObj.$save()
                 .then(

@@ -185,17 +185,18 @@ angular
             }
 
             function getGameTeams(gameId) {
-                getGameRef(gameId)
-                return $firebaseArray(ref.child(`/${gameId}/teams`))
-                    .$loaded()
-                    .then((res) => {
-                        return res.map((team) => {
-                            return {teamId: team.$id, name: team.$value}
+                return getGameRef(gameId).then((ref) => {
+                    return $firebaseArray(ref.child(`/${gameId}/teams`))
+                        .$loaded()
+                        .then((res) => {
+                            return res.map((team) => {
+                                return {teamId: team.$id, name: team.name}
+                            });
+                        }, (err) => {
+                            console.error(err);
+                            return err;
                         });
-                    }, (err) => {
-                        console.error(err);
-                        return err;
-                    });
+                });
             }
 
             function setCurrentRound(currentRound, gameId) {

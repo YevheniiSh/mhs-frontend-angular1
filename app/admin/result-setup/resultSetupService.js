@@ -2,8 +2,7 @@
 angular.module('resultSetup').factory('resultSetupService', [
     'GameServiceFactory',
     'ResultServiceFactory',
-    function (gameFactory, ResultServiceFactory) {
-
+    function (gameFactory, resultFactory) {
         function getGameTeams(gameId) {
             return gameFactory.getGameTeams(gameId)
                 .then(
@@ -11,45 +10,35 @@ angular.module('resultSetup').factory('resultSetupService', [
                         return teams;
                     },
                     (err) => {
-                        console.log(err);
                         throw err;
                     }
                 )
         }
 
-        function setQuizResult(result) {
-            return resultSetupService.setQuizResult(result);
+        function saveQuizResult(result, gameId) {
+            let res = buildResult(result.round, result.quiz, result.teamId, result.score);
+            return resultFactory.saveResult(res, gameId);
         }
 
-        function getQuizResult(gameId, roundNumber, quizNumber) {
-            resultSetupService.setQuizResult(gameId, roundNumber, quizNumber);
+        function getQuizResults(roundId, quizId, gameId) {
+            return resultFactory.getByRoundAndQuiz(roundId, quizId, gameId);
         }
 
         function getRound(gameId, roundId) {
             return gameFactory.getRoundByGameAndId(gameId, roundId);
         }
 
-        function initQuizResults(gameId, round, quiz) {
-            let result = [];
-            gameFactory.getGameTeams(gameId)
-                .then(
-                    (teams) => {
-                        angular.forEach(teams, function (team, key) {
-                            result.push(buildResult(round, quiz, key));
-                        })
-                        return result;
-                    }
-                )
-
-        }
-
         function roundIncrement(roundNumber, gameId) {
             roundNumber++;
-            let defer = $q.defer();
-            gameFactory.setCurrentRound(roundNumber, gameId)
-                .then((res) => {
-                    defer.resolve(res);
-                })
+            return gameFactory.setCurrentRound(roundNumber, gameId);
+        }
+
+        function getCurrentQuiz(gameId) {
+            return gameFactory.getCurrentQuiz(gameId);
+        }
+
+        function getCurrentRound(gameId) {
+            return gameFactory.getCurrentRound(gameId);
         }
 
         function buildResult(round, quiz, teamId, score) {
@@ -65,10 +54,11 @@ angular.module('resultSetup').factory('resultSetupService', [
         return {
             getRound: getRound,
             getGameTeams: getGameTeams,
-            setQuizResult: setQuizResult,
-            getQuizResult: getQuizResult,
+            saveQuizResult: saveQuizResult,
             roundIncrement: roundIncrement,
             buildResult: buildResult,
-            initQuizResults: initQuizResults
+            getQuizResults: getQuizResults,
+            getCurrentQuiz: getCurrentQuiz,
+            getCurrentRound: getCurrentRound
         };
     }]);
