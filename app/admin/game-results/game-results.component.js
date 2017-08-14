@@ -4,7 +4,7 @@ angular.module('gameResultsPage')
         controller: ['ResultServiceFactory','$routeParams', '$location', function (ResultService, $routeParams, $location) {
             this.getDetails = function (teamResult) {
                 console.log(teamResult.teamId);
-                $location.path(`/show-team-result/${$routeParams.gameId}/${teamResult.teamId}`);
+                $location.path(`/games/${$routeParams.gameId}/results/${teamResult.teamId}`);
             };
             ResultService.getParsedResults($routeParams.gameId)
                 .then((result) => {

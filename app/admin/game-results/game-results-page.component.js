@@ -4,8 +4,8 @@ angular.module('gameResultsPage')
         controller: ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$rootScope', '$location', '$window','userAuthService', function (ResultService, GameService, $routeParams, $rootScope, $location, $window,auth) {
 
 
-            this.showTeamResult = function () {
-                $window.open($window.location.origin + `/#!/games/${$routeParams.gameId}/results`, ``, `width=auto,height=auto`);
+            this.teamResults = function () {
+                $window.open($window.location.origin + `/#!/games/${$routeParams.gameId}/results-presentation`, ``, `width=auto,height=auto`);
             };
 
 
