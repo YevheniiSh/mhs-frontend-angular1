@@ -5,18 +5,17 @@ angular.module('applicationForm')
         controller: ['TeamServiceFactory',
             'GameServiceFactory',
             '$routeParams',
+            '$window',
             '$location',
             'teamRequestServiceFactory',
-            'OpenGameServiceFactory',
 
-            function (TeamService, GameService, $routeParams, $location,
-                      TeamRequestService, OpenGameService) {
+            function (TeamService, GameService, $routeParams, $window, $location, TeamRequestService, OpenGameService) {
                 let vm = this;
                 vm.teamName = "";
                 vm.fullName = "";
                 vm.phone = "";
                 vm.teamSize = 4;
-
+                vm.submitted = false;
                 let gameId = $routeParams.gameId;
 
                 vm.saveRequest = function () {
@@ -28,12 +27,18 @@ angular.module('applicationForm')
                         status: "unconfirmed", //TODO реализовать методы для изменения состояния
                         teamId: "",         // TODO проверять есть ли такая команда
                         date: new Date().toDateString()
-                    });
-                    $location.path('/game-list')
+                    })
+                        .then((res) => {
+                            vm.submitted = true;
+                            setTimeout(() => {
+                                $window.history.back();
+                            }, 2000);
+
+                        })
                 };
 
                 vm.onBack = function () {
-                    $location.path(`/game-list`);
+                    $window.history.back();
                 };
 
                 OpenGameService.getOpenGameById(gameId).then((res) => {
