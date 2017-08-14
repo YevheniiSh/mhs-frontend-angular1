@@ -2,13 +2,13 @@ angular.module('addTeams')
     .component('addTeams', {
         templateUrl: 'admin/add-teams/add-teams.html',
         css: 'admin/add-teams/add-teams.css',
-        controller: ['gameRequestServiceFactory',
+        controller: ['teamRequestService','gameRequestServiceFactory',
             'OpenGameServiceFactory',
             'TeamServiceFactory',
             'GameServiceFactory',
             '$location',
             '$routeParams',
-            function (gameRequestService, openGameService, teamService, gameService, $location, $routeParams) {
+            function (teamRequestService,gameRequestService, openGameService, teamService, gameService, $location, $routeParams) {
                 let vm = this;
                 vm.gameId = $routeParams.gameId;
                 vm.$onInit = onInit;
@@ -27,6 +27,7 @@ angular.module('addTeams')
                                 gameRequestService.setConfirmedStatus(vm.gameId, request.$id);
                                 request.teamId = res.key;
                                 gameRequestService.updateTeamId(vm.gameId, request)
+                                teamRequestService.save(request)
                             })
                     } else {
                         gameService.addTeamToGame(vm.gameId,
@@ -35,11 +36,12 @@ angular.module('addTeams')
                                 requestId: request.$id,
                                 key: request.teamId
                             })
+                        teamRequestService.save(request)
                         gameRequestService.setConfirmedStatus(vm.gameId, request.$id)
                     }
-
-
                 }
+
+
 
                 vm.getRequests = function () {
                     gameRequestService.getAllTeamRequestsByGameId(vm.gameId)
