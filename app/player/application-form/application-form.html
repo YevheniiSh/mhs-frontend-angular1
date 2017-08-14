@@ -27,13 +27,12 @@
             <angucomplete id="team-name"
                           placeholder="Team name"
                           pause="100"
-                          selectedobject="team"
+                          selectedobject="$ctrl.selectedTeam"
                           localdata="$ctrl.teams"
                           searchfields="name"
                           titlefield="name"
                           minlength="2"
                           ng-maxlength="35"
-                          ng-model="$ctrl.teamName"
                           inputclass="form-control form-control-small">
             </angucomplete>
 
@@ -68,7 +67,7 @@
             <input id="team-size" ng-model="$ctrl.teamSize" class="form-control" type="number" min="2" max="15"
                    required>
 
-            <button class=" btn btn-success btn-block" type="submit"> Submit</button>
+            <button class="btn btn-success btn-block" type="submit"> Submit</button>
             <div class="alert alert-dismissible alert-success" ng-show="$ctrl.submitted">
                 <strong>Well done!</strong> Your request have been sent!
             </div>
