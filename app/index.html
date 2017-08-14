@@ -39,8 +39,8 @@
 </div>
 
 <div class="container">
-    <navbar></navbar>
-    <div ng-if="!presentationMode"class="main-panel">
+    <navbar ng-if="!presentationMode"></navbar>
+    <div ng-if="!presentationMode" class="main-panel">
 
         </div>
     <div ng-show="!loading" ng-view></div>
