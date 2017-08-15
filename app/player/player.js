@@ -3,7 +3,7 @@ angular
         'ngRoute',
         'teamRegisterForm'])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/registration/:gameId',{
+              $routeProvider.when('/games/:gameId/registration',{
             template: '<team-register-form></team-register-form>'
         });
     }]);

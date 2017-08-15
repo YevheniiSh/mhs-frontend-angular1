@@ -1,12 +1,12 @@
 <div class="container">
     <uib-tabset>
-        <uib-tab heading="Open games">
+        <uib-tab heading="{{'OPEN_GAMES_TAB_NAME' | translate}}">
             <open-game-list></open-game-list>
         </uib-tab>
-        <uib-tab heading="Current games" ng-if="$ctrl.auth">
+        <uib-tab heading="{{'CURRENT_GAMES_TAB_NAME' | translate}}" ng-if="$ctrl.auth">
             <current-game-list></current-game-list>
         </uib-tab>
-        <uib-tab heading="Finished games">
+        <uib-tab heading="{{'FINISHED_GAMES_TAB_NAME' | translate}}">
             <finished-game-list></finished-game-list>
         </uib-tab>
     </uib-tabset>

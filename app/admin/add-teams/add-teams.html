@@ -1,6 +1,6 @@
 <div class="col-md-5 col-md-offset-1">
     <uib-tabset>
-        <uib-tab heading="Unconfirmed">
+        <uib-tab heading="{{'UNCONFIRMED_TEAMS_TAB_NAME' | translate}}">
             <ul class="scroll-panel">
                 <li class="animate-requests"
                     ng-repeat="team in $ctrl.requests | filter:{status:'unconfirmed'}">
@@ -13,14 +13,14 @@
                             <i class="fa fa-check" aria-hidden="true"></i>
                         </span>
                     <div class="request-details" ng-show="showDetails">
-                        <p>Captain full name: <strong>{{team.fullName}}</strong></p>
-                        <p>Captain phone number: <strong>{{team.phone}}</strong></p>
-                        <p>Team size: <strong>{{team.teamSize}}</strong></p>
+                        <p>{{'CAPTAIN_NAME_LABEL' | translate}}: <strong>{{team.fullName}}</strong></p>
+                        <p>{{'PHONE_LABEL' | translate}}: <strong>{{team.phone}}</strong></p>
+                        <p>{{'TEAM_SIZE_LABEL' | translate}}: <strong>{{team.teamSize}}</strong></p>
                     </div>
                 </li>
             </ul>
         </uib-tab>
-        <uib-tab heading="Archived">
+        <uib-tab heading="{{'ARCHIVED_TEAMS_TAB_NAME' | translate}}">
             <ul class="scroll-panel">
                 <li class="animate-requests"
                     ng-repeat="team in $ctrl.requests | filter:{status:'archived'}"
@@ -33,9 +33,9 @@
                             <i class="fa fa-check" aria-hidden="true"></i>
                         </span>
                     <div class="request-details" ng-show="showDetails">
-                        <p>Captain full name: <strong>{{team.fullName}}</strong></p>
-                        <p>Captain phone number: <strong>{{team.phone}}</strong></p>
-                        <p>Team size: <strong>{{team.teamSize}}</strong></p>
+                        <p>{{'CAPTAIN_NAME_LABEL' | translate}}: <strong>{{team.fullName}}</strong></p>
+                        <p>{{'PHONE_LABEL' | translate}}: <strong>{{team.phone}}</strong></p>
+                        <p>{{'TEAM_SIZE_LABEL' | translate}}: <strong>{{team.teamSize}}</strong></p>
                     </div>
                 </li>
             </ul>
@@ -47,7 +47,7 @@
 <div class="col-md-2"></div>
 <div class="col-md-5">
     <uib-tabset>
-        <uib-tab heading="Confirmed">
+        <uib-tab heading="{{'CONFIRMED_TEAMS_TAB_NAME' | translate}}">
 
             <ul class="scroll-panel">
                 <li class="animate-teams"
@@ -58,12 +58,13 @@
                                                                                  aria-hidden="true"></i></span>
 
                     <div class="request-details" ng-show="showDetails">
-                        <p>Captain full name: <strong>{{team.fullName}}</strong></p>
-                        <p>Captain phone number: <strong>{{team.phone}}</strong></p>
-                        <p>Team size: <strong>{{team.teamSize}}</strong></p>
+                        <p>{{'CAPTAIN_NAME_LABEL' | translate}}: <strong>{{team.fullName}}</strong></p>
+                        <p>{{'PHONE_LABEL' | translate}}: <strong>{{team.phone}}</strong></p>
+                        <p>{{'TEAM_SIZE_LABEL' | translate}}: <strong>{{team.teamSize}}</strong></p>
                     </div>
                 </li>
             </ul>
         </uib-tab>
     </uib-tabset>
 </div>
+

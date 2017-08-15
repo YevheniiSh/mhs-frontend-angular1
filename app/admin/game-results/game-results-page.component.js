@@ -23,10 +23,10 @@ angular.module('gameResultsPage')
             this.onBack = function () {
                 auth.currentUser()
                     .then(()=>{
-                    $location.path(`/round-status/${$routeParams.gameId}`);
+                    $location.path(`/games/${$routeParams.gameId}/rounds`);
                 })
                 .catch (()=>{
-                    $location.path(`/game-list`);
+                    $location.path(`/games`);
                 })
                 ;
             }

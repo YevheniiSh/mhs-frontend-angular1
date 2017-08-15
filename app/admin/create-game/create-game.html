@@ -29,11 +29,11 @@
                 <input class="form-control" ng-model="$ctrl.location"
                        maxlength="34"
                        name="location"
-                       required placeholder="Location"></div>
+                       required placeholder="{{'LOCATION_PLACEHOLDER' | translate}}"></div>
         </div>
         <button id="game-build" type="submit" class=" btn btn-info"
                 ng-click="$ctrl.createNewGame()" ng-disabled="createForm.$invalid">
-            Create game
+            {{'CREATE_GAME_BUTTON' | translate}}
         </button>
     </form>
     <span id="err-message" class="text-danger" ng-show="createForm.$error.time">You've been entered wrong time</span>

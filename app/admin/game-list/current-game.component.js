@@ -35,7 +35,7 @@
         };
 
         vm.continueGame = function (gameId) {
-            $location.path(`/round-status/${gameId}`)
+            $location.path(`/games/${gameId}/rounds`)
         };
     }
 })();
