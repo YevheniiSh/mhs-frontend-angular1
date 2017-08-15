@@ -102,6 +102,8 @@
 
         vm.nextQuiz = function () {
             if (vm.selectedQuiz < vm.round.numberOfQuestions) {
+                vm.currentQuiz++;
+                resultSetupService.setCurrentQuiz(vm.currentQuiz + 1, $routeParams.gameId);
                 vm.setQuiz(+vm.selectedQuiz + 1);
             } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
                 resultSetupService.roundIncrement(vm.round.$id, $routeParams.gameId)

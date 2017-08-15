@@ -48,6 +48,10 @@ angular.module('resultSetup').factory('resultSetupService', [
             return gameFactory.getCurrentQuiz(gameId);
         }
 
+        function setCurrentQuiz(currentQuiz, gameId) {
+            return gameFactory.setCurrentQuiz(currentQuiz, gameId);
+        }
+
         function getCurrentRound(gameId) {
             return gameFactory.getCurrentRound(gameId);
         }
@@ -71,6 +75,7 @@ angular.module('resultSetup').factory('resultSetupService', [
             getQuizResults: getQuizResults,
             getCurrentQuiz: getCurrentQuiz,
             getCurrentRound: getCurrentRound,
-            saveQuizResults: saveQuizResults
+            saveQuizResults: saveQuizResults,
+            setCurrentQuiz: setCurrentQuiz
         };
     }]);
