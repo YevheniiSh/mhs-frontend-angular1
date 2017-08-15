@@ -46,7 +46,7 @@ angular
         $routeProvider.when('/create-game', {
             template: '<create-game></create-game>',
         });
-        $routeProvider.when('/config/:gameId', {
+        $routeProvider.when('/games/:gameId/config', {
             template: '<config-game></config-game>',
             resolve: isAuth
         });

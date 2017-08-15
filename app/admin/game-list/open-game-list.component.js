@@ -62,7 +62,7 @@
 
         vm.configGame = function (gameId) {
             console.log(gameId);
-            $location.path('/config/' + gameId)
+            $location.path('/games/' + gameId + '/config')
         };
 
         vm.auth = false;
