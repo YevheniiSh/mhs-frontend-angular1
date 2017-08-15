@@ -47,32 +47,28 @@ label {
 
 
 .animate-block.ng-hide-add {
-    transition: 0.5s linear all;
+    transition: all ease-in 0.35s;
     opacity: 1;
-    transform: translateX(0);
-
+    height: 50px;
+    transform: translateY(0);
 }
 
 .animate-block.ng-hide-add.ng-hide-add-active {
     opacity: 0;
-    transform: translateX(-100%);
+    height: 0px;
+    transform: translateY(-100px);
 }
 
-.animate-block.ng-move{
-
-}
-.animate-block.mg-move-active{
-    transition: all 0.5s ease;
-    top: 0;
-}
 
 .animate-block.ng-hide-remove {
-    transition: 0.5s linear all;
+    transition: all ease-in 0.35s;
     opacity: 0;
-    transform: translateX(-100%);
+    height: 0px;
+    transform: translateY(50px);
 }
 
 .animate-block.ng-hide-remove.ng-hide-remove-active {
     opacity: 1;
-    transform: translateX(0);
+    height: 50px;
+    transform: translateY(0);
 }
