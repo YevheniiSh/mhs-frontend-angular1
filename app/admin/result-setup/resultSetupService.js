@@ -17,7 +17,7 @@ angular.module('resultSetup').factory('resultSetupService', [
 
         function saveQuizResult(result, gameId) {
             let res = buildResult(result.round, result.quiz, result.teamId, result.score);
-            return resultFactory.saveResult(res, gameId);
+            return resultFactory.saveResult('current', res, gameId);
         }
 
         function saveQuizResults(results, gameId) {

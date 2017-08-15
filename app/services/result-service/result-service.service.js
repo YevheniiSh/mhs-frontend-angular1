@@ -93,7 +93,7 @@ angular
                 .then((teams) => {
                     score.forEach(teamScore => {
                         teams.forEach(team => {
-                            if (teamScore.teamId === team.$id) {
+                            if (teamScore.teamId === team.teamId) {
                                 teamScore.teamName = team.name;
                             }
                         });

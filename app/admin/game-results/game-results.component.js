@@ -11,6 +11,7 @@ angular.module('gameResultsPage')
             ResultService.getParsedResults($routeParams.gameId)
                 .then((result) => {
                     this.results = result;
+                    console.log(result)
                 });
 
 
