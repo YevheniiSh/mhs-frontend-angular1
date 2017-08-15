@@ -54,19 +54,25 @@
             $scope.$watch(() => {
                 return vm.last3digits;
             }, (last3digits) => {
-                // if (last3digits.length === 3) {
-                //     teamRequestService
-                //         .getTeamRequests(team.$id)
-                //         .then((res) => {
-                //             res.forEach((req) => {
-                //                 if (req.teamId === team.$id) { // ???
-                //                     if (phoneMatchCheck(req.phone, last3digits)) {
-                //                         saveTeam(req);
-                //                     }
-                //                 }
-                //             })
-                //         })
-                // }
+                if (last3digits.length === 3) {
+                    teamRequestService
+                        .getTeamRequests(team.$id)
+                        .then((res) => {
+                            res.forEach((req) => {
+                                if (phoneMatchCheck(req.phone, last3digits)) {
+                                    saveTeam({
+                                        teamId: team.$id,
+                                        fullName: req.fullName,
+                                        teamName: req.teamName,
+                                        phone: req.phone,
+                                        teamSize: req.teamSize,
+                                        status: "unconfirmed",
+                                        date: new Date().toDateString(),
+                                    });
+                                }
+                            })
+                        })
+                }
             });
         }
 
