@@ -1,8 +1,8 @@
 (function () {
-    angular.module('applicationForm')
-        .component('applicationForm', {
-            templateUrl: 'player/application-form/application-form.html',
-            css: 'player/application-form/application-form.css',
+    angular.module('teamRegisterForm')
+        .component('teamRegisterForm', {
+            templateUrl: 'player/team-register-form/team-register-form.html',
+            css: 'player/team-register-form/team-register-form.css',
             controller: TeamRegister
         });
 
