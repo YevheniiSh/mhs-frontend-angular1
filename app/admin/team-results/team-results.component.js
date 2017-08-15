@@ -128,8 +128,13 @@ angular.module('teamResults')
                     }
                 };
 
-                this.changeResults = function () {
-                    this.gameStatus = !this.gameStatus;
+                this.editResults = function () {
+                    this.gameStatus = false;
+                }
+
+                this.blockEditing = function () {
+                    this.gameStatus = true;
+                    ResultService.setGameWinner(this.state, vm.gameId);
                 }
 
             }]

@@ -115,7 +115,15 @@ angular
                 });
         };
 
-        resultFactory.setGameWinner = function (gameId) {
+        resultFactory.setGameWinner = function (status, gameId) {
+            let ref;
+            if (status === 'finished') {
+                ref = finishedRef;
+            }
+            else if (status === 'current') {
+                ref = currentRef;
+            }
+
             return resultFactory.getGameWinner(gameId)
                 .then((res) => {
                     console.log(res);
@@ -123,7 +131,7 @@ angular
                     winner['id'] = res.teamId;
                     winner['name'] = res.teamName;
                     winner['score'] = res.total;
-                    return currentRef.child(gameId).child('winner').set(winner);
+                    return ref.child(gameId).child('winner').set(winner);
                 });
         };
 

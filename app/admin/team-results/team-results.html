@@ -2,10 +2,10 @@
     <div class="row">
         <button class="btn btn-success" ng-click="$ctrl.showGameResults()">Back</button>
         <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && $ctrl.gameStatus"
-                ng-click="$ctrl.changeResults()">Edit results
+                ng-click="$ctrl.editResults()">Edit results
         </button>
         <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && !$ctrl.gameStatus"
-                ng-click="$ctrl.changeResults()">Block editing results
+                ng-click="$ctrl.blockEditing()">Save results
         </button>
 
     </div>
