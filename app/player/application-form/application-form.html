@@ -67,6 +67,7 @@
             <div class="animate-block" ng-show="$ctrl.isAutocomplete">
                 <label for="captain-phone-validation">Enter 3 last numbers from your phone number</label>
                 <input id="captain-phone-validation" ng-model="$ctrl.last3digits" type="tel" maxlength="3">
+                <button ng-click="$ctrl.cancelVerifyByNumber()">Cancel</button>
             </div>
 
             <label for="team-size" class="control-label"> Team size </label>

@@ -29,7 +29,7 @@
 
             getGameDate();
 
-            getTeams();
+            setupTeams();
 
             watchSelectedTeam();
         }
@@ -39,7 +39,7 @@
                 return vm.selectedTeam;
             }, (team) => {
                 if (vm.selectedTeam === undefined) {
-                    vm.isAutocomplete = false;
+                    cancelAutocomplete();
                     return;
                 }
                 if (Object.keys(vm.selectedTeam).length !== 0) {
@@ -49,30 +49,47 @@
             });
         }
 
+        function cancelAutocomplete() {
+            vm.isAutocomplete = false;
+            vm.fullName = '';
+            vm.phone = '';
+        }
+
+        function saveRequestFromAutocompleteData(last3digits, team) {
+            if (last3digits.length === 3) {
+                teamRequestService
+                    .getTeamRequests(team.$id)
+                    .then((res) => {
+                        res.forEach((teamRequest) => {
+                            if (phoneMatchCheck(teamRequest.phone, last3digits)) {
+                                vm.isAutocomplete = false;
+                                vm.fullName = teamRequest.fullName;
+                                vm.phone = teamRequest.phone;
+
+                                vm.saveRequest = function () {
+                                    saveTeam({
+                                        teamId: team.$id,
+                                        fullName: teamRequest.fullName,
+                                        teamName: teamRequest.teamName,
+                                        phone: teamRequest.phone,
+                                        teamSize: teamRequest.teamSize,
+                                        status: "unconfirmed",
+                                        date: new Date().toDateString(),
+                                    });
+                                }
+
+                            }
+                        })
+                    })
+            }
+        }
+
         function setupVerifyByPhoneNumber(team) {
             vm.last3digits = '';
             $scope.$watch(() => {
                 return vm.last3digits;
             }, (last3digits) => {
-                if (last3digits.length === 3) {
-                    teamRequestService
-                        .getTeamRequests(team.$id)
-                        .then((res) => {
-                            res.forEach((req) => {
-                                if (phoneMatchCheck(req.phone, last3digits)) {
-                                    saveTeam({
-                                        teamId: team.$id,
-                                        fullName: req.fullName,
-                                        teamName: req.teamName,
-                                        phone: req.phone,
-                                        teamSize: req.teamSize,
-                                        status: "unconfirmed",
-                                        date: new Date().toDateString(),
-                                    });
-                                }
-                            })
-                        })
-                }
+                saveRequestFromAutocompleteData(last3digits, team);
             });
         }
 
@@ -82,14 +99,24 @@
         }
 
         vm.cancelVerifyByNumber = function () {
-            vm.isAutocomplete = false;
+            cancelAutocomplete();
         };
+
+        function checkExistenceInputtedTeam(teamName) {
+            angular.forEach(vm.teams, (team) => {
+                if (team.name === teamName) {
+                    vm.isAutocomplete = true;
+                    setupVerifyByPhoneNumber(team);
+                }
+            })
+        }
 
         vm.getTeamName = function (teamName) {
             vm.teamName = teamName;
+            checkExistenceInputtedTeam(teamName);
         };
 
-        vm.saveRequest = function () {
+        function saveRequestFromInputtedData() {
             let team = {
                 fullName: vm.fullName,
                 phone: vm.phone,
@@ -107,22 +134,19 @@
                                 if (teamFromAllTeams.name === vm.teamName) {
                                     team.teamName = teamFromAllTeams.name;
                                     team.teamId = teamFromAllTeams.$id;
+                                    saveTeam(team);
                                 }
                             });
-                            saveTeam(team);
                         } else {
                             team.teamName = vm.teamName;
                             saveTeam(team);
                         }
                     });
-                return;
             }
+        }
 
-            if (Object.keys(vm.selectedTeam).length !== 0) {
-                team.teamName = vm.selectedTeam.originalObject.name;
-                team.teamId = vm.selectedTeam.originalObject.$id;
-                saveTeam(team);
-            }
+        vm.saveRequest = function () {
+            saveRequestFromInputtedData();
         };
 
         function saveTeam(team) {
@@ -148,7 +172,7 @@
                 );
         }
 
-        function getTeams() {
+        function setupTeams() {
             TeamService
                 .getAllTeams()
                 .then((res) => {
