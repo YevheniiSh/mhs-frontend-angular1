@@ -17,3 +17,7 @@ h1{
 button.btn.btn-success{
     margin-left: 1%;
 }
+
+.fb-share-button {
+    float: right;
+}
