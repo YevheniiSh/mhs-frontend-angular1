@@ -25,7 +25,7 @@
         GameService.getGameStatus(vm.gameId)
             .then((status) => {
                 if (status === 'finished') {
-                    $location.path('/game-list');
+                    $location.path('/games');
                 }
             });
 
