@@ -103,7 +103,7 @@
         };
 
         function checkExistenceInputtedTeam(teamName) {
-            for (team of vm.teams) {
+            for (let team of vm.teams) {
                 if (team.name === teamName) {
                     vm.isAutocomplete = true;
                     setupVerifyByPhoneNumber(team);
@@ -133,15 +133,7 @@
                 TeamService
                     .checkTeamNameCoincidence(vm.teamName)
                     .then((res) => {
-                        if (res) {
-                            vm.teams.forEach((teamFromAllTeams) => {
-                                if (teamFromAllTeams.name === vm.teamName) {
-                                    team.teamName = teamFromAllTeams.name;
-                                    team.teamId = teamFromAllTeams.$id;
-                                    saveTeam(team);
-                                }
-                            });
-                        } else {
+                        if (!res) {
                             team.teamName = vm.teamName;
                             saveTeam(team);
                         }
