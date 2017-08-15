@@ -2,13 +2,13 @@ angular.module('addTeams')
     .component('addTeams', {
         templateUrl: 'admin/add-teams/add-teams.html',
         css: 'admin/add-teams/add-teams.css',
-        controller: ['teamRequestServiceFactory',
+        controller: ['gameRequestServiceFactory',
             'OpenGameServiceFactory',
             'TeamServiceFactory',
             'GameServiceFactory',
             '$location',
             '$routeParams',
-            function (teamRequestService, openGameService, teamService, gameService, $location, $routeParams) {
+            function (gameRequestService, openGameService, teamService, gameService, $location, $routeParams) {
                 let vm = this;
                 vm.gameId = $routeParams.gameId;
                 vm.$onInit = onInit;
@@ -22,27 +22,34 @@ angular.module('addTeams')
                     if (!request.teamId) {
                         teamService.save({name: request.teamName})
                             .then(res => {
+                                console.log(request);
                                 res.requestId = request.$id;
+                                res.fullName = request.fullName;
+                                res.phone = request.phone;
+                                res.teamSize = request.teamSize;
                                 gameService.addTeamToGame(vm.gameId, res);
-                                teamRequestService.setConfirmedStatus(vm.gameId, request.$id);
+                                gameRequestService.setConfirmedStatus(vm.gameId, request.$id);
                                 request.teamId = res.key;
-                                teamRequestService.updateTeamId(vm.gameId, request)
+                                gameRequestService.updateTeamId(vm.gameId, request)
                             })
                     } else {
                         gameService.addTeamToGame(vm.gameId,
                             {
                                 name: request.teamName,
                                 requestId: request.$id,
-                                key: request.teamId
+                                key: request.teamId,
+                                fullName: request.fullName,
+                                teamSize: request.teamSize,
+                                phone: request.phone
                             })
-                        teamRequestService.setConfirmedStatus(vm.gameId, request.$id)
+                        gameRequestService.setConfirmedStatus(vm.gameId, request.$id)
                     }
 
 
                 }
 
                 vm.getRequests = function () {
-                    teamRequestService.getAllTeamRequestsByGameId(vm.gameId)
+                    gameRequestService.getAllTeamRequestsByGameId(vm.gameId)
                         .then((res) => {
                             vm.requests = res;
                         })
@@ -58,16 +65,16 @@ angular.module('addTeams')
                 }
 
                 vm.archivateRequest = function (requestId) {
-                    teamRequestService.setArchivedStatus(vm.gameId, requestId)
+                    gameRequestService.setArchivedStatus(vm.gameId, requestId)
                 }
 
                 vm.unArchivateRequest = function (requestId) {
-                    teamRequestService.setUnconfirmedStatus(vm.gameId, requestId)
+                    gameRequestService.setUnconfirmedStatus(vm.gameId, requestId)
                 };
 
                 vm.unConfirmRequest = function (team) {
                     gameService.removeTeamFromGame(vm.gameId, team.$id);
-                    teamRequestService.setUnconfirmedStatus(vm.gameId, team.requestId);
+                    gameRequestService.setUnconfirmedStatus(vm.gameId, team.requestId);
                 }
             }]
 

@@ -1,0 +1,27 @@
+<table class="table table-sm table-hover">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Location</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="game-row" ng-repeat="game in $ctrl.games | orderBy:'-date'">
+        <td>{{game.date.toLocaleDateString()}}</td>
+        <td>{{game.time}}</td>
+        <td>{{game.location}}</td>
+        <td>
+            <button class="btn btn-info game-button"
+                    ng-click="$ctrl.continueGame(game.$id)">
+                Continue
+            </button>
+            <button class="btn btn-info game-button"
+                    ng-click="$ctrl.reOpenGame(game.$id)">ReOpen
+            </button>
+            <span class="error text-danger" ng-if="game.invalid">{{game.error}}</span>
+        </td>
+    </tr>
+    </tbody>
+</table>

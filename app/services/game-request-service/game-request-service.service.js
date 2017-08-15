@@ -1,5 +1,5 @@
-angular.module('teamRequestService')
-    .factory('teamRequestServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService',
+angular.module('gameRequestService')
+    .factory('gameRequestServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService',
         function ($firebaseArray, $firebaseObject, firebaseDataService) {
 
             let openGameRef = firebaseDataService.openGames;

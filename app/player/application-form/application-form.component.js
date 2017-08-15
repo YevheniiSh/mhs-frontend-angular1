@@ -1,45 +1,67 @@
-angular.module('applicationForm')
-    .component('applicationForm', {
-        templateUrl: 'player/application-form/application-form.html',
-        css: 'player/application-form/application-form.css',
-        controller: ['TeamServiceFactory',
-            'GameServiceFactory',
-            '$routeParams',
-            '$location',
-            'teamRequestServiceFactory',
-            'OpenGameServiceFactory',
+(function () {
+    angular.module('applicationForm')
+        .component('applicationForm', {
+            templateUrl: 'player/application-form/application-form.html',
+            css: 'player/application-form/application-form.css',
+            controller: TeamRegister
+        });
 
-            function (TeamService, GameService, $routeParams, $location,
-                      TeamRequestService, OpenGameService) {
-                let vm = this;
-                vm.teamName = "";
-                vm.fullName = "";
-                vm.phone = "";
-                vm.teamSize = 4;
+    TeamRegister.$inject = ['TeamServiceFactory', 'GameServiceFactory', '$routeParams', '$window', '$location', 'gameRequestServiceFactory', 'OpenGameServiceFactory'];
 
-                let gameId = $routeParams.gameId;
+    function TeamRegister(TeamService, GameService, $routeParams, $window, $location, gameRequestServiceFactory, OpenGameService) {
+        let vm = this;
+        vm.$onInit = onInit;
+        let gameId = $routeParams.gameId;
 
-                vm.saveRequest = function () {
-                    TeamRequestService.save(gameId, {
-                        teamName: vm.teamName,
-                        fullName: vm.fullName,
-                        phone: vm.phone,
-                        teamSize: vm.teamSize,
-                        status: "unconfirmed", //TODO реализовать методы для изменения состояния
-                        teamId: "",         // TODO проверять есть ли такая команда
-                        date: new Date().toDateString()
+        function initRegisterForm() {
+            vm.teamName = "";
+            vm.fullName = "";
+            vm.phone = "";
+            vm.teamSize = 4;
+            vm.submitted = false;
+        }
+
+        vm.saveRequest = function () {
+            gameRequestServiceFactory.save(gameId, {
+                teamName: vm.teamName,
+                fullName: vm.fullName,
+                phone: vm.phone,
+                teamSize: vm.teamSize,
+                status: "unconfirmed", //TODO реализовать методы для изменения состояния
+                teamId: "",         // TODO проверять есть ли такая команда
+                date: new Date().toDateString()
+            })
+                .then(() => {
+                    vm.submitted = true;
+                    setTimeout(() => {
+                        $window.history.back();
+                    }, 2000);
+
+                })
+        };
+
+        vm.tets = function () {
+            TeamService.getAllTeams()
+                .then((res) => {
+                    let auto = res.filter((team) => {
+                        return team.name.startsWith(vm.teamName);
                     });
-                    $location.path('/game-list')
-                };
+                    console.log(auto)
+                })
+        };
 
-                vm.onBack = function () {
-                    $location.path(`/game-list`);
-                };
+        vm.onBack = function () {
+            $window.history.back();
+        };
 
-                OpenGameService.getOpenGameById(gameId).then((res) => {
-                        vm.gameDate = new Date(res.date).toLocaleDateString()
-                    }
-                )
-            }
-        ]
-    });
+        function onInit() {
+            initRegisterForm();
+            OpenGameService.getOpenGameById(gameId).then((res) => {
+                if(res.date === undefined)
+                    $location.path(`/games`);
+                    vm.gameDate = new Date(res.date).toLocaleDateString()
+                }
+            )
+        }
+    }
+})();

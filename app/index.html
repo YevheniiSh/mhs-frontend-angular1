@@ -39,14 +39,16 @@
 </div>
 
 <div class="container">
-    <navbar></navbar>
-    <div class="main-panel">
-        <div ng-show="!loading" ng-view></div>
-    </div>
+    <navbar ng-if="!presentationMode"></navbar>
+    <div ng-if="!presentationMode" class="main-panel">
+
+        </div>
+    <div ng-show="!loading" ng-view></div>
+
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-<script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-translate/angular-translate.js"></script>
 <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
@@ -70,8 +72,8 @@
 <script src="services/game-service/game-service.module.js"></script>
 <script src="services/game-service/game-service.service.js"></script>
 <script src="services/result-service/result-service.module.js"></script>
-<script src="services/team-request-service/team-request-service.module.js"></script>
-<script src="services/team-request-service/team-request-service.service.js"></script>
+<script src="services/game-request-service/game-request-service.module.js"></script>
+<script src="services/game-request-service/game-request-service.service.js"></script>
 <script src="admin/create-game/create-game.module.js"></script>
 <script src="services/result-service/result-service.service.js"></script>
 <script src="admin/team-list/team-list.module.js"></script>
@@ -90,13 +92,16 @@
 <script src="services/game-service/open-game-service/open-game.module.js"></script>
 <script src="services/game-service/open-game-service/open-game.service.js"></script>
 
-<script src="admin/show-result/show-result.module.js"></script>
-<script src="admin/show-result/show-result-component.js"></script>
+<script src="admin/game-results/game-results-page.module.js"></script>
+<script src="admin/game-results/game-results-page.component.js"></script>
+<script src="admin/game-results/game-results.component.js"></script>
+<script src="presentation-mode/presentationMode.controller.js"></script>
+
 
 <script src="admin/create-game/create-game.component.js"></script>
 
-<script src="admin/show-team-result/show-team-result.module.js"></script>
-<script src="admin/show-team-result/show-team-result-component.js"></script>
+<script src="admin/team-results/team-results.module.js"></script>
+<script src="admin/team-results/team-results.component.js"></script>
 <script src="admin/add-teams/team-exist.directive.js"></script>
 
 <script src="player/some-feature/SomeFeatureController.js"></script>
@@ -137,5 +142,6 @@
 
 <script src="admin/navbar/navbar.module.js"></script>
 <script src="admin/navbar/navbar.component.js"></script>
+<script src="admin/game-list/current-game.component.js"></script>
 </body>
 </html>
