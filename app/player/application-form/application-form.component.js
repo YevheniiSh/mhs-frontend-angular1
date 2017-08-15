@@ -107,6 +107,8 @@
                 if (team.name === teamName) {
                     vm.isAutocomplete = true;
                     setupVerifyByPhoneNumber(team);
+                } else {
+                    cancelAutocomplete();
                 }
             })
         }
