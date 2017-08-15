@@ -1,7 +1,7 @@
 <div class="container">
     <div class="col-md-5 col-md-offset-1">
         <uib-tabset>
-            <uib-tab heading="Unconfirmed">
+            <uib-tab heading="{{'UNCONFIRMED_TEAMS_TAB_NAME' | translate}}">
                 <ul class="scroll-panel">
                     <li class="animate-requests"
                         ng-repeat="team in $ctrl.requests | filter:{status:'unconfirmed'}">
@@ -21,7 +21,7 @@
                     </li>
                 </ul>
             </uib-tab>
-            <uib-tab heading="Archived">
+            <uib-tab heading="{{'ARCHIVED_TEAMS_TAB_NAME' | translate}}">
                 <ul class="scroll-panel">
                     <li class="animate-requests"
                         ng-repeat="team in $ctrl.requests | filter:{status:'archived'}"
@@ -48,7 +48,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-5">
         <uib-tabset>
-            <uib-tab heading="Confirmed">
+            <uib-tab heading="{{'CONFIRMED_TEAMS_TAB_NAME' | translate}}">
 
                 <ul class="scroll-panel">
                     <li class="animate-teams"

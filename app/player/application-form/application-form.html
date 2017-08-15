@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <button class="btn btn-success" ng-click="$ctrl.onBack()">Back</button>
+        <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
     </div>
 
     <div class="col-md-6 col-md-offset-3">
@@ -8,12 +8,12 @@
         <form ng-submit="$ctrl.saveRequest()" name="request">
             <div class="header">
                 <h1> Mead Head Show</h1>
-                <h2>Registration for the game {{$ctrl.gameDate}}</h2>
+                <h2>{{'REGISTRATION_FORM_TITLE' | translate}} {{$ctrl.gameDate}}</h2>
             </div>
 
 
             <div class="team-name-spans">
-                <label for="team-name" class="control-label"> Team name </label>
+                <label for="team-name" class="control-label"> {{'TEAM_NAME_LABEL' | translate}} </label>
                 <span ng-show="request.team.$error.minlength" class="err">
                   Minimum 3 characters</span>
                 <span ng-show="request.team.$error.maxlength" class="err">
@@ -21,13 +21,13 @@
                 <span ng-show="request.team.$error.required && request.team.$touched" class="err">
                   Field can not be empty</span>
             </div>
-            <input id="team-name" class="form-control" placeholder="Team name"
+            <input id="team-name" class="form-control" placeholder="{{'TEAM_NAME_PLACEHOLDER' | translate}}"
                    type="text" name="team" ng-model="$ctrl.teamName" ng-maxlength="35" minlength="2"
                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
                    required>
 
             <div class="captain-name-spans">
-                <label for="captain-name" class="control-label"> Captain full name </label>
+                <label for="captain-name" class="control-label"> {{'CAPTAIN_NAME_LABEL' | translate}} </label>
                 <span ng-show="request.name.$error.minlength" class="err">
                   Minimum 3 characters</span>
                 <span ng-show="request.name.$error.maxlength" class="err">
@@ -35,7 +35,7 @@
                 <span ng-show="request.name.$error.required && request.name.$touched" class="err">
                   Field can not be empty</span>
             </div>
-            <input id="captain-name" class="form-control" placeholder="John Doe"
+            <input id="captain-name" class="form-control" placeholder="{{'CAPTAIN_NAME_PLACEHOLDER' | translate}}"
                    name="name" ng-model="$ctrl.fullName" ng-maxlength="40" minlength="3"
                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
                    required>
@@ -49,17 +49,17 @@
                               Wrong format</span>
                 <span ng-show="request.phone.$error.required && request.phone.$touched" class="err">
                   Field can not be empty</span>
-                <label for="captain-phone" class="control-label"> Captain phone number </label>
+                <label for="captain-phone" class="control-label"> {{'PHONE_LABEL' | translate}} </label>
             </div>
             <input id="captain-phone" class="form-control" placeholder="xxx xxx xxxx"
                    type="text" ng-model="$ctrl.phone" name="phone" ng-maxlength="13" minlength="10"
                    ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}" required>
 
-            <label for="team-size" class="control-label"> Team size </label>
+            <label for="team-size" class="control-label"> {{'TEAM_SIZE_LABEL' | translate}} </label>
             <input id="team-size" ng-model="$ctrl.teamSize" class="form-control" type="number" min="2" max="15" required>
 
-            <button class=" btn btn-success btn-block" type="submit"> Submit</button>
+            <button class=" btn btn-success btn-block" type="submit"> {{'SUBMIT_BUTTON' | translate}}</button>
             <div class="alert alert-dismissible alert-success" ng-show="$ctrl.submitted">
                 <strong>Well done!</strong> Your request have been sent!
             </div>
