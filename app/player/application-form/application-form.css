@@ -47,3 +47,27 @@ label {
 #team-name_dropdown {
     width: 100%;
 }
+
+
+.animate-block.ng-hide-add {
+    transition: 0.2s linear all;
+    opacity: 1;
+    transform: translateX(0);
+
+}
+
+.animate-block.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+    transform: translateX(-20%);
+}
+
+.animate-block.ng-hide-remove {
+    transition: 0.2s linear all;
+    opacity: 0;
+    transform: translateX(-20%);
+}
+
+.animate-block.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+    transform: translateX(0);
+}
