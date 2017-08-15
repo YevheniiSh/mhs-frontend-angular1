@@ -8,9 +8,16 @@ angular
 
             let resultFactory = {};
 
-            resultFactory.saveResult = function (result, gameId) {
+        resultFactory.saveResult = function (state, result, gameId) {
+            let ref;
+            if (state === "current") {
+                ref = currentRef;
+            }
+            else if (state === "finished") {
+                ref = finishedRef;
+            }
                 let resultKey = result.round + "_" + result.quiz + "_" + result.teamId;
-                let resultObj = new $firebaseObject(currentRef.child(`${gameId}/results/${resultKey}`));
+            let resultObj = new $firebaseObject(ref.child(`${gameId}/results/${resultKey}`));
                 resultObj.$value = result;
                 return resultObj.$save()
                     .then(() => {

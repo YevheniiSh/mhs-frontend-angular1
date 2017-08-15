@@ -1,5 +1,14 @@
 <div class="container">
-    <button class="btn btn-success" ng-click="$ctrl.showGameResults()">Back</button>
+    <div class="row">
+        <button class="btn btn-success" ng-click="$ctrl.showGameResults()">Back</button>
+        <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && $ctrl.gameStatus"
+                ng-click="$ctrl.changeResults()">Edit results
+        </button>
+        <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && !$ctrl.gameStatus"
+                ng-click="$ctrl.changeResults()">Block editing results
+        </button>
+
+    </div>
     <h1>{{$ctrl.teamName}} : <span class="team-total"> {{$ctrl.teamTotal.toFixed(1)}}</span> <span class="date">{{$ctrl.date}}</span></h1>
     <table class="table table-sm table-striped table-hover ">
         <thead>
