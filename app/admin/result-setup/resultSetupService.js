@@ -20,6 +20,17 @@ angular.module('resultSetup').factory('resultSetupService', [
             return resultFactory.saveResult(res, gameId);
         }
 
+        function saveQuizResults(results, gameId) {
+            let promices = [];
+            angular.forEach(results, function (result) {
+                if (result.score == undefined) {
+                    result.score = 0;
+                }
+                promices.push(saveQuizResult(result, gameId));
+            });
+            return promices;
+        }
+
         function getQuizResults(roundId, quizId, gameId) {
             return resultFactory.getByRoundAndQuiz(roundId, quizId, gameId);
         }
@@ -59,6 +70,7 @@ angular.module('resultSetup').factory('resultSetupService', [
             buildResult: buildResult,
             getQuizResults: getQuizResults,
             getCurrentQuiz: getCurrentQuiz,
-            getCurrentRound: getCurrentRound
+            getCurrentRound: getCurrentRound,
+            saveQuizResults: saveQuizResults
         };
     }]);

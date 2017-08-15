@@ -26,7 +26,8 @@
             getTeams()
                 .then(() => {
                     buildResults();
-                    assignResults();
+                    assignResults()
+                        .then(saveResults);
                 });
         }
 
@@ -70,8 +71,14 @@
         function assignResults() {
             return resultSetupService.getQuizResults(vm.round.$id, vm.selectedQuiz, $routeParams.gameId)
                 .then((res) => {
-                    angular.extend(vm.results, res);
+                    res.forEach((result, key) => {
+                        Object.assign(vm.results[key], result)
+                    });
                 });
+        }
+
+        function saveResults() {
+            return resultSetupService.saveQuizResults(vm.results, $routeParams.gameId);
         }
 
         vm.getTeamNameByResult = function (result) {
@@ -82,16 +89,16 @@
                 }
             })
             return teamName;
-        }
+        };
 
-        vm.setResult = function (result) {
+        vm.saveResult = function (result) {
             resultSetupService.saveQuizResult(result, $routeParams.gameId);
         };
 
         vm.setQuiz = function (quizNumber) {
             let ref = `/result-setup/${$routeParams.gameId}/${$routeParams.roundNumber}/${quizNumber}`;
             $location.path(ref);
-        }
+        };
 
         vm.nextQuiz = function () {
             if (vm.selectedQuiz < vm.round.numberOfQuestions) {

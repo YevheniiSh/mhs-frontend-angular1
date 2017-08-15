@@ -12,14 +12,14 @@
                 <label>
                     <input type="checkbox"
                            ng-model="result.score"
-                           ng-change="$ctrl.setResult(result)"
+                           ng-change="$ctrl.saveResult(result)"
                            ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
                            ng-if="!$ctrl.isManualInput"
                            ng-true-value="1" ng-false-value="0">
                     {{$ctrl.getTeamNameByResult(result)}}
                     <input type="number"
                            ng-model="result.score"
-                           ng-change="$ctrl.setResult(result)"
+                           ng-change="$ctrl.saveResult(result)"
                            ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
                            class="form-control"
                            ng-if="$ctrl.isManualInput">

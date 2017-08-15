@@ -15,9 +15,7 @@ angular
         resultFactory.saveResult = function (result, gameId) {
             let resultKey = [result.round, result.quiz, result.teamId].join('_');
             let resultRef = currentRef.child(`${gameId}/results/${resultKey}/`);
-            console.log(result);
             let resultObj = new $firebaseObject(resultRef);
-            console.log(resultKey)
             resultObj.$value = result;
             return resultObj.$save()
                 .then(
@@ -25,7 +23,6 @@ angular
                         return resultKey;
                     },
                     (err) => {
-                        console.log(err);
                         throw err;
                     }
                 );
@@ -33,7 +30,6 @@ angular
 
         resultFactory.filter = function (filter, gameId) {
             let ref = gameService.getGameRef(gameId);
-            console.log(ref);
             return ref.then((res) => {
                 let firebaseArr = new $firebaseArray(res.child(`/${gameId}/results`).orderByChild(filter.by).equalTo(filter.val));
                 return firebaseArr.$loaded();
@@ -101,8 +97,6 @@ angular
 
         resultFactory.sortDesc = function (score) {
             return score.sort((a, b) => {
-                console.log(a);
-                console.log(b);
                 return (+(a.total) > +(b.total)) ? -1 : ((+(b.total) > +(a.total)) ? 1 : 0);
             });
         };
@@ -126,7 +120,6 @@ angular
         resultFactory.setGameWinner = function (gameId) {
             return resultFactory.getGameWinner(gameId)
                 .then((res) => {
-                    console.log(res);
                     let winner = {};
                     winner['id'] = res.teamId;
                     winner['name'] = res.teamName;
