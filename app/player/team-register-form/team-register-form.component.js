@@ -22,9 +22,9 @@
             vm.formStatus = 'full';
             vm.isChangesForbidden = false;
             vm.isCorrectLast3digits = true;
+            vm.showPhoneVerifyRequest = false;
             vm.selectedTeam = {};
         }
-
 
         function onInit() {
             initRegisterForm();
@@ -45,13 +45,17 @@
                     return;
                 }
                 if (Object.keys(vm.selectedTeam).length !== 0) {
-                    vm.formStatus = 'phoneVerify';
-                    setupVerifyByPhoneNumber(team.originalObject);
+                    setupPhoneVerifyRequest(team.originalObject);
                 }
             });
         }
 
         function cancelAutocomplete() {
+            vm.formStatus = 'full';
+            vm.fullName = '';
+            vm.phone = '';
+            vm.isChangesForbidden = false;
+
             if (vm.selectedTeam === undefined) {
                 return;
             }
@@ -59,10 +63,6 @@
                 vm.teamName = vm.selectedTeam.originalObject.name;
                 vm.selectedTeam = {};
             }
-
-            vm.formStatus = 'full';
-            vm.fullName = '';
-            vm.phone = '';
         }
 
         function saveRequestFromAutocompleteData(last3digits, team) {
@@ -117,14 +117,29 @@
             cancelAutocomplete();
         };
 
+        function setupPhoneVerifyRequest(team) {
+            vm.showPhoneVerifyRequest = true;
+            vm.formStatus = 'pending';
+            vm.acceptPhoneVerifyRequest = function () {
+                vm.formStatus = 'phoneVerify';
+                setupVerifyByPhoneNumber(team);
+                vm.showPhoneVerifyRequest = false;
+            };
+            vm.cancelPhoneVerifyRequest = function () {
+                vm.showPhoneVerifyRequest = false;
+                cancelAutocomplete();
+            }
+        }
+
         function checkExistenceInputtedTeam(teamName) {
             for (let team of vm.teams) {
                 if (team.name === teamName) {
-                    vm.formStatus = 'phoneVerify';
-                    setupVerifyByPhoneNumber(team);
+                    setupPhoneVerifyRequest(team);
                     break;
                 } else {
                     cancelAutocomplete();
+                    vm.showPhoneVerifyRequest = false;
+                    vm.isChangesForbidden = false;
                 }
             }
         }

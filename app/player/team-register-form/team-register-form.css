@@ -45,32 +45,6 @@ label {
     top: 40px;
 }
 
-.animate-block.ng-hide-add {
-    transition: all ease-in 0.35s;
-    opacity: 1;
-    height: 50px;
-    transform: translateY(0);
-}
-
-.animate-block.ng-hide-add.ng-hide-add-active {
-    opacity: 0;
-    height: 0px;
-    transform: translateY(-100px);
-}
-
-.animate-block.ng-hide-remove {
-    transition: all ease-in 0.35s;
-    opacity: 0;
-    height: 0px;
-    transform: translateY(50px);
-}
-
-.animate-block.ng-hide-remove.ng-hide-remove-active {
-    opacity: 1;
-    height: 50px;
-    transform: translateY(0);
-}
-
 .incorrect-last-3-digits-alert {
     position: fixed;
     right: 6.4%;
@@ -79,4 +53,39 @@ label {
     height: 70px;
     display: block;
     z-index: 99999999;
+}
+
+.autocomplete-by-phone-panel {
+    float: left;
+    width: 25%;
+    margin-top: 155px;
+    margin-left: 10px;
+
+    /*position: fixed;*/
+    /*right: 6.4%;*/
+    /*top: 34%;*/
+    /*width: 200px;*/
+    /*height: 90px;*/
+    /*display: block;*/
+    /*z-index: 99999999;*/
+}
+
+.phone-verify-request-alert {
+    padding-bottom: 25px;
+}
+
+/*.request-team-form {*/
+/*float: left;*/
+/*padding-left: 30%;*/
+/*width: 70%;*/
+/*}*/
+
+.cancel-changes-button {
+    padding-top: 10px;
+}
+
+.team-additional-info {
+    /*margin-top: 5px;*/
+    /*margin-bottom: 5px;*/
+    /*border: solid 1px silver;*/
 }
