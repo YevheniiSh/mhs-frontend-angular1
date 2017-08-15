@@ -8,9 +8,16 @@ angular
 
             let resultFactory = {};
 
-            resultFactory.saveResult = function (result, gameId) {
+        resultFactory.saveResult = function (state, result, gameId) {
+            let ref;
+            if (state === "current") {
+                ref = currentRef;
+            }
+            else if (state === "finished") {
+                ref = finishedRef;
+            }
                 let resultKey = result.round + "_" + result.quiz + "_" + result.teamId;
-                let resultObj = new $firebaseObject(currentRef.child(`${gameId}/results/${resultKey}`));
+            let resultObj = new $firebaseObject(ref.child(`${gameId}/results/${resultKey}`));
                 resultObj.$value = result;
                 return resultObj.$save()
                     .then(() => {
@@ -108,7 +115,15 @@ angular
                 });
         };
 
-        resultFactory.setGameWinner = function (gameId) {
+        resultFactory.setGameWinner = function (status, gameId) {
+            let ref;
+            if (status === 'finished') {
+                ref = finishedRef;
+            }
+            else if (status === 'current') {
+                ref = currentRef;
+            }
+
             return resultFactory.getGameWinner(gameId)
                 .then((res) => {
                     console.log(res);
@@ -116,7 +131,7 @@ angular
                     winner['id'] = res.teamId;
                     winner['name'] = res.teamName;
                     winner['score'] = res.total;
-                    return currentRef.child(gameId).child('winner').set(winner);
+                    return ref.child(gameId).child('winner').set(winner);
                 });
         };
 

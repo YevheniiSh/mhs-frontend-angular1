@@ -24,13 +24,14 @@
 
         GameService.getGameStatus(vm.gameId)
             .then((status) => {
+                vm.status = status;
                 if (status === 'finished') {
                     $location.path('/games');
                 }
             });
 
         vm.onFinished = function () {
-            ResultService.setGameWinner(vm.gameId)
+            ResultService.setGameWinner(vm.status, vm.gameId)
                 .then(() => {
                     GameService.finishGame(vm.gameId);
                 });

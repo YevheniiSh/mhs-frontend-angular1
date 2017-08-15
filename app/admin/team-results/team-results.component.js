@@ -11,13 +11,22 @@ angular.module('teamResults')
                     vm.gameId = $routeParams.gameId;
                     vm.teamId = $routeParams.teamId;
 
+                    vm.auth = false;
+                    userAuthService.currentUser().then((res) => {
+                        vm.auth = true;
+                    }).catch((err) => {
+                        vm.auth = false;
+                    });
+
                     GameService.getGameStatus(this.gameId).then(status => {
                         if (status === "current") {
+                            vm.state = status;
                             vm.gameStatus = false;
                             GameService.getDate(status,this.gameId).then(v=>this.date = new Date(v.$value).toLocaleDateString())
                         }
                         if (status === "finished"){
-                             vm.gameStatus = true;
+                            vm.state = status;
+                            vm.gameStatus = true;
                             GameService.getDate(status,this.gameId).then(v=>this.date = new Date(v.$value).toLocaleDateString())
                         }
                     });
@@ -92,7 +101,8 @@ angular.module('teamResults')
                         score: score,
                         teamId: vm.teamId
                     };
-                    ResultService.saveResult(result, vm.gameId);
+
+                    ResultService.saveResult(vm.state, result, vm.gameId);
                     vm.getResults();
                 };
 
@@ -117,6 +127,15 @@ angular.module('teamResults')
                         return 'btn-danger';
                     }
                 };
+
+                this.editResults = function () {
+                    this.gameStatus = false;
+                }
+
+                this.blockEditing = function () {
+                    this.gameStatus = true;
+                    ResultService.setGameWinner(this.state, vm.gameId);
+                }
 
             }]
     });

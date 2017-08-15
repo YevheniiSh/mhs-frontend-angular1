@@ -42,6 +42,11 @@
                     type="submit">
                 Save
             </button>
+            <div class="alert alert-dismissible alert-success" ng-if="$ctrl.submitted">
+                <button type="button" class="close" ng-click="$ctrl.dissmiss()">&times;</button>
+
+                <strong>Well done!</strong> Your rounds have been saved!
+            </div>
 
         </form>
     </div>

@@ -17,7 +17,7 @@ angular.module('resultSetup').factory('resultSetupService', [
         function setQuizResult(result, score) {
             let defer = $q.defer();
             result.setScore(score);
-            ResultServiceFactory.saveResult(result, $routeParams.gameId).then((resultKey) => {
+            ResultServiceFactory.saveResult("current", result, $routeParams.gameId).then((resultKey) => {
                 defer.resolve(resultKey);
             });
             return defer.promise;
