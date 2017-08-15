@@ -96,7 +96,7 @@
         };
 
         vm.setQuiz = function (quizNumber) {
-            let ref = `/result-setup/${$routeParams.gameId}/${$routeParams.roundNumber}/${quizNumber}`;
+            let ref = `/games/${$routeParams.gameId}/rounds/${$routeParams.roundNumber}/${quizNumber}`;
             $location.path(ref);
         };
 
@@ -108,7 +108,7 @@
             } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
                 resultSetupService.roundIncrement(vm.round.$id, $routeParams.gameId)
                     .then(() => {
-                            $location.path(`/round-status`);
+                        $location.path(`/games/$routeParams.gameId/rounds`);
                         }
                     )
             }
