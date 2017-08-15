@@ -1,19 +1,21 @@
 /*.container,html{
     height: 100%;
 }*/
-td{
+td.new-window-td{
     font-size: 20px;
-    PADDING: 2PX;
 }
 
-th{
+th.new-window-th {
     font-size: 23px;
 }
-h1{
+h1#game-results{
     padding-bottom: 1%;
     border-bottom: solid 1px;
     text-align: center;
 }
-button.btn.btn-success{
-    margin-left: 1%;
+    button.btn.btn-success.back{
+    margin-left: 2%;
+}
+span.ng-binding.date{
+    float: right;
 }
