@@ -1,14 +1,14 @@
-#team-name {
-    margin-bottom: 20px;
-}
+/*#team-name {*/
+/*margin-bottom: 20px;*/
+/*}*/
 
-#captain-name {
-    margin-bottom: 20px;
-}
+/*#captain-name {*/
+/*margin-bottom: 20px;*/
+/*}*/
 
-#captain-phone {
-    margin-bottom: 20px;
-}
+/*#captain-phone {*/
+/*margin-bottom: 20px;*/
+/*}*/
 
 #team-size {
     margin-bottom: 20px;
@@ -31,7 +31,6 @@ form {
     margin: auto;
 }
 
-
 span.err {
     color: #f00;
     float: right;
@@ -43,8 +42,8 @@ label {
 
 #team-name_dropdown {
     width: 100%;
+    top: 40px;
 }
-
 
 .animate-block.ng-hide-add {
     transition: all ease-in 0.35s;
@@ -59,7 +58,6 @@ label {
     transform: translateY(-100px);
 }
 
-
 .animate-block.ng-hide-remove {
     transition: all ease-in 0.35s;
     opacity: 0;
@@ -71,4 +69,14 @@ label {
     opacity: 1;
     height: 50px;
     transform: translateY(0);
+}
+
+.incorrect-last-3-digits-alert {
+    position: fixed;
+    right: 6.4%;
+    top: 34%;
+    width: 200px;
+    height: 70px;
+    display: block;
+    z-index: 99999999;
 }

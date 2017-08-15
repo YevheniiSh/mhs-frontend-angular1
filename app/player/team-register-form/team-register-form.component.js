@@ -19,7 +19,9 @@
             vm.phone = '';
             vm.teamSize = 4;
             vm.submitted = false;
-            vm.isAutocomplete = false;
+            vm.formStatus = 'full';
+            vm.isChangesForbidden = false;
+            vm.isCorrectLast3digits = true;
             vm.selectedTeam = {};
         }
 
@@ -43,28 +45,39 @@
                     return;
                 }
                 if (Object.keys(vm.selectedTeam).length !== 0) {
-                    vm.isAutocomplete = true;
+                    vm.formStatus = 'phoneVerify';
                     setupVerifyByPhoneNumber(team.originalObject);
                 }
             });
         }
 
         function cancelAutocomplete() {
-            vm.isAutocomplete = false;
+            if (vm.selectedTeam === undefined) {
+                return;
+            }
+            if (Object.keys(vm.selectedTeam).length !== 0) {
+                vm.teamName = vm.selectedTeam.originalObject.name;
+                vm.selectedTeam = {};
+            }
+
+            vm.formStatus = 'full';
             vm.fullName = '';
             vm.phone = '';
         }
 
         function saveRequestFromAutocompleteData(last3digits, team) {
+            vm.isCorrectLast3digits = true;
             if (last3digits.length === 3) {
                 teamRequestService
                     .getTeamRequests(team.$id)
-                    .then((res) => {
-                        res.forEach((teamRequest) => {
+                    .then((teamRequests) => {
+                        for (let teamRequest of teamRequests) {
                             if (phoneMatchCheck(teamRequest.phone, last3digits)) {
-                                vm.isAutocomplete = false;
+                                vm.formStatus = 'full';
+                                vm.isChangesForbidden = true;
                                 vm.fullName = teamRequest.fullName;
                                 vm.phone = teamRequest.phone;
+                                vm.isCorrectLast3digits = true;
 
                                 vm.saveRequest = function () {
                                     saveTeam({
@@ -76,10 +89,12 @@
                                         status: "unconfirmed",
                                         date: new Date().toDateString(),
                                     });
-                                }
-
+                                };
+                                break;
+                            } else {
+                                vm.isCorrectLast3digits = false;
                             }
-                        })
+                        }
                     })
             }
         }
@@ -100,19 +115,12 @@
 
         vm.cancelVerifyByNumber = function () {
             cancelAutocomplete();
-            if (vm.selectedTeam === undefined) {
-                return;
-            }
-            if (Object.keys(vm.selectedTeam).length !== 0) {
-                vm.teamName = vm.selectedTeam.originalObject.name;
-                vm.selectedTeam = {};
-            }
         };
 
         function checkExistenceInputtedTeam(teamName) {
             for (let team of vm.teams) {
                 if (team.name === teamName) {
-                    vm.isAutocomplete = true;
+                    vm.formStatus = 'phoneVerify';
                     setupVerifyByPhoneNumber(team);
                     break;
                 } else {
@@ -190,5 +198,9 @@
                     vm.teams = res;
                 });
         }
+
+        vm.hideAlert = function () {
+            vm.isCorrectLast3digits = true;
+        };
     }
 })();
