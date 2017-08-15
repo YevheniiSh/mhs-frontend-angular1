@@ -1,11 +1,11 @@
 <div class="container">
    <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
    <div class="row"></div>
-   <uib-tabset>
-      <uib-tab heading="{{'TEAMS_TAB_NAME' | translate}}">
+   <uib-tabset active="$ctrl.activeTab">
+      <uib-tab index="$ctrl.tabs[0]" heading="{{'TEAMS_TAB_NAME' | translate}}"  ng-click="$ctrl.updateUrlPath($ctrl.tabs[0])">
          <add-teams></add-teams>
       </uib-tab>
-      <uib-tab heading="{{'ROUNDS_TAB_NAME' | translate}}">
+      <uib-tab index="$ctrl.tabs[1]" heading="{{'ROUNDS_TAB_NAME' | translate}}"  ng-click="$ctrl.updateUrlPath($ctrl.tabs[1])">
          <game-type></game-type>
       </uib-tab>
    </uib-tabset>

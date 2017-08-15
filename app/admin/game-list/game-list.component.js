@@ -24,7 +24,20 @@
                     this.games.forEach((item) => {
                         item.date = new Date(item.date);
                     });
-                })
+                });
+            getIndexTab();
+        };
+
+        function getIndexTab() {
+            vm.tabs = ['open', 'current', 'finished'];
+
+            vm.activeTab = Object.keys($location.search()).find(k => /open|current|finished/.test(k));
+            if (vm.activeTab === undefined)
+                vm.activeTab = 'open';
+        }
+
+        vm.updateUrlPath = function (key) {
+            $location.search(key);
         };
 
         vm.auth = false;
