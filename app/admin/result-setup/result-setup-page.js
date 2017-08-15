@@ -23,7 +23,11 @@
             initRound();
             initCurrentRound();
             initCurrentQuiz();
-            initResults();
+            getTeams()
+                .then(() => {
+                    buildResults();
+                    assignResults();
+                });
         }
 
         function initRound() {
@@ -47,22 +51,24 @@
                 })
         }
 
-        function initResults() {
-            resultSetupService.getGameTeams($routeParams.gameId)
+        function getTeams() {
+            return resultSetupService.getGameTeams($routeParams.gameId)
                 .then((teams) => {
                     vm.teams = teams;
-                    buildResults(teams);
                 });
         }
 
-        function buildResults(teams) {
+        function buildResults() {
             vm.results = {};
-            angular.forEach(teams, function (team) {
+            angular.forEach(vm.teams, function (team) {
                 let resultKey = [vm.round.$id, vm.selectedQuiz, team.teamId].join('_');
                 let result = resultSetupService.buildResult(vm.round.$id, vm.selectedQuiz, team.teamId);
                 vm.results[resultKey] = result;
             });
-            resultSetupService.getQuizResults(vm.round.$id, vm.selectedQuiz, $routeParams.gameId)
+        }
+
+        function assignResults() {
+            return resultSetupService.getQuizResults(vm.round.$id, vm.selectedQuiz, $routeParams.gameId)
                 .then((res) => {
                     angular.extend(vm.results, res);
                 });
