@@ -108,7 +108,7 @@
             } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
                 resultSetupService.roundIncrement(vm.round.$id, $routeParams.gameId)
                     .then(() => {
-                        $location.path(`/games/$routeParams.gameId/rounds`);
+                        $location.path(`/games/${$routeParams.gameId}/rounds`);
                         }
                     )
             }
