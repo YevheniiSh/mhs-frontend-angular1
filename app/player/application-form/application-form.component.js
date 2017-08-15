@@ -103,14 +103,16 @@
         };
 
         function checkExistenceInputtedTeam(teamName) {
-            angular.forEach(vm.teams, (team) => {
+            for (team of vm.teams) {
                 if (team.name === teamName) {
                     vm.isAutocomplete = true;
                     setupVerifyByPhoneNumber(team);
+                    break;
                 } else {
                     cancelAutocomplete();
+                    break;
                 }
-            })
+            }
         }
 
         vm.getTeamName = function (teamName) {
