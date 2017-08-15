@@ -6,8 +6,11 @@
             css: 'admin/navbar/navbar.css',
             controller: ['$translate', function ($translate) {
 
+                this.locale = $translate.preferredLanguage();
+
                 this.changeLang = function (locale) {
                     $translate.use(locale);
+                    this.locale = locale;
                 }
             }]
         });
