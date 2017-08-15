@@ -1,11 +1,11 @@
 <div class="container game-results">
-    <h1 id="game-results">Game result <span class="date">{{$ctrl.date}}</span></h1>
+    <h1 id="game-results">{{'GAME_RESULT_HEADER' | translate}} <span class="date">{{$ctrl.date}}</span></h1>
     <table class="table table-sm table-striped table-hover ">
         <thead>
         <tr>
-            <th class="new-window-th">Teams</th>
+            <th class="new-window-th">{{'TEAMS_TABLE_HEADER' | translate}}</th>
             <th class="new-window-th" ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
-            <th class="new-window-th">Total</th>
+            <th class="new-window-th">{{'TOTAL_TABLE_HEADER' | translate}}</th>
         </tr>
         </thead>
         <tbody>

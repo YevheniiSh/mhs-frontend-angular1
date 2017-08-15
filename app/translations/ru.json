@@ -44,7 +44,30 @@
   "ROUND_NAME_LABEL": "Имя раунда",
   "QUESTION_COUNT_LABEL": "Количество вопросов",
   "ROUND_NAME_PLACEHOLDER": "Имя раунда",
-  "ROUND_SAVED_MESSAGE": "Отлично! Раунды были сохранены"
+  "ROUND_SAVED_MESSAGE": "Отлично! Раунды были сохранены",
+  "CONFIG_TEAMS_ERROR": "Настройте команды",
+  "CONFIG_ROUNDS_ERROR": "Настройте раунды",
+  "ROUNDS_HEADER": "Раунды",
+  "PREVIOUS_ROUNDS_TITLE": "Предыдущие",
+  "CURRENT_ROUND_TITLE": "Текущий",
+  "NEXT_ROUNDS_TITLE": "Следующие",
+  "CLICK_TO_START_TOOLTIP": "Нажмите, чтобы начать",
+  "SHOW_RESULTS_BUTTON": "Показать результаты",
+  "FINISH_GAME_BUTTON": "Завершить игру",
+  "ROUND_SET_RESULTS_HEADER": "Раунд",
+  "QUESTION_SET_RESULTS_HEADER": "Вопрос",
+  "MANUAL_INPUT_CHECKBOX": "Ручной ввод",
+  "NEXT_BUTTON": "Следующий",
+  "GAME_RESULT_HEADER": "Результаты игры",
+  "TEAMS_TABLE_HEADER": "Команды",
+  "TOTAL_TABLE_HEADER": "Итого",
+  "ROUND_NAME_TABLE_HEADER": "Раунд",
+  "QUIZZES_TABLE_HEADER": "Вопросы",
+  "EDIT_RESULTS_BUTTON": "Редактировать ответы",
+  "SAVE_RESULTS_BUTTON": "Сохранить ответы",
+  "TEAM_NAME_CHANGED_ALERT": "Имя команды изменено",
+  "TEAM_NAME_EXISTS_ALERT": "Имя занято",
+  "SEARCH_PLACEHOLDER": "Поиск"
 
 
 

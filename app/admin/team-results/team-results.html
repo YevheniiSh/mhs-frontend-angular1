@@ -1,10 +1,10 @@
 <div class="container">
-    <button class="btn btn-success" ng-click="$ctrl.showGameResults()">Back</button>
+    <button class="btn btn-success" ng-click="$ctrl.showGameResults()">{{'BACK_BUTTON' | translate}}</button>
     <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && $ctrl.gameStatus"
-            ng-click="$ctrl.editResults()">Edit results
+            ng-click="$ctrl.editResults()">{{'EDIT_RESULTS_BUTTON' | translate}}
     </button>
     <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && !$ctrl.gameStatus"
-            ng-click="$ctrl.blockEditing()">Save results
+            ng-click="$ctrl.blockEditing()">{{'SAVE_RESULTS_BUTTON' | translate}}
     </button>
 
     <h1>{{$ctrl.teamName}} : <span class="team-total"> {{$ctrl.teamTotal.toFixed(1)}}</span>
@@ -12,9 +12,9 @@
     </h1>
     <table class="table table-sm table-striped table-hover ">
         <thead>
-            <th>Round</th>
-            <th>Quizzes</th>
-            <th class="total">Total</th>
+        <th>{{'ROUND_NAME_TABLE_HEADER' | translate}}</th>
+        <th>{{'QUIZZES_TABLE_HEADER' | translate}}</th>
+        <th class="total">{{'TOTAL_TABLE_HEADER' | translate}}</th>
         </thead>
         <tbody>
             <tr ng-repeat="round in $ctrl.roundsResult">

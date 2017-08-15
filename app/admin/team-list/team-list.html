@@ -10,7 +10,7 @@
             <span>×</span>
             <span class="sr-only">Close</span>
         </button>
-        <span>Team name changed</span>
+        <span>{{'TEAM_NAME_CHANGED_ALERT' | translate}}</span>
     </div>
     <div ng-show="$ctrl.showErrorAlert" uib-alert template-url="alert.html" class="alert-danger team-name-changed-alert"
          role="alert">
@@ -18,10 +18,10 @@
             <span>×</span>
             <span class="sr-only">Close</span>
         </button>
-        <span>Team name already exits</span>
+        <span>{{'TEAM_NAME_EXISTS_ALERT' | translate}}</span>
     </div>
 
-    <input ng-model="search" class="form-control" placeholder="Search">
+    <input ng-model="search" class="form-control" placeholder="{{'SEARCH_PLACEHOLDER' | translate}}">
     <div class="scroll-panel">
         <ul ng-repeat="team in $ctrl.teams |orderBy:'name'| filter:search">
             <li class="btn list-item">
