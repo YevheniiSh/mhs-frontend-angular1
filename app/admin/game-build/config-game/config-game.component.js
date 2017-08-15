@@ -7,7 +7,7 @@ angular.module('configGame')
             function ($location) {
                 let vm = this;
                 vm.onBack = function () {
-                    $location.path("/game-list")
+                    $location.path("/games")
                 }
             }]
     });

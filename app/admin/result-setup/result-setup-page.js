@@ -42,7 +42,7 @@ angular.module('resultSetup')
                         GameServiceFactory
                             .getCurrentQuiz(gameId)
                             .then(() => {
-                                $location.path(`/result-setup/${gameId}/${vm.selectedRound}/${vm.quizNumber}`);
+                                $location.path(`/games/${gameId}/rounds/${vm.selectedRound}/${vm.quizNumber}`);
                                 angular.forEach(results, function (result) {
                                     vm.teamsScore.push(result.score);
                                     vm.isManualInput = getInputType(results);
@@ -83,7 +83,7 @@ angular.module('resultSetup')
                         } else {
                             GameServiceFactory.setCurrentQuiz(1, gameId).then(() => {
                                 resultSetupService.roundIncrement(vm.selectedRound, gameId);
-                                $location.path('/round-status/' + gameId);
+                                $location.path('/games/' + gameId + '/rounds');
                             })
 
                         }

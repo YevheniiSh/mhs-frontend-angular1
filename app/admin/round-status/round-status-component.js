@@ -26,7 +26,7 @@
             .then((status) => {
                 vm.status = status;
                 if (status === 'finished') {
-                    $location.path('/game-list');
+                    $location.path('/games');
                 }
             });
 
