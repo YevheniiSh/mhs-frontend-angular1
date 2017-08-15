@@ -100,6 +100,13 @@
 
         vm.cancelVerifyByNumber = function () {
             cancelAutocomplete();
+            if (vm.selectedTeam === undefined) {
+                return;
+            }
+            if (Object.keys(vm.selectedTeam).length !== 0) {
+                vm.teamName = vm.selectedTeam.originalObject.name;
+                vm.selectedTeam = {};
+            }
         };
 
         function checkExistenceInputtedTeam(teamName) {
@@ -132,7 +139,16 @@
                 TeamService
                     .checkTeamNameCoincidence(vm.teamName)
                     .then((res) => {
-                        if (!res) {
+                        if (res) {
+                            for (let teamFromAllTeams of vm.teams) {
+                                if (teamFromAllTeams.name === vm.teamName) {
+                                    team.teamName = teamFromAllTeams.name;
+                                    team.teamId = teamFromAllTeams.$id;
+                                    saveTeam(team);
+                                    break;
+                                }
+                            }
+                        } else {
                             team.teamName = vm.teamName;
                             saveTeam(team);
                         }
