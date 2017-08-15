@@ -16,7 +16,7 @@ angular.module('gameResultsPage')
                         this.results = result;
                         console.log(this.results);
                     });
-                this.gameId = `https://madheadshow-e3ad4.firebaseapp.com/#!/games/${$routeParams.gameId}/results`
+                this.gameId = $location.absUrl();
             }
 
 
