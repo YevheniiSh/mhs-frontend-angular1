@@ -26,7 +26,7 @@
         <ul ng-repeat="team in $ctrl.teams |orderBy:'name'| filter:search">
             <li class="btn list-item">
                 <input class="editable-team" ng-change="$ctrl.changeTeamName(team)"
-                       ng-model="team.name" title="Edit team name">
+                       ng-model="team.name" title="{{'EDIT_TEAM_NAME_TOOLTIP'|translate}}">
                 <i class="fa fa-pencil-square editable-icon"></i>
             </li>
         </ul>
