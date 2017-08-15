@@ -14,21 +14,70 @@ angular
                 // save: save,
                 getCurrentRound: getCurrentRound,
                 getCurrentQuiz: getCurrentQuiz,
-                getGameTeams: getGameTeams,
                 setCurrentRound: setCurrentRound,
                 setCurrentQuiz: setCurrentQuiz,
                 finishGame: finishGame,
                 publishGame: publishGame,
                 getGameRef: getGameRef,
+                getAllCurrentGames: getAllCurrentGames,
                 getAllFinishedGames: getAllFinishedGames,
                 getGameStatus: getGameStatus,
                 getDate:getDate,
-                startGame:startGame
+                startGame:startGame,
+                getGameTeams: getGameTeams,
+                removeTeamFromGame: removeTeamFromGame,
+                reOpenGame: reOpenGame,
+                addTeamToGame:addTeamToGame
             };
+
+            function getGameTeams(gameId) {
+                getGameRef(gameId)
+                return $firebaseArray(ref.child(`/${gameId}/teams`))
+                    .$loaded()
+                    .then((res) => {
+                        return res;
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
+            }
+
+            function addTeamToGame(gameId, team){
+                let resultObj = new $firebaseObject(openedGameRef.child(`${gameId}/teams/${team.key}`));
+                resultObj.$value = {
+                    name: team.name,
+                    requestId: team.requestId,
+                    fullName: team.fullName,
+                    teamSize: team.teamSize,
+                    phone: team.phone
+                };
+                return resultObj.$save()
+                    .then(() => {
+                        return team.key;
+                    }, (err) => {
+                        console.log(err);
+                        return err;
+                    });
+            }
+
+            function removeTeamFromGame(gameId, teamId) {
+                let obj = new $firebaseObject(openedGameRef.child(`${gameId}/teams/${teamId}`));
+                obj.$remove();
+                return obj.$loaded();
+            }
 
             function startGame(gameId) {
                 openGameServiceFactory.getOpenGameById(gameId).then((res) => {
                     let obj = new $firebaseObject(currentGameRef.child(gameId));
+                    obj.$value = getObject(res);
+                    obj.$save();
+                    res.$remove();
+                });
+            }
+
+            function reOpenGame(gameId) {
+                getCurrentGameById(gameId).then((res) => {
+                    let obj = new $firebaseObject(openedGameRef.child(gameId));
                     obj.$value = getObject(res);
                     obj.$save();
                     res.$remove();
@@ -90,6 +139,11 @@ angular
 
             function getAllFinishedGames() {
                 return new $firebaseArray(finishedGameRef)
+                    .$loaded();
+            }
+
+            function getAllCurrentGames() {
+                return new $firebaseArray(currentGameRef)
                     .$loaded();
             }
 
@@ -168,20 +222,6 @@ angular
                     .$loaded()
                     .then((res) => {
                         return res.$value;
-                    }, (err) => {
-                        console.error(err);
-                        return err;
-                    });
-            }
-
-            function getGameTeams(gameId) {
-                getGameRef(gameId)
-                return $firebaseArray(ref.child(`/${gameId}/teams`))
-                    .$loaded()
-                    .then((res) => {
-                        return res.map((team) => {
-                            return {teamId: team.$id, name: team.$value}
-                        });
                     }, (err) => {
                         console.error(err);
                         return err;

@@ -21,7 +21,7 @@
                         </div>
                         <div class="panel-body current">
                             <a ng-hide="!$ctrl.currentRound"
-                               href="#!/result-setup/{{$ctrl.gameId}}/{{$ctrl.currentRound.$id}}/1"
+                               href="/#!/games/{{$ctrl.gameId}}/rounds/{{$ctrl.currentRound.$id}}/1"
                                class="btn btn-round-panel btn-warning" tooltip-popup-delay="1000"
                                tooltip-append-to-body="true"
                                uib-tooltip="Click to start" tooltip-is-open="true">
@@ -45,14 +45,14 @@
         </div>
         <div class="row">
             <div class="col-md-4 col-md-offset-4 round-button-panel" onclick="">
-                <a href="#!/show-result/{{$ctrl.gameId}}"
+                <a href="#!/games/{{$ctrl.gameId}}/results"
                    class="btn btn-info btn-lg btn-block">
                     <span>Show results</span><!--<i class="fa fa-flag-o"></i>-->
                 </a>
             </div>
             <div class="col-md-4 col-md-offset-4 round-button-panel" ng-click="$ctrl.onFinished()"
                  ng-if="$ctrl.checked">
-                <a href="#!/show-result/{{$ctrl.gameId}}"
+                <a href="#!/games/{{$ctrl.gameId}}/results"
                    class="btn btn-warning btn-lg btn-block">
                     <span class="start-ico">FINISH GAME</span><i class="fa fa-flag-checkered"></i>
                 </a>

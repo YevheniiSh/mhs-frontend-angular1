@@ -1,58 +1,72 @@
-<div class="col-md-5 col-md-offset-1">
-    <div class="navbar">
-        <a class="btn btn-info" ng-click="$ctrl.resetFilter()">All</a>
-        <a class="btn btn-info" ng-click="$ctrl.setFilter(true)">Selected</a>
-        <a class="btn btn-info" ng-click="$ctrl.setFilter(false)">Other</a>
-    </div>
-    <input type="text" ng-model="search" class="form-control" placeholder="Search">
-    <div class="scroll-panel">
-        <ul ng-repeat="team in $ctrl.teamsFromDB |orderBy:'name'| filter:search |filter:$ctrl.filter">
-            <li class="btn list-item" ng-class="{'selected':team.selected}" ng-click="$ctrl.onClick(team)">
-                {{team.name}}
-            </li>
-        </ul>
-    </div>
-</div>
-<div class="col-md-2"></div>
-<div class="col-md-5">
-    <div class="add-team-form">
-        <form name="myForm" ng-submit="$ctrl.addTeamToDb()">
-            <div class="form-group">
-                <label class="control-label">Enter new team:</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="teamName" ng-model='$ctrl.newTeamName'
-                           minlength="1"
-                           maxlength="20"
-                           required
-                           team-validator>
-                    <span class="input-group-btn">
-                            <button class="btn btn-info" ng-disabled="myForm.$invalid || myForm.$pending" type="submit">Save team</button>
+<div class="container">
+    <div class="col-md-5 col-md-offset-1">
+        <uib-tabset>
+            <uib-tab heading="Unconfirmed">
+                <ul class="scroll-panel">
+                    <li class="animate-requests"
+                        ng-repeat="team in $ctrl.requests | filter:{status:'unconfirmed'}">
+                        <span class="btn list-item" ng-click="showDetails = ! showDetails">{{team.teamName}}</span>
+                        <span class="btn" ng-click="$ctrl.archivateRequest(team.$id)">
+                            <i class="fa fa-archive" aria-hidden="true"></i>
                         </span>
+                        <span class="btn"
+                              ng-click="$ctrl.addTeamToGame(team)">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </span>
+                        <div class="request-details" ng-show="showDetails">
+                            <p>Captain full name: <strong>{{team.fullName}}</strong></p>
+                            <p>Captain phone number: <strong>{{team.phone}}</strong></p>
+                            <p>Team size: <strong>{{team.teamSize}}</strong></p>
+                        </div>
+                    </li>
+                </ul>
+            </uib-tab>
+            <uib-tab heading="Archived">
+                <ul class="scroll-panel">
+                    <li class="animate-requests"
+                        ng-repeat="team in $ctrl.requests | filter:{status:'archived'}"
+                    >
+                        <span class="btn list-item" ng-click="showDetails = ! showDetails">{{team.teamName}}</span>
+                        <span class="btn" ng-click="$ctrl.unArchivateRequest(team.$id)"><i class="fa fa-archive"
+                                                                                           aria-hidden="true"></i></span>
+                        <span class="btn"
+                              ng-click="$ctrl.addTeamToGame(team)">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </span>
+                        <div class="request-details" ng-show="showDetails">
+                            <p>Captain full name: <strong>{{team.fullName}}</strong></p>
+                            <p>Captain phone number: <strong>{{team.phone}}</strong></p>
+                            <p>Team size: <strong>{{team.teamSize}}</strong></p>
+                        </div>
+                    </li>
+                </ul>
+            </uib-tab>
+        </uib-tabset>
 
-                </div>
-            </div>
-            <div>
-                <span ng-show="myForm.$pending.teamName">Checking if this name is available...</span>
-                <span class="text-danger" ng-show="myForm.$error.teamName">This team name is already taken!</span>
-            </div>
-        </form>
-
-        <div class="row">
-            <div class="col-md-12">
-                <button ng-click="$ctrl.saveTeams()"
-                        class="form-control btn btn-info btn-next btn-block">
-                    Save game
-                </button>
-            </div>
-        </div>
-        <!--<div class="form-group" ng-repeat="team in $ctrl.teams">-->
-        <!--<label class="control-label team-name">Team #{{$index+1}}</label>-->
-        <!--<div class="form-group list-item">-->
-        <!--<label id="team-name">{{team.name}}</label>-->
-        <!--<button class="btn btn-danger btn-delete" type="button" ng-click="$ctrl.deleteTeam($index)">-->
-        <!--<i class="fa fa-trash-o" aria-hidden="true"></i>-->
-        <!--</button>-->
-        <!--</div>-->
-        <!--</div>-->
     </div>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
+        <uib-tabset>
+            <uib-tab heading="Confirmed">
+
+                <ul class="scroll-panel">
+                    <li class="animate-teams"
+                        ng-repeat="team in $ctrl.teams">
+                        <span class="btn list-item" ng-click="showDetails = ! showDetails"
+                        >{{team.name}}</span>
+                        <span class="btn" ng-click="$ctrl.unConfirmRequest(team)"><i class="fa fa-times"
+                                                                                     aria-hidden="true"></i></span>
+
+                        <div class="request-details" ng-show="showDetails">
+                            <p>Captain full name: <strong>{{team.fullName}}</strong></p>
+                            <p>Captain phone number: <strong>{{team.phone}}</strong></p>
+                            <p>Team size: <strong>{{team.teamSize}}</strong></p>
+                        </div>
+                    </li>
+                </ul>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+
 </div>

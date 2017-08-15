@@ -11,6 +11,7 @@
     function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService) {
         let vm = this;
         vm.$onInit = onInit;
+
         function onInit() {
             openGameFactory.getAllOpenGames().then((games) => {
                 vm.openGames = games;
@@ -33,7 +34,7 @@
 
         vm.registerToGame = function (gameId) {
             console.log(gameId);
-            $location.path('/registration/' + gameId)
+            $location.path('games/' + gameId + '/registration')
         };
 
         vm.startGame = function (game) {
@@ -52,7 +53,7 @@
                     $rootScope.$apply();
                 } else {
                     gameServiceFactory.startGame(gameId);
-                    $location.path('/round-status/' + gameId);
+                    $location.path('/games/' + gameId + '/rounds');
                 }
             });
 
@@ -61,7 +62,7 @@
 
         vm.configGame = function (gameId) {
             console.log(gameId);
-            $location.path('/config-game/' + gameId)
+            $location.path('/games/' + gameId + '/config')
         };
 
         vm.auth = false;
