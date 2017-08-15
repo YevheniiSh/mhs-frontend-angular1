@@ -1,15 +1,28 @@
 <div class="container">
+<<<<<<< HEAD
     <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
+=======
+    <button class="btn btn-success" ng-click="$ctrl.onBack()">Back</button>
+>>>>>>> autocomplete
     <div>
         <form ng-submit="$ctrl.saveRequest()" name="request" class="request-team-form">
             <div class="header">
                 <h1> Mead Head Show</h1>
+<<<<<<< HEAD
                 <h2>{{'REGISTRATION_FORM_TITLE' | translate}} {{$ctrl.gameDate}}</h2>
             </div>
             <div class="autocomplete-form">
                 <span><b>{{'TEAM_NAME_LABEL' | translate}}</b></span>
                 <angucomplete-alt id="team-name"
                                   placeholder="{{'TEAM_NAME_LABEL' | translate}}"
+=======
+                <h2>Registration for the game {{$ctrl.gameDate}}</h2>
+            </div>
+            <div class="autocomplete-form">
+                <span><b>Team Name</b></span>
+                <angucomplete-alt id="team-name"
+                                  placeholder="Team name"
+>>>>>>> autocomplete
                                   pause="100"
                                   selected-object="$ctrl.selectedTeam"
                                   local-data="$ctrl.teams"

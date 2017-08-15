@@ -1,14 +1,9 @@
 angular
     .module('mhs.player', [
         'ngRoute',
-        'applicationForm'])
+        'teamRegisterForm'])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/example', {
-            templateUrl: 'player/some-feature/some-feature-html.html',
-            controller: 'SomeFeatureController'
-        });
-
-        $routeProvider.when('/games/:gameId/registration',{
-            template:'<application-form></application-form>'
+              $routeProvider.when('/games/:gameId/registration',{
+            template: '<team-register-form></team-register-form>'
         });
     }]);

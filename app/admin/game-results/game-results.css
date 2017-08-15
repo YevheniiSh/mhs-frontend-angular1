@@ -16,10 +16,12 @@ h1#game-results{
     margin: 0;
 }
 
-button.btn.btn-success.back{
-    margin-left: 1%;
-}
 span.ng-binding.date{
     float: right;
 }
+
+.date {
+    float: right;
+}
+
 
