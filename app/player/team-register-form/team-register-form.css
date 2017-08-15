@@ -45,6 +45,10 @@ label {
     top: 40px;
 }
 
+#alert-box{
+    margin-top: 10px;
+}
+
 .animate-block.ng-hide-add {
     transition: all ease-in 0.35s;
     opacity: 1;
