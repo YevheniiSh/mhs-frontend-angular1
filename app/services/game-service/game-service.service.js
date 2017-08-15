@@ -59,6 +59,12 @@ angular
                     });
             }
 
+            function removeTeamFromGame(gameId, teamId) {
+                let obj = new $firebaseObject(openedGameRef.child(`${gameId}/teams/${teamId}`));
+                obj.$remove();
+                return obj.$loaded();
+            }
+
             function reOpenGame(gameId) {
                 getCurrentGameById(gameId).then((res) => {
                     let obj = new $firebaseObject(openedGameRef.child(gameId));
