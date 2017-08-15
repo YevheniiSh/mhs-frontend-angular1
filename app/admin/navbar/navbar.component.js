@@ -4,11 +4,12 @@
         .component('navbar', {
             templateUrl: 'admin/navbar/navbar.html',
             css: 'admin/navbar/navbar.css',
-            controller: Navbar
+            controller: ['$translate', function ($translate) {
+
+                this.changeLang = function (locale) {
+                    $translate.use(locale);
+                }
+            }]
         });
 
-    Navbar.$inject = [];
-
-    function Navbar() {
-    }
 })();

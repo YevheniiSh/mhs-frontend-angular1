@@ -1,2 +1,2 @@
 angular
-    .module('navbar', []);
+    .module('navbar', ['pascalprecht.translate']);
