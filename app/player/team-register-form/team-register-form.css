@@ -31,9 +31,6 @@ form {
     margin: auto;
 }
 
-input {
-    margin-top: 5px;
-}
 
 span.err {
     color: #f00;
