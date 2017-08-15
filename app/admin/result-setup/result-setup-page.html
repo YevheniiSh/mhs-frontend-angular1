@@ -1,38 +1,44 @@
 <div class="container">
     <div id="header">
-        <h2>{{$ctrl.selectedRound}}. {{$ctrl.round.name}}</h2>
-        <h1>Question #{{$ctrl.quizNumber}}</h1>
-        {{$ctrl.info}}
+        <h2>Round #{{$ctrl.round.$id}}: {{$ctrl.round.name}}</h2>
+        <h1>Question #{{$ctrl.selectedQuiz}}</h1>
     </div>
     <div class="checkbox">
-        <label id = "manual-input"><input type="checkbox" ng-model="$ctrl.isManualInput">Manual input</label>
+        <label id="manual-input"><input type="checkbox" ng-model="$ctrl.isManualInput">Manual input</label>
     </div>
     <div class="form-group row">
         <ul id="team-list">
-            <li class="col-md-6" ng-repeat="(teamId, teamName) in $ctrl.teams">
+            <li class="col-md-6" ng-repeat="result in $ctrl.results">
                 <label>
-                    <input type="checkbox" ng-model="$ctrl.teamsScore[$index]" parse-int ng-true-value="1"
-                           ng-false-value="0" ng-if="!$ctrl.isManualInput"
-                           ng-change="$ctrl.setTeamResult($ctrl.teamsScore[$index],teamId)">
-                    {{teamName}}
-                    <input type="number" ng-model="$ctrl.teamsScore[$index]" class="form-control" ng-if="$ctrl.isManualInput"
-                    ng-change="$ctrl.setTeamResult($ctrl.teamsScore[$index],teamId)">
+                    <input type="checkbox"
+                           ng-model="result.score"
+                           ng-change="$ctrl.saveResult(result)"
+                           ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
+                           ng-if="!$ctrl.isManualInput"
+                           ng-true-value="1" ng-false-value="0">
+                    {{$ctrl.getTeamNameByResult(result)}}
+                    <input type="number"
+                           ng-model="result.score"
+                           ng-change="$ctrl.saveResult(result)"
+                           ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
+                           class="form-control"
+                           ng-if="$ctrl.isManualInput">
                 </label>
             </li>
         </ul>
     </div>
     <div id="control-panel" class="form-inline ">
         <div class="nav-btn">
-            <button ng-repeat="quiz in $ctrl.quizzes" class="btn"
-                    ng-class="{'btn-selected':$ctrl.quizNumber == quiz.number,'btn-success':quiz.answered,
-                    'btn-warning': quiz.number == $ctrl.currentQuiz && $ctrl.selectedRound == $ctrl.currentRound}"
-                    ng-click="$ctrl.setQuiz(quiz.number)">
-                {{quiz.number}}
+            <button
+                    ng-repeat="quiz in $ctrl.range($ctrl.round.numberOfQuestions) track by $index"
+                    class="btn"
+                    ng-class="{'btn-selected':$ctrl.selectedQuiz == $index+1,
+                    'btn-success': $ctrl.currentQuiz > $index+1 || $ctrl.round.$id < $ctrl.currentRound,
+                    'btn-warning':$index+1 == $ctrl.currentQuiz && $ctrl.round.$id == $ctrl.currentRound}"
+                    ng-click="$ctrl.setQuiz($index+1)">
+                {{$index+1}}
             </button>
         </div>
-
-        <button ng-click="$ctrl.setResult()" class="btn btn-success submit-button">Next</button>
+        <button class="btn btn-success submit-button" ng-click="$ctrl.nextQuiz()">Next</button>
     </div>
-
-
 </div>

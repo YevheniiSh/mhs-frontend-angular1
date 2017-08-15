@@ -2,50 +2,80 @@
 angular.module('resultSetup').factory('resultSetupService', [
     'GameServiceFactory',
     'ResultServiceFactory',
-    '$q',
-    '$routeParams',
-    function (gameFactory, ResultServiceFactory, $q, $routeParams) {
-        function getData(gameId) {
-            let defer = $q.defer();
-            gameFactory.getGameById(gameId)
-                .then((game) => {
-                    defer.resolve(game);
-                });
-            return defer.promise;
+    function (gameFactory, resultFactory) {
+        function getGameTeams(gameId) {
+            return gameFactory.getGameTeams(gameId)
+                .then(
+                    (teams) => {
+                        return teams;
+                    },
+                    (err) => {
+                        throw err;
+                    }
+                )
         }
 
-        function setQuizResult(result, score) {
-            let defer = $q.defer();
-            result.setScore(score);
-            ResultServiceFactory.saveResult("current", result, $routeParams.gameId).then((resultKey) => {
-                defer.resolve(resultKey);
+        function saveQuizResult(result, gameId) {
+            let res = buildResult(result.round, result.quiz, result.teamId, result.score);
+            return resultFactory.saveResult(res, gameId);
+        }
+
+        function saveQuizResults(results, gameId) {
+            let promices = [];
+            angular.forEach(results, function (result) {
+                if (result.score == undefined) {
+                    result.score = 0;
+                }
+                promices.push(saveQuizResult(result, gameId));
             });
-            return defer.promise;
+            return promices;
         }
 
-        function getQuizResult(gameId, roundNumber, quizNumber) {
-            let defer = $q.defer();
-            ResultServiceFactory.getByRoundAndQuiz(roundNumber, quizNumber, gameId)
-                .then((results) => {
-                    defer.resolve(results);
-                });
+        function getQuizResults(roundId, quizId, gameId) {
+            return resultFactory.getByRoundAndQuiz(roundId, quizId, gameId);
+        }
 
-            return defer.promise;
+        function getRound(gameId, roundId) {
+            return gameFactory.getRoundByGameAndId(gameId, roundId);
         }
 
         function roundIncrement(roundNumber, gameId) {
             roundNumber++;
-            let defer = $q.defer();
-            gameFactory.setCurrentRound(roundNumber, gameId)
-                .then((res) => {
-                    defer.resolve(res);
-                })
+            return gameFactory.setCurrentRound(roundNumber, gameId);
         }
 
+        function getCurrentQuiz(gameId) {
+            return gameFactory.getCurrentQuiz(gameId);
+        }
+
+        function setCurrentQuiz(currentQuiz, gameId) {
+            return gameFactory.setCurrentQuiz(currentQuiz, gameId);
+        }
+
+        function getCurrentRound(gameId) {
+            return gameFactory.getCurrentRound(gameId);
+        }
+
+        function buildResult(round, quiz, teamId, score) {
+            return {
+                quiz: quiz,
+                round: round,
+                teamId: teamId,
+                score: score
+            }
+        }
+
+
         return {
-            getData: getData,
-            setQuizResult: setQuizResult,
-            getQuizResult: getQuizResult,
-            roundIncrement: roundIncrement
+            getRound: getRound,
+            getGameTeams: getGameTeams,
+            saveQuizResult: saveQuizResult,
+            roundIncrement: roundIncrement,
+            buildResult: buildResult,
+            getQuizResults: getQuizResults,
+            getCurrentQuiz: getCurrentQuiz,
+            getCurrentRound: getCurrentRound,
+            saveQuizResults: saveQuizResults,
+            setCurrentQuiz: setCurrentQuiz
         };
     }]);
