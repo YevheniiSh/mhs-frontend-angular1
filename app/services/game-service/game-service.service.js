@@ -41,6 +41,24 @@ angular
                 });
             }
 
+            function addTeamToGame(gameId, team) {
+                let resultObj = new $firebaseObject(openedGameRef.child(`${gameId}/teams/${team.key}`));
+                resultObj.$value = {
+                    name: team.name,
+                    requestId: team.requestId,
+                    fullName: team.fullName,
+                    teamSize: team.teamSize,
+                    phone: team.phone
+                };
+                return resultObj.$save()
+                    .then(() => {
+                        return team.key;
+                    }, (err) => {
+                        console.log(err);
+                        return err;
+                    });
+            }
+
             function reOpenGame(gameId) {
                 getCurrentGameById(gameId).then((res) => {
                     let obj = new $firebaseObject(openedGameRef.child(gameId));
