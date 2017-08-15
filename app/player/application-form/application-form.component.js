@@ -110,7 +110,6 @@
                     break;
                 } else {
                     cancelAutocomplete();
-                    break;
                 }
             }
         }
