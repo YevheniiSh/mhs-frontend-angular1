@@ -40,6 +40,10 @@
                            uib-dropdown-toggle role="button" aria-expanded="false">{{$ctrl.locale | uppercase}}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown" role="menu">
+                            <li ng-if="$ctrl.locale !== 'ua'"
+                                ng-click="$ctrl.changeLang('ua')">
+                                <a href="">Українська</a>
+                            </li>
                             <li ng-if="$ctrl.locale !== 'en'"
                                 ng-click="$ctrl.changeLang('en')">
                                 <a href="">English</a>
