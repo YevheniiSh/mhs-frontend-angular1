@@ -1,15 +1,15 @@
 <div class="container">
-    <button class="btn btn-success" ng-click="$ctrl.onBack()">Back</button>
+    <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
     <div>
         <form ng-submit="$ctrl.saveRequest()" name="request" class="request-team-form">
             <div class="header">
                 <h1> Mead Head Show</h1>
-                <h2>Registration for the game {{$ctrl.gameDate}}</h2>
+                <h2>{{'REGISTRATION_FORM_TITLE' | translate}} {{$ctrl.gameDate}}</h2>
             </div>
             <div class="autocomplete-form">
-                <span><b>Team Name</b></span>
+                <span><b>{{'TEAM_NAME_LABEL' | translate}}</b></span>
                 <angucomplete-alt id="team-name"
-                                  placeholder="Team name"
+                                  placeholder="{{'TEAM_NAME_PLACEHOLDER'|translate}}"
                                   pause="100"
                                   selected-object="$ctrl.selectedTeam"
                                   local-data="$ctrl.teams"
@@ -30,26 +30,28 @@
                     <span>×</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <span>Last 3 digits of phone number is incorrect</span>
+                <span>{{'INCORRECT_LAST_NUMBERS_ERROR'|translate}}</span>
             </div>
 
             <div ng-show="$ctrl.showPhoneVerifyRequest" class="autocomplete-phone-check-request-panel">
-                <p>You can enter 3 digits from your phone number for autocomplete</p>
-                <button type="button" ng-click="$ctrl.acceptPhoneVerifyRequest()" class="btn btn-success">accept
+                <p>{{'ENTER_LAST_PHONE_NUMBERS'|translate}}</p>
+                <button type="button" ng-click="$ctrl.acceptPhoneVerifyRequest()" class="btn btn-success">
+                    {{'ACCEPT_BUTTON'|translate}}
                 </button>
-                <button type="button" ng-click="$ctrl.cancelPhoneVerifyRequest()" class="btn btn-warning">cancel
+                <button type="button" ng-click="$ctrl.cancelPhoneVerifyRequest()" class="btn btn-warning">
+                    {{'CANCEL_BUTTON'|translate}}
                 </button>
             </div>
 
             <div ng-show="$ctrl.formStatus === 'phoneVerify'">
-                <label for="captain-phone-validation">Enter 3 last numbers from your phone number</label>
+                <label for="captain-phone-validation">{{'ENTER_LAST_PHONE_NUMBERS_LABEL'|translate}}</label>
 
                 <div class="input-group">
                     <input class="form-control" id="captain-phone-validation" ng-model="$ctrl.last3digits" type="tel"
                            maxlength="3">
                     <span class="input-group-btn">
                         <button class="btn btn-danger" type="button"
-                                ng-click="$ctrl.cancelVerifyByNumber()">Cancel</button>
+                                ng-click="$ctrl.cancelVerifyByNumber()">{{'CANCEL_BUTTON'|translate}}</button>
                     </span>
                 </div>
             </div>
@@ -58,46 +60,50 @@
             <div
                  class="team-additional-info">
                 <div class="captain-name-spans">
-                    <label for="captain-name" class="control-label"> Captain full name </label>
+                    <label for="captain-name" class="control-label">{{'CAPTAIN_NAME_LABEL'|translate}}</label>
                     <span ng-show="request.name.$error.minlength" class="err">
-                  Minimum 3 characters</span>
+                        {{'MINIMUM_3_CHARACTERS_ERROR'|translate}}
+                    </span>
                     <span ng-show="request.name.$error.maxlength" class="err">
-                  Maximum 40 characters</span>
+                        {{'MAXIMUM_40_CHARACTERS_ERROR'|translate}}
+                    </span>
                 </div>
                 <input ng-disabled="$ctrl.isChangesForbidden" id="captain-name"
-                       class="form-control" placeholder="John Doe"
+                       class="form-control" placeholder="{{'CAPTAIN_NAME_PLACEHOLDER'|translate}}"
                        name="name" ng-model="$ctrl.fullName" ng-maxlength="40" minlength="3"
                        ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}"
                        required>
-
                 <div class="phone-spans">
                 <span ng-show="request.phone.$error.minlength" class="err">
-                  Minimum 10 numbers</span>
+                    {{'MINIMUM_10_CHARACTERS_ERROR'|translate}}
+                </span>
                     <span ng-show="request.phone.$error.maxlength" class="err">
-                  Maximum 13 numbers</span>
+                        {{'MAXIMUM_13_CHARACTERS_ERROR'|translate}}
+                    </span>
                     <span ng-show="request.phone.$invalid && request.phone.$dirty && request.phone.$isEmpty && !(request.phone.$error.minlength || request.phone.$error.maxlength)"
-                          class="err">
-                              Wrong format</span>
-                    <label for="captain-phone" class="control-label"> Captain phone number </label>
+                          class="err">{{'WRONG_FORMAT_ERROR'|translate}}</span>
+                    <label for="captain-phone" class="control-label">{{'PHONE_LABEL'|translate}}</label>
                 </div>
                 <input ng-disabled="$ctrl.isChangesForbidden" id="captain-phone"
-                       class="form-control" placeholder="xxx xxx xxxx"
+                       class="form-control" placeholder="{{'PHONE_PLACEHOLDER'|translate}}"
                        type="text" ng-model="$ctrl.phone" name="phone" maxlength="13" minlength="10"
                        ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
                        ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}" required>
             </div>
 
-            <label for="team-size" class="control-label"> Team size </label>
+            <label for="team-size" class="control-label">{{'TEAM_SIZE_LABEL'|translate}}</label>
             <input id="team-size" ng-model="$ctrl.teamSize" class="form-control" type="number" min="2" max="15"
                    required>
-            <button class="btn btn-success btn-block" type="submit" ng-disabled="$ctrl.submitted"> Submit</button>
-            <div class="alert alert-dismissible alert-success" ng-show="$ctrl.submitted">
-                <strong>Well done!</strong> Your request have been sent!
-            </div>
+            <button class="btn btn-success btn-block" type="submit" ng-disabled="$ctrl.submitted">
+                {{'SUBMIT_BUTTON'|translate}}
+            </button>
             <div class="cancel-changes-button">
                 <button class="btn btn-danger btn-block" ng-show="$ctrl.isChangesForbidden"
-                        ng-click="$ctrl.cancelVerifyByNumber()">Cancel
+                        ng-click="$ctrl.cancelVerifyByNumber()">{{'CANCEL_BUTTON'|translate}}
                 </button>
+            </div>
+            <div class="alert alert-dismissible alert-success" ng-show="$ctrl.submitted">
+                <strong>{{'WELL_DONE_MESSAGE'|translate}}</strong>{{'SEND_REQUEST_MESSAGE'|translate}}
             </div>
         </form>
 
@@ -122,3 +128,4 @@
 
     </div>
 </div>
+

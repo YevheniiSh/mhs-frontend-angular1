@@ -17,18 +17,18 @@
                         <td>
                             <div class="round-name">
                                 <input class="form-control" ng-model="round.name"
-                                       maxlength="34" minlength="3"
+                                       maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
                                        required placeholder="{{'ROUND_NAME_PLACEHOLDER' | translate}}"></div>
                         </td>
                         <td>
                             <div class="count-quest">
                                 <input class="form-control" ng-model="round.numberOfQuestions"
                                        min="1" max="20"
-                                       placeholder="Count Questions" type="number" required>
+                                       placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" type="number" required>
                             </div>
                         </td>
-                        <td><a class="btn btn-danger" ng-click="$ctrl.deleteRound(round.$id)">{{'DELETE_ROUND_BUTTON' |
-                            translate}}</a>
+                        <td><a class="btn btn-danger" ng-click="$ctrl.deleteRound(round.$id)">
+                            {{'DELETE_ROUND_BUTTON' | translate}}</a>
                         </td>
                     </tr>
                     </tbody>
