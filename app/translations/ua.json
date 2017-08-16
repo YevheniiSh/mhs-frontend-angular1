@@ -83,5 +83,6 @@
   "WRONG_FORMAT_ERROR": "Невірний формат",
   "WELL_DONE_MESSAGE": "Відмінно!",
   "SEND_REQUEST_MESSAGE": "Вашу заявку відправлено!",
-  "NAVBAR_LANGUAGES": "Обрати мову"
+  "NAVBAR_LANGUAGES": "Обрати мову",
+  "SHARE_BUTTON": "Поширити"
 }

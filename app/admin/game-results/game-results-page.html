@@ -1,5 +1,17 @@
 <div class="container">
-    <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON'|translate}}</button>
-    <button class="btn btn-info" ng-click="$ctrl.teamResults()">{{'SHOW_RESULTS_BUTTON'|translate}}</button>
+    <div class="row">
+        <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON'|translate}}</button>
+        <button class="btn btn-info" ng-click="$ctrl.teamResults()">{{'SHOW_RESULTS_BUTTON'|translate}}</button>
+
+        <a ng-if="$ctrl.shareButton" id="fb-share-button"
+           socialshare
+           socialshare-provider="facebook"
+           socialshare-text="mad head show"
+           socialshare-hashtags="angularjs, angular-socialshare"
+           socialshare-url=" {{$ctrl.shareURL}}">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <span>{{'SHARE_BUTTON' | translate}}</span>
+        </a>
+    </div>
     <game-results></game-results>
 </div>

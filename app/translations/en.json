@@ -83,6 +83,7 @@
   "SEND_REQUEST_MESSAGE": "Your request have been",
   "ACCEPT_BUTTON": "Accept",
   "CANCEL_BUTTON": "Cancel",
-  "NAVBAR_LANGUAGES": "Choose language"
+  "NAVBAR_LANGUAGES": "Choose language",
+  "SHARE_BUTTON": "Share"
 
 }

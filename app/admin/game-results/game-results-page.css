@@ -1,18 +1,46 @@
 /*.container,html{
     height: 100%;
 }*/
-td.new-window-td{
+#fb-share-button {
+    float: right;
+    background: #3b5998;
+    border-radius: 3px;
+    font-weight: 600;
+    padding: 5px 8px;
+    display: inline-block;
+    position: static;
+}
+
+.fa-facebook {
+    color: white;
+}
+
+#fb-share-button:hover {
+    cursor: pointer;
+    background: #213A6F
+}
+
+#fb-share-button span {
+    vertical-align: middle;
+    color: white;
+    font-size: 14px;
+    padding: 0 3px
+}
+
+td.new-window-td {
     font-size: 20px;
 }
 
 th.new-window-th {
     font-size: 23px;
 }
-h1#game-results{
+
+h1#game-results {
     padding-bottom: 1%;
     border-bottom: solid 1px;
     text-align: center;
 }
-span.ng-binding.date{
+
+span.ng-binding.date {
     float: right;
 }
