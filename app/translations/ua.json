@@ -1,7 +1,7 @@
 {
   "NAVBAR_TITLE": "Mad Head Show",
   "NAVBAR_GAME_LIST_BUTTON": "Список ігор",
-  "NAVBAR_TEAM_EDIT_BUTTON": "Редактування команд",
+  "NAVBAR_TEAM_EDIT_BUTTON": "Редагування команд",
   "NAVBAR_HELLO_LABEL": "Привіт",
   "NAVBAR_WELCOME_MESSAGE": "Ласкаво просимо",
   "LOGIN_FORM_TITLE": "Будь-ласка ввійдіть в систему",
@@ -65,7 +65,7 @@
   "TOTAL_TABLE_HEADER": "Всього",
   "ROUND_NAME_TABLE_HEADER": "Раунд",
   "QUIZZES_TABLE_HEADER": "Запитання",
-  "EDIT_RESULTS_BUTTON": "Редактувати відповіді",
+  "EDIT_RESULTS_BUTTON": "Редагувати відповіді",
   "SAVE_RESULTS_BUTTON": "Зберегти відповіді",
   "TEAM_NAME_CHANGED_ALERT": "Ім'я команди змінено",
   "TEAM_NAME_EXISTS_ALERT": "Ім'я занято",
