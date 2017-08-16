@@ -41,7 +41,7 @@
 </div>
 
 <div class="container">
-    <navbar ng-if="!presentationMode"></navbar>
+    <navbar ng-if="!presentationMode || !loading"></navbar>
     <div ng-if="!presentationMode" class="main-panel"></div>
     <div ng-show="!loading" ng-view></div>
 </div>
