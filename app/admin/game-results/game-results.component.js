@@ -8,17 +8,6 @@ angular.module('gameResultsPage')
                     $location.path(`/games/${$routeParams.gameId}/results/${teamResult.teamId}`);
                 }
             };
-            this.$onInit = onInit;
-            function onInit() {
-                this.gameId = $routeParams.gameId;
-
-                GameService.getGameStatus(this.gameId).then(status => {
-                    if (status === "current")
-                        GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString());
-                    if (status === "finished")
-                        GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString())
-                });
-            }
 
             ResultService.getParsedResults($routeParams.gameId)
                 .then((result) => {

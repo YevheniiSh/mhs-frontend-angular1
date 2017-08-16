@@ -7,18 +7,26 @@ th{
 h1{
     border-bottom: solid 1px;
 }
-input#inp{
-    height: 31px;
-    font-size: 17px;
-    display: inline-block;
-    width: 44px;
+span.inp{
     margin: 5px;
+}
+.quiz-input{
+    background: 0;
+    text-align:center;
     padding-left: 5px;
     padding-right: 5px;
-    border:none;
+}
+.quiz-input, span.inp{
     border-radius: 30%;
     color: #ffffff;
-    text-align:center;
+    display: inline-block;
+    width: 44px;
+    height: 31px;
+    font-size: 17px;
+    border: none;
+}
+span.inp:nth-child(5){
+    margin-right: 30px;
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -37,22 +45,25 @@ td.ng-binding{
 td.total-point{
     font-weight: bold;
 }
-td#quiz-block{
-    width: 360px;
+th#quiz-title, table tr td.quiz-row{
+    width: 57%;
     font-size: 24px;
-    padding: 0;
+    padding: 0 0 0 7%;
 }
-td#round{
+td.round-name.ng-binding{
     font-size: 20px;
+    text-align: left;
+    vertical-align: middle;
 }
 #total, #round{
     vertical-align: middle;
 }
-
-#round {
-    text-align: left;
+th#total-title{
+    padding-right: 3%;
+    text-align: right;
 }
-#total{
+td.total-score.ng-binding{
+    padding-right: 40px;
     text-align: right;
     vertical-align: middle;
 }

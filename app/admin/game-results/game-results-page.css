@@ -10,11 +10,9 @@
     display: inline-block;
     position: static;
 }
-
 .fa-facebook {
     color: white;
 }
-
 #fb-share-button:hover {
     cursor: pointer;
     background: #213A6F
@@ -27,20 +25,33 @@
     padding: 0 3px
 }
 
-td.new-window-td {
+td.td-cell{
     font-size: 20px;
 }
-
-th.new-window-th {
+th.th-cell.round-number{
+    padding-right: 0.9em;
+}
+td.round-score, td.total-score,
+th.round-number, th.total-title{
+    text-align: right;
+}
+th{
     font-size: 23px;
 }
-
-h1#game-results {
+h1#game-results{
     padding-bottom: 1%;
     border-bottom: solid 1px;
     text-align: center;
 }
-
-span.ng-binding.date {
+span.ng-binding.date{
     float: right;
+}
+th.total-title, td.total-score{
+    width: 12%;
+}
+th.teams-title, td.team-name{
+    width: 15%;
+}
+td.round-number, td.round-score{
+    width: 8%;
 }

@@ -14,7 +14,16 @@ angular.module('gameResultsPage')
             };
 
             function onInit() {
-                ResultService.getParsedResults(gameId)
+                vm.gameId = $routeParams.gameId;
+
+                GameService.getGameStatus(this.gameId).then(status => {
+                    if (status === "current")
+                        GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString());
+                    if (status === "finished")
+                        GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString())
+                });
+
+                ResultService.getParsedResults(this.gameId)
                     .then((result) => {
                         vm.results = result;
                         console.log(vm.results);

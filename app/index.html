@@ -42,13 +42,14 @@
 </div>
 
 <div class="container">
-    <navbar ng-if="!presentationMode || !loading"></navbar>
+    <navbar ng-if="!presentationMode && !loading"></navbar>
     <div ng-if="!presentationMode" class="main-panel"></div>
     <div ng-show="!loading" ng-view></div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
 <script src="bower_components/angular-translate/angular-translate.js"></script>
 <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>

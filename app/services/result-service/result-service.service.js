@@ -24,15 +24,7 @@ angular
             let resultRef = ref.child(`${gameId}/results/${resultKey}/`);
             let resultObj = new $firebaseObject(resultRef);
             resultObj.$value = result;
-            return resultObj.$save()
-                .then(
-                    () => {
-                        return resultKey;
-                    },
-                    (err) => {
-                        throw err;
-                    }
-                );
+            resultObj.$save()
         };
 
         resultFactory.filter = function (filter, gameId) {

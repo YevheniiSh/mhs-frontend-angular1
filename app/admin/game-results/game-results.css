@@ -1,27 +1,37 @@
-/*
-.container, html {
-    height: 100%;
-}
-*/
-
-td.new-window-td.ng-binding {
-    font-size: 1em;
-}
-
-th.new-window-th {
+table thead th.th-cell{
     font-size: 1.3em;
+    padding-top: 0.05em;
+    padding-bottom: 0.1em;
 }
-
-h1#game-results{
-    margin: 0;
+.td-cell.ng-binding{
+    font-size: 17px;
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+    border: none;
 }
-
+.total-title, .total-score {
+    text-align: right;
+    font-weight: bold;
+    position: relative;
+}
 span.ng-binding.date{
     float: right;
 }
-
-.date {
-    float: right;
+.round-number, .round-score {
+    text-align: right;
 }
-
-
+.th-cell.round-number{
+    padding-right: 0.9em;
+}
+.teams-title, .team-name{
+    width: 15%;
+}
+.round-number, .round-score{
+    width: 8%;
+}
+.total-title, .total-score{
+    width: 12%;
+}
+tbody tr.table-row:nth-child(odd){
+    background: rgba(68,52,52, 0.1);
+}
