@@ -3,12 +3,15 @@
         <h2>Round #{{$ctrl.round.$id}}: {{$ctrl.round.name}}</h2>
         <h1>Question #{{$ctrl.selectedQuiz}}</h1>
     </div>
-    <div class="checkbox">
-        <label id="manual-input"><input type="checkbox" ng-model="$ctrl.isManualInput">Manual input</label>
+    <div class="form-group">
+        <label id="manual-input">
+            <input type="checkbox" ng-model="$ctrl.isManualInput">Manual input
+        </label>
     </div>
+
     <div class="form-group row">
         <ul id="team-list">
-            <li class="col-md-6" ng-repeat="result in $ctrl.results">
+            <li class="col-md-6" ng-repeat="result in $ctrl.results | orderBy: 'teamName'">
                 <label>
                     <input type="checkbox"
                            ng-model="result.score"
@@ -16,7 +19,7 @@
                            ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
                            ng-if="!$ctrl.isManualInput"
                            ng-true-value="1" ng-false-value="0">
-                    {{$ctrl.getTeamNameByResult(result)}}
+                    {{result.teamName}}
                     <input type="number"
                            ng-model="result.score"
                            ng-change="$ctrl.saveResult(result)"
