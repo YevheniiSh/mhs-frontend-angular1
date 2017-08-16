@@ -1,5 +1,5 @@
 <div class="container">
-   <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
+    <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
    <uib-tabset active="$ctrl.activeTab">
       <uib-tab index="$ctrl.tabs[0]" heading="{{'TEAMS_TAB_NAME' | translate}}"  ng-click="$ctrl.updateUrlPath($ctrl.tabs[0])">
           <div id="add-team-panel">

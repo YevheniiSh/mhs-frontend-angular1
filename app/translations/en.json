@@ -67,5 +67,22 @@
   "SAVE_RESULTS_BUTTON": "Save results",
   "TEAM_NAME_CHANGED_ALERT": "Team name changed",
   "TEAM_NAME_EXISTS_ALERT": "Team name exist",
-  "SEARCH_PLACEHOLDER": "Search"
+  "SEARCH_PLACEHOLDER": "Search",
+  "WRONG_TIME_ERROR": "Wrong time",
+  "QUIZ_COUNT_PLACEHOLDER": "Quizz number",
+  "EDIT_TEAM_NAME_TOOLTIP": "Edit team name",
+  "INCORRECT_LAST_NUMBERS_ERROR": "Last 3 digits of your phone is incorrect",
+  "ENTER_LAST_PHONE_NUMBERS": "Enter last 3 digits of your phone to autocomplete",
+  "ENTER_LAST_PHONE_NUMBERS_LABEL": "Enter last 3 digits of your phone to autocomplete",
+  "MINIMUM_3_CHARACTERS_ERROR": "Min 3 symbols",
+  "MAXIMUM_40_CHARACTERS_ERROR": "Max 40 символов",
+  "MINIMUM_10_CHARACTERS_ERROR": "Min 10 symbols",
+  "MAXIMUM_13_CHARACTERS_ERROR": "Max 13 symbols",
+  "WRONG_FORMAT_ERROR": "Wrong format",
+  "WELL_DONE_MESSAGE": "Well done!",
+  "SEND_REQUEST_MESSAGE": "Your request have been",
+  "ACCEPT_BUTTON": "Accept",
+  "CANCEL_BUTTON": "Cancel",
+  "NAVBAR_LANGUAGES": "Choose language"
+
 }

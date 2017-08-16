@@ -1,2 +1,2 @@
 angular
-    .module('navbar', ['pascalprecht.translate']);
+    .module('navbar', ['internalisation']);

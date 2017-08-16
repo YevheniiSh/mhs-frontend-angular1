@@ -10,6 +10,7 @@
 
                 this.changeLang = function (locale) {
                     $translate.use(locale);
+                    localStorage.setItem("locale", locale);
                     this.locale = locale;
                 }
             }]
