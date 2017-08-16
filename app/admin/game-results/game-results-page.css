@@ -11,16 +11,13 @@
     position: static;
 }
 
+.fa-facebook {
+    color: white;
+}
+
 #fb-share-button:hover {
     cursor: pointer;
     background: #213A6F
-}
-
-#fb-share-button svg {
-    width: 18px;
-    fill: white;
-    vertical-align: middle;
-    border-radius: 2px
 }
 
 #fb-share-button span {
@@ -30,18 +27,20 @@
     padding: 0 3px
 }
 
-td.new-window-td{
+td.new-window-td {
     font-size: 20px;
 }
 
 th.new-window-th {
     font-size: 23px;
 }
-h1#game-results{
+
+h1#game-results {
     padding-bottom: 1%;
     border-bottom: solid 1px;
     text-align: center;
 }
-span.ng-binding.date{
+
+span.ng-binding.date {
     float: right;
 }
