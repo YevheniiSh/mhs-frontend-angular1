@@ -55,6 +55,7 @@
             vm.fullName = '';
             vm.phone = '';
             vm.isChangesForbidden = false;
+            vm.cancelAutocompleted = false;
 
             if (vm.selectedTeam === undefined) {
                 return;
@@ -64,6 +65,11 @@
                 vm.selectedTeam = {};
             }
         }
+
+        vm.cancelVerifyByNumberWithReturnAutocompleteFeature = function () {
+            cancelAutocomplete();
+            vm.showPhoneVerifyRequest = true;
+        };
 
         function saveRequestFromAutocompleteData(last3digits, team) {
             vm.isCorrectLast3digits = true;
@@ -79,6 +85,7 @@
                                 vm.phone = teamRequest.phone;
                                 vm.isCorrectLast3digits = true;
                                 vm.showPhoneVerifyRequest = false;
+                                vm.cancelAutocompleted = true;
 
                                 vm.saveRequest = function () {
                                     saveTeam({
@@ -124,7 +131,6 @@
             vm.acceptPhoneVerifyRequest = function () {
                 vm.formStatus = 'phoneVerify';
                 setupVerifyByPhoneNumber(team);
-                // vm.showPhoneVerifyRequest = false;
             };
             vm.cancelPhoneVerifyRequest = function () {
                 vm.showPhoneVerifyRequest = false;
