@@ -18,6 +18,8 @@
     <script src="https://use.fontawesome.com/50300bbbf7.js"></script>
     <script src="public/js/GameResultParser.js"></script>
 
+    <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css">
+
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
 
 </head>
@@ -41,15 +43,12 @@
 
 <div class="container">
     <navbar ng-if="!presentationMode"></navbar>
-    <div ng-if="!presentationMode" class="main-panel">
-
-        </div>
+    <div ng-if="!presentationMode" class="main-panel"></div>
     <div ng-show="!loading" ng-view></div>
-
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-translate/angular-translate.js"></script>
 <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
@@ -86,8 +85,11 @@
 <script src="services/prev-location-service.js"></script>
 
 <script src="spinner/spinner.service.js"></script>
-<script src="player/application-form/application-form.module.js"></script>
-<script src="player/application-form/application-form.component.js"></script>
+
+<script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
+
+<script src="player/team-register-form/team-register-form.module.js"></script>
+<script src="player/team-register-form/team-register-form.component.js"></script>
 <script src="admin/add-teams/add-teams.module.js"></script>
 
 <script src="services/game-service/open-game-service/open-game.module.js"></script>
@@ -98,6 +100,8 @@
 <script src="admin/game-results/game-results.component.js"></script>
 <script src="presentation-mode/presentationMode.controller.js"></script>
 
+<script src="services/team-request-service/team-request-service.module.js"></script>
+<script src="services/team-request-service/team-request-service.service.js"></script>
 
 <script src="admin/create-game/create-game.component.js"></script>
 
@@ -105,7 +109,6 @@
 <script src="admin/team-results/team-results.component.js"></script>
 <script src="admin/add-teams/team-exist.directive.js"></script>
 
-<script src="player/some-feature/SomeFeatureController.js"></script>
 <script src="admin/game-build/game-type/game-type.module.js"></script>
 <script src="admin/game-build/game-type/game-type.component.js"></script>
 <script src="components/version/version.js"></script>

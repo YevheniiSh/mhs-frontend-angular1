@@ -2,9 +2,9 @@
 <table class="table table-sm table-hover">
     <thead>
     <tr>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Location</th>
+        <th>{{'DATE_LABEL' | translate}}</th>
+        <th>{{'TIME_LABEL' | translate}}</th>
+        <th>{{'LOCATION_LABEL' | translate}}</th>
         <th></th>
     </tr>
     </thead>
@@ -16,17 +16,18 @@
         <td>
             <button class="btn btn-info game-button"
                     ng-click="$ctrl.registerToGame(openGame.$id)"
-                    ng-if="!$ctrl.auth">Register
+                    ng-if="!$ctrl.auth">{{'REGISTER_BUTTON' | translate}}
             </button>
             <button class="btn btn-info game-button"
                     ng-if="$ctrl.auth"
-                    ng-click="$ctrl.configGame(openGame.$id)">Config
+                    ng-click="$ctrl.configGame(openGame.$id)">{{'CONFIG_BUTTON' | translate}}
             </button>
             <button class="btn btn-info game-button"
                     ng-click="$ctrl.startGame(openGame)"
-                    ng-if="$ctrl.auth">Start
+                    ng-if="$ctrl.auth">{{'START_BUTTON' | translate}}
             </button>
-            <span class="error text-danger" ng-if="openGame.invalid">{{openGame.error}}</span>
+            <span id="err-message" class="error text-danger"
+                  ng-if="openGame.invalid">{{openGame.error| translate}}</span>
         </td>
     </tr>
     </tbody>

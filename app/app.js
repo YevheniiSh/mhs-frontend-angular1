@@ -15,9 +15,12 @@ angular.module('mhs', [
     'internalisation',
     'openGameService',
     'gameRequestService',
+    'teamRequestService',
     '720kb.socialshare'
-]).config(['$locationProvider', '$routeProvider',
-    function ($locationProvider, $routeProvider) {
-        $locationProvider.hashPrefix('!');
-        $routeProvider.otherwise({redirectTo: '/game-list'});
-    }]);
+])
+    .config(['$locationProvider', '$routeProvider', '$animateProvider',
+        function ($locationProvider, $routeProvider, $animateProvider) {
+            $animateProvider.classNameFilter(/animated/);
+            $locationProvider.hashPrefix('!');
+            $routeProvider.otherwise({redirectTo: '/games'});
+        }]);

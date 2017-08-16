@@ -38,3 +38,7 @@ h1 {
 .error {
     font-size: 14px;
 }
+
+#err-message{
+    position: absolute;
+}

@@ -7,7 +7,7 @@ angular.module('gameResultsPage')
             this.$onInit = onInit;
 
             this.teamResults = function () {
-                $window.open($window.location.origin + `/#!/games/${$routeParams.gameId}/results-presentation`, ``, `width=auto,height=auto`);
+                $window.open($window.location.origin + `/#!/games/${$routeParams.gameId}/results-presentation`, ``, `width=${screen.availWidth},height=${screen.availHeight}`);
             };
 
             function onInit() {
@@ -25,10 +25,10 @@ angular.module('gameResultsPage')
             this.onBack = function () {
                 auth.currentUser()
                     .then(()=>{
-                    $location.path(`/round-status/${$routeParams.gameId}`);
+                    $location.path(`/games/${$routeParams.gameId}/rounds`);
                 })
                 .catch (()=>{
-                    $location.path(`/game-list`);
+                    $location.path(`/games`);
                 })
                 ;
             }

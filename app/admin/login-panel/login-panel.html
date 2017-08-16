@@ -3,12 +3,12 @@
         <a style="font-size: 15px" class="btn btn-silver btn-xs" ng-click="$ctrl.logOut()">
             <i style="font-size: 15px" class="fa fa-sign-out"></i>
         </a>
-        <p class="auth-info">Hello, {{$root.currentUser}}</p>
+        <p class="auth-info">{{'NAVBAR_HELLO_LABEL' | translate}}, {{$root.currentUser}}</p>
     </div>
     <div ng-hide="$root.currentUser">
         <a style="font-size: 15px" class="btn btn-success btn-xs" ng-href="/#!/login">
             <i style="font-size: 15px" class="fa fa-sign-in"></i>
         </a>
-        <p class="auth-info">Welcome, please log in </p>
+        <p class="auth-info">{{'NAVBAR_WELCOME_MESSAGE' | translate}}</p>
     </div>
 </div>

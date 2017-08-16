@@ -1,0 +1,91 @@
+/*#team-name {*/
+/*margin-bottom: 20px;*/
+/*}*/
+
+/*#captain-name {*/
+/*margin-bottom: 20px;*/
+/*}*/
+
+/*#captain-phone {*/
+/*margin-bottom: 20px;*/
+/*}*/
+
+#team-size {
+    margin-bottom: 20px;
+    width: 75px;
+}
+
+.form-control.ng-invalid.ng-not-empty {
+    border-color: #ff9b9b;
+    box-shadow: 0 0 20px 0 #ff9b9b;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: block;
+    width: 550px;
+    margin: auto;
+}
+
+span.err {
+    color: #f00;
+    float: right;
+}
+
+label {
+    margin: 0;
+}
+
+#team-name_dropdown {
+    width: 100%;
+    top: 40px;
+}
+
+.incorrect-last-3-digits-alert {
+    position: fixed;
+    right: 6.4%;
+    top: 34%;
+    width: 200px;
+    height: 90px;
+    display: block;
+    z-index: 99999999;
+}
+
+.autocomplete-by-phone-panel {
+    float: left;
+    width: 25%;
+    margin-top: 155px;
+    margin-left: 10px;
+
+    /*position: fixed;*/
+    /*right: 6.4%;*/
+    /*top: 34%;*/
+    /*width: 200px;*/
+    /*height: 90px;*/
+    /*display: block;*/
+    /*z-index: 99999999;*/
+}
+
+.phone-verify-request-alert {
+    padding-bottom: 25px;
+}
+
+/*.request-team-form {*/
+/*float: left;*/
+/*padding-left: 30%;*/
+/*width: 70%;*/
+/*}*/
+
+.cancel-changes-button {
+    padding-top: 10px;
+}
+
+.team-additional-info {
+    /*margin-top: 5px;*/
+    /*margin-bottom: 5px;*/
+    /*border: solid 1px silver;*/
+}

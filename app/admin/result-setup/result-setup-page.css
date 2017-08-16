@@ -5,7 +5,8 @@ h1 {
     border-bottom: solid 1px;
     text-align: center;
 }
-h2{
+
+h2 {
     margin-bottom: 0;
 }
 
@@ -38,8 +39,8 @@ h2{
     float: right;
 }
 
-.btn-selected::after{
-    position:absolute;
+.btn-selected::after {
+    position: absolute;
     bottom: -6px;
     height: 2px;
     left: 0px;
@@ -60,6 +61,7 @@ h2{
     font-size: 14pt;
 }
 
-input[type=checkbox]{
+input[type=checkbox] {
     transform: scale(1.5);
 }
+

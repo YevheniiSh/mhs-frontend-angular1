@@ -26,10 +26,11 @@ function GameType(GameService, $routeParams, $location) {
         }
     });
 
-    vm.addRound = function () {
+    vm.addRound = function ($event) {
         let quiz = {$id: quizSequenceNumber, numberOfQuestions: 10, name: ""};
         quizSequenceNumber++;
         rounds.push(quiz);
+        $event.preventDefault();
     };
     vm.deleteRound = function (index) {
         if (rounds.length >= index) {

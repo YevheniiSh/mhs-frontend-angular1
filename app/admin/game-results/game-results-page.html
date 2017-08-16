@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
-        <button class="btn btn-success" ng-click="$ctrl.onBack()">Back</button>
-        <button class="btn btn-info" ng-click="$ctrl.teamResults()">Show results</button>
+        <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON'|translate}}</button>
+        <button class="btn btn-info" ng-click="$ctrl.teamResults()">{{'SHOW_RESULTS_BUTTON'|translate}}</button>
 
         <div id="fb-share-button">
             <a
@@ -18,5 +18,5 @@
             </a>
         </div>
     </div>
-    <game-results></game-results>
+   <game-results></game-results>
 </div>

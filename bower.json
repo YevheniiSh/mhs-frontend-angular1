@@ -18,5 +18,7 @@
     "angular-material": "^1.1.4",
     "angular-bootstrap": "^2.5.0",
     "angular-socialshare": "angularjs-socialshare#^2.3.11"
+    "angular-bootstrap": "^2.5.0",
+    "angucomplete-alt": "^3.0.0"
   }
 }
