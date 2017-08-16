@@ -114,6 +114,13 @@ label {
     text-align: right;
 }
 
+.verify-phone-placeholder {
+    float: left;
+    padding-top: 47px;
+    width: 20%;
+    text-align: right;
+}
+
 .phone-autocomplete-panel {
     width: 100%;
 }
