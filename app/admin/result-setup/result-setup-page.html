@@ -16,7 +16,7 @@
                            ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
                            ng-if="!$ctrl.isManualInput"
                            ng-true-value="1" ng-false-value="0">
-                    {{$ctrl.getTeamNameByResult(result)}}
+                    {{result.teamName}}
                     <input type="number"
                            ng-model="result.score"
                            ng-change="$ctrl.saveResult(result)"
