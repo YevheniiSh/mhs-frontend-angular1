@@ -6,9 +6,12 @@
 /*margin-bottom: 20px;*/
 /*}*/
 
-/*#captain-phone {*/
-/*margin-bottom: 20px;*/
-/*}*/
+#captain-phone {
+    /*margin-bottom: 20px;*/
+    /*float: left;*/
+    border-right: solid 1px silver;
+    border-radius: 5px;
+}
 
 #team-size {
     margin-bottom: 20px;
@@ -85,7 +88,48 @@ label {
 }
 
 .team-additional-info {
-    /*margin-top: 5px;*/
+    /*margin-top: 20px;*/
     /*margin-bottom: 5px;*/
     /*border: solid 1px silver;*/
+}
+
+.captain-name-panel {
+    margin-top: 20px;
+    float: left;
+    width: 40%;
+}
+
+.captain-phone-panel {
+    margin-top: 20px;
+    float: left;
+    width: 40%;
+    margin-bottom: 20px;
+    /*padding-left: 50px;*/
+}
+
+.phone-placeholder {
+    float: left;
+    padding-top: 47px;
+    width: 20%;
+    text-align: right;
+}
+
+.verify-phone-placeholder {
+    float: left;
+    padding-top: 47px;
+    width: 20%;
+    text-align: right;
+}
+
+.phone-autocomplete-panel {
+    width: 100%;
+}
+
+.btn-autocomplete {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.btn-cancel-autocomplete {
+    width: 120px;
 }
