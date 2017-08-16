@@ -17,6 +17,7 @@ h2 {
 #team-list label {
     font-size: 14pt;
     height: 32px;
+    line-height: 32px;
 }
 
 #team-list input {
@@ -50,18 +51,14 @@ h2 {
     background: orange;
 }
 
-.alert{
-    position: absolute;
-    right: 10px;
-    top:10px;
-    width: 30%;
+input[type=checkbox] {
+    transform: scale(1.5);
+    margin-top: 10px;
 }
 
 #manual-input{
     font-size: 14pt;
-}
-
-input[type=checkbox] {
-    transform: scale(1.5);
+    height: 32px;
+    line-height: 32px;
 }
 
