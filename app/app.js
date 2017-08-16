@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('mhs', [
     'ngRoute',
+    'ngMessages',
     'mhs.admin',
     'mhs.player',
     'mhs.version',

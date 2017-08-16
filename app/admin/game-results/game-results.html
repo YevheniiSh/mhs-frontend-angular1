@@ -1,20 +1,19 @@
 <div class="game-results">
-    <h1 id="game-results">{{'GAME_RESULT_HEADER' | translate}}<span class="date">{{$ctrl.date}}</span></h1>
     <table class="table table-sm table-striped table-hover ">
         <thead>
-        <tr>
-            <th class="new-window-th">{{'TEAMS_TABLE_HEADER' | translate}}</th>
-            <th class="new-window-th" ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
-            <th class="new-window-th">{{'TOTAL_TABLE_HEADER' | translate}}</th>
-        </tr>
+            <tr>
+                <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}}</th>
+                <th class="th-cell round-number" ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
+                <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
+            </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="teamResult in $ctrl.results"
-             ng-click="$ctrl.getDetails(teamResult)">
-            <td class="new-window-td" >{{teamResult.teamName}}</td>
-            <td class="new-window-td" ng-repeat="round in teamResult.rounds">{{round.score}}</td>
-            <td class="new-window-td" >{{teamResult.total}}</td>
-        </tr>
+            <tr class="table-row" ng-repeat="teamResult in $ctrl.results"
+            ng-click="$ctrl.getDetails(teamResult)">
+                <td class="td-cell team-name" >{{teamResult.teamName}}</td>
+                <td class="td-cell round-score" ng-repeat="round in teamResult.rounds">{{round.score}}</td>
+                <td class="td-cell total-score">{{teamResult.total}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
