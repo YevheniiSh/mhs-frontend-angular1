@@ -21,10 +21,18 @@
                 .getAllFinishedGames()
                 .then((games) => {
                     this.games = games;
-                    this.games.forEach((item) => {
-                        item.date = new Date(item.date);
-                    });
+                    vm.parseDate();
+                    this.games.$watch(() => {
+                        vm.parseDate();
+                    })
                 })
+
+        };
+
+        vm.parseDate = function () {
+            vm.games.forEach((item) => {
+                item.date = new Date(item.date);
+            });
         };
     }
 })();

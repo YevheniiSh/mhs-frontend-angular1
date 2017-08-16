@@ -16,17 +16,26 @@
             gameFactory
                 .getAllCurrentGames()
                 .then((games) => {
-                    this.games = games;
+                    vm.games = games;
                     console.log(this.games);
-                    this.games.forEach((item) => {
-                        item.date = new Date(item.date);
+                    vm.parseDate();
+                    vm.games.$watch(() => {
+                        vm.parseDate();
                     });
-                })
+                });
+
+
             vm.auth = false;
             userService.currentUser().then((res) => {
                 vm.auth = true;
             }).catch((err) => {
                 vm.auth = false;
+            });
+        };
+
+        vm.parseDate = function () {
+            vm.games.forEach((item) => {
+                item.date = new Date(item.date);
             });
         };
 
