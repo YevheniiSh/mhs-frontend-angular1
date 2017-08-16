@@ -3,7 +3,7 @@
         <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON'|translate}}</button>
         <button class="btn btn-info" ng-click="$ctrl.teamResults()">{{'SHOW_RESULTS_BUTTON'|translate}}</button>
 
-        <a id="fb-share-button"
+        <a ng-if="$ctrl.shareButton" id="fb-share-button"
            socialshare
            socialshare-provider="facebook"
            socialshare-text="mad head show"

@@ -34,7 +34,9 @@
             ResultService.setGameWinner(vm.status, vm.gameId)
                 .then(() => {
                     GameService.finishGame(vm.gameId);
-                });
+                }).then(() => {
+                $location.path("games/" + vm.gameId + "/results")
+            });
 
         };
 
