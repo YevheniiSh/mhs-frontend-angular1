@@ -133,7 +133,7 @@
 
         function checkExistenceInputtedTeam(teamName) {
             for (let team of vm.teams) {
-                if (team.name === teamName) {
+                if (team.name.toLowerCase() === teamName.toLowerCase()) {
                     setupPhoneVerifyRequest(team);
                     break;
                 } else {
