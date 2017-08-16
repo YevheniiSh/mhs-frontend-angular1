@@ -22,17 +22,6 @@
                 });
         }
 
-        function checkTeamNameCoincidence(teamName) {
-            return TeamService
-                .getAllTeams()
-                .then((res) => {
-                    for (team of res) {
-                        if (team.name === teamName.toString()) return true;
-                    }
-                    return false;
-                });
-        }
-
         function showSuccessAlert() {
             $timeout(() => {
                 vm.showSuccessAlert = false;
@@ -40,7 +29,8 @@
         }
 
         vm.changeTeamName = function (team) {
-            checkTeamNameCoincidence(team.name)
+            TeamService
+                .checkTeamNameCoincidence(team.name)
                 .then((res) => {
                     if (!res) {
                         TeamService

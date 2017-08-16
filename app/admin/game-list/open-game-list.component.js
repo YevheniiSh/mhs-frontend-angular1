@@ -45,11 +45,11 @@
                 console.log(res);
                 if (res[0].length < 2) {
                     game.invalid = true;
-                    game.error = 'Configurate rounds';
+                    game.error = 'CONFIG_ROUNDS_ERROR';
                     $rootScope.$apply();
                 } else if (res[1].length < 2) {
                     game.invalid = true;
-                    game.error = 'Configurate teams';
+                    game.error = 'CONFIG_TEAMS_ERROR';
                     $rootScope.$apply();
                 } else {
                     gameServiceFactory.startGame(gameId);

@@ -13,6 +13,7 @@ angular
                 getByGame: getByGame,
                 isTeamNameExist: isTeamNameExist,
                 changeTeamName: changeTeamName,
+                checkTeamNameCoincidence: checkTeamNameCoincidence
             };
 
             function save(team) {
@@ -83,6 +84,16 @@ angular
                     .then((res) => {
                         return res;
                     })
+            }
+
+            function checkTeamNameCoincidence(teamName) {
+                return getAllTeams()
+                    .then((res) => {
+                        for (team of res) {
+                            if (team.name === teamName.toString()) return true;
+                        }
+                        return false;
+                    });
             }
         }]
     );

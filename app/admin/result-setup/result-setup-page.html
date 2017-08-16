@@ -1,17 +1,14 @@
 <div class="container">
     <div id="header">
-        <h2>Round #{{$ctrl.round.$id}}: {{$ctrl.round.name}}</h2>
-        <h1>Question #{{$ctrl.selectedQuiz}}</h1>
+        <h2>{{'ROUND_SET_RESULTS_HEADER'|translate}} #{{$ctrl.round.$id}}: {{$ctrl.round.name}}</h2>
+        <h1>{{'QUESTION_SET_RESULTS_HEADER'|translate}} #{{$ctrl.selectedQuiz}}</h1>
     </div>
-    <div class="form-group">
-        <label id="manual-input">
-            <input type="checkbox" ng-model="$ctrl.isManualInput">Manual input
-        </label>
+    <div class="checkbox">
+        <label id="manual-input"><input type="checkbox" ng-model="$ctrl.isManualInput">{{'MANUAL_INPUT_CHECKBOX'|translate}}</label>
     </div>
-
     <div class="form-group row">
         <ul id="team-list">
-            <li class="col-md-6" ng-repeat="result in $ctrl.results | orderBy: 'teamName'">
+            <li class="col-md-6" ng-repeat="result in $ctrl.results">
                 <label>
                     <input type="checkbox"
                            ng-model="result.score"
@@ -42,6 +39,6 @@
                 {{$index+1}}
             </button>
         </div>
-        <button class="btn btn-success submit-button" ng-click="$ctrl.nextQuiz()">Next</button>
+        <button class="btn btn-success submit-button" ng-click="$ctrl.nextQuiz()">{{'NEXT_BUTTON'|translate}}</button>
     </div>
 </div>
