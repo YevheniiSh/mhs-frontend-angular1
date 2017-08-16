@@ -17,18 +17,24 @@ angular.module('resultSetup').factory('resultSetupService', [
 
         function saveQuizResult(result, gameId) {
             let res = buildResult(result.round, result.quiz, result.teamId, result.score);
-            return resultFactory.saveResult('current', res, gameId);
+            resultFactory.saveResult('current', res, gameId);
         }
 
         function saveQuizResults(results, gameId) {
-            let promices = [];
-            angular.forEach(results, function (result) {
-                if (result.score == undefined) {
+            // let promices = [];
+            // angular.forEach(results, function (result) {
+            //     if (result.score == undefined) {
+            //         result.score = 0;
+            //     }
+            //     promices.push(saveQuizResult(result, gameId));
+            // });
+            // return promices;
+            results.forEach((result) => {
+                if (result.score === undefined) {
                     result.score = 0;
+                    saveQuizResult(result, gameId)
                 }
-                promices.push(saveQuizResult(result, gameId));
-            });
-            return promices;
+            })
         }
 
         function getQuizResults(roundId, quizId, gameId) {
