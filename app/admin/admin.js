@@ -37,7 +37,8 @@ angular
         });
         $routeProvider.when('/games', {
             template: '<game-list></game-list>',
-            css: 'admin/game-list/game-list.css'
+            css: 'admin/game-list/game-list.css',
+            reloadOnSearch: false
         });
         $routeProvider.when('/teams', {
             template: '<team-list></team-list>',
@@ -48,7 +49,8 @@ angular
         });
         $routeProvider.when('/games/:gameId/config', {
             template: '<config-game></config-game>',
-            resolve: isAuth
+            resolve: isAuth,
+            reloadOnSearch: false
         });
         $routeProvider.when('/games/:gameId/results', {
             template: '<game-results-page></game-results-page>',

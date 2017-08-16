@@ -30,6 +30,7 @@
   "CAPTAIN_NAME_PLACEHOLDER": "Иван Иванов",
   "PHONE_PLACEHOLDER": "+380",
   "BACK_BUTTON": "Назад",
+  "CANCEL_BUTTON":"Отмена",
   "SUBMIT_BUTTON": "Отправить",
   "REOPEN_BUTTON": "Переоткрыть",
   "CONTINUE_BUTTON": "Продолжить",
@@ -41,6 +42,7 @@
   "ADD_ROUND_BUTTON": "Добавить раунд",
   "DELETE_ROUND_BUTTON": "Удалить",
   "SAVE_ROUNDS_BUTTON": "Сохранить",
+  "ACCEPT_BUTTON":"Подтвердить",
   "ROUND_NAME_LABEL": "Имя раунда",
   "QUESTION_COUNT_LABEL": "Количество вопросов",
   "ROUND_NAME_PLACEHOLDER": "Имя раунда",
@@ -67,8 +69,20 @@
   "SAVE_RESULTS_BUTTON": "Сохранить ответы",
   "TEAM_NAME_CHANGED_ALERT": "Имя команды изменено",
   "TEAM_NAME_EXISTS_ALERT": "Имя занято",
-  "SEARCH_PLACEHOLDER": "Поиск"
-
-
+  "SEARCH_PLACEHOLDER": "Поиск",
+  "WRONG_TIME_ERROR": "Вы ввели неправильное время",
+  "QUIZ_COUNT_PLACEHOLDER":"Количество вопросов",
+  "EDIT_TEAM_NAME_TOOLTIP":"Изменить имя команды",
+  "INCORRECT_LAST_NUMBERS_ERROR":"Последние 3 цифры номера телефона введены неверно",
+  "ENTER_LAST_PHONE_NUMBERS":"Ввести последние 3 цифры номера телефона для автозаполнения полей",
+  "ENTER_LAST_PHONE_NUMBERS_LABEL":"Введите последние 3 цифры номера телефона для автозаполнения полей",
+  "MINIMUM_3_CHARACTERS_ERROR":"Минимум 3 символа",
+  "MAXIMUM_40_CHARACTERS_ERROR":"Максимум 40 символов",
+  "MINIMUM_10_CHARACTERS_ERROR":"Минимум 10 символов",
+  "MAXIMUM_13_CHARACTERS_ERROR": "Максимум 13 символов",
+  "WRONG_FORMAT_ERROR":"Неверный формат",
+  "WELL_DONE_MESSAGE":"Отлично!",
+  "SEND_REQUEST_MESSAGE": "Вашу заявку отправлено!",
+  "NAVBAR_LANGUAGES": "Выбрать язык"
 
 }

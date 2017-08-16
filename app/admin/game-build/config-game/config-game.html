@@ -1,13 +1,12 @@
 <div class="container">
-   <button id = "button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
-   <uib-tabset>
-      <uib-tab heading="{{'TEAMS_TAB_NAME' | translate}}">
-         <div id="add-team-panel">
-            <add-teams></add-teams>
-         </div>
-
+    <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
+   <uib-tabset active="$ctrl.activeTab">
+      <uib-tab index="$ctrl.tabs[0]" heading="{{'TEAMS_TAB_NAME' | translate}}"  ng-click="$ctrl.updateUrlPath($ctrl.tabs[0])">
+          <div id="add-team-panel">
+              <add-teams></add-teams>
+          </div>
       </uib-tab>
-      <uib-tab heading="{{'ROUNDS_TAB_NAME' | translate}}">
+      <uib-tab index="$ctrl.tabs[1]" heading="{{'ROUNDS_TAB_NAME' | translate}}"  ng-click="$ctrl.updateUrlPath($ctrl.tabs[1])">
          <game-type></game-type>
       </uib-tab>
    </uib-tabset>
