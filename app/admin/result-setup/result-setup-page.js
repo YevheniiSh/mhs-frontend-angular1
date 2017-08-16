@@ -25,10 +25,20 @@
             initCurrentQuiz();
             getTeams()
                 .then(() => {
-                    buildResults();
+                    buildResults()
                     assignResults()
-                        .then(saveResults);
+                        .then(initInputType)
+                        .then(saveResults)
                 });
+        }
+
+        function initInputType() {
+            angular.forEach(vm.results, (result) => {
+                if (result.score != 0 && result.score != 1 && result.score != undefined) {
+                    vm.isManualInput = true;
+                }
+                ;
+            })
         }
 
         function initRound() {
@@ -65,6 +75,7 @@
                 let resultKey = [vm.round.$id, vm.selectedQuiz, team.teamId].join('_');
                 let result = resultSetupService.buildResult(vm.round.$id, vm.selectedQuiz, team.teamId);
                 vm.results[resultKey] = result;
+                vm.results[resultKey].teamName = team.name;
             });
         }
 
@@ -74,22 +85,13 @@
                     res.forEach((result, key) => {
                         Object.assign(vm.results[key], result)
                     });
+                    vm.results = Object.keys(vm.results).map(it => vm.results[it])
                 });
         }
 
         function saveResults() {
             return resultSetupService.saveQuizResults(vm.results, $routeParams.gameId);
         }
-
-        vm.getTeamNameByResult = function (result) {
-            let teamName;
-            angular.forEach(vm.teams, function (team) {
-                if (result.teamId == team.teamId) {
-                    teamName = team.name;
-                }
-            })
-            return teamName;
-        };
 
         vm.saveResult = function (result) {
             resultSetupService.saveQuizResult(result, $routeParams.gameId);
@@ -102,8 +104,10 @@
 
         vm.nextQuiz = function () {
             if (vm.selectedQuiz < vm.round.numberOfQuestions) {
-                vm.currentQuiz++;
-                resultSetupService.setCurrentQuiz(vm.currentQuiz, $routeParams.gameId);
+                if (vm.currentQuiz == vm.selectedQuiz) {
+                    vm.currentQuiz++;
+                    resultSetupService.setCurrentQuiz(vm.currentQuiz, $routeParams.gameId);
+                }
                 vm.setQuiz(+vm.selectedQuiz + 1);
             } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
                 resultSetupService.roundIncrement(vm.round.$id, $routeParams.gameId)
