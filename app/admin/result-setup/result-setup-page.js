@@ -34,7 +34,7 @@
 
         function initInputType() {
             angular.forEach(vm.results, (result) => {
-                if (result.score != 0 && result.score != 1) {
+                if (result.score != 0 && result.score != 1 && result.score != undefined) {
                     vm.isManualInput = true;
                 }
                 ;
