@@ -14,7 +14,8 @@ angular.module('mhs', [
     'userAuthService',
     'internalisation',
     'openGameService',
-    'gameRequestService'
+    'gameRequestService',
+    '720kb.socialshare'
 ]).config(['$locationProvider', '$routeProvider',
     function ($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');

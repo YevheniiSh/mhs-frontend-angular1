@@ -16,8 +16,9 @@ angular.module('gameResultsPage')
                         this.results = result;
                         console.log(this.results);
                     });
-                this.gameId = $location.absUrl();
             }
+
+            this.shareURL =  $location.absUrl();
 
 
 
