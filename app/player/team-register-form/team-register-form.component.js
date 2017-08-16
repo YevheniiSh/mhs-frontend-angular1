@@ -78,6 +78,7 @@
                                 vm.fullName = teamRequest.fullName;
                                 vm.phone = teamRequest.phone;
                                 vm.isCorrectLast3digits = true;
+                                vm.showPhoneVerifyRequest = false;
 
                                 vm.saveRequest = function () {
                                     saveTeam({
@@ -123,7 +124,7 @@
             vm.acceptPhoneVerifyRequest = function () {
                 vm.formStatus = 'phoneVerify';
                 setupVerifyByPhoneNumber(team);
-                vm.showPhoneVerifyRequest = false;
+                // vm.showPhoneVerifyRequest = false;
             };
             vm.cancelPhoneVerifyRequest = function () {
                 vm.showPhoneVerifyRequest = false;
