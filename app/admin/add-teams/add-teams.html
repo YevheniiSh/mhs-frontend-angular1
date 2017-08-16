@@ -2,7 +2,7 @@
     <uib-tabset>
         <uib-tab heading="{{'UNCONFIRMED_TEAMS_TAB_NAME' | translate}}">
             <ul class="scroll-panel">
-                <li class="animate-requests"
+                <li class="animate-requests animated"
                     ng-repeat="team in $ctrl.requests | filter:{status:'unconfirmed'}">
                     <span class="btn list-item" ng-click="showDetails = ! showDetails">{{team.teamName}}</span>
                     <span class="btn" ng-click="$ctrl.archivateRequest(team.$id)">
@@ -12,7 +12,7 @@
                           ng-click="$ctrl.addTeamToGame(team)">
                             <i class="fa fa-check" aria-hidden="true"></i>
                         </span>
-                    <div class="request-details" ng-show="showDetails">
+                    <div class="request-details animated" ng-show="showDetails">
                         <p>{{'CAPTAIN_NAME_LABEL' | translate}}: <strong>{{team.fullName}}</strong></p>
                         <p>{{'PHONE_LABEL' | translate}}: <strong>{{team.phone}}</strong></p>
                         <p>{{'TEAM_SIZE_LABEL' | translate}}: <strong>{{team.teamSize}}</strong></p>
@@ -22,7 +22,7 @@
         </uib-tab>
         <uib-tab heading="{{'ARCHIVED_TEAMS_TAB_NAME' | translate}}">
             <ul class="scroll-panel">
-                <li class="animate-requests"
+                <li class="animate-requests animated"
                     ng-repeat="team in $ctrl.requests | filter:{status:'archived'}">
                     <span class="btn list-item" ng-click="showDetails = ! showDetails">{{team.teamName}}</span>
                     <span class="btn" ng-click="$ctrl.unArchivateRequest(team.$id)">
@@ -30,7 +30,7 @@
                     <span class="btn" ng-click="$ctrl.addTeamToGame(team)">
                         <i class="fa fa-check" aria-hidden="true"></i>
                     </span>
-                    <div class="request-details" ng-show="showDetails">
+                    <div class="request-details animated    " ng-show="showDetails">
                         <p>{{'CAPTAIN_NAME_LABEL' | translate}}: <strong>{{team.fullName}}</strong></p>
                         <p>{{'PHONE_LABEL' | translate}}: <strong>{{team.phone}}</strong></p>
                         <p>{{'TEAM_SIZE_LABEL' | translate}}: <strong>{{team.teamSize}}</strong></p>
@@ -46,14 +46,15 @@
     <uib-tabset>
         <uib-tab heading="{{'CONFIRMED_TEAMS_TAB_NAME' | translate}}">
             <ul class="scroll-panel">
-                <li class="animate-teams"
+                <li class="animate-teams animated"
                     ng-repeat="team in $ctrl.teams">
-                        <span class="btn list-item" ng-click="showDetails = ! showDetails"
-                        >{{team.name}}</span>
+                        <span class="btn list-item" ng-click="showDetails = ! showDetails">
+                            {{team.name}}
+                        </span>
                     <span class="btn" ng-click="$ctrl.unConfirmRequest(team)">
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </span>
-                    <div class="request-details" ng-show="showDetails">
+                    <div class="request-details animated" animated ng-show="showDetails">
                         <p>{{'CAPTAIN_NAME_LABEL' | translate}}: <strong>{{team.fullName}}</strong></p>
                         <p>{{'PHONE_LABEL' | translate}}: <strong>{{team.phone}}</strong></p>
                         <p>{{'TEAM_SIZE_LABEL' | translate}}: <strong>{{team.teamSize}}</strong></p>

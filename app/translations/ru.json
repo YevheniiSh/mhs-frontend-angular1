@@ -31,7 +31,6 @@
   "PHONE_PLACEHOLDER": "+380",
   "BACK_BUTTON": "Назад",
   "CANCEL_BUTTON":"Отмена",
-  "SHOW_RESULTS":"Показать ответы",
   "SUBMIT_BUTTON": "Отправить",
   "REOPEN_BUTTON": "Переоткрыть",
   "CONTINUE_BUTTON": "Продолжить",
@@ -80,9 +79,10 @@
   "MINIMUM_3_CHARACTERS_ERROR":"Минимум 3 символа",
   "MAXIMUM_40_CHARACTERS_ERROR":"Максимум 40 символов",
   "MINIMUM_10_CHARACTERS_ERROR":"Минимум 10 символов",
-  "MAXIMUM_13_CHARACTERS_ERROR":"Максимум 13 сиволов",
+  "MAXIMUM_13_CHARACTERS_ERROR": "Максимум 13 символов",
   "WRONG_FORMAT_ERROR":"Неверный формат",
   "WELL_DONE_MESSAGE":"Отлично!",
-  "SEND_REQUEST_MESSAGE":"Вашу заявку отправлено!"
+  "SEND_REQUEST_MESSAGE": "Вашу заявку отправлено!",
+  "NAVBAR_LANGUAGES": "Выбрать язык"
 
 }
