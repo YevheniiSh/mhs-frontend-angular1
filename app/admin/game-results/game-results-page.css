@@ -13,9 +13,6 @@ h1#game-results{
     border-bottom: solid 1px;
     text-align: center;
 }
-    button.btn.btn-success.back{
-    margin-left: 2%;
-}
 span.ng-binding.date{
     float: right;
 }

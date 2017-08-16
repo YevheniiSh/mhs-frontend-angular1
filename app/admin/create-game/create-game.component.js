@@ -11,6 +11,8 @@ angular.module('createGame')
 
                 this.isCalendarVisible = false;
                 this.isTimeVisible = false;
+                this.options = {};
+                this.options.minDate = new Date();
                 this.gameDate = new Date();
                 this.gameTime = new Date();
                 this.gameTime.setSeconds(0);
