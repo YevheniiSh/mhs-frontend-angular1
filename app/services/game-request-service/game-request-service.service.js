@@ -4,7 +4,6 @@ angular.module('gameRequestService')
 
             let openGameRef = firebaseDataService.openGames;
 
-
             return {
                 save: save,
                 getTeamRequest: getTeamRequest,
@@ -14,7 +13,7 @@ angular.module('gameRequestService')
                 setUnconfirmedStatus: setUnconfirmedStatus,
                 getAllTeamRequestsByGameId: getAllTeamRequestsByGameId,
                 updateTeamId:updateTeamId
-            }
+            };
 
 
             function updateTeamId(gameId, request) {
@@ -45,31 +44,13 @@ angular.module('gameRequestService')
             function getTeamRequest(gameId, teamRequestId) {
                 let teamRequestRef = openGameRef.child(`${gameId}/requests/${teamRequestId}`);
                 return new $firebaseObject(teamRequestRef)
-                    .$loaded()
-                    .then(
-                        (res) => {
-                            return res;
-                        },
-                        (err) => {
-                            console.log(err);
-                            throw err;
-                        }
-                    )
+                    .$loaded();
             }
 
             function getAllTeamRequestsByGameId(gameId) {
                 let requestsRef = openGameRef.child(`${gameId}/requests`);
                 return new $firebaseArray(requestsRef)
-                    .$loaded()
-                    .then(
-                        (teamsRequests) => {
-                            return teamsRequests;
-                        },
-                        (err) => {
-                            console.log(err);
-                            throw err;
-                        }
-                    )
+                    .$loaded();
             }
 
             function getTeamRequestStatus(gameId, requestId) {
