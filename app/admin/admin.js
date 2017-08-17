@@ -14,7 +14,8 @@ angular
         'configGame',
         'ui.bootstrap',
         'teamList',
-        'navbar'])
+        'navbar',
+         'gameTemplate'])
     .config(['$routeProvider', function ($routeProvider) {
 
         let isAuth = {
@@ -64,6 +65,9 @@ angular
         $routeProvider.when('/games/:gameId/results/:teamId', {
             template: '<team-results></team-results>',
             css: 'admin/team-results/team-results.css'
+        });
+        $routeProvider.when('/templates', {
+            template: '<game-template></game-template>',
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
