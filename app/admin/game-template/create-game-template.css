@@ -1,0 +1,30 @@
+.content{
+    margin-top: 20px;
+}
+label {
+    font-size: 16px;
+}
+
+.td-round-number {
+    margin: 20px;
+    max-width: 20px;
+    max-height: 15px;
+}
+.round-number{
+    padding-top: 8px;
+}
+.round-name {
+    max-width: 300px;
+}
+#btn-save{
+    margin-top: 20px;
+}
+.count-quest {
+    max-width: 140px;
+}
+
+/*input[type=number]::-webkit-inner-spin-button,*/
+/*input[type=number]::-webkit-outer-spin-button {*/
+/*-webkit-appearance: none;*/
+/*margin: 0;*/
+/*}*/

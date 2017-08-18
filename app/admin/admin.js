@@ -69,6 +69,9 @@ angular
         $routeProvider.when('/templates', {
             template: '<game-template></game-template>',
         });
+        $routeProvider.when('/templates/:templateId', {
+            template: '<create-game-template></create-game-template>',
+        });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
         $rootScope.$on("$routeChangeError", function () {
