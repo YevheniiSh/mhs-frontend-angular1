@@ -22,10 +22,11 @@ function gameTemplate($routeParams, $location, gameTemplateService) {
     gameTemplateService.getAll().then((val) => {
         vm.templates = val
     });
-    vm.createTemplate = function () {
+
+
+    vm.newTemplate = function () {
         gameTemplateService.createTemplate().then((res) => {
             $location.path("/templates/" +  res.$id);
-
         })
     }
 

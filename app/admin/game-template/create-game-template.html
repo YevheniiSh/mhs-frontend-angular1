@@ -45,7 +45,7 @@
                         ng-click="$ctrl.addRound($event)" class=" btn btn-info btn-block"> {{'ADD_ROUND_BUTTON' | translate}}
                 </button>
                 <button ng-hide="$ctrl.rounds.length <1" id="btn-save" class="btn btn-success btn-block"
-                        type="submit">
+                        type="submit" ng-click="$ctrl.toTemplateList()">
                     {{'SAVE_ROUNDS_BUTTON' | translate}}
                 </button>
                 <div class="alert alert-dismissible alert-success" ng-if="$ctrl.submitted">

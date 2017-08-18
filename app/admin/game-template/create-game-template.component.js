@@ -6,9 +6,9 @@ angular.module('gameTemplate')
         controller: createGameTemplate
     });
 
-createGameTemplate.$inject = ['gameTemplateServiceFactory', '$routeParams', '$location'];
+createGameTemplate.$inject = ['gameTemplateServiceFactory', '$routeParams', '$location', '$timeout'];
 
-function createGameTemplate(templateService, $routeParams, $location) {
+function createGameTemplate(templateService, $routeParams, $location, $timeout) {
     let vm = this;
 
 
@@ -56,6 +56,8 @@ function createGameTemplate(templateService, $routeParams, $location) {
         templateService.updateName(templateId, vm.templateName);
         templateService.updateRounds(templateId, vm.rounds);
         vm.submitted = true;
+        if (vm.submitted)$location.path("/templates");
+
     };
 
     vm.dissmiss = function () {
@@ -66,4 +68,8 @@ function createGameTemplate(templateService, $routeParams, $location) {
         return {$id: quizSequenceNumber, numberOfQuestions: 10, name: ""}
     }
 
+    vm.toTemplateList = function () {
+        // $timeout(()=>{
+        // }, 500)
+    }
 }

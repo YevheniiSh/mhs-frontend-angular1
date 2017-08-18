@@ -1,15 +1,26 @@
-<table class="table table-sm table-hover template-table">
+    <table class=" table-sm table-hover template-table">
     <thead>
     <tr>
-        <th class="title">y</th>
+        <th class="title">
+            <button class="btn btn-success btn-block new-template-btn" ng-click="$ctrl.newTemplate()">
+                Create new template</button>
+        </th>
     </tr>
     </thead>
     <tbody>
-        <tr class="game-template-row" ng-repeat="template in $ctrl.templates" ng-click="">
-            <td class="game-template-cell" ng-click="$ctrl.showTemplate(template.$id)">{{$index + 1}}. {{template.name}}
-                <button class="btn btn-danger template-delete-button" ng-click="$ctrl.deleteTemplate(template.$id)">
-                    <i class="fa fa-times times-font" aria-hidden="true"></i>
-                </button>
+        <tr class="template-row" ng-click="">
+            <td>
+                <div ng-repeat="template in $ctrl.templates">
+                    <div ng-click="$ctrl.showTemplate(template.$id)" class="template-cell">
+                        {{template.name}}
+                        <button class="btn btn-danger delete-btn" ng-click="$ctrl.deleteTemplate(template.$id)">
+                            {{'DELETE_ROUND_BUTTON' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </td>
+            <td>
+                sdalsjdlaksj
             </td>
         </tr>
     </tbody>

@@ -1,45 +1,63 @@
-.btn-for-template-delete{
-    border-radius: 17px;
-    float: right;
-    vertical-align: middle;
-}
-.template-table{
-}
-.title{
-    font-size: 2em;
-}
-.times-icon{
-    float: right;
-    vertical-align: middle;
-}
-.times-font {
-    border-radius: 20%;
-}
-.template-delete-button{
-    font-size: 20px;
-    float:right;
-    border-radius: 30px;
-    margin: 3%
-}
-.game-template-cell.ng-binding{
-    margin: 0.4em  0.4em 0.4em  1.4em;
-    font-size: 3em;
-    border-radius: 10px;
-    width: 13em;
-    display: inline-block;
-    text-align: left;
-    padding-right: 3%;
-}
-/*.game-template-cell.ng-binding:hover {*/
+/*.btn-for-template-delete{*/
+    /*border-radius: 17px;*/
+    /*float: right;*/
+    /*vertical-align: middle;*/
+/*}*/
+/*.template-table{*/
+/*}*/
+/*.title{*/
+    /*font-size: 2em;*/
+/*}*/
+/*.times-icon{*/
+    /*float: right;*/
+    /*vertical-align: middle;*/
+/*}*/
+/*.times-font {*/
+    /*border-radius: 20%;*/
+/*}*/
+/*.template-delete-button{*/
+    /*font-size: 20px;*/
+    /*float:right;*/
+    /*border-radius: 30px;*/
+    /*margin: 3%*/
+/*}*/
+/*.game-template-cell.ng-binding{*/
+    /*margin: 0.4em  0.4em 0.4em  1.4em;*/
+    /*font-size: 3em;*/
+    /*border-radius: 10px;*/
+    /*width: 13em;*/
+    /*display: inline-block;*/
+    /*text-align: left;*/
+    /*padding-right: 3%;*/
+/*}*/
+/*!*.game-template-cell.ng-binding:hover {*!*/
     /*background: grey;*/
 /*}*/
 
 /*.game-template-cell:hover {*/
     /*border-color: #01F800;*/
 /*}*/
-.game-template-row{
+.template-row{
+    cursor: pointer;
+    font-size: 24px;
+}
+.title{
     text-align: center;
 }
+.template-cell{
+    margin: 0.2em;
+}
+.new-template-btn{
+    display: inline-block;
+    margin-bottom: 2%;
+    width: 400px;
+}
+.delete-btn{
+    float: right;
+}
+.create-template{
+    vertical-align: middle;
+}
 table{
-    width: 100%;
+    margin-left: 16px; //найти чистий солюшин для виравнювання таблиці і навбара
 }
