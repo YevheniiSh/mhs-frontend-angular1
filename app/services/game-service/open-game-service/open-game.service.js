@@ -15,6 +15,9 @@
             addTeams: addTeams,
             addRequest: addRequest,
             addRounds: addRounds,
+            getDate: getDate,
+            getTime: getTime,
+            getLocation: getLocation,
             changeDate: changeDate,
             changeLocation: changeLocation,
             changeTime: changeTime,
@@ -38,6 +41,27 @@
             return obj.$loaded().then(() => {
                 return obj.$id;
             });
+        }
+
+        function getDate(gameId) {
+            return new $firebaseObject(openGamesRef.child(gameId).child('date'))
+                .$loaded().then((res) => {
+                    return res.$value
+                })
+        }
+
+        function getTime(gameId) {
+            let obj = new $firebaseObject(openGamesRef.child(gameId + '/time'));
+            return obj.$loaded().then((res) => {
+                return res.$value
+            })
+        }
+
+        function getLocation(gameId) {
+            let obj = new $firebaseObject(openGamesRef.child(gameId + '/location'));
+            return obj.$loaded().then((res) => {
+                return res.$value
+            })
         }
 
         function changeDate(gameId, date) {

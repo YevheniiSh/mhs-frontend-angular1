@@ -1,6 +1,19 @@
 #button-back{
+    position: relative;
+    left: 0px;
     margin-bottom: 10px;
+}
+
+#button-panel{
+    padding: 0px;
 }
 #add-team-panel{
     margin-top: 10px;
+}
+.picker {
+    position: fixed;
+    display: inline-block;
+    margin-top: 40px;
+    min-height: 290px;
+    z-index: 100;
 }
