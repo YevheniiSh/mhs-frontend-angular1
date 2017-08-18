@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-md-6 col-md-offset-3 content">
-        <form ng-submit="$ctrl.saveRounds()" >
+        <form ng-submit="$ctrl.saveRounds()">
 
             <div ng-hide="$ctrl.rounds.length <1">
                 <table class="table table-striped table-hover">
@@ -36,18 +36,39 @@
             </div>
 
             <button ng-hide="$ctrl.rounds.length >9"
-               ng-click="$ctrl.addRound($event)" class=" btn btn-info btn-block"> {{'ADD_ROUND_BUTTON' | translate}}
+                    ng-click="$ctrl.addRound($event)" class=" btn btn-info btn-block"> {{'ADD_ROUND_BUTTON' |
+                translate}}
             </button>
             <button ng-hide="$ctrl.rounds.length <1" id="btn-save" class="btn btn-success btn-block"
                     type="submit">
                 {{'SAVE_ROUNDS_BUTTON' | translate}}
             </button>
+
+
+
+
             <div class="alert alert-dismissible alert-success" ng-if="$ctrl.submitted">
                 <button type="button" class="close" ng-click="$ctrl.dissmiss()">&times;</button>
-
                 {{'ROUND_SAVED_MESSAGE' | translate}}
             </div>
 
+        </form>
+        <form id="template-form" ng-submit="$ctrl.saveTemplate()" ng-hide="$ctrl.rounds.length <1">
+            <div class="form-group">
+                <label>Enter template name</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="$ctrl.templateName">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="submit" ng-click="templateSaved = true">
+                             Save template
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="alert alert-dismissible alert-success" ng-show="templateSaved">
+                <button type="button" class="close" ng-click="templateSaved = false">&times;</button>
+                Template saved!
+            </div>
         </form>
     </div>
 
