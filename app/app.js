@@ -18,6 +18,7 @@ angular.module('mhs', [
     'gameRequestService',
     'teamRequestService',
     'gameBuildService',
+    'convertService',
     '720kb.socialshare'
 ])
     .config(['$locationProvider', '$routeProvider', '$animateProvider',
