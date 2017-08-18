@@ -19,7 +19,6 @@ function createGameTemplate(templateService, $routeParams, $location) {
     let quizSequenceNumber = 1;
 
     templateService.getTemplateName(templateId).then((res) => {
-
         vm.templateName = res;
     });
     getRounds();
@@ -58,6 +57,7 @@ function createGameTemplate(templateService, $routeParams, $location) {
     vm.saveRounds = function () {
 
         vm.submitted = false;
+        templateService.updateName(templateId, vm.templateName);
         templateService.updateRounds(templateId, vm.rounds);
         vm.submitted = true;
     };

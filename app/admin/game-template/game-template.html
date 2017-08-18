@@ -6,7 +6,7 @@
     </thead>
     <tbody>
         <tr class="game-template-row" ng-repeat="template in $ctrl.templates" ng-click="">
-            <td class="game-template-cell"  ng-click="$ctrl.showTemplate(template.$id)">{{$index}}.  {{template.name}}
+            <td class="game-template-cell" ng-click="$ctrl.showTemplate(template.$id)">{{$index + 1}}. {{template.name}}
                 <button class="btn btn-danger template-delete-button" ng-click="$ctrl.deleteTemplate(template.$id)">
                     <i class="fa fa-times times-font" aria-hidden="true"></i>
                 </button>
