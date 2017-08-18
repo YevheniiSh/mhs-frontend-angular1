@@ -6,7 +6,6 @@ angular.module('mhs', [
     'ngMessages',
     'mhs.admin',
     'mhs.player',
-    'mhs.version',
     'angularCSS',
     'teamFactory',
     'gameFactory',
