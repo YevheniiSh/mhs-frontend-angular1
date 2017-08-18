@@ -18,7 +18,8 @@ angular.module('gameTemplateService')
                 update: update,
                 updateName: updateName,
                 updateRounds: updateRounds,
-                saveFromGame:saveFromGame
+                saveFromGame:saveFromGame,
+                addTemplateToGame:addTemplateToGame
             };
 
 
@@ -71,6 +72,10 @@ angular.module('gameTemplateService')
                     .then((res) => {
                         save(name, res);
                     })
+            }
+
+            function addTemplateToGame(template,gameId) {
+                openGameService.addRounds(gameId,template.rounds)
             }
 
         }]
