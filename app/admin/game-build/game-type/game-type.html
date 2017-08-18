@@ -62,13 +62,14 @@
             </button>
         </form>
 
-        <form id="template-form" ng-submit="$ctrl.saveTemplate()" ng-hide="$ctrl.rounds.length <1">
+        <form id="template-form" ng-if="$ctrl.templateFormShow" ng-submit="$ctrl.saveTemplate()"
+              ng-hide="$ctrl.rounds.length <1">
             <div class="form-group">
                 <label>Enter template name</label>
                 <div class="input-group">
                     <input type="text" class="form-control" ng-model="$ctrl.templateName" required>
                     <span class="input-group-btn">
-                        <button class="btn btn-success" type="submit" ng-click="templateSaved = true">
+                        <button class="btn btn-success" type="submit" ng-click="$ctrl.templateSaved = true">
                              Save template from game
                         </button>
                     </span>
@@ -80,8 +81,8 @@
             <button type="button" class="close" ng-click="$ctrl.dissmiss()">&times;</button>
             {{'ROUND_SAVED_MESSAGE' | translate}}
         </div>
-        <div class="alert alert-dismissible alert-success" ng-show="templateSaved">
-            <button type="button" class="close" ng-click="templateSaved = false">&times;</button>
+        <div class="alert alert-dismissible alert-success" ng-show="$ctrl.templateSaved">
+            <button type="button" class="close" ng-click="$ctrl.templateSaved = false">&times;</button>
             Template saved!
         </div>
     </div>

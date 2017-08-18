@@ -13,6 +13,7 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
     vm.rounds = [];
     let gameId = $routeParams.gameId;
     vm.templateName = "";
+    vm.templateFormShow = false;
     let quizSequenceNumber = 1;
 
     gameTemplateService.getAll()
@@ -50,6 +51,7 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
         vm.submitted = false;
         openGameService.addRounds(gameId, vm.rounds);
         vm.submitted = true;
+        vm.templateFormShow = true;
     };
 
     vm.dissmiss = function () {
@@ -58,6 +60,7 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
 
     vm.saveTemplate = function () {
         gameTemplateService.saveFromGame(gameId,vm.templateName);
+        vm.templateFormShow = false;
     };
 
     vm.selectTemplate = function (template) {
