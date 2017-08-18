@@ -1,6 +1,6 @@
 angular.module('gameTemplateService')
-    .factory('gameTemplateServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService',
-        function ($firebaseArray, $firebaseObject, firebaseDataService) {
+    .factory('gameTemplateServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService', 'convertServiceFactory',
+        function ($firebaseArray, $firebaseObject, firebaseDataService, convertService) {
 
             let gameTemplatesRef = firebaseDataService.gameTemplates;
 
@@ -10,12 +10,12 @@ angular.module('gameTemplateService')
                 getAll: getAll,
                 getById: getById,
                 remove: remove
-            }
+            };
 
 
-            function save(template) {
+            function save(name, rounds) {
                 let fbObj = new $firebaseObject(gameTemplatesRef.push());
-                fbObj.$value = template;
+                fbObj.$value = convertService.buildTemplateForFirebase(name, rounds);
                 fbObj.$save();
                 return fbObj.$loaded();
             }
