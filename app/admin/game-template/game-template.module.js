@@ -1,1 +1,1 @@
-angular.module('gameTemplate', []);
+angular.module('gameTemplate', ['gameTemplateService']);

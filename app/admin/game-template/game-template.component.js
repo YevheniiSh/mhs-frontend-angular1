@@ -6,10 +6,13 @@ angular.module('gameTemplate')
         controller: GameTemplate
     });
 
-GameTemplate.$inject = ['$routeParams', '$location'];
+GameTemplate.$inject = ['$routeParams', '$location', 'gameTemplateServiceFactory'];
 
-function GameTemplate($routeParams, $location) {
+function GameTemplate($routeParams, $location, GameTemplateService) {
     let vm = this;
 
+    GameTemplateService.getAll().then((val) => {
+        vm.templates = val
+    });
 
 }
