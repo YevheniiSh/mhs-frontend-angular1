@@ -1,6 +1,11 @@
 angular.module('gameTemplateService')
-    .factory('gameTemplateServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService', 'convertServiceFactory',
-        function ($firebaseArray, $firebaseObject, firebaseDataService, convertService) {
+    .factory('gameTemplateServiceFactory', [
+        '$firebaseArray',
+        '$firebaseObject',
+        'firebaseDataService',
+        'convertServiceFactory',
+        'OpenGameServiceFactory',
+        function ($firebaseArray, $firebaseObject, firebaseDataService, convertService,openGameService) {
 
             let gameTemplatesRef = firebaseDataService.gameTemplates;
 
@@ -12,7 +17,8 @@ angular.module('gameTemplateService')
                 remove: remove,
                 update: update,
                 updateName: updateName,
-                updateRounds: updateRounds
+                updateRounds: updateRounds,
+                saveFromGame:saveFromGame
             };
 
 
@@ -58,6 +64,13 @@ angular.module('gameTemplateService')
                 let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId));
                 fbObj.$remove();
                 return fbObj.$loaded();
+            }
+
+            function saveFromGame(gameId, name){
+                openGameService.getRounds(gameId)
+                    .then((res) => {
+                        save(name, res);
+                    })
             }
 
         }]

@@ -53,10 +53,6 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
     }
 
     vm.saveTemplate = function () {
-        openGameService.getRounds(gameId)
-            .then((res) => {
-                console.log(vm.templateName);
-                gameTemplateService.save(vm.templateName, res);
-            })
+        gameTemplateService.saveFromGame(gameId,vm.templateName);
     }
 }
