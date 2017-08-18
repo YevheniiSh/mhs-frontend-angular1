@@ -9,6 +9,7 @@ angular.module('configGame')
                 let gameId = $routeParams.gameId;
                 vm.isCalendarVisible = false;
                 vm.isTimeVisible = false;
+                vm.saved = false;
                 // vm.options = {};
                 // vm.options.minDate = new Date();
 
@@ -51,6 +52,7 @@ angular.module('configGame')
                     OpenGameService.changeTime(gameId, vm.gameTime);
                     OpenGameService.changeDate(gameId, vm.gameDate);
                     OpenGameService.changeLocation(gameId, vm.location);
+                    vm.saved = true;
                 };
 
                 vm.onBack = function () {

@@ -37,6 +37,12 @@
     <div  class="col-md-1" >
         <button  class="btn btn-success" ng-click="$ctrl.updateDateAndLocation()">Save</button>
     </div>
+    <div class="col-md-4">
+        <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.saved">
+            <button type="button" class="close" ng-click="$ctrl.saved = false">&times;</button>
+            Game changes saved
+        </div>
+    </div>
     <div class="row"></div>
     <uib-tabset active="$ctrl.activeTab">
         <uib-tab index="$ctrl.tabs[0]" heading="{{'TEAMS_TAB_NAME' | translate}}"

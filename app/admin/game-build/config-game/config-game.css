@@ -17,3 +17,9 @@
     min-height: 290px;
     z-index: 100;
 }
+
+.alert-sm {
+    padding-bottom: 6px;
+    padding-top: 6px;
+    margin-bottom: 0px;
+}
