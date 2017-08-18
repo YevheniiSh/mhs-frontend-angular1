@@ -24,8 +24,8 @@ function gameTemplate($routeParams, $location, gameTemplateService) {
     });
     vm.createTemplate = function () {
         gameTemplateService.createTemplate().then((res) => {
-            $location.path("/templates/" +  res.$id)
-            debugger
+            $location.path("/templates/" +  res.$id);
+
         })
     }
 
