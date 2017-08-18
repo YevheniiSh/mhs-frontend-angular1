@@ -12,7 +12,7 @@ angular.module('configGame')
                 // vm.options = {};
                 // vm.options.minDate = new Date();
 
-                this.location = null;
+                this.location = "";
 
                 vm.$onInit = onInit;
 
@@ -22,14 +22,7 @@ angular.module('configGame')
                     });
 
                     OpenGameService.getTime(gameId).then((res) => {
-                        let date = new Date();
-                        let time = res.split(":");
-
-                        date.setHours(time[0]);
-                        date.setMinutes(time[1]);
-                        date.setSeconds("00");
-                        vm.gameTime = date;
-
+                        vm.gameTime = res;
                     });
 
                     OpenGameService.getLocation(gameId).then((res) => {

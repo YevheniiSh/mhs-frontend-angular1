@@ -53,8 +53,11 @@
         function getTime(gameId) {
             let obj = new $firebaseObject(openGamesRef.child(gameId + '/time'));
             return obj.$loaded().then((res) => {
-                return res.$value
-            })
+                let time;
+                time = convertService.convertTimeFromFirebase(res.$value)
+                return time
+            });
+
         }
 
         function getLocation(gameId) {
