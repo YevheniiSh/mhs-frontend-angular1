@@ -6,19 +6,18 @@ angular.module('gameType')
         controller: GameType
     });
 
-GameType.$inject = ['OpenGameServiceFactory', '$routeParams', '$location'];
+GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$location'];
 
-function GameType(GameService, $routeParams, $location) {
+function GameType(gameTemplateService, openGameService, $routeParams, $location) {
     let vm = this;
-
 
     let rounds = [];
     vm.rounds = rounds;
     let gameId = $routeParams.gameId;
-
+    vm.templateName = "";
     let quizSequenceNumber = 1;
 
-    GameService.getRounds(gameId).then((res) => {
+    openGameService.getRounds(gameId).then((res) => {
         console.log(res);
         for (let i = 0; i < res.length; i++) {
             rounds.push(res[i]);
@@ -45,7 +44,7 @@ function GameType(GameService, $routeParams, $location) {
 
     vm.saveRounds = function () {
         vm.submitted = false;
-        GameService.addRounds(gameId, rounds);
+        openGameService.addRounds(gameId, rounds);
         vm.submitted = true;
     };
 
@@ -53,4 +52,11 @@ function GameType(GameService, $routeParams, $location) {
         vm.submitted = false;
     }
 
+    vm.saveTemplate = function () {
+        openGameService.getRounds(gameId)
+            .then((res) => {
+                console.log(vm.templateName);
+                gameTemplateService.save(vm.templateName, res);
+            })
+    }
 }
