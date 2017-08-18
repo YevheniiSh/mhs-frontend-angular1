@@ -1,61 +1,55 @@
-
-   <div class="container">
-        <div class="col-md-6 col-md-offset-3 content">
-            <form ng-submit="$ctrl.saveRounds()" >
-                Template Name
-                <input class="form-control" ng-model="$ctrl.templateName"
-                       maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
-                       required >
+<div class="col-md-6 col-md-offset-3 content">
+    <form ng-submit="$ctrl.saveRounds()" >
+        Template Name
+        <input class="form-control" ng-model="$ctrl.templateName"
+               maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
+               required >
 
 
-                <div ng-hide="$ctrl.rounds.length <1">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                        <th>#</th>
-                        <th>{{'ROUND_NAME_LABEL' | translate}}</th>
-                        <th>{{'QUESTION_COUNT_LABEL' | translate}}</th>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="round in $ctrl.rounds">
-                            <td class="td-round-number">
-                                <div class="round-number">{{round.$id}}</div>
-                            </td>
-                            <td>
-                                <div class="round-name">
-                                    <input class="form-control" ng-model="round.name"
-                                           maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
-                                           required placeholder="{{'ROUND_NAME_PLACEHOLDER' | translate}}"></div>
-                            </td>
-                            <td>
-                                <div class="count-quest">
-                                    <input class="form-control" ng-model="round.numberOfQuestions"
-                                           min="1" max="20"
-                                           placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" type="number" required>
-                                </div>
-                            </td>
-                            <td><a class="btn btn-danger" ng-click="$ctrl.deleteRound(round.$id)">
-                                {{'DELETE_ROUND_BUTTON' | translate}}</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <button ng-hide="$ctrl.rounds.length >9"
-                        ng-click="$ctrl.addRound($event)" class=" btn btn-info btn-block"> {{'ADD_ROUND_BUTTON' | translate}}
-                </button>
-                <button ng-hide="$ctrl.rounds.length <1" id="btn-save" class="btn btn-success btn-block"
-                        type="submit" ng-click="$ctrl.toTemplateList()">
-                    {{'SAVE_ROUNDS_BUTTON' | translate}}
-                </button>
-                <div class="alert alert-dismissible alert-success" ng-if="$ctrl.submitted">
-                    <button type="button" class="close" ng-click="$ctrl.dissmiss()">&times;</button>
-
-                    {{'ROUND_SAVED_MESSAGE' | translate}}
-                </div>
-
-            </form>
+        <div ng-hide="$ctrl.rounds.length <1">
+            <table class="table table-striped table-hover">
+                <thead>
+                <th>#</th>
+                <th>{{'ROUND_NAME_LABEL' | translate}}</th>
+                <th>{{'QUESTION_COUNT_LABEL' | translate}}</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="round in $ctrl.rounds">
+                    <td class="td-round-number">
+                        <div class="round-number">{{round.$id}}</div>
+                    </td>
+                    <td>
+                        <div class="round-name">
+                            <input class="form-control" ng-model="round.name"
+                                   maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
+                                   required placeholder="{{'ROUND_NAME_PLACEHOLDER' | translate}}"></div>
+                    </td>
+                    <td>
+                        <div class="count-quest">
+                            <input class="form-control" ng-model="round.numberOfQuestions"
+                                   min="1" max="20"
+                                   placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" type="number" required>
+                        </div>
+                    </td>
+                    <td><a class="btn btn-danger" ng-click="$ctrl.deleteRound(round.$id)">
+                        {{'DELETE_ROUND_BUTTON' | translate}}</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
+        <button ng-hide="$ctrl.rounds.length >9"
+                ng-click="$ctrl.addRound($event)" class=" btn btn-info btn-block"> {{'ADD_ROUND_BUTTON' | translate}}
+        </button>
+        <button ng-hide="$ctrl.rounds.length <1" id="btn-save" class="btn btn-success btn-block"
+                type="submit" ng-click="$ctrl.toTemplateList()">
+            {{'SAVE_ROUNDS_BUTTON' | translate}}
+        </button>
+        <div class="alert alert-dismissible alert-success" ng-if="$ctrl.submitted">
+            <button type="button" class="close" ng-click="$ctrl.dissmiss()">&times;</button>
 
-    </div>
+            {{'ROUND_SAVED_MESSAGE' | translate}}
+        </div>
+    </form>
+</div>
