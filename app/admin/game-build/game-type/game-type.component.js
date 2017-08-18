@@ -33,6 +33,8 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
         $event.preventDefault();
     };
     vm.deleteRound = function (index) {
+        console.dir("bef  ")
+        console.dir(  vm.rounds)
         if (vm.rounds.length >= index) {
             for (let i = index - 1; i < vm.rounds.length; i++) {
                 vm.rounds[i].$id--;
@@ -41,6 +43,9 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
         }
 
         vm.rounds.splice(index - 1, 1);
+
+        console.dir("aft " )
+        console.dir(  vm.rounds)
     };
 
     vm.saveRounds = function () {

@@ -36,17 +36,21 @@ function createGameTemplate(templateService, $routeParams, $location) {
         $event.preventDefault();
     };
     vm.deleteRound = function (index) {
+        debugger
         if (vm.rounds.length >= index) {
             for (let i = index - 1; i < vm.rounds.length; i++) {
                 vm.rounds[i].$id--;
             }
             quizSequenceNumber--;
         }
+        debugger
 
         vm.rounds.splice(index - 1, 1);
+        debugger
     };
 
     vm.saveRounds = function () {
+
         vm.submitted = false;
         templateService.updateRounds(templateId, vm.rounds);
         vm.submitted = true;
