@@ -8,7 +8,8 @@ angular.module('convertService')
                 convertRoundsForFirebase: convertRoundsForFirebase,
                 convertDate: convertDate,
                 convertTime: convertTime,
-                buildTemplateForFirebase: buildTemplateForFirebase
+                buildTemplateForFirebase: buildTemplateForFirebase,
+                convertTimeFromFirebase: convertTimeFromFirebase
             };
 
             function convertTeamsForFirebase(teams) {
@@ -63,6 +64,16 @@ angular.module('convertService')
                     mm = '0' + mm;
                 }
                 return hh + ':' + mm;
+            }
+
+            function convertTimeFromFirebase(time) {
+                let date = new Date();
+                time = time.split(":");
+
+                date.setHours(time[0]);
+                date.setMinutes(time[1]);
+                date.setSeconds(0);
+                return date
             }
 
 
