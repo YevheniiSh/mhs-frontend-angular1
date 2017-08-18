@@ -33,8 +33,6 @@ function createGameTemplate(templateService, $routeParams, $location) {
         });
     }
 
-
-
     vm.addRound = function ($event) {
         let quiz = createRound(quizSequenceNumber);
         quizSequenceNumber++;
@@ -49,9 +47,7 @@ function createGameTemplate(templateService, $routeParams, $location) {
             }
             quizSequenceNumber--;
         }
-
         vm.rounds.splice(index - 1, 1);
-
     };
 
     vm.saveRounds = function () {

@@ -22,23 +22,20 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
 
     openGameService.getRounds(gameId).then((res) => {
 
-            vm.rounds = res;
-
-            quizSequenceNumber = res.length + 1;
-
+        for (let i = 0; i < res.length; i++) {
+            vm.rounds.push(res[i]);
+            quizSequenceNumber++;
+        }
     });
 
     vm.addRound = function ($event) {
-        console.dir("bb  add " )
-        console.dir(vm.rounds)
         let quiz = {$id: quizSequenceNumber, numberOfQuestions: 10, name: ""};
         quizSequenceNumber++;
         vm.rounds.push(quiz);
+
         $event.preventDefault();
     };
     vm.deleteRound = function (index) {
-        console.dir("bef  ")
-        console.dir(  vm.rounds)
         if (vm.rounds.length >= index) {
             for (let i = index - 1; i < vm.rounds.length; i++) {
                 vm.rounds[i].$id--;
@@ -47,8 +44,6 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
         }
         vm.rounds.splice(index - 1, 1);
 
-        console.dir("aft " )
-        console.dir(vm.rounds)
     };
 
     vm.saveRounds = function () {
