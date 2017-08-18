@@ -10,6 +10,7 @@ angular.module('gameTemplateService')
                 getAll: getAll,
                 getById: getById,
                 remove: remove,
+                update: update,
                 updateName: updateName,
                 updateRounds: updateRounds
             };
@@ -18,6 +19,13 @@ angular.module('gameTemplateService')
             function save(name, rounds) {
                 let fbObj = new $firebaseObject(gameTemplatesRef.push());
                 fbObj.$value = convertService.buildTemplateForFirebase(name, rounds);
+                fbObj.$save();
+                return fbObj.$loaded();
+            }
+
+            function update(templateId, template) {
+                let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId));
+                fbObj.$value = convertService.buildTemplateForFirebase(template.name, template.rounds);
                 fbObj.$save();
                 return fbObj.$loaded();
             }
