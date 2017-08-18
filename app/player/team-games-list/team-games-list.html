@@ -1,1 +1,21 @@
-{{$ctrl.message}}
+<div class="container">
+    <h1>{{$ctrl.team.name}}</h1>
+    <table class="table table-sm table-hover">
+        <thead>
+        <tr>
+            <th>{{'DATE_LABEL' | translate}}</th>
+            <th>{{'LOCATION_LABEL' | translate}}</th>
+            <th>Team score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="game in $ctrl.teamGames"
+            ng-if="game.score"
+            ng-click="$ctrl.onClicked(game.$id)">
+            <td>{{game.date}}</td>
+            <td>{{game.location}}</td>
+            <td>{{game.score}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

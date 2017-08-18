@@ -113,7 +113,7 @@ angular
             return resultFactory.getParsedResults(gameId)
                 .then((res) => {
                     res.forEach((item) => {
-                        TeamService.addGameScore(item.teamId, vm.gameId, item.total);
+                        TeamService.addGameScore(item.teamId, gameId, item.total);
                     });
                     return res;
                 });
