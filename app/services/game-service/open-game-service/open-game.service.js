@@ -15,6 +15,9 @@
             addTeams: addTeams,
             addRequest: addRequest,
             addRounds: addRounds,
+            addDate: addDate,
+            addLocation: addLocation,
+            addTime: addTime,
             getRounds: getRounds,
             getTeams: getTeams,
             getOpenGameById: getOpenGameById
@@ -35,6 +38,27 @@
             return obj.$loaded().then(() => {
                 return obj.$id;
             });
+        }
+
+        function addDate(gameId, date) {
+            let obj = new $firebaseObject(openGamesRef.child(`${gameId}/date`));
+            obj.$value = date.toString();
+            obj.$save();
+            return obj.$loaded();
+        }
+
+        function addLocation(gameId, location) {
+            let obj = new $firebaseObject(openGamesRef.child(`${gameId}/location`));
+            obj.$value = location;
+            obj.$save();
+            return obj.$loaded();
+        }
+
+        function addTime(gameId, time) {
+            let obj = new $firebaseObject(openGamesRef.child(`${gameId}/time`));
+            obj.$value = time;
+            obj.$save();
+            return obj.$loaded();
         }
 
         // function convertAllForFirebase(game) {

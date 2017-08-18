@@ -6,8 +6,9 @@ angular.module('createGame')
             'OpenGameServiceFactory',
             '$rootScope',
             '$location',
+            'gameBuildServiceFactory',
 
-            function (TeamService, OpenGameServiceFactory, $rootScope, $location) {
+            function (TeamService, OpenGameServiceFactory, $rootScope, $location, gameBuild) {
 
                 this.isCalendarVisible = false;
                 this.isTimeVisible = false;
@@ -16,11 +17,11 @@ angular.module('createGame')
                 this.gameDate = new Date();
                 this.gameTime = new Date();
                 this.gameTime.setSeconds(0);
-                this.gameBuilder = new GameBuilder();
+                // this.gameBuilder = gameBuild.getGameBuilder();
                 this.location = null;
 
                 this.createNewGame = function () {
-                    let game = this.gameBuilder.addDate(this.gameDate).addTime(this.gameTime).addLocation(this.location).buildGame();
+                    let game = gameBuild.addDate(this.gameDate).addTime(this.gameTime).addLocation(this.location).buildGame();
 
                     OpenGameServiceFactory.createNewGame(game)
                         .then(() => {
