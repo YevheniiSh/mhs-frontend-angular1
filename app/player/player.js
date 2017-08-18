@@ -8,6 +8,7 @@ angular
             template: '<team-register-form></team-register-form>'
         });
         $routeProvider.when('/teams/:teamId', {
-            template: '<team-games-list></team-games-list>'
+            template: '<team-games-list></team-games-list>',
+            css: 'player/team-games-list/team-games-list.css'
         })
     }]);
