@@ -18,15 +18,15 @@ function createGameTemplate(templateService, $routeParams, $location) {
 
     let quizSequenceNumber = 1;
 
-    templateService.getById(templateId).then((res) => {
-        vm.templateName = res.name;
-            console.log(res);
-        for (let i = 1; i < res.rounds.length; i++) {
+    templateService.getTemplateName(templateId).then((res) => {
 
-            vm.rounds.push(res.rounds[i]);
+        vm.templateName = res;
+    });
 
-            quizSequenceNumber++;
-        }
+    templateService.getRounds(templateId).then((res) => {
+        vm.rounds = res;
+        quizSequenceNumber = res.length + 1;
+
     });
 
     vm.addRound = function ($event) {

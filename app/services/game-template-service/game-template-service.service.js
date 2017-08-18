@@ -19,7 +19,10 @@ angular.module('gameTemplateService')
                 updateName: updateName,
                 updateRounds: updateRounds,
                 saveFromGame:saveFromGame,
-                addTemplateToGame:addTemplateToGame
+                addTemplateToGame:addTemplateToGame,
+                getRounds:getRounds,
+                getTemplateName:getTemplateName
+
             };
 
 
@@ -77,6 +80,23 @@ angular.module('gameTemplateService')
             function addTemplateToGame(template,gameId) {
                 openGameService.addRounds(gameId,template.rounds)
             }
+
+            function getRounds(templateId) {
+                let obj = new $firebaseArray(gameTemplatesRef.child(templateId).child('rounds'));
+                return obj.$loaded();
+
+            }
+
+            function getTemplateName(templateId) {
+                let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId).child('name'));
+                return fbObj.$loaded() .then((res) => {
+                    return res.$value;
+                }, (err) => {
+                    console.error(err);
+                    return err;
+                });
+            }
+
 
         }]
     );
