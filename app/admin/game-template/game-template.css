@@ -16,17 +16,19 @@
     border-radius: 20%;
 }
 .template-delete-button{
-    font-size: 15px;
+    font-size: 20px;
     float:right;
     border-radius: 30px;
+    margin: 3%
 }
 .game-template-cell.ng-binding{
     margin: 0.4em  0.4em 0.4em  1.4em;
-    font-size: 5em;
+    font-size: 3em;
     border-radius: 10px;
     width: 13em;
     display: inline-block;
     text-align: left;
+    padding-right: 3%;
 }
 /*.game-template-cell.ng-binding:hover {*/
     /*background: grey;*/
