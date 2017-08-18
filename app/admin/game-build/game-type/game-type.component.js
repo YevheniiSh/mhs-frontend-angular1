@@ -10,17 +10,18 @@ GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$ro
 
 function GameType(gameTemplateService, openGameService, $routeParams, $location) {
     let vm = this;
-
-    let rounds = [];
-    vm.rounds = rounds;
+    vm.rounds = [];
     let gameId = $routeParams.gameId;
     vm.templateName = "";
     let quizSequenceNumber = 1;
+    gameTemplateService.getAll()
+        .then((templates)=>{
+            vm.templates = templates;
+        })
 
     openGameService.getRounds(gameId).then((res) => {
-        console.log(res);
         for (let i = 0; i < res.length; i++) {
-            rounds.push(res[i]);
+            vm.rounds.push(res[i]);
             quizSequenceNumber++;
         }
     });
@@ -28,23 +29,23 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
     vm.addRound = function ($event) {
         let quiz = {$id: quizSequenceNumber, numberOfQuestions: 10, name: ""};
         quizSequenceNumber++;
-        rounds.push(quiz);
+        vm.rounds.push(quiz);
         $event.preventDefault();
     };
     vm.deleteRound = function (index) {
-        if (rounds.length >= index) {
-            for (let i = index - 1; i < rounds.length; i++) {
-                rounds[i].$id--;
+        if (vm.rounds.length >= index) {
+            for (let i = index - 1; i < vm.rounds.length; i++) {
+                vm.rounds[i].$id--;
             }
             quizSequenceNumber--;
         }
 
-        rounds.splice(index - 1, 1);
+        vm.rounds.splice(index - 1, 1);
     };
 
     vm.saveRounds = function () {
         vm.submitted = false;
-        openGameService.addRounds(gameId, rounds);
+        openGameService.addRounds(gameId, vm.rounds);
         vm.submitted = true;
     };
 
@@ -54,5 +55,14 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
 
     vm.saveTemplate = function () {
         gameTemplateService.saveFromGame(gameId,vm.templateName);
+    }
+
+    vm.selectTemplate = function (template) {
+        if(template){
+            gameTemplateService.getRounds(template.$id)
+                .then(rounds=>{
+                    vm.rounds = rounds;
+                })
+        }
     }
 }
