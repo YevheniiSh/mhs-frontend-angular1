@@ -15,7 +15,8 @@ angular
                 changeTeamName: changeTeamName,
                 addGameToTeam: addGameToTeam,
                 removeGameFromTeam: removeGameFromTeam,
-                checkTeamNameCoincidence: checkTeamNameCoincidence
+                checkTeamNameCoincidence: checkTeamNameCoincidence,
+                getTeamGames:getTeamGames
             };
 
             function save(team) {
@@ -114,6 +115,17 @@ angular
                 let obj = $firebaseObject(teamRef.child(`${teamId}/games/${gameId}`));
                 obj.$remove();
                 return obj.$loaded();
+            }
+
+            function getTeamGames(teamId) {
+                return new $firebaseArray(teamRef.child(`${teamId}/games`))
+                    .$loaded()
+                    .then((res) => {
+                        return res;
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
             }
         }]
     );
