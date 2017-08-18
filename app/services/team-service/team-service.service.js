@@ -1,7 +1,7 @@
 angular
     .module('teamFactory')
-    .factory('TeamServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService', '$q',
-        function ($firebaseArray, $firebaseObject, firebaseDataService, $q) {
+    .factory('TeamServiceFactory', ['OpenGameServiceFactory', '$firebaseArray', '$firebaseObject', 'firebaseDataService', '$q',
+        function (OpenGameService, $firebaseArray, $firebaseObject, firebaseDataService, $q) {
 
             let teamRef = firebaseDataService.teams;
 
@@ -13,6 +13,8 @@ angular
                 getByGame: getByGame,
                 isTeamNameExist: isTeamNameExist,
                 changeTeamName: changeTeamName,
+                addGameToTeam: addGameToTeam,
+                removeGameFromTeam: removeGameFromTeam,
                 checkTeamNameCoincidence: checkTeamNameCoincidence
             };
 
@@ -94,6 +96,24 @@ angular
                         }
                         return false;
                     });
+            }
+
+            function addGameToTeam(teamId, gameId) {
+                let obj = $firebaseObject(teamRef.child(`${teamId}/games/${gameId}`));
+                let gameObj = {};
+                return OpenGameService.getOpenGameById(gameId).then((res) => {
+                    gameObj.date = res.date;
+                    gameObj.location = res.location;
+                    obj.$value = gameObj;
+                    obj.$save();
+                    return obj.$loaded();
+                })
+            }
+
+            function removeGameFromTeam(teamId, gameId) {
+                let obj = $firebaseObject(teamRef.child(`${teamId}/games/${gameId}`));
+                obj.$remove();
+                return obj.$loaded();
             }
         }]
     );
