@@ -14,6 +14,7 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
     let gameId = $routeParams.gameId;
     vm.templateName = "";
     let quizSequenceNumber = 1;
+
     gameTemplateService.getAll()
         .then((templates)=>{
             vm.templates = templates;
@@ -44,7 +45,6 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
             }
             quizSequenceNumber--;
         }
-
         vm.rounds.splice(index - 1, 1);
 
         console.dir("aft " )
@@ -69,6 +69,7 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
         if(template){
             gameTemplateService.getRounds(template.$id)
                 .then(rounds=>{
+                    console.log(template)
                     vm.rounds = rounds;
                     quizSequenceNumber = rounds.length + 1
                 })
