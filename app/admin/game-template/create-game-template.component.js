@@ -48,7 +48,7 @@ function createGameTemplate(templateService, $routeParams, $location) {
 
     vm.saveRounds = function () {
         vm.submitted = false;
-        templateService.addRounds(templateId, vm.rounds);
+        templateService.updateRounds(templateId, vm.rounds);
         vm.submitted = true;
     };
 
