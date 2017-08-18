@@ -12,7 +12,7 @@
       "finished":{
         ".read": true,
         "$gameId":{
-          ".write": "auth != null"
+          ".write": "auth != null && (!data.child('winner').exists() || !newData.exists())"
         }
 
       }
@@ -25,6 +25,10 @@
     "teamsRequests":{
       ".read": "true",
       ".write": "true"
-    }
+    },
+    "gameTemplates":{
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
   }
 }
