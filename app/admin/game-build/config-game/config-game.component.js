@@ -10,8 +10,8 @@ angular.module('configGame')
                 vm.isCalendarVisible = false;
                 vm.isTimeVisible = false;
                 vm.saved = false;
-                // vm.options = {};
-                // vm.options.minDate = new Date();
+                vm.options = {};
+                vm.options.minDate = new Date();
 
                 this.location = "";
 
