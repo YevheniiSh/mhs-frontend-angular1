@@ -1,6 +1,11 @@
 angular.module('gameTemplateService')
-    .factory('gameTemplateServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService', 'convertServiceFactory',
-        function ($firebaseArray, $firebaseObject, firebaseDataService, convertService) {
+    .factory('gameTemplateServiceFactory', [
+        '$firebaseArray',
+        '$firebaseObject',
+        'firebaseDataService',
+        'convertServiceFactory',
+        'OpenGameServiceFactory',
+        function ($firebaseArray, $firebaseObject, firebaseDataService, convertService,openGameService) {
 
             let gameTemplatesRef = firebaseDataService.gameTemplates;
 
@@ -9,13 +14,39 @@ angular.module('gameTemplateService')
                 save: save,
                 getAll: getAll,
                 getById: getById,
-                remove: remove
+                remove: remove,
+                update: update,
+                updateName: updateName,
+                updateRounds: updateRounds,
+                saveFromGame:saveFromGame,
+                addTemplateToGame:addTemplateToGame
             };
 
 
             function save(name, rounds) {
                 let fbObj = new $firebaseObject(gameTemplatesRef.push());
                 fbObj.$value = convertService.buildTemplateForFirebase(name, rounds);
+                fbObj.$save();
+                return fbObj.$loaded();
+            }
+
+            function update(templateId, template) {
+                let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId));
+                fbObj.$value = convertService.buildTemplateForFirebase(template.name, template.rounds);
+                fbObj.$save();
+                return fbObj.$loaded();
+            }
+
+            function updateName(templateId, name) {
+                let fbObj = new $firebaseObject(gameTemplatesRef.child(`${templateId}/name`));
+                fbObj.$value = name;
+                fbObj.$save();
+                return fbObj.$loaded();
+            }
+
+            function updateRounds(templateId, rounds) {
+                let fbObj = new $firebaseObject(gameTemplatesRef.child(`${templateId}/rounds`));
+                fbObj.$value = convertService.convertRoundsForFirebase(rounds);
                 fbObj.$save();
                 return fbObj.$loaded();
             }
@@ -34,6 +65,17 @@ angular.module('gameTemplateService')
                 let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId));
                 fbObj.$remove();
                 return fbObj.$loaded();
+            }
+
+            function saveFromGame(gameId, name){
+                openGameService.getRounds(gameId)
+                    .then((res) => {
+                        save(name, res);
+                    })
+            }
+
+            function addTemplateToGame(template,gameId) {
+                openGameService.addRounds(gameId,template.rounds)
             }
 
         }]
