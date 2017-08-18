@@ -1,3 +1,43 @@
 .btn-for-template-delete{
     border-radius: 17px;
+    float: right;
+    vertical-align: middle;
+}
+.template-table{
+}
+.title{
+    font-size: 2em;
+}
+.times-icon{
+    float: right;
+    vertical-align: middle;
+}
+.times-font {
+    border-radius: 20%;
+}
+.template-delete-button{
+    font-size: 15px;
+    float:right;
+    border-radius: 30px;
+}
+.game-template-cell.ng-binding{
+    margin: 0.4em  0.4em 0.4em  1.4em;
+    font-size: 5em;
+    border-radius: 10px;
+    width: 13em;
+    display: inline-block;
+    text-align: left;
+}
+/*.game-template-cell.ng-binding:hover {*/
+    /*background: grey;*/
+/*}*/
+
+/*.game-template-cell:hover {*/
+    /*border-color: #01F800;*/
+/*}*/
+.game-template-row{
+    text-align: center;
+}
+table{
+    width: 100%;
 }

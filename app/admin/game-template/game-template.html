@@ -1,7 +1,16 @@
-<button class=" btn btn-danger btn-for-template-delete" ng-click="">
-    <i class="fa fa-times" aria-hidden="true"></i>
-</button>
-<div ng-repeat="template in $ctrl.templates">
-    {{template.name}}
-    {{template.$id}}
-</div>
+<table class="table table-sm table-hover template-table">
+    <thead>
+    <tr>
+        <th class="title">y</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr class="game-template-row" ng-repeat="template in $ctrl.templates" ng-click="">
+            <td class="game-template-cell"  ng-click="$ctrl.showTemplate(template.$id)">{{$index}}.  {{template.name}}
+                <button class="btn btn-danger template-delete-button" ng-click="$ctrl.deleteTemplate(template.$id)">
+                    <i class="fa fa-times times-font" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
