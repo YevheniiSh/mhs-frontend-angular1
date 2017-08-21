@@ -35,6 +35,7 @@
   "REOPEN_BUTTON": "Переоткрыть",
   "CONTINUE_BUTTON": "Продолжить",
   "TEAMS_TAB_NAME": "Команды",
+  "TEMPLATE_NAME_LABEL": "Название шаблона",
   "ROUNDS_TAB_NAME": "Раунды",
   "UNCONFIRMED_TEAMS_TAB_NAME": "Неподтвержденные",
   "CONFIRMED_TEAMS_TAB_NAME": "Подтвержденные",
@@ -84,6 +85,6 @@
   "WELL_DONE_MESSAGE":"Отлично!",
   "SEND_REQUEST_MESSAGE": "Вашу заявку отправлено!",
   "NAVBAR_LANGUAGES": "Выбрать язык",
-  "SHARE_BUTTON": "Поделиться"
-
+  "SHARE_BUTTON": "Поделиться",
+  "QUESTION_QUANTITY_LABEL": "Количество вопросов"
 }

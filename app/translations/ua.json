@@ -84,5 +84,8 @@
   "WELL_DONE_MESSAGE": "Відмінно!",
   "SEND_REQUEST_MESSAGE": "Вашу заявку відправлено!",
   "NAVBAR_LANGUAGES": "Обрати мову",
-  "SHARE_BUTTON": "Поширити"
+  "SHARE_BUTTON": "Поширити",
+  "TEMPLATE_NAME_LABEL": "Назва шаблону",
+  "QUESTION_QUANTITY_LABEL": "Кількість питань"
+
 }

@@ -38,13 +38,14 @@
     /*border-color: #01F800;*/
 /*}*/
 .list-item {
+    display: inline-block;
     text-align: left;
     width: 70%;
     margin: 0;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 6px 12px;
     font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
 }
 .delete-btn{
     float: right;
@@ -55,9 +56,14 @@
 .new-template-btn{
     text-align: center;
     width: 70%;
-    padding-left: 0;
-    padding-right: 0;
-    font-size: 16px;
     font-weight: bold;
     margin-bottom: 1em;
+    padding: 6px 12px;
+}
+.inp{
+    font-size: 16px;
+    font-weight: bold;
+}
+.template-name-title{
+    font-weight: bold;
 }

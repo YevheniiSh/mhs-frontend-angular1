@@ -1,4 +1,4 @@
-<div class="col-md-5 col-md-offset-1">
+<div class="col-md-6 ">
     <ul class="scroll-panel">
         <li>
             <span class="btn btn-success btn-block new-template-btn" ng-click="$ctrl.newTemplate()">
@@ -7,7 +7,7 @@
         </li>
         <li ng-click="$ctrl.showTemplate(template.$id)"
             ng-repeat="template in $ctrl.templates">
-            <span class="btn list-item">{{template.name}}
+            <span class="list-item">{{template.name}}
                 <button class="btn btn-danger delete-btn" ng-click="$ctrl.deleteTemplate(template.$id)">
                     {{'DELETE_ROUND_BUTTON' | translate}}
                 </button>
@@ -15,11 +15,11 @@
         </li>
     </ul>
 </div>
-<div class="col-md-2"></div>
+<div class="col-md-1"></div>
 
-<div class="col-md-5">
+<div class="col-md-6">
         <form ng-submit="$ctrl.saveRounds()" ng-show="$ctrl.showBuildTemplate" >
-            Template Name
+            <span class="template-name-title">{{'TEMPLATE_NAME_LABEL' | translate}}</span>
             <input class="form-control" ng-model="$ctrl.templateName"
                    maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
                    required >
@@ -29,7 +29,7 @@
                     <thead>
                     <th>#</th>
                     <th>{{'ROUND_NAME_LABEL' | translate}}</th>
-                    <th>{{'QUESTION_COUNT_LABEL' | translate}}</th>
+                        <th>{{'QUESTION_QUANTITY_LABEL' | translate}}</th>
                     </thead>
                     <tbody>
                     <tr ng-repeat="round in $ctrl.rounds">
@@ -46,7 +46,7 @@
                             <div class="count-quest">
                                 <input class="form-control" ng-model="round.numberOfQuestions"
                                        min="1" max="20"
-                                       placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" type="number" required>
+                                       placeholder="{{'QUESTION_QUANTITY_PLACEHOLDER'|translate}}" type="number" required>
                             </div>
                         </td>
                         <td>
