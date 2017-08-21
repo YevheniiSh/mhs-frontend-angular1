@@ -18,7 +18,7 @@ function gameTemplate($routeParams, $location, templateService) {
     });
 
 
-    vm.showTemplate = function(templateId){
+    vm.showTemplate = function (templateId) {
         vm.showBuildTemplate = true;
         vm.templateId = templateId;
         getRounds();
@@ -30,10 +30,15 @@ function gameTemplate($routeParams, $location, templateService) {
         vm.showBuildTemplate = false;
     };
 
-    vm.newTemplate = function ($event) {
+    vm.newTemplate = function () {
         templateService.createTemplate().then((res) => {
-            vm.showTemplate(res.$id);
-            vm.rounds.push(createRound(quizSequenceNumber++))
+            vm.showBuildTemplate = true;
+            vm.templateId = res.$id;
+
+            quizSequenceNumber = 1;
+
+            vm.rounds.splice(0, vm.rounds.length);
+            vm.rounds.push(createRound(quizSequenceNumber++));
         })
     };
 
@@ -85,7 +90,7 @@ function gameTemplate($routeParams, $location, templateService) {
         templateService.updateName(vm.templateId, vm.templateName);
         templateService.updateRounds(vm.templateId, vm.rounds);
         vm.submitted = true;
-        if (vm.submitted)$location.path("/templates");
+        if (vm.submitted) $location.path("/templates");
 
     };
 
