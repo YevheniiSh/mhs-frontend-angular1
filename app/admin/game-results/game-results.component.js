@@ -5,7 +5,7 @@ angular.module('gameResultsPage')
             this.isPresentationMode = $rootScope.presentationMode;
 
             this.getDetails = function (teamResult) {
-                if (!isPresentationMode) {
+                if (!this.isPresentationMode) {
                     console.log(teamResult.teamId);
                     $location.path(`/games/${$routeParams.gameId}/results/${teamResult.teamId}`);
                 }
