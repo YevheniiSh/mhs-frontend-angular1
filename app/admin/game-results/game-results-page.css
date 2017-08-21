@@ -46,12 +46,3 @@ h1#game-results{
 span.ng-binding.date{
     float: right;
 }
-th.total-title, td.total-score{
-    width: 12%;
-}
-th.teams-title, td.team-name{
-    width: 15%;
-}
-td.round-number, td.round-score{
-    width: 8%;
-}

@@ -2,6 +2,7 @@
         <table class="table table-sm table-striped table-hover ">
         <thead>
             <tr>
+                <th class="th-cell position-title">#</th>
                 <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}}</th>
                 <th class="th-cell round-number" ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
                 <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
@@ -10,6 +11,7 @@
         <tbody>
             <tr class="table-row" ng-repeat="teamResult in $ctrl.results"
             ng-click="$ctrl.getDetails(teamResult)">
+                <td class="td-cell position-data">{{$index + 1}}</td>
                 <td class="td-cell team-name" >
                     <a ng-click="$ctrl.getTeamGames(teamResult.teamId);$event.stopPropagation();">
                         {{teamResult.teamName}}

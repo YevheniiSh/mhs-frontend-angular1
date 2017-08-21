@@ -35,3 +35,7 @@ span.ng-binding.date{
 tbody tr.table-row:nth-child(odd){
     background: rgba(68,52,52, 0.1);
 }
+
+.position-data, .position-title {
+    width: 2%;
+}
