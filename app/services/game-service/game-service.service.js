@@ -233,6 +233,8 @@ angular
             function getPhotosURL(gameId) {
                 return new $firebaseObject(finishedGameRef.child(gameId).child('photos'))
                     .$loaded().then((res) => {
+                        if (res.$value === null)
+                            return '';
                         return res.$value
                     });
             }
