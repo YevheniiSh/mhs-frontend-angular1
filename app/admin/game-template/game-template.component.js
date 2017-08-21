@@ -32,6 +32,7 @@ function gameTemplate($routeParams, $location, templateService) {
 
     vm.newTemplate = function () {
         templateService.createTemplate().then((res) => {
+            vm.templateName = '';
             vm.showBuildTemplate = true;
             vm.templateId = res.$id;
 
