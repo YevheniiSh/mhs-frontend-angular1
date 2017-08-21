@@ -7,6 +7,7 @@
     border-radius: 3px;
     font-weight: 600;
     padding: 5px 8px;
+    height: 34px;
     display: inline-block;
     position: static;
 }
@@ -16,7 +17,7 @@
 
 .photos-link {
     float: right;
-    margin-right: 20px;
+    margin-right: 4px;
 }
 
 #fb-share-button:hover {

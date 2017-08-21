@@ -6,7 +6,7 @@ angular.module('gameResultsPage')
             let vm = this;
             let gameId = $routeParams.gameId;
             vm.isGameCurrent = true;
-            vm.photosURL = null;
+            vm.photosURL = '';
 
             vm.$onInit = onInit;
 
@@ -35,7 +35,6 @@ angular.module('gameResultsPage')
 
                 GameService.getPhotosURL(gameId).then((res) => {
                     vm.photosURL = res;
-                    console.log(vm.photosURL)
                 });
 
                 auth.currentUser()
@@ -50,6 +49,7 @@ angular.module('gameResultsPage')
                 if (link !== undefined) {
                     GameService.setPhotosLink(gameId, link);
                     vm.setLink = false;
+                    vm.photosURL = link;
                 }
             };
 
