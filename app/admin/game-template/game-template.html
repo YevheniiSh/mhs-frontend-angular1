@@ -20,7 +20,7 @@
                    maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
                    required >
 
-            <div ng-hide="$ctrl.rounds.length <1">
+            <div>
                 <table class="table table-striped table-hover">
                     <thead>
                     <th>#</th>
@@ -57,7 +57,7 @@
             <button ng-hide="$ctrl.rounds.length >9"
                     ng-click="$ctrl.addRound($event)" class=" btn btn-info btn-block"> {{'ADD_ROUND_BUTTON' | translate}}
             </button>
-            <button ng-hide="$ctrl.rounds.length <1" id="btn-save" class="btn btn-success btn-block"
+            <button id="btn-save" class="btn btn-success btn-block"
                     type="submit" ng-click="$ctrl.toTemplateList()">
                 {{'SAVE_ROUNDS_BUTTON' | translate}}
             </button>
