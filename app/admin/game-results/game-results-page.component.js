@@ -6,7 +6,6 @@ angular.module('gameResultsPage')
             let vm = this;
             let gameId = $routeParams.gameId;
             vm.isGameCurrent = true;
-            vm.user = null;
 
             vm.$onInit = onInit;
 
@@ -32,6 +31,10 @@ angular.module('gameResultsPage')
                 GameService.getGameStatus(gameId).then(status => {
                     (status === "finished") ?
                         vm.gameFinished = true : vm.gameFinished = false;
+                });
+
+                GameService.getPhotosURL(gameId).then((res) => {
+                    vm.photosURL = res;
                 });
 
                 auth.currentUser()
