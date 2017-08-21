@@ -2,8 +2,10 @@ angular.module('gameResultsPage')
     .component('gameResults', {
         templateUrl: 'admin/game-results/game-results.html',
         controller: ['GameServiceFactory','ResultServiceFactory', '$rootScope', '$routeParams', '$location', function (GameService, ResultService, $rootScope, $routeParams, $location) {
+            this.isPresentationMode = $rootScope.presentationMode;
+
             this.getDetails = function (teamResult) {
-                if (!$rootScope.presentationMode) {
+                if (!isPresentationMode) {
                     console.log(teamResult.teamId);
                     $location.path(`/games/${$routeParams.gameId}/results/${teamResult.teamId}`);
                 }
