@@ -66,6 +66,10 @@
     display: inline;
 }
 
+.editable-team:disabled {
+    background-color: white;
+}
+
 ul{
     list-style:none;
 }

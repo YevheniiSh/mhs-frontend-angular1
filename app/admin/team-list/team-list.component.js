@@ -7,9 +7,9 @@
             }
         );
 
-    TeamList.$inject = ['TeamServiceFactory', '$timeout','$location'];
+    TeamList.$inject = ['userAuthService','TeamServiceFactory', '$timeout','$location'];
 
-    function TeamList(TeamService, $timeout, $location) {
+    function TeamList(userService,TeamService, $timeout, $location) {
         let vm = this;
         vm.$onInit = onInit;
         vm.showSuccessAlert = false;
@@ -54,5 +54,12 @@
         vm.showTeamGames=function(teamId){
             $location.path(`/teams/${teamId}`);
         }
+
+        vm.auth = false;
+        userService.currentUser().then((res) => {
+            vm.auth = true;
+        }).catch((err) => {
+            vm.auth = false;
+        });
     }
 })();

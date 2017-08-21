@@ -26,9 +26,10 @@
             <ul ng-repeat="team in $ctrl.teams |orderBy:'name'| filter:search">
                 <li class="list-item">
                     <input class="editable-team" ng-change="$ctrl.changeTeamName(team)"
-                    ng-model="team.name" title="{{'EDIT_TEAM_NAME_TOOLTIP'|translate}}">
+                    ng-model="team.name" title="{{'EDIT_TEAM_NAME_TOOLTIP'|translate}}"
+                    ng-disabled="!$ctrl.auth">
                     <span class="btn" ng-click="$ctrl.showTeamGames(team.$id)">
-                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <i class="fa fa-id-card-o" aria-hidden="true"></i>
                     </span>
                 </li>
             </ul>
