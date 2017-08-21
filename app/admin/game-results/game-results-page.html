@@ -10,7 +10,7 @@
         <i class="fa fa-facebook" aria-hidden="true"></i>
         <span>{{'SHARE_BUTTON' | translate}}</span>
     </a>
-    <a class=" photos-link btn btn-info" ng-if="$ctrl.photosURL!=''" href="{{$ctrl.photosURL}}">{{'PHOTO_URL_BUTTON' | translate}}</a>
+    <a class=" photos-link btn btn-info" ng-if="$ctrl.photosURL!=''" href="{{$ctrl.photosURL}}" target="_blank">{{'PHOTO_URL_BUTTON' | translate}}</a>
 
     <span class="photos-link" ng-if="$ctrl.gameFinished && $ctrl.user && !$ctrl.setLink">
                 <button class="btn btn-info" ng-click="$ctrl.setLink = true">{{'EDIT_LINK_BUTTON' | translate}}</button>
