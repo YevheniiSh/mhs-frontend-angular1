@@ -86,4 +86,8 @@
   "NAVBAR_LANGUAGES": "Выбрать язык",
   "SHARE_BUTTON": "Поделиться",
   "TEAM_SCORE_LABEL":"Счет команды"
+  "SAVE_LINK_BUTTON": "Сохранить",
+  "EDIT_LINK_BUTTON": "Ссылка на фото",
+  "PHOTO_URL_BUTTON": "Фотографии"
+
 }

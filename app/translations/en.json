@@ -86,4 +86,8 @@
   "NAVBAR_LANGUAGES": "Choose language",
   "SHARE_BUTTON": "Share",
   "TEAM_SCORE_LABEL":"Team score"
+  "SAVE_LINK_BUTTON": "Save",
+  "EDIT_LINK_BUTTON": "Photos link",
+  "PHOTO_URL_BUTTON": "Photos"
+
 }

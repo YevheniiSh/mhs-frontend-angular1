@@ -11,9 +11,10 @@ angular.module('gameResultsPage')
             'userAuthService',
             function (ResultService, GameService, $routeParams, $rootScope, $location, $window, auth) {
 
-                let vm = this;
-                let gameId = $routeParams.gameId;
-                vm.isGameCurrent = true;
+            let vm = this;
+            let gameId = $routeParams.gameId;
+            vm.isGameCurrent = true;
+            vm.photosURL = '';
 
                 vm.$onInit = onInit;
 
@@ -31,19 +32,34 @@ angular.module('gameResultsPage')
                             GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString())
                     });
 
-                    ResultService.getParsedResults(this.gameId)
-                        .then((result) => {
-                            vm.results = result;
-                            console.log(vm.results);
-                        });
-                    GameService.getGameStatus(gameId).then(status => {
-                        (status === "finished") ?
-                            vm.shareButton = true : vm.shareButton = false;
+                ResultService.getParsedResults(this.gameId)
+                    .then((result) => {
+                        vm.results = result;
                     });
-                }
+                GameService.getGameStatus(gameId).then(status => {
+                    (status === "finished") ?
+                        vm.gameFinished = true : vm.gameFinished = false;
+                });
+
+                GameService.getPhotosURL(gameId).then((res) => {
+                    vm.photosURL = res;
+                });
+
+                auth.currentUser()
+                    .then((res) => {
+                        vm.user = res;
+                    })
+            }
 
                 vm.shareURL = $location.absUrl();
 
+            vm.savePhotosLink = function (link) {
+                if (link !== undefined) {
+                    GameService.setPhotosLink(gameId, link);
+                    vm.setLink = false;
+                    vm.photosURL = link;
+                }
+            };
 
                 vm.onBack = function () {
                     auth.currentUser()

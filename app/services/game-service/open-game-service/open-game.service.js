@@ -3,9 +3,9 @@
         .module('openGameService')
         .factory('OpenGameServiceFactory', OpenGameServiceFactory);
 
-    OpenGameServiceFactory.$inject = ['$firebaseArray', '$firebaseObject', 'firebaseDataService'];
+    OpenGameServiceFactory.$inject = ['$firebaseArray', '$firebaseObject', 'firebaseDataService', 'convertServiceFactory'];
 
-    function OpenGameServiceFactory($firebaseArray, $firebaseObject, firebaseDataService) {
+    function OpenGameServiceFactory($firebaseArray, $firebaseObject, firebaseDataService, convertService) {
 
         let openGamesRef = firebaseDataService.openGames;
 
@@ -15,6 +15,12 @@
             addTeams: addTeams,
             addRequest: addRequest,
             addRounds: addRounds,
+            getDate: getDate,
+            getTime: getTime,
+            getLocation: getLocation,
+            changeDate: changeDate,
+            changeLocation: changeLocation,
+            changeTime: changeTime,
             getRounds: getRounds,
             getTeams: getTeams,
             getOpenGameById: getOpenGameById
@@ -37,22 +43,50 @@
             });
         }
 
-        // function convertAllForFirebase(game) {
-        //     let rounds = {};
-        //     for (let i = 0; i < game.rounds.length; i++) {
-        //         rounds[game.rounds[i].id] = {
-        //             numberOfQuestions: game.rounds[i].numberOfQuestions,
-        //             name: game.rounds[i].name
-        //         };
-        //     }
-        //     let teams = {};
-        //     for (let i = 0; i < game.teams.length; i++) {
-        //         teams[game.teams[i].id] = game.teams[i].name;
-        //     }
-        //     game.teams = teams;
-        //     game.rounds = rounds;
-        //     return game;
-        // }
+        function getDate(gameId) {
+            return new $firebaseObject(openGamesRef.child(gameId).child('date'))
+                .$loaded().then((res) => {
+                    return res.$value
+                })
+        }
+
+        function getTime(gameId) {
+            let obj = new $firebaseObject(openGamesRef.child(gameId + '/time'));
+            return obj.$loaded().then((res) => {
+                let time;
+                time = convertService.convertTimeFromFirebase(res.$value)
+                return time
+            });
+
+        }
+
+        function getLocation(gameId) {
+            let obj = new $firebaseObject(openGamesRef.child(gameId + '/location'));
+            return obj.$loaded().then((res) => {
+                return res.$value
+            })
+        }
+
+        function changeDate(gameId, date) {
+            let obj = new $firebaseObject(openGamesRef.child(`${gameId}/date`));
+            obj.$value = convertService.convertDate(date);
+            obj.$save();
+            return obj.$loaded();
+        }
+
+        function changeLocation(gameId, location) {
+            let obj = new $firebaseObject(openGamesRef.child(`${gameId}/location`));
+            obj.$value = location;
+            obj.$save();
+            return obj.$loaded();
+        }
+
+        function changeTime(gameId, time) {
+            let obj = new $firebaseObject(openGamesRef.child(`${gameId}/time`));
+            obj.$value = convertService.convertTime(time);
+            obj.$save();
+            return obj.$loaded();
+        }
 
         function convertTeamsForFirebase(teams) {
             let team = {};
@@ -72,21 +106,6 @@
             }
             return convertedRounds
         }
-
-        // function saveGame(game, gameId) {
-        //     let obj = new $firebaseObject(openGamesRef.child(gameId));
-        //     game = convertAllForFirebase(game);
-        //     obj.$value = game;
-        //     obj.$save();
-        //     return obj
-        //         .$loaded()
-        //         .then((res) => {
-        //             return res.$id;
-        //         }, (err) => {
-        //             console.error(err);
-        //             return err;
-        //         });
-        // }
 
         function addTeams(gameId, teams) {
             let obj = new $firebaseObject(openGamesRef.child(gameId).child('teams'));
@@ -122,6 +141,5 @@
             let obj = new $firebaseArray(openGamesRef.child(gameId).child('teams'));
             return obj.$loaded();
         }
-
     }
 })();
