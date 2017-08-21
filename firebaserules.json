@@ -16,7 +16,6 @@
         }
 
       }
-
     },
     "teams":{
       ".read": true,
@@ -25,6 +24,10 @@
     "teamsRequests":{
       ".read": "true",
       ".write": "true"
+    },
+    "gameTemplates":{
+      ".read": "auth != null",
+      ".write": "auth != null"
     }
   }
 }

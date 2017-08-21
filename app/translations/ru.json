@@ -84,6 +84,6 @@
   "WELL_DONE_MESSAGE":"Отлично!",
   "SEND_REQUEST_MESSAGE": "Вашу заявку отправлено!",
   "NAVBAR_LANGUAGES": "Выбрать язык",
-  "SHARE_BUTTON": "Поделиться"
-
+  "SHARE_BUTTON": "Поделиться",
+  "TEAM_SCORE_LABEL":"Счет команды"
 }

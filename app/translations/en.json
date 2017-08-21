@@ -84,6 +84,6 @@
   "ACCEPT_BUTTON": "Accept",
   "CANCEL_BUTTON": "Cancel",
   "NAVBAR_LANGUAGES": "Choose language",
-  "SHARE_BUTTON": "Share"
-
+  "SHARE_BUTTON": "Share",
+  "TEAM_SCORE_LABEL":"Team score"
 }
