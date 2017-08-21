@@ -26,6 +26,7 @@ angular
                 getDate:getDate,
                 startGame:startGame,
                 getGameTeams: getGameTeams,
+                setPhotosLink: setPhotosLink,
                 removeTeamFromGame: removeTeamFromGame,
                 reOpenGame: reOpenGame,
                 addTeamToGame:addTeamToGame,
@@ -277,6 +278,13 @@ angular
                     obj.$value = getObject(res);
                     obj.$save();
                 });
+            }
+
+            function setPhotosLink(gameId, link) {
+                let obj = new $firebaseObject(finishedGameRef.child(`${gameId}/photos`));
+                obj.$value = link;
+                obj.$save();
+                return obj.$loaded();
             }
 
         }]);

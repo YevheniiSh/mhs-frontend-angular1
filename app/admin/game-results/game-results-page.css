@@ -13,6 +13,12 @@
 .fa-facebook {
     color: white;
 }
+
+.photos-link {
+    float: right;
+    margin-right: 20px;
+}
+
 #fb-share-button:hover {
     cursor: pointer;
     background: #213A6F

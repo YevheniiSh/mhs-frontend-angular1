@@ -6,6 +6,7 @@ angular.module('gameResultsPage')
             let vm = this;
             let gameId = $routeParams.gameId;
             vm.isGameCurrent = true;
+            vm.user = null;
 
             vm.$onInit = onInit;
 
@@ -30,12 +31,20 @@ angular.module('gameResultsPage')
                     });
                 GameService.getGameStatus(gameId).then(status => {
                     (status === "finished") ?
-                        vm.shareButton = true : vm.shareButton = false;
+                        vm.gameFinished = true : vm.gameFinished = false;
                 });
+
+                auth.currentUser()
+                    .then((res) => {
+                        vm.user = res;
+                    })
             }
 
             vm.shareURL = $location.absUrl();
 
+            vm.savePhotosLink = function (link) {
+                GameService.setPhotosLink(gameId, link);
+            };
 
             vm.onBack = function () {
                 auth.currentUser()
