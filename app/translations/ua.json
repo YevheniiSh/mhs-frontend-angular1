@@ -2,6 +2,7 @@
   "NAVBAR_TITLE": "Mad Head Show",
   "NAVBAR_GAME_LIST_BUTTON": "Список ігор",
   "NAVBAR_TEAM_EDIT_BUTTON": "Редагування команд",
+  "NAVBAR_TEMPLATE_BUTTON": "Шаблони ігор",
   "NAVBAR_HELLO_LABEL": "Привіт",
   "NAVBAR_WELCOME_MESSAGE": "Ласкаво просимо",
   "LOGIN_FORM_TITLE": "Будь-ласка ввійдіть в систему",
@@ -84,8 +85,10 @@
   "WELL_DONE_MESSAGE": "Відмінно!",
   "SEND_REQUEST_MESSAGE": "Вашу заявку відправлено!",
   "NAVBAR_LANGUAGES": "Обрати мову",
+  "SELECT_TEMPLATE_LABEL": "Обрати шаблон",
+  "SELECT_TEMPLATE_BUTTON": "Вибрати",
+  "SAVE_TEMPLATE_FROM_GAME_BUTTON": "Зберегти шаблон з гри",
   "SHARE_BUTTON": "Поширити",
   "TEMPLATE_NAME_LABEL": "Назва шаблону",
   "QUESTION_QUANTITY_LABEL": "Кількість питань"
-
 }

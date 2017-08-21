@@ -2,6 +2,7 @@
   "NAVBAR_TITLE": "Mad Head Show",
   "NAVBAR_GAME_LIST_BUTTON": "Список игр",
   "NAVBAR_TEAM_EDIT_BUTTON": "Редактирование команд",
+  "NAVBAR_TEMPLATE_BUTTON": "Шаблоны игр",
   "NAVBAR_HELLO_LABEL": "Привет",
   "NAVBAR_WELCOME_MESSAGE": "Добро пожаловать",
   "LOGIN_FORM_TITLE": "Пожайлуста войдите в систему",
@@ -35,7 +36,6 @@
   "REOPEN_BUTTON": "Переоткрыть",
   "CONTINUE_BUTTON": "Продолжить",
   "TEAMS_TAB_NAME": "Команды",
-  "TEMPLATE_NAME_LABEL": "Название шаблона",
   "ROUNDS_TAB_NAME": "Раунды",
   "UNCONFIRMED_TEAMS_TAB_NAME": "Неподтвержденные",
   "CONFIRMED_TEAMS_TAB_NAME": "Подтвержденные",
@@ -85,6 +85,10 @@
   "WELL_DONE_MESSAGE":"Отлично!",
   "SEND_REQUEST_MESSAGE": "Вашу заявку отправлено!",
   "NAVBAR_LANGUAGES": "Выбрать язык",
+  "SELECT_TEMPLATE_LABEL": "Выбрать шаблон",
+  "SELECT_TEMPLATE_BUTTON": "Выбрать",
+  "TEMPLATE_NAME_LABEL": "Введите имя шаблона",
+  "SAVE_TEMPLATE_FROM_GAME_BUTTON": "Сохранить шаблон из игры",
   "SHARE_BUTTON": "Поделиться",
   "QUESTION_QUANTITY_LABEL": "Количество вопросов"
 }

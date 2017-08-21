@@ -6,12 +6,12 @@
             css: 'admin/navbar/navbar.css',
             controller: ['$translate', function ($translate) {
 
-                this.locale = $translate.preferredLanguage();
+                this.locale = $translate.use();
 
                 this.changeLang = function (locale) {
+                    this.locale = locale;
                     $translate.use(locale);
                     localStorage.setItem("locale", locale);
-                    this.locale = locale;
                 }
             }]
         });
