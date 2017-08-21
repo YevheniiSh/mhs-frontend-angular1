@@ -7,9 +7,9 @@
             }
         );
 
-    TeamList.$inject = ['TeamServiceFactory', '$timeout'];
+    TeamList.$inject = ['TeamServiceFactory', '$timeout','$location'];
 
-    function TeamList(TeamService, $timeout) {
+    function TeamList(TeamService, $timeout, $location) {
         let vm = this;
         vm.$onInit = onInit;
         vm.showSuccessAlert = false;
@@ -49,6 +49,10 @@
         vm.hideAlert = function () {
             vm.showSuccessAlert = false;
             vm.showErrorAlert = false;
+        }
+
+        vm.showTeamGames=function(teamId){
+            $location.path(`/teams/${teamId}`);
         }
     }
 })();

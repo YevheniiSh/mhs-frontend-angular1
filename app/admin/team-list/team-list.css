@@ -41,6 +41,7 @@
 .editable-team {
     border: none;
     outline: none;
+    width: 85%;
 }
 
 .team-name-changed-alert {
@@ -63,4 +64,8 @@
 
 .editable-team:hover + .editable-icon {
     display: inline;
+}
+
+ul{
+    list-style:none;
 }

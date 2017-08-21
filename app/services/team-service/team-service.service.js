@@ -81,8 +81,8 @@ angular
             }
 
             function changeTeamName(teamId, newTeamName) {
-                let obj = $firebaseObject(teamRef.child(teamId));
-                obj.name = newTeamName;
+                let obj = $firebaseObject(teamRef.child(`${teamId}/name`));
+                obj.$value = newTeamName;
                 obj.$save();
                 return obj.$loaded()
                     .then((res) => {
