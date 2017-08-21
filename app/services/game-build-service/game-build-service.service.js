@@ -3,7 +3,7 @@ angular.module('gameBuildService')
         function (convertService) {
 
             return {
-                game: {curentRound: 1, currentQuiz: 1},
+                game: {currentRound: 1, currentQuiz: 1},
                 addDate: addDate,
                 addTime: addTime,
                 addLocation: addLocation,
