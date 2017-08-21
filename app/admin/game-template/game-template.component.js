@@ -17,19 +17,23 @@ function gameTemplate($routeParams, $location, templateService) {
         vm.templates = val
     });
 
+
     vm.showTemplate = function(templateId){
         vm.showBuildTemplate = true;
-        getRounds(templateId);
-
+        vm.templateId = templateId;
+        getRounds();
+        getTemplateName();
     };
 
     vm.deleteTemplate = function (templateId) {
         templateService.remove(templateId);
+        vm.showBuildTemplate = false;
     };
 
-    vm.newTemplate = function () {
+    vm.newTemplate = function ($event) {
         templateService.createTemplate().then((res) => {
-            $location.path("/templates/" +  res.$id);
+            vm.showTemplate(res.$id);
+            vm.rounds.push(createRound(quizSequenceNumber++))
         })
     };
 
@@ -37,19 +41,24 @@ function gameTemplate($routeParams, $location, templateService) {
         vm.showBuildTemplate = true
     };
 
+    let quizSequenceNumber = 1;
+
     vm.templateName = '';
     vm.rounds = [];
 
-    let quizSequenceNumber = 1;
-
-
-    function getRounds(templateId) {
-        templateService.getRounds(templateId).then((res) => {
+    function getRounds() {
+        templateService.getRounds(vm.templateId).then((res) => {
             vm.rounds = res;
             quizSequenceNumber = res.length + 1;
             vm.rounds.$watch(() => {
                 getRounds();
             });
+        });
+    }
+
+    function getTemplateName() {
+        templateService.getTemplateName(vm.templateId).then((res) => {
+            vm.templateName = res;
         });
     }
 
@@ -60,6 +69,7 @@ function gameTemplate($routeParams, $location, templateService) {
         console.log(vm.rounds);
         $event.preventDefault();
     };
+
     vm.deleteRound = function (index) {
         if (vm.rounds.length >= index) {
             for (let i = index - 1; i < vm.rounds.length; i++) {
@@ -71,10 +81,9 @@ function gameTemplate($routeParams, $location, templateService) {
     };
 
     vm.saveRounds = function () {
-
         vm.submitted = false;
-        templateService.updateName(templateId, vm.templateName);
-        templateService.updateRounds(templateId, vm.rounds);
+        templateService.updateName(vm.templateId, vm.templateName);
+        templateService.updateRounds(vm.templateId, vm.rounds);
         vm.submitted = true;
         if (vm.submitted)$location.path("/templates");
 

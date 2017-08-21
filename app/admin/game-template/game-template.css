@@ -37,53 +37,22 @@
 /*.game-template-cell:hover {*/
     /*border-color: #01F800;*/
 /*}*/
-.template-row{
-    cursor: pointer;
-    font-size: 24px;
-}
-.title{
-    text-align: center;
-}
-.template-cell{
-    margin: 0.2em;
-}
-.new-template-btn{
-    display: inline-block;
-    margin-bottom: 2%;
-    width: 400px;
+.list-item {
+    text-align: left;
+    width: 70%;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 16px;
+    font-weight: bold;
 }
 .delete-btn{
     float: right;
 }
-.create-template{
-    vertical-align: middle;
+.scroll-panel{
+    list-style: none
 }
-table{
-    margin-left: 16px; //найти чистий солюшин для виравнювання таблиці і навбара
-}
-
-/**/
-.content{
-    margin-top: 20px;
-}
-label {
-    font-size: 16px;
-}
-
-.td-round-number {
-    margin: 20px;
-    max-width: 20px;
-    max-height: 15px;
-}
-.round-number{
-    padding-top: 8px;
-}
-.round-name {
-    max-width: 300px;
-}
-#btn-save{
-    margin-top: 20px;
-}
-.count-quest {
-    max-width: 140px;
+.new-template-btn{
+    text-align: center;
+    margin-bottom: 1em;
 }
