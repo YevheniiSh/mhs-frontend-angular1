@@ -1,8 +1,8 @@
 angular.module('teamResults')
     .component('teamResults', {
         templateUrl: 'admin/team-results/team-results.html',
-        controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location',
-            function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location) {
+        controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location','$window',
+            function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location,$window) {
                 let vm = this;
                 this.$onInit = onInit;
                 function onInit() {
@@ -66,7 +66,7 @@ angular.module('teamResults')
                         });
                 }
                 vm.showGameResults = function () {
-                    $location.path(`/games/${$routeParams.gameId}/results`);
+                    $window.history.back();
                 };
                 vm.url = $routeParams.gameId;
 
