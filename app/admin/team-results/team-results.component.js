@@ -135,6 +135,7 @@ angular.module('teamResults')
                 this.blockEditing = function () {
                     this.gameStatus = true;
                     ResultService.setGameWinner(this.state, vm.gameId);
+                    ResultService.setTeamsResults(vm.gameId);
                 }
 
             }]
