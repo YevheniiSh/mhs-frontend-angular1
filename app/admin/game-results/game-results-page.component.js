@@ -6,6 +6,7 @@ angular.module('gameResultsPage')
             let vm = this;
             let gameId = $routeParams.gameId;
             vm.isGameCurrent = true;
+            vm.photosURL = null;
 
             vm.$onInit = onInit;
 
@@ -26,7 +27,6 @@ angular.module('gameResultsPage')
                 ResultService.getParsedResults(this.gameId)
                     .then((result) => {
                         vm.results = result;
-                        console.log(vm.results);
                     });
                 GameService.getGameStatus(gameId).then(status => {
                     (status === "finished") ?
@@ -35,6 +35,7 @@ angular.module('gameResultsPage')
 
                 GameService.getPhotosURL(gameId).then((res) => {
                     vm.photosURL = res;
+                    console.log(vm.photosURL)
                 });
 
                 auth.currentUser()
@@ -46,7 +47,10 @@ angular.module('gameResultsPage')
             vm.shareURL = $location.absUrl();
 
             vm.savePhotosLink = function (link) {
-                GameService.setPhotosLink(gameId, link);
+                if (link !== undefined) {
+                    GameService.setPhotosLink(gameId, link);
+                    vm.setLink = false;
+                }
             };
 
             vm.onBack = function () {

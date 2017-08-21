@@ -1,19 +1,23 @@
 <div class="container">
-        <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON'|translate}}</button>
-        <button class="btn btn-info" ng-click="$ctrl.teamResults()">{{'SHOW_RESULTS_BUTTON'|translate}}</button>
-        <a ng-if="$ctrl.gameFinished" id="fb-share-button"
-           socialshare
-           socialshare-provider="facebook"
-           socialshare-text="mad head show"
-           socialshare-hashtags="angularjs, angular-socialshare"
-           socialshare-url=" {{$ctrl.shareURL}}">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-                <span>{{'SHARE_BUTTON' | translate}}</span>
-        </a>
-        <span ng-if="$ctrl.gameFinished && $ctrl.user" class="photos-link">
-                <input ng-model="photosLink" type="url"/>
-                <button class="btn btn-info" ng-click="$ctrl.savePhotosLink(photosLink)">{{'SAVE_LINK_BUTTON' | translate}}</button>
-        </span>
-        <h1 id="game-results">{{'GAME_RESULT_HEADER' | translate}}<span class="date">{{$ctrl.date}}</span></h1>
+    <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON'|translate}}</button>
+    <button class="btn btn-info" ng-click="$ctrl.teamResults()">{{'SHOW_RESULTS_BUTTON'|translate}}</button>
+    <a ng-if="$ctrl.gameFinished" id="fb-share-button"
+       socialshare
+       socialshare-provider="facebook"
+       socialshare-text="mad head show"
+       socialshare-hashtags="angularjs, angular-socialshare"
+       socialshare-url=" {{$ctrl.shareURL}}">
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+        <span>{{'SHARE_BUTTON' | translate}}</span>
+    </a>
+    <span class="photos-link" ng-if="$ctrl.gameFinished && $ctrl.user && !$ctrl.setLink">
+                <button class="btn btn-info" ng-click="$ctrl.setLink = true">{{'EDIT_LINK_BUTTON' | translate}}</button>
+    </span>
+    <span ng-if="$ctrl.setLink" class="photos-link">
+        <input type="url" ng-model='$ctrl.photosURL'>
+        <button class="btn btn-info"
+                ng-click="$ctrl.savePhotosLink($ctrl.photosURL)">{{'SAVE_LINK_BUTTON' | translate}}</button>
+    </span>
+    <h1 id="game-results">{{'GAME_RESULT_HEADER' | translate}}<span class="date">{{$ctrl.date}}</span></h1>
     <game-results></game-results>
 </div>
