@@ -1,6 +1,6 @@
 <div class="container">
         <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON'|translate}}</button>
-        <button class="btn btn-info" ng-click="$ctrl.teamResults()">{{'SHOW_RESULTS_BUTTON'|translate}}</button>
+        <button ng-if="$ctrl.auth" class="btn btn-info" ng-click="$ctrl.teamResults()">{{'SHOW_RESULTS_BUTTON'|translate}}</button>
         <a ng-if="$ctrl.shareButton" id="fb-share-button"
            socialshare
            socialshare-provider="facebook"
