@@ -36,7 +36,7 @@
             </div>
 
             <div class="form-group">
-                <label>Select template</label>
+                <label>{{'SELECT_TEMPLATE_LABEL' | translate}}</label>
                 <div class="input-group">
                     <select class="form-control" ng-model="selectedTemplate">
                         <option ng-repeat="template in $ctrl.templates"
@@ -47,7 +47,7 @@
                     </select>
                     <span class="input-group-btn">
                          <span class="btn btn-success" ng-click="$ctrl.selectTemplate(selectedTemplate)">
-                             Select
+                             {{'SELECT_TEMPLATE_BUTTON' | translate}}
                          </span>
                      </span>
                 </div>
@@ -65,12 +65,12 @@
         <form id="template-form" ng-if="$ctrl.templateFormShow" ng-submit="$ctrl.saveTemplate()"
               ng-hide="$ctrl.rounds.length <1">
             <div class="form-group">
-                <label>Enter template name</label>
+                <label>{{'TEMPLATE_NAME_LABEL' | translate}}</label>
                 <div class="input-group">
                     <input type="text" class="form-control" ng-model="$ctrl.templateName" required>
                     <span class="input-group-btn">
                         <button class="btn btn-success" type="submit" ng-click="$ctrl.templateSaved = true">
-                             Save template from game
+                             {{'SAVE_TEMPLATE_FROM_GAME_BUTTON' | translate}}
                         </button>
                     </span>
                 </div>
