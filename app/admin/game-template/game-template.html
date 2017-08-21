@@ -1,9 +1,11 @@
 <div class="col-md-6 ">
     <ul class="scroll-panel">
         <li>
-            <span class="btn btn-success btn-block new-template-btn" ng-click="$ctrl.newTemplate()">
+            <div class="new-template">
+                <span class="btn btn-success btn-block new-template-btn" ng-click="$ctrl.newTemplate()">
                 Create new template
             </span>
+            </div>
         </li>
         <li ng-click="$ctrl.showTemplate(template.$id)"
             ng-repeat="template in $ctrl.templates">
