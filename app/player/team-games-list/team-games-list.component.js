@@ -5,9 +5,9 @@
             controller: TeamGamesList
         });
 
-    TeamGamesList.$inject = ['$location', '$routeParams', 'TeamServiceFactory'];
+    TeamGamesList.$inject = ['$location', '$routeParams', 'TeamServiceFactory','$window'];
 
-    function TeamGamesList($location, $routeParams, teamService) {
+    function TeamGamesList($location, $routeParams, teamService,$window) {
         let vm = this;
         vm.$onInit = onInit;
 
@@ -31,8 +31,12 @@
                 })
         }
 
-        vm.onClicked = function onClicked(gameId) {
+        vm.onClicked = function (gameId) {
             $location.path(`/games/${gameId}/results/${vm.teamId}`);
+        }
+
+        vm.onBack = function (){
+            $window.history.back()
         }
     }
 })();

@@ -14,5 +14,9 @@ angular.module('gameResultsPage')
                     this.results = result;
                     console.log(result)
                 });
+
+            this.getTeamGames = function(teamId){
+                $location.path(`/teams/${teamId}`);
+            }
         }]
 });
