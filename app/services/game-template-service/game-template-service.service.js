@@ -20,7 +20,8 @@ angular.module('gameTemplateService')
                 updateRounds: updateRounds,
                 saveFromGame:saveFromGame,
                 getRounds:getRounds,
-                getTemplateName:getTemplateName
+                getTemplateName:getTemplateName,
+                createTemplate: createTemplate
 
             };
 
@@ -28,6 +29,12 @@ angular.module('gameTemplateService')
             function save(name, rounds) {
                 let fbObj = new $firebaseObject(gameTemplatesRef.push());
                 fbObj.$value = convertService.buildTemplateForFirebase(name, rounds);
+                fbObj.$save();
+                return fbObj.$loaded();
+            }
+
+            function createTemplate() {
+                let fbObj = new $firebaseObject(gameTemplatesRef.push());
                 fbObj.$save();
                 return fbObj.$loaded();
             }

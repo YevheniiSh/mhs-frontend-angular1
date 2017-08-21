@@ -1,45 +1,63 @@
-.btn-for-template-delete{
-    border-radius: 17px;
-    float: right;
-    vertical-align: middle;
-}
-.template-table{
-}
-.title{
-    font-size: 2em;
-}
-.times-icon{
-    float: right;
-    vertical-align: middle;
-}
-.times-font {
-    border-radius: 20%;
-}
-.template-delete-button{
-    font-size: 20px;
-    float:right;
-    border-radius: 30px;
-    margin: 3%
-}
-.game-template-cell.ng-binding{
-    margin: 0.4em  0.4em 0.4em  1.4em;
-    font-size: 3em;
-    border-radius: 10px;
-    width: 13em;
-    display: inline-block;
-    text-align: left;
-    padding-right: 3%;
-}
-/*.game-template-cell.ng-binding:hover {*/
+/*.btn-for-template-delete{*/
+    /*border-radius: 17px;*/
+    /*float: right;*/
+    /*vertical-align: middle;*/
+/*}*/
+/*.template-table{*/
+/*}*/
+/*.title{*/
+    /*font-size: 2em;*/
+/*}*/
+/*.times-icon{*/
+    /*float: right;*/
+    /*vertical-align: middle;*/
+/*}*/
+/*.times-font {*/
+    /*border-radius: 20%;*/
+/*}*/
+/*.template-delete-button{*/
+    /*font-size: 20px;*/
+    /*float:right;*/
+    /*border-radius: 30px;*/
+    /*margin: 3%*/
+/*}*/
+/*.game-template-cell.ng-binding{*/
+    /*margin: 0.4em  0.4em 0.4em  1.4em;*/
+    /*font-size: 3em;*/
+    /*border-radius: 10px;*/
+    /*width: 13em;*/
+    /*display: inline-block;*/
+    /*text-align: left;*/
+    /*padding-right: 3%;*/
+/*}*/
+/*!*.game-template-cell.ng-binding:hover {*!*/
     /*background: grey;*/
 /*}*/
 
 /*.game-template-cell:hover {*/
     /*border-color: #01F800;*/
 /*}*/
-.game-template-row{
-    text-align: center;
+.list-item {
+    text-align: left;
+    width: 70%;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 16px;
+    font-weight: bold;
 }
-table{
-    width: 100%;
+.delete-btn{
+    float: right;
+}
+.scroll-panel{
+    list-style: none
+}
+.new-template-btn{
+    text-align: center;
+    width: 70%;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 1em;
 }
