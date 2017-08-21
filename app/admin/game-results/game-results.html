@@ -13,9 +13,13 @@
             ng-click="$ctrl.getDetails(teamResult)">
                 <td class="td-cell position-data">{{$index + 1}}</td>
                 <td class="td-cell team-name" >
-                    <a ng-click="$ctrl.getTeamGames(teamResult.teamId);$event.stopPropagation();">
+                    <a ng-if="!$ctrl.isPresentationMode"
+                       ng-click="$ctrl.getTeamGames(teamResult.teamId);$event.stopPropagation();">
                         {{teamResult.teamName}}
                     </a>
+                    <span ng-if="$ctrl.isPresentationMode" class="team-name">
+                        {{teamResult.teamName}}
+                    </span>
                 </td>
                 <td class="td-cell round-score" ng-repeat="round in teamResult.rounds">{{round.score}}</td>
                 <td class="td-cell total-score">{{teamResult.total}}</td>
