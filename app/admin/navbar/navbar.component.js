@@ -6,7 +6,7 @@
             css: 'admin/navbar/navbar.css',
             controller: ['$translate', function ($translate) {
 
-                this.locale = $translate.preferredLanguage();
+                this.locale = $translate.use();
 
                 this.changeLang = function (locale) {
                     $translate.use(locale);
