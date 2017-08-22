@@ -35,40 +35,6 @@ angular.module('teamResults')
                     vm.getResults();
                 }
 
-                function parseTeamResult(teamResults) {
-                    let roundResult = {};
-                    let parsedResult = [];
-                    return RoundService.getRounds(vm.gameId)
-                        .then(rounds => {
-                            return GameService.getCurrentRound(vm.gameId)
-                                .then((currenRound) => {
-                                    for (let i = 0; i < currenRound - 1; i++) {
-                                        roundResult[i + 1] = {
-                                            roundNum: i + 1,
-                                            roundName: rounds[i].name,
-                                            quizzes: [],
-                                            total: 0
-                                        };
-                                        for (let j = 1; j <= rounds[i].numberOfQuestions; j++) {
-                                            roundResult[i + 1].quizzes.push({quizNum: j, score: 0})
-                                        }
-                                    }
-                                    teamResults.forEach(quizResult => {
-                                        roundResult[quizResult.round].quizzes[quizResult.quiz-1].score = quizResult.score;
-                                    })
-                                    for (let round in roundResult) {
-                                        roundResult[round].total = roundResult[round].quizzes.reduce((sum, current) => {
-                                            return sum + current.score;
-                                        }, 0)
-                                    }
-                                    for(let round in roundResult){
-                                        parsedResult.push(roundResult[round]);
-                                    }
-                                    return parsedResult;
-                                })
-                        })
-                }
-
                 vm.showGameResults = function () {
                     $window.history.back();
                 };
@@ -76,7 +42,9 @@ angular.module('teamResults')
 
                 vm.getResults = function () {
                     ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId)
-                        .then(parseTeamResult)
+                        .then(teamResults=>{
+                            return ResultService.parseTeamResult(teamResults, vm.gameId)
+                        })
                         .then((res) => {
                             vm.teamTotal = 0;
 

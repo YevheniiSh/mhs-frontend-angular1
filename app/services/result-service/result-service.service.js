@@ -118,6 +118,8 @@ angular
                     })
             };
 
+
+
             resultFactory.sortDesc = function (score) {
                 return score.sort((a, b) => {
                     return (+(a.total) > +(b.total)) ? -1 : ((+(b.total) > +(a.total)) ? 1 : 0);
@@ -168,6 +170,40 @@ angular
                         return ref.child(gameId).child('winner').set(winner);
                     });
             };
+
+            resultFactory.parseTeamResult = function(teamResults,gameId) {
+                let roundResult = {};
+                let parsedResult = [];
+                return roundService.getRounds(gameId)
+                    .then(rounds => {
+                        return gameService.getCurrentRound(gameId)
+                            .then((currenRound) => {
+                                for (let i = 0; i < currenRound - 1; i++) {
+                                    roundResult[i + 1] = {
+                                        roundNum: i + 1,
+                                        roundName: rounds[i].name,
+                                        quizzes: [],
+                                        total: 0
+                                    };
+                                    for (let j = 1; j <= rounds[i].numberOfQuestions; j++) {
+                                        roundResult[i + 1].quizzes.push({quizNum: j, score: 0})
+                                    }
+                                }
+                                teamResults.forEach(quizResult => {
+                                    roundResult[quizResult.round].quizzes[quizResult.quiz-1].score = quizResult.score;
+                                })
+                                for (let round in roundResult) {
+                                    roundResult[round].total = roundResult[round].quizzes.reduce((sum, current) => {
+                                        return sum + current.score;
+                                    }, 0)
+                                }
+                                for(let round in roundResult){
+                                    parsedResult.push(roundResult[round]);
+                                }
+                                return parsedResult;
+                            })
+                    })
+            }
 
             return resultFactory;
         }]
