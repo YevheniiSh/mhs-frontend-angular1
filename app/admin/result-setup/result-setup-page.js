@@ -25,13 +25,17 @@
             initRound();
             initCurrentRound();
             initCurrentQuiz();
+            let t0 = performance.now();
             getTeams()
                 .then(() => {
                     buildResults()
                     assignResults()
                 })
                 .then(initInputType)
-                .then(saveResults);
+                .then(()=>{
+                    let t1 = performance.now();
+                    console.log(`${t1-t0} ms`)
+                })
         }
 
         function initInputType() {
@@ -105,13 +109,13 @@
         };
 
         vm.nextQuiz = function () {
-            $scope.$on('$destroy', function () {
-                console.log("test");
-                angular.forEach($window.openFirebaseConnections, function (item) {
-                    item.$destroy();
-                });
-                $window.openFirebaseConnections = [];
-            });
+            // $scope.$on('$destroy', function () {
+            //     console.log("test");
+            //     angular.forEach($window.openFirebaseConnections, function (item) {
+            //         item.$destroy();
+            //     });
+            //     $window.openFirebaseConnections = [];
+            // });
             if (vm.selectedQuiz < vm.round.numberOfQuestions) {
                 if (vm.currentQuiz == vm.selectedQuiz) {
                     vm.currentQuiz++;

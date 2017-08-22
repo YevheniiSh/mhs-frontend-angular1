@@ -46,7 +46,6 @@ angular
                 let ref = gameService.getGameRef(gameId);
 
                 return ref.then((res) => {
-                    console.log(res);
                     let firebaseArr = new $firebaseArray(res.child(`/${gameId}/results`));
                     return firebaseArr.$loaded();
                 })
