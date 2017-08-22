@@ -80,7 +80,6 @@ angular
             function getGameRef(gameId) {
                 return getCurrentGameById(gameId)
                     .then((res) => {
-                        console.log(res.$value);
                         if (res.$value !== null) {
                             return ref = currentGameRef;
 
@@ -90,7 +89,6 @@ angular
                         }
                     })
                     .catch(() => {
-                        console.log('error');
                         return ref = finishedGameRef
                     });
             }
@@ -99,7 +97,6 @@ angular
             function getGameStatus(gameId) {
                 return getCurrentGameById(gameId)
                     .then((res) => {
-                        console.log(res.$value);
                         if (res.$value !== null) {
                             return 'current';
 
@@ -159,45 +156,6 @@ angular
                 }
                 return newObj;
             }
-
-            // function saveGame(obj, game) {
-            //     obj.$value = game;
-            //     obj.$save();
-            //     return obj
-            //         .$loaded()
-            //         .then((res) => {
-            //             return res.$id;
-            //         }, (err) => {
-            //             console.error(err);
-            //             return err;
-            //         });
-            // }
-            //
-            // function save(game, gameId) {
-            //     if (gameId === undefined) {
-            //         let obj = new $firebaseObject(currentGameRef.push());
-            //         return saveGame(obj, game);
-            //     }
-            //     else {
-            //         let obj = new $firebaseObject(currentGameRef.child(gameId));
-            //         //todo - we must rework this!
-            //         let rounds = {};
-            //         for (let i = 0; i < game.rounds.length; i++) {
-            //             rounds[game.rounds[i].id] = {
-            //                 numberOfQuestions: game.rounds[i].numberOfQuestions,
-            //                 name: game.rounds[i].name
-            //             };
-            //         }
-            //         let teams = {};
-            //         for (let i = 0; i < game.teams.length; i++) {
-            //             teams[game.teams[i].id] = game.teams[i].name;
-            //         }
-            //         game.teams = teams;
-            //         game.rounds = rounds;
-            //         return saveGame(obj, game);
-            //     }
-            //
-            // }
 
             function getCurrentRound(gameId) {
                 return getStatus(gameId, 'currentRound');

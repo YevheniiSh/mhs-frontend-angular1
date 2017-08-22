@@ -29,6 +29,7 @@ angular.module('resultSetup').factory('resultSetupService', [
             //     promices.push(saveQuizResult(result, gameId));
             // });
             // return promices;
+
             results.forEach((result) => {
                 if (result.score === undefined) {
                     result.score = 0;
