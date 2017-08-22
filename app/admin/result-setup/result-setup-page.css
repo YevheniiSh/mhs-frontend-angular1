@@ -54,11 +54,16 @@ h2 {
 input[type=checkbox] {
     transform: scale(1.5);
     margin-top: 10px;
+    cursor: pointer;
 }
 
 #manual-input{
     font-size: 14pt;
     height: 32px;
     line-height: 32px;
+}
+
+.clickable-label{
+    cursor: pointer;
 }
 
