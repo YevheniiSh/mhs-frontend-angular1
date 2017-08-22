@@ -9,10 +9,12 @@
     ResultSetupController.$inject = [
         'resultSetupService',
         '$routeParams',
-        '$location'
+        '$location',
+        '$scope',
+        '$window'
     ];
 
-    function ResultSetupController(resultSetupService, $routeParams, $location) {
+    function ResultSetupController(resultSetupService, $routeParams, $location, $scope, $window) {
         let vm = this;
 
         vm.isManualInput = false;
@@ -27,9 +29,8 @@
                 .then(() => {
                     buildResults()
                     assignResults()
-                        .then(initInputType)
-                        .then(saveResults)
-                });
+                })
+                .then(initInputType)
         }
 
         function initInputType() {
@@ -87,10 +88,6 @@
                     });
                     vm.results = Object.keys(vm.results).map(it => vm.results[it])
                 });
-        }
-
-        function saveResults() {
-            return resultSetupService.saveQuizResults(vm.results, $routeParams.gameId);
         }
 
         vm.saveResult = function (result) {
