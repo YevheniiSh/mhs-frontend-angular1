@@ -1,10 +1,11 @@
 angular.module('teamResults')
     .component('teamResults', {
         templateUrl: 'admin/team-results/team-results.html',
-        controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location','$window',
-            function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location,$window) {
+        controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location', '$window',
+            function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location, $window) {
                 let vm = this;
                 this.$onInit = onInit;
+
                 function onInit() {
                     vm.gameStatus = true;
 
@@ -22,49 +23,18 @@ angular.module('teamResults')
                         if (status === "current") {
                             vm.state = status;
                             vm.gameStatus = false;
-                            GameService.getDate(status,this.gameId).then(v=>this.date = new Date(v.$value).toLocaleDateString())
+                            GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString())
                         }
-                        if (status === "finished"){
+                        if (status === "finished") {
                             vm.state = status;
                             vm.gameStatus = true;
-                            GameService.getDate(status,this.gameId).then(v=>this.date = new Date(v.$value).toLocaleDateString())
+                            GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString())
                         }
                     });
 
                     vm.getResults();
                 }
 
-                function parseTeamResult(teamResults) {
-                    console.log(teamResults);
-
-                    return RoundService.getRoundNames($routeParams.gameId)
-                        .then((rounds) => {
-                            let roundsResult = {};
-                            teamResults.forEach((quizResult) => {
-                                roundsResult[quizResult.round] = {quizzes: {}, total: 0};
-                            });
-                            teamResults.forEach((quizResult) => {
-                                roundsResult[quizResult.round].quizzes[quizResult.quiz] = quizResult.score;
-                            });
-                            let result = [];
-                            for (let round in roundsResult) {
-                                let roundQuizzes = [];
-                                let totalResult = 0;
-                                for (let quiz in roundsResult[round].quizzes) {
-                                    roundQuizzes.push({quizNum: quiz, score: roundsResult[round].quizzes[quiz]})
-                                    totalResult += roundsResult[round].quizzes[quiz];
-                                }
-                                result.push({roundNum: round, quizzes: roundQuizzes, total: totalResult.toFixed(1)});
-                            }
-
-                            result.forEach((item, index) => {
-
-                                item['roundName'] = rounds[index].name;
-                            });
-
-                            return result;
-                        });
-                }
                 vm.showGameResults = function () {
                     $window.history.back();
                 };
@@ -72,13 +42,15 @@ angular.module('teamResults')
 
                 vm.getResults = function () {
                     ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId)
-                        .then(parseTeamResult)
+                        .then(teamResults=>{
+                            return ResultService.parseTeamResult(teamResults, vm.gameId)
+                        })
                         .then((res) => {
                             vm.teamTotal = 0;
 
                             vm.roundsResult = res
-                            angular.forEach(res,(round)=>{
-                                if (round.total){
+                            angular.forEach(res, (round) => {
+                                if (round.total) {
                                     vm.teamTotal += parseFloat(round.total);
                                 }
                             });
