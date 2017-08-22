@@ -175,17 +175,20 @@ angular
             }
 
             function getStatus(gameId, status) {
-                let currentRoundRef = currentGameRef
-                    .child(`${gameId}/${status}`);
+                return getGameRef(gameId)
+                    .then(ref=>{
+                        let roundRef = ref
+                            .child(`${gameId}/${status}`);
+                        return new $firebaseObject(roundRef)
+                            .$loaded()
+                            .then((res) => {
+                                return res.$value;
+                            }, (err) => {
+                                console.error(err);
+                                return err;
+                            });
+                    })
 
-                return new $firebaseObject(currentRoundRef)
-                    .$loaded()
-                    .then((res) => {
-                        return res.$value;
-                    }, (err) => {
-                        console.error(err);
-                        return err;
-                    });
             }
 
             function getPhotosURL(gameId) {

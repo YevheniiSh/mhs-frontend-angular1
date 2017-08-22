@@ -10,8 +10,11 @@ angular
         };
 
         function getRounds(gameId) {
-            let firebaseObj = new $firebaseArray(currentGameRef.child(`/${gameId}/rounds`));
-            return firebaseObj.$loaded();
+            return gameService.getGameRef(gameId)
+                .then(ref=>{
+                    let firebaseObj = new $firebaseArray(ref.child(`/${gameId}/rounds`));
+                    return firebaseObj.$loaded();
+                })
         }
 
         function getRoundNames(gameId) {
