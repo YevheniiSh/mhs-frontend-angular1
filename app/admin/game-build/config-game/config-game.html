@@ -3,7 +3,7 @@
     <div id="button-panel" class="col-md-1" >
         <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
     </div>
-     <div class="col-md-2">
+    <div class="col-md-2">
         <div ng-click="$ctrl.ChangeCalendarStatus()">
             <label class="control-label data-picker-label" for="game-calendar">
                 <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
@@ -35,7 +35,7 @@
                    required placeholder="{{'LOCATION_PLACEHOLDER' | translate}}"></div>
     </div>
     <div  class="col-md-1" >
-        <button  class="btn btn-success" ng-click="$ctrl.updateDateAndLocation()">Save</button>
+        <button  class="btn btn-success" ng-click="$ctrl.updateLocation()">Save</button>
     </div>
     <div class="col-md-4">
         <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.saved">

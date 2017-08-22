@@ -1,7 +1,7 @@
 <create-game ng-if="$ctrl.auth"></create-game>
 <table class="table table-sm table-hover">
     <thead>
-    <tr>
+    <tr class="game-property">
         <th>{{'DATE_LABEL' | translate}}</th>
         <th>{{'TIME_LABEL' | translate}}</th>
         <th>{{'LOCATION_LABEL' | translate}}</th>
@@ -9,7 +9,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="game-row" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
+    <tr class="game-row td" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
         <td>{{openGame.date.toLocaleDateString()}}</td>
         <td>{{openGame.time}}</td>
         <td>{{openGame.location}}</td>

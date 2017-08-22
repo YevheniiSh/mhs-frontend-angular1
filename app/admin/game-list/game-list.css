@@ -7,11 +7,7 @@
     margin-top: 10px;
 }
 
-td {
-    font-size: 24px;
-}
-
-th {
+.game-property {
     font-size: 28px;
 }
 
@@ -28,6 +24,7 @@ h1 {
 }
 
 .game-row {
+    font-size: 24px;
     cursor: pointer;
 }
 .game-button{
