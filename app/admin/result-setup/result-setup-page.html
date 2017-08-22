@@ -8,7 +8,7 @@
     </div>
     <div class="form-group row">
         <ul id="team-list">
-            <li class="col-md-6" ng-repeat="result in $ctrl.results | orderBy: 'team'">
+            <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'">
                 <label>
                     <input type="checkbox"
                            ng-model="result.score"

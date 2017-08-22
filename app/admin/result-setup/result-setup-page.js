@@ -90,10 +90,6 @@
                 });
         }
 
-        function saveResults() {
-            return resultSetupService.saveQuizResults(vm.results, $routeParams.gameId);
-        }
-
         vm.saveResult = function (result) {
             resultSetupService.saveQuizResult(result, $routeParams.gameId);
         };
@@ -104,13 +100,6 @@
         };
 
         vm.nextQuiz = function () {
-            // $scope.$on('$destroy', function () {
-            //     console.log("test");
-            //     angular.forEach($window.openFirebaseConnections, function (item) {
-            //         item.$destroy();
-            //     });
-            //     $window.openFirebaseConnections = [];
-            // });
             if (vm.selectedQuiz < vm.round.numberOfQuestions) {
                 if (vm.currentQuiz == vm.selectedQuiz) {
                     vm.currentQuiz++;
