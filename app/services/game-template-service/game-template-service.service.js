@@ -83,7 +83,6 @@ angular.module('gameTemplateService')
                     })
             }
 
-
             function getRounds(templateId) {
                 let obj = new $firebaseArray(gameTemplatesRef.child(templateId).child('rounds'));
                 return obj.$loaded();
@@ -92,7 +91,7 @@ angular.module('gameTemplateService')
 
             function getTemplateName(templateId) {
                 let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId).child('name'));
-                return fbObj.$loaded() .then((res) => {
+                return fbObj.$loaded().then((res) => {
                     return res.$value;
                 }, (err) => {
                     console.error(err);

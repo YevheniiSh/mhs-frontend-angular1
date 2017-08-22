@@ -23,6 +23,7 @@ function gameTemplate($routeParams, $location, templateService) {
         vm.templateId = templateId;
         getRounds();
         getTemplateName();
+        $location.path(`/templates/${templateId}`);
     };
 
     vm.deleteTemplate = function (templateId) {
@@ -32,14 +33,16 @@ function gameTemplate($routeParams, $location, templateService) {
 
     vm.newTemplate = function () {
         templateService.createTemplate().then((res) => {
-            vm.templateName = '';
-            vm.showBuildTemplate = true;
-            vm.templateId = res.$id;
-
-            quizSequenceNumber = 1;
-
-            vm.rounds.splice(0, vm.rounds.length);
-            vm.rounds.push(createRound(quizSequenceNumber++));
+            // vm.templateName = '';
+            // vm.showBuildTemplate = true;
+            // vm.templateId = res.$id;
+            //
+            // quizSequenceNumber = 1;
+            //
+            // vm.rounds.splice(0, vm.rounds.length);
+            // vm.rounds.push(createRound(quizSequenceNumber++));
+            $location.path(`/templates/${res.$id}`);
+            templateService.updateRounds(res.$id, [{$id: quizSequenceNumber++, numberOfQuestions: 10, name: ""}]);
         })
     };
 
@@ -76,15 +79,7 @@ function gameTemplate($routeParams, $location, templateService) {
         $event.preventDefault();
     };
 
-    vm.deleteRound = function (index) {
-        if (vm.rounds.length >= index) {
-            for (let i = index - 1; i < vm.rounds.length; i++) {
-                vm.rounds[i].$id--;
-            }
-            quizSequenceNumber--;
-        }
-        vm.rounds.splice(index - 1, 1);
-    };
+
 
     vm.saveRounds = function () {
         vm.submitted = false;

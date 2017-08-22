@@ -12,6 +12,7 @@ angular
         'game-list',
         'createGame',
         'configGame',
+        'roundBuilder',
         'ui.bootstrap',
         'teamList',
         'navbar',
@@ -70,7 +71,8 @@ angular
             template: '<game-template></game-template>',
         });
         $routeProvider.when('/templates/:templateId', {
-            template: '<create-game-template></create-game-template>',
+            template: '<current-game-template></current-game-template>',
+            css: 'admin/game-template/current-game-template.css'
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
