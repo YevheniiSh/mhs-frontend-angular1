@@ -16,12 +16,10 @@
     <link rel="stylesheet" type="text/css" href="public/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="public/css/bootstrapSilverButton.css">
     <script src="https://use.fontawesome.com/50300bbbf7.js"></script>
-    <script src="public/js/GameResultParser.js"></script>
 
     <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css">
 
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
-
 </head>
 <body>
 <div data-ng-if="loading" class="lds-css ng-scope">
@@ -68,6 +66,9 @@
 <script src="services/game-template-service/game-template-service.module.js"></script>
 <script src="services/game-template-service/game-template-service.service.js"></script>
 
+<script src="player/team-games-list/team-games-list.module.js"></script>
+<script src="player/team-games-list/team-games-list.component.js"></script>
+
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-css/angular-css.js"></script>
 <script src="services/team-service/team-service.module.js"></script>
@@ -97,7 +98,6 @@
 <script src="services/convert-service/convert-service.module.js"></script>
 <script src="services/convert-service/convert-service.service.js"></script>
 
-
 <script src="services/game-service/open-game-service/open-game.module.js"></script>
 <script src="services/game-service/open-game-service/open-game.service.js"></script>
 
@@ -117,9 +117,6 @@
 
 <script src="admin/game-build/game-type/game-type.module.js"></script>
 <script src="admin/game-build/game-type/game-type.component.js"></script>
-<script src="components/version/version.js"></script>
-<script src="components/version/version-directive.js"></script>
-<script src="components/version/interpolate-filter.js"></script>
 <script src="admin/result-setup/result-setup.module.js"></script>
 <script src="admin/result-setup/resultSetupService.js"></script>
 <script src="admin/result-setup/result-setup-page.js"></script>
@@ -129,12 +126,6 @@
 
 <script src="bower_components/angular-socialshare/dist/angular-socialshare.js"></script>
 <script src="admin/add-teams/add-teams.component.js"></script>
-<script src="public/js/TeamBuilder.js"></script>
-<script src="public/js/Result.js"></script>
-<script src="public/js/GameBuilder.js"></script>
-<script src="public/js/Game.js"></script>
-<script src="public/js/GameTeam.js"></script>
-<script src="public/js/GameRound.js"></script>
 
 <script src="admin/round-status/round-status.module.js"></script>
 <script src="admin/round-status/round-status-component.js"></script>
@@ -159,5 +150,7 @@
 <script src="admin/navbar/navbar.module.js"></script>
 <script src="admin/navbar/navbar.component.js"></script>
 <script src="admin/game-list/current-game.component.js"></script>
+<script src="services/game-build-service/game-build-service.module.js"></script>
+<script src="services/game-build-service/game-build-service.service.js"></script>
 </body>
 </html>

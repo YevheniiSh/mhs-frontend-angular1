@@ -15,7 +15,7 @@ angular.module('addTeams')
 
                 function onInit() {
                     vm.getRequests();
-                    vm.getTeams()
+                    vm.getTeams();
                 }
 
                 vm.addTeamToGame = function (request) {
@@ -27,7 +27,9 @@ angular.module('addTeams')
                                 res.fullName = request.fullName;
                                 res.phone = request.phone;
                                 res.teamSize = request.teamSize;
-                                gameService.addTeamToGame(vm.gameId, res);
+                                gameService.addTeamToGame(vm.gameId, res).then((id) => {
+                                    teamService.addGameToTeam(id, vm.gameId);
+                                });
                                 gameRequestService.setConfirmedStatus(vm.gameId, request.$id);
                                 request.teamId = res.key;
                                 gameRequestService.updateTeamId(vm.gameId, request)
@@ -42,13 +44,13 @@ angular.module('addTeams')
                                 fullName: request.fullName,
                                 teamSize: request.teamSize,
                                 phone: request.phone
-                            })
+                            }).then((id) => {
+                            teamService.addGameToTeam(id, vm.gameId);
+                        })
                         teamRequestService.save(request)
                         gameRequestService.setConfirmedStatus(vm.gameId, request.$id)
                     }
                 }
-
-
 
                 vm.getRequests = function () {
                     gameRequestService.getAllTeamRequestsByGameId(vm.gameId)
@@ -76,6 +78,7 @@ angular.module('addTeams')
 
                 vm.unConfirmRequest = function (team) {
                     gameService.removeTeamFromGame(vm.gameId, team.$id);
+                    teamService.removeGameFromTeam(team.$id, vm.gameId);
                     gameRequestService.setUnconfirmedStatus(vm.gameId, team.requestId);
                 }
             }]

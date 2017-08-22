@@ -1,6 +1,6 @@
 angular
     .module('resultService')
-    .factory('ResultServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService', 'GameServiceFactory', function ($firebaseArray, $firebaseObject, firebaseDataService, gameService) {
+    .factory('ResultServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService', 'GameServiceFactory', 'TeamServiceFactory', function ($firebaseArray, $firebaseObject, firebaseDataService, gameService, TeamService) {
 
         let currentRef = firebaseDataService.currentGames;
         let finishedRef = firebaseDataService.finishedGames;
@@ -108,6 +108,16 @@ angular
                 })
                 .then(resultFactory.sortDesc);
         };
+
+        resultFactory.setTeamsResults = function (gameId) {
+            return resultFactory.getParsedResults(gameId)
+                .then((res) => {
+                    res.forEach((item) => {
+                        TeamService.addGameScore(item.teamId, gameId, item.total);
+                    });
+                    return res;
+                });
+        }
 
         resultFactory.getGameWinner = function (gameId) {
             return resultFactory.getParsedResults(gameId)

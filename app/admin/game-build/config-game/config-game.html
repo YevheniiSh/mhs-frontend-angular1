@@ -1,13 +1,59 @@
 <div class="container">
-    <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
-   <uib-tabset active="$ctrl.activeTab">
-      <uib-tab index="$ctrl.tabs[0]" heading="{{'TEAMS_TAB_NAME' | translate}}"  ng-click="$ctrl.updateUrlPath($ctrl.tabs[0])">
-          <div id="add-team-panel">
-              <add-teams></add-teams>
-          </div>
-      </uib-tab>
-      <uib-tab index="$ctrl.tabs[1]" heading="{{'ROUNDS_TAB_NAME' | translate}}"  ng-click="$ctrl.updateUrlPath($ctrl.tabs[1])">
-         <game-type></game-type>
-      </uib-tab>
-   </uib-tabset>
+
+    <div id="button-panel" class="col-md-1" >
+        <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
+    </div>
+     <div class="col-md-2">
+        <div ng-click="$ctrl.ChangeCalendarStatus()">
+            <label class="control-label data-picker-label" for="game-calendar">
+                <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+            </label>
+            <span> {{$ctrl.gameDate.toLocaleDateString()}}</span>
+        </div>
+        <div class="picker" ng-show="$ctrl.isCalendarVisible">
+            <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
+                 datepicker-options="$ctrl.options"></div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div ng-click="$ctrl.ChangeTimeStatus()">
+            <label class="control-label data-picker-label" for="game-time">
+                <i id="game-time" class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
+            </label>
+            <span> {{$ctrl.gameTime.toLocaleTimeString()}}</span>
+        </div>
+
+        <div class="picker" ng-show="$ctrl.isTimeVisible">
+            <div uib-timepicker name="time" ng-model="$ctrl.gameTime" class="well well-sm"></div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="location">
+            <input class="form-control" ng-model="$ctrl.location"
+                   maxlength="34"
+                   name="location"
+                   required placeholder="{{'LOCATION_PLACEHOLDER' | translate}}"></div>
+    </div>
+    <div  class="col-md-1" >
+        <button  class="btn btn-success" ng-click="$ctrl.updateDateAndLocation()">Save</button>
+    </div>
+    <div class="col-md-4">
+        <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.saved">
+            <button type="button" class="close" ng-click="$ctrl.saved = false">&times;</button>
+            Game changes saved
+        </div>
+    </div>
+    <div class="row"></div>
+    <uib-tabset active="$ctrl.activeTab">
+        <uib-tab index="$ctrl.tabs[0]" heading="{{'TEAMS_TAB_NAME' | translate}}"
+                 ng-click="$ctrl.updateUrlPath($ctrl.tabs[0])">
+            <div id="add-team-panel">
+                <add-teams></add-teams>
+            </div>
+        </uib-tab>
+        <uib-tab index="$ctrl.tabs[1]" heading="{{'ROUNDS_TAB_NAME' | translate}}"
+                 ng-click="$ctrl.updateUrlPath($ctrl.tabs[1])">
+            <game-type></game-type>
+        </uib-tab>
+    </uib-tabset>
 </div>

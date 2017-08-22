@@ -6,7 +6,6 @@ angular.module('mhs', [
     'ngMessages',
     'mhs.admin',
     'mhs.player',
-    'mhs.version',
     'angularCSS',
     'teamFactory',
     'gameFactory',
@@ -18,6 +17,7 @@ angular.module('mhs', [
     'gameRequestService',
     'teamRequestService',
     'gameTemplateService',
+    'gameBuildService',
     'convertService',
     '720kb.socialshare'
 ])

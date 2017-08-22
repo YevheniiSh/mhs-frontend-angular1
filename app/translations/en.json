@@ -1,7 +1,7 @@
 {
   "NAVBAR_TITLE": "Mad Head Show",
   "NAVBAR_GAME_LIST_BUTTON": "Games list",
-  "NAVBAR_TEAM_EDIT_BUTTON": "Managing teams",
+  "NAVBAR_TEAM_EDIT_BUTTON": "Teams",
   "NAVBAR_TEMPLATE_BUTTON": "Game templates",
   "NAVBAR_HELLO_LABEL": "Hello",
   "NAVBAR_WELCOME_MESSAGE": "Welcome",
@@ -87,9 +87,14 @@
   "ACCEPT_BUTTON": "Accept",
   "CANCEL_BUTTON": "Cancel",
   "NAVBAR_LANGUAGES": "Choose language",
+  "SHARE_BUTTON": "Share",
+  "TEAM_SCORE_LABEL": "Team score",
+  "SAVE_LINK_BUTTON": "Save",
+  "EDIT_LINK_BUTTON": "Photos link",
   "SELECT_TEMPLATE_LABEL": "Choose template",
   "SELECT_TEMPLATE_BUTTON": "Select",
   "TEMPLATE_NAME_LABEL": "Enter template name",
   "SAVE_TEMPLATE_FROM_GAME_BUTTON": "Save template from game",
-  "SHARE_BUTTON": "Share"
+  "PHOTO_URL_BUTTON": "Photos"
+
 }

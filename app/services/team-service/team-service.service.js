@@ -1,7 +1,7 @@
 angular
     .module('teamFactory')
-    .factory('TeamServiceFactory', ['$firebaseArray', '$firebaseObject', 'firebaseDataService', '$q',
-        function ($firebaseArray, $firebaseObject, firebaseDataService, $q) {
+    .factory('TeamServiceFactory', ['OpenGameServiceFactory', '$firebaseArray', '$firebaseObject', 'firebaseDataService', '$q',
+        function (OpenGameService, $firebaseArray, $firebaseObject, firebaseDataService, $q) {
 
             let teamRef = firebaseDataService.teams;
 
@@ -13,7 +13,11 @@ angular
                 getByGame: getByGame,
                 isTeamNameExist: isTeamNameExist,
                 changeTeamName: changeTeamName,
-                checkTeamNameCoincidence: checkTeamNameCoincidence
+                addGameToTeam: addGameToTeam,
+                removeGameFromTeam: removeGameFromTeam,
+                addGameScore: addGameScore,
+                checkTeamNameCoincidence: checkTeamNameCoincidence,
+                getTeamGames:getTeamGames
             };
 
             function save(team) {
@@ -77,8 +81,8 @@ angular
             }
 
             function changeTeamName(teamId, newTeamName) {
-                let obj = $firebaseObject(teamRef.child(teamId));
-                obj.name = newTeamName;
+                let obj = $firebaseObject(teamRef.child(`${teamId}/name`));
+                obj.$value = newTeamName;
                 obj.$save();
                 return obj.$loaded()
                     .then((res) => {
@@ -94,6 +98,42 @@ angular
                         }
                         return false;
                     });
+            }
+
+            function addGameToTeam(teamId, gameId) {
+                let obj = $firebaseObject(teamRef.child(`${teamId}/games/${gameId}`));
+                let gameObj = {};
+                return OpenGameService.getOpenGameById(gameId).then((res) => {
+                    gameObj.date = res.date;
+                    gameObj.location = res.location;
+                    obj.$value = gameObj;
+                    obj.$save();
+                    return obj.$loaded();
+                })
+            }
+
+            function removeGameFromTeam(teamId, gameId) {
+                let obj = $firebaseObject(teamRef.child(`${teamId}/games/${gameId}`));
+                obj.$remove();
+                return obj.$loaded();
+            }
+
+            function getTeamGames(teamId) {
+                return new $firebaseArray(teamRef.child(`${teamId}/games`))
+                    .$loaded()
+                    .then((res) => {
+                        return res;
+                    }, (err) => {
+                        console.error(err);
+                        return err;
+                    });
+            }
+
+            function addGameScore(teamId, gameId, score) {
+                let obj = $firebaseObject(teamRef.child(`${teamId}/games/${gameId}/score`));
+                obj.$value = score;
+                obj.$save();
+                return obj.$loaded();
             }
         }]
     );

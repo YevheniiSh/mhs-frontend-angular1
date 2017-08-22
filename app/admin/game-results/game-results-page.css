@@ -7,12 +7,19 @@
     border-radius: 3px;
     font-weight: 600;
     padding: 5px 8px;
+    height: 34px;
     display: inline-block;
     position: static;
 }
 .fa-facebook {
     color: white;
 }
+
+.photos-link {
+    float: right;
+    margin-right: 4px;
+}
+
 #fb-share-button:hover {
     cursor: pointer;
     background: #213A6F
@@ -45,13 +52,4 @@ h1#game-results{
 }
 span.ng-binding.date{
     float: right;
-}
-th.total-title, td.total-score{
-    width: 12%;
-}
-th.teams-title, td.team-name{
-    width: 15%;
-}
-td.round-number, td.round-score{
-    width: 8%;
 }

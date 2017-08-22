@@ -1,7 +1,7 @@
 angular
     .module('gameFactory')
-    .factory('GameServiceFactory', ['OpenGameServiceFactory','$firebaseArray', '$firebaseObject', 'firebaseDataService',
-        function (openGameServiceFactory,$firebaseArray, $firebaseObject, firebaseDataService) {
+    .factory('GameServiceFactory', ['OpenGameServiceFactory', '$firebaseArray', '$firebaseObject', 'firebaseDataService',
+        function (openGameServiceFactory, $firebaseArray, $firebaseObject, firebaseDataService) {
 
             let currentGameRef = firebaseDataService.currentGames;
             let finishedGameRef = firebaseDataService.finishedGames;
@@ -22,12 +22,14 @@ angular
                 getAllCurrentGames: getAllCurrentGames,
                 getAllFinishedGames: getAllFinishedGames,
                 getGameStatus: getGameStatus,
-                getDate:getDate,
-                startGame:startGame,
+                getDate: getDate,
+                getPhotosURL: getPhotosURL,
+                startGame: startGame,
                 getGameTeams: getGameTeams,
+                setPhotosLink: setPhotosLink,
                 removeTeamFromGame: removeTeamFromGame,
                 reOpenGame: reOpenGame,
-                addTeamToGame:addTeamToGame,
+                addTeamToGame: addTeamToGame,
                 getRoundByGameAndId: getRoundByGameAndId
             };
 
@@ -113,7 +115,7 @@ angular
 
 
             function getDate(gameStatus, gameId) {
-              return new $firebaseObject(firebaseDataService.games.child(gameStatus).child(gameId).child('date')).$loaded();
+                return new $firebaseObject(firebaseDataService.games.child(gameStatus).child(gameId).child('date')).$loaded();
             }
 
             function getCurrentGameById(gameId) {
@@ -151,7 +153,8 @@ angular
                 for (let key in obj) {
                     if (key.indexOf('$') < 0 && obj.hasOwnProperty(key)) {
                         newObj[key] = obj[key];
-                    };
+                    }
+                    ;
                 }
                 return newObj;
             }
@@ -184,6 +187,15 @@ angular
                     }, (err) => {
                         console.error(err);
                         return err;
+                    });
+            }
+
+            function getPhotosURL(gameId) {
+                return new $firebaseObject(finishedGameRef.child(gameId).child('photos'))
+                    .$loaded().then((res) => {
+                        if (res.$value === null)
+                            return '';
+                        return res.$value
                     });
             }
 
@@ -237,6 +249,13 @@ angular
                     obj.$value = getObject(res);
                     obj.$save();
                 });
+            }
+
+            function setPhotosLink(gameId, link) {
+                let obj = new $firebaseObject(finishedGameRef.child(`${gameId}/photos`));
+                obj.$value = link;
+                obj.$save();
+                return obj.$loaded();
             }
 
         }]);

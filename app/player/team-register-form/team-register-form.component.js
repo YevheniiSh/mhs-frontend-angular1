@@ -71,6 +71,30 @@
             vm.showPhoneVerifyRequest = true;
         };
 
+        function setupVerifyByPhone(teamRequest) {
+            vm.formStatus = 'full';
+            vm.isChangesForbidden = true;
+            vm.fullName = teamRequest.fullName;
+            vm.phone = teamRequest.phone;
+            vm.isCorrectLast3digits = true;
+            vm.showPhoneVerifyRequest = false;
+            vm.cancelAutocompleted = true;
+        }
+
+        function saveVerifiedRequest(team, teamRequest) {
+            vm.saveRequest = function () {
+                saveTeam({
+                    teamId: team.$id,
+                    fullName: teamRequest.fullName,
+                    teamName: teamRequest.teamName,
+                    phone: teamRequest.phone,
+                    teamSize: teamRequest.teamSize,
+                    status: "unconfirmed",
+                    date: new Date().toDateString(),
+                });
+            };
+        }
+
         function saveRequestFromAutocompleteData(last3digits, team) {
             vm.isCorrectLast3digits = true;
             if (last3digits.length === 3) {
@@ -79,25 +103,8 @@
                     .then((teamRequests) => {
                         for (let teamRequest of teamRequests) {
                             if (phoneMatchCheck(teamRequest.phone, last3digits)) {
-                                vm.formStatus = 'full';
-                                vm.isChangesForbidden = true;
-                                vm.fullName = teamRequest.fullName;
-                                vm.phone = teamRequest.phone;
-                                vm.isCorrectLast3digits = true;
-                                vm.showPhoneVerifyRequest = false;
-                                vm.cancelAutocompleted = true;
-
-                                vm.saveRequest = function () {
-                                    saveTeam({
-                                        teamId: team.$id,
-                                        fullName: teamRequest.fullName,
-                                        teamName: teamRequest.teamName,
-                                        phone: teamRequest.phone,
-                                        teamSize: teamRequest.teamSize,
-                                        status: "unconfirmed",
-                                        date: new Date().toDateString(),
-                                    });
-                                };
+                                setupVerifyByPhone(teamRequest);
+                                saveVerifiedRequest(team, teamRequest);
                                 break;
                             } else {
                                 vm.isCorrectLast3digits = false;
