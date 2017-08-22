@@ -25,17 +25,12 @@
             initRound();
             initCurrentRound();
             initCurrentQuiz();
-            let t0 = performance.now();
             getTeams()
                 .then(() => {
                     buildResults()
                     assignResults()
                 })
                 .then(initInputType)
-                .then(()=>{
-                    let t1 = performance.now();
-                    console.log(`${t1-t0} ms`)
-                })
         }
 
         function initInputType() {

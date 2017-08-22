@@ -82,19 +82,25 @@ angular
                     })
                     .then(rounds => {
                         return gameService.getCurrentRound(gameId)
-                            .then((currenRound) =>{
+                            .then((currenRound) => {
                                 for (let team in roundResult) {
-                                    for(let i = 0; i< currenRound-1; i++){
-                                        roundResult[team].rounds.push({roundNumber: (i+1), score: 0})
+                                    for (let i = 0; i < currenRound - 1; i++) {
+                                        roundResult[team].rounds.push({roundNumber: (i + 1), score: 0})
                                     }
                                 }
                                 gameResults.forEach(quizResult => {
                                     roundResult[quizResult.teamId].rounds[quizResult.round - 1].score += quizResult.score;
                                 })
                                 for (let team in roundResult) {
+                                    for (let round in roundResult[team].rounds) {
+                                        roundResult[team].rounds[round].score =
+                                            roundResult[team].rounds[round].score.toFixed(1);
+                                    }
+                                }
+                                for (let team in roundResult) {
                                     roundResult[team].total = roundResult[team].rounds.reduce((sum, current) => {
-                                        return sum + current.score;
-                                    }, 0)
+                                        return sum + parseFloat(current.score);
+                                    }, 0).toFixed(1)
                                 }
                                 for (let team in roundResult) {
                                     parsedResult.push(roundResult[team]);
@@ -117,7 +123,6 @@ angular
                         return score;
                     })
             };
-
 
 
             resultFactory.sortDesc = function (score) {
@@ -171,7 +176,7 @@ angular
                     });
             };
 
-            resultFactory.parseTeamResult = function(teamResults,gameId) {
+            resultFactory.parseTeamResult = function (teamResults, gameId) {
                 let roundResult = {};
                 let parsedResult = [];
                 return roundService.getRounds(gameId)
@@ -190,14 +195,14 @@ angular
                                     }
                                 }
                                 teamResults.forEach(quizResult => {
-                                    roundResult[quizResult.round].quizzes[quizResult.quiz-1].score = quizResult.score;
+                                    roundResult[quizResult.round].quizzes[quizResult.quiz - 1].score = quizResult.score;
                                 })
                                 for (let round in roundResult) {
                                     roundResult[round].total = roundResult[round].quizzes.reduce((sum, current) => {
                                         return sum + current.score;
                                     }, 0)
                                 }
-                                for(let round in roundResult){
+                                for (let round in roundResult) {
                                     parsedResult.push(roundResult[round]);
                                 }
                                 return parsedResult;
