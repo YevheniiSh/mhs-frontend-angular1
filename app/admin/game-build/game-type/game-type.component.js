@@ -19,10 +19,9 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
     gameTemplateService.getAll()
         .then((templates)=>{
             vm.templates = templates;
-        })
+        });
 
     openGameService.getRounds(gameId).then((res) => {
-
         for (let i = 0; i < res.length; i++) {
             vm.rounds.push(res[i]);
             quizSequenceNumber++;

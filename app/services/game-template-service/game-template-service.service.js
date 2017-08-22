@@ -41,7 +41,7 @@ angular.module('gameTemplateService')
 
             function update(templateId, template) {
                 let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId));
-                fbObj.$value = convertService.buildTemplateForFirebase(template.name, template.rounds);
+                fbObj.$value = convertService.buildTemplateForFirebase(template);
                 fbObj.$save();
                 return fbObj.$loaded();
             }
