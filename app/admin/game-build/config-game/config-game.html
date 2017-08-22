@@ -3,17 +3,16 @@
     <div id="button-panel" class="col-md-1" >
         <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
     </div>
-     <div class="col-md-2">
-        <div ng-click="$ctrl.ChangeCalendarStatus()">
-            <label class="control-label data-picker-label" for="game-calendar">
-                <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
-            </label>
-            <span> {{$ctrl.gameDate.toLocaleDateString()}}</span>
-        </div>
-        <div class="picker" ng-show="$ctrl.isCalendarVisible">
-            <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
-                 datepicker-options="$ctrl.options"></div>
-        </div>
+    <div class="col-md-2">
+
+        <label ng-click="$ctrl.ChangeCalendarStatus()" class=" data-picker-label" for="date-span">
+            <i  class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+            <div class="picker" ng-show="$ctrl.isCalendarVisible">
+                <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
+                     datepicker-options="$ctrl.options"></div>
+            </div>
+            <span id="date-span"> {{$ctrl.gameDate.toLocaleDateString()}}</span>
+        </label>
     </div>
     <div class="col-md-2">
         <div ng-click="$ctrl.ChangeTimeStatus()">
