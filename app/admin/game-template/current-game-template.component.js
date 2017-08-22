@@ -23,22 +23,16 @@ function currentGameTemplate($routeParams, templateService){
 
         templateService.getRounds(vm.templateId).then(rounds => {
            vm.currentTemplateRounds = rounds;
-           console.log(rounds.length);
-           // angular.forEach(vm.currentTemplateRounds, e=>{
-           //     console.log(e.$id);
-           // })
         });
 
         templateService.getTemplateName(vm.templateId).then(name =>{
             vm.currentTemplateName = name;
-            console.log(name);
         })
-        // vm.getResults();
     }
 
     vm.saveTemplate = function () {
-        templateService.updateName(vm.templateId, vm.currentTemplateName);
-        templateService.updateRounds(vm.templateId, vm.currentTemplateRounds);
+        console.log(vm.currentTemplateRounds);
+        templateService.update(vm.templateId, {name:vm.currentTemplateName, rounds: vm.currentTemplateRounds});
     }
 
 }

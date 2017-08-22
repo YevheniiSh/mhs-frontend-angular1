@@ -12,19 +12,16 @@ roundBuilder.$inject = [];
 
 function roundBuilder(){
     let vm = this;
-    let quizSequenceNumber = 1;
 
     vm.deleteRound = function ($index) {
         vm.rounds.splice($index, 1);
     };
 
-    vm.addRound = function ($index) {
-        console.log($index);
-        let quiz = createRound(quizSequenceNumber++);
-        vm.rounds.push(quiz);
+    vm.addRound = function () {
+        vm.rounds.push(createRound());
     };
 
-    function createRound(quizSequenceNumber) {
-        return {$id: quizSequenceNumber, numberOfQuestions: 10, name: ""}
+    function createRound() {
+        return {numberOfQuestions: 10, name: ""}
     }
 }
