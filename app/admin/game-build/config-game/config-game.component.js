@@ -41,9 +41,7 @@ angular.module('configGame')
                         vm.activeTab = 'teams';
                 }
 
-                vm.updateDateAndLocation = function () {
-                    OpenGameService.changeTime(gameId, vm.gameTime);
-                    OpenGameService.changeDate(gameId, vm.gameDate);
+                vm.updateLocation = function () {
                     OpenGameService.changeLocation(gameId, vm.location);
                     vm.saved = true;
                 };
@@ -58,6 +56,7 @@ angular.module('configGame')
 
                 vm.ChangeCalendarStatus = function () {
                     if (vm.isCalendarVisible) {
+                        OpenGameService.changeDate(gameId, vm.gameDate);
                         vm.isCalendarVisible = false;
                     } else if (vm.isTimeVisible) {
                         vm.isTimeVisible = false;
@@ -70,6 +69,7 @@ angular.module('configGame')
 
                 this.ChangeTimeStatus = function () {
                     if (vm.isTimeVisible) {
+                        OpenGameService.changeTime(gameId, vm.gameTime);
                         vm.isTimeVisible = false;
                     }
                     else if (vm.isCalendarVisible) {
