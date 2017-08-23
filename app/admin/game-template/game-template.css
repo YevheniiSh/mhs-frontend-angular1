@@ -1,0 +1,77 @@
+/*.btn-for-template-delete{*/
+    /*border-radius: 17px;*/
+    /*float: right;*/
+    /*vertical-align: middle;*/
+/*}*/
+/*.template-table{*/
+/*}*/
+/*.title{*/
+    /*font-size: 2em;*/
+/*}*/
+/*.times-icon{*/
+    /*float: right;*/
+    /*vertical-align: middle;*/
+/*}*/
+/*.times-font {*/
+    /*border-radius: 20%;*/
+/*}*/
+/*.template-delete-button{*/
+    /*font-size: 20px;*/
+    /*float:right;*/
+    /*border-radius: 30px;*/
+    /*margin: 3%*/
+/*}*/
+/*.game-template-cell.ng-binding{*/
+    /*margin: 0.4em  0.4em 0.4em  1.4em;*/
+    /*font-size: 3em;*/
+    /*border-radius: 10px;*/
+    /*width: 13em;*/
+    /*display: inline-block;*/
+    /*text-align: left;*/
+    /*padding-right: 3%;*/
+/*}*/
+/*!*.game-template-cell.ng-binding:hover {*!*/
+    /*background: grey;*/
+/*}*/
+
+/*.game-template-cell:hover {*/
+    /*border-color: #01F800;*/
+/*}*/
+.list-item {
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+    margin: 0;
+    padding: 6px 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 210%;
+}
+.list-item:hover{
+    background-color: #f5f5f5;
+}
+.delete-btn{
+    float: right;
+}
+.scroll-panel{
+    width: 70%;
+    list-style: none
+}
+.new-template-btn{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1em;
+    padding: 6px 12px;
+}
+.template-name-title{
+    font-weight: bold;
+}
+.new-template{
+    }
+.selected{
+    background-color: #D8D8D8;
+}
+.selected:hover{
+    background-color: #D8D8D8;
+}

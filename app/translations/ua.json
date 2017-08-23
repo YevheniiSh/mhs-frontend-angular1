@@ -1,7 +1,9 @@
 {
   "NAVBAR_TITLE": "Mad Head Show",
+  "NAVBAR_GAME_TEMPLATES": "Шаблони ігор",
   "NAVBAR_GAME_LIST_BUTTON": "Список ігор",
   "NAVBAR_TEAM_EDIT_BUTTON": "Команди",
+  "NAVBAR_TEMPLATE_BUTTON": "Шаблони ігор",
   "NAVBAR_HELLO_LABEL": "Привіт",
   "NAVBAR_WELCOME_MESSAGE": "Ласкаво просимо",
   "LOGIN_FORM_TITLE": "Будь-ласка ввійдіть в систему",
@@ -88,5 +90,11 @@
   "TEAM_SCORE_LABEL": "Рахунок команди",
   "SAVE_LINK_BUTTON": "Зберегти",
   "EDIT_LINK_BUTTON": "Посилання на фото",
-  "PHOTO_URL_BUTTON": "Фотографії"
+  "PHOTO_URL_BUTTON": "Фотографії",
+  "SELECT_TEMPLATE_LABEL": "Обрати шаблон",
+  "SELECT_TEMPLATE_BUTTON": "Вибрати",
+  "SAVE_TEMPLATE_FROM_GAME_BUTTON": "Зберегти шаблон з гри",
+  "SHARE_BUTTON": "Поширити",
+  "TEMPLATE_NAME_LABEL": "Назва шаблону",
+  "QUESTION_QUANTITY_LABEL": "Кількість питань"
 }

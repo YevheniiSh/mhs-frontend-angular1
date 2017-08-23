@@ -102,7 +102,7 @@ angular.module('teamResults')
 
                 this.editResults = function () {
                     this.gameStatus = false;
-                }
+                };
 
                 this.blockEditing = function () {
                     this.gameStatus = true;

@@ -1,7 +1,9 @@
 {
   "NAVBAR_TITLE": "Mad Head Show",
+  "NAVBAR_GAME_TEMPLATES": "Game templates",
   "NAVBAR_GAME_LIST_BUTTON": "Games list",
   "NAVBAR_TEAM_EDIT_BUTTON": "Teams",
+  "NAVBAR_TEMPLATE_BUTTON": "Game templates",
   "NAVBAR_HELLO_LABEL": "Hello",
   "NAVBAR_WELCOME_MESSAGE": "Welcome",
   "LOGIN_FORM_TITLE": "Please log in",
@@ -43,6 +45,7 @@
   "SAVE_ROUNDS_BUTTON": "Save",
   "ROUND_NAME_LABEL": "Round name",
   "QUESTION_COUNT_LABEL": "Question number",
+  "QUESTION_QUANTITY_LABEL": "Question quantity",
   "ROUND_NAME_PLACEHOLDER": "Round name",
   "ROUND_SAVED_MESSAGE": "Well done! Rounds have been saved",
   "CONFIG_TEAMS_ERROR": "Config teams",
@@ -70,6 +73,7 @@
   "SEARCH_PLACEHOLDER": "Search",
   "WRONG_TIME_ERROR": "Wrong time",
   "QUIZ_COUNT_PLACEHOLDER": "Quizz number",
+  "QUESTION_QUANTITY_PLACEHOLDER": "Question quantity",
   "EDIT_TEAM_NAME_TOOLTIP": "Edit team name",
   "INCORRECT_LAST_NUMBERS_ERROR": "Last 3 digits of your phone is incorrect",
   "ENTER_LAST_PHONE_NUMBERS": "Enter last 3 digits of your phone to autocomplete",
@@ -88,6 +92,9 @@
   "TEAM_SCORE_LABEL": "Team score",
   "SAVE_LINK_BUTTON": "Save",
   "EDIT_LINK_BUTTON": "Photos link",
+  "SELECT_TEMPLATE_LABEL": "Choose template",
+  "SELECT_TEMPLATE_BUTTON": "Select",
+  "TEMPLATE_NAME_LABEL": "Enter template name",
+  "SAVE_TEMPLATE_FROM_GAME_BUTTON": "Save template from game",
   "PHOTO_URL_BUTTON": "Photos"
-
 }
