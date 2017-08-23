@@ -22,7 +22,6 @@ angular.module('addTeams')
                     if (!request.teamId) {
                         teamService.save({name: request.teamName})
                             .then(res => {
-                                console.log(request);
                                 res.requestId = request.$id;
                                 res.fullName = request.fullName;
                                 res.phone = request.phone;

@@ -17,8 +17,9 @@ function roundBuilder(){
         vm.rounds.splice($index, 1);
     };
 
-    vm.addRound = function () {
+    vm.addRound = function ($event) {
         vm.rounds.push(createRound());
+        $event.preventDefault();
     };
 
     function createRound() {

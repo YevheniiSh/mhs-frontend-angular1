@@ -18,38 +18,41 @@
                      </span>
                 </div>
             </div>
-            <button ng-hide="$ctrl.rounds.length >9"
-                    ng-click="$ctrl.addRound($event)" class=" btn btn-info btn-block"> {{'ADD_ROUND_BUTTON' |
-                translate}}
-            </button>
-            <button ng-hide="$ctrl.rounds.length <1" id="btn-save" class="btn btn-success btn-block"
+            <round-builder rounds="$ctrl.configRounds"></round-builder>
+            <button id="btn-save" class="btn btn-success btn-block"
                     type="submit">
                 {{'SAVE_ROUNDS_BUTTON' | translate}}
             </button>
         </form>
 
-        <form id="template-form" ng-if="$ctrl.templateFormShow" ng-submit="$ctrl.saveTemplate()"
-              ng-hide="$ctrl.rounds.length <1">
-            <div class="form-group">
-                <label>{{'TEMPLATE_NAME_LABEL' | translate}}</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model="$ctrl.templateName" required>
-                    <span class="input-group-btn">
-                        <button class="btn btn-success" type="submit" ng-click="$ctrl.templateSaved = true">
-                             {{'SAVE_TEMPLATE_FROM_GAME_BUTTON' | translate}}
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </form>
-
-        <div class="alert alert-dismissible alert-success" ng-if="$ctrl.submitted">
-            <button type="button" class="close" ng-click="$ctrl.dissmiss()">&times;</button>
-            {{'ROUND_SAVED_MESSAGE' | translate}}
-        </div>
-        <div class="alert alert-dismissible alert-success" ng-show="$ctrl.templateSaved">
-            <button type="button" class="close" ng-click="$ctrl.templateSaved = false">&times;</button>
-            Template saved!
-        </div>
     </div>
 </div>
+
+
+
+<!--<form id="template-form" ng-if="$ctrl.templateFormShow" ng-submit="$ctrl.saveTemplate()"-->
+      <!--ng-hide="$ctrl.rounds.length <1">-->
+    <!--<div class="form-group">-->
+        <!--<label>{{'TEMPLATE_NAME_LABEL' | translate}}</label>-->
+        <!--<div class="input-group">-->
+            <!--<input type="text" class="form-control" ng-model="$ctrl.templateName" required>-->
+            <!--<span class="input-group-btn">-->
+                        <!--<button class="btn btn-success" type="submit" ng-click="$ctrl.templateSaved = true">-->
+                             <!--{{'SAVE_TEMPLATE_FROM_GAME_BUTTON' | translate}}-->
+                        <!--</button>-->
+                    <!--</span>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</form>-->
+
+
+
+<!--<div class="alert alert-dismissible alert-success" ng-show="$ctrl.templateSaved">-->
+    <!--<button type="button" class="close" ng-click="$ctrl.templateSaved = false">&times;</button>-->
+    <!--Template saved!-->
+<!--</div>-->
+
+<!--<div class="alert alert-dismissible alert-success" ng-if="$ctrl.submitted">-->
+    <!--<button type="button" class="close" ng-click="$ctrl.dissmiss()">&times;</button>-->
+    <!--{{'ROUND_SAVED_MESSAGE' | translate}}-->
+<!--</div>-->

@@ -10,65 +10,36 @@ GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$ro
 
 function GameType(gameTemplateService, openGameService, $routeParams, $location) {
     let vm = this;
-    vm.rounds = [];
-    let gameId = $routeParams.gameId;
-    vm.templateName = "";
-    vm.templateFormShow = false;
-    let quizSequenceNumber = 1;
 
-    gameTemplateService.getAll()
-        .then((templates)=>{
-            vm.templates = templates;
+    vm.$onInit = onInit;
+    function onInit() {
+        vm.gameId = $routeParams.gameId;
+
+        vm.configRounds = [{numberOfQuestions: 10, name: ""}];
+
+        gameTemplateService.getAll()
+            .then((templates) => {
+                vm.templates = templates;
+            });
+
+        openGameService.getRounds(vm.gameId).then(rounds => {
+            if(rounds.length)vm.configRounds = rounds.slice();
         });
-
-    openGameService.getRounds(gameId).then((res) => {
-        for (let i = 0; i < res.length; i++) {
-            vm.rounds.push(res[i]);
-            quizSequenceNumber++;
-        }
-    });
-
-    vm.addRound = function ($event) {
-        let quiz = {$id: quizSequenceNumber, numberOfQuestions: 10, name: ""};
-        quizSequenceNumber++;
-        vm.rounds.push(quiz);
-
-        $event.preventDefault();
-    };
-    vm.deleteRound = function (index) {
-        if (vm.rounds.length >= index) {
-            for (let i = index - 1; i < vm.rounds.length; i++) {
-                vm.rounds[i].$id--;
-            }
-            quizSequenceNumber--;
-        }
-        vm.rounds.splice(index - 1, 1);
-
-    };
+    }
 
     vm.saveRounds = function () {
-        vm.submitted = false;
-        openGameService.addRounds(gameId, vm.rounds);
-        vm.submitted = true;
-        vm.templateFormShow = true;
+        openGameService.addRounds(vm.gameId, vm.configRounds);
     };
 
-    vm.dissmiss = function () {
-        vm.submitted = false;
-    };
-
-    vm.saveTemplate = function () {
-        gameTemplateService.saveFromGame(gameId,vm.templateName);
-        vm.templateFormShow = false;
-    };
+    // vm.saveTemplate = function () {
+    //     gameTemplateService.saveFromGame(vm.gameId, vm.templateName);
+    // };
 
     vm.selectTemplate = function (template) {
         if(template){
             gameTemplateService.getRounds(template.$id)
                 .then(rounds=>{
-                    console.log(template)
-                    vm.rounds = rounds;
-                    quizSequenceNumber = rounds.length + 1
+                    vm.configRounds = rounds;
                 })
         }
     }
