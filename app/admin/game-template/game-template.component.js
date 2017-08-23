@@ -3,7 +3,10 @@ angular.module('gameTemplate')
     .component('gameTemplate', {
         templateUrl: 'admin/game-template/game-template.html',
         css: 'admin/game-template/game-template.css',
-        controller: gameTemplate
+        controller: gameTemplate,
+        bindings: {
+            selectedTemplateId: '='
+        }
     });
 
 gameTemplate.$inject = ['$routeParams', '$location', 'gameTemplateServiceFactory'];
@@ -32,5 +35,9 @@ function gameTemplate($routeParams, $location, templateService) {
         })
     };
 
+    vm.getClass = function (id) {
+        console.log(vm.selectedTemplateId);
+        if (id == vm.selectedTemplateId) return 'current'
+    }
 
 }

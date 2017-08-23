@@ -70,3 +70,6 @@
 .new-template{
     margin-left: 12px;
 }
+.selected{
+    background: red;
+}
