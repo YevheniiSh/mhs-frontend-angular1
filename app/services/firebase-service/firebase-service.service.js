@@ -1,14 +1,8 @@
 angular
     .module('firebaseDataService')
-    .factory('firebaseDataService', ['dbConfig', firebaseDataService]);
+    .factory('firebaseDataService', firebaseDataService);
 
-function firebaseDataService(config) {
-
-    if (!firebase.apps.length) {
-        firebase.initializeApp(config).database();
-    } else {
-        firebase.database();
-    }
+function firebaseDataService() {
 
     let root = firebase.database().ref();
     return {
