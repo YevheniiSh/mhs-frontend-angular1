@@ -11,7 +11,7 @@
   "PASSWORD_PLACEHOLDER": "Пароль",
   "DATE_LABEL": "Дата",
   "TIME_LABEL": "Час",
-  "LOCATION_LABEL": "Місце",
+  "LOCATION_LABEL": "Місце проведення",
   "LOCATION_PLACEHOLDER": "Місце проведення",
   "CREATE_GAME_BUTTON": "Створити гру",
   "OPEN_GAMES_TAB_NAME": "Відкриті ігри",
