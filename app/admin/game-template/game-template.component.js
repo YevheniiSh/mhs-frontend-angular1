@@ -14,7 +14,7 @@ gameTemplate.$inject = ['$routeParams', '$location', 'gameTemplateServiceFactory
 function gameTemplate($routeParams, $location, templateService) {
     let vm = this;
 
-    vm.showBuildTemplate = false;
+    vm.selected = false;
 
     templateService.getAll().then((val) => {
         vm.templates = val
@@ -24,20 +24,14 @@ function gameTemplate($routeParams, $location, templateService) {
         $location.path(`/templates/${templateId}`);
     };
 
-    vm.deleteTemplate = function (templateId) {
-        templateService.remove(templateId);
-        $location.path(`/templates`)
-    };
-
     vm.newTemplate = function () {
         templateService.createTemplate().then((res) => {
             $location.path(`/templates/${res.$id}`);
         })
     };
 
-    vm.getClass = function (id) {
-        console.log(vm.selectedTemplateId);
-        if (id == vm.selectedTemplateId) return 'current'
-    }
-
+    vm.deleteTemplate = function (templateId) {
+        templateService.remove(templateId);
+        $location.path(`/templates`)
+    };
 }

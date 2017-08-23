@@ -74,6 +74,10 @@ angular
             template: '<current-game-template></current-game-template>',
             css: 'admin/game-template/current-game-template.css'
         });
+        $routeProvider.when('/aaddff', {
+            template: '<round-builder></round-builder>',
+
+        });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
         $rootScope.$on("$routeChangeError", function () {

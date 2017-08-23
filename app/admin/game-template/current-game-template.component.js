@@ -8,20 +8,16 @@ currentGameTemplate.$inject = ['$routeParams','gameTemplateServiceFactory'];
 
 function currentGameTemplate($routeParams, templateService){
     let vm = this;
+    vm.selected = false;
 
     vm.$onInit = onInit;
     function onInit() {
         vm.templateId = $routeParams.templateId;
 
-        //TODO: получать весь шаблон 1 запросом
-
-        templateService.getRounds(vm.templateId).then(rounds => {
-            vm.currentTemplateRounds = rounds.slice();
-            if (rounds.length < 1) vm.currentTemplateRounds = [{numberOfQuestions: 10, name: ""}];
-        });
-
-        templateService.getTemplateName(vm.templateId).then(name =>{
-            vm.currentTemplateName = name;
+        templateService.getById(vm.templateId).then(template => {
+            vm.currentTemplateName = template.name;
+            vm.currentTemplateRounds = template.rounds;
+            if (!template.rounds) vm.currentTemplateRounds = [{numberOfQuestions: 10, name: ""}];
         });
     }
 
