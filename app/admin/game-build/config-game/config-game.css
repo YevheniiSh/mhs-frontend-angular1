@@ -26,4 +26,5 @@
 .game-alert{
     position: fixed;
     display: inline-block;
+    z-index: 100;
 }

@@ -97,5 +97,8 @@
   "SHARE_BUTTON": "Поширити",
   "TEMPLATE_NAME_LABEL": "Назва шаблону",
   "TEMPLATE_SAVED_MESSAGE": "Шаблон збережено",
-  "QUESTION_QUANTITY_LABEL": "Кількість питань"
+  "QUESTION_QUANTITY_LABEL": "Кількість питань",
+  "SAVE_DATE_MESSAGE":"Дату збережено",
+  "SAVE_TIME_MESSAGE":"Час гри збережено",
+  "SAVE_LOCATION_MESSAGE":"Локацію збережено"
 }
