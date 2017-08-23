@@ -4,8 +4,17 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "firebaserules.txt"
+      "**/dbConfig*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
+  },
+  "database": {
+    "rules": "database.rules.json"
   }
 }
