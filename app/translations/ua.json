@@ -96,5 +96,6 @@
   "SAVE_TEMPLATE_FROM_GAME_BUTTON": "Зберегти шаблон з гри",
   "SHARE_BUTTON": "Поширити",
   "TEMPLATE_NAME_LABEL": "Назва шаблону",
+  "TEMPLATE_SAVED_MESSAGE": "Шаблон збережено",
   "QUESTION_QUANTITY_LABEL": "Кількість питань"
 }

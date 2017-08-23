@@ -28,7 +28,7 @@ angular.module('gameTemplateService')
 
             function save(name, rounds) {
                 let fbObj = new $firebaseObject(gameTemplatesRef.push());
-                fbObj.$value = convertService.buildTemplateForFirebase(name, rounds);
+                fbObj.$value = convertService.buildTemplateForFirebase({name: name, rounds: rounds});
                 fbObj.$save();
                 return fbObj.$loaded();
             }

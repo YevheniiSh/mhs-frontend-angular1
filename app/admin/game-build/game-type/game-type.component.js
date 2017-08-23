@@ -29,11 +29,14 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
 
     vm.saveRounds = function () {
         openGameService.addRounds(vm.gameId, vm.configRounds);
+        vm.templateFormShow = true;
     };
 
-    // vm.saveTemplate = function () {
-    //     gameTemplateService.saveFromGame(vm.gameId, vm.templateName);
-    // };
+    vm.saveTemplate = function () {
+        gameTemplateService.saveFromGame(vm.gameId, vm.templateName);
+        vm.templateFormShow = false;
+        vm.templateSaved = true
+    };
 
     vm.selectTemplate = function (template) {
         if(template){
