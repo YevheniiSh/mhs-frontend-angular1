@@ -6,6 +6,7 @@ import { AppComponent } from "./test/AppComponent";
 import { AngularJSComponent } from "./test/AngularJsComponent";
 import { AngularComponent } from "./test/AngularComponent";
 import { AppJsModule } from "./AppJsModule";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AppJsModule } from "./AppJsModule";
   ],
   imports: [
     BrowserModule,
-    UpgradeModule
+    UpgradeModule,
+    RouterModule,
   ],
   providers: [
     {provide: '$scope', useExisting: '$rootScope'},

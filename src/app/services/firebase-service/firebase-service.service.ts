@@ -1,14 +1,10 @@
-import 'angular';
-import 'firebase';
 import { firebaseDataServiceModule } from "./firebase-service.module";
-
-declare const angular: any;
+import 'firebase';
 declare const firebase: any;
 
 (function () {
   firebaseDataServiceModule
-    .factory('firebaseDataService', ['dbConfig', firebaseDataService]);
-
+    .factory('firebaseDataService', [firebaseDataService]);
   function firebaseDataService(config) {
     if (!firebase.apps.length) {
       firebase.initializeApp(config).database();

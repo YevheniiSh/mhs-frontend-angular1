@@ -1,7 +1,5 @@
-import 'angular';
 import { userAuthServiceModule } from "./user-auth-service.module";
-
-declare const angular: any;
+import '../firebase-service/firebase-service.service';
 
 (function () {
   userAuthServiceModule

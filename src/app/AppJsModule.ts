@@ -4,6 +4,7 @@ import 'angular-css';
 import 'angular-socialshare';
 import { mhsAdmin } from "./admin/admin";
 import { userAuthServiceModule } from "./services/user-auth-service/user-auth-service.module";
+import { firebaseDataServiceModule } from "./services/firebase-service/firebase-service.module";
 
 declare const angular: any;
 
@@ -14,7 +15,7 @@ export const AppJsModule = angular.module('AngularJsModule', ['ngRoute',
   // 'teamFactory',
   // 'gameFactory',
   // 'resultSetup',
-  // firebaseDataServiceModule.name,
+  firebaseDataServiceModule.name,
   userAuthServiceModule.name,
   // 'internalisation',
   // 'openGameService',
