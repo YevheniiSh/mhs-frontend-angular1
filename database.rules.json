@@ -1,31 +1,30 @@
 {
   "rules": {
-    "games":{
-      "open":{
+    "games": {
+      "open": {
         ".read": "true",
         ".write": "true"
       },
-      "current":{
+      "current": {
         ".read": "auth != null",
         ".write": "auth != null"
       },
-      "finished":{
+      "finished": {
         ".read": true,
-        "$gameId":{
-          ".write": "auth != null && (!data.child('winner').exists() || !newData.exists())"
+        "$gameId": {
+          ".write": "auth != null"
         }
-
       }
     },
-    "teams":{
+    "teams": {
       ".read": true,
       ".write": "auth != null"
     },
-    "teamsRequests":{
+    "teamsRequests": {
       ".read": "true",
       ".write": "true"
     },
-    "gameTemplates":{
+    "gameTemplates": {
       ".read": "auth != null",
       ".write": "auth != null"
     }
