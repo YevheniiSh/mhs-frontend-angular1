@@ -97,5 +97,8 @@
   "SAVE_TEMPLATE_FROM_GAME_BUTTON": "Сохранить шаблон из игры",
   "SHARE_BUTTON": "Поделиться",
   "TEMPLATE_SAVED_MESSAGE": "Шаблон сохранен",
-  "QUESTION_QUANTITY_LABEL": "Количество вопросов"
+  "QUESTION_QUANTITY_LABEL": "Количество вопросов",
+  "SAVE_DATE_MESSAGE":"Дата сохранена",
+  "SAVE_TIME_MESSAGE":"Время сохранено",
+  "SAVE_LOCATION_MESSAGE":"Локация сохранена"
 }
