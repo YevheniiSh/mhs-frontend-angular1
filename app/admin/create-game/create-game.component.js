@@ -7,13 +7,17 @@ angular.module('createGame')
             '$rootScope',
             '$location',
             'gameBuildServiceFactory',
+            '$locale',
+            'convertServiceFactory',
 
-            function (TeamService, OpenGameServiceFactory, $rootScope, $location, gameBuild) {
+            function (TeamService, OpenGameServiceFactory, $rootScope, $location, gameBuild, $locale, convertService) {
 
                 this.isCalendarVisible = false;
                 this.isTimeVisible = false;
                 this.options = {};
                 this.options.minDate = new Date();
+                this.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
+                this.isMeridian = false;
                 this.gameDate = new Date();
                 this.gameTime = new Date();
                 this.gameTime.setHours(19);
@@ -32,6 +36,10 @@ angular.module('createGame')
                     this.isCalendarVisible = false;
                     this.isTimeVisible = false;
 
+                };
+
+                this.getTimeForView = function () {
+                    return convertService.convertTimeForView(this.gameTime)
                 };
 
                 this.ChangeCalendarStatus = function () {
