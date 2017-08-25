@@ -7,13 +7,16 @@ angular.module('createGame')
             '$rootScope',
             '$location',
             'gameBuildServiceFactory',
+            '$locale',
 
-            function (TeamService, OpenGameServiceFactory, $rootScope, $location, gameBuild) {
+            function (TeamService, OpenGameServiceFactory, $rootScope, $location, gameBuild,$locale) {
 
                 this.isCalendarVisible = false;
                 this.isTimeVisible = false;
                 this.options = {};
                 this.options.minDate = new Date();
+                this.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
+                this.isMeridian = false;
                 this.gameDate = new Date();
                 this.gameTime = new Date();
                 this.gameTime.setSeconds(0);

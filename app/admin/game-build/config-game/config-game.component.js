@@ -3,8 +3,8 @@ angular.module('configGame')
     .component('configGame', {
         templateUrl: 'admin/game-build/config-game/config-game.html',
         css: 'admin/game-build/config-game/config-game.css',
-        controller: ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout',
-            function ($location, OpenGameService, $routeParams, $timeout) {
+        controller: ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout','$locale',
+            function ($location, OpenGameService, $routeParams, $timeout,$locale) {
                 let vm = this;
                 let gameId = $routeParams.gameId;
                 vm.isCalendarVisible = false;
@@ -12,7 +12,8 @@ angular.module('configGame')
                 vm.saved = false;
                 vm.options = {};
                 vm.options.minDate = new Date();
-
+                vm.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
+                vm.isMeridian = false;
                 this.location = "";
 
                 vm.$onInit = onInit;
