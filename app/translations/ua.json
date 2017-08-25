@@ -99,5 +99,6 @@
   "QUESTION_QUANTITY_LABEL": "Кількість питань",
   "SAVE_DATE_MESSAGE": "Дату збережено",
   "SAVE_TIME_MESSAGE": "Час гри збережено",
-  "SAVE_LOCATION_MESSAGE": "Локацію збережено"
+  "SAVE_LOCATION_MESSAGE": "Локацію збережено",
+  "TEAM_POSITION_LABEL":"Місце"
 }
