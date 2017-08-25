@@ -22,6 +22,7 @@
                 .then((games) => {
                     this.games = games;
                     vm.parseDate();
+                    gameFactory.getGameTeamsNumber(games[2].$id);
                     this.games.$watch(() => {
                         vm.parseDate();
                     })
