@@ -12,6 +12,7 @@ angular.module('gameRequestService')
                 setConfirmedStatus: setConfirmedStatus,
                 setUnconfirmedStatus: setUnconfirmedStatus,
                 getAllTeamRequestsByGameId: getAllTeamRequestsByGameId,
+                updateTeamSize: updateTeamSize,
                 updateTeamId:updateTeamId
             };
 
@@ -81,6 +82,13 @@ angular.module('gameRequestService')
 
             function setUnconfirmedStatus(gameId, requestId) {
                 return setStatus(gameId, requestId, 'unconfirmed');
+            }
+
+            function updateTeamSize(gameId, requestId, numberOfPlayers) {
+                let teamSize = new $firebaseObject(openGameRef.child(`${gameId}/requests/${requestId}/teamSize`));
+                teamSize.$value = numberOfPlayers;
+                teamSize.$save();
+                return teamSize.$loaded();
             }
         }]
     );
