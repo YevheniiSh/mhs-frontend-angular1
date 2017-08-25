@@ -1,11 +1,11 @@
 {
   "NAVBAR_TITLE": "Mad Head Show",
   "NAVBAR_GAME_TEMPLATES": "Game templates",
-  "NAVBAR_GAME_LIST_BUTTON": "Games list",
+  "NAVBAR_GAME_LIST_BUTTON": "Games",
   "NAVBAR_TEAM_EDIT_BUTTON": "Teams",
   "NAVBAR_TEMPLATE_BUTTON": "Game templates",
   "NAVBAR_HELLO_LABEL": "Hello",
-  "NAVBAR_WELCOME_MESSAGE": "Welcome",
+  "NAVBAR_WELCOME_MESSAGE": "Sign In",
   "LOGIN_FORM_TITLE": "Please log in",
   "LOGIN_BUTTON": "Log in",
   "EMAIL_PLACEHOLDER": "E-mail",
@@ -93,12 +93,12 @@
   "SAVE_LINK_BUTTON": "Save",
   "EDIT_LINK_BUTTON": "Photos link",
   "SELECT_TEMPLATE_LABEL": "Choose template",
-  "SELECT_TEMPLATE_BUTTON": "Select",
+  "SELECT_TEMPLATE_BUTTON": "Apply",
   "TEMPLATE_NAME_LABEL": "Enter template name",
   "SAVE_TEMPLATE_FROM_GAME_BUTTON": "Save template from game",
   "TEMPLATE_SAVED_MESSAGE": "Template saved",
   "PHOTO_URL_BUTTON": "Photos",
-  "SAVE_DATE_MESSAGE":"Date changes saved",
-  "SAVE_TIME_MESSAGE":"Time changes saved",
-  "SAVE_LOCATION_MESSAGE":"Location changes saved"
+  "SAVE_DATE_MESSAGE": "Date changes saved",
+  "SAVE_TIME_MESSAGE": "Time changes saved",
+  "SAVE_LOCATION_MESSAGE": "Location changes saved"
 }

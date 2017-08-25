@@ -19,6 +19,8 @@ angular.module('createGame')
                 this.isMeridian = false;
                 this.gameDate = new Date();
                 this.gameTime = new Date();
+                this.gameTime.setHours(19);
+                this.gameTime.setMinutes(0);
                 this.gameTime.setSeconds(0);
                 // this.gameBuilder = gameBuild.getGameBuilder();
                 this.location = null;

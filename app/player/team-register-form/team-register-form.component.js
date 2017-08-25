@@ -46,6 +46,7 @@
                 }
                 if (Object.keys(vm.selectedTeam).length !== 0) {
                     setupPhoneVerifyRequest(team.originalObject);
+                    cancelAutocomplete();
                 }
             });
         }
