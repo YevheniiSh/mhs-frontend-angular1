@@ -1,6 +1,6 @@
 {
   "NAVBAR_TITLE": "Mad Head Show",
-  "NAVBAR_GAME_LIST_BUTTON": "Список ігор",
+  "NAVBAR_GAME_LIST_BUTTON": "Ігри",
   "NAVBAR_TEAM_EDIT_BUTTON": "Команди",
   "NAVBAR_HELLO_LABEL": "Привіт",
   "NAVBAR_WELCOME_MESSAGE": "Ласкаво просимо",
@@ -72,7 +72,7 @@
   "SEARCH_PLACEHOLDER": "Пошук",
   "WRONG_TIME_ERROR": "Ви ввели неправильний час",
   "QUIZ_COUNT_PLACEHOLDER": "Кількість запитань",
-  "EDIT_TEAM_NAME_TOOLTIP": "Зінити ім'я команди",
+  "EDIT_TEAM_NAME_TOOLTIP": "Змінити ім'я команди",
   "INCORRECT_LAST_NUMBERS_ERROR": "Останні 3 цифри номера телефона введені невірно",
   "ENTER_LAST_PHONE_NUMBERS": "Ввести останні 3 цифри номера телефона для автозаповнення полей",
   "ENTER_LAST_PHONE_NUMBERS_LABEL": "Введіть останні 3 цифри номера телефона для автозаповнення полей",
