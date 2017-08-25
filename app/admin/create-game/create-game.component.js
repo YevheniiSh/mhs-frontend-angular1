@@ -8,8 +8,9 @@ angular.module('createGame')
             '$location',
             'gameBuildServiceFactory',
             '$locale',
+            'convertServiceFactory',
 
-            function (TeamService, OpenGameServiceFactory, $rootScope, $location, gameBuild,$locale) {
+            function (TeamService, OpenGameServiceFactory, $rootScope, $location, gameBuild, $locale, convertService) {
 
                 this.isCalendarVisible = false;
                 this.isTimeVisible = false;
@@ -35,6 +36,10 @@ angular.module('createGame')
                     this.isCalendarVisible = false;
                     this.isTimeVisible = false;
 
+                };
+
+                this.getTimeForView = function () {
+                    return convertService.convertTimeForView(this.gameTime)
                 };
 
                 this.ChangeCalendarStatus = function () {

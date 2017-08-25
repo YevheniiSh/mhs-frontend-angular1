@@ -17,7 +17,7 @@
                 <label class="control-label data-picker-label" for="game-time">
                     <i id="game-time" class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
                 </label>
-                <span> {{$ctrl.gameTime.getHours() + ':'+$ctrl.gameTime.getMinutes()}}</span>
+                <span>{{$ctrl.getTimeForView()}}</span>
             </div>
 
             <div class="picker" ng-show="$ctrl.isTimeVisible">
