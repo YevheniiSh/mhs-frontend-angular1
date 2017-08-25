@@ -1,9 +1,11 @@
 {
   "NAVBAR_TITLE": "Mad Head Show",
+  "NAVBAR_GAME_TEMPLATES": "Шаблоны игр",
   "NAVBAR_GAME_LIST_BUTTON": "Игры",
   "NAVBAR_TEAM_EDIT_BUTTON": "Команды",
+  "NAVBAR_TEMPLATE_BUTTON": "Шаблоны игр",
   "NAVBAR_HELLO_LABEL": "Привет",
-  "NAVBAR_WELCOME_MESSAGE": "Добро пожаловать",
+  "NAVBAR_WELCOME_MESSAGE": "Войти",
   "LOGIN_FORM_TITLE": "Пожайлуста войдите в систему",
   "LOGIN_BUTTON": "Войти",
   "EMAIL_PLACEHOLDER": "E-mail",
@@ -88,6 +90,15 @@
   "TEAM_SCORE_LABEL": "Счет команды",
   "SAVE_LINK_BUTTON": "Сохранить",
   "EDIT_LINK_BUTTON": "Ссылка на фото",
-  "PHOTO_URL_BUTTON": "Фотографии"
-
+  "PHOTO_URL_BUTTON": "Фотографии",
+  "SELECT_TEMPLATE_LABEL": "Выбрать шаблон",
+  "SELECT_TEMPLATE_BUTTON": "Применить",
+  "TEMPLATE_NAME_LABEL": "Введите имя шаблона",
+  "SAVE_TEMPLATE_FROM_GAME_BUTTON": "Сохранить шаблон из игры",
+  "SHARE_BUTTON": "Поделиться",
+  "TEMPLATE_SAVED_MESSAGE": "Шаблон сохранен",
+  "QUESTION_QUANTITY_LABEL": "Количество вопросов",
+  "SAVE_DATE_MESSAGE": "Дата сохранена",
+  "SAVE_TIME_MESSAGE": "Время сохранено",
+  "SAVE_LOCATION_MESSAGE": "Локация сохранена"
 }
