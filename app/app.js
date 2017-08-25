@@ -16,6 +16,7 @@ angular.module('mhs', [
     'openGameService',
     'gameRequestService',
     'teamRequestService',
+    'gameTemplateService',
     'gameBuildService',
     'convertService',
     '720kb.socialshare'

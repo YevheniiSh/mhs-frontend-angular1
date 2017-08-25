@@ -12,9 +12,11 @@ angular
         'game-list',
         'createGame',
         'configGame',
+        'roundBuilder',
         'ui.bootstrap',
         'teamList',
-        'navbar'])
+        'navbar',
+         'gameTemplate'])
     .config(['$routeProvider', function ($routeProvider) {
 
         let isAuth = {
@@ -64,6 +66,13 @@ angular
         $routeProvider.when('/games/:gameId/results/:teamId', {
             template: '<team-results></team-results>',
             css: 'admin/team-results/team-results.css'
+        });
+        $routeProvider.when('/templates', {
+            template: '<game-template></game-template>',
+        });
+        $routeProvider.when('/templates/:templateId', {
+            template: '<current-game-template></current-game-template>',
+            css: 'admin/game-template/current-game-template.css'
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {

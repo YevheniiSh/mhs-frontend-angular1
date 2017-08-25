@@ -23,3 +23,8 @@
     padding-top: 6px;
     margin-bottom: 0px;
 }
+.game-alert{
+    position: fixed;
+    display: inline-block;
+    z-index: 100;
+}

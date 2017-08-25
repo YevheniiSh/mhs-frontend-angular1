@@ -1,7 +1,8 @@
 <div class="container">
 
-    <div id="button-panel" class="col-md-1" >
-        <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
+    <div id="button-panel" class="col-md-1">
+        <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}
+        </button>
     </div>
     <div class="col-md-2">
         <div ng-click="$ctrl.ChangeCalendarStatus()">
@@ -28,19 +29,29 @@
         </div>
     </div>
     <div class="col-md-2">
-        <div class="location">
-            <input class="form-control" ng-model="$ctrl.location"
-                   maxlength="34"
-                   name="location"
-                   required placeholder="{{'LOCATION_PLACEHOLDER' | translate}}"></div>
+
+
+
+        <input class="form-control" ng-blur="$ctrl.changeLocation()" ng-model="$ctrl.location"
+               maxlength="34"
+               name="location"
+               required placeholder="{{'LOCATION_PLACEHOLDER' | translate}}">
     </div>
-    <div  class="col-md-1" >
-        <button  class="btn btn-success" ng-click="$ctrl.updateLocation()">Save</button>
-    </div>
-    <div class="col-md-4">
-        <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.saved">
-            <button type="button" class="close" ng-click="$ctrl.saved = false">&times;</button>
-            Game changes saved
+    <!--<div  class="col-md-1" >-->
+    <!--<button  class="btn btn-success" ng-click="$ctrl.updateLocation()">Save</button>-->
+    <!--</div>-->
+    <div class="col-md-4 game-alert">
+        <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.dateSaved">
+
+            Date changes saved
+        </div>
+        <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.timeSaved">
+
+            Time changes saved
+        </div>
+        <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.locationSaved">
+
+            Location changes saved
         </div>
     </div>
     <div class="row"></div>

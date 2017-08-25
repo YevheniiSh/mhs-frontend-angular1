@@ -11,7 +11,6 @@ angular
 
             return {
                 getGameById: getCurrentGameById,
-                // save: save,
                 getCurrentRound: getCurrentRound,
                 getCurrentQuiz: getCurrentQuiz,
                 getGameTeams: getGameTeams,

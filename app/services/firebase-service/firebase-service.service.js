@@ -13,6 +13,7 @@ function firebaseDataService() {
         teamRequests: root.child('teamsRequests'),
         currentGames: root.child('games').child('current'),
         finishedGames: root.child('games').child('finished'),
+        gameTemplates: root.child('gameTemplates'),
         openGames: root.child('games').child('open')
     };
 }

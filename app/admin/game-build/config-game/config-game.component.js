@@ -3,8 +3,8 @@ angular.module('configGame')
     .component('configGame', {
         templateUrl: 'admin/game-build/config-game/config-game.html',
         css: 'admin/game-build/config-game/config-game.css',
-        controller: ['$location', 'OpenGameServiceFactory', '$routeParams',
-            function ($location, OpenGameService, $routeParams) {
+        controller: ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout',
+            function ($location, OpenGameService, $routeParams, $timeout) {
                 let vm = this;
                 let gameId = $routeParams.gameId;
                 vm.isCalendarVisible = false;
@@ -41,8 +41,10 @@ angular.module('configGame')
                         vm.activeTab = 'teams';
                 }
 
-                vm.updateLocation = function () {
+                vm.updateDateAndLocation = function () {
                     OpenGameService.changeLocation(gameId, vm.location);
+                    OpenGameService.changeDate(gameId, vm.gameDate);
+                    OpenGameService.changeTime(gameId, vm.gameTime);
                     vm.saved = true;
                 };
 
@@ -54,11 +56,47 @@ angular.module('configGame')
                     $location.search(key);
                 };
 
+                vm.changeLocation = function () {
+                    saveLocation();
+                };
+
+                function saveLocation() {
+                    OpenGameService.changeLocation(gameId, vm.location).then(() => {
+                        vm.locationSaved = true;
+                        $timeout(function () {
+                            vm.locationSaved = false;
+                        }, 1000)
+
+                    })
+                }
+
+                function saveDate() {
+                    OpenGameService.changeDate(gameId, vm.gameDate).then(() => {
+                        vm.dateSaved = true;
+                        $timeout(function () {
+                            vm.dateSaved = false;
+                        }, 1000)
+
+                    });
+                }
+
+                function saveTime() {
+                    OpenGameService.changeTime(gameId, vm.gameTime).then(() => {
+                        vm.timeSaved = true;
+                        $timeout(function () {
+                            vm.timeSaved = false;
+                        }, 1000)
+
+                    });
+                }
+
                 vm.ChangeCalendarStatus = function () {
                     if (vm.isCalendarVisible) {
-                        OpenGameService.changeDate(gameId, vm.gameDate);
+                        saveDate();
                         vm.isCalendarVisible = false;
+
                     } else if (vm.isTimeVisible) {
+                        saveTime();
                         vm.isTimeVisible = false;
                         vm.isCalendarVisible = true;
                     }
@@ -69,10 +107,11 @@ angular.module('configGame')
 
                 this.ChangeTimeStatus = function () {
                     if (vm.isTimeVisible) {
-                        OpenGameService.changeTime(gameId, vm.gameTime);
+                        saveTime();
                         vm.isTimeVisible = false;
                     }
                     else if (vm.isCalendarVisible) {
+                        saveDate();
                         vm.isTimeVisible = true;
                         vm.isCalendarVisible = false;
                     }

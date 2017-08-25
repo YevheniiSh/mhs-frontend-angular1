@@ -88,28 +88,10 @@
             return obj.$loaded();
         }
 
-        function convertTeamsForFirebase(teams) {
-            let team = {};
-            for (let i = 0; i < teams.length; i++) {
-                team[teams[i].id] = teams[i].name;
-            }
-            return team;
-        }
-
-        function convertRoundsForFirebase(rounds) {
-            let convertedRounds = {};
-            for (let i = 0; i < rounds.length; i++) {
-                convertedRounds[rounds[i].$id] = {
-                    numberOfQuestions: rounds[i].numberOfQuestions,
-                    name: rounds[i].name
-                };
-            }
-            return convertedRounds
-        }
 
         function addTeams(gameId, teams) {
             let obj = new $firebaseObject(openGamesRef.child(gameId).child('teams'));
-            let team = convertTeamsForFirebase(teams);
+            let team = convertService.convertTeamsForFirebase(teams);
             obj.$value = team;
             obj.$save();
             return obj.$loaded();
@@ -124,7 +106,7 @@
 
         function addRounds(gameId, rounds) {
             let obj = new $firebaseObject(openGamesRef.child(gameId).child('rounds'));
-            let round = convertRoundsForFirebase(rounds);
+            let round = convertService.convertRoundsForFirebase(rounds);
             obj.$value = round;
             obj.$save();
             return obj.$loaded();
