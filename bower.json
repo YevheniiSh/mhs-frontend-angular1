@@ -18,6 +18,8 @@
     "angular-material": "^1.1.4",
     "angular-socialshare": "angularjs-socialshare#^2.3.11",
     "angular-bootstrap": "^2.5.0",
-    "angucomplete-alt": "^3.0.0"
+    "angucomplete-alt": "^3.0.0",
+    "angular-input-masks": "^2.6.0",
+    "ngMask": "angular-mask#^3.1.1"
   }
 }

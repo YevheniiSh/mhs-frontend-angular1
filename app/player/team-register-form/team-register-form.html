@@ -52,35 +52,29 @@
 
                 <div ng-show="$ctrl.formStatus === 'phoneVerify'" class="captain-name-panel"></div>
 
-                <span ng-show="$ctrl.formStatus === 'full' || $ctrl.formStatus === 'pending'" class="phone-placeholder">+38-</span>
+                <span ng-show="$ctrl.formStatus === 'full' || $ctrl.formStatus === 'pending'" class="phone-placeholder"></span>
                 <span ng-show="$ctrl.formStatus === 'phoneVerify'" class="phone-placeholder">+380-xx-xxxx-</span>
                 <div class="captain-phone-panel">
                     <div class="phone-spans">
-                        <!--<span ng-show="request.phone.$error.minlength" class="err">-->
-                        <!--{{'MINIMUM_10_CHARACTERS_ERROR'|translate}}-->
-                        <!--</span>-->
-                        <!--<span ng-show="request.phone.$error.maxlength" class="err">-->
-                        <!--{{'MAXIMUM_13_CHARACTERS_ERROR'|translate}}-->
-                        <!--</span>-->
-                        <!--<span ng-show="request.phone.$invalid && request.phone.$dirty && request.phone.$isEmpty && !(request.phone.$error.minlength || request.phone.$error.maxlength)"-->
-                        <!--class="err">{{'WRONG_FORMAT_ERROR'|translate}}-->
-                        <!--</span>-->
-
                         <label ng-show="$ctrl.formStatus === 'full' || $ctrl.formStatus === 'pending'"
-                               for="captain-phone" class="control-label">{{'PHONE_LABEL'|translate}}</label>
-                        <label ng-show="$ctrl.formStatus === 'phoneVerify'" class="control-label">последние 3 цифры
-                            телефона</label>
+                               for="captain-phone" class="control-label">
+                            {{'PHONE_LABEL'|translate}}
+                        </label>
+                        <label ng-show="$ctrl.formStatus === 'phoneVerify'" class="control-label">
+                            последние 3 цифры телефона
+                        </label>
                     </div>
 
                     <div class="input-group phone-autocomplete-panel">
                         <input ng-show="$ctrl.formStatus === 'full' || $ctrl.formStatus === 'pending'"
                                ng-disabled="$ctrl.isChangesForbidden" id="captain-phone"
                                class="form-control"
-                               placeholder="x-xx-xxxx-xxx"
-                               type="text" ng-model="$ctrl.phone" name="phone" maxlength="13" minlength="10"
-                               ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
+                               placeholder="+380(XX)XX-XX-XXX"
+                               type="text" ng-model="$ctrl.phone" name="phone"
                                ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
-                               required>
+                               required
+                               mask="+999(99)99-99-999">
+
 
                         <span ng-show="$ctrl.formStatus === 'full' || $ctrl.formStatus === 'pending'"
                               class="input-group-btn">
