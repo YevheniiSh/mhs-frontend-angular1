@@ -5,3 +5,16 @@
 .auth-info {
     padding-top: 2px;
 }
+
+.login-panel a:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.login-panel a:focus {
+    text-decoration: none;
+}
+
+.login-panel a {
+    font-size: 15px;
+}
