@@ -1,4 +1,7 @@
-
 .add-round{
     margin-bottom: 2%;
+}
+
+.table .td-round-number {
+    vertical-align: middle;
 }
