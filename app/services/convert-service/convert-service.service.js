@@ -23,7 +23,7 @@ angular.module('convertService')
             function convertRoundsForFirebase(rounds) {
                 let convertedRounds = {};
                 for (let i = 0; i < rounds.length; i++) {
-                    convertedRounds[i] = {
+                    convertedRounds[i+1] = {
                         numberOfQuestions: rounds[i].numberOfQuestions,
                         name: rounds[i].name
                     };
