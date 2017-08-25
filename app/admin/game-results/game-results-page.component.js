@@ -14,7 +14,7 @@ angular.module('gameResultsPage')
             let vm = this;
             let gameId = $routeParams.gameId;
             vm.isGameCurrent = true;
-            vm.photosURL = '';
+            vm.photosUrl = '';
 
                 vm.$onInit = onInit;
 
@@ -32,34 +32,42 @@ angular.module('gameResultsPage')
                             GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString())
                     });
 
-                ResultService.getParsedResults(this.gameId)
-                    .then((result) => {
-                        vm.results = result;
+                    ResultService.getParsedResults(this.gameId)
+                        .then((result) => {
+                            vm.results = result;
+                        });
+                    GameService.getGameStatus(gameId).then(status => {
+                        (status === "finished") ?
+                            vm.gameFinished = true : vm.gameFinished = false;
                     });
-                GameService.getGameStatus(gameId).then(status => {
-                    (status === "finished") ?
-                        vm.gameFinished = true : vm.gameFinished = false;
-                });
 
-                GameService.getPhotosURL(gameId).then((res) => {
-                    vm.photosURL = res;
-                });
+                    GameService.getPhotosUrl(gameId).then((res) => {
+                        vm.photosUrl = res;
+                        vm.setTrimmedPhotosUrl(res)
+                    });
 
-                auth.currentUser()
-                    .then((res) => {
-                        vm.user = res;
-                    })
-            }
+                    auth.currentUser()
+                        .then((res) => {
+                            vm.user = res;
+                        })
+                }
 
                 vm.shareURL = $location.absUrl();
 
-            vm.savePhotosLink = function (link) {
-                if (link !== undefined) {
-                    GameService.setPhotosLink(gameId, link);
-                    vm.setLink = false;
-                    vm.photosURL = link;
-                }
-            };
+                vm.savePhotosLink = function (link) {
+                    if (link !== undefined) {
+                        GameService.setPhotosLink(gameId, link);
+                        vm.setLink = false;
+                        vm.photosUrl = link;
+                        vm.setTrimmedPhotosUrl(link);
+                    }
+                };
+
+                vm.setTrimmedPhotosUrl = function (link) {
+                    let photosUrlDomain = link.split('/')[2];
+                    let photosUrlLastCharacters = link.substring(link.length - 3);
+                    vm.trimmedPhotosUrl = photosUrlDomain + "..." + photosUrlLastCharacters;
+                };
 
                 vm.onBack = function () {
                     auth.currentUser()
@@ -68,9 +76,8 @@ angular.module('gameResultsPage')
                         })
                         .catch(() => {
                             $location.path(`/games`);
-                        })
-                    ;
-                }
+                    })
+                };
 
                 auth.currentUser().then((res) => {
                     vm.auth = true;

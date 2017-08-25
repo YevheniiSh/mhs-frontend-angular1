@@ -53,3 +53,8 @@ h1#game-results{
 span.ng-binding.date{
     float: right;
 }
+.link-pencil{
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 18px;
+}
