@@ -1,7 +1,7 @@
 angular.module('roundBuilder')
     .component('roundBuilder', {
-        templateUrl: 'admin/round-builder/round-builder.html',
-        css: 'admin/round-builder/round-builder.css',
+      templateUrl: 'app/admin/round-builder/round-builder.html',
+      css: 'app/admin/round-builder/round-builder.css',
         controller: roundBuilder,
         bindings: {
             rounds: '='

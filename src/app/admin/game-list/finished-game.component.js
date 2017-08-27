@@ -3,7 +3,7 @@
         .module('game-list')
         .component('finishedGameList',
             {
-                templateUrl: 'admin/game-list/finished-game.html',
+              templateUrl: 'app/admin/game-list/finished-game.html',
                 controller: FinishedGameListController
             });
     FinishedGameListController.$inject = ['GameServiceFactory', '$location'];

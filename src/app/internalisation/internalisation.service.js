@@ -8,7 +8,7 @@ angular
 
         $translateProvider
             .useStaticFilesLoader({
-                prefix: '/translations/',
+              prefix: 'app/translations/',
                 suffix: '.json'
             })
             .preferredLanguage(localStorage.getItem("locale"))

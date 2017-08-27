@@ -2,8 +2,8 @@
     angular
         .module('roundStatus')
         .component('roundStatus', {
-            templateUrl: 'admin/round-status/round-status.html',
-            css: 'admin/round-status/round-status.css',
+          templateUrl: 'app/admin/round-status/round-status.html',
+          css: 'app/admin/round-status/round-status.css',
             controller: RoundStatusController
         });
 

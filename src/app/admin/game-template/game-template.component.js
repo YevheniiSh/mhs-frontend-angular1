@@ -1,8 +1,8 @@
 'use strict';
 angular.module('gameTemplate')
     .component('gameTemplate', {
-        templateUrl: 'admin/game-template/game-template.html',
-        css: 'admin/game-template/game-template.css',
+      templateUrl: 'app/admin/game-template/game-template.html',
+      css: 'app/admin/game-template/game-template.css',
         controller: gameTemplate,
         bindings: {
             selectedTemplateId: '='

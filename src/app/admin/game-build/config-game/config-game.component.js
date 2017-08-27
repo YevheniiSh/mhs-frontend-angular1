@@ -1,8 +1,8 @@
 'use strict';
 angular.module('configGame')
     .component('configGame', {
-        templateUrl: 'admin/game-build/config-game/config-game.html',
-        css: 'admin/game-build/config-game/config-game.css',
+      templateUrl: 'app/admin/game-build/config-game/config-game.html',
+      css: 'app/admin/game-build/config-game/config-game.css',
         controller: ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout','$locale','convertServiceFactory',
             function ($location, OpenGameService, $routeParams, $timeout,$locale,convertService) {
                 let vm = this;

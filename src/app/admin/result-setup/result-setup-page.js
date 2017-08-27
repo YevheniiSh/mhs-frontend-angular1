@@ -2,7 +2,7 @@
 (function () {
     angular.module('resultSetup')
         .component('resultSetup', {
-            templateUrl: 'admin/result-setup/result-setup-page.html',
+          templateUrl: 'app/admin/result-setup/result-setup-page.html',
             controller: ResultSetupController
         });
 

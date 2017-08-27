@@ -26,7 +26,7 @@ angular
         };
         $routeProvider.when('/games/:gameId/rounds/:roundNumber/:quizNumber', {
             template: '<result-setup></result-setup>',
-            css: 'admin/result-setup/result-setup-page.css',
+          css: 'app/admin/result-setup/result-setup-page.css',
             resolve: isAuth
         });
         $routeProvider.when('/games/:gameId/rounds', {
@@ -35,16 +35,16 @@ angular
         });
         $routeProvider.when('/login', {
             template: '<login></login>',
-            css: 'admin/login/login.css'
+          css: 'app/admin/login/login.css'
         });
         $routeProvider.when('/games', {
             template: '<game-list></game-list>',
-            css: 'admin/game-list/game-list.css',
+          css: 'app/admin/game-list/game-list.css',
             reloadOnSearch: false
         });
         $routeProvider.when('/teams', {
             template: '<team-list></team-list>',
-            css: 'admin/team-list/team-list.css'
+          css: 'app/admin/team-list/team-list.css'
         });
         $routeProvider.when('/create-game', {
             template: '<create-game></create-game>',
@@ -56,23 +56,23 @@ angular
         });
         $routeProvider.when('/games/:gameId/results', {
             template: '<game-results-page></game-results-page>',
-            css: 'admin/game-results/game-results-page.css'
+          css: 'app/admin/game-results/game-results-page.css'
         });
         $routeProvider.when('/games/:gameId/results-presentation', {
             template: '<game-results></game-results>',
-            css:'admin/game-results/game-results.css',
+          css: 'app/admin/game-results/game-results.css',
             controller: 'presentationModeController'
         });
         $routeProvider.when('/games/:gameId/results/:teamId', {
             template: '<team-results></team-results>',
-            css: 'admin/team-results/team-results.css'
+          css: 'app/admin/team-results/team-results.css'
         });
         $routeProvider.when('/templates', {
             template: '<game-template></game-template>',
         });
         $routeProvider.when('/templates/:templateId', {
             template: '<current-game-template></current-game-template>',
-            css: 'admin/game-template/current-game-template.css'
+          css: 'app/admin/game-template/current-game-template.css'
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {

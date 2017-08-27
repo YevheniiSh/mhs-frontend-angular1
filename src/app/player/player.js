@@ -9,6 +9,6 @@ angular
         });
         $routeProvider.when('/teams/:teamId', {
             template: '<team-games-list></team-games-list>',
-            css: 'player/team-games-list/team-games-list.css'
+          css: 'app/player/team-games-list/team-games-list.css'
         })
     }]);

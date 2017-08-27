@@ -3,7 +3,7 @@
         .module('game-list')
         .component('currentGameList',
             {
-                templateUrl: 'admin/game-list/current-game.html',
+              templateUrl: 'app/admin/game-list/current-game.html',
                 controller: CurrentGameListController
             });
     CurrentGameListController.$inject = ['GameServiceFactory', '$location', 'userAuthService'];

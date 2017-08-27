@@ -1,7 +1,7 @@
 angular.module('createGame')
     .component('createGame', {
-        templateUrl: 'admin/create-game/create-game.html',
-        css: 'admin/create-game/create-game.css',
+      templateUrl: 'app/admin/create-game/create-game.html',
+      css: 'app/admin/create-game/create-game.css',
         controller: ['TeamServiceFactory',
             'OpenGameServiceFactory',
             '$rootScope',

@@ -2,8 +2,8 @@
     angular
         .module('navbar')
         .component('navbar', {
-            templateUrl: 'admin/navbar/navbar.html',
-            css: 'admin/navbar/navbar.css',
+          templateUrl: 'app/admin/navbar/navbar.html',
+          css: 'app/admin/navbar/navbar.css',
             controller: ['$translate', function ($translate) {
 
                 this.locale = $translate.use();

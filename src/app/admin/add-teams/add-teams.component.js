@@ -1,7 +1,7 @@
 angular.module('addTeams')
     .component('addTeams', {
-        templateUrl: 'admin/add-teams/add-teams.html',
-        css: 'admin/add-teams/add-teams.css',
+      templateUrl: 'app/admin/add-teams/add-teams.html',
+      css: 'app/admin/add-teams/add-teams.css',
         controller: ['teamRequestService','gameRequestServiceFactory',
             'OpenGameServiceFactory',
             'TeamServiceFactory',
