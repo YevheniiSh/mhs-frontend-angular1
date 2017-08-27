@@ -1,15 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { downgradeComponent, UpgradeModule } from '@angular/upgrade/static';
+import { UpgradeModule } from '@angular/upgrade/static';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 import { PhoneListComponent } from './admin/phone-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
     PhoneListComponent
   ],
   imports: [
