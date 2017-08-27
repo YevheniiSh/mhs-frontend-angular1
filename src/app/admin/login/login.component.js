@@ -1,4 +1,5 @@
-angular.module('login')
+angular
+  .module('login')
     .component('login', {
         templateUrl: "admin/login/login.html",
         controller: [
