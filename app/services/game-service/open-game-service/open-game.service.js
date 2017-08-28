@@ -23,6 +23,7 @@
             changeTime: changeTime,
             getRounds: getRounds,
             getTeams: getTeams,
+            updateTeamSize: updateTeamSize,
             getOpenGameById: getOpenGameById
         };
 
@@ -122,6 +123,13 @@
         function getTeams(gameId) {
             let obj = new $firebaseArray(openGamesRef.child(gameId).child('teams'));
             return obj.$loaded();
+        }
+
+        function updateTeamSize(gameId, teamId, numberOfPlayers) {
+            let teamSize = new $firebaseObject(openGamesRef.child(`${gameId}/teams/${teamId}/teamSize`));
+            teamSize.$value = numberOfPlayers;
+            teamSize.$save();
+            return teamSize.$loaded();
         }
     }
 })();

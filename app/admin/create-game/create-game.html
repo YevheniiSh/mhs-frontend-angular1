@@ -11,17 +11,17 @@
                 <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
                      datepicker-options="$ctrl.options"></div>
             </div>
-        </div>
+         </div>
         <div class="col-md-2">
             <div ng-click="$ctrl.ChangeTimeStatus()">
                 <label class="control-label data-picker-label" for="game-time">
                     <i id="game-time" class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
                 </label>
-                <span> {{$ctrl.gameTime.toLocaleTimeString()}}</span>
+                <span>{{$ctrl.getTimeForView()}}</span>
             </div>
 
             <div class="picker" ng-show="$ctrl.isTimeVisible">
-                <div uib-timepicker name="time" ng-model="$ctrl.gameTime" class="well well-sm"></div>
+                <div uib-timepicker name="time"  ng-model="$ctrl.gameTime"  show-meridian="$ctrl.isMeridian" class="well well-sm"></div>
             </div>
         </div>
         <div class="col-md-2">

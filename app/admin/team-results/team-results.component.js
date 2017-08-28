@@ -38,7 +38,6 @@ angular.module('teamResults')
                 vm.showGameResults = function () {
                     $window.history.back();
                 };
-                vm.url = $routeParams.gameId;
 
                 vm.getResults = function () {
                     ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId)
@@ -46,14 +45,8 @@ angular.module('teamResults')
                             return ResultService.parseTeamResult(teamResults, vm.gameId)
                         })
                         .then((res) => {
-                            vm.teamTotal = 0;
-
-                            vm.roundsResult = res
-                            angular.forEach(res, (round) => {
-                                if (round.total) {
-                                    vm.teamTotal += parseFloat(round.total);
-                                }
-                            });
+                            vm.roundsResult = res;
+                            vm.setTeamTotal();
                         });
 
                     TeamService.getById($routeParams.teamId)
@@ -62,11 +55,20 @@ angular.module('teamResults')
                         });
                 };
 
+                vm.setTeamTotal = function () {
+                    vm.teamTotal = 0;
+                    angular.forEach(vm.roundsResult, (round) => {
+                        if (round.total) {
+                            vm.teamTotal += parseFloat(round.total);
+                        }
+                    });
+                };
+
                 vm.setTeamResult = function (round, quiz) {
                     let score = parseFloat(quiz.score);
                     let quizNum = parseFloat(quiz.quizNum);
                     let roundNum = parseFloat(round.roundNum);
-
+                    quiz.edit = true;
                     let result = {
                         quiz: quizNum,
                         round: roundNum,
@@ -74,8 +76,31 @@ angular.module('teamResults')
                         teamId: vm.teamId
                     };
 
-                    ResultService.saveResult(vm.state, result, vm.gameId);
-                    vm.getResults();
+                    ResultService.saveResult(vm.state, result, vm.gameId)
+                        .then(() => {
+                            vm.getQuiz(round, quiz);
+                        });
+                };
+
+                vm.getQuiz = function (round, quiz) {
+                    let resultKey = [round.roundNum, quiz.quizNum, vm.teamId].join('_');
+                    ResultService.getQuiz(vm.gameId, resultKey)
+                        .then((res) => {
+                            vm.setQuizResult(res);
+                            vm.setTeamTotal();
+                        })
+                };
+
+                vm.setQuizResult = function (res) {
+                    vm.roundsResult[res.round - 1].quizzes[res.quiz - 1].score = res.score;
+                    vm.roundsResult[res.round - 1].total = 0;
+                    vm.roundsResult[res.round - 1].quizzes.forEach((item) => {
+                        vm.roundsResult[res.round - 1].total += item.score;
+                    });
+                };
+
+                vm.selectAllContent= function($event) {
+                    $event.target.select();
                 };
 
                 this.totalColor = function (round) {
@@ -86,17 +111,6 @@ angular.module('teamResults')
                         return 'text-success'
                     } else {
                         return 'text-danger'
-                    }
-                };
-                this.quizColor = function (quiz) {
-                    let score = parseFloat(quiz.score);
-
-                    if (score === 0) {
-                        return 'btn-silver';
-                    } else if (score > 0) {
-                        return 'btn-success';
-                    } else {
-                        return 'btn-danger';
                     }
                 };
 

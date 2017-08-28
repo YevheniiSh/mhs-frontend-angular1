@@ -12,7 +12,7 @@
             <span> {{$ctrl.gameDate.toLocaleDateString()}}</span>
         </div>
         <div class="picker" ng-show="$ctrl.isCalendarVisible">
-            <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
+            <div uib-datepicker ng-model="$ctrl.gameDate"  class="well well-sm"
                  datepicker-options="$ctrl.options"></div>
         </div>
     </div>
@@ -21,11 +21,13 @@
             <label class="control-label data-picker-label" for="game-time">
                 <i id="game-time" class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
             </label>
-            <span> {{$ctrl.gameTime.toLocaleTimeString()}}</span>
+            <span> {{$ctrl.getTimeForView()}}</span>
+
         </div>
 
+
         <div class="picker" ng-show="$ctrl.isTimeVisible">
-            <div uib-timepicker name="time" ng-model="$ctrl.gameTime" class="well well-sm"></div>
+            <div uib-timepicker  show-meridian="$ctrl.isMeridian"  name="time" ng-model="$ctrl.gameTime" class="well well-sm"></div>
         </div>
     </div>
     <div class="col-md-2">
@@ -43,15 +45,17 @@
     <div class="col-md-4 game-alert">
         <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.dateSaved">
 
-            Date changes saved
+            {{'SAVE_DATE_MESSAGE' | translate}}
         </div>
         <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.timeSaved">
 
-            Time changes saved
+
+            {{'SAVE_TIME_MESSAGE' | translate}}
         </div>
         <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.locationSaved">
 
-            Location changes saved
+
+            {{'SAVE_LOCATION_MESSAGE' | translate}}
         </div>
     </div>
     <div class="row"></div>

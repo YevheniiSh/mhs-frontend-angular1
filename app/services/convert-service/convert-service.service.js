@@ -9,7 +9,8 @@ angular.module('convertService')
                 convertDate: convertDate,
                 convertTime: convertTime,
                 buildTemplateForFirebase: buildTemplateForFirebase,
-                convertTimeFromFirebase: convertTimeFromFirebase
+                convertTimeFromFirebase: convertTimeFromFirebase,
+                convertTimeForView: convertTimeForView
             };
 
             function convertTeamsForFirebase(teams) {
@@ -23,7 +24,7 @@ angular.module('convertService')
             function convertRoundsForFirebase(rounds) {
                 let convertedRounds = {};
                 for (let i = 0; i < rounds.length; i++) {
-                    convertedRounds[i] = {
+                    convertedRounds[i+1] = {
                         numberOfQuestions: rounds[i].numberOfQuestions,
                         name: rounds[i].name
                     };
@@ -72,6 +73,23 @@ angular.module('convertService')
                 date.setMinutes(time[1]);
                 date.setSeconds(0);
                 return date
+            }
+
+            function convertTimeForView(time) {
+                if (time === undefined)
+                    return;
+
+                let hours;
+                let minutes;
+
+                if (time.getHours() < 10) {
+                    hours = '0' + time.getHours();
+                } else hours = time.getHours();
+                if (time.getMinutes() < 10) {
+                    minutes = '0' + time.getMinutes();
+                } else minutes = time.getMinutes();
+
+                return hours + ':' + minutes;
             }
 
 
