@@ -71,3 +71,7 @@ span.ng-binding.date{
     display: inline-block;
     width: auto;
 }
+.no-photos-link{
+    color: #515151;
+    font-style: italic;
+}

@@ -1,1 +1,1 @@
-angular.module('gameResultsPage', ['resultService', 'gameFactory','esc-key']);
+angular.module('gameResultsPage', ['resultService', 'gameFactory', 'escKey', 'enterKey']);

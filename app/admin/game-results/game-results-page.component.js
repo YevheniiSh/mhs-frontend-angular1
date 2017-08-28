@@ -59,7 +59,7 @@ angular.module('gameResultsPage')
 
                 vm.shareURL = $location.absUrl();
 
-                vm.savePhotosLink = function () {
+                vm.savePhotosUrl = function () {
                     GameService.setPhotosLink(gameId, vm.newPhotosUrl);
                     vm.photosUrl = vm.newPhotosUrl;
                     vm.linkEditor = false;
