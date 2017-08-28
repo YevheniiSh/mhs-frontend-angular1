@@ -30,7 +30,7 @@
         <input ng-model="search" class="form-control" placeholder="{{'SEARCH_PLACEHOLDER' | translate}}">
     </div>
     <div class="col-md-10 col-md-offset-1">
-        <table class="table table-sm table-striped table-hover">
+        <table class="table table-sm table-striped table-hover" ng-mouseleave="$ctrl.setPensile()">
             <thead>
             <tr class="teams-property">
                 <th>#</th>
@@ -44,8 +44,10 @@
                 ng-repeat="team in $ctrl.teams |orderBy:'name'| filter:search">
                 <td>{{$index+1}}
                     <label class="label-pensile" for="{{team.$id}}">
-                        <i ng-show=" $ctrl.auth && team.$id == $ctrl.pensilId" ng-click="$ctrl.selectTeamForEdit(team.$id);$event.stopPropagation(); "
-                           title="{{'EDIT_TEAM_NAME_TOOLTIP'|translate}}"  class="fa fa-pencil pensile fa-lg" aria-hidden="true"></i></label>
+                        <i ng-show=" $ctrl.auth && team.$id == $ctrl.pensilId"
+                           ng-click="$ctrl.selectTeamForEdit(team.$id);$event.stopPropagation(); "
+                           title="{{'EDIT_TEAM_NAME_TOOLTIP'|translate}}"
+                           class="fa fa-pencil pensile fa-lg" aria-hidden="true"></i></label>
                 </td>
                 <td>
                     <input id="{{team.$id}}" class="editable-team"
@@ -53,7 +55,7 @@
                            ng-click="$event.stopPropagation()"
                            ng-model="team.name"
                            ng-disabled="!$ctrl.auth || $ctrl.editableTeam != team.$id"
-                    >
+                           esc-key="$ctrl.selectTeamForEdit()">
 
                 </td>
                 <td>{{team.games}}</td>
