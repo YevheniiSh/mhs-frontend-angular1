@@ -15,6 +15,14 @@
         vm.showSuccessAlert = false;
         vm.showErrorAlert = false;
 
+        vm.setTeamGames = function (team) {
+            if (team.games === undefined) {
+                team.games = 0
+            } else team.games = Object.keys(team.games).length;
+            vm.teams.push(team);
+            return team;
+        }
+
         function onInit() {
             TeamService.getAllTeams()
                 .then((arr) => {
@@ -35,11 +43,7 @@
                     //         vm.teams[i].games = res
                     //     })
                     for (let i = 0; i < arr.length; i++) {
-                        let team = arr[i];
-                        if (team.games === undefined) {
-                            team.games = 0
-                        } else team.games = Object.keys(team.games).length;
-                        vm.teams.push(team)
+                        vm.setTeamGames(arr[i]);
                     }
 
 
@@ -60,7 +64,8 @@
                     if (!res) {
                         TeamService
                             .changeTeamName(team.$id, team.name)
-                            .then(() => {
+                            .then((res) => {
+                                vm.setTeamGames(team);
                                 vm.showSuccessAlert = true;
                                 vm.showErrorAlert = false;
                                 showSuccessAlert();
