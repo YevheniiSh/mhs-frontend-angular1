@@ -105,5 +105,6 @@
   "TEAM_POSITION_LABEL":"Место",
   "AUTOCOMPLETE_BUTTON": "Автодополнение",
   "CLOSE_BUTTON": "Закрыть",
-  "TEAMS_HEADER":" Команды Mead Head Show"
+  "TEAMS_HEADER":" Команды Mead Head Show",
+  "NO_LINK_TO_PHOTOS_LABEL":"Отсутствует ссылка на фотографии"
 }

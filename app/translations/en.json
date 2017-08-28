@@ -106,5 +106,6 @@
   "AUTOCOMPLETE_BUTTON": "Autocomplete",
   "CLOSE_BUTTON": "Close",
   "GAMES_TABLE_HEADER":"Games",
-  "TEAMS_HEADER":"Mead Head Show Teams"
+  "TEAMS_HEADER":"Mead Head Show Teams",
+  "NO_LINK_TO_PHOTOS_LABEL": "No link to photos"
 }

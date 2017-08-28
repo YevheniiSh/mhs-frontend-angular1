@@ -23,7 +23,7 @@ angular
                 getAllFinishedGames: getAllFinishedGames,
                 getGameStatus: getGameStatus,
                 getDate: getDate,
-                getPhotosURL: getPhotosURL,
+                getPhotosUrl: getPhotosUrl,
                 startGame: startGame,
                 getGameTeams: getGameTeams,
                 setPhotosLink: setPhotosLink,
@@ -151,7 +151,6 @@ angular
                     if (key.indexOf('$') < 0 && obj.hasOwnProperty(key)) {
                         newObj[key] = obj[key];
                     }
-                    ;
                 }
                 return newObj;
             }
@@ -190,7 +189,7 @@ angular
 
             }
 
-            function getPhotosURL(gameId) {
+            function getPhotosUrl(gameId) {
                 return new $firebaseObject(finishedGameRef.child(gameId).child('photos'))
                     .$loaded().then((res) => {
                         if (res.$value === null)
