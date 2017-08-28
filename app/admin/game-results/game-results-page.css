@@ -67,5 +67,7 @@ span.ng-binding.date{
 .photosUrlContainer{
     display: inline-block;
 }
-.link-pencil{
+.photos-url-editor{
+    display: inline-block;
+    width: auto;
 }
