@@ -100,5 +100,6 @@
   "SAVE_DATE_MESSAGE": "Дату збережено",
   "SAVE_TIME_MESSAGE": "Час гри збережено",
   "SAVE_LOCATION_MESSAGE": "Локацію збережено",
+  "CREATE_TEMPLATE_BUTTON": "Створити новий шаблон",
   "TEAM_POSITION_LABEL":"Місце"
 }

@@ -101,5 +101,6 @@
   "SAVE_DATE_MESSAGE": "Дата сохранена",
   "SAVE_TIME_MESSAGE": "Время сохранено",
   "SAVE_LOCATION_MESSAGE": "Локация сохранена",
+  "CREATE_TEMPLATE_BUTTON": "Создать новый шаблон",
   "TEAM_POSITION_LABEL":"Место"
 }
