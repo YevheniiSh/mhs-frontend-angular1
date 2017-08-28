@@ -11,14 +11,15 @@
         <i class="fa fa-facebook" aria-hidden="true"></i>
         <span>{{'SHARE_BUTTON' | translate}}</span>
     </a>
-    <span class="photos-link" ng-if="$ctrl.gameFinished && $ctrl.user && !$ctrl.setLink">
-            <a class="" ng-if="$ctrl.photosUrl==''">No Link</a>
-            <a class="photos-link" ng-if="$ctrl.photosUrl!=''" ng-href="{{$ctrl.photosUrl}}" target="_blank">{{$ctrl.trimmedPhotosUrl}}</a>
-            <i class="fa fa-pencil link-pencil" ng-click="$ctrl.setLink = true" aria-hidden="true"></i>
+    <span class="photos-link" ng-if="$ctrl.gameFinished && !$ctrl.setLink">
+            <a ng-if="$ctrl.photosUrl==''">No Link</a>
+            <a ng-if="$ctrl.photosUrl!=''" ng-href="{{$ctrl.photosUrl}}" target="_blank">{{$ctrl.trimmedPhotosUrl}}</a>
+            <i ng-if="$ctrl.user" class="fa fa-pencil link-pencil link-icon" ng-click="$ctrl.setLink = true" aria-hidden="true"></i>
     </span>
-    <span ng-if="$ctrl.setLink" class="photos-link">
-        <input type="url"  ng-model="photoURL" ng-value='$ctrl.photosUrl'>
-        <i class="fa fa-check" ng-click="$ctrl.savePhotosLink(photoURL)"></i>
+    <span class="photos-link-editor" ng-if="$ctrl.setLink">
+        <input type="url" ng-focus="true" ng-model="$ctrl.photosUrl">
+        <i class="fa fa-check link-icon" ng-click="$ctrl.savePhotosLink()"></i>
+        <i class="fa fa-times link-icon" ng-click="$ctrl.discardPhotosUrlChanges()" aria-hidden="true"></i>
     </span>
     <h1 id="game-results">{{'GAME_RESULT_HEADER' | translate}}<span class="date">{{$ctrl.date}}</span></h1>
     <game-results></game-results>

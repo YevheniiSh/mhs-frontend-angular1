@@ -9,7 +9,7 @@ angular.module('gameResultsPage')
             '$location',
             '$window',
             'userAuthService',
-            function (ResultService, GameService, $routeParams, $rootScope, $location, $window, auth) {
+            function (ResultService, GameService, $routeParams, $rootScope, $location, $window, userAuthService) {
 
             let vm = this;
             let gameId = $routeParams.gameId;
@@ -43,10 +43,10 @@ angular.module('gameResultsPage')
 
                     GameService.getPhotosUrl(gameId).then((res) => {
                         vm.photosUrl = res;
-                        vm.setTrimmedPhotosUrl(res)
+                        vm.setTrimmedPhotosUrl(res);
                     });
 
-                    auth.currentUser()
+                    userAuthService.currentUser()
                         .then((res) => {
                             vm.user = res;
                         })
@@ -54,23 +54,26 @@ angular.module('gameResultsPage')
 
                 vm.shareURL = $location.absUrl();
 
-                vm.savePhotosLink = function (link) {
-                    if (link !== undefined) {
-                        GameService.setPhotosLink(gameId, link);
+                vm.savePhotosLink = function () {
+                        GameService.setPhotosLink(gameId, vm.photosUrl);
                         vm.setLink = false;
-                        vm.photosUrl = link;
-                        vm.setTrimmedPhotosUrl(link);
-                    }
+                        vm.setTrimmedPhotosUrl();
                 };
 
-                vm.setTrimmedPhotosUrl = function (link) {
+                vm.setTrimmedPhotosUrl = function () {
+                    let link = vm.photosUrl;
                     let photosUrlDomain = link.split('/')[2];
                     let photosUrlLastCharacters = link.substring(link.length - 3);
                     vm.trimmedPhotosUrl = photosUrlDomain + "..." + photosUrlLastCharacters;
                 };
 
+                vm.discardPhotosUrlChanges = function () {
+
+                    vm.setLink = false;
+                };
+
                 vm.onBack = function () {
-                    auth.currentUser()
+                    userAuthService.currentUser()
                         .then(() => {
                             $location.path(`/games/${gameId}/rounds`);
                         })
@@ -78,12 +81,6 @@ angular.module('gameResultsPage')
                             $location.path(`/games`);
                     })
                 };
-
-                auth.currentUser().then((res) => {
-                    vm.auth = true;
-                }).catch((err) => {
-                    vm.auth = false;
-                });
             }]
 
     });
