@@ -1,13 +1,13 @@
 <div class="container">
     <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
-    <div>
+    <div class="team-register-panel">
+        <div class="header">
+            <h1>Mead Head Show</h1>
+            <h2>{{'REGISTRATION_FORM_TITLE' | translate}} {{$ctrl.gameDate}}</h2>
+        </div>
         <form ng-submit="$ctrl.saveRequest()" name="request" class="request-team-form">
-            <div class="header">
-                <h1> Mead Head Show</h1>
-                <h2>{{'REGISTRATION_FORM_TITLE' | translate}} {{$ctrl.gameDate}}</h2>
-            </div>
             <div class="autocomplete-form">
-                <span><b>{{'TEAM_NAME_LABEL' | translate}}</b></span>
+                <label class="request-description"><b>{{'TEAM_NAME_LABEL' | translate}}</b></label>
                 <angucomplete-alt id="team-name"
                                   placeholder="{{'TEAM_NAME_PLACEHOLDER'|translate}}"
                                   pause="100"
@@ -23,100 +23,84 @@
             <script type="text/ng-template" id="alert.html">
                 <div ng-transclude></div>
             </script>
-            <div ng-if="!$ctrl.isCorrectLast3digits" uib-alert template-url="alert.html"
+            <div ng-if="!$ctrl.isCorrectLastDigits" uib-alert template-url="alert.html"
                  class="alert-danger incorrect-last-3-digits-alert"
                  role="alert">
                 <button type="button" class="close" ng-click="$ctrl.hideAlert()">
                     <span>×</span>
-                    <span class="sr-only">Close</span>
+                    <span class="sr-only">{{'CLOSE_BUTTON'|translate}}</span>
                 </button>
                 <span>{{'INCORRECT_LAST_NUMBERS_ERROR'|translate}}</span>
             </div>
-            <div class="team-additional-info">
-                <div ng-show="$ctrl.formStatus === 'full' || $ctrl.formStatus === 'pending'" class="captain-name-panel">
+            <div class="captain-info">
+                <div ng-class="!$ctrl.showPhoneVerifyRequest ? 'autocomplete-captain-name-panel' : 'captain-name-panel'">
                     <div class="captain-name-spans">
-                        <label for="captain-name" class="control-label">{{'CAPTAIN_NAME_LABEL'|translate}}</label>
+                        <label for="captain-name" class="control-label request-description">{{'CAPTAIN_NAME_LABEL'|translate}}</label>
                         <span ng-show="request.name.$error.minlength" class="err">
-                        {{'MINIMUM_3_CHARACTERS_ERROR'|translate}}
-                    </span>
+                            {{'MINIMUM_3_CHARACTERS_ERROR'|translate}}
+                        </span>
                         <span ng-show="request.name.$error.maxlength" class="err">
-                        {{'MAXIMUM_40_CHARACTERS_ERROR'|translate}}
-                    </span>
+                            {{'MAXIMUM_40_CHARACTERS_ERROR'|translate}}
+                        </span>
                     </div>
-                    <input ng-disabled="$ctrl.isChangesForbidden" id="captain-name"
+                    <input id="captain-name"
                            class="form-control" placeholder="{{'CAPTAIN_NAME_PLACEHOLDER'|translate}}"
                            name="name" ng-model="$ctrl.fullName" ng-maxlength="40" minlength="3"
                            ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}"
                            required>
                 </div>
 
-                <div ng-show="$ctrl.formStatus === 'phoneVerify'" class="captain-name-panel"></div>
-
-                <span ng-show="$ctrl.formStatus === 'full' || $ctrl.formStatus === 'pending'" class="phone-placeholder"></span>
-                <span ng-show="$ctrl.formStatus === 'phoneVerify'" class="phone-placeholder">+380-xx-xxxx-</span>
-                <div class="captain-phone-panel">
+                <div ng-class="!$ctrl.showPhoneVerifyRequest ? 'autocomplete-captain-phone-panel' : 'captain-phone-panel'">
                     <div class="phone-spans">
-                        <label ng-show="$ctrl.formStatus === 'full' || $ctrl.formStatus === 'pending'"
-                               for="captain-phone" class="control-label">
+                        <label for="captain-phone" class="control-label request-description">
                             {{'PHONE_LABEL'|translate}}
                         </label>
-                        <label ng-show="$ctrl.formStatus === 'phoneVerify'" class="control-label">
-                            последние 3 цифры телефона
-                        </label>
                     </div>
-
-                    <div class="input-group phone-autocomplete-panel">
-                        <input ng-show="$ctrl.formStatus === 'full' || $ctrl.formStatus === 'pending'"
-                               ng-disabled="$ctrl.isChangesForbidden" id="captain-phone"
+                    <div class="phone-panel">
+                        <input id="captain-phone"
                                class="form-control"
-                               placeholder="+380(XX)XX-XX-XXX"
+                               placeholder="(XXX)XX-XX-XXX"
                                type="text" ng-model="$ctrl.phone" name="phone"
                                ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
                                required
-                               mask="+999(99)99-99-999">
-
-
-                        <span ng-show="$ctrl.formStatus === 'full' || $ctrl.formStatus === 'pending'"
-                              class="input-group-btn">
-                                <button ng-show="$ctrl.showPhoneVerifyRequest" type="button"
-                                        ng-click="$ctrl.acceptPhoneVerifyRequest()"
-                                        class="btn btn-info btn-autocomplete">
-                                Автодополнение
-                                </button>
-                            </span>
-
-                        <div class="input-group">
-                            <input ng-show="$ctrl.formStatus === 'phoneVerify'" class="form-control"
-                                   id="captain-phone-validation" ng-model="$ctrl.last3digits"
-                                   type="tel"
-                                   placeholder="xxx"
-                                   maxlength="3">
-                            <span ng-show="$ctrl.formStatus === 'phoneVerify'" class="input-group-btn">
-                                    <button class="btn btn-danger btn-cancel-autocomplete" type="button"
-                                            ng-click="$ctrl.cancelVerifyByNumber()">{{'CANCEL_BUTTON'|translate}}</button>
-                                </span>
-
-                            <span ng-show="$ctrl.cancelAutocompleted" class="input-group-btn">
-                                    <button class="btn btn-danger btn-cancel-autocomplete" type="button"
-                                            ng-click="$ctrl.cancelVerifyByNumberWithReturnAutocompleteFeature()">{{'CANCEL_BUTTON'|translate}}
-                                    </button>
-                                </span>
-                        </div>
+                               mask="(999)99-99-999">
                     </div>
                 </div>
-                <div class="team-size-panel">
-                    <label for="team-size" class="control-label">{{'TEAM_SIZE_LABEL'|translate}}</label>
-                    <input id="team-size" ng-model="$ctrl.teamSize" class="form-control" type="number" min="2" max="15"
-                           required>
-                </div>
-                <div class="control-panel">
-                    <button class="btn btn-success btn-block" type="submit"
-                            ng-disabled="$ctrl.submitted || $ctrl.formStatus === 'phoneVerify'">
-                        {{'SUBMIT_BUTTON'|translate}}
-                    </button>
-                    <div class="alert alert-dismissible alert-success" ng-show="$ctrl.submitted">
-                        <strong>{{'WELL_DONE_MESSAGE'|translate}}</strong>{{'SEND_REQUEST_MESSAGE'|translate}}
+
+                <div class="vertical-line animate-show-hide animated" ng-show="$ctrl.showPhoneVerifyRequest"></div>
+
+                <div class="autocomplete-panel animate-come-gone animated" ng-show="$ctrl.showPhoneVerifyRequest">
+                    <label class="control-label request-description">
+                        {{'ENTER_LAST_PHONE_NUMBERS_LABEL' | translate}}
+                    </label>
+                    <div class="input-group last-digits-panel">
+                        <input class="form-control"
+                               id="captain-phone-validation" ng-model="$ctrl.lastDigits"
+                               type="tel"
+                               placeholder="XXX"
+                               maxlength="3">
+
+                        <span ng-show="$ctrl.cancelAutocompleted" class="input-group-btn">
+                            <button class="btn btn-danger btn-cancel-autocomplete" type="button"
+                                    ng-click="$ctrl.cancelVerifyByNumberWithReturnAutocompleteFeature()">{{'CANCEL_BUTTON'|translate}}
+                            </button>
+                        </span>
                     </div>
+                </div>
+            </div>
+
+            <div class="team-size-panel">
+                <label for="team-size" class="control-label request-description">{{'TEAM_SIZE_LABEL'|translate}}</label>
+                <input id="team-size" ng-model="$ctrl.teamSize" class="form-control" type="number" min="2" max="15"
+                       required>
+            </div>
+            <div class="control-panel">
+                <button class="btn btn-success btn-block" type="submit"
+                        ng-disabled="$ctrl.submitted">
+                    {{'SUBMIT_BUTTON'|translate}}
+                </button>
+                <div class="alert alert-dismissible alert-success" ng-show="$ctrl.submitted">
+                    <strong>{{'WELL_DONE_MESSAGE'|translate}}</strong>{{'SEND_REQUEST_MESSAGE'|translate}}
                 </div>
             </div>
         </form>
