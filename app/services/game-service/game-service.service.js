@@ -30,6 +30,7 @@ angular
                 removeTeamFromGame: removeTeamFromGame,
                 reOpenGame: reOpenGame,
                 addTeamToGame: addTeamToGame,
+                getGameTeamsNumber: getGameTeamsNumber,
                 getRoundByGameAndId: getRoundByGameAndId
             };
 
@@ -255,6 +256,15 @@ angular
                 obj.$value = link;
                 obj.$save();
                 return obj.$loaded();
+            }
+
+            function getGameTeamsNumber(gameId) {
+                let obj = new $firebaseArray(finishedGameRef.child(`${gameId}/teams`));
+                return obj.$loaded()
+                    .then((res) => {
+                        console.log(res.length);
+                        return res.length;
+                    })
             }
 
         }]);
