@@ -49,9 +49,10 @@
 </tr>
 </thead>
 <tbody>
-<tr ng-repeat="team in $ctrl.teams |orderBy:'name'| filter:search">
+<tr ng-repeat="team in $ctrl.teams |orderBy:'name'| filter:search" ng-click="$ctrl.showTeamGames(team.$id)">
     <td>{{$index+1}}</td>
     <td><input class="editable-team" ng-change="$ctrl.changeTeamName(team)"
+               ng-click="$event.stopPropagation()"
                ng-model="team.name" title="{{'EDIT_TEAM_NAME_TOOLTIP'|translate}}"
                ng-disabled="!$ctrl.auth"></td>
     <td>{{team.games}}</td>
