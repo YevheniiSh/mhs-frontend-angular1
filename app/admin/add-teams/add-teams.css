@@ -162,6 +162,6 @@ select {
     font-weight: bold;
 }
 
-.editable-team-size:invalid {
+.editable-team-size.ng-invalid {
     color: red;
 }
