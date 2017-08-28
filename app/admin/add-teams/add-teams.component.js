@@ -82,7 +82,9 @@ angular.module('addTeams')
                 }
 
                 vm.updateTeamSize = function (teamId, numberOfPlayers) {
-                    openGameService.updateTeamSize(vm.gameId, teamId, numberOfPlayers);
+                    if (numberOfPlayers) {
+                        openGameService.updateTeamSize(vm.gameId, teamId, numberOfPlayers);
+                    }
                 }
             }]
 
