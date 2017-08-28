@@ -6,9 +6,9 @@ angular.module('gameType')
         controller: GameType
     });
 
-GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$location'];
+GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$location', '$timeout'];
 
-function GameType(gameTemplateService, openGameService, $routeParams, $location) {
+function GameType(gameTemplateService, openGameService, $routeParams, $location, $timeout) {
     let vm = this;
 
     vm.$onInit = onInit;
@@ -29,13 +29,20 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location)
 
     vm.saveRounds = function () {
         openGameService.addRounds(vm.gameId, vm.configRounds);
+        vm.submitted = true;
         vm.templateFormShow = true;
+        $timeout(() => {
+            vm.submitted = false;
+        }, 1500);
     };
 
     vm.saveTemplate = function () {
         gameTemplateService.saveFromGame(vm.gameId, vm.templateName);
         vm.templateFormShow = false;
-        vm.templateSaved = true
+        vm.templateSaved = true;
+        $timeout(() => {
+            vm.templateSaved = false;
+        }, 1500);
     };
 
     vm.selectTemplate = function (template) {

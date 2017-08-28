@@ -78,6 +78,10 @@ angular.module('teamResults')
                     vm.getResults();
                 };
 
+                vm.selectAllContent= function($event) {
+                    $event.target.select();
+                };
+
                 this.totalColor = function (round) {
                     let total = parseFloat(round.total);
                     if (total === 0) {

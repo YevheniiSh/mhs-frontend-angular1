@@ -3,8 +3,8 @@ angular.module('configGame')
     .component('configGame', {
         templateUrl: 'admin/game-build/config-game/config-game.html',
         css: 'admin/game-build/config-game/config-game.css',
-        controller: ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout',
-            function ($location, OpenGameService, $routeParams, $timeout) {
+        controller: ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout','$locale','convertServiceFactory',
+            function ($location, OpenGameService, $routeParams, $timeout,$locale,convertService) {
                 let vm = this;
                 let gameId = $routeParams.gameId;
                 vm.isCalendarVisible = false;
@@ -12,7 +12,8 @@ angular.module('configGame')
                 vm.saved = false;
                 vm.options = {};
                 vm.options.minDate = new Date();
-
+                vm.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
+                vm.isMeridian = false;
                 this.location = "";
 
                 vm.$onInit = onInit;
@@ -40,6 +41,10 @@ angular.module('configGame')
                     if (vm.activeTab === undefined)
                         vm.activeTab = 'teams';
                 }
+
+                vm.getTimeForView = function () {
+                    return convertService.convertTimeForView(vm.gameTime)
+                };
 
                 vm.updateDateAndLocation = function () {
                     OpenGameService.changeLocation(gameId, vm.location);
