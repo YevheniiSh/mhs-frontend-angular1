@@ -35,7 +35,8 @@ angular.module('gameResultsPage')
                     ResultService.getParsedResults(this.gameId)
                         .then((result) => {
                             vm.results = result;
-                        });
+                    });
+
                     GameService.getGameStatus(gameId).then(status => {
                         (status === "finished") ?
                             vm.gameFinished = true : vm.gameFinished = false;
@@ -43,7 +44,7 @@ angular.module('gameResultsPage')
 
                     GameService.getPhotosUrl(gameId).then((res) => {
                         vm.photosUrl = res;
-                        vm.setTrimmedPhotosUrl(res);
+                        vm.newPhotosUrl = res;
                     });
 
                     userAuthService.currentUser()
@@ -52,24 +53,31 @@ angular.module('gameResultsPage')
                         })
                 }
 
+                vm.getPhotoUrl = function () {
+
+                };
+
                 vm.shareURL = $location.absUrl();
 
                 vm.savePhotosLink = function () {
-                        GameService.setPhotosLink(gameId, vm.photosUrl);
-                        vm.setLink = false;
-                        vm.setTrimmedPhotosUrl();
+                    GameService.setPhotosLink(gameId, vm.newPhotosUrl);
+                    vm.photosUrl = vm.newPhotosUrl;
+                    vm.linkEditor = false;
                 };
 
-                vm.setTrimmedPhotosUrl = function () {
+                vm.editLink = function () {
+                    vm.newPhotosUrl = vm.photosUrl;
+                    vm.linkEditor = true;
+                };
+
+                vm.getTrimmedPhotosUrl= function () {
                     let link = vm.photosUrl;
-                    let photosUrlDomain = link.split('/')[2];
-                    let photosUrlLastCharacters = link.substring(link.length - 3);
-                    vm.trimmedPhotosUrl = photosUrlDomain + "..." + photosUrlLastCharacters;
-                };
-
-                vm.discardPhotosUrlChanges = function () {
-
-                    vm.setLink = false;
+                    let photosUrlArray = link.split('/');
+                    let photosUrlDomain = photosUrlArray[2];
+                    let photosUrlPath = photosUrlArray[3];
+                    console.log(photosUrlPath);
+                    let photosUrlLastCharacters = link.substring(link.length - 6);
+                    return photosUrlDomain + "/" + photosUrlPath + "/..." + photosUrlLastCharacters;
                 };
 
                 vm.onBack = function () {
