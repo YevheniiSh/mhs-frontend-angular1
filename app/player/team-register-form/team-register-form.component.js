@@ -78,6 +78,10 @@
         vm.cancelVerifyByNumberWithReturnAutocompleteFeature = function () {
             cancelAutocomplete();
             vm.showPhoneVerifyRequest = true;
+
+            vm.saveRequest = function () {
+                saveRequestFromInputtedData();
+            };
         };
 
         function setupVerifyByPhone(teamRequest) {
