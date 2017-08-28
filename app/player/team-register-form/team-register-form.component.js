@@ -33,6 +33,8 @@
             setupTeams();
 
             watchSelectedTeam();
+
+            saveRequest();
         }
 
         function watchSelectedTeam() {
@@ -43,6 +45,7 @@
                     cancelAutocomplete();
                     return;
                 }
+
                 if (isSelectedTeamNotEmpty()) {
                     cleanAutoselectedTeam();
                     setupPhoneVerifyRequest(team.originalObject);
@@ -60,6 +63,7 @@
             if (vm.selectedTeam === undefined) {
                 return;
             }
+
             if (isSelectedTeamNotEmpty()) {
                 cleanAutoselectedTeam();
             }
@@ -75,13 +79,16 @@
             vm.selectedTeam = {};
         }
 
-        vm.cancelVerifyByNumberWithReturnAutocompleteFeature = function () {
-            cancelAutocomplete();
-            vm.showPhoneVerifyRequest = true;
-
+        function saveRequest() {
             vm.saveRequest = function () {
                 saveRequestFromInputtedData();
             };
+        }
+
+        vm.cancelVerifyByNumberWithReturnAutocompleteFeature = function () {
+            cancelAutocomplete();
+            vm.showPhoneVerifyRequest = true;
+            saveRequest();
         };
 
         function setupVerifyByPhone(teamRequest) {
@@ -147,6 +154,7 @@
             vm.showPhoneVerifyRequest = true;
 
             vm.formStatus = 'phoneVerify';
+
             setupVerifyByPhoneNumber(team);
         }
 
@@ -196,10 +204,6 @@
                     });
             }
         }
-
-        vm.saveRequest = function () {
-            saveRequestFromInputtedData();
-        };
 
         function saveTeam(team) {
             gameRequestServiceFactory.save(gameId, team)
