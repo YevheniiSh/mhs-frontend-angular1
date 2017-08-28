@@ -37,3 +37,28 @@
     </div>
 
 </div>
+
+
+<table class="table table-sm table-hover">
+<thead>
+<tr class="game-property">
+    <th>#</th>
+    <th>Команды</th>
+    <th>Игры</th>
+
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="team in $ctrl.teams |orderBy:'name'| filter:search">
+    <td>{{$index+1}}</td>
+    <td><input class="editable-team" ng-change="$ctrl.changeTeamName(team)"
+               ng-model="team.name" title="{{'EDIT_TEAM_NAME_TOOLTIP'|translate}}"
+               ng-disabled="!$ctrl.auth"></td>
+    <td>{{team.games}}</td>
+
+    <td>
+
+    </td>
+</tr>
+</tbody>
+</table>

@@ -7,9 +7,9 @@
             }
         );
 
-    TeamList.$inject = ['userAuthService','TeamServiceFactory', '$timeout','$location'];
+    TeamList.$inject = ['userAuthService', 'TeamServiceFactory', '$timeout', '$location'];
 
-    function TeamList(userService,TeamService, $timeout, $location) {
+    function TeamList(userService, TeamService, $timeout, $location) {
         let vm = this;
         vm.$onInit = onInit;
         vm.showSuccessAlert = false;
@@ -18,7 +18,31 @@
         function onInit() {
             TeamService.getAllTeams()
                 .then((arr) => {
-                    vm.teams = arr;
+                    vm.teams = [];
+
+                    // for (let i = 0; i < arr.length; i++) {
+                    //     if (arr[i].games === undefined || null) {
+                    //         arr[i].size = 0;
+                    //         vm.teams.push(arr[i]);
+                    //         continue;
+                    //     }
+                    //     arr[i].size = Object.keys(arr[i].games).length;
+                    //     vm.teams.push(arr[i]);
+                    // }
+                    // for (let i = 0; i < arr.length; i++)
+                    //
+                    //     TeamService.getTeamGamesCount(vm.teams[i].$id).then((res) => {
+                    //         vm.teams[i].games = res
+                    //     })
+                    for (let i = 0; i < arr.length; i++) {
+                        let team = arr[i];
+                        if (team.games === undefined) {
+                            team.games = 0
+                        } else team.games = Object.keys(team.games).length;
+                        vm.teams.push(team)
+                    }
+
+
                 });
         }
 
@@ -29,6 +53,7 @@
         }
 
         vm.changeTeamName = function (team) {
+
             TeamService
                 .checkTeamNameCoincidence(team.name)
                 .then((res) => {
@@ -49,11 +74,11 @@
         vm.hideAlert = function () {
             vm.showSuccessAlert = false;
             vm.showErrorAlert = false;
-        }
+        };
 
-        vm.showTeamGames=function(teamId){
+        vm.showTeamGames = function (teamId) {
             $location.path(`/teams/${teamId}`);
-        }
+        };
 
         vm.auth = false;
         userService.currentUser().then((res) => {
