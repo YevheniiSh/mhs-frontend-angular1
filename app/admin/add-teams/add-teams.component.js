@@ -80,6 +80,10 @@ angular.module('addTeams')
                     teamService.removeGameFromTeam(team.$id, vm.gameId);
                     gameRequestService.setUnconfirmedStatus(vm.gameId, team.requestId);
                 }
+
+                vm.updateTeamSize = function (teamId, numberOfPlayers) {
+                    openGameService.updateTeamSize(vm.gameId, teamId, numberOfPlayers);
+                }
             }]
 
     })
