@@ -25,6 +25,11 @@ span.inp{
     font-size: 17px;
     border: none;
 }
+
+.edited {
+    box-shadow: 0px 0px 4px 3px #ffbc35;
+}
+
 span.inp:nth-child(5){
     margin-right: 30px;
 }

@@ -100,5 +100,9 @@
   "SAVE_DATE_MESSAGE": "Дату збережено",
   "SAVE_TIME_MESSAGE": "Час гри збережено",
   "SAVE_LOCATION_MESSAGE": "Локацію збережено",
-  "GAMES_TABLE_HEADER":"Ігри"
+  "GAMES_TABLE_HEADER":"Ігри",
+  "CREATE_TEMPLATE_BUTTON": "Створити новий шаблон",
+  "TEAM_POSITION_LABEL":"Місце",
+  "AUTOCOMPLETE_BUTTON": "Автодоповнення",
+  "CLOSE_BUTTON": "Закрити"
 }
