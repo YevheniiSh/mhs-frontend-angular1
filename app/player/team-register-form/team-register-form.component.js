@@ -6,9 +6,9 @@
             controller: TeamRegister
         });
 
-    TeamRegister.$inject = ['teamRequestService', 'TeamServiceFactory', 'GameServiceFactory', '$routeParams', '$window', '$location', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope'];
+    TeamRegister.$inject = ['teamRequestService', 'TeamServiceFactory', '$routeParams', '$window', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope'];
 
-    function TeamRegister(teamRequestService, TeamService, GameService, $routeParams, $window, $location, gameRequestServiceFactory, OpenGameService, $scope) {
+    function TeamRegister(teamRequestService, TeamService, $routeParams, $window, gameRequestServiceFactory, OpenGameService, $scope) {
         let vm = this;
         vm.$onInit = onInit;
         let gameId = $routeParams.gameId;
@@ -20,8 +20,7 @@
             vm.teamSize = 4;
             vm.submitted = false;
             vm.formStatus = 'full';
-            vm.isChangesForbidden = false;
-            vm.isCorrectLast3digits = true;
+            vm.isCorrectLastDigits = true;
             vm.showPhoneVerifyRequest = false;
             vm.selectedTeam = {};
         }
@@ -44,9 +43,9 @@
                     cancelAutocomplete();
                     return;
                 }
-                if (Object.keys(vm.selectedTeam).length !== 0) {
+                if (isSelectedTeamNotEmpty()) {
+                    cleanAutoselectedTeam();
                     setupPhoneVerifyRequest(team.originalObject);
-                    cancelAutocomplete();
                 }
             });
         }
@@ -55,16 +54,25 @@
             vm.formStatus = 'full';
             vm.fullName = '';
             vm.phone = '';
-            vm.isChangesForbidden = false;
+            vm.lastDigits = '';
             vm.cancelAutocompleted = false;
 
             if (vm.selectedTeam === undefined) {
                 return;
             }
-            if (Object.keys(vm.selectedTeam).length !== 0) {
-                vm.teamName = vm.selectedTeam.originalObject.name;
-                vm.selectedTeam = {};
+            if (isSelectedTeamNotEmpty()) {
+                cleanAutoselectedTeam();
             }
+        }
+
+
+        function isSelectedTeamNotEmpty() {
+            return Object.keys(vm.selectedTeam).length !== 0;
+        }
+
+        function cleanAutoselectedTeam() {
+            vm.teamName = vm.selectedTeam.originalObject.name;
+            vm.selectedTeam = {};
         }
 
         vm.cancelVerifyByNumberWithReturnAutocompleteFeature = function () {
@@ -74,11 +82,9 @@
 
         function setupVerifyByPhone(teamRequest) {
             vm.formStatus = 'full';
-            vm.isChangesForbidden = true;
             vm.fullName = teamRequest.fullName;
             vm.phone = teamRequest.phone;
-            vm.isCorrectLast3digits = true;
-            vm.showPhoneVerifyRequest = false;
+            vm.isCorrectLastDigits = true;
             vm.cancelAutocompleted = true;
         }
 
@@ -96,19 +102,19 @@
             };
         }
 
-        function saveRequestFromAutocompleteData(last3digits, team) {
-            vm.isCorrectLast3digits = true;
-            if (last3digits.length === 3) {
+        function saveRequestFromAutocompleteData(lastDigits, team) {
+            vm.isCorrectLastDigits = true;
+            if (lastDigits.length === 3) {
                 teamRequestService
                     .getTeamRequests(team.$id)
                     .then((teamRequests) => {
                         for (let teamRequest of teamRequests) {
-                            if (phoneMatchCheck(teamRequest.phone, last3digits)) {
+                            if (phoneMatchCheck(teamRequest.phone, lastDigits)) {
                                 setupVerifyByPhone(teamRequest);
                                 saveVerifiedRequest(team, teamRequest);
                                 break;
                             } else {
-                                vm.isCorrectLast3digits = false;
+                                vm.isCorrectLastDigits = false;
                             }
                         }
                     })
@@ -116,17 +122,17 @@
         }
 
         function setupVerifyByPhoneNumber(team) {
-            vm.last3digits = '';
+            vm.lastDigits = '';
             $scope.$watch(() => {
-                return vm.last3digits;
-            }, (last3digits) => {
-                saveRequestFromAutocompleteData(last3digits, team);
+                return vm.lastDigits;
+            }, (lastDigits) => {
+                saveRequestFromAutocompleteData(lastDigits, team);
             });
         }
 
-        function phoneMatchCheck(originalPhoneNumber, last3digits, lastDigitsCount = 3) {
-            let origLast3digits = originalPhoneNumber.substring(originalPhoneNumber.length - lastDigitsCount, originalPhoneNumber.length);
-            return parseInt(last3digits) === parseInt(origLast3digits);
+        function phoneMatchCheck(originalPhoneNumber, lastDigits, lastDigitsCount = 3) {
+            let origLastDigits = originalPhoneNumber.substring(originalPhoneNumber.length - lastDigitsCount, originalPhoneNumber.length);
+            return parseInt(lastDigits) === parseInt(origLastDigits);
         }
 
         vm.cancelVerifyByNumber = function () {
@@ -135,15 +141,9 @@
 
         function setupPhoneVerifyRequest(team) {
             vm.showPhoneVerifyRequest = true;
-            vm.formStatus = 'pending';
-            vm.acceptPhoneVerifyRequest = function () {
-                vm.formStatus = 'phoneVerify';
-                setupVerifyByPhoneNumber(team);
-            };
-            vm.cancelPhoneVerifyRequest = function () {
-                vm.showPhoneVerifyRequest = false;
-                cancelAutocomplete();
-            }
+
+            vm.formStatus = 'phoneVerify';
+            setupVerifyByPhoneNumber(team);
         }
 
         function checkExistenceInputtedTeam(teamName) {
@@ -154,7 +154,6 @@
                 } else {
                     cancelAutocomplete();
                     vm.showPhoneVerifyRequest = false;
-                    vm.isChangesForbidden = false;
                 }
             }
         }
@@ -230,7 +229,7 @@
         }
 
         vm.hideAlert = function () {
-            vm.isCorrectLast3digits = true;
+            vm.isCorrectLastDigits = true;
         };
     }
 })();
