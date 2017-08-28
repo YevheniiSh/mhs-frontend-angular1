@@ -104,5 +104,6 @@
   "CREATE_TEMPLATE_BUTTON": "Створити новий шаблон",
   "TEAM_POSITION_LABEL":"Місце",
   "AUTOCOMPLETE_BUTTON": "Автодоповнення",
-  "CLOSE_BUTTON": "Закрити"
+  "CLOSE_BUTTON": "Закрити",
+  "TEAMS_HEADER":" Команди Mead Head Show"
 }

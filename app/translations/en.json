@@ -105,5 +105,6 @@
   "TEAM_POSITION_LABEL":"Team position",
   "AUTOCOMPLETE_BUTTON": "Autocomplete",
   "CLOSE_BUTTON": "Close",
-  "GAMES_TABLE_HEADER":"Games"
+  "GAMES_TABLE_HEADER":"Games",
+  "TEAMS_HEADER":"Mead Head Show Teams"
 }
