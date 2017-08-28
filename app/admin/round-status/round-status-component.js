@@ -7,7 +7,13 @@
             controller: RoundStatusController
         });
 
-    RoundStatusController.$inject = ['$routeParams', '$location', 'RoundStatusService', 'GameServiceFactory', 'ResultServiceFactory'];
+    RoundStatusController.$inject = [
+        '$routeParams',
+        '$location',
+        'RoundStatusService',
+        'GameServiceFactory',
+        'ResultServiceFactory'
+    ];
 
     function RoundStatusController($routeParams, $location, RoundStatusService, GameService, ResultService) {
         let vm = this;
@@ -33,11 +39,12 @@
         vm.onFinished = function () {
             ResultService.setGameWinner(vm.status, vm.gameId)
                 .then(() => {
-                    return ResultService.setTeamsResults(vm.gameId)
+                    return ResultService.setTeamPosition(vm.gameId)
                 })
                 .then(() => {
                     GameService.finishGame(vm.gameId);
-                }).then(() => {
+                })
+                .then(() => {
                 $location.path("games/" + vm.gameId + "/results")
             });
 

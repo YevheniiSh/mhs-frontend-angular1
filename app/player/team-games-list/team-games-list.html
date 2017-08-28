@@ -6,16 +6,16 @@
         <tr>
             <th>{{'DATE_LABEL' | translate}}</th>
             <th>{{'LOCATION_LABEL' | translate}}</th>
-            <th>{{'TEAM_SCORE_LABEL'| translate}}</th>
+            <th>{{'TEAM_POSITION_LABEL'| translate}}</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="game in $ctrl.teamGames"
-            ng-if="game.score"
+            ng-if="game.position"
             ng-click="$ctrl.onClicked(game.$id)">
             <td>{{game.date}}</td>
             <td>{{game.location}}</td>
-            <td>{{game.score}}</td>
+            <td>{{game.position}}</td>
         </tr>
         </tbody>
     </table>

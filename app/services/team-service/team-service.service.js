@@ -17,7 +17,8 @@ angular
                 removeGameFromTeam: removeGameFromTeam,
                 addGameScore: addGameScore,
                 checkTeamNameCoincidence: checkTeamNameCoincidence,
-                getTeamGames:getTeamGames
+                getTeamGames:getTeamGames,
+                saveTeamPosition:saveTeamPosition
             };
 
             function save(team) {
@@ -132,6 +133,13 @@ angular
             function addGameScore(teamId, gameId, score) {
                 let obj = $firebaseObject(teamRef.child(`${teamId}/games/${gameId}/score`));
                 obj.$value = score;
+                obj.$save();
+                return obj.$loaded();
+            }
+
+            function saveTeamPosition(teamId, gameId, position) {
+                let obj = $firebaseObject(teamRef.child(`${teamId}/games/${gameId}/position`));
+                obj.$value = position;
                 obj.$save();
                 return obj.$loaded();
             }

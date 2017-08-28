@@ -99,6 +99,10 @@ angular.module('teamResults')
                     });
                 };
 
+                vm.selectAllContent= function($event) {
+                    $event.target.select();
+                };
+
                 this.totalColor = function (round) {
                     let total = parseFloat(round.total);
                     if (total === 0) {
