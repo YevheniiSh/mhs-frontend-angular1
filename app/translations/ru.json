@@ -99,10 +99,12 @@
   "QUESTION_QUANTITY_LABEL": "Количество вопросов",
   "SAVE_DATE_MESSAGE": "Дата сохранена",
   "SAVE_TIME_MESSAGE": "Время сохранено",
+  "SAVE_LOCATION_MESSAGE": "Локация сохранена",
+  "GAMES_TABLE_HEADER":"Игры",
   "CREATE_TEMPLATE_BUTTON": "Создать новый шаблон",
   "TEAM_POSITION_LABEL":"Место",
-  "SAVE_LOCATION_MESSAGE": "Локация сохранена",
   "AUTOCOMPLETE_BUTTON": "Автодополнение",
   "CLOSE_BUTTON": "Закрыть",
+  "TEAMS_HEADER":" Команды Mead Head Show",
   "NO_LINK_TO_PHOTOS_LABEL":"Отсутствует ссылка на фотографии"
 }
