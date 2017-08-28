@@ -31,7 +31,8 @@ angular
                 let resultRef = ref.child(`${gameId}/results/${resultKey}/`);
                 let resultObj = new $firebaseObject(resultRef);
                 resultObj.$value = result;
-                resultObj.$save()
+                resultObj.$save();
+                return resultObj.$loaded();
             };
 
             resultFactory.filter = function (filter, gameId) {
@@ -150,6 +151,17 @@ angular
                     });
             }
 
+            resultFactory.setTeamPosition = function (gameId) {
+                return resultFactory.getParsedResults(gameId)
+                    .then(resultFactory.sortDesc)
+                    .then((res) => {
+                        res.forEach((item,index) => {
+                            TeamService.saveTeamPosition(item.teamId, gameId, index+1);
+                        });
+                        return res;
+                    });
+            }
+
             resultFactory.getGameWinner = function (gameId) {
                 return resultFactory.getParsedResults(gameId)
                     .then((results) => {
@@ -209,6 +221,14 @@ angular
                             })
                     })
             }
+
+            resultFactory.getQuiz = function (gameId, resId) {
+                let ref = gameService.getGameRef(gameId);
+                return ref.then((res) => {
+                    let obj = $firebaseObject(res.child(`${gameId}/results/${resId}`));
+                    return obj.$loaded();
+                })
+            };
 
             return resultFactory;
         }]

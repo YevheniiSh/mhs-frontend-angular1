@@ -13,11 +13,13 @@ function currentGameTemplate($routeParams, templateService){
     vm.$onInit = onInit;
     function onInit() {
         vm.templateId = $routeParams.templateId;
-
         templateService.getById(vm.templateId).then(template => {
+            templateService.getRounds(vm.templateId)
+                .then(rounds=>{
+                    vm.currentTemplateRounds = rounds;
+                    if (!template.rounds) vm.currentTemplateRounds = [{numberOfQuestions: 10, name: ""}];
+                })
             vm.currentTemplateName = template.name;
-            vm.currentTemplateRounds = template.rounds;
-            if (!template.rounds) vm.currentTemplateRounds = [{numberOfQuestions: 10, name: ""}];
         });
     }
 

@@ -8,8 +8,7 @@
         <tbody>
         <tr ng-repeat="round in $ctrl.rounds">
             <td class="td-round-number">
-                <div class="round-number">
-                    {{$index + 1}}</div>
+                {{$index + 1}}
             </td>
             <td>
                 <div class="round-name">
@@ -24,7 +23,7 @@
                            placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" type="number" required>
                 </div>
             </td>
-            <td ng-click="$ctrl.deleteRound($index)"><a class="btn btn-danger" >
+            <td ng-click="$ctrl.deleteRound($index)"><a class="btn btn-danger">
                 {{'DELETE_ROUND_BUTTON' | translate}}</a>
             </td>
         </tr>
