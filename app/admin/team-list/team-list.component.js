@@ -14,6 +14,7 @@
         vm.$onInit = onInit;
         vm.showSuccessAlert = false;
         vm.showErrorAlert = false;
+        vm.editableTeam = 'none';
 
         function onInit() {
             TeamService.getAllTeams()
@@ -72,5 +73,15 @@
         }).catch((err) => {
             vm.auth = false;
         });
+
+        vm.selectTeamForEdit = function(teamId){
+            vm.editableTeam = teamId;
+        }
+
+        vm.setPensile = function (teamId) {
+            vm.pensilId = teamId
+
+        }
+
     }
 })();
