@@ -66,7 +66,7 @@ angular.module('teamResults')
                     let score = parseFloat(quiz.score);
                     let quizNum = parseFloat(quiz.quizNum);
                     let roundNum = parseFloat(round.roundNum);
-
+                    quiz.edit = true;
                     let result = {
                         quiz: quizNum,
                         round: roundNum,
@@ -74,8 +74,30 @@ angular.module('teamResults')
                         teamId: vm.teamId
                     };
 
-                    ResultService.saveResult(vm.state, result, vm.gameId);
-                    vm.getResults();
+                    ResultService.saveResult(vm.state, result, vm.gameId).then(() => {
+                        vm.getResult(round, quiz);
+                    });
+                };
+
+                vm.getResult = function (round, quiz) {
+                    let resultKey = [round.roundNum, quiz.quizNum, vm.teamId].join('_');
+                    ResultService.getResult(vm.gameId, resultKey).then((res) => {
+                        console.log(res);
+                        console.log(vm.roundsResult);
+                        vm.roundsResult[res.round - 1].quizzes[res.quiz - 1].score = res.score;
+                        vm.roundsResult[res.round - 1].total = 0;
+                        vm.roundsResult[res.round - 1].quizzes.forEach((item) => {
+                            vm.roundsResult[res.round - 1].total += item.score;
+                        })
+
+                        vm.teamTotal = 0;
+
+                        angular.forEach(vm.roundsResult, (r) => {
+                            if (r.total) {
+                                vm.teamTotal += parseFloat(r.total);
+                            }
+                        });
+                    })
                 };
 
                 this.totalColor = function (round) {
@@ -86,17 +108,6 @@ angular.module('teamResults')
                         return 'text-success'
                     } else {
                         return 'text-danger'
-                    }
-                };
-                this.quizColor = function (quiz) {
-                    let score = parseFloat(quiz.score);
-
-                    if (score === 0) {
-                        return 'btn-silver';
-                    } else if (score > 0) {
-                        return 'btn-success';
-                    } else {
-                        return 'btn-danger';
                     }
                 };
 
