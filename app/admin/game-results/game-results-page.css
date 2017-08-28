@@ -33,6 +33,7 @@
 }
 
 td.td-cell{
+    cursor: pointer;
     font-size: 20px;
 }
 th.th-cell.round-number{
@@ -52,4 +53,7 @@ h1#game-results{
 }
 span.ng-binding.date{
     float: right;
+}
+a{
+    cursor: pointer;
 }

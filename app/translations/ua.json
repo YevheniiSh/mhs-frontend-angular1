@@ -99,9 +99,11 @@
   "QUESTION_QUANTITY_LABEL": "Кількість питань",
   "SAVE_DATE_MESSAGE": "Дату збережено",
   "SAVE_TIME_MESSAGE": "Час гри збережено",
+  "SAVE_LOCATION_MESSAGE": "Локацію збережено",
+  "GAMES_TABLE_HEADER":"Ігри",
   "CREATE_TEMPLATE_BUTTON": "Створити новий шаблон",
   "TEAM_POSITION_LABEL":"Місце",
-  "SAVE_LOCATION_MESSAGE": "Локацію збережено",
   "AUTOCOMPLETE_BUTTON": "Автодоповнення",
-  "CLOSE_BUTTON": "Закрити"
+  "CLOSE_BUTTON": "Закрити",
+  "TEAMS_HEADER":" Команди Mead Head Show"
 }
