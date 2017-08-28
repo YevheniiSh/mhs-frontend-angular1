@@ -73,6 +73,7 @@ span.ng-binding.date{
     width: auto;
 }
 .no-photos-link{
+    cursor: default;
     color: #515151;
     font-style: italic;
 }
