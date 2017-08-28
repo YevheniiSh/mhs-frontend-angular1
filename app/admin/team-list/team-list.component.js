@@ -15,38 +15,13 @@
         vm.showSuccessAlert = false;
         vm.showErrorAlert = false;
 
-        vm.setTeamGames = function (team) {
-            if (team.games === undefined) {
-                team.games = 0
-            } else team.games = Object.keys(team.games).length;
-            vm.teams.push(team);
-            return team;
-        }
-
         function onInit() {
             TeamService.getAllTeams()
                 .then((arr) => {
                     vm.teams = [];
-
-                    // for (let i = 0; i < arr.length; i++) {
-                    //     if (arr[i].games === undefined || null) {
-                    //         arr[i].size = 0;
-                    //         vm.teams.push(arr[i]);
-                    //         continue;
-                    //     }
-                    //     arr[i].size = Object.keys(arr[i].games).length;
-                    //     vm.teams.push(arr[i]);
-                    // }
-                    // for (let i = 0; i < arr.length; i++)
-                    //
-                    //     TeamService.getTeamGamesCount(vm.teams[i].$id).then((res) => {
-                    //         vm.teams[i].games = res
-                    //     })
                     for (let i = 0; i < arr.length; i++) {
-                        vm.setTeamGames(arr[i]);
+                        vm.teams.push(getTeamWithGames(arr[i]));
                     }
-
-
                 });
         }
 
@@ -65,7 +40,7 @@
                         TeamService
                             .changeTeamName(team.$id, team.name)
                             .then((res) => {
-                                vm.setTeamGames(team);
+                                vm.teams[vm.teams.indexOf(team)] = getTeamWithGames(team)
                                 vm.showSuccessAlert = true;
                                 vm.showErrorAlert = false;
                                 showSuccessAlert();
@@ -85,6 +60,12 @@
             $location.path(`/teams/${teamId}`);
         };
 
+        function getTeamWithGames(team) {
+            if (team.games === undefined) {
+                team.games = 0
+            } else team.games = Object.keys(team.games).length;
+            return team;
+        };
         vm.auth = false;
         userService.currentUser().then((res) => {
             vm.auth = true;
