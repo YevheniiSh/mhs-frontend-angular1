@@ -100,5 +100,6 @@
   "PHOTO_URL_BUTTON": "Photos",
   "SAVE_DATE_MESSAGE": "Date changes saved",
   "SAVE_TIME_MESSAGE": "Time changes saved",
-  "SAVE_LOCATION_MESSAGE": "Location changes saved"
+  "SAVE_LOCATION_MESSAGE": "Location changes saved",
+  "GAMES_TABLE_HEADER":"Games"
 }

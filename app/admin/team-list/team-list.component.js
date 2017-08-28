@@ -67,6 +67,7 @@
             } else team.games = Object.keys(team.games).length;
             return team;
         };
+
         vm.auth = false;
         userService.currentUser().then((res) => {
             vm.auth = true;
@@ -76,7 +77,7 @@
 
         vm.selectTeamForEdit = function(teamId){
             vm.editableTeam = teamId;
-        }
+        };
 
         vm.setPensile = function (teamId) {
             vm.pensilId = teamId
