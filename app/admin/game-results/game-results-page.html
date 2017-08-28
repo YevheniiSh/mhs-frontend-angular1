@@ -12,7 +12,7 @@
         <span>{{'SHARE_BUTTON' | translate}}</span>
     </a>
     <span class="photos-link" ng-if="$ctrl.gameFinished && !$ctrl.linkEditor">
-            <span class="no-photos-link" ng-if="$ctrl.photosUrl==''">No link to photos</span>
+            <span class="no-photos-link" ng-if="$ctrl.photosUrl==''">{{'NO_LINK_TO_PHOTOS_LABEL' | translate}}</span>
             <a ng-if="$ctrl.photosUrl!=''" ng-href="{{$ctrl.photosUrl}}" target="_blank">{{$ctrl.getTrimmedPhotosUrl()}}</a>
             <i ng-if="$ctrl.user" class="fa fa-pencil link-pencil link-icon" ng-click="$ctrl.editLink()" aria-hidden="true"></i>
     </span>

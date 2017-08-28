@@ -104,5 +104,6 @@
   "CREATE_TEMPLATE_BUTTON": "Create new template",
   "TEAM_POSITION_LABEL":"Team position",
   "AUTOCOMPLETE_BUTTON": "Autocomplete",
-  "CLOSE_BUTTON": "Close"
+  "CLOSE_BUTTON": "Close",
+  "NO_LINK_TO_PHOTOS_LABEL": "No link to photos"
 }
