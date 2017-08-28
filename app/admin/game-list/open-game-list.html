@@ -14,10 +14,10 @@
         <td>{{openGame.time}}</td>
         <td>{{openGame.location}}</td>
         <td>
-            <button class="btn btn-info game-button"
-                    ng-click="$ctrl.registerToGame(openGame.$id)"
-                    ng-if="!$ctrl.auth">{{'REGISTER_BUTTON' | translate}}
-            </button>
+            <a class="btn btn-info game-button"
+                    ng-href="/#!/games/{{openGame.$id}}/registration">
+                {{'REGISTER_BUTTON' | translate}}
+            </a>
             <button class="btn btn-info game-button"
                     ng-if="$ctrl.auth"
                     ng-click="$ctrl.configGame(openGame.$id)">{{'CONFIG_BUTTON' | translate}}
