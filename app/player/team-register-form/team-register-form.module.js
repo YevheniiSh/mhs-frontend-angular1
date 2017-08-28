@@ -1,1 +1,1 @@
-angular.module('teamRegisterForm', ['angucomplete-alt']);
+angular.module('teamRegisterForm', ['angucomplete-alt','ngMask']);
