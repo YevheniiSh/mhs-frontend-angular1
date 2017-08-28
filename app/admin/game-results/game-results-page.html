@@ -18,7 +18,7 @@
     </span>
     <span class="photos-link-editor" ng-if="$ctrl.linkEditor">
         <input class="photos-url-editor form-control" type="url" esc-key="$ctrl.linkEditor = false"
-              enter-key="$ctrl.savePhotosUrl()" ng-model="$ctrl.newPhotosUrl" autofocus>
+              enter-key="$ctrl.savePhotosUrl()" focused="true" ng-model="$ctrl.newPhotosUrl" autofocus>
         <i class="fa fa-check link-icon" ng-click="$ctrl.savePhotosUrl()"></i>
         <i class="fa fa-times link-icon" ng-click="$ctrl.linkEditor = false" aria-hidden="true"></i>
     </span>
