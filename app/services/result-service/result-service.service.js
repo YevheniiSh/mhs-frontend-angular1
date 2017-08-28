@@ -211,7 +211,7 @@ angular
                     })
             }
 
-            resultFactory.getResult = function (gameId, resId) {
+            resultFactory.getQuiz = function (gameId, resId) {
                 let ref = gameService.getGameRef(gameId);
                 return ref.then((res) => {
                     let obj = $firebaseObject(res.child(`${gameId}/results/${resId}`));
