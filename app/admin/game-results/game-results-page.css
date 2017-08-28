@@ -39,6 +39,7 @@
 }
 
 td.td-cell{
+    cursor: pointer;
     font-size: 20px;
 }
 th.th-cell.round-number{
@@ -74,4 +75,7 @@ span.ng-binding.date{
 .no-photos-link{
     color: #515151;
     font-style: italic;
+}
+a{
+    cursor: pointer;
 }
