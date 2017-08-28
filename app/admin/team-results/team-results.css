@@ -27,7 +27,7 @@ span.inp{
 }
 
 .edited {
-    box-shadow: 0px 7px 5px -1px #F3BA1D;
+    box-shadow: 0px 0px 4px 3px #ffbc35;
 }
 
 span.inp:nth-child(5){
