@@ -27,13 +27,9 @@ span.inp{
 }
 
 .edited {
-    border-top-style: none;
-    border-right-style: none;
-    border-bottom-style: solid;
-    border-left-style: none;
-    border-width: 3px;
-    border-color: #8a6d3b;
+    box-shadow: 0px 7px 5px -1px #F3BA1D;
 }
+
 span.inp:nth-child(5){
     margin-right: 30px;
 }
