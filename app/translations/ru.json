@@ -84,7 +84,7 @@
   "MAXIMUM_13_CHARACTERS_ERROR": "Максимум 13 символов",
   "WRONG_FORMAT_ERROR":"Неверный формат",
   "WELL_DONE_MESSAGE":"Отлично!",
-  "SEND_REQUEST_MESSAGE": "Вашу заявку отправлено!",
+  "SEND_REQUEST_MESSAGE": "Ваша заявка отправлена!",
   "NAVBAR_LANGUAGES": "Выбрать язык",
   "SHARE_BUTTON": "Поделиться",
   "TEAM_SCORE_LABEL": "Счет команды",
@@ -100,5 +100,6 @@
   "QUESTION_QUANTITY_LABEL": "Количество вопросов",
   "SAVE_DATE_MESSAGE": "Дата сохранена",
   "SAVE_TIME_MESSAGE": "Время сохранено",
-  "SAVE_LOCATION_MESSAGE": "Локация сохранена"
+  "SAVE_LOCATION_MESSAGE": "Локация сохранена",
+  "TEAM_POSITION_LABEL":"Место"
 }
