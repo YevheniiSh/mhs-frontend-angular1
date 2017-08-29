@@ -17,7 +17,6 @@
                 .getAllCurrentGames()
                 .then((games) => {
                     vm.games = games;
-                    console.log(this.games);
                     vm.parseDate();
                     vm.games.$watch(() => {
                         vm.parseDate();

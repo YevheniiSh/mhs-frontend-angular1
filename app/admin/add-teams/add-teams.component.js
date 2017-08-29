@@ -61,7 +61,6 @@ angular.module('addTeams')
                 vm.getTeams = function () {
                     openGameService.getTeams(vm.gameId)
                         .then(res => {
-                            console.log(res);
                             vm.teams = res;
                         })
 

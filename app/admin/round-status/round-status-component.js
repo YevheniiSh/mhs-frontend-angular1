@@ -61,7 +61,6 @@
                 RoundStatusService
                     .getRounds($routeParams.gameId)
                     .then((rounds) => {
-                        console.log(rounds);
                         rounds.forEach((item) => {
                             if (item.$id > currentRound) {
                                 nextRounds.push(item);

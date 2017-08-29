@@ -6,8 +6,6 @@ angular.module('addTeams').directive('teamValidator', ['$q', 'TeamServiceFactory
             ctrl.$asyncValidators.teamName = function (modelValue, viewValue) {
                 return TeamServiceFactory.isTeamNameExist(viewValue)
                     .then((data) => {
-                        console.log(data);
-
                         if (data.length >= 1) {
                             return $q.reject('exists');
                         }

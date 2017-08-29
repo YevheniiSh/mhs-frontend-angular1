@@ -23,7 +23,6 @@
                     this.games = games;
                     vm.parseDate();
                     this.games.forEach((item) => {
-                        console.log(item);
                         gameFactory.getGameTeamsNumber(item.$id)
                             .then((teamsNumber) => {
                                 item.teamsNumber = teamsNumber;

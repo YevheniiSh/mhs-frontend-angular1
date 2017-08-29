@@ -16,7 +16,6 @@
             openGameFactory.getAllOpenGames().then((games) => {
                 vm.openGames = games;
                 vm.parseDate();
-                console.log(vm.openGames);
 
                 vm.openGames.$watch((event) => {
                     vm.parseDate();
@@ -33,7 +32,6 @@
         vm.invalid = false;
 
         vm.registerToGame = function (gameId) {
-            console.log(gameId);
             $location.path('games/' + gameId + '/registration')
         };
 
@@ -42,7 +40,6 @@
             let rounds = openGameFactory.getRounds(gameId);
             let teams = openGameFactory.getTeams(gameId);
             Promise.all([rounds, teams]).then((res) => {
-                console.log(res);
                 if (res[0].length < 2) {
                     game.invalid = true;
                     game.error = 'CONFIG_ROUNDS_ERROR';
@@ -61,7 +58,6 @@
         };
 
         vm.configGame = function (gameId) {
-            console.log(gameId);
             $location.path('/games/' + gameId + '/config')
         };
 
