@@ -21,10 +21,12 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <login-panel></login-panel>
+                        <a>
+                            <login-panel></login-panel>
+                        </a>
                     </li>
                     <li uib-dropdown on-toggle="toggled(open)" class="dropdown">
-                        <a ng-href="/#!/ id="simple-dropdown" class="dropdown-toggle" data-toggle="dropdown"
+                        <a ng-href="/#!/" id="simple-dropdown" class="dropdown-toggle" data-toggle="dropdown"
                            uib-dropdown-toggle role="button" aria-expanded="false">{{$ctrl.locale | uppercase}}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown" role="menu">

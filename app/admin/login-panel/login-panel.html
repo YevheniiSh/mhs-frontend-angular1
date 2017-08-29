@@ -1,14 +1,14 @@
-<div class="login-panel row">
+<div class="login-panel">
     <div ng-show="$root.currentUser">
-        <a style="font-size: 15px" class="btn btn-silver btn-xs" ng-click="$ctrl.logOut()">
+        <p class="auth-info inline">{{'NAVBAR_HELLO_LABEL' | translate}}, {{$root.currentUser}}</p>
+        <a class="btn btn-silver btn-xs inline" ng-click="$ctrl.logOut()">
             <i style="font-size: 15px" class="fa fa-sign-out"></i>
         </a>
-        <p class="auth-info">{{'NAVBAR_HELLO_LABEL' | translate}}, {{$root.currentUser}}</p>
     </div>
     <div ng-hide="$root.currentUser">
-        <a style="font-size: 15px" class="btn btn-success btn-xs" ng-href="/#!/login">
-            <i style="font-size: 15px" class="fa fa-sign-in"></i>
-        </a>
         <a class="auth-info" ng-href="/#!/login">{{'NAVBAR_WELCOME_MESSAGE' | translate}}</a>
+        <a class="btn btn-success btn-xs" ng-href="/#!/login">
+            <i class="fa fa-sign-in"></i>
+        </a>
     </div>
 </div>
