@@ -5,56 +5,45 @@
         </button>
     </div>
     <div class="col-md-2">
-        <div ng-click="$ctrl.ChangeCalendarStatus()">
+        <div ng-click="$ctrl.ChangeCalendarStatus()" class="date-picker">
             <label class="control-label data-picker-label" for="game-calendar">
                 <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
             </label>
             <span> {{$ctrl.gameDate.toLocaleDateString()}}</span>
         </div>
         <div class="picker" ng-show="$ctrl.isCalendarVisible">
-            <div uib-datepicker ng-model="$ctrl.gameDate"  class="well well-sm"
+            <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
                  datepicker-options="$ctrl.options"></div>
         </div>
     </div>
     <div class="col-md-2">
-        <div ng-click="$ctrl.ChangeTimeStatus()">
+        <div ng-click="$ctrl.ChangeTimeStatus()" class="time-picker">
             <label class="control-label data-picker-label" for="game-time">
                 <i id="game-time" class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
             </label>
             <span> {{$ctrl.getTimeForView()}}</span>
-
         </div>
 
-
         <div class="picker" ng-show="$ctrl.isTimeVisible">
-            <div uib-timepicker  show-meridian="$ctrl.isMeridian"  name="time" ng-model="$ctrl.gameTime" class="well well-sm"></div>
+            <div uib-timepicker show-meridian="$ctrl.isMeridian" name="time" ng-model="$ctrl.gameTime"
+                 class="well well-sm">
+            </div>
         </div>
     </div>
     <div class="col-md-2">
-
-
-
         <input class="form-control" ng-blur="$ctrl.changeLocation()" ng-model="$ctrl.location"
                maxlength="34"
                name="location"
                required placeholder="{{'LOCATION_PLACEHOLDER' | translate}}">
     </div>
-    <!--<div  class="col-md-1" >-->
-    <!--<button  class="btn btn-success" ng-click="$ctrl.updateLocation()">Save</button>-->
-    <!--</div>-->
     <div class="col-md-4 game-alert">
         <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.dateSaved">
-
             {{'SAVE_DATE_MESSAGE' | translate}}
         </div>
         <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.timeSaved">
-
-
             {{'SAVE_TIME_MESSAGE' | translate}}
         </div>
         <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.locationSaved">
-
-
             {{'SAVE_LOCATION_MESSAGE' | translate}}
         </div>
     </div>
