@@ -1,0 +1,6 @@
+.printable-table.table{
+    font-size: 16pt;
+}
+.printable-table.table th{
+    vertical-align: middle;
+}
