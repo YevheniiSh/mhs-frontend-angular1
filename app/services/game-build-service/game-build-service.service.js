@@ -11,7 +11,6 @@ angular.module('gameBuildService')
             };
 
             function addDate(date) {
-                console.log(this);
                 this.game.date = convertService.convertDate(date);
                 return this;
             }

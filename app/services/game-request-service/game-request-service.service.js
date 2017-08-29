@@ -19,7 +19,6 @@ angular.module('gameRequestService')
             function updateTeamId(gameId, request) {
                 let requestTeamId = new $firebaseObject(openGameRef.child(`${gameId}/requests/${request.$id}/teamId/`));
                 requestTeamId.$value = request.teamId;
-                console.log(request.teamId);
                 return requestTeamId.$save()
                     .then((res) => {
                         return res.$value;
@@ -35,7 +34,6 @@ angular.module('gameRequestService')
                         () => {
                             return teamRequestObj.$id;
                         }, (err) => {
-                            console.log(err);
                             throw err;
                         }
                     )
@@ -64,7 +62,6 @@ angular.module('gameRequestService')
             function setStatus(gameId, requestId, status) {
                 let requestStatus = new $firebaseObject(openGameRef.child(`${gameId}/requests/${requestId}/status`));
                 requestStatus.$value = status;
-                console.log(requestStatus);
                 return requestStatus.$save()
                     .then((res) => {
                         return res.$value;

@@ -22,7 +22,6 @@ angular.module('teamRequestService')
                     .then(() => {
                             return requestObj.$id;
                         }, (err) => {
-                            console.log(err);
                             throw err;
                         }
                     )
@@ -37,7 +36,6 @@ angular.module('teamRequestService')
                             return teamsRequests;
                         },
                         (err) => {
-                            console.log(err);
                             throw err;
                         }
                     )

@@ -75,7 +75,6 @@ angular.module('gameResultsPage')
                     let photosUrlArray = link.split('/');
                     let photosUrlDomain = photosUrlArray[2];
                     let photosUrlPath = photosUrlArray[3];
-                    console.log(photosUrlPath);
                     let photosUrlLastCharacters = link.substring(link.length - 6);
                     return photosUrlDomain + "/" + photosUrlPath + "/..." + photosUrlLastCharacters;
                 };

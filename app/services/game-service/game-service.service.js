@@ -56,7 +56,6 @@ angular
                     .then(() => {
                         return team.key;
                     }, (err) => {
-                        console.log(err);
                         return err;
                     });
             }
@@ -106,7 +105,6 @@ angular
                         }
                     })
                     .catch(() => {
-                        console.log('error');
                         return 'finished';
                     });
             }
@@ -138,7 +136,6 @@ angular
 
             function finishGame(gameId) {
                 getCurrentGameById(gameId).then((res) => {
-                    console.log(res);
                     let obj = new $firebaseObject(finishedGameRef.child(gameId));
                     obj.$value = getObject(res);
                     obj.$save();
@@ -244,7 +241,6 @@ angular
 
             function publishGame(gameId) {
                 getCurrentGameById(gameId).then((res) => {
-                    console.log(res);
                     let obj = new $firebaseObject(finishedGameRef.child(gameId));
                     obj.$value = getObject(res);
                     obj.$save();
@@ -262,7 +258,6 @@ angular
                 let obj = new $firebaseArray(finishedGameRef.child(`${gameId}/teams`));
                 return obj.$loaded()
                     .then((res) => {
-                        console.log(res.length);
                         return res.length;
                     })
             }
