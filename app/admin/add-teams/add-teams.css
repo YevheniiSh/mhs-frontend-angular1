@@ -165,3 +165,7 @@ select {
 .editable-team-size.ng-invalid {
     color: red;
 }
+.print-button{
+    float: right;
+    margin-top: 10px;
+}
