@@ -25,6 +25,7 @@ h1 {
 .game-button{
     float: right;
     margin-left: 10px;
+    font-size: 12px;
 }
 
 .error {
