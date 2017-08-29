@@ -23,10 +23,11 @@
 }
 
 .autocomplete-panel {
-    float: left;
-    width: 50%;
-    margin-left: 235px;
-    margin-top: -106px;
+    float: right;
+    width: 45%;
+    display: inline-block;
+    /*margin-left: 50%;*/
+    /*margin-top: -106px;*/
 }
 
 .animate-come-gone.ng-hide-add {
@@ -96,11 +97,14 @@ label {
 }
 
 .captain-name-panel {
+    display: inline-block;
     width: 45%;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
 }
 
 .captain-phone-panel {
+    display: inline-block;
+    float: left;
     width: 45%;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
 }
@@ -111,6 +115,8 @@ label {
 }
 
 .autocomplete-captain-phone-panel {
+    display: inline-block;
+    float: left;
     width: 100%;
     transition: all cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.5s;
 }
@@ -126,17 +132,20 @@ label {
     width: 100%;
 }
 
+.btn-cancel-autocomplete{
+    margin-top: 11px;
+}
+
 .btn-autocomplete {
     padding-left: 3px;
     padding-right: 3px;
 }
 
 .vertical-line {
-    float: left;
-    margin-top: -99px;
-    margin-left: 220px;
+    display: inline-block;
+    margin-left: 5%;
     border-left: 1px solid silver;
-    height: 100px;
+    height: 150px;
 }
 
 .animate-show-hide.ng-hide {
@@ -162,5 +171,5 @@ label {
 }
 
 .last-digits-panel {
-    width: 97%;
+    width: 100%;
 }
