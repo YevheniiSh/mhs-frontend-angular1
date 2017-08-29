@@ -1,12 +1,12 @@
 angular.module('focused', [])
     .directive('focused', function() {
         return {
-            scope: { trigger: '=focused' },
+            scope: { focused: '=' },
             link: function(scope, element) {
-                scope.$watch('trigger', function(value) {
+                scope.$watch('focused', function(value) {
                     if(value === true) {
                         element[0].focus();
-                        scope.trigger = false;
+                        scope.focused = false;
                     }
                 });
             }
