@@ -2,13 +2,8 @@
     height: 100%;
 }
 
-
-.start-button {
-    margin-top: 10px;
-}
-
 .game-property {
-    font-size: 28px;
+    /*font-size: 28px;*/
 }
 
 h1 {
@@ -24,7 +19,7 @@ h1 {
 }
 
 .game-row {
-    font-size: 24px;
+    /*font-size: 24px;*/
     cursor: pointer;
 }
 .game-button{
@@ -33,7 +28,7 @@ h1 {
 }
 
 .error {
-    font-size: 14px;
+    /*font-size: 14px;*/
 }
 
 #err-message{
