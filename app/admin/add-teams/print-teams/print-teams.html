@@ -6,11 +6,12 @@
     <th>{{'TEAM_SIZE_LABEL' | translate}}</th>
     </thead>
     <tbody>
-    <tr>
-        <td>Дрессировщики интеллектуальных тараканоффф</td>
-        <td>Листопадов Алексей Геннадиевич</td>
-        <td>+380637475789</td>
-        <td>5</td>
+    <tr ng-repeat="team in $ctrl.teams">
+        <td>{{team.name}}</td>
+        <td>{{team.fullName}}</td>
+        <td>{{team.phone}}</td>
+        <td>{{team.teamSize}}</td>
+
     </tr>
     </tbody>
 </table>
