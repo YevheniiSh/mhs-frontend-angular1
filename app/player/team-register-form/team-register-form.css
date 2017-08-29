@@ -19,7 +19,6 @@
 }
 
 .request-team-form {
-    width: 40%;
     margin: auto;
 }
 
@@ -153,7 +152,8 @@ label {
 }
 
 .team-register-panel {
-    min-width: 650px;
+    max-width: 650px;
+    margin: auto;
 }
 
 .captain-info {
