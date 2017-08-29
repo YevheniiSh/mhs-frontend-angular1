@@ -33,58 +33,62 @@
                 <span>{{'INCORRECT_LAST_NUMBERS_ERROR'|translate}}</span>
             </div>
             <div class="captain-info">
-                <div ng-class="!$ctrl.showPhoneVerifyRequest ? 'autocomplete-captain-name-panel' : 'captain-name-panel'">
-                    <div class="captain-name-spans">
-                        <label for="captain-name" class="control-label request-description">{{'CAPTAIN_NAME_LABEL'|translate}}</label>
-                        <span ng-show="request.name.$error.minlength" class="err">
+                <div style="display: inline-block; float: left;"
+                     ng-class="!$ctrl.showPhoneVerifyRequest ? 'autocomplete-captain-phone-panel' : 'captain-phone-panel'">
+                    <div>
+                        <div class="captain-name-spans">
+                            <label for="captain-name" class="control-label request-description">{{'CAPTAIN_NAME_LABEL'|translate}}</label>
+                            <span ng-show="request.name.$error.minlength" class="err">
                             {{'MINIMUM_3_CHARACTERS_ERROR'|translate}}
                         </span>
-                        <span ng-show="request.name.$error.maxlength" class="err">
+                            <span ng-show="request.name.$error.maxlength" class="err">
                             {{'MAXIMUM_40_CHARACTERS_ERROR'|translate}}
                         </span>
+                        </div>
+                        <input id="captain-name"
+                               class="form-control" placeholder="{{'CAPTAIN_NAME_PLACEHOLDER'|translate}}"
+                               name="name" ng-model="$ctrl.fullName" ng-maxlength="40" minlength="3"
+                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}"
+                               required>
                     </div>
-                    <input id="captain-name"
-                           class="form-control" placeholder="{{'CAPTAIN_NAME_PLACEHOLDER'|translate}}"
-                           name="name" ng-model="$ctrl.fullName" ng-maxlength="40" minlength="3"
-                           ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1500,'blur': 0}}"
-                           required>
-                </div>
-
-                <div ng-class="!$ctrl.showPhoneVerifyRequest ? 'autocomplete-captain-phone-panel' : 'captain-phone-panel'">
-                    <div class="phone-spans">
-                        <label for="captain-phone" class="control-label request-description">
-                            {{'PHONE_LABEL'|translate}}
-                        </label>
-                    </div>
-                    <div class="phone-panel">
-                        <input id="captain-phone"
-                               class="form-control"
-                               placeholder="(XXX)XX-XX-XXX"
-                               type="text" ng-model="$ctrl.phone" name="phone"
-                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
-                               required
-                               mask="(999)99-99-999">
+                    <div>
+                        <div class="phone-spans">
+                            <label for="captain-phone" class="control-label request-description">
+                                {{'PHONE_LABEL'|translate}}
+                            </label>
+                        </div>
+                        <div class="phone-panel">
+                            <input id="captain-phone"
+                                   class="form-control"
+                                   placeholder="(XXX)XX-XX-XXX"
+                                   type="text" ng-model="$ctrl.phone" name="phone"
+                                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
+                                   required
+                                   mask="(999)99-99-999">
+                        </div>
                     </div>
                 </div>
 
                 <div class="vertical-line animate-show-hide animated" ng-show="$ctrl.showPhoneVerifyRequest"></div>
 
+
                 <div class="autocomplete-panel animate-come-gone animated" ng-show="$ctrl.showPhoneVerifyRequest">
                     <label class="control-label request-description">
                         {{'ENTER_LAST_PHONE_NUMBERS_LABEL' | translate}}
                     </label>
-                    <div class="input-group last-digits-panel">
+                    <div class="last-digits-panel">
                         <input class="form-control"
                                id="captain-phone-validation" ng-model="$ctrl.lastDigits"
                                type="tel"
                                placeholder="XXX"
                                maxlength="3">
 
-                        <span ng-show="$ctrl.cancelAutocompleted" class="input-group-btn">
-                            <button class="btn btn-danger btn-cancel-autocomplete" type="button"
-                                    ng-click="$ctrl.cancelVerifyByNumberWithReturnAutocompleteFeature()">{{'CANCEL_BUTTON'|translate}}
-                            </button>
-                        </span>
+                        <button class="btn btn-danger form-control btn-cancel-autocomplete"
+                                type="button"
+                                ng-show="$ctrl.cancelAutocompleted"
+                                ng-click="$ctrl.cancelVerifyByNumberWithReturnAutocompleteFeature()">
+                            {{'CANCEL_BUTTON'|translate}}
+                        </button>
                     </div>
                 </div>
             </div>
