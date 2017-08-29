@@ -106,7 +106,7 @@
                     fullName: teamRequest.fullName,
                     teamName: teamRequest.teamName,
                     phone: teamRequest.phone,
-                    teamSize: teamRequest.teamSize,
+                    teamSize: vm.teamSize,
                     status: "unconfirmed",
                     date: new Date().toDateString(),
                 });
