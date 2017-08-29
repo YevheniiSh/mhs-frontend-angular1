@@ -1,0 +1,16 @@
+<table class="table table-bordered printable-table">
+    <thead>
+    <th>{{'TEAM_NAME_LABEL' | translate}}</th>
+    <th>{{'CAPTAIN_NAME_LABEL' | translate}}</th>
+    <th>{{'PHONE_LABEL' | translate}}</th>
+    <th>{{'TEAM_SIZE_LABEL' | translate}}</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="team in $ctrl.teams">
+        <td>{{team.name}}</td>
+        <td>{{team.fullName}}</td>
+        <td>{{team.phone}}</td>
+        <td>{{team.teamSize}}</td>
+    </tr>
+    </tbody>
+</table>
