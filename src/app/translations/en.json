@@ -22,7 +22,7 @@
   "WINNER_TEAM_SCORE_LABEL": "Winner result",
   "START_BUTTON": "Start",
   "CONFIG_BUTTON": "Config",
-  "REGISTER_BUTTON": "Register",
+  "REGISTER_BUTTON": "Registration",
   "REGISTRATION_FORM_TITLE": "Registration on game: ",
   "TEAM_NAME_LABEL": "Team name",
   "CAPTAIN_NAME_LABEL": "Captain  full name",
@@ -101,5 +101,12 @@
   "SAVE_DATE_MESSAGE": "Date changes saved",
   "SAVE_TIME_MESSAGE": "Time changes saved",
   "SAVE_LOCATION_MESSAGE": "Location changes saved",
-  "TEAM_POSITION_LABEL":"Team position"
+  "CREATE_TEMPLATE_BUTTON": "Create new template",
+  "TEAM_POSITION_LABEL":"Team position",
+  "AUTOCOMPLETE_BUTTON": "Autocomplete",
+  "CLOSE_BUTTON": "Close",
+  "GAMES_TABLE_HEADER":"Games",
+  "TEAMS_HEADER":"Mead Head Show Teams",
+  "NUMBER_OF_TEAMS_LABEL": "Number of teams",
+  "NO_LINK_TO_PHOTOS_LABEL": "No link to photos"
 }

@@ -1,1 +1,1 @@
-angular.module('addTeams', ['teamFactory', 'gameFactory','ngAnimate'])
+angular.module('addTeams', ['ngAnimate']);

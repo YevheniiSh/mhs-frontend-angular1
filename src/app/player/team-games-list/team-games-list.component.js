@@ -21,7 +21,6 @@
             teamService.getTeamGames(vm.teamId)
                 .then(games => {
                     vm.teamGames = games;
-                    console.log(games);
                 })
         }
 

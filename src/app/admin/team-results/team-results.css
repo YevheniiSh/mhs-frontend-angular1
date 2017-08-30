@@ -2,7 +2,7 @@ td{
     font-size: 24px;
 }
 th{
-    font-size: 28px;
+    font-size: 20px;
 }
 h1{
     border-bottom: solid 1px;
@@ -25,6 +25,11 @@ span.inp{
     font-size: 17px;
     border: none;
 }
+
+.edited {
+    box-shadow: 0px 0px 4px 3px #ffbc35;
+}
+
 span.inp:nth-child(5){
     margin-right: 30px;
 }
@@ -47,11 +52,11 @@ td.total-point{
 }
 th#quiz-title, table tr td.quiz-row{
     width: 57%;
-    font-size: 24px;
+    font-size: 20px;
     padding: 0 0 0 7%;
 }
 td.round-name.ng-binding{
-    font-size: 20px;
+    font-size: 14px;
     text-align: left;
     vertical-align: middle;
 }

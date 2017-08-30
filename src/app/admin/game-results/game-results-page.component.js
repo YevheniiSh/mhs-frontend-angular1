@@ -9,12 +9,12 @@ angular.module('gameResultsPage')
             '$location',
             '$window',
             'userAuthService',
-            function (ResultService, GameService, $routeParams, $rootScope, $location, $window, auth) {
+            function (ResultService, GameService, $routeParams, $rootScope, $location, $window, userAuthService) {
 
             let vm = this;
             let gameId = $routeParams.gameId;
             vm.isGameCurrent = true;
-            vm.photosURL = '';
+            vm.photosUrl = '';
 
                 vm.$onInit = onInit;
 
@@ -32,51 +32,62 @@ angular.module('gameResultsPage')
                             GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString())
                     });
 
-                ResultService.getParsedResults(this.gameId)
-                    .then((result) => {
-                        vm.results = result;
+                    ResultService.getParsedResults(this.gameId)
+                        .then((result) => {
+                            vm.results = result;
                     });
-                GameService.getGameStatus(gameId).then(status => {
-                    (status === "finished") ?
-                        vm.gameFinished = true : vm.gameFinished = false;
-                });
 
-                GameService.getPhotosURL(gameId).then((res) => {
-                    vm.photosURL = res;
-                });
+                    GameService.getGameStatus(gameId).then(status => {
+                        (status === "finished") ?
+                            vm.gameFinished = true : vm.gameFinished = false;
+                    });
 
-                auth.currentUser()
-                    .then((res) => {
-                        vm.user = res;
-                    })
-            }
+                    GameService.getPhotosUrl(gameId).then((res) => {
+                        vm.photosUrl = res;
+                        vm.newPhotosUrl = res;
+                    });
+
+                    userAuthService.currentUser()
+                        .then((res) => {
+                            vm.user = res;
+                        })
+                }
+
+                vm.getPhotoUrl = function () {
+
+                };
 
                 vm.shareURL = $location.absUrl();
 
-            vm.savePhotosLink = function (link) {
-                if (link !== undefined) {
-                    GameService.setPhotosLink(gameId, link);
-                    vm.setLink = false;
-                    vm.photosURL = link;
-                }
-            };
+                vm.savePhotosUrl = function () {
+                    GameService.setPhotosLink(gameId, vm.newPhotosUrl);
+                    vm.photosUrl = vm.newPhotosUrl;
+                    vm.linkEditor = false;
+                };
+
+                vm.editLink = function () {
+                    vm.newPhotosUrl = vm.photosUrl;
+                    vm.linkEditor = true;
+                };
+
+                vm.getTrimmedPhotosUrl= function () {
+                    let link = vm.photosUrl;
+                    let photosUrlArray = link.split('/');
+                    let photosUrlDomain = photosUrlArray[2];
+                    let photosUrlPath = photosUrlArray[3];
+                    let photosUrlLastCharacters = link.substring(link.length - 6);
+                    return photosUrlDomain + "/" + photosUrlPath + "/..." + photosUrlLastCharacters;
+                };
 
                 vm.onBack = function () {
-                    auth.currentUser()
+                    userAuthService.currentUser()
                         .then(() => {
                             $location.path(`/games/${gameId}/rounds`);
                         })
                         .catch(() => {
                             $location.path(`/games`);
-                        })
-                    ;
-                }
-
-                auth.currentUser().then((res) => {
-                    vm.auth = true;
-                }).catch((err) => {
-                    vm.auth = false;
-                });
+                    })
+                };
             }]
 
     });

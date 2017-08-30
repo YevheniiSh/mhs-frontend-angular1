@@ -24,21 +24,7 @@
     padding-right: 0.3em;
 }
 
-.login-panel {
-    padding-right: 20px;
-    padding-top: 5px;
-    float: right;
-}
+/*.main-panel {*/
+    /*margin-top: 30px;*/
+/*}*/
 
-.main-panel {
-    margin-top: 30px;
-}
-
-.login-panel p {
-    float: right;
-}
-
-.login-panel a {
-    float: right;
-    margin-left: 10px;
-}

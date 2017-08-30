@@ -154,3 +154,19 @@ select {
     opacity: 1;
     transform: translateY(0);
 }
+
+.editable-team-size {
+    border: none;
+    outline: none;
+    width: 14%;
+    font-weight: bold;
+}
+
+.editable-team-size.ng-invalid {
+    color: red;
+}
+.print-button{
+    float: right;
+    margin-top: 14px;
+    cursor: pointer;
+}

@@ -16,8 +16,14 @@
 }
 
 .photos-link {
+    line-height: 280%;
     float: right;
-    margin-right: 4px;
+    margin-right: 28px;
+}
+.photos-link-editor{
+    line-height: 280%;
+    float: right;
+    margin-right: 8px;
 }
 
 #fb-share-button:hover {
@@ -33,6 +39,7 @@
 }
 
 td.td-cell{
+    cursor: pointer;
     font-size: 20px;
 }
 th.th-cell.round-number{
@@ -52,4 +59,24 @@ h1#game-results{
 }
 span.ng-binding.date{
     float: right;
+}
+.link-icon{
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 18px;
+}
+.photosUrlContainer{
+    display: inline-block;
+}
+.photos-url-editor{
+    display: inline-block;
+    width: auto;
+}
+.no-photos-link{
+    cursor: default;
+    color: #515151;
+    font-style: italic;
+}
+a{
+    cursor: pointer;
 }

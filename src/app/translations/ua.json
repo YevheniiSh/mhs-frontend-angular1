@@ -22,7 +22,7 @@
   "WINNER_TEAM_SCORE_LABEL": "Результат",
   "START_BUTTON": "Почати",
   "CONFIG_BUTTON": "Налаштувати",
-  "REGISTER_BUTTON": "Зареєструватися",
+  "REGISTER_BUTTON": "Реєстрація",
   "REGISTRATION_FORM_TITLE": "Реєстрація на гру: ",
   "TEAM_NAME_LABEL": "Ім'я команди",
   "CAPTAIN_NAME_LABEL": "ПІБ капітана",
@@ -100,5 +100,12 @@
   "SAVE_DATE_MESSAGE": "Дату збережено",
   "SAVE_TIME_MESSAGE": "Час гри збережено",
   "SAVE_LOCATION_MESSAGE": "Локацію збережено",
-  "TEAM_POSITION_LABEL":"Місце"
+  "GAMES_TABLE_HEADER":"Ігри",
+  "CREATE_TEMPLATE_BUTTON": "Створити новий шаблон",
+  "TEAM_POSITION_LABEL":"Місце",
+  "AUTOCOMPLETE_BUTTON": "Автодоповнення",
+  "CLOSE_BUTTON": "Закрити",
+  "TEAMS_HEADER":" Команди Mead Head Show",
+  "NUMBER_OF_TEAMS_LABEL": "Кількість команд",
+  "NO_LINK_TO_PHOTOS_LABEL": "Відсутнє посилання на фотографії"
 }

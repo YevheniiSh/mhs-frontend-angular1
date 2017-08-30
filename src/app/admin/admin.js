@@ -46,6 +46,11 @@ angular
             template: '<team-list></team-list>',
           css: 'app/admin/team-list/team-list.css'
         });
+
+        $routeProvider.when('/games/:gameId/print', {
+            template: '<print-teams></print-teams>',
+            controller: 'presentationModeController'
+        });
         $routeProvider.when('/create-game', {
             template: '<create-game></create-game>',
         });

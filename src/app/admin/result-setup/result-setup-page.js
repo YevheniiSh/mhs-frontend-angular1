@@ -29,8 +29,9 @@
                 .then(() => {
                     buildResults()
                     assignResults()
+                        .then(initInputType);
                 })
-                .then(initInputType)
+
         }
 
         function initInputType() {

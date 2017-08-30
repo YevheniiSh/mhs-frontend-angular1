@@ -2,7 +2,11 @@
     <script type="text/ng-template" id="alert.html">
         <div ng-transclude></div>
     </script>
+
     <div class="col-md-6 col-md-offset-3">
+        <div class="header">
+            <h1>{{'TEAMS_HEADER' | translate}}</h1>
+        </div>
         <div ng-show="$ctrl.showSuccessAlert" uib-alert template-url="alert.html"
              class="alert-success team-name-changed-alert"
              role="alert">
@@ -12,7 +16,8 @@
             </button>
             <span>{{'TEAM_NAME_CHANGED_ALERT' | translate}}</span>
         </div>
-        <div ng-show="$ctrl.showErrorAlert" uib-alert template-url="alert.html" class="alert-danger team-name-changed-alert"
+        <div ng-show="$ctrl.showErrorAlert" uib-alert template-url="alert.html"
+             class="alert-danger team-name-changed-alert"
              role="alert">
             <button type="button" class="close" ng-click="$ctrl.hideAlert()">
                 <span>×</span>
@@ -20,20 +25,40 @@
             </button>
             <span>{{'TEAM_NAME_EXISTS_ALERT' | translate}}</span>
         </div>
-
         <input ng-model="search" class="form-control" placeholder="{{'SEARCH_PLACEHOLDER' | translate}}">
-        <div class="scroll-panel">
-            <ul ng-repeat="team in $ctrl.teams |orderBy:'name'| filter:search">
-                <li class="list-item">
-                    <input class="editable-team" ng-change="$ctrl.changeTeamName(team)"
-                    ng-model="team.name" title="{{'EDIT_TEAM_NAME_TOOLTIP'|translate}}"
-                    ng-disabled="!$ctrl.auth">
-                    <span class="btn" ng-click="$ctrl.showTeamGames(team.$id)">
-                        <i class="fa fa-id-card-o" aria-hidden="true"></i>
-                    </span>
-                </li>
-            </ul>
-        </div>
     </div>
+    <div class="col-md-10 col-md-offset-1">
+        <table class="table table-sm table-striped table-hover" ng-mouseleave="$ctrl.setPensile()">
+            <thead>
+            <tr class="teams-property">
+                <th>#</th>
+                <th>{{'TEAMS_TABLE_HEADER'|translate}}</th>
+                <th>{{'GAMES_TABLE_HEADER'|translate}}</th>
 
+            </tr>
+            </thead>
+            <tbody class="teams">
+            <tr ng-mouseover="$ctrl.setPensile(team.$id)" ng-click="$ctrl.showTeamGames(team.$id)"
+                ng-repeat="team in $ctrl.teams |orderBy:'name'| filter:search">
+                <td>{{$index+1}}
+                    <label class="label-pensile" for="{{team.$id}}">
+                        <i ng-show=" $ctrl.auth && team.$id == $ctrl.pensilId"
+                           ng-click="$ctrl.selectTeamForEdit(team.$id);$event.stopPropagation(); "
+                           title="{{'EDIT_TEAM_NAME_TOOLTIP'|translate}}"
+                           class="fa fa-pencil pensile fa-lg" aria-hidden="true"></i></label>
+                </td>
+                <td>
+                    <input id="{{team.$id}}" class="editable-team"
+                           ng-change="$ctrl.changeTeamName(team)"
+                           ng-click="$event.stopPropagation()"
+                           ng-model="team.name"
+                           ng-disabled="!$ctrl.auth || $ctrl.editableTeam != team.$id"
+                           esc-key="$ctrl.selectTeamForEdit()">
+
+                </td>
+                <td>{{team.games}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

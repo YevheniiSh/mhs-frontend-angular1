@@ -8,7 +8,8 @@ angular.module('addTeams')
             'GameServiceFactory',
             '$location',
             '$routeParams',
-            function (teamRequestService,gameRequestService, openGameService, teamService, gameService, $location, $routeParams) {
+            '$window',
+            function (teamRequestService,gameRequestService, openGameService, teamService, gameService, $location, $routeParams, $window) {
                 let vm = this;
                 vm.gameId = $routeParams.gameId;
                 vm.$onInit = onInit;
@@ -45,11 +46,11 @@ angular.module('addTeams')
                                 phone: request.phone
                             }).then((id) => {
                             teamService.addGameToTeam(id, vm.gameId);
-                        })
+                        });
                         teamRequestService.save(request)
                         gameRequestService.setConfirmedStatus(vm.gameId, request.$id)
                     }
-                }
+                };
 
                 vm.getRequests = function () {
                     gameRequestService.getAllTeamRequestsByGameId(vm.gameId)
@@ -61,15 +62,14 @@ angular.module('addTeams')
                 vm.getTeams = function () {
                     openGameService.getTeams(vm.gameId)
                         .then(res => {
-                            console.log(res);
                             vm.teams = res;
                         })
 
-                }
+                };
 
                 vm.archivateRequest = function (requestId) {
                     gameRequestService.setArchivedStatus(vm.gameId, requestId)
-                }
+                };
 
                 vm.unArchivateRequest = function (requestId) {
                     gameRequestService.setUnconfirmedStatus(vm.gameId, requestId)
@@ -79,7 +79,18 @@ angular.module('addTeams')
                     gameService.removeTeamFromGame(vm.gameId, team.$id);
                     teamService.removeGameFromTeam(team.$id, vm.gameId);
                     gameRequestService.setUnconfirmedStatus(vm.gameId, team.requestId);
-                }
+                };
+
+                vm.updateTeamSize = function (teamId, numberOfPlayers) {
+                    if (numberOfPlayers) {
+                        openGameService.updateTeamSize(vm.gameId, teamId, numberOfPlayers);
+                    }
+                };
+
+                vm.printTeams = function () {
+                    $window.open($window.location.origin + `/#!/games/${vm.gameId}/print`, ``, `width=${screen.availWidth},height=${screen.availHeight}`);
+                };
+
             }]
 
     })

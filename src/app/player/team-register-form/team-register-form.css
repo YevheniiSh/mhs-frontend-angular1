@@ -1,14 +1,4 @@
-/*#team-name {*/
-/*margin-bottom: 20px;*/
-/*}*/
-
-/*#captain-name {*/
-/*margin-bottom: 20px;*/
-/*}*/
-
 #captain-phone {
-    /*margin-bottom: 20px;*/
-    /*float: left;*/
     border-right: solid 1px silver;
     border-radius: 5px;
 }
@@ -28,10 +18,38 @@
     margin-bottom: 20px;
 }
 
-form {
-    display: block;
-    width: 550px;
+.request-team-form {
     margin: auto;
+}
+
+.autocomplete-panel {
+    float: right;
+    width: 45%;
+    display: inline-block;
+    /*margin-left: 50%;*/
+    /*margin-top: -106px;*/
+}
+
+.animate-come-gone.ng-hide-add {
+    transform: rotateZ(0);
+    transform-origin: right;
+    transition: all 0.6s ease-in-out;
+}
+
+.animate-come-gone.ng-hide-add.ng-hide-add-active {
+    transform: rotateY(-90deg);
+    transform-origin: right;
+    transition: all 0.6s ease;
+}
+
+.animate-come-gone.ng-hide-remove {
+    transform: rotateY(90deg);
+    transform-origin: right;
+    transition: all 0.6s ease;
+}
+
+.animate-come-gone.ng-hide-remove.ng-hide-remove-active {
+    transform: rotateY(0);
 }
 
 span.err {
@@ -41,6 +59,11 @@ span.err {
 
 label {
     margin: 0;
+}
+
+.request-description {
+    padding-top: 10px;
+    padding-bottom: 1px;
 }
 
 #team-name_dropdown {
@@ -63,55 +86,39 @@ label {
     width: 25%;
     margin-top: 155px;
     margin-left: 10px;
-
-    /*position: fixed;*/
-    /*right: 6.4%;*/
-    /*top: 34%;*/
-    /*width: 200px;*/
-    /*height: 90px;*/
-    /*display: block;*/
-    /*z-index: 99999999;*/
 }
 
 .phone-verify-request-alert {
     padding-bottom: 25px;
 }
 
-/*.request-team-form {*/
-/*float: left;*/
-/*padding-left: 30%;*/
-/*width: 70%;*/
-/*}*/
-
 .cancel-changes-button {
     padding-top: 10px;
 }
 
-.team-additional-info {
-    /*margin-top: 20px;*/
-    /*margin-bottom: 5px;*/
-    /*border: solid 1px silver;*/
-}
-
 .captain-name-panel {
-    margin-top: 20px;
-    float: left;
-    width: 40%;
+    display: inline-block;
+    width: 45%;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
 }
 
 .captain-phone-panel {
-    margin-top: 20px;
+    display: inline-block;
     float: left;
-    width: 40%;
-    margin-bottom: 20px;
-    /*padding-left: 50px;*/
+    width: 45%;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
 }
 
-.phone-placeholder {
+.autocomplete-captain-name-panel {
+    width: 100%;
+    transition: all cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.5s;
+}
+
+.autocomplete-captain-phone-panel {
+    display: inline-block;
     float: left;
-    padding-top: 47px;
-    width: 20%;
-    text-align: right;
+    width: 100%;
+    transition: all cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.5s;
 }
 
 .verify-phone-placeholder {
@@ -121,8 +128,12 @@ label {
     text-align: right;
 }
 
-.phone-autocomplete-panel {
+.phone-panel {
     width: 100%;
+}
+
+.btn-cancel-autocomplete{
+    margin-top: 11px;
 }
 
 .btn-autocomplete {
@@ -130,6 +141,35 @@ label {
     padding-right: 3px;
 }
 
-.btn-cancel-autocomplete {
-    width: 120px;
+.vertical-line {
+    display: inline-block;
+    margin-left: 5%;
+    border-left: 1px solid silver;
+    height: 150px;
+}
+
+.animate-show-hide.ng-hide {
+    opacity: 0;
+}
+
+.animate-show-hide.ng-hide-add {
+    transition: all linear 0.1s;
+}
+
+.animate-show-hide.ng-hide-remove {
+    transition: all linear 0.7s;
+}
+
+.team-register-panel {
+    max-width: 650px;
+    margin: auto;
+}
+
+.captain-info {
+    float: left;
+    width: 100%;
+}
+
+.last-digits-panel {
+    width: 100%;
 }

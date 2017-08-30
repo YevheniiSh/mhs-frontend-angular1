@@ -23,13 +23,14 @@ angular
                 getAllFinishedGames: getAllFinishedGames,
                 getGameStatus: getGameStatus,
                 getDate: getDate,
-                getPhotosURL: getPhotosURL,
+                getPhotosUrl: getPhotosUrl,
                 startGame: startGame,
                 getGameTeams: getGameTeams,
                 setPhotosLink: setPhotosLink,
                 removeTeamFromGame: removeTeamFromGame,
                 reOpenGame: reOpenGame,
                 addTeamToGame: addTeamToGame,
+                getGameTeamsNumber: getGameTeamsNumber,
                 getRoundByGameAndId: getRoundByGameAndId
             };
 
@@ -55,7 +56,6 @@ angular
                     .then(() => {
                         return team.key;
                     }, (err) => {
-                        console.log(err);
                         return err;
                     });
             }
@@ -105,7 +105,6 @@ angular
                         }
                     })
                     .catch(() => {
-                        console.log('error');
                         return 'finished';
                     });
             }
@@ -137,7 +136,6 @@ angular
 
             function finishGame(gameId) {
                 getCurrentGameById(gameId).then((res) => {
-                    console.log(res);
                     let obj = new $firebaseObject(finishedGameRef.child(gameId));
                     obj.$value = getObject(res);
                     obj.$save();
@@ -151,7 +149,6 @@ angular
                     if (key.indexOf('$') < 0 && obj.hasOwnProperty(key)) {
                         newObj[key] = obj[key];
                     }
-                    ;
                 }
                 return newObj;
             }
@@ -190,7 +187,7 @@ angular
 
             }
 
-            function getPhotosURL(gameId) {
+            function getPhotosUrl(gameId) {
                 return new $firebaseObject(finishedGameRef.child(gameId).child('photos'))
                     .$loaded().then((res) => {
                         if (res.$value === null)
@@ -244,7 +241,6 @@ angular
 
             function publishGame(gameId) {
                 getCurrentGameById(gameId).then((res) => {
-                    console.log(res);
                     let obj = new $firebaseObject(finishedGameRef.child(gameId));
                     obj.$value = getObject(res);
                     obj.$save();
@@ -256,6 +252,14 @@ angular
                 obj.$value = link;
                 obj.$save();
                 return obj.$loaded();
+            }
+
+            function getGameTeamsNumber(gameId) {
+                let obj = new $firebaseArray(finishedGameRef.child(`${gameId}/teams`));
+                return obj.$loaded()
+                    .then((res) => {
+                        return res.length;
+                    })
             }
 
         }]);
