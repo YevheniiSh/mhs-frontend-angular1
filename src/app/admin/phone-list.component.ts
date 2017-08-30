@@ -1,16 +1,27 @@
-import { Component } from '@angular/core';
-import { downgradeComponent } from '@angular/upgrade/static';
-import * as angular from 'angular';
+import { Component, Inject } from '@angular/core';
 
 @Component({
   selector: 'phone-list',
-  template: '<div>Works</div>'
+  template: `
+    <team-list></team-list>
+    <li *ngFor="let hero of test">
+      {{ hero.name }}
+    </li>`
 })
-export class PhoneListComponent {}
+export class PhoneListComponent {
+  TeamServiceFactory;
+  test = 'test';
 
-angular
-  .module('mhs.admin')
-  .directive(
-    'phoneList',
-    downgradeComponent({component: PhoneListComponent}) as angular.IDirectiveFactory
-  );
+  constructor(@Inject('TeamServiceFactory') TeamServiceFactory) {
+    this.TeamServiceFactory = TeamServiceFactory;
+    this.f();
+  }
+
+  f() {
+    this.TeamServiceFactory
+      .getAllTeams()
+      .then((res) => {
+        this.test = res;
+      })
+  }
+}

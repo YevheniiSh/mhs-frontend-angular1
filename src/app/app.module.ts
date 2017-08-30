@@ -1,14 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { forwardRef, NgModule } from '@angular/core';
 import { UpgradeModule } from '@angular/upgrade/static';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { PhoneListComponent } from './admin/phone-list.component';
+import { UpgradeAdapter } from "@angular/upgrade";
+import * as angular from 'angular';
+
+const adapter = new UpgradeAdapter(forwardRef(() => AppModule));
 
 @NgModule({
   declarations: [
-    PhoneListComponent
+    PhoneListComponent,
+    adapter.upgradeNg1Component('teamList')
   ],
   imports: [
     BrowserModule,
@@ -23,9 +28,16 @@ import { PhoneListComponent } from './admin/phone-list.component';
   providers: [],
 })
 export class AppModule {
-  constructor(private upgrade: UpgradeModule) {}
+  constructor() {
+    adapter.upgradeNg1Provider('TeamServiceFactory');
+  }
 
   ngDoBootstrap() {
-    this.upgrade.bootstrap(document.documentElement, ['mhs']);
+    adapter.bootstrap(document.documentElement, ['mhs']);
   }
 }
+
+const mhsAdminModule = angular
+  .module('mhs.admin');
+
+mhsAdminModule.directive('phoneList', adapter.downgradeNg2Component(PhoneListComponent));
