@@ -10,7 +10,21 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "app"
+        {
+          "glob": "**/*.html",
+          "input": "./app/",
+          "output": "./app/"
+        },
+        {
+          "glob": "**/*.css",
+          "input": "./app/",
+          "output": "./app/"
+        },
+        {
+          "glob": "**/translations/*",
+          "input": "./app/",
+          "output": "./app/"
+        }
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -37,6 +51,10 @@
         "app/bower_components/angular-bootstrap/ui-bootstrap.js",
         "app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
         "app/bower_components/angular-animate/angular-animate.js",
+        "app/bower_components/ngMask/dist/ngMask.js",
+        "app/shared/esc-key.js",
+        "app/shared/enter-key.js",
+        "app/shared/focused.js",
         "app/internalisation/internalisation.module.js",
         "app/internalisation/internalisation.service.js",
         "app/bower_components/angularfire/dist/angularfire.js",
@@ -105,6 +123,7 @@
         "app/admin/game-list/game-list.component.js",
         "app/admin/game-list/finished-game.component.js",
         "app/admin/game-list/open-game-list.component.js",
+        "app/admin/add-teams/print-teams/print-teams.component.js",
         "app/admin/game-template/game-template.module.js",
         "app/admin/game-template/game-template.component.js",
         "app/admin/game-template/current-game-template.component.js",

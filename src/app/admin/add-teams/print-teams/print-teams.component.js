@@ -1,7 +1,7 @@
 angular.module('addTeams')
     .component('printTeams', {
-        templateUrl: 'admin/add-teams/print-teams/print-teams.html',
-        css: 'admin/add-teams/print-teams/print-teams.css',
+      templateUrl: 'app/admin/add-teams/print-teams/print-teams.html',
+      css: 'app/admin/add-teams/print-teams/print-teams.css',
         controller: ['OpenGameServiceFactory', '$routeParams', '$timeout', '$window',
 
             function (openGameService, $routeParams, $timeout, $window) {
