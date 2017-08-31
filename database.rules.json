@@ -27,6 +27,10 @@
     "gameTemplates": {
       ".read": "auth != null",
       ".write": "auth != null"
+    },
+    "seasons":{
+      ".read": "true",
+      ".write": "true"
     }
   }
 }
