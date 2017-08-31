@@ -1,10 +1,6 @@
-<div class="col-md-3 col-xs-offset-9 row">
-    <select class="form-control" ng-model="selectedTemplate">
-        <option ng-repeat=""
-                ng-selected=""
-                ng-value="">
-            {{}}
-        </option>
+<div class="col-md-3 col-md-offset-9 row">
+    <select class="form-control" ng-model="selectedTemplate" ng-options="">
+        <option value="">{{'ALL_SEASONS_SELECT'|translate}}</option>
     </select>
 </div>
 <table class="table table-sm table-striped table-hover">
