@@ -25,11 +25,11 @@ angular.module('createGame')
                 vm.gameTime.setHours(19);
                 vm.gameTime.setMinutes(0);
                 vm.gameTime.setSeconds(0);
-                vm.location = null;
                 vm.$onInit = onInit;
 
                 function onInit() {
                     initSeasons();
+                    clearData();
                 }
 
                 function initSeasons() {
@@ -37,6 +37,13 @@ angular.module('createGame')
                         .then(res => {
                             vm.seasons = res;
                         });
+                }
+
+                function clearData() {
+                    vm.season = {};
+                    vm.selectedSeason = '';
+                    vm.seasonName = '';
+                    vm.location = null;
                 }
 
                 vm.createNewGame = function () {
@@ -63,15 +70,13 @@ angular.module('createGame')
                         .addSeason(vm.season)
                         .buildGame();
                     OpenGameServiceFactory.createNewGame(game)
-                        .then(() => {
-                            vm.location = null;
+                        .then((gameId) => {
+                            seasonService.addGameToSeason(vm.season.id,gameId)
+                            clearData();
+                            vm.isCalendarVisible = false;
+                            vm.isTimeVisible = false;
+                            $scope.$broadcast('angucomplete-alt:clearInput');
                         });
-                    vm.isCalendarVisible = false;
-                    vm.isTimeVisible = false;
-                    vm.season = {};
-                    vm.selectedSeason = '';
-                    vm.seasonName = '';
-                    $scope.$broadcast('angucomplete-alt:clearInput');
                     initSeasons();
                 }
 
