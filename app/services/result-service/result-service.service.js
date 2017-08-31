@@ -7,7 +7,8 @@ angular
         'GameServiceFactory',
         'TeamServiceFactory',
         'RoundStatusService',
-        function ($firebaseArray, $firebaseObject, firebaseDataService, gameService, TeamService, roundService) {
+        'seasonService',
+        function ($firebaseArray, $firebaseObject, firebaseDataService, gameService, TeamService, roundService, seasonService) {
 
             let currentRef = firebaseDataService.currentGames;
             let finishedRef = firebaseDataService.finishedGames;
@@ -157,6 +158,7 @@ angular
                     .then((res) => {
                         res.forEach((item,index) => {
                             TeamService.saveTeamPosition(item.teamId, gameId, index+1);
+                            seasonService.setTeamsRatingForGame(gameId, item.teamId, 10 - index);
                         });
                         return res;
                     });
