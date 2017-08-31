@@ -16,7 +16,8 @@ angular
         'ui.bootstrap',
         'teamList',
         'navbar',
-         'gameTemplate'])
+        'gameTemplate',
+        'seasons'])
     .config(['$routeProvider', function ($routeProvider) {
 
         let isAuth = {
@@ -65,7 +66,7 @@ angular
         });
         $routeProvider.when('/games/:gameId/results-presentation', {
             template: '<game-results></game-results>',
-            css:'admin/game-results/game-results.css',
+            css: 'admin/game-results/game-results.css',
             controller: 'presentationModeController'
         });
         $routeProvider.when('/games/:gameId/results/:teamId', {
@@ -78,6 +79,10 @@ angular
         $routeProvider.when('/templates/:templateId', {
             template: '<current-game-template></current-game-template>',
             css: 'admin/game-template/current-game-template.css'
+        });
+
+        $routeProvider.when('/seasons/:seasonId', {
+            template: '<seasons></seasons>'
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
