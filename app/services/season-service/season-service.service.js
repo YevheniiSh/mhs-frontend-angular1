@@ -10,7 +10,8 @@ angular.module('seasonService')
                 getSeasonIdByGameId: getSeasonIdByGameId,
                 setTeamsRatingForGame: setTeamsRatingForGame,
                 addGameToSeason: addGameToSeason,
-                parseSeasonResults: parseSeasonResults
+                getSeasonGames: getSeasonGames,
+                getParsedSeasonResults: getParsedSeasonResults
             };
 
             function save(season) {
@@ -88,11 +89,12 @@ angular.module('seasonService')
 
             }
 
-            function parseSeasonResults(seasonId) {
+            function getParsedSeasonResults(seasonId) {
+                let results = {};
+                let parsedResults = [];
+
                 return getSeasonGames(seasonId)
                     .then((games) => {
-                        console.log(games);
-                        let results = {};
 
                         games.forEach((item) => {
                             for (let key in item.teams) {
@@ -100,10 +102,31 @@ angular.module('seasonService')
                                 results[key].teamId = key;
                                 results[key].teamName = item.teams[key].teamName;
                             }
-                        })
+                        });
 
+                        games.forEach((item) => {
+                            for (let key in item.teams) {
+                                results[key].games = [];
+                            }
+                        });
 
-                        console.log(results);
-                    })
+                        games.forEach((item) => {
+                            for (let key in item.teams) {
+                                results[key].games.push({rating: item.teams[key].rating, gameId: item.$id});
+                            }
+                        });
+
+                        for (let key in results) {
+                            results[key].total = results[key].games.reduce((sum, current) => {
+                                return sum + parseFloat(current.rating);
+                            }, 0)
+                        }
+
+                        for (let key in results) {
+                            parsedResults.push(results[key]);
+                        }
+
+                        return parsedResults;
+                    });
             }
         }]);
