@@ -24,6 +24,9 @@ select {
     padding-left: 12%;
     padding-bottom: 3%;
 }
+.request-header{
+    position: relative;
+}
 
 .request-details {
     margin-left: 5%;
@@ -55,8 +58,11 @@ select {
     margin: 0px;
     font-size: 16px;
     font-weight: bold;
-    float: left;
     cursor: pointer;
+}
+.request-controls{
+    position: absolute;
+    right: 10px;
 }
 .request-controls > .btn{
     padding: 0;
