@@ -1,1 +1,1 @@
-angular.module('createGame', []);
+angular.module('createGame', ['angucomplete-alt']);

@@ -109,5 +109,6 @@
   "NUMBER_OF_TEAMS_LABEL": "Кількість команд",
   "NO_LINK_TO_PHOTOS_LABEL": "Відсутнє посилання на фотографії",
   "ALL_SEASONS_SELECT": "Усі сезони",
-  "GAME_SEASON_LABEL": "Сезон"
+  "GAME_SEASON_LABEL": "Сезон",
+  "SEASON_PLACEHOLDER":"Сезон"
 }

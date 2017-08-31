@@ -9,68 +9,98 @@ angular.module('createGame')
             'gameBuildServiceFactory',
             '$locale',
             'convertServiceFactory',
+            'seasonService',
 
-            function (TeamService, OpenGameServiceFactory, $rootScope, $location, gameBuild, $locale, convertService) {
+            function (TeamService, OpenGameServiceFactory, $rootScope, $location, gameBuild, $locale, convertService,seasonService) {
 
-                this.isCalendarVisible = false;
-                this.isTimeVisible = false;
-                this.options = {};
-                this.options.minDate = new Date();
-                this.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
-                this.isMeridian = false;
-                this.gameDate = new Date();
-                this.gameTime = new Date();
-                this.gameTime.setHours(19);
-                this.gameTime.setMinutes(0);
-                this.gameTime.setSeconds(0);
-                this.season = {};
-                // this.gameBuilder = gameBuild.getGameBuilder();
-                this.location = null;
+                let vm = this;
+                vm.isCalendarVisible = false;
+                vm.isTimeVisible = false;
+                vm.options = {};
+                vm.options.minDate = new Date();
+                vm.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
+                vm.isMeridian = false;
+                vm.gameDate = new Date();
+                vm.gameTime = new Date();
+                vm.gameTime.setHours(19);
+                vm.gameTime.setMinutes(0);
+                vm.gameTime.setSeconds(0);
+                vm.location = null;
+                vm.$onInit = onInit;
 
-                this.createNewGame = function () {
-                    let game = gameBuild.addDate(this.gameDate)
-                        .addTime(this.gameTime)
-                        .addLocation(this.location)
-                        .addSeason(this.season)
+                function onInit() {
+                    initSeasons();
+                }
+
+                function initSeasons() {
+                    vm.seasons = seasonService.getSeasonsNames()
+                        .then(res=>{
+                            vm.seasons = res;
+                        });
+                }
+                vm.createNewGame = function () {
+                    if(vm.selectedSeason){
+                        vm.season = vm.selectedSeason.originalObject;
+                        saveGame();
+                    }else{
+                        seasonService.save({name:vm.seasonName})
+                            .then(res=>{
+                                vm.season = {id:res, name:vm.seasonName};
+                                saveGame();
+                            });
+                    }
+                };
+
+                function saveGame(){
+                    let game = gameBuild.addDate(vm.gameDate)
+                        .addTime(vm.gameTime)
+                        .addLocation(vm.location)
+                        .addSeason(vm.season)
                         .buildGame();
-
                     OpenGameServiceFactory.createNewGame(game)
                         .then(() => {
-                            this.location = null;
+                            vm.location = null;
                         });
-                    this.isCalendarVisible = false;
-                    this.isTimeVisible = false;
+                    vm.isCalendarVisible = false;
+                    vm.isTimeVisible = false;
+                    vm.season = null;
+                    vm.selectedSeason = null;
+                    initSeasons();
+                }
 
+                vm.getTimeForView = function () {
+                    return convertService.convertTimeForView(vm.gameTime)
                 };
 
-                this.getTimeForView = function () {
-                    return convertService.convertTimeForView(this.gameTime)
-                };
-
-                this.ChangeCalendarStatus = function () {
-                    if (this.isCalendarVisible) {
-                        this.isCalendarVisible = false;
-                    } else if (this.isTimeVisible) {
-                        this.isTimeVisible = false;
-                        this.isCalendarVisible = true;
+                vm.ChangeCalendarStatus = function () {
+                    if (vm.isCalendarVisible) {
+                        vm.isCalendarVisible = false;
+                    } else if (vm.isTimeVisible) {
+                        vm.isTimeVisible = false;
+                        vm.isCalendarVisible = true;
                     }
                     else {
-                        this.isCalendarVisible = true;
+                        vm.isCalendarVisible = true;
                     }
                 };
 
-                this.ChangeTimeStatus = function () {
-                    if (this.isTimeVisible) {
-                        this.isTimeVisible = false;
+                vm.ChangeTimeStatus = function () {
+                    if (vm.isTimeVisible) {
+                        vm.isTimeVisible = false;
                     }
-                    else if (this.isCalendarVisible) {
-                        this.isTimeVisible = true;
-                        this.isCalendarVisible = false;
+                    else if (vm.isCalendarVisible) {
+                        vm.isTimeVisible = true;
+                        vm.isCalendarVisible = false;
                     }
                     else {
-                        this.isTimeVisible = true;
+                        vm.isTimeVisible = true;
                     }
                 };
+
+                vm.setSeasonName = function (seasonName) {
+                    vm.seasonName = seasonName;
+                }
+
 
             }]
 
