@@ -23,11 +23,16 @@ angular.module('createGame')
                 this.gameTime.setHours(19);
                 this.gameTime.setMinutes(0);
                 this.gameTime.setSeconds(0);
+                this.season = {};
                 // this.gameBuilder = gameBuild.getGameBuilder();
                 this.location = null;
 
                 this.createNewGame = function () {
-                    let game = gameBuild.addDate(this.gameDate).addTime(this.gameTime).addLocation(this.location).buildGame();
+                    let game = gameBuild.addDate(this.gameDate)
+                        .addTime(this.gameTime)
+                        .addLocation(this.location)
+                        .addSeason(this.season)
+                        .buildGame();
 
                     OpenGameServiceFactory.createNewGame(game)
                         .then(() => {
