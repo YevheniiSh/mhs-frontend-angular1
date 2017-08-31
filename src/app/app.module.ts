@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { forwardRef, NgModule } from '@angular/core';
-import { UpgradeModule } from '@angular/upgrade/static';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -17,10 +16,9 @@ const adapter = new UpgradeAdapter(forwardRef(() => AppModule));
   ],
   imports: [
     BrowserModule,
-    UpgradeModule,
     FormsModule,
     HttpModule,
-    RouterModule
+    RouterModule,
   ],
   entryComponents: [
     PhoneListComponent
@@ -37,7 +35,6 @@ export class AppModule {
   }
 }
 
-const mhsAdminModule = angular
-  .module('mhs.admin');
+const mhsAdminModule = angular.module('mhs.admin');
 
 mhsAdminModule.directive('phoneList', adapter.downgradeNg2Component(PhoneListComponent));
