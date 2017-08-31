@@ -158,7 +158,10 @@ angular
                     .then((res) => {
                         res.forEach((item,index) => {
                             TeamService.saveTeamPosition(item.teamId, gameId, index+1);
-                            seasonService.setTeamsRatingForGame(gameId, item.teamId, 10 - index);
+                            seasonService.setTeamsRatingForGame(gameId, item.teamId, {
+                                rating: (10 - index),
+                                teamName: item.teamName
+                            });
                         });
                         return res;
                     });

@@ -9,7 +9,8 @@ angular.module('seasonService')
                 getSeasonsNames: getSeasonsNames,
                 getSeasonIdByGameId: getSeasonIdByGameId,
                 setTeamsRatingForGame: setTeamsRatingForGame,
-                addGameToSeason: addGameToSeason
+                addGameToSeason: addGameToSeason,
+                parseSeasonResults: parseSeasonResults
             };
 
             function save(season) {
@@ -58,7 +59,7 @@ angular.module('seasonService')
                 return getSeasonIdByGameId(gameId)
                     .then((seasonId) => {
                         if (seasonId !== undefined) {
-                            let obj = new $firebaseObject(seasonRef.child(`${seasonId}/games/${gameId}/teams/${teamId}/rating`));
+                            let obj = new $firebaseObject(seasonRef.child(`${seasonId}/games/${gameId}/teams/${teamId}`));
                             obj.$value = rating;
                             obj.$save();
                             return obj.$loaded();
@@ -72,5 +73,37 @@ angular.module('seasonService')
                 obj.$value = true;
                 obj.$save();
                 return obj.$loaded();
+            }
+
+            function getSeasonGames(seasonId) {
+                let obj = new $firebaseArray(seasonRef.child(`${seasonId}/games/`));
+                return obj.$loaded()
+                    .then((res) => {
+                        let ids = [];
+                        res.forEach((item) => {
+                            ids.push(item);
+                        });
+                        return ids;
+                    });
+
+            }
+
+            function parseSeasonResults(seasonId) {
+                return getSeasonGames(seasonId)
+                    .then((games) => {
+                        console.log(games);
+                        let results = {};
+
+                        games.forEach((item) => {
+                            for (let key in item.teams) {
+                                results[key] = {};
+                                results[key].teamId = key;
+                                results[key].teamName = item.teams[key].teamName;
+                            }
+                        })
+
+
+                        console.log(results);
+                    })
             }
         }]);
