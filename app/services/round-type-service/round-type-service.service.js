@@ -8,11 +8,17 @@ angular
             let roundTypeRef = firebaseDataService.roundTypes;
             
             return{
-                getRoundTypes:getRoundTypes
+                getRoundTypes: getRoundTypes,
+                getDefaultValuesByRoundId: getDefaultValuesByRoundId
             }
             
             function getRoundTypes() {
-                
+
+            }
+
+            function getDefaultValuesByRoundId(roundId) {
+                let obj = new $firebaseObject(roundTypeRef.child(roundId));
+                return obj.$loaded();
             }
         }
     ])
