@@ -6,9 +6,9 @@
                 templateUrl: 'admin/game-list/finished-game.html',
                 controller: FinishedGameListController
             });
-    FinishedGameListController.$inject = ['GameServiceFactory', '$location'];
+    FinishedGameListController.$inject = ['GameServiceFactory', '$location', 'seasonService'];
 
-    function FinishedGameListController(gameFactory, $location) {
+    function FinishedGameListController(gameFactory, $location, seasonService) {
         let vm = this;
         vm.$onInit = onInit;
 
@@ -20,19 +20,24 @@
             gameFactory
                 .getAllFinishedGames()
                 .then((games) => {
-                    this.games = games;
+                    vm.games = games;
+
                     vm.parseDate();
-                    this.games.forEach((item) => {
+                    vm.games.forEach((item) => {
                         gameFactory.getGameTeamsNumber(item.$id)
                             .then((teamsNumber) => {
                                 item.teamsNumber = teamsNumber;
                             });
                     });
 
-                    this.games.$watch(() => {
+                    vm.games.$watch(() => {
                         vm.parseDate();
                     })
-                })
+                });
+
+            seasonService.getSeasonsNames().then((res) => {
+                vm.seasons = res
+            })
 
         };
 
