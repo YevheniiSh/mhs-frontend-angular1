@@ -6,14 +6,38 @@ angular
             css: 'admin/seasons/seasons.css',
             controller: seasonsController
         });
-seasonsController.$inject = ['GameServiceFactory', '$location', 'seasonService', '$routeParams'];
+seasonsController.$inject = ['GameServiceFactory', '$location', 'seasonService', '$routeParams', '$window'];
 
-function seasonsController(gameFactory, $location, seasonService, $routeParams) {
+function seasonsController(gameFactory, $location, seasonService, $routeParams, $window) {
     let vm = this;
 
-    vm.seasonId = $routeParams.seasonId;
+    let seasonId = $routeParams.seasonId;
+
 
     seasonService.getSeasonsNames().then((res) => {
-        vm.seasons = res
-    })
+        vm.seasons = res;
+        setCurrentSeason();
+    });
+
+    seasonService.getParsedSeasonResults(seasonId).then((res) => {
+        console.log(res)
+        vm.seasonTeams = res
+    });
+
+    function setCurrentSeason() {
+        for (let season  in vm.seasons) {
+            if (vm.seasons[season].id === seasonId)
+                vm.selectedSeason = vm.seasons[season]
+        }
+    }
+
+    vm.setSeasonUrl = function () {
+            if (vm.selectedSeason !== undefined)
+        if ( seasonId !== vm.selectedSeason.id  )
+        {
+            seasonId = vm.selectedSeason.id;
+            $location.path("seasons/" + seasonId)
+        }
+    }
+
 }
