@@ -1,5 +1,5 @@
 <div id="create-game-comp" class="container">
-    <form  name="createForm">
+    <form name="createForm">
         <div class="col-md-2">
             <div ng-click="$ctrl.ChangeCalendarStatus()">
                 <label class="control-label data-picker-label" for="game-calendar">
@@ -11,7 +11,7 @@
                 <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
                      datepicker-options="$ctrl.options"></div>
             </div>
-         </div>
+        </div>
         <div class="col-md-2">
             <div ng-click="$ctrl.ChangeTimeStatus()">
                 <label class="control-label data-picker-label" for="game-time">
@@ -21,7 +21,8 @@
             </div>
 
             <div class="picker" ng-show="$ctrl.isTimeVisible">
-                <div uib-timepicker name="time"  ng-model="$ctrl.gameTime"  show-meridian="$ctrl.isMeridian" class="well well-sm"></div>
+                <div uib-timepicker name="time" ng-model="$ctrl.gameTime" show-meridian="$ctrl.isMeridian"
+                     class="well well-sm"></div>
             </div>
         </div>
         <div class="col-md-2">
@@ -29,7 +30,22 @@
                 <input class="form-control" ng-model="$ctrl.location"
                        maxlength="34"
                        name="location"
-                       required placeholder="{{'LOCATION_PLACEHOLDER' | translate}}"></div>
+                       required
+                       placeholder="{{'LOCATION_PLACEHOLDER' | translate}}"></div>
+        </div>
+        <div class="col-md-3">
+            <angucomplete-alt id="season"
+                              placeholder="{{'SEASON_PLACEHOLDER'|translate}}"
+                              pause="100"
+                              selected-object="$ctrl.selectedSeason"
+                              local-data="$ctrl.seasons"
+                              search-fields="name"
+                              title-field="name"
+                              minlength="1"
+                              auto-match="true"
+                              input-changed="$ctrl.setSeasonName"
+                              input-class="form-control form-control-small">
+            </angucomplete-alt>
         </div>
         <button id="game-build" type="submit" class=" btn btn-info"
                 ng-click="$ctrl.createNewGame()" ng-disabled="createForm.$invalid">
