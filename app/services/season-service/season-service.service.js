@@ -8,7 +8,8 @@ angular.module('seasonService')
                 save: save,
                 getSeasonsNames: getSeasonsNames,
                 getSeasonIdByGameId: getSeasonIdByGameId,
-                setTeamsRatingForGame: setTeamsRatingForGame
+                setTeamsRatingForGame: setTeamsRatingForGame,
+                addGameToSeason: addGameToSeason
             };
 
             function save(season) {
@@ -64,5 +65,12 @@ angular.module('seasonService')
                         }
                     })
 
+            }
+
+            function addGameToSeason(seasonId, gameId) {
+                let obj = new $firebaseObject(seasonRef.child(`${seasonId}/games/${gameId}`));
+                obj.$value = true;
+                obj.$save();
+                return obj.$loaded();
             }
         }]);
