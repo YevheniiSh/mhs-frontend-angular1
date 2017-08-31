@@ -27,7 +27,9 @@ angular.module('gameBuildService')
             }
 
             function addSeason(season) {
-                this.game.season = season;
+                if(season){
+                    this.game.season = season;
+                }
                 return this
             }
 

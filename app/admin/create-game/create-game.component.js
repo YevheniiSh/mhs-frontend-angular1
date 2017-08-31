@@ -4,14 +4,14 @@ angular.module('createGame')
         css: 'admin/create-game/create-game.css',
         controller: ['TeamServiceFactory',
             'OpenGameServiceFactory',
-            '$rootScope',
+            '$scope',
             '$location',
             'gameBuildServiceFactory',
             '$locale',
             'convertServiceFactory',
             'seasonService',
 
-            function (TeamService, OpenGameServiceFactory, $rootScope, $location, gameBuild, $locale, convertService,seasonService) {
+            function (TeamService, OpenGameServiceFactory, $scope, $location, gameBuild, $locale, convertService, seasonService) {
 
                 let vm = this;
                 vm.isCalendarVisible = false;
@@ -34,24 +34,29 @@ angular.module('createGame')
 
                 function initSeasons() {
                     vm.seasons = seasonService.getSeasonsNames()
-                        .then(res=>{
+                        .then(res => {
                             vm.seasons = res;
                         });
                 }
+
                 vm.createNewGame = function () {
-                    if(vm.selectedSeason){
+                    if (vm.selectedSeason) {
                         vm.season = vm.selectedSeason.originalObject;
                         saveGame();
-                    }else{
-                        seasonService.save({name:vm.seasonName})
-                            .then(res=>{
-                                vm.season = {id:res, name:vm.seasonName};
-                                saveGame();
-                            });
+                    } else {
+                        if(vm.seasonName){
+                            seasonService.save({name: vm.seasonName})
+                                .then(res => {
+                                    vm.season = {id: res, name: vm.seasonName};
+                                    saveGame();
+                                });
+                        }else{
+                            saveGame();
+                        }
                     }
                 };
 
-                function saveGame(){
+                function saveGame() {
                     let game = gameBuild.addDate(vm.gameDate)
                         .addTime(vm.gameTime)
                         .addLocation(vm.location)
@@ -63,8 +68,10 @@ angular.module('createGame')
                         });
                     vm.isCalendarVisible = false;
                     vm.isTimeVisible = false;
-                    vm.season = null;
-                    vm.selectedSeason = null;
+                    vm.season = {};
+                    vm.selectedSeason = '';
+                    vm.seasonName = '';
+                    $scope.$broadcast('angucomplete-alt:clearInput');
                     initSeasons();
                 }
 
