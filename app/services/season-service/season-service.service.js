@@ -104,28 +104,35 @@ angular.module('seasonService')
                             }
                         });
 
-                        games.forEach((item) => {
-                            for (let key in item.teams) {
-                                results[key].games = [];
-                            }
-                        });
+                        for (let key in results) {
+                            results[key].games = {};
+                            games.forEach((item) => {
+                                results[key].games[item.$id] = {rating: 0, gameId: item.$id};
+                            });
+                        }
+                        console.log('Test');
+
+                        console.log(parsedResults);
 
                         games.forEach((item) => {
                             for (let key in item.teams) {
-                                results[key].games.push({rating: item.teams[key].rating, gameId: item.$id});
+                                results[key].games[item.$id] = {rating: item.teams[key].rating, gameId: item.$id};
                             }
                         });
 
                         for (let key in results) {
-                            results[key].total = results[key].games.reduce((sum, current) => {
-                                return sum + parseFloat(current.rating);
-                            }, 0)
+                            results[key].total = 0;
+
+                            for (let gameKey in results[key].games) {
+                                results[key].total += results[key].games[gameKey].rating;
+                            }
                         }
 
                         for (let key in results) {
                             parsedResults.push(results[key]);
                         }
 
+                        console.log(parsedResults);
                         return parsedResults;
                     });
             }
