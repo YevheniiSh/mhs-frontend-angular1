@@ -107,5 +107,6 @@
   "CLOSE_BUTTON": "Закрыть",
   "TEAMS_HEADER":" Команды Mead Head Show",
   "NUMBER_OF_TEAMS_LABEL": "Количество команд",
-  "NO_LINK_TO_PHOTOS_LABEL":"Отсутствует ссылка на фотографии"
+  "NO_LINK_TO_PHOTOS_LABEL":"Отсутствует ссылка на фотографии",
+  "GAME_SEASON_LABEL": "Сезон"
 }
