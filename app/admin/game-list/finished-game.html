@@ -1,9 +1,19 @@
+<div class="col-md-3 col-xs-offset-9 row">
+    <select class="form-control" ng-model="selectedTemplate">
+        <option ng-repeat=""
+                ng-selected=""
+                ng-value="">
+            {{}}
+        </option>
+    </select>
+</div>
 <table class="table table-sm table-striped table-hover">
     <thead>
     <tr class="game-property">
         <th>{{'DATE_LABEL' | translate}}</th>
         <th>{{'WINNER_TEAM_LABEL' | translate}}</th>
         <th>{{'NUMBER_OF_TEAMS_LABEL' | translate}}</th>
+        <th>{{'GAME_SEASON_LABEL' | translate}}</th>
     </tr>
     </thead>
     <tbody>
@@ -11,6 +21,7 @@
         <td>{{game.date.toLocaleDateString()}}</td>
         <td><i id="trophy" class="fa fa-trophy"></i> {{game.winner.name}}</td>
         <td>{{game.teamsNumber}}</td>
+        <td>Лето 2017</td>
     </tr>
     </tbody>
 </table>
