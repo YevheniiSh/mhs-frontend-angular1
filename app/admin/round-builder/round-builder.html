@@ -4,6 +4,7 @@
         <th>#</th>
         <th>{{'ROUND_NAME_LABEL' | translate}}</th>
         <th>{{'QUESTION_COUNT_LABEL' | translate}}</th>
+        <th>{{'ROUND_TYPE' | translate}}</th>
         </thead>
         <tbody>
         <tr ng-repeat="round in $ctrl.rounds">
@@ -22,6 +23,11 @@
                            min="1" max="20" ng-model="round.numberOfQuestions"
                            placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" type="number" required>
                 </div>
+            </td>
+            <td>
+                <select class="form-control round-type-selector">
+                    <option ng-repeat="item in ['Стандартный','Капитанский','Аукцион','7 подсказок']">{{item}}</option>
+                </select>
             </td>
             <td ng-click="$ctrl.deleteRound($index)"><a class="btn btn-danger">
                 {{'DELETE_ROUND_BUTTON' | translate}}</a>
