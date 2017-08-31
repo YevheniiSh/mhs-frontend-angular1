@@ -24,10 +24,8 @@ select {
     padding-left: 12%;
     padding-bottom: 3%;
 }
-
-#team-name {
-    font-size: 20px;
-    font-weight: bold;
+.request-header{
+    position: relative;
 }
 
 .request-details {
@@ -45,7 +43,6 @@ select {
     height: 400px;
     overflow-y: auto;
     overflow-x: hidden;
-    white-space: nowrap;
     border: solid 2px lightgrey;
     border-radius: 10px;
     padding-top: 20px;
@@ -57,11 +54,19 @@ select {
 }
 
 .list-item {
-    text-align: left;
-    width: 70%;
+    width: 80%;
     margin: 0px;
     font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
+}
+.request-controls{
+    position: absolute;
+    right: 10px;
+}
+.request-controls > .btn{
+    padding: 0;
+    margin: 0 5px;
 }
 
 .scroll-panel::-webkit-scrollbar {
@@ -83,9 +88,9 @@ select {
 }
 
 .animate-teams, .animate-requests {
-    line-height: 30px;
     list-style: none;
     box-sizing: border-box;
+    margin: 10px 0;
 }
 
 .animate-teams.ng-enter {
