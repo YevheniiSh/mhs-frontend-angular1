@@ -62,6 +62,8 @@ select {
     margin: 0px;
     font-size: 16px;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .scroll-panel::-webkit-scrollbar {
