@@ -186,7 +186,13 @@ angular
             resultFactory.getGameWinner = function (gameId) {
                 return resultFactory.getParsedResults(gameId)
                     .then((results) => {
-                        return results[0];
+                        let winners = [];
+                        results.forEach((item) => {
+                            if (item.positionTeam === 1) {
+                                winners.push(item);
+                            }
+                        });
+                        return winners;
                     });
             };
 
@@ -201,11 +207,12 @@ angular
 
                 return resultFactory.getGameWinner(gameId)
                     .then((res) => {
-                        let winner = {};
-                        winner['id'] = res.teamId;
-                        winner['name'] = res.teamName;
-                        winner['score'] = res.total;
-                        return ref.child(gameId).child('winner').set(winner);
+                        res.forEach((item) => {
+                            console.log(item);
+                            let obj = new $firebaseObject(ref.child(`${gameId}/winner/${item.teamId}`));
+                            obj.$value = {name: item.teamName, score: item.total};
+                            obj.$save();
+                        });
                     });
             };
 
