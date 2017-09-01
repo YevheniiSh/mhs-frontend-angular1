@@ -72,7 +72,7 @@
             </div>
         </div>
         <button id="game-build" type="submit" class=" btn btn-info"
-                ng-click="$ctrl.createNewGame()" ng-disabled="createForm.$invalid">
+                ng-click="$ctrl.createNewGame()" ng-disabled="createForm.$invalid||$ctrl.seasonEditor">
             {{'CREATE_GAME_BUTTON' | translate}}
         </button>
     </form>
