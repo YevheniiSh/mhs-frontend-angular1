@@ -80,11 +80,11 @@ angular
             template: '<current-game-template></current-game-template>',
             css: 'admin/game-template/current-game-template.css'
         });
-        $routeProvider.when('/season/:seasonId', {
-            template: '<season></season>'
-        });
         $routeProvider.when('/seasons', {
             template: '<season-list></season-list>'
+        });
+        $routeProvider.when('/seasons/:seasonId', {
+            template: '<season></season>'
         });
     }])
     .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {

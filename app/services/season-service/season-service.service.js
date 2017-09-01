@@ -271,7 +271,7 @@ angular.module('seasonService')
             }
 
             function finishSeason(id) {
-                setSeasonWinner(id);
+                setSeasonWinners(id);
                 return setStatus(id, false);
             }
 

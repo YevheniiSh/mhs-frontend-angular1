@@ -7,9 +7,9 @@
             controller: SeasonListController
         });
 
-    SeasonListController.$inject = ['seasonService'];
+    SeasonListController.$inject = ['seasonService', '$location'];
 
-    function SeasonListController(seasonService) {
+    function SeasonListController(seasonService, $location) {
         let vm = this;
         vm.$onInit = onInit;
 
@@ -21,9 +21,19 @@
                             .then(numberOfGames => {
                                 season.numberOfGames = numberOfGames;
                             });
+
+                        seasonService.getSeasonWinners(season.id)
+                            .then(seasonWinners => {
+                                console.log(seasonWinners[0]);
+                                season.seasonWinner = seasonWinners[0];
+                            })
                     });
                     vm.seasons = seasons;
                 })
+        }
+
+        vm.goToSeason = function(id){
+            $location.path(`/seasons/${id}`);
         }
     }
 })();
