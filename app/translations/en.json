@@ -111,5 +111,7 @@
   "NO_LINK_TO_PHOTOS_LABEL": "No link to photos",
   "ALL_SEASONS_SELECT": "All seasons",
   "GAME_SEASON_LABEL": "Season",
-  "SEASON_PLACEHOLDER":"Season"
+  "SEASON_PLACEHOLDER":"Season",
+  "DELETE_BUTTON": "Delete",
+  "DELETE_GAME_ALERT": "Delete this game?"
 }

@@ -9,15 +9,19 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="game-row td" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
+    <tr class="game-row td games" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
         <td>{{openGame.date.toLocaleDateString()}}</td>
         <td>{{openGame.time}}</td>
         <td>{{openGame.location}}</td>
         <td  ng-click="$event.stopPropagation();"><a ng-href='/#!/seasons/{{openGame.season.id}}'>{{openGame.season.name}}</a> </td>
 
         <td>
+            <button class="btn btn-danger game-button"
+                    ng-click="$ctrl.deleteGameRequest(openGame)"
+                    ng-if="$ctrl.auth">{{'DELETE_BUTTON' | translate}}
+            </button>
             <a class="btn btn-info game-button"
-                    ng-href="/#!/games/{{openGame.$id}}/registration">
+               ng-href="/#!/games/{{openGame.$id}}/registration">
                 {{'REGISTER_BUTTON' | translate}}
             </a>
             <button class="btn btn-info game-button"
@@ -30,6 +34,20 @@
             </button>
             <span id="err-message" class="error text-danger"
                   ng-if="openGame.invalid">{{openGame.error| translate}}</span>
+
+            <div ng-if="openGame.isDeleteGameRequested"
+                 class="alert alert-danger alert-dismissible fade in delete-game-alert" role="alert">
+                <p>{{'DELETE_GAME_ALERT' | translate}}</p>
+                <p>
+                    <button ng-click="$ctrl.deleteGame(openGame)" type="button" class="btn btn-danger">{{'DELETE_BUTTON'
+                        | translate}}
+                    </button>
+                    <button ng-click="$ctrl.cancelDeleteGameRequest(openGame)" type="button" class="btn btn-default">
+                        {{'CLOSE_BUTTON' | translate}}
+                    </button>
+                </p>
+            </div>
+
         </td>
     </tr>
     </tbody>
