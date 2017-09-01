@@ -19,9 +19,14 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
         setCurrentSeason();
     });
 
-    seasonService.getParsedSeasonResults(seasonId).then((res) => {
+    seasonService.getContenderTeams(seasonId).then((res) => {
         console.log(res)
         vm.seasonTeams = res
+    });
+
+    seasonService.getDropOutTeams(seasonId).then((res) => {
+        console.log(res)
+        vm.seasonDropTeams = res
     });
 
     function setCurrentSeason() {
