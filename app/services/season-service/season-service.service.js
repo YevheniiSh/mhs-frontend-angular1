@@ -194,7 +194,8 @@ angular.module('seasonService')
 
                         return parsedResults;
                     })
-                    .then(sortParsedResults);
+                    .then(sortParsedResults)
+                    .then(setTeamsPosition);
             }
 
             function getDropOutTeams(seasonId) {
@@ -238,7 +239,9 @@ angular.module('seasonService')
 
                         return parsedResults;
                     })
-                    .then(sortParsedResults);
+                    .then(sortParsedResults)
+                    .then(setTeamsPosition);
+                ;
             }
 
             function sortParsedResults(score) {
@@ -262,5 +265,24 @@ angular.module('seasonService')
 
             function finishSeason(id) {
                 return setStatus(id, false);
+            }
+
+            function setTeamsPosition(score) {
+                let positionTeam = 1;
+                score.forEach((item, index) => {
+                    if (score[index - 1]) {
+                        if (score[index - 1].total != item.total) {
+                            positionTeam++;
+                        }
+                    }
+                    item.positionTeam = positionTeam;
+                });
+                console.log(score);
+                return score;
+            }
+
+            function getSeasonWinner(seasonId) {
+                let obj = new $firebaseArray(seasonRef.child(`${seasonId}/winner`));
+                return obj.$loaded();
             }
         }]);

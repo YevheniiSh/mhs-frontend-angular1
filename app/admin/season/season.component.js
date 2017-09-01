@@ -46,24 +46,6 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
         vm.currentSeason = false;
     };
 
-    let currentTeamPosition;
-    vm.getTeamPosition = function (index, total, teams) {
-        let position;
-
-        if (index === 0) {
-            position = 1;
-            currentTeamPosition = position
-
-        } else if (index >= 1 && total === teams[index - 1].total) {
-            position = currentTeamPosition
-
-        } else {
-            position = ++currentTeamPosition;
-        }
-
-        return position
-    };
-
     vm.setSeasonUrl = function () {
         if (vm.selectedSeason !== undefined)
             if (seasonId !== vm.selectedSeason.id) {
