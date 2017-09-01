@@ -16,19 +16,18 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
 
     seasonService.getSeasonsNames().then((res) => {
         vm.seasons = res;
-        setCurrentSeason();
+        setSelectedSeason();
     });
 
     seasonService.getParsedSeasonResults(seasonId).then((res) => {
         vm.seasonTeams = res;
     });
 
-    function setCurrentSeason() {
-        for (let season  in vm.seasons) {
-            if (vm.seasons[season].id === seasonId)
-                vm.selectedSeason = vm.seasons[season];
-        }
-    }
+
+
+    vm.closeCurrentSeason = function () {
+
+    };
 
     let currentTeamPosition;
     vm.getTeamPosition = function (teamId, index, total) {
@@ -58,6 +57,12 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
 
     vm.showGame = function (gameId) {
         $location.path("/games/" + gameId + "/results");
-    }
+    };
 
+    function setSelectedSeason() {
+        for (let season  in vm.seasons) {
+            if (vm.seasons[season].id === seasonId)
+                vm.selectedSeason = vm.seasons[season];
+        }
+    }
 }
