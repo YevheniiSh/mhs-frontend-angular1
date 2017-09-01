@@ -153,6 +153,13 @@ angular.module('seasonService')
 
                         console.log(parsedResults);
                         return parsedResults;
-                    });
+                    })
+                    .then(sortParsedResults);
+            }
+
+            function sortParsedResults(score) {
+                return score.sort((a, b) => {
+                    return (+(a.total) > +(b.total)) ? -1 : ((+(b.total) > +(a.total)) ? 1 : 0);
+                });
             }
         }]);
