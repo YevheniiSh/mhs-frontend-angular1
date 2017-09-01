@@ -15,6 +15,8 @@ h2 {
     -webkit-column-count: 3; /* Chrome, Safari, Opera */
     -moz-column-count: 3; /* Firefox */
     column-count: 3;
+    column-width: 500px;
+    min-width: 620px;
 }
 
 #team-list label {
@@ -56,17 +58,35 @@ h2 {
 
 input[type=checkbox] {
     transform: scale(1.5);
-    margin-top: 10px;
     cursor: pointer;
 }
 
-#manual-input{
+#manual-input {
     font-size: 14pt;
     height: 32px;
     line-height: 32px;
 }
 
-.clickable-label{
+#manual-input > input[type=checkbox] {
+    margin-top: 10px;
+}
+
+.clickable-label {
     cursor: pointer;
 }
 
+.team-name {
+    display: flex;
+
+    overflow: hidden;
+
+    line-height: 0.9em;
+}
+
+.team {
+    padding-top: 10px;
+}
+
+.score-by-manual {
+    margin-top: -5px;
+}

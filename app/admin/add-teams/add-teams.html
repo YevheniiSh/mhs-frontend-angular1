@@ -4,14 +4,19 @@
             <ul class="scroll-panel">
                 <li class="animate-requests animated"
                     ng-repeat="team in $ctrl.requests | filter:{status:'unconfirmed'}">
-                    <span class="btn list-item" ng-click="showDetails = ! showDetails">{{team.teamName}}</span>
-                    <span class="btn" ng-click="$ctrl.archivateRequest(team.$id)">
+                    <div class="request-header">
+                        <div class="request-controls">
+                        <span class="btn" ng-click="$ctrl.archivateRequest(team.$id)">
                             <i class="fa fa-archive" aria-hidden="true"></i>
                         </span>
-                    <span class="btn"
-                          ng-click="$ctrl.addTeamToGame(team)">
+                            <span class="btn"
+                                  ng-click="$ctrl.addTeamToGame(team)">
                             <i class="fa fa-check" aria-hidden="true"></i>
                         </span>
+                        </div>
+                        <div class="list-item" ng-click="showDetails = ! showDetails">{{team.teamName}}</div>
+                    </div>
+
                     <div class="request-details animated" ng-show="showDetails">
                         <p>{{'CAPTAIN_NAME_LABEL' | translate}}: <strong>{{team.fullName}}</strong></p>
                         <p>{{'PHONE_LABEL' | translate}}: <strong>{{team.phone}}</strong></p>
@@ -24,12 +29,18 @@
             <ul class="scroll-panel">
                 <li class="animate-requests animated"
                     ng-repeat="team in $ctrl.requests | filter:{status:'archived'}">
-                    <span class="btn list-item" ng-click="showDetails = ! showDetails">{{team.teamName}}</span>
-                    <span class="btn" ng-click="$ctrl.unArchivateRequest(team.$id)">
-                        <i class="fa fa-archive" aria-hidden="true"></i></span>
-                    <span class="btn" ng-click="$ctrl.addTeamToGame(team)">
+                    <div class="request-header">
+                        <div class="request-controls">
+                        <span class="btn" ng-click="$ctrl.unArchivateRequest(team.$id)">
+                            <i class="fa fa-archive" aria-hidden="true"></i>
+                        </span>
+                            <span class="btn" ng-click="$ctrl.addTeamToGame(team)">
                         <i class="fa fa-check" aria-hidden="true"></i>
-                    </span>
+                        </span>
+                        </div>
+                        <div class="list-item" ng-click="showDetails = ! showDetails">{{team.teamName}}</div>
+                    </div>
+
                     <div class="request-details animated    " ng-show="showDetails">
                         <p>{{'CAPTAIN_NAME_LABEL' | translate}}: <strong>{{team.fullName}}</strong></p>
                         <p>{{'PHONE_LABEL' | translate}}: <strong>{{team.phone}}</strong></p>
@@ -44,17 +55,22 @@
 <div class="col-md-2"></div>
 <div class="col-md-5">
     <uib-tabset>
-        <i ng-click="$ctrl.printTeams()"  class="fa fa-print fa-lg print-button"></i>
+        <i ng-click="$ctrl.printTeams()" class="fa fa-print fa-lg print-button"></i>
         <uib-tab heading="{{'CONFIRMED_TEAMS_TAB_NAME' | translate}}">
             <ul class="scroll-panel">
                 <li class="animate-teams animated"
                     ng-repeat="team in $ctrl.teams">
-                        <span class="btn list-item" ng-click="showDetails = ! showDetails">
-                            {{team.name}}
-                        </span>
-                    <span class="btn" ng-click="$ctrl.unConfirmRequest(team)">
+                    <div class="request-header">
+                        <div class="request-controls">
+                       <span class="btn" ng-click="$ctrl.unConfirmRequest(team)">
                         <i class="fa fa-times" aria-hidden="true"></i>
-                    </span>
+                        </span>
+                        </div>
+                        <div class="list-item" ng-click="showDetails = ! showDetails">
+                            {{team.name}}
+                        </div>
+                    </div>
+
                     <div class="request-details animated" animated ng-show="showDetails">
                         <p>{{'CAPTAIN_NAME_LABEL' | translate}}: <strong>{{team.fullName}}</strong></p>
                         <p>{{'PHONE_LABEL' | translate}}: <strong>{{team.phone}}</strong></p>
