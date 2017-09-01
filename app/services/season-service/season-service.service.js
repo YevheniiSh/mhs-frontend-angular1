@@ -17,6 +17,9 @@ angular.module('seasonService')
                 getParsedSeasonResults: getParsedSeasonResults,
                 openSeason: openSeason,
                 finishSeason: finishSeason,
+                getSeasons: getSeasons,
+                getNumberOfGames: getNumberOfGames,
+                getSeasonWinners: getSeasonWinners
             };
 
             function save(season) {
@@ -30,6 +33,11 @@ angular.module('seasonService')
                     }, (err) => {
                         return err;
                     });
+            }
+
+            function getSeasons(){
+                return new $firebaseArray(seasonRef)
+                    .$loaded();
             }
 
             function getCurrentSeason() {
@@ -241,7 +249,6 @@ angular.module('seasonService')
                     })
                     .then(sortParsedResults)
                     .then(setTeamsPosition);
-                ;
             }
 
             function sortParsedResults(score) {
@@ -264,6 +271,7 @@ angular.module('seasonService')
             }
 
             function finishSeason(id) {
+                setSeasonWinner(id);
                 return setStatus(id, false);
             }
 
@@ -281,8 +289,21 @@ angular.module('seasonService')
                 return score;
             }
 
-            function getSeasonWinner(seasonId) {
-                let obj = new $firebaseArray(seasonRef.child(`${seasonId}/winner`));
+            function setSeasonWinners(seasonId) {
+                return getContenderTeams(seasonId)
+                    .then((results) => {
+                        results.forEach((item) => {
+                            if (item.positionTeam === 1) {
+                                let obj = new $firebaseObject(seasonRef.child(`${seasonId}/winners/${item.teamId}`));
+                                obj.$value = {teamName: item.teamName};
+                                obj.$save();
+                            }
+                        })
+                    })
+            }
+
+            function getSeasonWinners(seasonId) {
+                let obj = new $firebaseArray(seasonRef.child(`${seasonId}/winners`));
                 return obj.$loaded();
             }
         }]);
