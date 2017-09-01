@@ -3,6 +3,7 @@
     angular.module('game-list')
         .component('openGameList', {
             templateUrl: 'admin/game-list/open-game-list.html',
+            css: 'admin/game-list/open-game-list.css',
             controller: OpenGameList
         });
 
@@ -17,11 +18,11 @@
                 vm.openGames = games;
                 vm.parseDate();
 
-                vm.openGames.$watch((event) => {
+                vm.openGames.$watch(() => {
                     vm.parseDate();
                 });
             })
-        };
+        }
 
         vm.parseDate = function () {
             vm.openGames.forEach((item) => {
@@ -61,11 +62,28 @@
             $location.path('/games/' + gameId + '/config')
         };
 
+        vm.deleteGame = function (game) {
+            delete game.isDeleteGameRequested;
+            openGameFactory.removeOpenGame(game.$id)
+        };
+
+        vm.deleteGameRequest = function (game) {
+            game.isDeleteGameRequested = true;
+        };
+
+        vm.cancelDeleteGameRequest = function (game) {
+            game.isDeleteGameRequested = false;
+            delete game.isDeleteGameRequested;
+        };
+
         vm.auth = false;
-        userService.currentUser().then((res) => {
-            vm.auth = true;
-        }).catch((err) => {
-            vm.auth = false;
-        });
+
+        userService.currentUser()
+            .then(() => {
+                vm.auth = true;
+            })
+            .catch(() => {
+                vm.auth = false;
+            });
     }
 })();

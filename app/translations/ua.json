@@ -110,5 +110,8 @@
   "NO_LINK_TO_PHOTOS_LABEL": "Відсутнє посилання на фотографії",
   "ALL_SEASONS_SELECT": "Усі сезони",
   "GAME_SEASON_LABEL": "Сезон",
-  "SEASON_PLACEHOLDER":"Сезон"
+  "SEASON_PLACEHOLDER":"Сезон",
+  "DELETE_BUTTON": "Видалити",
+  "DELETE_GAME_ALERT": "Видалити цю гру?",
+  "CLOSE_SEASON_BUTTON": "Закрити сезон"
 }

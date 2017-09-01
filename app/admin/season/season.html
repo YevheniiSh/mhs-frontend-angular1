@@ -6,7 +6,8 @@
                 ng-options="season.name for season in $ctrl.seasons">
         </select>
     </div>
-    <button class="btn btn-danger" ng-if="$ctrl.currentSeason" style="float: right;" ng-click="$ctrl.closeCurrentSeason()">Close season</button>
+    <button class="btn btn-danger close-season" ng-if="$ctrl.currentSeason" ng-click="$ctrl.closeCurrentSeason()">
+        {{'CLOSE_SEASON_BUTTON' | translate}}</button>
 
 
     <table class="table table-sm table-striped table-hover ">
