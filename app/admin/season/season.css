@@ -13,3 +13,8 @@
 .close-season{
     float: right;
 }
+
+.season-alert {
+   font-size: 24px;
+    padding-top: 10px;
+}
