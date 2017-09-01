@@ -23,8 +23,6 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
         vm.seasonTeams = res;
     });
 
-
-
     vm.closeCurrentSeason = function () {
 
     };
