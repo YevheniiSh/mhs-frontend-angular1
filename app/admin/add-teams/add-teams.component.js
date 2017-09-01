@@ -9,7 +9,7 @@ angular.module('addTeams')
             '$location',
             '$routeParams',
             '$window',
-            function (teamRequestService,gameRequestService, openGameService, teamService, gameService, $location, $routeParams, $window) {
+            function (teamRequestService, gameRequestService, openGameService, teamService, gameService, $location, $routeParams, $window) {
                 let vm = this;
                 vm.gameId = $routeParams.gameId;
                 vm.$onInit = onInit;
