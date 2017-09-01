@@ -29,20 +29,19 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
     });
 
 
-
     vm.closeCurrentSeason = function () {
 
     };
 
     let currentTeamPosition;
-    vm.getTeamPosition = function (teamId, index, total) {
+    vm.getTeamPosition = function (index, total, teams) {
         let position;
 
         if (index === 0) {
             position = 1;
             currentTeamPosition = position
 
-        } else if (index >= 1 && total === vm.seasonTeams[index - 1].total) {
+        } else if (index >= 1 && total === teams[index - 1].total) {
             position = currentTeamPosition
 
         } else {
