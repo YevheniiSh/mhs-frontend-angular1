@@ -14,13 +14,24 @@
     position: absolute;
 }
 
+#no-season{
+    line-height: 250%;
+    float: right;
+    font-style: italic;
+}
+
+#season-name-input{
+    display: inline-block;
+    width: auto;
+}
+
+
 #season-name{
     padding-top: 2.5%;
     padding-left: 10%;
     display: inline-block;
     cursor: pointer;
 }
-
 
 .switch {
     position: relative;
@@ -84,4 +95,10 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+.link-icon{
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 18px;
 }
