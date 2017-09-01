@@ -60,10 +60,14 @@
             </div>
             <div ng-if="$ctrl.season">
                 <label class="switch">
-                    <input type="checkbox" ng-model="$ctrl.isSeasonGame">
+                    <input id = "season" type="checkbox" ng-model="$ctrl.isSeasonGame">
                     <span class="slider round"></span>
                 </label>
-                {{$ctrl.season.name}}
+                <label id="season-name"
+                       ng-class="{'disabled' : !$ctrl.isSeasonGame,'enabled':$ctrl.isSeasonGame}"
+                       for="season">
+                    {{$ctrl.season.name}}
+                </label>
             </div>
         </div>
         <button id="game-build" type="submit" class=" btn btn-info"
