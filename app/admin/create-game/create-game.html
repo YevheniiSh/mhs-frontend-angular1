@@ -35,15 +35,16 @@
         </div>
         <div class="col-md-3">
             <div ng-if="!$ctrl.season">
-                <span class="photos-link" ng-if="!$ctrl.seasonEditor">
-                    <span class="no-photos-link">No season</span>
+                <span id="no-season" ng-if="!$ctrl.seasonEditor">
+                    <span>{{'NO_SEASON_LABEL'| translate}}</span>
                     <i class="fa fa-pencil link-pencil link-icon"
                        ng-click="$ctrl.seasonEditor = true"
                        aria-hidden="true">
                     </i>
                 </span>
                 <span class="photos-link-editor" ng-if="$ctrl.seasonEditor">
-                    <input class="form-control"
+                    <input id="season-name-input"
+                           class="form-control"
                            type="text"
                            esc-key="$ctrl.seasonEditor = false"
                            enter-key="$ctrl.saveSeason()"
@@ -60,7 +61,7 @@
             </div>
             <div ng-if="$ctrl.season">
                 <label class="switch">
-                    <input id = "season" type="checkbox" ng-model="$ctrl.isSeasonGame">
+                    <input id="season" type="checkbox" ng-model="$ctrl.isSeasonGame">
                     <span class="slider round"></span>
                 </label>
                 <label id="season-name"
@@ -71,7 +72,7 @@
             </div>
         </div>
         <button id="game-build" type="submit" class=" btn btn-info"
-                ng-click="$ctrl.createNewGame()" ng-disabled="createForm.$invalid">
+                ng-click="$ctrl.createNewGame()" ng-disabled="createForm.$invalid||$ctrl.seasonEditor">
             {{'CREATE_GAME_BUTTON' | translate}}
         </button>
     </form>
