@@ -47,7 +47,7 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
 
         } else {
             position = ++currentTeamPosition;
-
+        }
 
         return position
     };
