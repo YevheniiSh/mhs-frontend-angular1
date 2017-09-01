@@ -107,5 +107,7 @@
   "CLOSE_BUTTON": "Закрыть",
   "TEAMS_HEADER":" Команды Mead Head Show",
   "NUMBER_OF_TEAMS_LABEL": "Количество команд",
-  "NO_LINK_TO_PHOTOS_LABEL":"Отсутствует ссылка на фотографии"
+  "NO_LINK_TO_PHOTOS_LABEL": "Отсутствует ссылка на фотографии",
+  "DELETE_BUTTON": "Удалить",
+  "DELETE_GAME_ALERT": "Удалить эту игру?"
 }
