@@ -3,7 +3,7 @@
         <option value="">{{'ALL_SEASONS_SELECT'|translate}}</option>
     </select>
 </div>
-<table class="table table-sm table-striped table-hover">
+<table class="table table-sm table-striped table-hover finished-games-table">
     <thead>
     <tr class="game-property">
         <th>{{'DATE_LABEL' | translate}}</th>
@@ -15,7 +15,9 @@
     <tbody>
     <tr class="game-row" ng-repeat="game in $ctrl.games | filter:$ctrl.selectedSeason.id |orderBy:'-date'" ng-click="$ctrl.openGameInfo(game.$id)">
         <td>{{game.date.toLocaleDateString()}}</td>
-        <td><i id="trophy" class="fa fa-trophy"></i> {{game.winner.name}}</td>
+        <td>
+            <div ng-repeat="winner in game.winner"><i id="trophy" class="fa fa-trophy"></i> {{winner.name}}</div>
+        </td>
         <td>{{game.teamsNumber}}</td>
         <td  ng-click="$event.stopPropagation();"><a ng-href='/#!/season/{{game.season.id}}'>{{game.season.name}}</a> </td>
     </tr>

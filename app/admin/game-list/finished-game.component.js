@@ -4,6 +4,7 @@
         .component('finishedGameList',
             {
                 templateUrl: 'admin/game-list/finished-game.html',
+                css: 'admin/game-list/finished-game.css',
                 controller: FinishedGameListController
             });
     FinishedGameListController.$inject = ['GameServiceFactory', '$location', 'seasonService'];
