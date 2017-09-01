@@ -153,7 +153,8 @@ angular
                     .then(res => {
                         return resultFactory.parseTeamsResult(res, gameId)
                     })
-                    .then(resultFactory.sortDesc);
+                    .then(resultFactory.sortDesc)
+                    .then(calculateTeamPosition);
             };
 
             resultFactory.setTeamsResults = function (gameId) {
