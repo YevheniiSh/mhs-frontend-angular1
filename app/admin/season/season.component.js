@@ -1,48 +1,58 @@
 angular
-    .module('seasons')
-    .component('seasons',
+    .module('season')
+    .component('season',
         {
-            templateUrl: 'admin/seasons/seasons.html',
-            css: 'admin/seasons/seasons.css',
+            templateUrl: 'admin/season/season.html',
+            css: 'admin/season/season.css',
             controller: seasonsController
         });
 seasonsController.$inject = ['GameServiceFactory', '$location', 'seasonService', '$routeParams', '$window'];
 
 function seasonsController(gameFactory, $location, seasonService, $routeParams, $window) {
+
     let vm = this;
 
     let seasonId = $routeParams.seasonId;
 
+    vm.$onInit = onInit;
 
-    seasonService.getSeasonsNames().then((res) => {
-        vm.seasons = res;
-        setSelectedSeason();
-    });
+    function onInit() {
 
-    seasonService.getContenderTeams(seasonId).then((res) => {
-        vm.seasonTeams = res;
-    });
+        seasonService.getSeasonsNames().then((res) => {
+            vm.seasons = res;
+            setSelectedSeason();
+        });
 
-    seasonService.getDropOutTeams(seasonId).then((res) => {
-        console.log(res)
-        vm.seasonDropTeams = res
-    });
+        seasonService.getContenderTeams(seasonId).then((res) => {
+            vm.seasonTeams = res;
+        });
 
+        seasonService.getDropOutTeams(seasonId).then((res) => {
+            console.log(res);
+            vm.seasonDropTeams = res
+        });
 
+        seasonService.getCurrentSeason()
+            .then(season => {
+                let currentSeasonId = season.$id;
+                if (currentSeasonId === seasonId) vm.currentSeason = true;
+            });
+    }
 
     vm.closeCurrentSeason = function () {
-
+        seasonService.finishSeason(seasonId);
+        vm.currentSeason = false;
     };
 
     let currentTeamPosition;
-    vm.getTeamPosition = function (teamId, index, total) {
+    vm.getTeamPosition = function (index, total, teams) {
         let position;
 
         if (index === 0) {
             position = 1;
             currentTeamPosition = position
 
-        } else if (index >= 1 && total === vm.seasonTeams[index - 1].total) {
+        } else if (index >= 1 && total === teams[index - 1].total) {
             position = currentTeamPosition
 
         } else {
@@ -56,7 +66,7 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
         if (vm.selectedSeason !== undefined)
             if (seasonId !== vm.selectedSeason.id) {
                 seasonId = vm.selectedSeason.id;
-                $location.path("seasons/" + seasonId)
+                $location.path("season/" + seasonId)
             }
     };
 

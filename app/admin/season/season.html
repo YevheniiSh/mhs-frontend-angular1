@@ -4,10 +4,9 @@
 
         <select class="form-control" ng-model="$ctrl.selectedSeason" ng-click="$ctrl.setSeasonUrl()"
                 ng-options="season.name for season in $ctrl.seasons">
-
         </select>
     </div>
-    <button class="btn btn-danger" style="float: right;" ng-click="">Close season</button>
+    <button class="btn btn-danger" ng-if="$ctrl.currentSeason" style="float: right;" ng-click="$ctrl.closeCurrentSeason()">Close season</button>
 
 
     <table class="table table-sm table-striped table-hover ">
@@ -21,7 +20,7 @@
         </thead>
         <tbody>
         <tr class="table-row" ng-repeat="team in $ctrl.seasonTeams  | orderBy: '-total' ">
-            <td class="td-cell position-data">{{$ctrl.getTeamPosition(team.teamId, $index, team.total) }}</td>
+            <td class="td-cell position-data">{{$ctrl.getTeamPosition($index, team.total, $ctrl.seasonTeams) }}</td>
             <td class="td-cell team-name">
                 <a ng-click="$ctrl.getTeamGames(team.teamId);$event.stopPropagation();">
                     {{team.teamName}}
@@ -47,7 +46,7 @@
         </thead>
         <tbody>
         <tr class="table-row" ng-repeat="team in $ctrl.seasonDropTeams">
-            <td class="td-cell position-data">{{$index + 1}}</td>
+            <td class="td-cell position-data">{{$ctrl.getTeamPosition($index, team.total, $ctrl.seasonDropTeams) }}</td>
             <td class="td-cell team-name">
                 <a ng-click="$ctrl.getTeamGames(team.teamId);$event.stopPropagation();">
                     {{team.teamName}}
