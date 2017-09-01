@@ -63,6 +63,7 @@
         };
 
         vm.deleteGame = function (game) {
+            delete game.isDeleteGameRequested;
             openGameFactory.removeOpenGame(game.$id)
         };
 
@@ -72,6 +73,7 @@
 
         vm.cancelDeleteGameRequest = function (game) {
             game.isDeleteGameRequested = false;
+            delete game.isDeleteGameRequested;
         };
 
         vm.auth = false;
