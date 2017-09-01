@@ -30,13 +30,16 @@ angular.module('createGame')
 
                 function onInit() {
                     setCurrentSeason();
+                    vm.isSeasonGame = false;
                 }
 
                 function setCurrentSeason() {
                     seasonService.getCurrentSeason()
                         .then(season => {
-                            vm.season = season;
-                            vm.season.id = season.$id
+                            if (season) {
+                                vm.season = season;
+                                vm.season.id = season.$id
+                            }
                         })
                 }
 
@@ -45,12 +48,16 @@ angular.module('createGame')
                         .addTime(vm.gameTime)
                         .addLocation(vm.location);
                     if (vm.isSeasonGame) {
-                        gameBuider.addSeason({id:vm.season.id,name:vm.season.name});
+                        gameBuider.addSeason({id: vm.season.id, name: vm.season.name});
+                    }else{
+                        delete gameBuider.game['season'];
                     }
                     let game = gameBuider.buildGame();
                     OpenGameServiceFactory.createNewGame(game)
                         .then((gameId) => {
-                            seasonService.addGameToSeason(vm.season.id, gameId)
+                            if(vm.isSeasonGame){
+                                seasonService.addGameToSeason(vm.season.id, gameId)
+                            }
                             vm.isCalendarVisible = false;
                             vm.isTimeVisible = false;
                             vm.location = null;
