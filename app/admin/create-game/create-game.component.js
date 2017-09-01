@@ -25,60 +25,38 @@ angular.module('createGame')
                 vm.gameTime.setHours(19);
                 vm.gameTime.setMinutes(0);
                 vm.gameTime.setSeconds(0);
+
                 vm.$onInit = onInit;
 
                 function onInit() {
-                    initSeasons();
-                    clearData();
+                    setCurrentSeason();
                 }
 
-                function initSeasons() {
-                    vm.seasons = seasonService.getSeasonsNames()
-                        .then(res => {
-                            vm.seasons = res;
-                        });
-                }
-
-                function clearData() {
-                    vm.season = {};
-                    vm.selectedSeason = '';
-                    vm.seasonName = '';
-                    vm.location = null;
+                function setCurrentSeason() {
+                    seasonService.getCurrentSeason()
+                        .then(season => {
+                            vm.season = season;
+                            vm.season.id = season.$id
+                        })
                 }
 
                 vm.createNewGame = function () {
-                    if (vm.selectedSeason) {
-                        vm.season = vm.selectedSeason.originalObject;
-                        saveGame();
-                    } else {
-                        if(vm.seasonName){
-                            seasonService.save({name: vm.seasonName})
-                                .then(res => {
-                                    vm.season = {id: res, name: vm.seasonName};
-                                    saveGame();
-                                });
-                        }else{
-                            saveGame();
-                        }
-                    }
-                };
-
-                function saveGame() {
-                    let game = gameBuild.addDate(vm.gameDate)
+                    let gameBuider = gameBuild.addDate(vm.gameDate)
                         .addTime(vm.gameTime)
-                        .addLocation(vm.location)
-                        .addSeason(vm.season)
-                        .buildGame();
+                        .addLocation(vm.location);
+                    if (vm.isSeasonGame) {
+                        gameBuider.addSeason({id:vm.season.id,name:vm.season.name});
+                    }
+                    let game = gameBuider.buildGame();
                     OpenGameServiceFactory.createNewGame(game)
                         .then((gameId) => {
-                            seasonService.addGameToSeason(vm.season.id,gameId)
-                            clearData();
+                            seasonService.addGameToSeason(vm.season.id, gameId)
                             vm.isCalendarVisible = false;
                             vm.isTimeVisible = false;
-                            $scope.$broadcast('angucomplete-alt:clearInput');
+                            vm.location = null;
+                            setCurrentSeason();
                         });
-                    initSeasons();
-                }
+                };
 
                 vm.getTimeForView = function () {
                     return convertService.convertTimeForView(vm.gameTime)
@@ -109,11 +87,16 @@ angular.module('createGame')
                     }
                 };
 
-                vm.setSeasonName = function (seasonName) {
-                    vm.seasonName = seasonName;
+                vm.saveSeason = function () {
+                    seasonService.save({name: vm.newSeasonName})
+                        .then(seasonId => {
+                            vm.season = {id: seasonId, name: vm.newSeasonName};
+                            seasonService.openSeason(seasonId);
+                            vm.seasonEditor = false;
+                            vm.isSeasonGame = true;
+                        })
+
                 }
-
-
             }]
 
     })
