@@ -80,7 +80,6 @@ angular
             template: '<current-game-template></current-game-template>',
             css: 'admin/game-template/current-game-template.css'
         });
-
         $routeProvider.when('/seasons/:seasonId', {
             template: '<seasons></seasons>'
         });

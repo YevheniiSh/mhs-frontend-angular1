@@ -14,18 +14,31 @@
     position: absolute;
 }
 
+#season-name{
+    padding-top: 2.5%;
+    padding-left: 10%;
+    display: inline-block;
+    cursor: pointer;
+}
+
 
 .switch {
     position: relative;
     display: inline-block;
     width: 60px;
-    height: 34px;
+    height: 34px;float: left;
 }
 
-/* Hide default HTML checkbox */
+.disabled{
+    color: #ccc;
+}
+
+.enabled{
+    color: black;
+}
+
 .switch input {display:none;}
 
-/* The slider */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -33,6 +46,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    margin: 0;
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
@@ -64,7 +78,6 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .slider.round {
     border-radius: 34px;
 }

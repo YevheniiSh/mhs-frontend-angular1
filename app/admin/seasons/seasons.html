@@ -4,10 +4,9 @@
 
         <select class="form-control" ng-model="$ctrl.selectedSeason" ng-click="$ctrl.setSeasonUrl()"
                 ng-options="season.name for season in $ctrl.seasons">
-
         </select>
     </div>
-    <button class="btn btn-danger" style="float: right;" ng-click="">Close season</button>
+    <button class="btn btn-danger" ng-if="$ctrl.currentSeason" style="float: right;" ng-click="$ctrl.closeCurrentSeason()">Close season</button>
 
 
     <table class="table table-sm table-striped table-hover ">

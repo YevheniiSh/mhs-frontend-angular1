@@ -9,28 +9,39 @@ angular
 seasonsController.$inject = ['GameServiceFactory', '$location', 'seasonService', '$routeParams', '$window'];
 
 function seasonsController(gameFactory, $location, seasonService, $routeParams, $window) {
+
     let vm = this;
 
     let seasonId = $routeParams.seasonId;
 
+    vm.$onInit = onInit;
 
-    seasonService.getSeasonsNames().then((res) => {
-        vm.seasons = res;
-        setSelectedSeason();
-    });
+    function onInit() {
 
-    seasonService.getContenderTeams(seasonId).then((res) => {
-        vm.seasonTeams = res;
-    });
+        seasonService.getSeasonsNames().then((res) => {
+            vm.seasons = res;
+            setSelectedSeason();
+        });
 
-    seasonService.getDropOutTeams(seasonId).then((res) => {
-        console.log(res)
-        vm.seasonDropTeams = res
-    });
+        seasonService.getContenderTeams(seasonId).then((res) => {
+            vm.seasonTeams = res;
+        });
 
+        seasonService.getDropOutTeams(seasonId).then((res) => {
+            console.log(res);
+            vm.seasonDropTeams = res
+        });
+
+        seasonService.getCurrentSeason()
+            .then(season => {
+                let currentSeasonId = season.$id;
+                if (currentSeasonId === seasonId) vm.currentSeason = true;
+            });
+    }
 
     vm.closeCurrentSeason = function () {
-
+        seasonService.finishSeason(seasonId);
+        vm.currentSeason = false;
     };
 
     let currentTeamPosition;
