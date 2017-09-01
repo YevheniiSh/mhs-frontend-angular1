@@ -1,1 +1,1 @@
-angular.module('seasonService',[])
+angular.module('seasonService',[]);

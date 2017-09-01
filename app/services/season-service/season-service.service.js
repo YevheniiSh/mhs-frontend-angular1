@@ -12,7 +12,9 @@ angular.module('seasonService')
                 setTeamsRatingForGame: setTeamsRatingForGame,
                 addGameToSeason: addGameToSeason,
                 getSeasonGames: getSeasonGames,
-                getParsedSeasonResults: getParsedSeasonResults
+                getParsedSeasonResults: getParsedSeasonResults,
+                openSeason: openSeason,
+                finishSeason: finishSeason,
             };
 
             function save(season) {
@@ -172,4 +174,20 @@ angular.module('seasonService')
                 });
             }
 
+            function setStatus(id, status) {
+                let seasonStatus = new $firebaseObject(seasonRef.child(`seasons/${id}/status`));
+                seasonStatus.$value = status;
+                return seasonStatus.$save()
+                    .then((res) => {
+                        return res.$value;
+                    });
+            }
+
+            function openSeason(id) {
+                return setStatus(id, true);
+            }
+
+            function finishSeason(id) {
+                return setStatus(id, false);
+            }
         }]);
