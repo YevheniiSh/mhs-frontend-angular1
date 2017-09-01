@@ -112,5 +112,6 @@
   "GAME_SEASON_LABEL": "Сезон",
   "SEASON_PLACEHOLDER":"Сезон",
   "DELETE_BUTTON": "Удалить",
-  "DELETE_GAME_ALERT": "Удалить эту игру?"
+  "DELETE_GAME_ALERT": "Удалить эту игру?",
+  "CLOSE_SEASON_BUTTON": "Закрыть сезон"
 }

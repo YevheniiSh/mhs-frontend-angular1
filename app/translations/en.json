@@ -113,5 +113,6 @@
   "GAME_SEASON_LABEL": "Season",
   "SEASON_PLACEHOLDER":"Season",
   "DELETE_BUTTON": "Delete",
-  "DELETE_GAME_ALERT": "Delete this game?"
+  "DELETE_GAME_ALERT": "Delete this game?",
+  "CLOSE_SEASON_BUTTON": "Close season"
 }
