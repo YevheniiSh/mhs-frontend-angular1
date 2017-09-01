@@ -1,9 +1,9 @@
 angular
-    .module('seasons')
-    .component('seasons',
+    .module('season')
+    .component('season',
         {
-            templateUrl: 'admin/seasons/seasons.html',
-            css: 'admin/seasons/seasons.css',
+            templateUrl: 'admin/season/season.html',
+            css: 'admin/season/season.css',
             controller: seasonsController
         });
 seasonsController.$inject = ['GameServiceFactory', '$location', 'seasonService', '$routeParams', '$window'];
@@ -66,7 +66,7 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
         if (vm.selectedSeason !== undefined)
             if (seasonId !== vm.selectedSeason.id) {
                 seasonId = vm.selectedSeason.id;
-                $location.path("seasons/" + seasonId)
+                $location.path("season/" + seasonId)
             }
     };
 
