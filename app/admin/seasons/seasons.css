@@ -5,3 +5,7 @@
 .game-rating{
     cursor: pointer;
 }
+
+.missed-game {
+    color: red;
+}
