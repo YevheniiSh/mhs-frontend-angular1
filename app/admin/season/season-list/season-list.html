@@ -1,17 +1,17 @@
 <table class="table table-sm table-striped table-hover">
     <thead>
-    <h1 class="season-title">Seasons</h1>
-    <tr class="">
-        <th>{{'GAME_SEASON_LABEL' | translate}}</th>
-        <th>Winner</th>
-        <th>Games</th>
-    </tr>
+        <h1 class="season-title">Seasons</h1>
+        <tr class="">
+            <th>{{'GAME_SEASON_LABEL' | translate}}</th>
+            <th>Winner</th>
+            <th>Games</th>
+        </tr>
     </thead>
     <tbody>
-    <tr class="seasons" ng-repeat="season in $ctrl.seasons" ng-click="$ctrl.goToSeason(season.id)">
-        <td ng-click="$event.stopPropagation();" >{{season.name}}</td>
-        <td>{{season.seasonWinner.teamName}}</td>
-        <td>{{season.numberOfGames}}</td>
-    </tr>
+        <tr class="seasons" ng-repeat="season in $ctrl.seasons" ng-click="$ctrl.goToSeason(season.id)">
+            <td>{{season.name}}</td>
+            <td>{{season.seasonWinner.teamName}}</td>
+            <td>{{season.numberOfGames}}</td>
+        </tr>
     </tbody>
 </table>
