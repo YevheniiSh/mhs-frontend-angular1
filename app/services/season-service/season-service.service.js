@@ -56,11 +56,30 @@ angular.module('seasonService')
 
             }
 
-            function setTeamsRatingForGame(gameId, teamId, rating) {
+            function setTeamsRatingForGame(gameId, teamId, position) {
                 return getSeasonIdByGameId(gameId)
                     .then((seasonId) => {
                         if (seasonId !== undefined) {
                             let obj = new $firebaseObject(seasonRef.child(`${seasonId}/games/${gameId}/teams/${teamId}`));
+                            let rating = {};
+
+                            rating.teamName = position.teamName;
+
+                            switch (position.rating) {
+                                case 1:
+                                    rating.rating = 12;
+                                    break;
+                                case 2:
+                                    rating.rating = 10;
+                                    break;
+                                default:
+                                    rating.rating = 11 - position.rating;
+                            }
+
+                            if (rating.rating < 0) {
+                                rating.rating = 0;
+                            }
+
                             obj.$value = rating;
                             obj.$save();
                             return obj.$loaded();
