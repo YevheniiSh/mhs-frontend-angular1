@@ -134,6 +134,20 @@ angular
 
             };
 
+            function calculateTeamPosition(score){
+                let positionTeam = 1;
+                score.forEach((item, index) => {
+                    if (score[index - 1]) {
+                        if (score[index - 1].total != item.total) {
+                            positionTeam++;
+                        }
+                    }
+                    item.positionTeam = positionTeam;
+                });
+                return score;
+            }
+
+
             resultFactory.getParsedResults = function (gameId) {
                 return resultFactory.getGameResults(gameId)
                     .then(res => {
@@ -155,11 +169,12 @@ angular
             resultFactory.setTeamPosition = function (gameId) {
                 return resultFactory.getParsedResults(gameId)
                     .then(resultFactory.sortDesc)
+                    .then(calculateTeamPosition)
                     .then((res) => {
-                        res.forEach((item,index) => {
-                            TeamService.saveTeamPosition(item.teamId, gameId, index+1);
+                        res.forEach((item) => {
+                            TeamService.saveTeamPosition(item.teamId, gameId, item.positionTeam);
                             seasonService.setTeamsRatingForGame(gameId, item.teamId, {
-                                rating: (10 - index),
+                                rating: (item.positionTeam),
                                 teamName: item.teamName
                             });
                         });
