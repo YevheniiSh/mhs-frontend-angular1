@@ -36,7 +36,7 @@
         <div class="col-md-3">
             <div ng-if="!$ctrl.season">
                 <span id="no-season" ng-if="!$ctrl.seasonEditor">
-                    <span>No season</span>
+                    <span>{{'NO_SEASON_LABEL'| translate}}</span>
                     <i class="fa fa-pencil link-pencil link-icon"
                        ng-click="$ctrl.seasonEditor = true"
                        aria-hidden="true">
