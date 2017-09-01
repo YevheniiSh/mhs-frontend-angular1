@@ -149,7 +149,11 @@ angular.module('seasonService')
 
                         games.forEach((item) => {
                             for (let key in item.teams) {
-                                results[key].games[item.$id] = {rating: item.teams[key].rating, gameId: item.$id};
+                                results[key].games[item.$id] = {
+                                    rating: item.teams[key].rating,
+                                    gameId: item.$id,
+                                    played: true
+                                };
                             }
                         });
 
@@ -216,7 +220,7 @@ angular.module('seasonService')
                         for (let key in results) {
                             games.forEach((item) => {
                                 if (results[key].games[item.$id] === undefined) {
-                                    results[key].games[item.$id] = {rating: 0, gameId: item.$id};
+                                    results[key].games[item.$id] = {rating: 0, gameId: item.$id, played: false};
                                 }
                             });
                         }

@@ -54,7 +54,9 @@
                 </a>
             </td>
 
-            <td class="td-cell round-score" ng-repeat="game in team.gamesArr | orderBy:'gameId'">{{game.rating}}</td>
+            <td class="td-cell round-score" ng-repeat="game in team.gamesArr | orderBy:'gameId'"
+                ng-class="{'missed-game': !game.played}">{{game.rating}}
+            </td>
             <td class="td-cell total-score">{{team.total}}</td>
         </tr>
         </tbody>
