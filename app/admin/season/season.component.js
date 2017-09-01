@@ -34,8 +34,10 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
 
         seasonService.getCurrentSeason()
             .then(season => {
-                let currentSeasonId = season.$id;
-                if (currentSeasonId === seasonId) vm.currentSeason = true;
+                if (season){
+                    let currentSeasonId = season.$id;
+                    if (currentSeasonId === seasonId) vm.currentSeason = true;
+                }
             });
     }
 

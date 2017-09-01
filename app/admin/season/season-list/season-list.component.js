@@ -14,8 +14,9 @@
         vm.$onInit = onInit;
 
         function onInit() {
-            seasonService.getSeasonsNames()
+            seasonService.getSeasons()
                 .then((res) => {
+                console.log(res);
                     vm.seasons = res;
                 })
         }
