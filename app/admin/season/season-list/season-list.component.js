@@ -25,7 +25,7 @@
                         seasonService.getSeasonWinners(season.id)
                             .then(seasonWinners => {
                                 console.log(seasonWinners[0]);
-                                season.seasonWinner = seasonWinners[0];
+                                season.seasonWinners = seasonWinners;
                             })
                     });
                     vm.seasons = seasons;
