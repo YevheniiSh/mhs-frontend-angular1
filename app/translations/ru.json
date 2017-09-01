@@ -114,5 +114,6 @@
   "DELETE_BUTTON": "Удалить",
   "DELETE_GAME_ALERT": "Удалить эту игру?",
   "CLOSE_SEASON_BUTTON": "Закрыть сезон",
-  "NO_SEASON_LABEL": "Нет открытого сезона"
+  "NO_SEASON_LABEL": "Нет открытого сезона",
+  "EMPTY_SEASON_MESSAGE": "В сезоне нету игр"
 }

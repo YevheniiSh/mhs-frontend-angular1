@@ -7,10 +7,16 @@
         </select>
     </div>
     <button class="btn btn-danger close-season" ng-if="$ctrl.currentSeason" ng-click="$ctrl.closeCurrentSeason()">
-        {{'CLOSE_SEASON_BUTTON' | translate}}</button>
+        {{'CLOSE_SEASON_BUTTON' | translate}}
+    </button>
 
+    <div ng-if="$ctrl.seasonTeams.length == 0 && $ctrl.seasonDropTeams.length == 0" class="col-md-6  col-md-offset-3  season-alert">
+        <div class="alert alert-sm alert-dismissible alert-danger">
+            {{'EMPTY_SEASON_MESSAGE' | translate}}
+        </div>
+    </div>
 
-    <table class="table table-sm table-striped table-hover ">
+    <table ng-if=" $ctrl.seasonTeams.length != 0" class="table table-sm table-striped table-hover ">
         <thead>
         <tr>
             <th class="th-cell position-title">#</th>
@@ -36,12 +42,13 @@
         </tbody>
     </table>
 
-    <table class="table table-sm table-striped table-hover ">
+
+    <table ng-if="$ctrl.seasonDropTeams.length != 0" class="table table-sm table-striped table-hover ">
         <thead>
         <tr>
             <th class="th-cell position-title">#</th>
             <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}}</th>
-            <th class="th-cell round-number" ng-repeat="game in $ctrl.seasonTeams[0].games">{{$index + 1}}</th>
+            <th class="th-cell round-number" ng-repeat="game in $ctrl.seasonDropTeams[0].games">{{$index + 1}}</th>
             <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
         </tr>
         </thead>
