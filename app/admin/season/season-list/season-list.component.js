@@ -14,10 +14,15 @@
         vm.$onInit = onInit;
 
         function onInit() {
-            seasonService.getSeasons()
-                .then((res) => {
-                console.log(res);
-                    vm.seasons = res;
+            seasonService.getSeasonsNames()
+                .then(seasons => {
+                    angular.forEach(seasons, season=>{
+                        seasonService.getNumberOfGames(season.id)
+                            .then(numberOfGames => {
+                                season.numberOfGames = numberOfGames;
+                            });
+                    });
+                    vm.seasons = seasons;
                 })
         }
     }

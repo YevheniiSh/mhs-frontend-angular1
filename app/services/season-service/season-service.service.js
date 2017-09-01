@@ -17,6 +17,8 @@ angular.module('seasonService')
                 getParsedSeasonResults: getParsedSeasonResults,
                 openSeason: openSeason,
                 finishSeason: finishSeason,
+                getSeasons: getSeasons,
+                getNumberOfGames: getNumberOfGames,
                 getSeasonWinners: getSeasonWinners
             };
 
@@ -31,6 +33,11 @@ angular.module('seasonService')
                     }, (err) => {
                         return err;
                     });
+            }
+
+            function getSeasons(){
+                return new $firebaseArray(seasonRef)
+                    .$loaded();
             }
 
             function getCurrentSeason() {

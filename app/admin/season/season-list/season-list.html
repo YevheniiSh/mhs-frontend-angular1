@@ -9,9 +9,9 @@
     </thead>
     <tbody>
     <tr class="game-row td games" ng-repeat="season in $ctrl.seasons" >
-        <td ng-click="$event.stopPropagation();"><a ng-href='/#!/season/{{season.$id}}'>{{season.name}}</a> </td>
+        <td ng-click="$event.stopPropagation();"><a ng-href='/#!/season/{{season.id}}'>{{season.name}}</a> </td>
         <td></td>
-        <td>{{season}}</td>
+        <td>{{season.numberOfGames}}</td>
 
         <td>
 
