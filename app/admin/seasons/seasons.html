@@ -36,4 +36,28 @@
         </tbody>
     </table>
 
+    <table class="table table-sm table-striped table-hover ">
+        <thead>
+        <tr>
+            <th class="th-cell position-title">#</th>
+            <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}}</th>
+            <th class="th-cell round-number" ng-repeat="game in $ctrl.seasonTeams[0].games">{{$index + 1}}</th>
+            <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-row" ng-repeat="team in $ctrl.seasonDropTeams">
+            <td class="td-cell position-data">{{$index + 1}}</td>
+            <td class="td-cell team-name">
+                <a ng-click="$ctrl.getTeamGames(team.teamId);$event.stopPropagation();">
+                    {{team.teamName}}
+                </a>
+            </td>
+
+            <td class="td-cell round-score" ng-repeat="game in team.gamesArr | orderBy:'gameId'">{{game.rating}}</td>
+            <td class="td-cell total-score">{{team.total}}</td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>

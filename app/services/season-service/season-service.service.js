@@ -12,6 +12,8 @@ angular.module('seasonService')
                 setTeamsRatingForGame: setTeamsRatingForGame,
                 addGameToSeason: addGameToSeason,
                 getSeasonGames: getSeasonGames,
+                getContenderTeams: getContenderTeams,
+                getDropOutTeams: getDropOutTeams,
                 getParsedSeasonResults: getParsedSeasonResults,
                 openSeason: openSeason,
                 finishSeason: finishSeason,
@@ -119,9 +121,16 @@ angular.module('seasonService')
 
             }
 
+            function getNumberOfGames(seasonId) {
+                let obj = new $firebaseArray(seasonRef.child(`${seasonId}/games/`));
+                return obj.$loaded()
+                    .then((res) => {
+                        return res.length;
+                    })
+            }
+
             function getParsedSeasonResults(seasonId) {
                 let results = {};
-                let parsedResults = [];
 
                 return getSeasonGames(seasonId)
                     .then((games) => {
@@ -136,13 +145,7 @@ angular.module('seasonService')
 
                         for (let key in results) {
                             results[key].games = {};
-                            games.forEach((item) => {
-                                results[key].games[item.$id] = {rating: 0, gameId: item.$id};
-                            });
                         }
-                        console.log('Test');
-
-                        console.log(parsedResults);
 
                         games.forEach((item) => {
                             for (let key in item.teams) {
@@ -157,15 +160,82 @@ angular.module('seasonService')
                                 results[key].total += results[key].games[gameKey].rating;
                             }
                         }
+                        results.games = games;
+
+                        return results;
+                    });
+            }
+
+            function getContenderTeams(seasonId) {
+                let numberOfGames = 0;
+                let parsedResults = [];
+
+                return getNumberOfGames(seasonId)
+                    .then(length => {
+                        numberOfGames = length
+                        return getParsedSeasonResults(seasonId)
+                    })
+                    .then((results) => {
+                        delete results['games'];
+
+                        for (let key in results) {
+                            if (Object.keys(results[key].games).length !== numberOfGames) {
+                                delete results[key];
+                            }
+                        }
 
                         for (let key in results) {
                             parsedResults.push(results[key]);
                         }
 
-                        console.log(parsedResults);
                         return parsedResults;
                     })
                     .then(sortParsedResults);
+            }
+
+            function getDropOutTeams(seasonId) {
+                let numberOfGames = 0;
+                let parsedResults = [];
+
+                return getNumberOfGames(seasonId)
+                    .then(length => {
+                        numberOfGames = length
+                        return getParsedSeasonResults(seasonId)
+                    })
+                    .then((results) => {
+
+                        let games = results.games;
+                        delete results['games'];
+
+                        for (let key in results) {
+                            if (Object.keys(results[key].games).length === numberOfGames) {
+                                delete results[key];
+                            }
+                        }
+
+                        for (let key in results) {
+                            games.forEach((item) => {
+                                if (results[key].games[item.$id] === undefined) {
+                                    results[key].games[item.$id] = {rating: 0, gameId: item.$id};
+                                }
+                            });
+                        }
+
+                        for (let key in results) {
+                            parsedResults.push(results[key]);
+                        }
+
+                        parsedResults.forEach(item => {
+                            item.gamesArr = [];
+                            for (let key in item.games) {
+                                item.gamesArr.push(item.games[key]);
+                            }
+                        })
+
+                        return parsedResults;
+                    })
+                    .then(sortParsedResults);
+                ;
             }
 
             function sortParsedResults(score) {
