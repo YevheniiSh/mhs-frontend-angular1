@@ -19,15 +19,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="table-row" ng-repeat="team in $ctrl.seasonTeams">
-            <td class="td-cell position-data">{{$index + 1}}</td>
+        <tr class="table-row" ng-repeat="team in $ctrl.seasonTeams  | orderBy: '-total' ">
+            <td class="td-cell position-data">{{$ctrl.getTeamPosition(team.teamId, $index, team.total) }}</td>
             <td class="td-cell team-name">
                 <a ng-click="$ctrl.getTeamGames(team.teamId);$event.stopPropagation();">
                     {{team.teamName}}
                 </a>
             </td>
 
-            <td class="td-cell round-score" ng-repeat="game in team.games">{{game.rating}}</td>
+            <td class="td-cell game-rating" ng-repeat="game in team.games " ng-click="$ctrl.showGame(game.gameId)">
+                {{game.rating}}
+            </td>
             <td class="td-cell total-score">{{team.total}}</td>
         </tr>
         </tbody>

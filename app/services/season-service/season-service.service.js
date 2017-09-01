@@ -7,6 +7,7 @@ angular.module('seasonService')
             return {
                 save: save,
                 getSeasonsNames: getSeasonsNames,
+                getCurrentSeason: getCurrentSeason,
                 getSeasonIdByGameId: getSeasonIdByGameId,
                 setTeamsRatingForGame: setTeamsRatingForGame,
                 addGameToSeason: addGameToSeason,
@@ -26,6 +27,14 @@ angular.module('seasonService')
                         return res.$id;
                     }, (err) => {
                         return err;
+                    });
+            }
+
+            function getCurrentSeason() {
+               return new $firebaseArray(seasonRef.orderByChild("current").equalTo(true))
+                    .$loaded()
+                    .then((seasons)=>{
+                        return seasons[0];
                     });
             }
 
@@ -232,4 +241,5 @@ angular.module('seasonService')
                     return (+(a.total) > +(b.total)) ? -1 : ((+(b.total) > +(a.total)) ? 1 : 0);
                 });
             }
+
         }]);

@@ -16,12 +16,11 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
 
     seasonService.getSeasonsNames().then((res) => {
         vm.seasons = res;
-        setCurrentSeason();
+        setSelectedSeason();
     });
 
     seasonService.getContenderTeams(seasonId).then((res) => {
-        console.log(res)
-        vm.seasonTeams = res
+        vm.seasonTeams = res;
     });
 
     seasonService.getDropOutTeams(seasonId).then((res) => {
@@ -29,20 +28,46 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
         vm.seasonDropTeams = res
     });
 
-    function setCurrentSeason() {
-        for (let season  in vm.seasons) {
-            if (vm.seasons[season].id === seasonId)
-                vm.selectedSeason = vm.seasons[season]
-        }
-    }
+
+
+    vm.closeCurrentSeason = function () {
+
+    };
+
+    let currentTeamPosition;
+    vm.getTeamPosition = function (teamId, index, total) {
+        let position;
+
+        if (index === 0) {
+            position = 1;
+            currentTeamPosition = position
+
+        } else if (index >= 1 && total === vm.seasonTeams[index - 1].total) {
+            position = currentTeamPosition
+
+        } else {
+            position = ++currentTeamPosition;
+
+
+        return position
+    };
 
     vm.setSeasonUrl = function () {
-            if (vm.selectedSeason !== undefined)
-        if ( seasonId !== vm.selectedSeason.id  )
-        {
-            seasonId = vm.selectedSeason.id;
-            $location.path("seasons/" + seasonId)
+        if (vm.selectedSeason !== undefined)
+            if (seasonId !== vm.selectedSeason.id) {
+                seasonId = vm.selectedSeason.id;
+                $location.path("seasons/" + seasonId)
+            }
+    };
+
+    vm.showGame = function (gameId) {
+        $location.path("/games/" + gameId + "/results");
+    };
+
+    function setSelectedSeason() {
+        for (let season  in vm.seasons) {
+            if (vm.seasons[season].id === seasonId)
+                vm.selectedSeason = vm.seasons[season];
         }
     }
-
 }
