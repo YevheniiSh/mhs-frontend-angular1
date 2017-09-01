@@ -7,9 +7,17 @@
             controller: SeasonListController
         });
 
-    SeasonListController.$inject = [];
+    SeasonListController.$inject = ['seasonService'];
 
-    function SeasonListController() {
+    function SeasonListController(seasonService) {
+        let vm = this;
+        vm.$onInit = onInit;
 
+        function onInit() {
+            seasonService.getSeasonsNames()
+                .then((res) => {
+                    vm.seasons = res;
+                })
+        }
     }
 })();

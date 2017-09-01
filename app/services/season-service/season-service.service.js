@@ -33,9 +33,9 @@ angular.module('seasonService')
             }
 
             function getCurrentSeason() {
-               return new $firebaseArray(seasonRef.orderByChild("current").equalTo(true))
+                return new $firebaseArray(seasonRef.orderByChild("current").equalTo(true))
                     .$loaded()
-                    .then((seasons)=>{
+                    .then((seasons) => {
                         return seasons[0];
                     });
             }
@@ -47,7 +47,7 @@ angular.module('seasonService')
                         let seasons = [];
                         res.forEach(season => {
                             seasons.push({id: season.$id, name: season.name})
-                        })
+                        });
                         return seasons;
                     }, (err) => {
                         return err;
@@ -176,7 +176,7 @@ angular.module('seasonService')
 
                 return getNumberOfGames(seasonId)
                     .then(length => {
-                        numberOfGames = length
+                        numberOfGames = length;
                         return getParsedSeasonResults(seasonId)
                     })
                     .then((results) => {
@@ -234,12 +234,11 @@ angular.module('seasonService')
                             for (let key in item.games) {
                                 item.gamesArr.push(item.games[key]);
                             }
-                        })
+                        });
 
                         return parsedResults;
                     })
                     .then(sortParsedResults);
-                ;
             }
 
             function sortParsedResults(score) {
