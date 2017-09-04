@@ -8,10 +8,16 @@ angular.module('roundBuilder')
         },
     });
 
-roundBuilder.$inject = [];
+roundBuilder.$inject = ['roundTypeService'];
 
-function roundBuilder(){
+function roundBuilder(roundTypeService) {
     let vm = this;
+    vm.$onInit = onInit;
+
+    function onInit() {
+        getRoundTypes()
+            .then(setDefaultTypeSelected);
+    }
 
     vm.deleteRound = function ($index) {
         vm.rounds.splice($index, 1);
@@ -24,5 +30,23 @@ function roundBuilder(){
 
     function createRound() {
         return {numberOfQuestions: 10, name: ""}
+    }
+
+    function getRoundTypes() {
+        return roundTypeService.getRoundTypes()
+            .then((types) => {
+                console.log(types);
+                vm.roundTypes = types;
+                return types;
+            });
+    }
+
+    function setDefaultTypeSelected(type) {
+        type.forEach((item) => {
+            console.log(item);
+            if (item.$id === "DEFAULT_ROUND") {
+                vm.selectedItem = item;
+            }
+        })
     }
 }

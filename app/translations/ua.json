@@ -108,5 +108,9 @@
   "TEAMS_HEADER":" Команди Mead Head Show",
   "NUMBER_OF_TEAMS_LABEL": "Кількість команд",
   "NO_LINK_TO_PHOTOS_LABEL": "Відсутнє посилання на фотографії",
-  "ROUND_TYPE": "Тип раунда"
+  "ROUND_TYPE": "Тип раунда",
+  "AUCTION_ROUND": "Аукціон",
+  "CAPTAIN_ROUND": "Капітанський",
+  "DEFAULT_ROUND": "Стандартний",
+  "HINT_ROUND": "Підказки"
 }
