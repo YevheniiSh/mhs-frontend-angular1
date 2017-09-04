@@ -55,6 +55,10 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
             }
     };
 
+    vm.onBack = function () {
+        $window.history.back();
+    };
+
     vm.showGame = function (gameId) {
         $location.path("/games/" + gameId + "/results");
     };

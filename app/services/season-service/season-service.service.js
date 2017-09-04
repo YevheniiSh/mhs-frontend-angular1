@@ -17,6 +17,7 @@ angular.module('seasonService')
                 getParsedSeasonResults: getParsedSeasonResults,
                 openSeason: openSeason,
                 finishSeason: finishSeason,
+                finishGame: finishGame,
                 getSeasons: getSeasons,
                 getNumberOfGames: getNumberOfGames,
                 getSeasonWinners: getSeasonWinners
@@ -35,7 +36,7 @@ angular.module('seasonService')
                     });
             }
 
-            function getSeasons(){
+            function getSeasons() {
                 return new $firebaseArray(seasonRef)
                     .$loaded();
             }
@@ -111,7 +112,7 @@ angular.module('seasonService')
 
             function addGameToSeason(seasonId, gameId) {
                 let obj = new $firebaseObject(seasonRef.child(`${seasonId}/games/${gameId}`));
-                obj.$value = true;
+                obj.$value = {finished: false};
                 obj.$save();
                 return obj.$loaded();
             }
@@ -122,6 +123,7 @@ angular.module('seasonService')
                     .then((res) => {
                         let ids = [];
                         res.forEach((item) => {
+                            if(item.finished === true)
                             ids.push(item);
                         });
                         return ids;
@@ -133,7 +135,12 @@ angular.module('seasonService')
                 let obj = new $firebaseArray(seasonRef.child(`${seasonId}/games/`));
                 return obj.$loaded()
                     .then((res) => {
-                        return res.length;
+                    let gamesNumber = 0;
+                       for (let game in res){
+                           if(res[game].finished === true)
+                               gamesNumber++;
+                       }
+                        return gamesNumber;
                     })
             }
 
@@ -273,6 +280,20 @@ angular.module('seasonService')
             function finishSeason(id) {
                 setSeasonWinners(id);
                 return setStatus(id, false);
+            }
+
+            function finishGame(gameId) {
+                getSeasonIdByGameId(gameId).then((seasonId) => {
+                    if (seasonId !== undefined) {
+                        let game = new $firebaseObject(seasonRef.child(`${seasonId}/games/${gameId}`));
+                        game.$loaded().then(() => {
+                            game.finished = true;
+                            game.$save()
+                        });
+                    }
+                })
+
+
             }
 
             function setTeamsPosition(score) {

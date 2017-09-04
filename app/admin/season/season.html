@@ -1,6 +1,6 @@
 <div class="container">
-    <a class="btn btn-success" ng-href="/#!/seasons">{{'BACK_BUTTON' | translate}}</a>
-    <h1 class="header">MEAD HEAD SHOW SEASONS</h1>
+    <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
+    <h1 class="header">MEAD HEAD SHOW {{'NAVBAR_SEASONS' | translate}}</h1>
     <div class="col-md-6 col-md-offset-3 ">
         <select class="form-control" ng-model="$ctrl.selectedSeason" ng-click="$ctrl.setSeasonUrl()"
                 ng-options="season.name for season in $ctrl.seasons">
@@ -17,6 +17,7 @@
     </div>
 
     <table ng-if=" $ctrl.seasonTeams.length != 0" class="table table-sm table-striped table-hover ">
+        <caption class="table-caption">{{'TEAMS_IN_SEASON' | translate}}</caption>
         <thead>
         <tr>
             <th class="th-cell position-title">#</th>
@@ -43,6 +44,7 @@
 
 
     <table ng-if="$ctrl.seasonDropTeams.length != 0" class="table table-sm table-striped table-hover ">
+        <caption class="table-caption">{{'TEAMS_OUT_OF_SEASON' | translate}}</caption>
         <thead>
         <tr>
             <th class="th-cell position-title">#</th>
