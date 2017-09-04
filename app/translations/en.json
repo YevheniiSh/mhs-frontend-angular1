@@ -114,6 +114,7 @@
   "SEASON_PLACEHOLDER":"Season",
   "DELETE_BUTTON": "Delete",
   "DELETE_GAME_ALERT": "Delete this game?",
+  "TEAM_POSITION_OF": "of",
   "CLOSE_SEASON_BUTTON": "Close season",
   "EMPTY_SEASON_MESSAGE": "There are no finished games in the season",
   "NO_SEASON_LABEL": "No open season",

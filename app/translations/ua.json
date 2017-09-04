@@ -125,5 +125,6 @@
   "SEASON_OPEN_GAMES_ALERT": "В поточному сезоні є відкриті ігри",
   "CLOSE_SEASON_ALERT_QUESTION": "Закрити цей сезон?",
   "CLOSE_BTN": "Закрити",
-  "CANCEL_BTN": "Скасувати"
+  "CANCEL_BTN": "Скасувати",
+  "TEAM_POSITION_OF": "з"
 }
