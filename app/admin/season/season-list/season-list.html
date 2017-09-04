@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="season-row" ng-repeat="season in $ctrl.seasons" ng-click="$ctrl.goToSeason(season.id)">
+    <tr class="season-row" ng-repeat="season in $ctrl.seasons | orderBy : '-id'" ng-click="$ctrl.goToSeason(season.id)">
             <td>{{season.name}}</td>
             <td><div ng-repeat="winner in season.seasonWinners">
                 <i id="trophy" class="fa fa-trophy"></i> {{winner.teamName}}
