@@ -118,7 +118,7 @@
   "NAVBAR_SEASONS": "Сезоны",
   "EMPTY_SEASON_MESSAGE": "В сезоне нету игр",
   "TEAMS_IN_SEASON": "Команды в сезоне",
-  "TEAMS_OUT_OF_SEASON": "Команды вне сезона",
-  "SEASON_WINNER": "Победитель",
-  "SEASON_GAMES": "Количество игор"
+  "SEASONS_HEADER": "Сезоны",
+  "NUMBER_OF_GAMES_LABEL": "Количество сыграных игр",
+  "TEAMS_OUT_OF_SEASON": "Команды вне сезона"
 }

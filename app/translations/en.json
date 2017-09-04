@@ -119,7 +119,7 @@
   "NO_SEASON_LABEL": "No open season",
   "NAVBAR_SEASONS": "Seasons",
   "TEAMS_IN_SEASON": "Teams in season",
-  "TEAMS_OUT_OF_SEASON": "Teams out of season",
-  "SEASON_WINNER": "Winner",
-  "SEASON_GAMES": "Games count"
+  "SEASONS_HEADER": "Seasons",
+  "NUMBER_OF_GAMES_LABEL": "Games played",
+  "TEAMS_OUT_OF_SEASON": "Teams out of season"
 }
