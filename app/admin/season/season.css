@@ -34,3 +34,7 @@
     font-weight: bold;
     font-size: 2em;
 }
+
+.season-total {
+    cursor: default;
+}
