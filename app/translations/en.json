@@ -112,9 +112,12 @@
   "ALL_SEASONS_SELECT": "All seasons",
   "GAME_SEASON_LABEL": "Season",
   "SEASON_PLACEHOLDER":"Season",
+  "SEASONS": "Seasons",
   "DELETE_BUTTON": "Delete",
   "DELETE_GAME_ALERT": "Delete this game?",
   "CLOSE_SEASON_BUTTON": "Close season",
   "EMPTY_SEASON_MESSAGE": "There are no games in the season",
-  "NO_SEASON_LABEL": "No open season"
+  "NO_SEASON_LABEL": "No open season",
+  "TEAMS_IN_SEASON": "Teams in season",
+  "TEAMS_OUT_OF_SEASON": "Teams out of season"
 }

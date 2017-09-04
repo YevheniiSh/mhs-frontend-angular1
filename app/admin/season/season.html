@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="header">MEAD HEAD SHOW SEASONS</h1>
+    <h1 class="header">MEAD HEAD SHOW {{'SEASONS' | translate}}</h1>
     <div class="col-md-6 col-md-offset-3 ">
 
         <select class="form-control" ng-model="$ctrl.selectedSeason" ng-click="$ctrl.setSeasonUrl()"
@@ -17,6 +17,7 @@
     </div>
 
     <table ng-if=" $ctrl.seasonTeams.length != 0" class="table table-sm table-striped table-hover ">
+        <caption class="table-caption">{{'TEAMS_IN_SEASON' | translate}}</caption>
         <thead>
         <tr>
             <th class="th-cell position-title">#</th>
@@ -26,7 +27,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="table-row" ng-repeat="team in $ctrl.seasonTeams  | orderBy: '-total' ">
+        <tr  class="table-row" ng-repeat="team in $ctrl.seasonTeams  | orderBy: '-total' ">
             <td class="td-cell position-data">{{team.positionTeam}}</td>
             <td class="td-cell team-name">
                 <a ng-click="$ctrl.getTeamGames(team.teamId);$event.stopPropagation();">
@@ -44,6 +45,7 @@
 
 
     <table ng-if="$ctrl.seasonDropTeams.length != 0" class="table table-sm table-striped table-hover ">
+        <caption class="table-caption">{{'TEAMS_OUT_OF_SEASON' | translate}}</caption>
         <thead>
         <tr>
             <th class="th-cell position-title">#</th>

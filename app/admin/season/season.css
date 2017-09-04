@@ -18,3 +18,16 @@
    font-size: 24px;
     padding-top: 10px;
 }
+.position-title{
+    width: 5%;
+}
+.teams-title{
+    width: 30%;
+}
+.total-title{
+    width: 15%;
+}
+.table-caption{
+    font-weight: bold;
+    font-size: 2em;
+}
