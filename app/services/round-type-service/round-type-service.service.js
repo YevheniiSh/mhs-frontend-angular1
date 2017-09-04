@@ -13,7 +13,8 @@ angular
             }
             
             function getRoundTypes() {
-
+                let roundTypes = new $firebaseArray(roundTypeRef);
+                return roundTypes.$loaded();
             }
 
             function getDefaultValuesByRoundId(roundId) {
