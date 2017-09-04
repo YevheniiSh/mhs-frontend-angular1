@@ -34,6 +34,19 @@
     font-weight: bold;
     font-size: 2em;
 }
+.games-label{
+    float: right;
+}
+.container{
+    position: relative;
+}
+.season-close-alert{
+    display: inline-block;
+    position: absolute;
+    right: 40px;
+    top: 60px;
+}
+
 
 .season-total {
     cursor: default;

@@ -121,5 +121,9 @@
   "SEASONS_HEADER": "Сезони",
   "NUMBER_OF_GAMES_LABEL": "Кількість зіграних ігор",
   "TEAMS_OUT_OF_SEASON": "Команди поза сезоном",
-  "CURRENT_SEASON_LABEL": "Поточний сезон"
+  "CURRENT_SEASON_LABEL": "Поточний сезон",
+  "SEASON_OPEN_GAMES_ALERT": "В поточному сезоні є відкриті ігри",
+  "CLOSE_SEASON_ALERT_QUESTION": "Закрити цей сезон?",
+  "CLOSE_BTN": "Закрити",
+  "CANCEL_BTN": "Скасувати"
 }

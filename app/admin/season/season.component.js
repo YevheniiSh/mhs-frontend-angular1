@@ -14,6 +14,8 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
 
     let seasonId = $routeParams.seasonId;
 
+    vm.showCloseSeasonAlert = false;
+
     vm.$onInit = onInit;
 
     function onInit() {
@@ -47,9 +49,14 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
             vm.admin = res;
         })
     }
+    vm.showAlert = function () {
+        if (vm.hasOpenGames) vm.showCloseSeasonError = true;
+        else vm.showCloseSeasonAlert = true;
+    };
 
     vm.closeCurrentSeason = function () {
         seasonService.finishSeason(seasonId);
+        vm.showCloseSeasonAlert = false;
         vm.currentSeason = false;
     };
 
