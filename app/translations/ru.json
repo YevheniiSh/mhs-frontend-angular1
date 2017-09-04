@@ -116,7 +116,7 @@
   "CLOSE_SEASON_BUTTON": "Закрыть сезон",
   "NO_SEASON_LABEL": "Нет открытого сезона",
   "NAVBAR_SEASONS": "Сезоны",
-  "EMPTY_SEASON_MESSAGE": "В сезоне нету игр",
+  "EMPTY_SEASON_MESSAGE": "В сезоне завершенных нету игр",
   "TEAMS_IN_SEASON": "Команды в сезоне",
   "SEASONS_HEADER": "Сезоны",
   "NUMBER_OF_GAMES_LABEL": "Количество сыграных игр",
