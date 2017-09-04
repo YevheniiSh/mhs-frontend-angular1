@@ -113,6 +113,8 @@
   "AUCTION_ROUND": "Auction",
   "CAPTAIN_ROUND": "Captain",
   "DEFAULT_ROUND": "Default",
-  "HINT_ROUND": "Hint"
-
+  "HINT_ROUND": "Hint",
+  "DELETE_BUTTON": "Delete",
+  "DELETE_GAME_ALERT": "Delete this game?",
+  "TEAM_POSITION_OF": "of"
 }

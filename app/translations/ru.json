@@ -112,5 +112,8 @@
   "AUCTION_ROUND": "Аукцион",
   "CAPTAIN_ROUND": "Капитанский",
   "DEFAULT_ROUND": "Стандартный",
-  "HINT_ROUND": "Подсказки"
+  "HINT_ROUND": "Подсказки",
+  "DELETE_BUTTON": "Удалить",
+  "DELETE_GAME_ALERT": "Удалить эту игру?",
+  "TEAM_POSITION_OF": "из"
 }

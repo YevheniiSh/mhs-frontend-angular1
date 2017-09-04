@@ -19,6 +19,10 @@ function roundBuilder(roundTypeService) {
             .then(setDefaultTypeSelected);
     }
 
+    vm.dragAndDropRound = function($index){
+        vm.rounds.splice($index, 1);
+    };
+
     vm.deleteRound = function ($index) {
         vm.rounds.splice($index, 1);
     };

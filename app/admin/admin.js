@@ -16,7 +16,7 @@ angular
         'ui.bootstrap',
         'teamList',
         'navbar',
-         'gameTemplate'])
+        'gameTemplate'])
     .config(['$routeProvider', function ($routeProvider) {
 
         let isAuth = {

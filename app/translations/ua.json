@@ -112,5 +112,8 @@
   "AUCTION_ROUND": "Аукціон",
   "CAPTAIN_ROUND": "Капітанський",
   "DEFAULT_ROUND": "Стандартний",
-  "HINT_ROUND": "Підказки"
+  "HINT_ROUND": "Підказки",
+  "DELETE_BUTTON": "Видалити",
+  "DELETE_GAME_ALERT": "Видалити цю гру?",
+  "TEAM_POSITION_OF": "з"
 }

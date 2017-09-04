@@ -15,7 +15,7 @@
             ng-click="$ctrl.onClicked(game.$id)">
             <td>{{game.date}}</td>
             <td>{{game.location}}</td>
-            <td>{{game.position}}</td>
+            <td>{{game.position}} {{'TEAM_POSITION_OF' | translate}} {{game.teamsNumber}}</td>
         </tr>
         </tbody>
     </table>
