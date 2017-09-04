@@ -6,9 +6,9 @@ angular
             css: 'admin/season/season.css',
             controller: seasonsController
         });
-seasonsController.$inject = ['GameServiceFactory', '$location', 'seasonService', '$routeParams', '$window'];
+seasonsController.$inject = ['GameServiceFactory', '$location', 'seasonService', '$routeParams', '$window', 'userAuthService'];
 
-function seasonsController(gameFactory, $location, seasonService, $routeParams, $window) {
+function seasonsController(gameFactory, $location, seasonService, $routeParams, $window, userAuthService) {
 
     let vm = this;
 
@@ -36,6 +36,10 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
                     if (season.$id === seasonId) vm.currentSeason = true;
                 }
             });
+
+        userAuthService.currentUser().then(res => {
+                vm.admin = res;
+            })
     }
 
     vm.closeCurrentSeason = function () {
