@@ -17,8 +17,8 @@ angular
                 removeGameFromTeam: removeGameFromTeam,
                 addGameScore: addGameScore,
                 checkTeamNameCoincidence: checkTeamNameCoincidence,
-                getTeamGames:getTeamGames,
-                saveTeamPosition:saveTeamPosition
+                getTeamGames: getTeamGames,
+                saveTeamPosition: saveTeamPosition
             };
 
             function save(team) {
@@ -94,7 +94,7 @@ angular
             function checkTeamNameCoincidence(teamName) {
                 return getAllTeams()
                     .then((res) => {
-                        for (team of res) {
+                        for (let team of res) {
                             if (team.name === teamName.toString()) return true;
                         }
                         return false;
