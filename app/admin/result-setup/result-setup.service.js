@@ -1,8 +1,25 @@
 'use strict';
-angular.module('resultSetup').factory('resultSetupService', [
-    'GameServiceFactory',
-    'ResultServiceFactory',
-    function (gameFactory, resultFactory) {
+(function () {
+    angular
+        .module('resultSetup')
+        .factory('resultSetupService', resultSetupService);
+
+    resultSetupService.$inject = ['GameServiceFactory', 'ResultServiceFactory'];
+
+    function resultSetupService(gameFactory, resultFactory) {
+        return {
+            getRound: getRound,
+            getGameTeams: getGameTeams,
+            saveQuizResult: saveQuizResult,
+            roundIncrement: roundIncrement,
+            buildResult: buildResult,
+            getQuizResults: getQuizResults,
+            getCurrentQuiz: getCurrentQuiz,
+            getCurrentRound: getCurrentRound,
+            saveQuizResults: saveQuizResults,
+            setCurrentQuiz: setCurrentQuiz
+        };
+
         function getGameTeams(gameId) {
             return gameFactory.getGameTeams(gameId)
                 .then(
@@ -21,15 +38,6 @@ angular.module('resultSetup').factory('resultSetupService', [
         }
 
         function saveQuizResults(results, gameId) {
-            // let promices = [];
-            // angular.forEach(results, function (result) {
-            //     if (result.score == undefined) {
-            //         result.score = 0;
-            //     }
-            //     promices.push(saveQuizResult(result, gameId));
-            // });
-            // return promices;
-
             results.forEach((result) => {
                 if (result.score === undefined) {
                     result.score = 0;
@@ -71,18 +79,5 @@ angular.module('resultSetup').factory('resultSetupService', [
                 score: score
             }
         }
-
-
-        return {
-            getRound: getRound,
-            getGameTeams: getGameTeams,
-            saveQuizResult: saveQuizResult,
-            roundIncrement: roundIncrement,
-            buildResult: buildResult,
-            getQuizResults: getQuizResults,
-            getCurrentQuiz: getCurrentQuiz,
-            getCurrentRound: getCurrentRound,
-            saveQuizResults: saveQuizResults,
-            setCurrentQuiz: setCurrentQuiz
-        };
-    }]);
+    }
+})();

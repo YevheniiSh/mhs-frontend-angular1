@@ -27,7 +27,7 @@
             initCurrentQuiz();
             getTeams()
                 .then(() => {
-                    buildResults()
+                    buildResults();
                     assignResults()
                         .then(initInputType);
                 })
@@ -39,7 +39,6 @@
                 if (result.score != 0 && result.score != 1 && result.score != undefined) {
                     vm.isManualInput = true;
                 }
-                ;
             })
         }
 
