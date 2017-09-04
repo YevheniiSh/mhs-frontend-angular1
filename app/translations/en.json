@@ -109,5 +109,10 @@
   "TEAMS_HEADER":"Mead Head Show Teams",
   "NUMBER_OF_TEAMS_LABEL": "Number of teams",
   "NO_LINK_TO_PHOTOS_LABEL": "No link to photos",
-  "ROUND_TYPE": "Round type"
+  "ROUND_TYPE": "Round type",
+  "AUCTION_ROUND": "Auction",
+  "CAPTAIN_ROUND": "Captain",
+  "DEFAULT_ROUND": "Default",
+  "HINT_ROUND": "Hint"
+
 }

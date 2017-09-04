@@ -25,8 +25,8 @@
                 </div>
             </td>
             <td>
-                <select class="form-control round-type-selector">
-                    <option ng-repeat="item in ['Стандартный','Капитанский','Аукцион','7 подсказок']">{{item}}</option>
+                <select class="form-control round-type-selector" ng-model="$ctrl.selectedItem"
+                        ng-options="item.$id | translate for item in $ctrl.roundTypes">
                 </select>
             </td>
             <td ng-click="$ctrl.deleteRound($index)"><a class="btn btn-danger">

@@ -1,25 +1,41 @@
 angular
     .module('roundTypeService')
     .factory('roundTypeService', [
-        '$firebaseArray', 
+        '$firebaseArray',
         '$firebaseObject',
         'firebaseDataService',
         function ($firebaseArray, $firebaseObject, firebaseDataService) {
             let roundTypeRef = firebaseDataService.roundTypes;
-            
-            return{
+
+            return {
                 getRoundTypes: getRoundTypes,
-                getDefaultValuesByRoundId: getDefaultValuesByRoundId
+                getDefaultValuesByRoundId: getDefaultValuesByRoundId,
+                copyRoundTypeToRound:copyRoundTypeToRound
             }
-            
+
             function getRoundTypes() {
-                let roundTypes = new $firebaseArray(roundTypeRef);
-                return roundTypes.$loaded();
+                return new $firebaseArray(roundTypeRef)
+                    .$loaded();
             }
 
             function getDefaultValuesByRoundId(roundId) {
                 let obj = new $firebaseObject(roundTypeRef.child(roundId));
                 return obj.$loaded();
+            }
+
+            function copyRoundTypeToRound(gameId, roundId, roundType) {
+                let roundRef = firebaseDataService.openGames
+                    .child(`/${gameId}/rounds/${roundId}/roundType`);
+                obj = new $firebaseObject(roundRef);
+                obj.$value = roundType;
+                obj.$save();
+                return obj
+                    .$loaded()
+                    .then((res) => {
+                        return res;
+                    }, (err) => {
+                        return err;
+                    });
             }
         }
     ])
