@@ -1,7 +1,7 @@
 angular.module('resultSetup')
     .component('defaultRoundType', {
-        templateUrl: 'admin/result-setup/default/default-round-type.html',
-        css: 'admin/result-setup/auction/default-round-type.css',
+        templateUrl: 'admin/round-type/default/default-round-type.html',
+        css: 'admin/round-type/default/default-round-type.css',
         controller: DefaultRoundTypeController
     });
 
