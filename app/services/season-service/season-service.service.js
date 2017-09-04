@@ -20,7 +20,8 @@ angular.module('seasonService')
                 finishGame: finishGame,
                 getSeasons: getSeasons,
                 getNumberOfGames: getNumberOfGames,
-                getSeasonWinners: getSeasonWinners
+                getSeasonWinners: getSeasonWinners,
+                hasOpenGames: hasOpenGames
             };
 
             function save(season) {
@@ -123,8 +124,8 @@ angular.module('seasonService')
                     .then((res) => {
                         let ids = [];
                         res.forEach((item) => {
-                            if(item.finished === true)
-                            ids.push(item);
+                            if (item.finished === true)
+                                ids.push(item);
                         });
                         return ids;
                     });
@@ -135,11 +136,11 @@ angular.module('seasonService')
                 let obj = new $firebaseArray(seasonRef.child(`${seasonId}/games/`));
                 return obj.$loaded()
                     .then((res) => {
-                    let gamesNumber = 0;
-                       for (let game in res){
-                           if(res[game].finished === true)
-                               gamesNumber++;
-                       }
+                        let gamesNumber = 0;
+                        for (let game in res) {
+                            if (res[game].finished === true)
+                                gamesNumber++;
+                        }
                         return gamesNumber;
                     })
             }
@@ -326,5 +327,20 @@ angular.module('seasonService')
             function getSeasonWinners(seasonId) {
                 let obj = new $firebaseArray(seasonRef.child(`${seasonId}/winners`));
                 return obj.$loaded();
+            }
+
+            function hasOpenGames(seasonId) {
+                let game = new $firebaseArray(seasonRef.child(`${seasonId}/games`));
+                return game.$loaded().then((games) => {
+                    let hasOpenGames = false;
+                    for (let game in games) {
+                        if (games[game].finished === false) {
+                            hasOpenGames = true;
+                            break
+                        }
+                    }
+                    return hasOpenGames
+                })
+
             }
         }]);

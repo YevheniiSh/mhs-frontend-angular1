@@ -32,14 +32,20 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
         });
 
         seasonService.getCurrentSeason().then(season => {
-                if (season){
-                    if (season.$id === seasonId) vm.currentSeason = true;
+            if (season) {
+                if (season.$id === seasonId) {
+                    vm.currentSeason = true;
+
+                    seasonService.hasOpenGames(seasonId).then((res) => {
+                        vm.hasOpenGames = res
+                    });
                 }
-            });
+            }
+        });
 
         userAuthService.currentUser().then(res => {
-                vm.admin = res;
-            })
+            vm.admin = res;
+        })
     }
 
     vm.closeCurrentSeason = function () {
