@@ -28,15 +28,12 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
         });
 
         seasonService.getDropOutTeams(seasonId).then((res) => {
-            console.log(res);
             vm.seasonDropTeams = res
         });
 
-        seasonService.getCurrentSeason()
-            .then(season => {
+        seasonService.getCurrentSeason().then(season => {
                 if (season){
-                    let currentSeasonId = season.$id;
-                    if (currentSeasonId === seasonId) vm.currentSeason = true;
+                    if (season.$id === seasonId) vm.currentSeason = true;
                 }
             });
     }
@@ -50,12 +47,16 @@ function seasonsController(gameFactory, $location, seasonService, $routeParams, 
         if (vm.selectedSeason !== undefined)
             if (seasonId !== vm.selectedSeason.id) {
                 seasonId = vm.selectedSeason.id;
-                $location.path("season/" + seasonId)
+                $location.path("seasons/" + seasonId)
             }
     };
 
     vm.showGame = function (gameId) {
         $location.path("/games/" + gameId + "/results");
+    };
+
+    vm.goToTeam = function (id) {
+        $location.path(`/teams/${id}`);
     };
 
     function setSelectedSeason() {

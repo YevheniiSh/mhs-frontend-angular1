@@ -1,7 +1,8 @@
 <div class="container">
     <h1 class="header">MEAD HEAD SHOW {{'SEASONS' | translate}}</h1>
+    <a class="btn btn-success" ng-href="/#!/seasons">{{'BACK_BUTTON' | translate}}</a>
+    <h1 class="header">MEAD HEAD SHOW SEASONS</h1>
     <div class="col-md-6 col-md-offset-3 ">
-
         <select class="form-control" ng-model="$ctrl.selectedSeason" ng-click="$ctrl.setSeasonUrl()"
                 ng-options="season.name for season in $ctrl.seasons">
         </select>
@@ -27,12 +28,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr  class="table-row" ng-repeat="team in $ctrl.seasonTeams  | orderBy: '-total' ">
+        <tr class="table-row" ng-repeat="team in $ctrl.seasonTeams  | orderBy: '-total' ">
             <td class="td-cell position-data">{{team.positionTeam}}</td>
             <td class="td-cell team-name">
-                <a ng-click="$ctrl.getTeamGames(team.teamId);$event.stopPropagation();">
-                    {{team.teamName}}
-                </a>
+                <a class="team-name" ng-click="$ctrl.goToTeam(team.teamId)">
+                    {{team.teamName}}</a>
             </td>
 
             <td class="td-cell game-rating" ng-repeat="game in team.games " ng-click="$ctrl.showGame(game.gameId)">

@@ -1,3 +1,6 @@
+.team-name{
+    cursor: pointer;
+}
 .header{
     text-align: center;
 }

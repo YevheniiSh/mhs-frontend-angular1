@@ -111,11 +111,12 @@
   "ALL_SEASONS_SELECT": "Все сезоны",
   "GAME_SEASON_LABEL": "Сезон",
   "SEASON_PLACEHOLDER":"Сезон",
-  "SEASONS": "Сезоны",
   "DELETE_BUTTON": "Удалить",
   "DELETE_GAME_ALERT": "Удалить эту игру?",
   "CLOSE_SEASON_BUTTON": "Закрыть сезон",
   "NO_SEASON_LABEL": "Нет открытого сезона",
+  "EMPTY_SEASON_MESSAGE": "В сезоне нету игр",
+  "NAVBAR_SEASONS": "Сезоны"
   "EMPTY_SEASON_MESSAGE": "В сезоне нету игр",
   "TEAMS_IN_SEASON": "Команды в сезоне",
   "TEAMS_OUT_OF_SEASON": "Команды вне сезона"
