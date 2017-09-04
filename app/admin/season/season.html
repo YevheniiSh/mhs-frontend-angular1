@@ -41,7 +41,9 @@
             <th class="th-cell position-title">#</th>
             <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}} <span class="games-label">{{'GAMES_LABEL' | translate}}:</span>
             </th>
-            <th class="th-cell round-number" ng-repeat="game in $ctrl.seasonTeams[0].games">#{{$index + 1}}</th>
+            <th class="th-cell round-number" ng-repeat="game in $ctrl.seasonTeams[0].games">
+                <a class="game-rating" ng-href="/#!/games/{{game.gameId}}/results">{{$index + 1}}</a>
+            </th>
             <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
         </tr>
         </thead>
@@ -54,7 +56,7 @@
             </td>
 
             <td class="td-cell" ng-repeat="game in team.games">
-                <span class="game-rating" ng-click="$ctrl.showGame(game.gameId)">{{game.rating}}</span>
+                {{game.rating}}
             </td>
             <td class="td-cell total-score season-total">{{team.total}}</td>
         </tr>
@@ -69,7 +71,9 @@
             <th class="th-cell position-title">#</th>
             <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}}<span class="games-label">{{'GAMES_LABEL' | translate}}:</span>
             </th>
-            <th class="th-cell round-number" ng-repeat="game in $ctrl.seasonDropTeams[0].games">{{$index + 1}}</th>
+            <th class="th-cell round-number" ng-repeat="game in $ctrl.seasonTeams[0].games">
+                <a class="game-rating" ng-href="/#!/games/{{game.gameId}}/results">{{$index + 1}}</a>
+            </th>
             <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
         </tr>
         </thead>
@@ -82,9 +86,8 @@
                 </a>
             </td>
 
-            <td class="td-cell" ng-repeat="game in team.gamesArr | orderBy:'gameId'"
-                ng-class="{'missed-game': !game.played}">
-                <span class="game-rating" ng-click="$ctrl.showGame(game.gameId)">{{game.rating}}</span>
+            <td class="td-cell" ng-repeat="game in team.gamesArr | orderBy:'gameId'">
+                {{game.rating}}
             </td>
             <td class="td-cell total-score season-total">{{team.total}}</td>
         </tr>
