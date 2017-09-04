@@ -19,7 +19,7 @@
             <div ng-repeat="winner in game.winner"><i id="trophy" class="fa fa-trophy"></i> {{winner.name}}</div>
         </td>
         <td>{{game.teamsNumber}}</td>
-        <td  ng-click="$event.stopPropagation();"><a ng-href='/#!/season/{{game.season.id}}'>{{game.season.name}}</a> </td>
+        <td  ng-click="$event.stopPropagation();"><a ng-href='/#!/seasons/{{game.season.id}}'>{{game.season.name}}</a> </td>
     </tr>
     </tbody>
 </table>

@@ -17,14 +17,10 @@
             seasonService.getSeasonsNames()
                 .then(seasons => {
                     angular.forEach(seasons, season=>{
-                        seasonService.getNumberOfGames(season.id)
-                            .then(numberOfGames => {
+                        seasonService.getNumberOfGames(season.id).then(numberOfGames => {
                                 season.numberOfGames = numberOfGames;
                             });
-
-                        seasonService.getSeasonWinners(season.id)
-                            .then(seasonWinners => {
-                                console.log(seasonWinners[0]);
+                        seasonService.getSeasonWinners(season.id).then(seasonWinners => {
                                 season.seasonWinners = seasonWinners;
                             })
                     });
