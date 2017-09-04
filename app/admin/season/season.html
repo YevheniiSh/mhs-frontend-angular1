@@ -34,8 +34,8 @@
                     {{team.teamName}}</a>
             </td>
 
-            <td class="td-cell game-rating" ng-repeat="game in team.games " ng-click="$ctrl.showGame(game.gameId)">
-                {{game.rating}}
+            <td class="td-cell" ng-repeat="game in team.games">
+                <span class="game-rating" ng-click="$ctrl.showGame(game.gameId)">{{game.rating}}</span>
             </td>
             <td class="td-cell total-score">{{team.total}}</td>
         </tr>
