@@ -1,10 +1,15 @@
-.season-title{
+.season-title {
     text-align: center;
 }
-#trophy{
+
+#trophy {
     color: goldenrod;
 }
 
-.season-row{
+.season-row {
     cursor: pointer;
+}
+
+.seasons {
+    vertical-align: middle;
 }

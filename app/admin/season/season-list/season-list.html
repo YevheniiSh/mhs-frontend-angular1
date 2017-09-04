@@ -1,18 +1,20 @@
-<table class="table table-sm table-striped table-hover">
+<h1 class="season-title">Seasons</h1>
+<table class="table table-sm table-striped table-hover seasons">
     <thead>
-        <h1 class="season-title">Seasons</h1>
         <tr class="">
             <th>{{'GAME_SEASON_LABEL' | translate}}</th>
-            <th>Winner</th>
-            <th>Games</th>
+            <th>{{'SEASON_WINNER' | translate}}</th>
+            <th>{{'SEASON_GAMES' | translate}}</th>
         </tr>
     </thead>
     <tbody>
     <tr class="season-row" ng-repeat="season in $ctrl.seasons | orderBy : '-id'" ng-click="$ctrl.goToSeason(season.id)">
             <td>{{season.name}}</td>
-            <td><div ng-repeat="winner in season.seasonWinners">
+        <td>
+            <div ng-repeat="winner in season.seasonWinners">
                 <i id="trophy" class="fa fa-trophy"></i> {{winner.teamName}}
-            </div></td>
+            </div>
+        </td>
             <td>{{season.numberOfGames}}</td>
         </tr>
     </tbody>

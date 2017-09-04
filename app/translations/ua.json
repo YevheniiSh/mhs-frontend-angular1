@@ -115,9 +115,10 @@
   "DELETE_GAME_ALERT": "Видалити цю гру?",
   "CLOSE_SEASON_BUTTON": "Закрити сезон",
   "NO_SEASON_LABEL": "Немає відкритого сезону",
-  "EMPTY_SEASON_MESSAGE": "В сезоні немає ігр",
   "NAVBAR_SEASONS": "Сезони",
   "EMPTY_SEASON_MESSAGE": "В сезоні немає ігр",
   "TEAMS_IN_SEASON": "Команди в сезоні",
-  "TEAMS_OUT_OF_SEASON": "Команди поза сезоном"
+  "TEAMS_OUT_OF_SEASON": "Команди поза сезоном",
+  "SEASON_WINNER": "Переможець",
+  "SEASON_GAMES": "Кількість ігор"
 }

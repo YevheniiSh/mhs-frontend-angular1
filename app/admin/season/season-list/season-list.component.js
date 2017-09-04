@@ -14,21 +14,21 @@
         vm.$onInit = onInit;
 
         function onInit() {
-            seasonService.getSeasonsNames()
+            seasonService.getSeasons()
                 .then(seasons => {
-                    angular.forEach(seasons, season=>{
-                        seasonService.getNumberOfGames(season.id).then(numberOfGames => {
-                                season.numberOfGames = numberOfGames;
-                            });
-                        seasonService.getSeasonWinners(season.id).then(seasonWinners => {
-                                season.seasonWinners = seasonWinners;
-                            })
+                    seasons.forEach((season) => {
+                        seasonService.getNumberOfGames(season.$id).then(numberOfGames => {
+                            season.numberOfGames = numberOfGames;
+                        });
+                        seasonService.getSeasonWinners(season.$id).then(seasonWinners => {
+                            season.seasonWinners = seasonWinners;
+                        })
                     });
                     vm.seasons = seasons;
                 })
         }
 
-        vm.goToSeason = function(id){
+        vm.goToSeason = function (id) {
             $location.path(`/seasons/${id}`);
         }
     }
