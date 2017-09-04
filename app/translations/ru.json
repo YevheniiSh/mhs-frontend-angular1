@@ -119,5 +119,7 @@
   "NAVBAR_SEASONS": "Сезоны",
   "EMPTY_SEASON_MESSAGE": "В сезоне нету игр",
   "TEAMS_IN_SEASON": "Команды в сезоне",
+  "SEASONS_HEADER": "Сезоны",
+  "NUMBER_OF_GAMES_LABEL": "Количество сыграных игр",
   "TEAMS_OUT_OF_SEASON": "Команды вне сезона"
 }
