@@ -120,5 +120,6 @@
   "TEAMS_IN_SEASON": "Команды в сезоне",
   "SEASONS_HEADER": "Сезоны",
   "NUMBER_OF_GAMES_LABEL": "Количество сыграных игр",
-  "TEAMS_OUT_OF_SEASON": "Команды вне сезона"
+  "TEAMS_OUT_OF_SEASON": "Команды вне сезона",
+  "CURRENT_SEASON_LABEL": "Текущий сезон"
 }

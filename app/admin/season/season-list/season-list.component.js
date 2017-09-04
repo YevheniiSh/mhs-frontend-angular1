@@ -16,19 +16,19 @@
         function onInit() {
             seasonService.getSeasons()
                 .then(seasons => {
-                    seasons.forEach((season) => {
+                    angular.forEach(seasons, season=>{
                         seasonService.getNumberOfGames(season.$id).then(numberOfGames => {
-                            season.numberOfGames = numberOfGames;
-                        });
+                                season.numberOfGames = numberOfGames;
+                            });
                         seasonService.getSeasonWinners(season.$id).then(seasonWinners => {
-                            season.seasonWinners = seasonWinners;
-                        })
+                                season.seasonWinners = seasonWinners;
+                            });
                     });
                     vm.seasons = seasons;
                 })
         }
 
-        vm.goToSeason = function (id) {
+        vm.goToSeason = function(id){
             $location.path(`/seasons/${id}`);
         }
     }

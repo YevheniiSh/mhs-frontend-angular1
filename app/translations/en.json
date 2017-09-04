@@ -121,5 +121,6 @@
   "TEAMS_IN_SEASON": "Teams in season",
   "SEASONS_HEADER": "Seasons",
   "NUMBER_OF_GAMES_LABEL": "Games played",
-  "TEAMS_OUT_OF_SEASON": "Teams out of season"
+  "TEAMS_OUT_OF_SEASON": "Teams out of season",
+  "CURRENT_SEASON_LABEL": "Current season"
 }

@@ -9,7 +9,10 @@
 .season-row {
     cursor: pointer;
 }
-
-.seasons {
+.table > tbody > tr > td {
     vertical-align: middle;
+}
+.current-season-pointer{
+    color: green;
+    font-size: 20px;
 }

@@ -8,8 +8,11 @@
         </tr>
     </thead>
     <tbody>
-    <tr class="season-row" ng-repeat="season in $ctrl.seasons | orderBy : '-id'" ng-click="$ctrl.goToSeason(season.id)">
-            <td>{{season.name}}</td>
+    <tr class="season-row" ng-repeat="season in $ctrl.seasons | orderBy : '-$id'" ng-click="$ctrl.goToSeason(season.id)">
+        <td>
+            <i class="fa fa-caret-right current-season-pointer" uib-tooltip="Current season" ng-if="season.current"></i>
+            {{season.name}}
+        </td>
         <td>
             <div ng-repeat="winner in season.seasonWinners">
                 <i id="trophy" class="fa fa-trophy"></i> {{winner.teamName}}
