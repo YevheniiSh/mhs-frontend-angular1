@@ -29,7 +29,7 @@ function roundBuilder(roundTypeService) {
     };
 
     function createRound() {
-        return {numberOfQuestions: 10, name: ""}
+        return {numberOfQuestions: 10, name: "", roundType: vm.defaultType}
     }
 
     function getRoundTypes() {
@@ -37,6 +37,9 @@ function roundBuilder(roundTypeService) {
             .then((types) => {
                 console.log(types);
                 vm.roundTypes = types;
+                vm.roundTypes.forEach((item) => {
+                    item.type = item.$id;
+                });
                 return types;
             });
     }
@@ -45,7 +48,10 @@ function roundBuilder(roundTypeService) {
         type.forEach((item) => {
             console.log(item);
             if (item.$id === "DEFAULT_ROUND") {
-                vm.selectedItem = item;
+                vm.rounds.forEach((round) => {
+                    vm.defaultType = item;
+                    round.roundType = item;
+                })
             }
         })
     }
