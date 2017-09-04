@@ -110,5 +110,6 @@
   "NUMBER_OF_TEAMS_LABEL": "Number of teams",
   "NO_LINK_TO_PHOTOS_LABEL": "No link to photos",
   "DELETE_BUTTON": "Delete",
-  "DELETE_GAME_ALERT": "Delete this game?"
+  "DELETE_GAME_ALERT": "Delete this game?",
+  "TEAM_POSITION_OF": "of"
 }

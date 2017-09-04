@@ -109,5 +109,6 @@
   "NUMBER_OF_TEAMS_LABEL": "Кількість команд",
   "NO_LINK_TO_PHOTOS_LABEL": "Відсутнє посилання на фотографії",
   "DELETE_BUTTON": "Видалити",
-  "DELETE_GAME_ALERT": "Видалити цю гру?"
+  "DELETE_GAME_ALERT": "Видалити цю гру?",
+  "TEAM_POSITION_OF": "з"
 }

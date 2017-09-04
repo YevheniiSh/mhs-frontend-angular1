@@ -109,5 +109,6 @@
   "NUMBER_OF_TEAMS_LABEL": "Количество команд",
   "NO_LINK_TO_PHOTOS_LABEL": "Отсутствует ссылка на фотографии",
   "DELETE_BUTTON": "Удалить",
-  "DELETE_GAME_ALERT": "Удалить эту игру?"
+  "DELETE_GAME_ALERT": "Удалить эту игру?",
+  "TEAM_POSITION_OF": "из"
 }
