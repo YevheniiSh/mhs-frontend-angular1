@@ -17,7 +17,7 @@
 
     <div ng-if="$ctrl.showCloseSeasonAlert && !$ctrl.hasOpenGames"
          class="alert alert-danger season-close-alert" role="alert">
-        <span>{{'CLOSE_SEASON_ALERT_QUESTION' | translate}}</span>
+        <p>{{'CLOSE_SEASON_ALERT_QUESTION' | translate}}</p>
         <p>
             <button ng-click="$ctrl.closeCurrentSeason()" type="button" class="btn btn-danger">
                 {{'CLOSE_BTN' | translate}}

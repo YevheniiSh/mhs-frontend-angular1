@@ -11,7 +11,8 @@
         <tbody>
         <tr class="season-row" ng-repeat="season in $ctrl.seasons | orderBy : '-$id'" ng-click="$ctrl.goToSeason(season.$id)">
             <td>
-                <i class="fa fa-caret-right current-season-pointer" uib-tooltip="Current season" ng-if="season.current"></i>
+                <i class="fa fa-caret-right current-season-pointer" uib-tooltip="{{'CURRENT_SEASON_TOOLTIP' | translate}}"
+                   ng-if="season.current"></i>
                 {{season.name}}
             </td>
             <td>

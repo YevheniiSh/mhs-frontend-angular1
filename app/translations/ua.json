@@ -126,5 +126,6 @@
   "CLOSE_SEASON_ALERT_QUESTION": "Закрити цей сезон?",
   "CLOSE_BTN": "Закрити",
   "CANCEL_BTN": "Скасувати",
-  "TEAM_POSITION_OF": "з"
+  "TEAM_POSITION_OF": "з",
+  "CURRENT_SEASON_TOOLTIP": "Поточний сезон"
 }

@@ -127,5 +127,6 @@
   "SEASON_OPEN_GAMES_ALERT": "There are open games in current season",
   "CLOSE_SEASON_ALERT_QUESTION": "Close this season?",
   "CLOSE_BTN": "Close",
-  "CANCEL_BTN": "Cancel"
+  "CANCEL_BTN": "Cancel",
+  "CURRENT_SEASON_TOOLTIP": "Current season"
 }
