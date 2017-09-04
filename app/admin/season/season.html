@@ -11,7 +11,7 @@
         {{'CLOSE_SEASON_BUTTON' | translate}}
     </button>
 
-    <div ng-if="$ctrl.showCloseSeasonError && $ctrl.hasOpenGames" style="color: red; font-size: 90%;">
+    <div class="season-open-games-alert" ng-if="$ctrl.showCloseSeasonError && $ctrl.hasOpenGames">
         {{'SEASON_OPEN_GAMES_ALERT' | translate}}
     </div>
 

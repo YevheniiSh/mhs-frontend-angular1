@@ -46,8 +46,10 @@
     right: 40px;
     top: 60px;
 }
-
-
+.season-open-games-alert{
+    color: red;
+    font-size: 90%;
+}
 .season-total {
     cursor: default;
 }
