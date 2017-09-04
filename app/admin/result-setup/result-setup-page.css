@@ -12,15 +12,15 @@ h2 {
 
 #team-list {
     list-style: none;
-    -webkit-column-count: 2; /* Chrome, Safari, Opera */
-    -moz-column-count: 2; /* Firefox */
-    column-count: 2;
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
 }
 
 #team-list label {
     font-size: 14pt;
-    height: 32px;
     line-height: 32px;
+    padding: 5px 0;
 }
 
 #team-list input {
