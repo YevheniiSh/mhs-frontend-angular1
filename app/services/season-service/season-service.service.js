@@ -70,9 +70,10 @@ angular.module('seasonService')
                     .then((res) => {
                         let id = undefined;
                         res.forEach((item) => {
-                            if (item.games.hasOwnProperty(gameId)) {
-                                id = item.$id;
-                            }
+                            if (item.games !== undefined)
+                                if (item.games.hasOwnProperty(gameId)) {
+                                    id = item.$id;
+                                }
                         });
                         return id;
                     })

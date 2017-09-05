@@ -3,10 +3,19 @@
         <h2>{{'ROUND_SET_RESULTS_HEADER'|translate}} #{{$ctrl.round.$id}}: {{$ctrl.round.name}}</h2>
         <h1>{{'QUESTION_SET_RESULTS_HEADER'|translate}} #{{$ctrl.selectedQuiz}}</h1>
     </div>
-    <captain-round results="$ctrl.results" save-result="$ctrl.saveResult(result)"></captain-round>
+
+    <div ng-switch="$ctrl.round.roundType.type">
+        <default-round ng-switch-when="DEFAULT_ROUND" results="$ctrl.results"
+                       save-result="$ctrl.saveResult(result)" is-manual-input="$ctrl.isManualInput"></default-round>
+        <captain-round ng-switch-when="CAPTAIN_ROUND"></captain-round>
+        <auction-round ng-switch-when="AUCTION_ROUND"></auction-round>
+        <hints-round ng-switch-when="HINTS_ROUND"></hints-round>
+    </div>
+
     <div id="control-panel" class="form-inline">
         <div class="nav-btn">
-            <button ng-repeat="quizNumber in $ctrl.range($ctrl.round.numberOfQuestions)"
+            <button
+                    ng-repeat="quizNumber in $ctrl.range($ctrl.round.numberOfQuestions)"
                     class="btn"
                     ng-class="{'btn-selected':$ctrl.selectedQuiz == quizNumber,
                     'btn-success': $ctrl.currentQuiz > quizNumber || $ctrl.round.$id < $ctrl.currentRound,
