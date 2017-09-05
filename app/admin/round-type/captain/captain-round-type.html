@@ -1,1 +1,17 @@
-cccc
+<div class="form-group row">
+    <ul id="team-list">
+        <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
+            <label class="clickable-label">
+                <div class="result-control">
+                    <input type="checkbox"
+                           ng-model="result.score"
+                           ng-change=""
+                           ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
+                           class="score-by-checkbox"
+                           ng-true-value="1" ng-false-value="0">
+                </div>
+                <div class="team-name">{{result.teamName}}</div>
+            </label>
+        </li>
+    </ul>
+</div>
