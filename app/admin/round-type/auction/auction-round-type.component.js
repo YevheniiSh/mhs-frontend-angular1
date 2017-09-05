@@ -16,7 +16,7 @@ AuctionRoundTypeController.$inject = [
     '$scope'
 ];
 
-function AuctionRoundTypeController(resultSetupService, $routeParams, $scope) {
+function AuctionRoundTypeController($scope) {
     let vm = this;
 
     $scope.$watch(() => {
@@ -32,22 +32,23 @@ function AuctionRoundTypeController(resultSetupService, $routeParams, $scope) {
     };
 
     function initResults(res) {
-        for (let i in res) {
-            if (res[i].score !== undefined) {
-                res[i].rate = Math.abs(res[i].score);
+        for (let result of res) {
+            if (result.score !== undefined) {
+                result.rate = Math.abs(result.score);
 
-                if (res[i].score <= 0) {
-                    res[i].status = -1
-                } else
-                    res[i].status = 1
+                setResultStatus(result);
             }
             else {
-                res[i].rate = 0;
-                res[i].status = -1
+                result.rate = 0;
+                result.status = -1
             }
-
         }
     }
 
-
+    function setResultStatus(result) {
+        if (result.score <= 0) {
+            result.status = -1
+        } else
+            result.status = 1
+    }
 }
