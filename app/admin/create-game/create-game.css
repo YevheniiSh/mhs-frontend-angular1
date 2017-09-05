@@ -101,3 +101,7 @@ input:checked + .slider:before {
     margin-left: 5px;
     font-size: 18px;
 }
+
+div.uib-daypicker.ng-scope:focus{
+    outline: none;
+}
