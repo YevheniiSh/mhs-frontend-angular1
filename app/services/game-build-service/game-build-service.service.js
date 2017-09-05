@@ -7,6 +7,7 @@ angular.module('gameBuildService')
                 addDate: addDate,
                 addTime: addTime,
                 addLocation: addLocation,
+                addSeason: addSeason,
                 buildGame: buildGame
             };
 
@@ -23,6 +24,11 @@ angular.module('gameBuildService')
             function addLocation(location) {
                 this.game.location = location;
                 return this;
+            }
+
+            function addSeason(season) {
+                this.game.season = season;
+                return this
             }
 
             function buildGame() {

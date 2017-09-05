@@ -1,0 +1,27 @@
+<div class="container">
+    <h1 class="season-title">{{'SEASONS_HEADER' | translate}}</h1>
+    <table class="table table-sm table-striped table-hover seasons">
+        <thead>
+        <tr class="">
+            <th>{{'GAME_SEASON_LABEL' | translate}}</th>
+            <th>{{'WINNER_TEAM_LABEL' | translate}}</th>
+            <th>{{'NUMBER_OF_GAMES_LABEL' | translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="season-row" ng-repeat="season in $ctrl.seasons | orderBy : '-$id'" ng-click="$ctrl.goToSeason(season.$id)">
+            <td>
+                <i class="fa fa-caret-right current-season-pointer" uib-tooltip="{{'CURRENT_SEASON_TOOLTIP' | translate}}"
+                   ng-if="season.current"></i>
+                {{season.name}}
+            </td>
+            <td>
+                <div ng-repeat="winner in season.seasonWinners">
+                    <i id="trophy" class="fa fa-trophy"></i> {{winner.teamName}}
+                </div>
+            </td>
+            <td>{{season.numberOfGames}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -79,10 +79,12 @@
     background: none;
     border: none;
     cursor: pointer;
+    width: 100%;
 }
 
 .editable-team:enabled {
     border: 1px solid #4d90fe;
+    width: 100%;
 }
 
 ul {

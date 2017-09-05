@@ -7,7 +7,8 @@ angular
         'GameServiceFactory',
         'TeamServiceFactory',
         'RoundStatusService',
-        function ($firebaseArray, $firebaseObject, firebaseDataService, gameService, TeamService, roundService) {
+        'seasonService',
+        function ($firebaseArray, $firebaseObject, firebaseDataService, gameService, TeamService, roundService, seasonService) {
 
             let currentRef = firebaseDataService.currentGames;
             let finishedRef = firebaseDataService.finishedGames;
@@ -133,12 +134,27 @@ angular
 
             };
 
+            function calculateTeamPosition(score){
+                let positionTeam = 1;
+                score.forEach((item, index) => {
+                    if (score[index - 1]) {
+                        if (score[index - 1].total != item.total) {
+                            positionTeam++;
+                        }
+                    }
+                    item.positionTeam = positionTeam;
+                });
+                return score;
+            }
+
+
             resultFactory.getParsedResults = function (gameId) {
                 return resultFactory.getGameResults(gameId)
                     .then(res => {
                         return resultFactory.parseTeamsResult(res, gameId)
                     })
-                    .then(resultFactory.sortDesc);
+                    .then(resultFactory.sortDesc)
+                    .then(calculateTeamPosition);
             };
 
             resultFactory.setTeamsResults = function (gameId) {
@@ -154,9 +170,14 @@ angular
             resultFactory.setTeamPosition = function (gameId) {
                 return resultFactory.getParsedResults(gameId)
                     .then(resultFactory.sortDesc)
+                    .then(calculateTeamPosition)
                     .then((res) => {
-                        res.forEach((item, index) => {
-                            TeamService.saveTeamPosition(item.teamId, gameId, index + 1);
+                        res.forEach((item) => {
+                            TeamService.saveTeamPosition(item.teamId, gameId, item.positionTeam);
+                            seasonService.setTeamsRatingForGame(gameId, item.teamId, {
+                                rating: (item.positionTeam),
+                                teamName: item.teamName
+                            });
                         });
                         return res;
                     });
@@ -165,7 +186,13 @@ angular
             resultFactory.getGameWinner = function (gameId) {
                 return resultFactory.getParsedResults(gameId)
                     .then((results) => {
-                        return results[0];
+                        let winners = [];
+                        results.forEach((item) => {
+                            if (item.positionTeam === 1) {
+                                winners.push(item);
+                            }
+                        });
+                        return winners;
                     });
             };
 
@@ -180,11 +207,12 @@ angular
 
                 return resultFactory.getGameWinner(gameId)
                     .then((res) => {
-                        let winner = {};
-                        winner['id'] = res.teamId;
-                        winner['name'] = res.teamName;
-                        winner['score'] = res.total;
-                        return ref.child(gameId).child('winner').set(winner);
+                        res.forEach((item) => {
+                            console.log(item);
+                            let obj = new $firebaseObject(ref.child(`${gameId}/winner/${item.teamId}`));
+                            obj.$value = {name: item.teamName, score: item.total};
+                            obj.$save();
+                        });
                     });
             };
 

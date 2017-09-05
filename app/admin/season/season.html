@@ -1,0 +1,97 @@
+<div class="container main">
+    <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
+    <h1 class="header">MEAD HEAD SHOW {{'NAVBAR_SEASONS' | translate}}</h1>
+    <div class="col-md-6 col-md-offset-3 ">
+        <select class="form-control" ng-model="$ctrl.selectedSeason" ng-click="$ctrl.setSeasonUrl()"
+                ng-options="season.name for season in $ctrl.seasons">
+        </select>
+    </div>
+    <button class="btn btn-danger close-season" ng-if="$ctrl.currentSeason && $ctrl.admin && !$ctrl.showCloseSeasonAlert"
+        ng-click="$ctrl.showAlert()">
+        {{'CLOSE_SEASON_BUTTON' | translate}}
+    </button>
+
+    <div class="season-open-games-alert" ng-if="$ctrl.showCloseSeasonError && $ctrl.hasOpenGames">
+        {{'SEASON_OPEN_GAMES_ALERT' | translate}}
+    </div>
+
+    <div ng-if="$ctrl.showCloseSeasonAlert && !$ctrl.hasOpenGames"
+         class="alert alert-danger season-close-alert" role="alert">
+        <p>{{'CLOSE_SEASON_ALERT_QUESTION' | translate}}</p>
+        <p>
+            <button ng-click="$ctrl.closeCurrentSeason()" type="button" class="btn btn-danger">
+                {{'CLOSE_BTN' | translate}}
+            </button>
+            <button ng-click="$ctrl.showCloseSeasonAlert = false" type="button" class="btn btn-default">
+                {{'CANCEL_BTN' | translate}}
+            </button>
+        </p>
+    </div>
+
+    <div ng-if="$ctrl.seasonTeams.length == 0 && $ctrl.seasonDropTeams.length == 0" class="col-md-6  col-md-offset-3  season-alert">
+        <div class="alert alert-sm alert-dismissible alert-danger">
+            {{'EMPTY_SEASON_MESSAGE' | translate}}
+        </div>
+    </div>
+
+    <table ng-if=" $ctrl.seasonTeams.length != 0" class="table table-sm table-striped table-hover ">
+        <caption class="table-caption">{{'TEAMS_IN_SEASON' | translate}}</caption>
+        <thead>
+        <tr>
+            <th class="th-cell position-title">#</th>
+            <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}} <span class="games-label">{{'GAMES_LABEL' | translate}}:</span>
+            </th>
+            <th class="th-cell round-number" ng-repeat="game in $ctrl.seasonTeams[0].games">
+                <a class="game-rating" ng-href="/#!/games/{{game.gameId}}/results">{{$index + 1}}</a>
+            </th>
+            <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-row" ng-repeat="team in $ctrl.seasonTeams  | orderBy: '-total' ">
+            <td class="td-cell position-data">{{team.positionTeam}}</td>
+            <td class="td-cell">
+                <a class="team-name" ng-click="$ctrl.goToTeam(team.teamId)">
+                    {{team.teamName}}</a>
+            </td>
+
+            <td class="td-cell" ng-repeat="game in team.games">
+                {{game.rating}}
+            </td>
+            <td class="td-cell total-score season-total">{{team.total}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <table ng-if="$ctrl.seasonDropTeams.length != 0" class="table table-sm table-striped table-hover ">
+        <caption class="table-caption">{{'TEAMS_OUT_OF_SEASON' | translate}}</caption>
+        <thead>
+        <tr>
+            <th class="th-cell position-title">#</th>
+            <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}}<span class="games-label">{{'GAMES_LABEL' | translate}}:</span>
+            </th>
+            <th class="th-cell round-number" ng-repeat="game in $ctrl.seasonTeams[0].games">
+                <a class="game-rating" ng-href="/#!/games/{{game.gameId}}/results">{{$index + 1}}</a>
+            </th>
+            <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-row" ng-repeat="team in $ctrl.seasonDropTeams">
+            <td class="td-cell position-data">{{team.positionTeam}}</td>
+            <td class="td-cell">
+                <a class="team-name" ng-click="$ctrl.getTeamGames(team.teamId);$event.stopPropagation();">
+                    {{team.teamName}}
+                </a>
+            </td>
+
+            <td class="td-cell" ng-repeat="game in team.gamesArr | orderBy:'gameId'">
+                {{game.rating}}
+            </td>
+            <td class="td-cell total-score season-total">{{team.total}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

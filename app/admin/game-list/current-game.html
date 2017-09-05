@@ -4,7 +4,7 @@
         <th>{{'DATE_LABEL' | translate}}</th>
         <th>{{'TIME_LABEL' | translate}}</th>
         <th>{{'LOCATION_LABEL' | translate}}</th>
-        <th></th>
+        <th>{{'GAME_SEASON_LABEL' | translate}}</th>
     </tr>
     </thead>
     <tbody>
@@ -12,6 +12,8 @@
         <td>{{game.date.toLocaleDateString()}}</td>
         <td>{{game.time}}</td>
         <td>{{game.location}}</td>
+        <td  ng-click="$event.stopPropagation();"><a ng-href='/#!/seasons/{{game.season.id}}'>{{game.season.name}}</a> </td>
+
         <td>
             <button class="btn btn-info game-button"
                     ng-click="$ctrl.continueGame(game.$id)">
