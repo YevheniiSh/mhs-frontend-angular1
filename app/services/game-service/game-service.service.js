@@ -137,21 +137,21 @@ angular
             function finishGame(gameId) {
                 getCurrentGameById(gameId).then((res) => {
                     let obj = new $firebaseObject(finishedGameRef.child(gameId));
-                    obj.$value = getObject(res);
+                    obj.$value = convertService.getSimpleObjectFromFirebaseObject(res);
                     obj.$save();
                     res.$remove();
                 });
             }
 
-            function getObject(obj) {
-                let newObj = {};
-                for (let key in obj) {
-                    if (key.indexOf('$') < 0 && obj.hasOwnProperty(key)) {
-                        newObj[key] = obj[key];
-                    }
-                }
-                return newObj;
-            }
+            // function getObject(obj) {
+            //     let newObj = {};
+            //     for (let key in obj) {
+            //         if (key.indexOf('$') < 0 && obj.hasOwnProperty(key)) {
+            //             newObj[key] = obj[key];
+            //         }
+            //     }
+            //     return newObj;
+            // }
 
             function getCurrentRound(gameId) {
                 return getStatus(gameId, 'currentRound');
