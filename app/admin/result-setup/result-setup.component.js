@@ -10,12 +10,10 @@
     ResultSetupController.$inject = [
         'resultSetupService',
         '$routeParams',
-        '$location',
-        '$scope',
-        '$window'
+        '$location'
     ];
 
-    function ResultSetupController(resultSetupService, $routeParams, $location, $scope, $window) {
+    function ResultSetupController(resultSetupService, $routeParams, $location) {
         let vm = this;
 
         vm.isManualInput = false;
