@@ -12,10 +12,19 @@ angular.module('resultSetup')
 CaptainRoundTypeController.$inject = [
     'resultSetupService',
     '$routeParams',
-    '$scope'
+    'GameServiceFactory'
 ];
 
-function CaptainRoundTypeController(resultSetupService, $routeParams, $scope) {
+function CaptainRoundTypeController(resultSetupService, $routeParams, GameServiceFactory) {
     let vm = this;
+
+    vm.$onInit = onInit;
+
+    function onInit(){
+        GameServiceFactory.getRoundByGameAndId($routeParams.gameId,$routeParams.roundNumber)
+            .then(round=>{
+                vm.weigth = round.roundType.start+(round.roundType.step*$routeParams.quizNumber)
+        })
+    }
 
 }
