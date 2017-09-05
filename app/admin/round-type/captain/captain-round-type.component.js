@@ -48,22 +48,13 @@ function CaptainRoundTypeController($routeParams, GameServiceFactory, ResultServ
     vm.isDisabled = function (teamId) {
         if (!isFirstQuiz()) {
             let resultKey = [$routeParams.roundNumber, $routeParams.quizNumber - 1, teamId].join('_');
-            if (vm.previousQuizResults[resultKey] === '0' || vm.previousQuizResults[resultKey] === undefined) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return vm.previousQuizResults[resultKey] === '0' || vm.previousQuizResults[resultKey] === undefined;
         }
         return false;
     };
 
     function isFirstQuiz() {
-        if ($routeParams.quizNumber === '1') {
-            return true;
-        } else {
-            return false;
-        }
+        return $routeParams.quizNumber === '1';
     }
 
 }
