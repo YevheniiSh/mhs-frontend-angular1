@@ -10,7 +10,7 @@
     </thead>
     <tbody>
     <tr class="game-row td games" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
-        <td>{{openGame.date.toLocaleDateString()}}</td>
+        <td>{{openGame.date | date:'d MMM y'}}</td>
         <td>{{openGame.time}}</td>
         <td>{{openGame.location}}</td>
         <td  ng-click="$event.stopPropagation();"><a ng-href='/#!/seasons/{{openGame.season.id}}'>{{openGame.season.name}}</a> </td>
