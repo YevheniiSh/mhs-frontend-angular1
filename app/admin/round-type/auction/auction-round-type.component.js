@@ -12,16 +12,42 @@ angular.module('resultSetup')
 
 AuctionRoundTypeController.$inject = [
     'resultSetupService',
-    '$routeParams'
+    '$routeParams',
+    '$scope'
 ];
 
-function AuctionRoundTypeController(resultSetupService, $routeParams) {
+function AuctionRoundTypeController(resultSetupService, $routeParams, $scope) {
     let vm = this;
 
-    vm.saveResult = function (result) {
+    $scope.$watch(() => {
+        return vm.results;
+    }, (res) => {
+        if (res !== undefined && res[0].rate === undefined)
+            initResults(res);
+    });
 
+    vm.saveResult = function (result) {
         result.score = result.rate * result.status;
-        vm.onSave({result:result})
+        vm.onSave({result: result})
+    };
+
+    function initResults(res) {
+        for (let i in res) {
+            if (res[i].score !== undefined) {
+                res[i].rate = Math.abs(res[i].score);
+
+                if (res[i].score <= 0) {
+                    res[i].status = -1
+                } else
+                    res[i].status = 1
+            }
+            else {
+                res[i].rate = 0;
+                res[i].status = -1
+            }
+
+        }
     }
+
 
 }

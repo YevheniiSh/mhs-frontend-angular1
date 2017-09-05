@@ -3,7 +3,7 @@
         <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
             <label class="clickable-label">
                 <div class="result-control">
-                    <input ng-model="result.rate" type="number">
+                    <input ng-model="result.rate" type="number" ng-change="$ctrl.saveResult(result)">
                     <input type="checkbox"
                            ng-model="result.status"
                            ng-change="$ctrl.saveResult(result)"
