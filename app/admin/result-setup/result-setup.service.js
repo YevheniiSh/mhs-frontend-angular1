@@ -12,7 +12,6 @@
             getGameTeams: getGameTeams,
             saveQuizResult: saveQuizResult,
             roundIncrement: roundIncrement,
-            buildResult: buildResult,
             getQuizResults: getQuizResults,
             getCurrentQuiz: getCurrentQuiz,
             getCurrentRound: getCurrentRound,
@@ -33,8 +32,7 @@
         }
 
         function saveQuizResult(result, gameId) {
-            let res = buildResult(result.round, result.quiz, result.teamId, result.score);
-            resultFactory.saveResult('current', res, gameId);
+            resultFactory.saveResult('current', prepareResultToSave(result), gameId);
         }
 
         function saveQuizResults(results, gameId) {
@@ -71,13 +69,11 @@
             return gameFactory.getCurrentRound(gameId);
         }
 
-        function buildResult(round, quiz, teamId, score) {
-            return {
-                quiz: quiz,
-                round: round,
-                teamId: teamId,
-                score: score
-            }
+        function prepareResultToSave(result) {
+            let res = angular.copy(result);
+            delete res.$$hashKey;
+            delete res.teamName;
+            return res;
         }
     }
 })();
