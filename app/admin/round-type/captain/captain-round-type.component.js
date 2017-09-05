@@ -1,8 +1,11 @@
 angular.module('resultSetup')
-    .component('captainRoundType', {
+    .component('captainRound', {
         templateUrl: 'admin/round-type/captain/captain-round-type.html',
         css: 'admin/round-type/captain/captain-round-type.css',
-        controller: CaptainRoundTypeController
+        controller: CaptainRoundTypeController,
+        bindings: {
+            results: '='
+        },
     });
 
 CaptainRoundTypeController.$inject = [
@@ -14,6 +17,7 @@ CaptainRoundTypeController.$inject = [
 
 function CaptainRoundTypeController(resultSetupService, $routeParams, $location, $scope) {
     let vm = this;
-
-    vm.isManualInput = false;
+    vm.OnClicked = function () {
+        console.log(vm.results)
+    }
 }

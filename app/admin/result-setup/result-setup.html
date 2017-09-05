@@ -3,35 +3,7 @@
         <h2>{{'ROUND_SET_RESULTS_HEADER'|translate}} #{{$ctrl.round.$id}}: {{$ctrl.round.name}}</h2>
         <h1>{{'QUESTION_SET_RESULTS_HEADER'|translate}} #{{$ctrl.selectedQuiz}}</h1>
     </div>
-    <div class="checkbox">
-        <label id="manual-input"><input type="checkbox" ng-model="$ctrl.isManualInput">{{'MANUAL_INPUT_CHECKBOX'|translate}}</label>
-    </div>
-    <div class="form-group row">
-        <ul id="team-list">
-            <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
-                <label class="clickable-label">
-                    <div class="result-control">
-                        <input type="checkbox"
-                               ng-model="result.score"
-                               ng-change="$ctrl.saveResult(result)"
-                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
-                               class="score-by-checkbox"
-                               ng-if="!$ctrl.isManualInput"
-                               ng-true-value="1" ng-false-value="0">
-                    </div>
-                    <div class="result-control">
-                        <input type="number"
-                               ng-model="result.score"
-                               ng-change="$ctrl.saveResult(result)"
-                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
-                               class="form-control score-by-manual"
-                               ng-if="$ctrl.isManualInput">
-                    </div>
-                    <div class="team-name">{{result.teamName}}</div>
-                </label>
-            </li>
-        </ul>
-    </div>
+    <captain-round results="$ctrl.results"></captain-round>
     <div id="control-panel" class="form-inline">
         <div class="nav-btn">
             <button
