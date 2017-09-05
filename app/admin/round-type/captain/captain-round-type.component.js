@@ -10,12 +10,11 @@ angular.module('resultSetup')
     });
 
 CaptainRoundTypeController.$inject = [
-    'resultSetupService',
     '$routeParams',
     'GameServiceFactory'
 ];
 
-function CaptainRoundTypeController(resultSetupService, $routeParams, GameServiceFactory) {
+function CaptainRoundTypeController($routeParams, GameServiceFactory) {
     let vm = this;
 
     vm.$onInit = onInit;

@@ -5,8 +5,7 @@
                 <div class="result-control">
                     <input type="checkbox"
                            ng-model="result.score"
-                           ng-change="result.weigth = $ctrl.weigth;
-                                      $ctrl.saveResult({result:result})"
+                           ng-change="$ctrl.saveResult({result:result})"
                            class="score-by-checkbox"
                            ng-true-value="{{$ctrl.weigth}}" ng-false-value="0">
                 </div>
