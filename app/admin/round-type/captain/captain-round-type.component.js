@@ -23,7 +23,8 @@ function CaptainRoundTypeController(resultSetupService, $routeParams, GameServic
     function onInit(){
         GameServiceFactory.getRoundByGameAndId($routeParams.gameId,$routeParams.roundNumber)
             .then(round=>{
-                vm.weigth = round.roundType.start+(round.roundType.step*$routeParams.quizNumber)
+                vm.weigth = round.roundType.start+(round.roundType.step*($routeParams.quizNumber-1));
+                console.log(vm.weigth)
         })
     }
 
