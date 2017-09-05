@@ -4,9 +4,9 @@
         .module('resultSetup')
         .factory('resultSetupService', resultSetupService);
 
-    resultSetupService.$inject = ['GameServiceFactory', 'ResultServiceFactory'];
+    resultSetupService.$inject = ['GameServiceFactory', 'ResultServiceFactory', 'resultSetupBuilder'];
 
-    function resultSetupService(gameFactory, resultFactory) {
+    function resultSetupService(gameFactory, resultFactory, resultSetupBuilder) {
         return {
             getRound: getRound,
             getGameTeams: getGameTeams,
@@ -32,7 +32,14 @@
         }
 
         function saveQuizResult(result, gameId) {
-            resultFactory.saveResult('current', prepareResultToSave(result), gameId);
+            let res = resultSetupBuilder
+                .addRound(result.round)
+                .addQuiz(result.quiz)
+                .addTeamId(result.teamId)
+                .addScore(result.score)
+                .getResult();
+
+            resultFactory.saveResult('current', res, gameId);
         }
 
         function saveQuizResults(results, gameId) {
@@ -67,13 +74,6 @@
 
         function getCurrentRound(gameId) {
             return gameFactory.getCurrentRound(gameId);
-        }
-
-        function prepareResultToSave(result) {
-            let res = angular.copy(result);
-            delete res.$$hashKey;
-            delete res.teamName;
-            return res;
         }
     }
 })();
