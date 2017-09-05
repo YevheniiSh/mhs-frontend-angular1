@@ -1,6 +1,6 @@
 <div class="container">
     <button class="btn btn-success" ng-click="$ctrl.showGameResults()">{{'BACK_BUTTON' | translate}}</button>
-    <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && $ctrl.gameStatus"
+    <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && $ctrl.gameStatus && !$ctrl.isGameInFinishedSeason"
             ng-click="$ctrl.editResults()">{{'EDIT_RESULTS_BUTTON' | translate}}
     </button>
     <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && !$ctrl.gameStatus"

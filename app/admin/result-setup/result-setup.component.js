@@ -10,10 +10,11 @@
     ResultSetupController.$inject = [
         'resultSetupService',
         '$routeParams',
-        '$location'
+        '$location',
+        'resultSetupBuilder'
     ];
 
-    function ResultSetupController(resultSetupService, $routeParams, $location) {
+    function ResultSetupController(resultSetupService, $routeParams, $location, resultSetupBuilder) {
         let vm = this;
 
         vm.isManualInput = false;
@@ -73,7 +74,14 @@
             vm.results = {};
             angular.forEach(vm.teams, function (team) {
                 let resultKey = [vm.round.$id, vm.selectedQuiz, team.teamId].join('_');
-                let result = resultSetupService.buildResult(vm.round.$id, vm.selectedQuiz, team.teamId);
+
+                let result = resultSetupBuilder
+                    .addQuiz(vm.selectedQuiz)
+                    .addRound(vm.round.$id)
+                    .addTeamId(team.teamId)
+                    .addScore()
+                    .getResult();
+
                 vm.results[resultKey] = result;
                 vm.results[resultKey].teamName = team.name;
             });
