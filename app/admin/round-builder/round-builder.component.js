@@ -16,7 +16,7 @@ function roundBuilder(roundTypeService) {
 
     function onInit() {
         getRoundTypes()
-            .then(setDefaultTypeSelected);
+            .then(setDefaultType);
     }
 
     vm.dragAndDropRound = function($index){
@@ -39,7 +39,6 @@ function roundBuilder(roundTypeService) {
     function getRoundTypes() {
         return roundTypeService.getRoundTypes()
             .then((types) => {
-                console.log(types);
                 vm.roundTypes = types;
                 vm.roundTypes.forEach((item) => {
                     item.type = item.$id;
@@ -48,15 +47,12 @@ function roundBuilder(roundTypeService) {
             });
     }
 
-    function setDefaultTypeSelected(type) {
+    function setDefaultType(type) {
         type.forEach((item) => {
-            console.log(item);
             if (item.$id === "DEFAULT_ROUND") {
-                vm.rounds.forEach((round) => {
-                    vm.defaultType = item;
-                    round.roundType = item;
-                })
+                vm.defaultType = item;
             }
-        })
+        });
+        return type;
     }
 }
