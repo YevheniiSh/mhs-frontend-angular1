@@ -1,19 +1,25 @@
 angular.module('resultSetup')
-    .component('auctionRoundType', {
+    .component('auctionRound', {
         templateUrl: 'admin/round-type/auction/auction-round-type.html',
         css: 'admin/round-type/auction/auction-round-type.css',
         controller: AuctionRoundTypeController
+        ,
+        bindings: {
+            results: '=',
+            saveResult: '&'
+        }
     });
 
 AuctionRoundTypeController.$inject = [
     'resultSetupService',
-    '$routeParams',
-    '$location',
-    '$scope'
+    '$routeParams'
 ];
 
-function AuctionRoundTypeController(resultSetupService, $routeParams, $location, $scope) {
+function AuctionRoundTypeController(resultSetupService, $routeParams) {
     let vm = this;
 
-    vm.isManualInput = false;
+    vm.OnClicked = function () {
+        console.log(vm.results)
+    }
+
 }
