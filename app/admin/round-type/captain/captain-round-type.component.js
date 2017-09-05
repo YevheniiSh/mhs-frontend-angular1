@@ -19,12 +19,17 @@ function CaptainRoundTypeController($routeParams, GameServiceFactory) {
 
     vm.$onInit = onInit;
 
-    function onInit(){
-        GameServiceFactory.getRoundByGameAndId($routeParams.gameId,$routeParams.roundNumber)
-            .then(round=>{
-                vm.weigth = round.roundType.start+(round.roundType.step*($routeParams.quizNumber-1));
-                console.log(vm.weigth)
-        })
+    function onInit() {
+        getRound()
+            .then(getQuizWeight);
+    }
+
+    function getRound() {
+        return GameServiceFactory.getRoundByGameAndId($routeParams.gameId, $routeParams.roundNumber);
+    }
+
+    function getQuizWeight(round) {
+        vm.weight = round.roundType.start + (round.roundType.step * ($routeParams.quizNumber - 1));
     }
 
 }
