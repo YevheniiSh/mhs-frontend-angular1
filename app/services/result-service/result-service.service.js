@@ -205,7 +205,7 @@ angular
                     ref = currentRef;
                 }
 
-                return clearWinners(gameId,ref).then(() => {
+                return clearWinners(gameId, ref).then(() => {
                     resultFactory.getGameWinner(gameId)
                         .then((res) => {
                             res.forEach((item) => {
@@ -218,10 +218,32 @@ angular
                 })
             };
 
-            function clearWinners(gameId,ref) {
+            function clearWinners(gameId, ref) {
                 let obj = new $firebaseObject(ref.child(`${gameId}/winner`));
                 return obj.$remove()
             }
+
+            resultFactory.isGameInFinishedSeason = function (gameId) {
+
+                let isGameInFinishedSeason = false;
+
+                return seasonService.getSeasonIdByGameId(gameId).then((seasonId) => {
+
+                    if (seasonId === undefined) {
+                        return isGameInFinishedSeason;
+                    }
+
+                    return seasonService.getCurrentSeason().then((currentSeason) => {
+                        if (currentSeason !== undefined) {
+
+                            if (seasonId !== currentSeason.$id)
+                                isGameInFinishedSeason = true;
+                        } else isGameInFinishedSeason = true;
+
+                        return isGameInFinishedSeason;
+                    })
+                });
+            };
 
             resultFactory.parseTeamResult = function (teamResults, gameId) {
                 let roundResult = {};
