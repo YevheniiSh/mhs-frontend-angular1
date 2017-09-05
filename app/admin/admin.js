@@ -35,16 +35,13 @@ angular
         });
         $routeProvider.when('/login', {
             template: '<login></login>',
-            css: 'admin/login/login.css'
         });
         $routeProvider.when('/games', {
             template: '<game-list></game-list>',
-            css: 'admin/game-list/game-list.css',
             reloadOnSearch: false
         });
         $routeProvider.when('/teams', {
             template: '<team-list></team-list>',
-            css: 'admin/team-list/team-list.css'
         });
 
         $routeProvider.when('/games/:gameId/print', {
@@ -61,23 +58,19 @@ angular
         });
         $routeProvider.when('/games/:gameId/results', {
             template: '<game-results-page></game-results-page>',
-            css: 'admin/game-results/game-results-page.css'
         });
         $routeProvider.when('/games/:gameId/results-presentation', {
             template: '<game-results></game-results>',
-            css: 'admin/game-results/game-results.css',
             controller: 'presentationModeController'
         });
         $routeProvider.when('/games/:gameId/results/:teamId', {
             template: '<team-results></team-results>',
-            css: 'admin/team-results/team-results.css'
         });
         $routeProvider.when('/templates', {
             template: '<game-template></game-template>',
         });
         $routeProvider.when('/templates/:templateId', {
             template: '<current-game-template></current-game-template>',
-            css: 'admin/game-template/current-game-template.css'
         });
         $routeProvider.when('/seasons', {
             template: '<season-list></season-list>'

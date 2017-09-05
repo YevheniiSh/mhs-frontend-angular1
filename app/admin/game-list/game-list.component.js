@@ -3,6 +3,7 @@
     angular.module('game-list')
         .component('gameList', {
             templateUrl: 'admin/game-list/game-list.html',
+            css: 'admin/game-list/game-list.css',
             controller: GameList
         });
 

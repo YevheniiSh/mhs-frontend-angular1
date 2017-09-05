@@ -1,6 +1,7 @@
 angular.module('login')
     .component('login', {
         templateUrl: "admin/login/login.html",
+        css: 'admin/login/login.css',
         controller: [
             'userAuthService',
             '$location',

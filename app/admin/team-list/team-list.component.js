@@ -3,6 +3,7 @@
         .module('teamList')
         .component('teamList', {
                 templateUrl: 'admin/team-list/team-list.html',
+            css: 'admin/team-list/team-list.css',
                 controller: TeamList
             }
         );
@@ -75,7 +76,7 @@
             vm.auth = false;
         });
 
-        vm.selectTeamForEdit = function(teamId){
+        vm.selectTeamForEdit = function (teamId) {
             vm.editableTeam = teamId;
         };
 
