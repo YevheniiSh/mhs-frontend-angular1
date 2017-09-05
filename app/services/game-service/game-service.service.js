@@ -1,7 +1,7 @@
 angular
     .module('gameFactory')
-    .factory('GameServiceFactory', ['OpenGameServiceFactory', '$firebaseArray', '$firebaseObject', 'firebaseDataService',
-        function (openGameServiceFactory, $firebaseArray, $firebaseObject, firebaseDataService) {
+    .factory('GameServiceFactory', ['OpenGameServiceFactory', '$firebaseArray', '$firebaseObject', 'firebaseDataService', 'convertServiceFactory',
+        function (openGameServiceFactory, $firebaseArray, $firebaseObject, firebaseDataService, convertService) {
 
             let currentGameRef = firebaseDataService.currentGames;
             let finishedGameRef = firebaseDataService.finishedGames;
@@ -25,7 +25,6 @@ angular
                 getDate: getDate,
                 getPhotosUrl: getPhotosUrl,
                 startGame: startGame,
-                getGameTeams: getGameTeams,
                 setPhotosLink: setPhotosLink,
                 removeTeamFromGame: removeTeamFromGame,
                 reOpenGame: reOpenGame,
@@ -37,7 +36,7 @@ angular
             function startGame(gameId) {
                 openGameServiceFactory.getOpenGameById(gameId).then((res) => {
                     let obj = new $firebaseObject(currentGameRef.child(gameId));
-                    obj.$value = getObject(res);
+                    obj.$value = convertService.getSimpleObjectFromFirebaseObject(res);
                     obj.$save();
                     res.$remove();
                 });
@@ -69,7 +68,7 @@ angular
             function reOpenGame(gameId) {
                 getCurrentGameById(gameId).then((res) => {
                     let obj = new $firebaseObject(openedGameRef.child(gameId));
-                    obj.$value = getObject(res);
+                    obj.$value = convertService.getSimpleObjectFromFirebaseObject(res);
                     obj.$save();
                     res.$remove();
                 });
@@ -142,16 +141,6 @@ angular
                     res.$remove();
                 });
             }
-
-            // function getObject(obj) {
-            //     let newObj = {};
-            //     for (let key in obj) {
-            //         if (key.indexOf('$') < 0 && obj.hasOwnProperty(key)) {
-            //             newObj[key] = obj[key];
-            //         }
-            //     }
-            //     return newObj;
-            // }
 
             function getCurrentRound(gameId) {
                 return getStatus(gameId, 'currentRound');
@@ -242,7 +231,7 @@ angular
             function publishGame(gameId) {
                 getCurrentGameById(gameId).then((res) => {
                     let obj = new $firebaseObject(finishedGameRef.child(gameId));
-                    obj.$value = getObject(res);
+                    obj.$value = convertService.getSimpleObjectFromFirebaseObject(res);
                     obj.$save();
                 });
             }
