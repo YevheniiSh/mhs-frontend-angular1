@@ -6,7 +6,7 @@ angular.module('resultSetup')
         ,
         bindings: {
             results: '=',
-            saveResult: '&'
+            onSave: '&'
         }
     });
 
@@ -18,8 +18,10 @@ AuctionRoundTypeController.$inject = [
 function AuctionRoundTypeController(resultSetupService, $routeParams) {
     let vm = this;
 
-    vm.OnClicked = function () {
-        console.log(vm.results)
+    vm.saveResult = function (result) {
+
+        result.score = result.rate * result.status;
+        vm.onSave({result:result})
     }
 
 }
