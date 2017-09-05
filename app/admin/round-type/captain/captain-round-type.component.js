@@ -4,20 +4,18 @@ angular.module('resultSetup')
         css: 'admin/round-type/captain/captain-round-type.css',
         controller: CaptainRoundTypeController,
         bindings: {
-            results: '='
+            results: '=',
+            saveResult: '&'
         },
     });
 
 CaptainRoundTypeController.$inject = [
     'resultSetupService',
     '$routeParams',
-    '$location',
     '$scope'
 ];
 
-function CaptainRoundTypeController(resultSetupService, $routeParams, $location, $scope) {
+function CaptainRoundTypeController(resultSetupService, $routeParams, $scope) {
     let vm = this;
-    vm.OnClicked = function () {
-        console.log(vm.results)
-    }
+
 }
