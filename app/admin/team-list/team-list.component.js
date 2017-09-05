@@ -22,7 +22,7 @@
                 .then((arr) => {
                     vm.teams = [];
                     for (let i = 0; i < arr.length; i++) {
-                        vm.teams.push(getTeamWithGames(arr[i]));
+                        vm.teams.push(setTeamNumberOfGames(arr[i]));
                     }
                 });
         }
@@ -42,7 +42,7 @@
                         TeamService
                             .changeTeamName(team.$id, team.name)
                             .then((res) => {
-                                vm.teams[vm.teams.indexOf(team)] = getTeamWithGames(team)
+                                vm.teams[vm.teams.indexOf(team)] = setTeamNumberOfGames(team)
                                 vm.showSuccessAlert = true;
                                 vm.showErrorAlert = false;
                                 showSuccessAlert();
@@ -62,12 +62,25 @@
             $location.path(`/teams/${teamId}`);
         };
 
-        function getTeamWithGames(team) {
-            if (team.games === undefined) {
-                team.games = 0
-            } else team.games = Object.keys(team.games).length;
+        function setTeamNumberOfGames(team) {
+            team.games = calculateNumberOfFinishedGames(team);
             return team;
         };
+
+        function calculateNumberOfFinishedGames(team) {
+            let gamesPlayed = 0;
+
+            if (team.games === undefined) {
+                gamesPlayed = 0
+            } else {
+                for (let key in team.games) {
+                    if (team.games[key].hasOwnProperty('position')) {
+                        gamesPlayed++
+                    }
+                }
+            }
+            return gamesPlayed
+        }
 
         vm.auth = false;
         userService.currentUser().then((res) => {
