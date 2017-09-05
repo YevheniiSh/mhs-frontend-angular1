@@ -5,3 +5,7 @@
 .table .td-round-number {
     vertical-align: middle;
 }
+
+.odd {
+    background-color: #f9f9f9;
+}

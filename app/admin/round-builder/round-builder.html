@@ -1,4 +1,44 @@
 <div>
+    <ul dnd-list="$ctrl.rounds">
+        <li ng-class-odd="'odd'" ng-repeat="round in $ctrl.rounds" dnd-draggable="round"
+            dnd-moved="$ctrl.dragAndDropRound($index)">
+            <div class="row">
+                <span class="col-md-1">{{$index + 1}}</span>
+                <div class="round-name col-md-3">
+                    <input class="form-control" ng-model="round.name"
+                           maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
+                           required placeholder="{{'ROUND_NAME_PLACEHOLDER' | translate}}"></div>
+                <div class="count-quest col-md-2">
+                    <input class="form-control"
+                           min="1" max="20" ng-model="round.numberOfQuestions"
+                           placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" type="number" required>
+                </div>
+                <div class="count-quest col-md-2">
+                    <input class="form-control"
+                           ng-model="round.roundType.start"
+                           type="number"
+                           placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" required>
+                </div>
+                <div class="count-quest col-md-2">
+                    <input class="form-control"
+                           ng-model="round.roundType.step"
+                           type="number"
+                           placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" required>
+                </div>
+                <a class="btn btn-danger col-md-2">
+                    {{'DELETE_ROUND_BUTTON' | translate}}</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-6">
+                    <select class="form-control" ng-model="round.roundType"
+                            ng-options="item.type | translate for item in $ctrl.roundTypes track by item.type">
+                    </select>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+
     <table class="table table-striped table-hover round-list">
         <thead>
         <th>#</th>
