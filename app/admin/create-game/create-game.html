@@ -5,7 +5,7 @@
                 <label class="control-label data-picker-label" for="game-calendar">
                     <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
                 </label>
-                <span> {{$ctrl.gameDate.toLocaleDateString()}}</span>
+                <span>{{$ctrl.gameDate | date:'d MMM y'}}</span>
             </div>
             <div class="picker" ng-show="$ctrl.isCalendarVisible">
                 <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
