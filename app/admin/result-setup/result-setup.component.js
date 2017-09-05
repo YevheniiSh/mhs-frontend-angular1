@@ -118,7 +118,7 @@
         };
 
         vm.range = function (n) {
-            return new Array(n);
+            return new Array(n).fill().map((e, i) => i + 1);
         };
     }
 })();

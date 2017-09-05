@@ -11,37 +11,37 @@
             <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
                 <label class="clickable-label">
                     <div class="result-control">
-                    <input type="checkbox"
-                           ng-model="result.score"
-                           ng-change="$ctrl.saveResult(result)"
-                           ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
-                           class="score-by-checkbox"
-                           ng-if="!$ctrl.isManualInput"
-                           ng-true-value="1" ng-false-value="0">
+                        <input type="checkbox"
+                               ng-model="result.score"
+                               ng-change="$ctrl.saveResult(result)"
+                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
+                               class="score-by-checkbox"
+                               ng-if="!$ctrl.isManualInput"
+                               ng-true-value="1" ng-false-value="0">
                     </div>
                     <div class="result-control">
                         <input type="number"
-                           ng-model="result.score"
-                           ng-change="$ctrl.saveResult(result)"
-                           ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
-                           class="form-control score-by-manual"
-                           ng-if="$ctrl.isManualInput">
+                               ng-model="result.score"
+                               ng-change="$ctrl.saveResult(result)"
+                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
+                               class="form-control score-by-manual"
+                               ng-if="$ctrl.isManualInput">
                     </div>
                     <div class="team-name">{{result.teamName}}</div>
                 </label>
             </li>
         </ul>
     </div>
-    <div id="control-panel" class="form-inline ">
+    <div id="control-panel" class="form-inline">
         <div class="nav-btn">
             <button
-                    ng-repeat="quiz in $ctrl.range($ctrl.round.numberOfQuestions) track by $index"
+                    ng-repeat="quizNumber in $ctrl.range($ctrl.round.numberOfQuestions)"
                     class="btn"
-                    ng-class="{'btn-selected':$ctrl.selectedQuiz == $index+1,
-                    'btn-success': $ctrl.currentQuiz > $index+1 || $ctrl.round.$id < $ctrl.currentRound,
-                    'btn-warning':$index+1 == $ctrl.currentQuiz && $ctrl.round.$id == $ctrl.currentRound}"
-                    ng-click="$ctrl.setQuiz($index+1)">
-                {{$index+1}}
+                    ng-class="{'btn-selected':$ctrl.selectedQuiz == quizNumber,
+                    'btn-success': $ctrl.currentQuiz > quizNumber || $ctrl.round.$id < $ctrl.currentRound,
+                    'btn-warning':quizNumber == $ctrl.currentQuiz && $ctrl.round.$id == $ctrl.currentRound}"
+                    ng-click="$ctrl.setQuiz(quizNumber)">
+                {{quizNumber}}
             </button>
         </div>
         <button class="btn btn-success submit-button" ng-click="$ctrl.nextQuiz()">{{'NEXT_BUTTON'|translate}}</button>
