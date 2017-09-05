@@ -14,7 +14,7 @@
     </thead>
     <tbody>
     <tr class="game-row" ng-repeat="game in $ctrl.games | filter:$ctrl.selectedSeason.id |orderBy:'-date'" ng-click="$ctrl.openGameInfo(game.$id)">
-        <td>{{game.date.toLocaleDateString()}}</td>
+        <td>{{game.date | date:'d MMM y'}}</td>
         <td>
             <div ng-repeat="winner in game.winner"><i id="trophy" class="fa fa-trophy"></i> {{winner.name}}</div>
         </td>

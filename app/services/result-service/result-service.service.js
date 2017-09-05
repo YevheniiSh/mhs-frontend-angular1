@@ -134,7 +134,7 @@ angular
 
             };
 
-            function calculateTeamPosition(score){
+            function calculateTeamPosition(score) {
                 let positionTeam = 1;
                 score.forEach((item, index) => {
                     if (score[index - 1]) {
@@ -205,16 +205,23 @@ angular
                     ref = currentRef;
                 }
 
-                return resultFactory.getGameWinner(gameId)
-                    .then((res) => {
-                        res.forEach((item) => {
-                            console.log(item);
-                            let obj = new $firebaseObject(ref.child(`${gameId}/winner/${item.teamId}`));
-                            obj.$value = {name: item.teamName, score: item.total};
-                            obj.$save();
+                return clearWinners(gameId,ref).then(() => {
+                    resultFactory.getGameWinner(gameId)
+                        .then((res) => {
+                            res.forEach((item) => {
+                                console.log(item);
+                                let obj = new $firebaseObject(ref.child(`${gameId}/winner/${item.teamId}`));
+                                obj.$value = {name: item.teamName, score: item.total};
+                                obj.$save();
+                            });
                         });
-                    });
+                })
             };
+
+            function clearWinners(gameId,ref) {
+                let obj = new $firebaseObject(ref.child(`${gameId}/winner`));
+                return obj.$remove()
+            }
 
             resultFactory.parseTeamResult = function (teamResults, gameId) {
                 let roundResult = {};

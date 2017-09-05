@@ -1,7 +1,6 @@
 .picker {
     position: fixed;
     display: inline-block;
-    margin-top: 40px;
     min-height: 290px;
     z-index: 100;
 }
@@ -101,4 +100,8 @@ input:checked + .slider:before {
     cursor: pointer;
     margin-left: 5px;
     font-size: 18px;
+}
+
+div.uib-daypicker.ng-scope:focus{
+    outline: none;
 }
