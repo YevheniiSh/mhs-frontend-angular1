@@ -6,18 +6,18 @@
         <th>{{'QUESTION_COUNT_LABEL' | translate}}</th>
         <th>{{'ROUND_TYPE' | translate}}</th>
         </thead>
-        <tbody>
-        <tr ng-repeat="round in $ctrl.rounds">
-            <td class="td-round-number">
+        <tbody dnd-list="$ctrl.rounds">
+        <tr ng-repeat="round in $ctrl.rounds" dnd-draggable="round" dnd-moved="$ctrl.dragAndDropRound($index)">
+            <td class="td-round-number handle">
                 {{$index + 1}}
             </td>
-            <td>
+            <td dnd-nodrag>
                 <div class="round-name">
                     <input class="form-control" ng-model="round.name"
                            maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
                            required placeholder="{{'ROUND_NAME_PLACEHOLDER' | translate}}"></div>
             </td>
-            <td>
+            <td dnd-nodrag>
                 <div class="count-quest">
                     <input class="form-control"
                            min="1" max="20" ng-model="round.numberOfQuestions"
@@ -29,7 +29,7 @@
                         ng-options="item.type | translate for item in $ctrl.roundTypes">
                 </select>
             </td>
-            <td ng-click="$ctrl.deleteRound($index)"><a class="btn btn-danger">
+            <td dnd-nodrag ng-click="$ctrl.deleteRound($index)"><a class="btn btn-danger">
                 {{'DELETE_ROUND_BUTTON' | translate}}</a>
             </td>
         </tr>

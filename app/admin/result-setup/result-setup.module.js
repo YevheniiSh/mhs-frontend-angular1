@@ -1,1 +1,1 @@
-angular.module('resultSetup', ['teamFactory', 'gameFactory'])
+angular.module('resultSetup', ['teamFactory', 'gameFactory']);

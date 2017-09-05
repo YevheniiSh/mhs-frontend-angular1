@@ -1,1 +1,1 @@
-angular.module('roundBuilder', []);
+angular.module('roundBuilder', ['dndLists']);

@@ -24,7 +24,8 @@
             getRounds: getRounds,
             getTeams: getTeams,
             updateTeamSize: updateTeamSize,
-            getOpenGameById: getOpenGameById
+            getOpenGameById: getOpenGameById,
+            removeOpenGame: removeOpenGame
         };
 
         function getAllOpenGames() {
@@ -130,6 +131,10 @@
             teamSize.$value = numberOfPlayers;
             teamSize.$save();
             return teamSize.$loaded();
+        }
+
+        function removeOpenGame(gameId) {
+            openGamesRef.child(`${gameId}`).remove();
         }
     }
 })();

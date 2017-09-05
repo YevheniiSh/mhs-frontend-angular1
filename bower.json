@@ -20,6 +20,7 @@
     "angular-bootstrap": "^2.5.0",
     "angucomplete-alt": "^3.0.0",
     "angular-input-masks": "^2.6.0",
-    "ngMask": "angular-mask#^3.1.1"
+    "ngMask": "angular-mask#^3.1.1",
+    "angular-drag-and-drop-lists": "^2.1.0"
   }
 }

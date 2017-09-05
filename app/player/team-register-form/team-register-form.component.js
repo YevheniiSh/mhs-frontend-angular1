@@ -6,9 +6,9 @@
             controller: TeamRegister
         });
 
-    TeamRegister.$inject = ['teamRequestService', 'TeamServiceFactory', '$routeParams', '$window', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope'];
+    TeamRegister.$inject = ['teamRequestService', 'TeamServiceFactory', '$routeParams', '$window', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope', '$location'];
 
-    function TeamRegister(teamRequestService, TeamService, $routeParams, $window, gameRequestServiceFactory, OpenGameService, $scope) {
+    function TeamRegister(teamRequestService, TeamService, $routeParams, $window, gameRequestServiceFactory, OpenGameService, $scope, $location) {
         let vm = this;
         vm.$onInit = onInit;
         let gameId = $routeParams.gameId;
@@ -35,6 +35,8 @@
             watchSelectedTeam();
 
             saveRequest();
+
+
         }
 
         function watchSelectedTeam() {
@@ -219,9 +221,21 @@
             $window.history.back();
         };
 
-        function getGameDate() {
-            OpenGameService
+        function getOpenGame() {
+            return OpenGameService
                 .getOpenGameById(gameId)
+                .then((res) => {
+                    if (res.$value === null) {
+                        $location.path('/games');
+                        throw 'game not found';
+                    } else {
+                        return res;
+                    }
+                })
+        }
+
+        function getGameDate() {
+            getOpenGame()
                 .then((res) => {
                         vm.gameDate = new Date(res.date).toLocaleDateString()
                     }
