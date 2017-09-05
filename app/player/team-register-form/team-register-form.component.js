@@ -34,9 +34,7 @@
 
             watchSelectedTeam();
 
-            saveRequest();
-
-
+            setupSaveTypeByInputtedData();
         }
 
         function watchSelectedTeam() {
@@ -81,7 +79,7 @@
             vm.selectedTeam = {};
         }
 
-        function saveRequest() {
+        function setupSaveTypeByInputtedData() {
             vm.saveRequest = function () {
                 saveRequestFromInputtedData();
             };
@@ -90,7 +88,7 @@
         vm.cancelVerifyByNumberWithReturnAutocompleteFeature = function () {
             cancelAutocomplete();
             vm.showPhoneVerifyRequest = true;
-            saveRequest();
+            setupSaveTypeByInputtedData();
         };
 
         function setupVerifyByPhone(teamRequest) {

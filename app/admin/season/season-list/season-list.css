@@ -1,0 +1,18 @@
+.season-title {
+    text-align: center;
+}
+
+#trophy {
+    color: goldenrod;
+}
+
+.season-row {
+    cursor: pointer;
+}
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+.current-season-pointer{
+    color: green;
+    font-size: 20px;
+}

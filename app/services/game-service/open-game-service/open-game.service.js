@@ -8,6 +8,7 @@
     function OpenGameServiceFactory($firebaseArray, $firebaseObject, firebaseDataService, convertService) {
 
         let openGamesRef = firebaseDataService.openGames;
+        let seasonsRef = firebaseDataService.seasons;
 
         return {
             getAllOpenGames: getAllOpenGames,
@@ -134,7 +135,21 @@
         }
 
         function removeOpenGame(gameId) {
-            openGamesRef.child(`${gameId}`).remove();
+            new $firebaseObject(openGamesRef.child(`${gameId}/season/id`))
+                .$loaded()
+                .then((res) => {
+
+                    function removeFromOpenGameNode() {
+                        openGamesRef.child(`${gameId}`).remove();
+                    }
+
+                    if (res.$value === null) {
+                        removeFromOpenGameNode();
+                    } else {
+                        removeFromOpenGameNode();
+                        seasonsRef.child(`${res.$value}/games/${gameId}`).remove();
+                    }
+                })
         }
     }
 })();
