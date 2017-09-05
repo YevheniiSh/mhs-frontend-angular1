@@ -1,7 +1,7 @@
 <div class="form-group row">
     <ul id="team-list">
         <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
-            <label class="clickable-label">
+            <label class="clickable-label" ng-class={'disabled':$ctrl.isDisabled(result.teamId)}>
                 <div class="result-control">
                     <input type="checkbox"
                            ng-model="result.score"

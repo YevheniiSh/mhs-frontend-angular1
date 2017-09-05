@@ -15,7 +15,7 @@ CaptainRoundTypeController.$inject = [
     'ResultServiceFactory'
 ];
 
-function CaptainRoundTypeController($routeParams, GameServiceFactory,ResultServiceFactory) {
+function CaptainRoundTypeController($routeParams, GameServiceFactory, ResultServiceFactory) {
     let vm = this;
 
     vm.$onInit = onInit;
@@ -37,28 +37,29 @@ function CaptainRoundTypeController($routeParams, GameServiceFactory,ResultServi
     function initPreviousQuizResults() {
         ResultServiceFactory.getByRoundAndQuiz(
             $routeParams.roundNumber,
-            $routeParams.quizNumber-1,
+            $routeParams.quizNumber - 1,
             $routeParams.gameId
         )
-            .then(results=>{
+            .then(results => {
                 vm.previousQuizResults = results;
             })
     }
 
-    vm.inDisabled = function(teamId) {
-        if(!isFirstQuiz()){
-            let resultKey = [$routeParams.roundNumber, $routeParams.quizNumber-1, teamId].join('_');
-            if(vm.previousQuizResults[resultKey] === 0 || vm.previousQuizResults[resultKey] === undefined){
+    vm.isDisabled = function (teamId) {
+        if (!isFirstQuiz()) {
+            let resultKey = [$routeParams.roundNumber, $routeParams.quizNumber - 1, teamId].join('_');
+            if (vm.previousQuizResults[resultKey] === '0' || vm.previousQuizResults[resultKey] === undefined) {
                 return true;
             }
             else {
                 return false;
             }
         }
+        return false;
     };
-    
+
     function isFirstQuiz() {
-        if($routeParams.quizNumber === 1){
+        if ($routeParams.quizNumber === '1') {
             return true;
         } else {
             return false;
