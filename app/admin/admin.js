@@ -26,7 +26,6 @@ angular
         };
         $routeProvider.when('/games/:gameId/rounds/:roundNumber/:quizNumber', {
             template: '<result-setup></result-setup>',
-            css: 'admin/result-setup/result-setup-page.css',
             resolve: isAuth
         });
         $routeProvider.when('/games/:gameId/rounds', {

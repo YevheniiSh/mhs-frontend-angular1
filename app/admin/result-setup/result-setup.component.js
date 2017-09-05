@@ -2,7 +2,8 @@
 (function () {
     angular.module('resultSetup')
         .component('resultSetup', {
-            templateUrl: 'admin/result-setup/result-setup-page.html',
+            templateUrl: 'admin/result-setup/result-setup.html',
+            css: 'admin/result-setup/result-setup.css',
             controller: ResultSetupController
         });
 
