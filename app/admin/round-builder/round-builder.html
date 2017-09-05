@@ -5,6 +5,9 @@
         <th>{{'ROUND_NAME_LABEL' | translate}}</th>
         <th>{{'QUESTION_COUNT_LABEL' | translate}}</th>
         <th>{{'ROUND_TYPE' | translate}}</th>
+        <th>start</th>
+        <th>step</th>
+        <th>Delete</th>
         </thead>
         <tbody dnd-list="$ctrl.rounds">
         <tr ng-repeat="round in $ctrl.rounds" dnd-draggable="round" dnd-moved="$ctrl.dragAndDropRound($index)">
@@ -26,8 +29,24 @@
             </td>
             <td>
                 <select class="form-control round-type-selector" ng-model="round.roundType"
-                        ng-options="item.type | translate for item in $ctrl.roundTypes">
+                        ng-options="item.type | translate for item in $ctrl.roundTypes track by item.type">
                 </select>
+            </td>
+            <td class="td-start" dnd-nodrag>
+                <div class="count-quest">
+                    <input class="form-control"
+                           ng-model="round.roundType.start"
+                           type="number"
+                           placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" required>
+                </div>
+            </td>
+            <td class="td-start" dnd-nodrag>
+                <div class="count-quest">
+                    <input class="form-control"
+                           ng-model="round.roundType.step"
+                           type="number"
+                           placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" required>
+                </div>
             </td>
             <td dnd-nodrag ng-click="$ctrl.deleteRound($index)"><a class="btn btn-danger">
                 {{'DELETE_ROUND_BUTTON' | translate}}</a>
