@@ -14,6 +14,7 @@ angular.module('createGame')
             function (TeamService, OpenGameServiceFactory, $scope, $location, gameBuild, $locale, convertService, seasonService) {
 
                 let vm = this;
+                vm.newSeasonName = '';
                 vm.isCalendarVisible = false;
                 vm.isTimeVisible = false;
                 vm.options = {};
@@ -94,13 +95,15 @@ angular.module('createGame')
                 };
 
                 vm.saveSeason = function () {
-                    seasonService.save({name: vm.newSeasonName})
-                        .then(seasonId => {
-                            seasonService.openSeason(seasonId);
-                            vm.seasonEditor = false;
-                            vm.isSeasonGame = true;
-                            setCurrentSeason();
-                        })
+                    if (vm.newSeasonName !== '') {
+                        seasonService.save({name: vm.newSeasonName})
+                            .then(seasonId => {
+                                seasonService.openSeason(seasonId);
+                                vm.seasonEditor = false;
+                                vm.isSeasonGame = true;
+                                setCurrentSeason();
+                            })
+                    }
                 }
             }]
 
