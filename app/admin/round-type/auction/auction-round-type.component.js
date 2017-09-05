@@ -11,8 +11,6 @@ angular.module('resultSetup')
     });
 
 AuctionRoundTypeController.$inject = [
-    'resultSetupService',
-    '$routeParams',
     '$scope'
 ];
 
