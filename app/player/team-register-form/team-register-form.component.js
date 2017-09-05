@@ -18,6 +18,7 @@
             vm.fullName = '';
             vm.phone = '';
             vm.teamSize = 4;
+            vm.disabled = false;
             vm.submitted = false;
             vm.formStatus = 'full';
             vm.isCorrectLastDigits = true;
@@ -206,6 +207,7 @@
         }
 
         function saveTeam(team) {
+            vm.disabled = true;
             gameRequestServiceFactory.save(gameId, team)
                 .then(() => {
                     vm.submitted = true;
