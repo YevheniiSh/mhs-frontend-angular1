@@ -11,7 +11,7 @@ export function upgradeDirective(moduleName, invokedName) {
     let directive = $delegate[0];
 
     if (directive.hasOwnProperty('compile')) {
-      delete $delegate[0].compile;
+      delete directive.compile;
     }
 
     if (directive.hasOwnProperty('replace')) {
