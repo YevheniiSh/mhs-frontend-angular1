@@ -2,27 +2,16 @@
     <ul id="team-list">
         <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
             <label class="clickable-label">
-                <div class="wrapper">
-                    <label id="no-lbl" for="no_radio" >
-                        <i class="fa fa-times"></i>
-                    </label>
-                    <input id="no_radio" name="choice_radio"  type="radio" value=""
-                           ng-model="result.score" ng-value="0"
-                           ng-change="$ctrl.saveResult({result:result})">
+                <div class='switcher'>
+                    <label  class='switcher-label switcher-off' for='{{$index+"off"}}'>off</label>
+                    <input id='{{$index+"off"}}' class='switcher-radio-off' type='radio' name='{{$index}}' value='off'>
 
-                    <label id="default-lbl" for="default-radio"></label>
-                    <input id="default-radio" name="choice_radio" type="radio" value=""
-                           ng-model="result.score" ng-value="undefined"
-                           ng-change="$ctrl.saveResult({result:result})"
-                           checked>
+                    <label class='switcher-label switcher-neutral' for='{{$index+"def"}}'>neutral</label>
+                    <input id='{{$index+"def"}}' class='switcher-radio-neutral' type='radio' name='{{$index}}' value='neutral' checked>
 
-                    <label id="yes-lbl" for="yes_radio" >
-                        <i class="fa fa-check"></i></label>
-                    <input  id="yes_radio" name="choice_radio" type="radio" value=""
-                            ng-model="result.score" ng-value="1"
-                            ng-change="$ctrl.saveResult({result:result})">
-
-                    <div class="toggle"></div>
+                    <label class='switcher-label switcher-on' for='{{$index+"on"}}'>on</label>
+                    <input id='{{$index+"on"}}' class='switcher-radio-on' type='radio' name='{{$index}}' value='on'>
+                    <div class='switcher-slider'></div>
                 </div>
                 <div class="team-name">{{result.teamName}}</div>
             </label>

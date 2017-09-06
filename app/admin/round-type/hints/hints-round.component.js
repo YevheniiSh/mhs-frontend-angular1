@@ -10,43 +10,51 @@ angular.module('resultSetup')
     });
 
 hintsRoundController.$inject = [
-    'resultSetupService',
     '$routeParams',
-    '$location',
-    '$scope'
+    'GameServiceFactory',
+    'ResultServiceFactory'
 ];
 
-function hintsRoundController(resultSetupService, $routeParams, $location, $scope) {
+function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFactory) {
     let vm = this;
 
     vm.$onInit = onInit;
 
     function onInit() {
-    //     getRound()
-    //         .then(getQuizWeight);
-    //     initPreviousQuizResults();
-    // }
-    //
-    // function getRound() {
-    //     return GameServiceFactory.getRoundByGameAndId($routeParams.gameId, $routeParams.roundNumber);
-    // }
-    //
-    // function getQuizWeight(round) {
-    //     vm.weight = round.roundType.start + (round.roundType.step * ($routeParams.quizNumber - 1));
-    // }
-    //
-    // function initPreviousQuizResults() {
-    //     ResultServiceFactory.getByRoundAndQuiz(
-    //         $routeParams.roundNumber,
-    //         $routeParams.quizNumber-1,
-    //         $routeParams.gameId
-    //     )
-    //         .then(results=>{
-    //             vm.previousQuizResults = results;
-    //         })
-    // }
-    //
-    // vm.inDisabled = function(teamId) {
-    //
+        getRound()
+            .then(getQuizWeight);
+        initPreviousQuizResults();
+    }
+
+    function getRound() {
+        return GameServiceFactory.getRoundByGameAndId($routeParams.gameId, $routeParams.roundNumber);
+    }
+
+    function getQuizWeight(round) {
+        vm.weight = round.roundType.start - (round.roundType.step * ($routeParams.quizNumber - 1));
+        console.log(vm.weight);
+    }
+
+    function initPreviousQuizResults() {
+        ResultServiceFactory.getByRoundAndQuiz(
+            $routeParams.roundNumber,
+            $routeParams.quizNumber - 1,
+            $routeParams.gameId
+        )
+            .then(results => {
+                vm.previousQuizResults = results;
+            })
+    }
+
+    vm.isDisabled = function (teamId) {
+        if (!isFirstQuiz()) {
+            let resultKey = [$routeParams.roundNumber, $routeParams.quizNumber - 1, teamId].join('_');
+            return +vm.previousQuizResults[resultKey] || vm.previousQuizResults[resultKey] === undefined;
+        }
+        return false;
+    };
+
+    function isFirstQuiz() {
+        return $routeParams.quizNumber === '1';
     }
 }
