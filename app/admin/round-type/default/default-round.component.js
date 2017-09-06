@@ -53,6 +53,8 @@
         }
 
         vm.saveResult = function (result) {
+            if (Math.sign(result.numberOfCorrectAnswers) === -1 || -0) result.numberOfCorrectAnswers = 0;
+            if (result.numberOfCorrectAnswers % 2 !== 0) result.numberOfCorrectAnswers = 0;
             if (vm.isManualInput) {
                 result.score = calculateScore(result);
                 save(result);
