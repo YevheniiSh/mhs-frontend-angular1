@@ -29,6 +29,7 @@
     position: fixed;
     display: inline-block;
     z-index: 100;
+    width: auto;
 }
 
 .date-picker {
