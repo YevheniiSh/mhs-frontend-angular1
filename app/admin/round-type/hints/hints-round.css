@@ -1,0 +1,103 @@
+
+
+/* height */
+/* width */
+/* toggle dimensions */
+/* font size */
+/* toggle's border thickness */
+/* toggle box shadow */
+/* labels animation time */
+/* label text color */
+/* colors: si, ?, no*/
+.wrapper {
+    width: 12rem;
+    height: 4rem;
+    position: relative;
+    margin: 2rem auto;
+    border-radius: 2rem;
+    background: gray;
+}
+.wrapper .toggle {
+    width: 4.8rem;
+    height: 4.8rem;
+    position: absolute;
+    left: 3.6rem;
+    top: -0.4rem;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 0.1rem solid #8C928A;
+    background: #c0c6be;
+    box-shadow: 0 0 0.2rem 0.1rem #8C928A inset, 0 0 0.2rem 0.1rem #8C928A;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.wrapper label {
+    cursor: pointer;
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    display: inline-block;
+    text-align: center;
+    line-height: 4rem;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    -webkit-animation: 6s rot-label ease-in-out infinite;
+    -moz-animation: 6s rot-label ease-in-out infinite;
+    -o-animation: 6s rot-label ease-in-out infinite;
+    animation: 6s rot-label ease-in-out infinite;
+}
+.wrapper input {
+    position: absolute;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+#yes_radio:checked {
+    background: red;
+}
+#yes_radio:checked ~ .toggle {
+    border: 0.1rem solid #008000;
+    background: #00b300;
+    box-shadow: 0 0 0.2rem 0.1rem #008000 inset, 0 0 0.2rem 0.1rem #008000;
+    left: -0.4rem;
+}
+
+#no_radio:checked {
+    background: red;
+}
+#no_radio:checked ~ .toggle {
+    border: 0.1rem solid #ff0000;
+    background: #ff3333;
+    box-shadow: 0 0 0.2rem 0.1rem #ff0000 inset, 0 0 0.2rem 0.1rem #ff0000;
+    left: 7.6rem;
+}
+
+#default_radio, #default-lbl {
+    left: 33.33333%;
+}
+
+#no_radio, #no-lbl {
+    left: 66.66667%;
+}
+
+#default-lbl {
+    -webkit-animation-delay: 2s;
+    -o-animation-delay: 2s;
+    -moz-animation-delay: 2s;
+    animation-delay: 2s;
+}
+
+#no-lbl {
+    -webkit-animation-delay: 4s;
+    -o-animation-delay: 4s;
+    -moz-animation-delay: 4s;
+    animation-delay: 4s;
+}
+
