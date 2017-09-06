@@ -1,7 +1,8 @@
 .switcher {
     position: relative;
     display: inline-block;
-    margin: 1px 10px;
+    margin: 1px;
+
     height: 30px;
     width: 72px;
     z-index: 1;
