@@ -28,7 +28,8 @@
                            ng-change="$ctrl.saveResult(result)"
                            ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
                            class="form-control score-by-manual"
-                           ng-if="$ctrl.isManualInput">
+                           ng-if="$ctrl.isManualInput"
+                           ng-focus="$ctrl.selectAllContent($event)">
                 </span>
                 </div>
                 <div class="team-name">{{result.teamName}}</div>
