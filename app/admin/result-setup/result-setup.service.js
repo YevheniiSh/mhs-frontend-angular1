@@ -4,15 +4,14 @@
         .module('resultSetup')
         .factory('resultSetupService', resultSetupService);
 
-    resultSetupService.$inject = ['GameServiceFactory', 'ResultServiceFactory'];
+    resultSetupService.$inject = ['GameServiceFactory', 'ResultServiceFactory', 'resultSetupBuilder'];
 
-    function resultSetupService(gameFactory, resultFactory) {
+    function resultSetupService(gameFactory, resultFactory, resultSetupBuilder) {
         return {
             getRound: getRound,
             getGameTeams: getGameTeams,
             saveQuizResult: saveQuizResult,
             roundIncrement: roundIncrement,
-            buildResult: buildResult,
             getQuizResults: getQuizResults,
             getCurrentQuiz: getCurrentQuiz,
             getCurrentRound: getCurrentRound,
@@ -33,7 +32,13 @@
         }
 
         function saveQuizResult(result, gameId) {
-            let res = buildResult(result.round, result.quiz, result.teamId, result.score);
+            let res = resultSetupBuilder
+                .addRound(result.round)
+                .addQuiz(result.quiz)
+                .addTeamId(result.teamId)
+                .addScore(result.score)
+                .getResult();
+
             resultFactory.saveResult('current', res, gameId);
         }
 
@@ -69,15 +74,6 @@
 
         function getCurrentRound(gameId) {
             return gameFactory.getCurrentRound(gameId);
-        }
-
-        function buildResult(round, quiz, teamId, score) {
-            return {
-                quiz: quiz,
-                round: round,
-                teamId: teamId,
-                score: score
-            }
         }
     }
 })();

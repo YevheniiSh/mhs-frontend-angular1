@@ -1,19 +1,60 @@
 angular.module('resultSetup')
-    .component('captainRoundType', {
+    .component('captainRound', {
         templateUrl: 'admin/round-type/captain/captain-round-type.html',
         css: 'admin/round-type/captain/captain-round-type.css',
-        controller: CaptainRoundTypeController
+        controller: CaptainRoundTypeController,
+        bindings: {
+            results: '=',
+            saveResult: '&'
+        },
     });
 
 CaptainRoundTypeController.$inject = [
-    'resultSetupService',
     '$routeParams',
-    '$location',
-    '$scope'
+    'GameServiceFactory',
+    'ResultServiceFactory'
 ];
 
-function CaptainRoundTypeController(resultSetupService, $routeParams, $location, $scope) {
+function CaptainRoundTypeController($routeParams, GameServiceFactory, ResultServiceFactory) {
     let vm = this;
 
-    vm.isManualInput = false;
+    vm.$onInit = onInit;
+
+    function onInit() {
+        getRound()
+            .then(getQuizWeight);
+        initPreviousQuizResults();
+    }
+
+    function getRound() {
+        return GameServiceFactory.getRoundByGameAndId($routeParams.gameId, $routeParams.roundNumber);
+    }
+
+    function getQuizWeight(round) {
+        vm.weight = round.roundType.start + (round.roundType.step * ($routeParams.quizNumber - 1));
+    }
+
+    function initPreviousQuizResults() {
+        ResultServiceFactory.getByRoundAndQuiz(
+            $routeParams.roundNumber,
+            $routeParams.quizNumber - 1,
+            $routeParams.gameId
+        )
+            .then(results => {
+                vm.previousQuizResults = results;
+            })
+    }
+
+    vm.isDisabled = function (teamId) {
+        if (!isFirstQuiz()) {
+            let resultKey = [$routeParams.roundNumber, $routeParams.quizNumber - 1, teamId].join('_');
+            return vm.previousQuizResults[resultKey] === '0' || vm.previousQuizResults[resultKey] === undefined;
+        }
+        return false;
+    };
+
+    function isFirstQuiz() {
+        return $routeParams.quizNumber === '1';
+    }
+
 }

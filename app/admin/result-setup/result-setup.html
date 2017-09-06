@@ -4,8 +4,15 @@
         <h1>{{'QUESTION_SET_RESULTS_HEADER'|translate}} #{{$ctrl.selectedQuiz}}</h1>
     </div>
 
-    <default-round results="$ctrl.results" on-save="$ctrl.saveResult(result)"
-                   is-manual-input="$ctrl.isManualInput"></default-round>
+    <div ng-switch="$ctrl.round.roundType.type">
+        <default-round ng-switch-when="DEFAULT_ROUND" results="$ctrl.results"
+                       save-result="$ctrl.saveResult(result)" is-manual-input="$ctrl.isManualInput"></default-round>
+        <captain-round ng-switch-when="CAPTAIN_ROUND" results="$ctrl.results"
+                       save-result="$ctrl.saveResult(result)"></captain-round>
+        <auction-round ng-switch-when="AUCTION_ROUND" results="$ctrl.results"
+                       save-result="$ctrl.saveResult(result)" ></auction-round>
+        <hints-round ng-switch-when="HINTS_ROUND"></hints-round>
+    </div>
 
     <div id="control-panel" class="form-inline">
         <div class="nav-btn">
