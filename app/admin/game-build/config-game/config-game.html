@@ -6,19 +6,19 @@
     </div>
     <div class="col-md-2">
 
-        <div ng-click="$ctrl.openCalendarStatus()" outside-click="$ctrl.closeCalendarPiker()" class="date-picker">
+        <div ng-click="$ctrl.openCalendarStatus()" class="date-picker">
             <label class="control-label data-picker-label" for="game-calendar">
                 <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
             </label>
             <span>{{$ctrl.gameDate | date:'d MMM y'}}</span>
         </div>
         <div class="picker" ng-show="$ctrl.isCalendarVisible">
-            <div  uib-datepicker ng-model="$ctrl.gameDate"
+            <div outside-click="$ctrl.closeCalendarPiker()" uib-datepicker ng-model="$ctrl.gameDate"
                  class="well well-sm" datepicker-options="$ctrl.options"></div>
         </div>
     </div>
     <div class="col-md-2">
-        <div ng-click="$ctrl.openTimeStatus()"  outside-click="$ctrl.closeTimePiker()"
+        <div ng-click="$ctrl.openTimeStatus()"
              class="time-picker">
             <label class="control-label data-picker-label" for="game-time">
                 <i id="game-time" class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
@@ -27,7 +27,7 @@
         </div>
 
         <div class="picker" ng-show="$ctrl.isTimeVisible">
-            <div  uib-timepicker
+            <div uib-timepicker outside-click="$ctrl.closeTimePiker()"
                  show-meridian="$ctrl.isMeridian" name="time" ng-model="$ctrl.gameTime"
                  class="well well-sm">
             </div>
