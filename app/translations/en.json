@@ -59,7 +59,8 @@
   "FINISH_GAME_BUTTON": "Finish game",
   "ROUND_SET_RESULTS_HEADER": "Round",
   "QUESTION_SET_RESULTS_HEADER": "Quiz",
-  "MANUAL_INPUT_CHECKBOX": "Manual input",
+  "MANUAL_INPUT_CHECKBOX": "Enter the number of correct answers",
+  "WEIGHT_INPUT": "Weight",
   "NEXT_BUTTON": "Next",
   "GAME_RESULT_HEADER": "Game results",
   "TEAMS_TABLE_HEADER": "Teams",
@@ -136,5 +137,7 @@
   "GAMES_LABEL": "Games",
   "START_INPUT_LABEL": "Point",
   "STEP_INPUT_LABEL": "Step",
-  "CURRENT_SEASON_TOOLTIP": "Current season"
+  "CURRENT_SEASON_TOOLTIP": "Current season",
+  "NO_CAPTAINS_ALERT": "All captains are left",
+  "ROUND_FINISH_BUTTON": "Finish round"
 }

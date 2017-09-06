@@ -85,5 +85,5 @@ input[type=checkbox] {
     word-wrap: break-word;
 }
 .disabled{
-    color: grey;
+    color: lightgrey;
 }

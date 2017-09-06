@@ -60,7 +60,8 @@
   "FINISH_GAME_BUTTON": "Завершить игру",
   "ROUND_SET_RESULTS_HEADER": "Раунд",
   "QUESTION_SET_RESULTS_HEADER": "Вопрос",
-  "MANUAL_INPUT_CHECKBOX": "Ручной ввод",
+  "MANUAL_INPUT_CHECKBOX": "Ввод количества правильных ответов",
+  "WEIGHT_INPUT": "Вес",
   "NEXT_BUTTON": "Следующий",
   "GAME_RESULT_HEADER": "Результаты игры",
   "TEAMS_TABLE_HEADER": "Команды",
@@ -135,5 +136,7 @@
   "GAMES_LABEL": "Игры",
   "START_INPUT_LABEL": "Балы",
   "STEP_INPUT_LABEL": "Шаг",
-  "CURRENT_SEASON_TOOLTIP": "Текущий сезон"
+  "CURRENT_SEASON_TOOLTIP": "Текущий сезон",
+  "NO_CAPTAINS_ALERT": "Все капитаны выбыли",
+  "ROUND_FINISH_BUTTON": "Закончить раунд"
 }

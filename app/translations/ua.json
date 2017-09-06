@@ -60,7 +60,8 @@
   "FINISH_GAME_BUTTON": "Завершити гру",
   "ROUND_SET_RESULTS_HEADER": "Раунд",
   "QUESTION_SET_RESULTS_HEADER": "Запитання",
-  "MANUAL_INPUT_CHECKBOX": "Ручне введення",
+  "MANUAL_INPUT_CHECKBOX": "Введення кількості правильних відповідей",
+  "WEIGHT_INPUT": "Вага",
   "NEXT_BUTTON": "Наступне",
   "GAME_RESULT_HEADER": "Результати гри",
   "TEAMS_TABLE_HEADER": "Команди",
@@ -135,5 +136,7 @@
   "GAMES_LABEL": "Ігри",
   "START_INPUT_LABEL": "Бали",
   "STEP_INPUT_LABEL": "Крок",
-  "CURRENT_SEASON_TOOLTIP": "Поточний сезон"
+  "CURRENT_SEASON_TOOLTIP": "Поточний сезон",
+  "NO_CAPTAINS_ALERT": "Усі капітани вибули",
+  "ROUND_FINISH_BUTTON": "Завершити раунд"
 }
