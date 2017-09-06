@@ -128,5 +128,8 @@
   "CANCEL_BTN": "Скасувати",
   "TEAM_POSITION_OF": "з",
   "GAMES_LABEL": "Ігри",
+  "CONFIRMED_TEAMS_MODAL_HEADER": "Підтверджені команди",
+  "CONFIRMED_TEAMS_MODAL_PLACEHOLDER": "Поки немає жодної підтвердженої команди",
+  "CONFIRMED_TEAMS_MODAL_SHOW_BUTTON": "Підтверджені команди",
   "CURRENT_SEASON_TOOLTIP": "Поточний сезон"
 }

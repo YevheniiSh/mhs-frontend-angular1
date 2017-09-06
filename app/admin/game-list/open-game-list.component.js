@@ -7,9 +7,9 @@
             controller: OpenGameList
         });
 
-    OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location', 'userAuthService'];
+    OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location', 'userAuthService', '$uibModal'];
 
-    function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService) {
+    function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService, $uibModal) {
         let vm = this;
         vm.$onInit = onInit;
 
@@ -85,5 +85,28 @@
             .catch(() => {
                 vm.auth = false;
             });
+
+        vm.open = function (gameId, parentSelector) {
+            openGameFactory.getTeams(gameId)
+                .then((teams) => {
+                    console.log(teams);
+                    let items = teams;
+                    var parentElem = parentSelector ?
+                        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                    $uibModal.open({
+                        animation: false,
+                        ariaLabelledBy: 'modal-title',
+                        ariaDescribedBy: 'modal-body',
+                        templateUrl: 'myModalContent.html',
+                        component: 'modalComponent',
+                        appendTo: parentElem,
+                        resolve: {
+                            items: function () {
+                                return items;
+                            }
+                        }
+                    });
+                })
+        };
     }
 })();
