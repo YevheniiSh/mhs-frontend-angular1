@@ -257,6 +257,7 @@ angular
                                         roundNum: i + 1,
                                         roundName: rounds[i].name,
                                         quizzes: [],
+                                        roundType: rounds[i].roundType,
                                         total: 0
                                     };
                                     for (let j = 1; j <= rounds[i].numberOfQuestions; j++) {
