@@ -31,7 +31,7 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
     }
 
     function getQuizWeight(round) {
-        vm.weight = round.roundType.start + (round.roundType.step * ($routeParams.quizNumber - 1));
+        vm.weight = round.roundType.start - (round.roundType.step * ($routeParams.quizNumber - 1));
     }
 
     function initPreviousQuizResults() {
