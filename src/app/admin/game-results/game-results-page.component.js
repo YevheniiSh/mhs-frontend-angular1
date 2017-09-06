@@ -80,13 +80,7 @@ angular.module('gameResultsPage')
                 };
 
                 vm.onBack = function () {
-                    userAuthService.currentUser()
-                        .then(() => {
-                            $location.path(`/games/${gameId}/rounds`);
-                        })
-                        .catch(() => {
-                            $location.path(`/games`);
-                    })
+                    $window.history.back();
                 };
             }]
 

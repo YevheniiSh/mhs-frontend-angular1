@@ -1,0 +1,11 @@
+.finished-games-table {
+    vertical-align: middle;
+}
+table tr td.no-games-label{
+    background: #fff;
+    font-size: 4em;
+    text-align: center;
+    color: #c7c7c7;
+    padding-top: 1em;
+    cursor: default;
+}

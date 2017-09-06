@@ -1,16 +1,28 @@
-<table class="table table-sm table-striped table-hover">
+<div class="col-md-3 col-md-offset-9 row">
+    <select class="form-control" ng-model="$ctrl.selectedSeason" ng-options="season.name for season in $ctrl.seasons">
+        <option value="">{{'ALL_SEASONS_SELECT'|translate}}</option>
+    </select>
+</div>
+<table class="table table-sm table-striped table-hover finished-games-table">
     <thead>
     <tr class="game-property">
         <th>{{'DATE_LABEL' | translate}}</th>
         <th>{{'WINNER_TEAM_LABEL' | translate}}</th>
         <th>{{'NUMBER_OF_TEAMS_LABEL' | translate}}</th>
+        <th>{{'GAME_SEASON_LABEL' | translate}}</th>
     </tr>
     </thead>
     <tbody>
-    <tr class="game-row" ng-repeat="game in $ctrl.games | orderBy:'-date'" ng-click="$ctrl.openGameInfo(game.$id)">
-        <td>{{game.date.toLocaleDateString()}}</td>
-        <td><i id="trophy" class="fa fa-trophy"></i> {{game.winner.name}}</td>
+    <tr  ng-if="$ctrl.games.length == 0">
+        <td class="no-games-label" colspan="4">{{'NO_FINISHED_GAME_PLACEHOLDER' | translate}}</td>
+    </tr>
+    <tr class="game-row" ng-repeat="game in $ctrl.games | filter:$ctrl.selectedSeason.id |orderBy:'-date'" ng-click="$ctrl.openGameInfo(game.$id)">
+        <td>{{game.date | date:'d MMM y'}}</td>
+        <td>
+            <div ng-repeat="winner in game.winner"><i id="trophy" class="fa fa-trophy"></i> {{winner.name}}</div>
+        </td>
         <td>{{game.teamsNumber}}</td>
+        <td  ng-click="$event.stopPropagation();"><a ng-href='/#!/seasons/{{game.season.id}}'>{{game.season.name}}</a> </td>
     </tr>
     </tbody>
 </table>

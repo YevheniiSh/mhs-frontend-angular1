@@ -12,10 +12,11 @@
         '$location',
         'RoundStatusService',
         'GameServiceFactory',
-        'ResultServiceFactory'
+        'ResultServiceFactory',
+        'seasonService'
     ];
 
-    function RoundStatusController($routeParams, $location, RoundStatusService, GameService, ResultService) {
+    function RoundStatusController($routeParams, $location, RoundStatusService, GameService, ResultService, seasonService) {
         let vm = this;
         let nextRounds = [];
         let prevRounds = [];
@@ -43,10 +44,11 @@
                 })
                 .then(() => {
                     GameService.finishGame(vm.gameId);
+                    seasonService.finishGame(vm.gameId);
                 })
                 .then(() => {
-                $location.path("games/" + vm.gameId + "/results")
-            });
+                    $location.path("games/" + vm.gameId + "/results")
+                });
 
         };
 

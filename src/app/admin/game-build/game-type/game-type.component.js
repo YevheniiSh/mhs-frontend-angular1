@@ -28,12 +28,21 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
     }
 
     vm.saveRounds = function () {
-        openGameService.addRounds(vm.gameId, vm.configRounds);
+        openGameService.addRounds(vm.gameId, vm.configRounds)
+            .then(rounds => vm.configRounds = convertRoundsObjectToArray(rounds));
         vm.submitted = true;
         vm.templateFormShow = true;
         $timeout(() => {
             vm.submitted = false;
         }, 1500);
+    };
+
+    let convertRoundsObjectToArray = function (object) {
+        let array = [];
+        angular.forEach(object, round => {
+            array.push(round);
+        });
+        return array
     };
 
     vm.saveTemplate = function () {

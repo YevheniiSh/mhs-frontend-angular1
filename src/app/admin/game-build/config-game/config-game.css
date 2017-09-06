@@ -15,7 +15,6 @@
 .picker {
     position: fixed;
     display: inline-block;
-    margin-top: 40px;
     min-height: 290px;
     z-index: 100;
 }
@@ -30,6 +29,7 @@
     position: fixed;
     display: inline-block;
     z-index: 100;
+    width: auto;
 }
 
 .date-picker {

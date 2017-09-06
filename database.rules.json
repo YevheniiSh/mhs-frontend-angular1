@@ -1,0 +1,36 @@
+{
+  "rules": {
+    "games": {
+      "open": {
+        ".read": "true",
+        ".write": "true"
+      },
+      "current": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      },
+      "finished": {
+        ".read": true,
+        "$gameId": {
+          ".write": "auth != null"
+        }
+      }
+    },
+    "teams": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "teamsRequests": {
+      ".read": "true",
+      ".write": "true"
+    },
+    "gameTemplates": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "seasons":{
+      ".read": "true",
+      ".write": "true"
+    }
+  }
+}

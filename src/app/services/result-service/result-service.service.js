@@ -7,7 +7,8 @@ angular
         'GameServiceFactory',
         'TeamServiceFactory',
         'RoundStatusService',
-        function ($firebaseArray, $firebaseObject, firebaseDataService, gameService, TeamService, roundService) {
+        'seasonService',
+        function ($firebaseArray, $firebaseObject, firebaseDataService, gameService, TeamService, roundService, seasonService) {
 
             let currentRef = firebaseDataService.currentGames;
             let finishedRef = firebaseDataService.finishedGames;
@@ -81,17 +82,17 @@ angular
                     .then(() => {
                         return roundService.getRounds(gameId)
                     })
-                    .then(rounds => {
+                    .then(() => {
                         return gameService.getCurrentRound(gameId)
-                            .then((currenRound) => {
+                            .then((currentRound) => {
                                 for (let team in roundResult) {
-                                    for (let i = 0; i < currenRound - 1; i++) {
+                                    for (let i = 0; i < currentRound - 1; i++) {
                                         roundResult[team].rounds.push({roundNumber: (i + 1), score: 0})
                                     }
                                 }
                                 gameResults.forEach(quizResult => {
                                     roundResult[quizResult.teamId].rounds[quizResult.round - 1].score += quizResult.score;
-                                })
+                                });
                                 for (let team in roundResult) {
                                     for (let round in roundResult[team].rounds) {
                                         roundResult[team].rounds[round].score =
@@ -133,12 +134,27 @@ angular
 
             };
 
+            function calculateTeamPosition(score) {
+                let positionTeam = 1;
+                score.forEach((item, index) => {
+                    if (score[index - 1]) {
+                        if (score[index - 1].total != item.total) {
+                            positionTeam++;
+                        }
+                    }
+                    item.positionTeam = positionTeam;
+                });
+                return score;
+            }
+
+
             resultFactory.getParsedResults = function (gameId) {
                 return resultFactory.getGameResults(gameId)
                     .then(res => {
                         return resultFactory.parseTeamsResult(res, gameId)
                     })
-                    .then(resultFactory.sortDesc);
+                    .then(resultFactory.sortDesc)
+                    .then(calculateTeamPosition);
             };
 
             resultFactory.setTeamsResults = function (gameId) {
@@ -149,23 +165,34 @@ angular
                         });
                         return res;
                     });
-            }
+            };
 
             resultFactory.setTeamPosition = function (gameId) {
                 return resultFactory.getParsedResults(gameId)
                     .then(resultFactory.sortDesc)
+                    .then(calculateTeamPosition)
                     .then((res) => {
-                        res.forEach((item,index) => {
-                            TeamService.saveTeamPosition(item.teamId, gameId, index+1);
+                        res.forEach((item) => {
+                            TeamService.saveTeamPosition(item.teamId, gameId, item.positionTeam);
+                            seasonService.setTeamsRatingForGame(gameId, item.teamId, {
+                                rating: (item.positionTeam),
+                                teamName: item.teamName
+                            });
                         });
                         return res;
                     });
-            }
+            };
 
             resultFactory.getGameWinner = function (gameId) {
                 return resultFactory.getParsedResults(gameId)
                     .then((results) => {
-                        return results[0];
+                        let winners = [];
+                        results.forEach((item) => {
+                            if (item.positionTeam === 1) {
+                                winners.push(item);
+                            }
+                        });
+                        return winners;
                     });
             };
 
@@ -178,14 +205,44 @@ angular
                     ref = currentRef;
                 }
 
-                return resultFactory.getGameWinner(gameId)
-                    .then((res) => {
-                        let winner = {};
-                        winner['id'] = res.teamId;
-                        winner['name'] = res.teamName;
-                        winner['score'] = res.total;
-                        return ref.child(gameId).child('winner').set(winner);
-                    });
+                return clearWinners(gameId, ref).then(() => {
+                    resultFactory.getGameWinner(gameId)
+                        .then((res) => {
+                            res.forEach((item) => {
+                                console.log(item);
+                                let obj = new $firebaseObject(ref.child(`${gameId}/winner/${item.teamId}`));
+                                obj.$value = {name: item.teamName, score: item.total};
+                                obj.$save();
+                            });
+                        });
+                })
+            };
+
+            function clearWinners(gameId, ref) {
+                let obj = new $firebaseObject(ref.child(`${gameId}/winner`));
+                return obj.$remove()
+            }
+
+            resultFactory.isGameInFinishedSeason = function (gameId) {
+
+                let isGameInFinishedSeason = false;
+
+                return seasonService.getSeasonIdByGameId(gameId).then((seasonId) => {
+
+                    if (seasonId === undefined) {
+                        return isGameInFinishedSeason;
+                    }
+
+                    return seasonService.getCurrentSeason().then((currentSeason) => {
+                        if (currentSeason !== undefined) {
+
+                            if (seasonId !== currentSeason.$id)
+                                isGameInFinishedSeason = true;
+                        } else isGameInFinishedSeason = true;
+
+                        return isGameInFinishedSeason;
+                    })
+                });
             };
 
             resultFactory.parseTeamResult = function (teamResults, gameId) {
@@ -194,8 +251,8 @@ angular
                 return roundService.getRounds(gameId)
                     .then(rounds => {
                         return gameService.getCurrentRound(gameId)
-                            .then((currenRound) => {
-                                for (let i = 0; i < currenRound - 1; i++) {
+                            .then((currentRound) => {
+                                for (let i = 0; i < currentRound - 1; i++) {
                                     roundResult[i + 1] = {
                                         roundNum: i + 1,
                                         roundName: rounds[i].name,
@@ -208,7 +265,7 @@ angular
                                 }
                                 teamResults.forEach(quizResult => {
                                     roundResult[quizResult.round].quizzes[quizResult.quiz - 1].score = quizResult.score;
-                                })
+                                });
                                 for (let round in roundResult) {
                                     roundResult[round].total = roundResult[round].quizzes.reduce((sum, current) => {
                                         return sum + current.score;
@@ -220,7 +277,7 @@ angular
                                 return parsedResult;
                             })
                     })
-            }
+            };
 
             resultFactory.getQuiz = function (gameId, resId) {
                 let ref = gameService.getGameRef(gameId);

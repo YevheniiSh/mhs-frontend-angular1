@@ -43,16 +43,17 @@
                 <td>{{$index+1}}
                     <label class="label-pensile" for="{{team.$id}}">
                         <i ng-show=" $ctrl.auth && team.$id == $ctrl.pensilId"
-                           ng-click="$ctrl.selectTeamForEdit(team.$id);$event.stopPropagation(); "
+                           ng-click="$ctrl.selectTeamForEdit(team.$id);$event.stopPropagation();focusLeave=false"
                            title="{{'EDIT_TEAM_NAME_TOOLTIP'|translate}}"
                            class="fa fa-pencil pensile fa-lg" aria-hidden="true"></i></label>
                 </td>
                 <td>
                     <input id="{{team.$id}}" class="editable-team"
                            ng-change="$ctrl.changeTeamName(team)"
+                           ng-blur="focusLeave = true"
                            ng-click="$event.stopPropagation()"
                            ng-model="team.name"
-                           ng-disabled="!$ctrl.auth || $ctrl.editableTeam != team.$id"
+                           ng-disabled="!$ctrl.auth || $ctrl.editableTeam != team.$id||focusLeave"
                            esc-key="$ctrl.selectTeamForEdit()">
 
                 </td>

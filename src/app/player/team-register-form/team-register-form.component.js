@@ -6,9 +6,9 @@
             controller: TeamRegister
         });
 
-    TeamRegister.$inject = ['teamRequestService', 'TeamServiceFactory', '$routeParams', '$window', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope'];
+    TeamRegister.$inject = ['teamRequestService', 'TeamServiceFactory', '$routeParams', '$window', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope', '$location', '$timeout'];
 
-    function TeamRegister(teamRequestService, TeamService, $routeParams, $window, gameRequestServiceFactory, OpenGameService, $scope) {
+    function TeamRegister(teamRequestService, TeamService, $routeParams, $window, gameRequestServiceFactory, OpenGameService, $scope, $location, $timeout) {
         let vm = this;
         vm.$onInit = onInit;
         let gameId = $routeParams.gameId;
@@ -18,6 +18,7 @@
             vm.fullName = '';
             vm.phone = '';
             vm.teamSize = 4;
+            vm.disabled = false;
             vm.submitted = false;
             vm.formStatus = 'full';
             vm.isCorrectLastDigits = true;
@@ -34,7 +35,7 @@
 
             watchSelectedTeam();
 
-            saveRequest();
+            setupSaveTypeByInputtedData();
         }
 
         function watchSelectedTeam() {
@@ -79,7 +80,7 @@
             vm.selectedTeam = {};
         }
 
-        function saveRequest() {
+        function setupSaveTypeByInputtedData() {
             vm.saveRequest = function () {
                 saveRequestFromInputtedData();
             };
@@ -88,7 +89,7 @@
         vm.cancelVerifyByNumberWithReturnAutocompleteFeature = function () {
             cancelAutocomplete();
             vm.showPhoneVerifyRequest = true;
-            saveRequest();
+            setupSaveTypeByInputtedData();
         };
 
         function setupVerifyByPhone(teamRequest) {
@@ -206,10 +207,11 @@
         }
 
         function saveTeam(team) {
+            vm.disabled = true;
             gameRequestServiceFactory.save(gameId, team)
                 .then(() => {
                     vm.submitted = true;
-                    setTimeout(() => {
+                    vm.timer = $timeout(() => {
                         $window.history.back();
                     }, 2000);
                 });
@@ -219,9 +221,21 @@
             $window.history.back();
         };
 
-        function getGameDate() {
-            OpenGameService
+        function getOpenGame() {
+            return OpenGameService
                 .getOpenGameById(gameId)
+                .then((res) => {
+                    if (res.$value === null) {
+                        $location.path('/games');
+                        throw 'game not found';
+                    } else {
+                        return res;
+                    }
+                })
+        }
+
+        function getGameDate() {
+            getOpenGame()
                 .then((res) => {
                         vm.gameDate = new Date(res.date).toLocaleDateString()
                     }
@@ -239,5 +253,9 @@
         vm.hideAlert = function () {
             vm.isCorrectLastDigits = true;
         };
+
+        $scope.$on('$destroy', function(){
+            $timeout.cancel(vm.timer);
+        });
     }
 })();

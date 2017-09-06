@@ -32,6 +32,6 @@ function gameTemplate($routeParams, $location, templateService) {
 
     vm.deleteTemplate = function (templateId) {
         templateService.remove(templateId);
-        $location.path(`/templates`)
+        if ($routeParams.templateId === templateId) $location.path(`/templates`)
     };
 }

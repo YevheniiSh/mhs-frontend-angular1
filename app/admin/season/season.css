@@ -1,0 +1,55 @@
+.team-name{
+    cursor: pointer;
+}
+.header{
+    text-align: center;
+}
+
+.game-rating{
+    cursor: pointer;
+}
+
+.missed-game {
+    color: red;
+}
+
+.close-season{
+    float: right;
+}
+
+.season-alert {
+   font-size: 24px;
+    padding-top: 10px;
+}
+.position-title{
+    width: 5%;
+}
+.teams-title{
+    width: 30%;
+}
+.total-title{
+    width: 15%;
+}
+.table-caption{
+    font-weight: bold;
+    font-size: 2em;
+}
+.games-label{
+    float: right;
+}
+.container{
+    position: relative;
+}
+.season-close-alert{
+    display: inline-block;
+    position: absolute;
+    right: 40px;
+    top: 60px;
+}
+.season-open-games-alert{
+    color: red;
+    font-size: 90%;
+}
+.season-total {
+    cursor: default;
+}
