@@ -20,6 +20,10 @@ angular.module('teamResults')
                         vm.auth = false;
                     });
 
+                    ResultService.isGameInFinishedSeason(vm.gameId).then((res) => {
+                        vm.isGameInFinishedSeason = res
+                    });
+
                     GameService.getGameStatus(this.gameId).then(status => {
                         if (status === "current") {
                             vm.state = status;
@@ -42,7 +46,7 @@ angular.module('teamResults')
 
                 vm.getResults = function () {
                     ResultService.filter({by: 'teamId', val: $routeParams.teamId}, $routeParams.gameId)
-                        .then(teamResults=>{
+                        .then(teamResults => {
                             return ResultService.parseTeamResult(teamResults, vm.gameId)
                         })
                         .then((res) => {
@@ -100,7 +104,7 @@ angular.module('teamResults')
                     });
                 };
 
-                vm.selectAllContent= function($event) {
+                vm.selectAllContent = function ($event) {
                     $event.target.select();
                 };
 
