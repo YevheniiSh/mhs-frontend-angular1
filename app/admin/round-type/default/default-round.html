@@ -1,12 +1,12 @@
 <div class="checkbox">
     <label id="manual-input"><input type="checkbox" ng-model="$ctrl.isManualInput">{{'MANUAL_INPUT_CHECKBOX'|translate}}</label>
-</div>
 
-<div>
-    <label>
-        <input type="number" ng-model="$ctrl.weightOfResponse" ng-change="$ctrl.recalculateScore()">
+    <label ng-if="$ctrl.isManualInput">
+        <input type="number" placeholder="{{'WEIGHT_INPUT' | translate}}" class="form-control weight-of-response"
+               ng-model="$ctrl.weightOfResponse" ng-change="$ctrl.recalculateScore()">
     </label>
 </div>
+
 
 <div class="form-group row">
     <ul id="team-list">
@@ -15,7 +15,7 @@
                 <span class="result-control">
                     <input type="checkbox"
                            ng-model="result.score"
-                           ng-change="$ctrl.saveResult({result:result})"
+                           ng-change="$ctrl.saveResult(result)"
                            ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
                            class="score-by-checkbox"
                            ng-if="!$ctrl.isManualInput"
@@ -23,8 +23,8 @@
                 </span>
                 <span class="result-control">
                     <input type="number"
-                           ng-model="result.score"
-                           ng-change="$ctrl.saveResult({result:result})"
+                           ng-model="result.numberOfCorrectAnswers"
+                           ng-change="$ctrl.saveResult(result)"
                            ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
                            class="form-control score-by-manual"
                            ng-if="$ctrl.isManualInput">

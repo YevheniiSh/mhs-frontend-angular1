@@ -10,8 +10,8 @@ angular
             return {
                 getRoundTypes: getRoundTypes,
                 getDefaultValuesByRoundId: getDefaultValuesByRoundId,
-                copyRoundTypeToRound:copyRoundTypeToRound
-            }
+                copyRoundTypeToRound: copyRoundTypeToRound
+            };
 
             function getRoundTypes() {
                 return new $firebaseArray(roundTypeRef)
@@ -26,7 +26,7 @@ angular
             function copyRoundTypeToRound(gameId, roundId, roundType) {
                 let roundRef = firebaseDataService.openGames
                     .child(`/${gameId}/rounds/${roundId}/roundType`);
-                obj = new $firebaseObject(roundRef);
+                let obj = new $firebaseObject(roundRef);
                 obj.$value = roundType;
                 obj.$save();
                 return obj
@@ -38,4 +38,4 @@ angular
                     });
             }
         }
-    ])
+    ]);
