@@ -1,6 +1,5 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
 angular.module('mhs', [
   'ngRoute',
   'ngMessages',
@@ -19,11 +18,11 @@ angular.module('mhs', [
   'gameTemplateService',
   'gameBuildService',
   'convertService',
-  '720kb.socialshare'
-])
-  .config(['$locationProvider', '$routeProvider', '$animateProvider',
-    function ($locationProvider, $routeProvider, $animateProvider) {
-      $animateProvider.classNameFilter(/animated/);
-      $locationProvider.hashPrefix('!');
-      $routeProvider.otherwise({redirectTo: '/games'});
-    }]);
+  '720kb.socialshare',
+  'seasonService'
+]).config(['$locationProvider', '$routeProvider', '$animateProvider',
+  function ($locationProvider, $routeProvider, $animateProvider) {
+    $animateProvider.classNameFilter(/animated/);
+    $locationProvider.hashPrefix('!');
+    $routeProvider.otherwise({redirectTo: '/games'});
+  }]);

@@ -16,7 +16,8 @@ angular
     'ui.bootstrap',
     'teamList',
     'navbar',
-    'gameTemplate'])
+    'gameTemplate',
+    'season'])
   .config(['$routeProvider', function ($routeProvider) {
 
     let isAuth = {
@@ -26,7 +27,7 @@ angular
     };
     $routeProvider.when('/games/:gameId/rounds/:roundNumber/:quizNumber', {
       template: '<result-setup></result-setup>',
-      css: 'app/admin/result-setup/result-setup-page.css',
+      css: 'admin/result-setup/result-setup-page.css',
       resolve: isAuth
     });
     $routeProvider.when('/games/:gameId/rounds', {
@@ -35,16 +36,16 @@ angular
     });
     $routeProvider.when('/login', {
       template: '<login></login>',
-      css: 'app/admin/login/login.css'
+      css: 'admin/login/login.css'
     });
     $routeProvider.when('/games', {
       template: '<game-list></game-list>',
-      css: 'app/admin/game-list/game-list.css',
+      css: 'admin/game-list/game-list.css',
       reloadOnSearch: false
     });
     $routeProvider.when('/teams', {
       template: '<team-list></team-list>',
-      css: 'app/admin/team-list/team-list.css'
+      css: 'admin/team-list/team-list.css'
     });
 
     $routeProvider.when('/games/:gameId/print', {
@@ -61,23 +62,29 @@ angular
     });
     $routeProvider.when('/games/:gameId/results', {
       template: '<game-results-page></game-results-page>',
-      css: 'app/admin/game-results/game-results-page.css'
+      css: 'admin/game-results/game-results-page.css'
     });
     $routeProvider.when('/games/:gameId/results-presentation', {
       template: '<game-results></game-results>',
-      css: 'app/admin/game-results/game-results.css',
+      css: 'admin/game-results/game-results.css',
       controller: 'presentationModeController'
     });
     $routeProvider.when('/games/:gameId/results/:teamId', {
       template: '<team-results></team-results>',
-      css: 'app/admin/team-results/team-results.css'
+      css: 'admin/team-results/team-results.css'
     });
     $routeProvider.when('/templates', {
       template: '<game-template></game-template>',
     });
     $routeProvider.when('/templates/:templateId', {
       template: '<current-game-template></current-game-template>',
-      css: 'app/admin/game-template/current-game-template.css'
+      css: 'admin/game-template/current-game-template.css'
+    });
+    $routeProvider.when('/seasons', {
+      template: '<season-list></season-list>'
+    });
+    $routeProvider.when('/seasons/:seasonId', {
+      template: '<season></season>'
     });
     $routeProvider.when('/phone', {
       template: '<phone-list></phone-list>',

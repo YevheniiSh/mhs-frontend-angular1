@@ -52,6 +52,7 @@
         "app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
         "app/bower_components/angular-animate/angular-animate.js",
         "app/bower_components/ngMask/dist/ngMask.js",
+        "app/bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js",
         "app/shared/esc-key.js",
         "app/shared/enter-key.js",
         "app/shared/focused.js",
@@ -98,6 +99,9 @@
         "app/admin/game-results/game-results-page.component.js",
         "app/admin/game-results/game-results.component.js",
         "app/presentation-mode/presentationMode.controller.js",
+        "app/admin/season/season.module.js",
+        "app/admin/season/season.component.js",
+        "app/admin/season/season-list/season-list.component.js",
         "app/services/team-request-service/team-request-service.module.js",
         "app/services/team-request-service/team-request-service.service.js",
         "app/admin/create-game/create-game.component.js",
@@ -123,6 +127,7 @@
         "app/admin/game-list/game-list.component.js",
         "app/admin/game-list/finished-game.component.js",
         "app/admin/game-list/open-game-list.component.js",
+        "app/admin/game-list/game-teams-modal.component.js",
         "app/admin/add-teams/print-teams/print-teams.component.js",
         "app/admin/game-template/game-template.module.js",
         "app/admin/game-template/game-template.component.js",
@@ -134,7 +139,9 @@
         "app/admin/navbar/navbar.component.js",
         "app/admin/game-list/current-game.component.js",
         "app/services/game-build-service/game-build-service.module.js",
-        "app/services/game-build-service/game-build-service.service.js"
+        "app/services/game-build-service/game-build-service.service.js",
+        "app/services/season-service/season-service.module.js",
+        "app/services/season-service/season-service.service.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

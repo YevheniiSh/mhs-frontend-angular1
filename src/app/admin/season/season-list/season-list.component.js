@@ -2,8 +2,8 @@
     angular
         .module('season')
         .component('seasonList', {
-            templateUrl: 'admin/season/season-list/season-list.html',
-            css: 'admin/season/season-list/season-list.css',
+          templateUrl: 'app/admin/season/season-list/season-list.html',
+          css: 'app/admin/season/season-list/season-list.css',
             controller: SeasonListController
         });
 

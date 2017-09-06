@@ -2,8 +2,8 @@
     'use strict';
     angular.module('game-list')
         .component('openGameList', {
-            templateUrl: 'admin/game-list/open-game-list.html',
-            css: 'admin/game-list/open-game-list.css',
+          templateUrl: 'app/admin/game-list/open-game-list.html',
+          css: 'app/admin/game-list/open-game-list.css',
             controller: OpenGameList
         });
 
