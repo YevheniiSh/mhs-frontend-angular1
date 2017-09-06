@@ -81,4 +81,8 @@ input[type=checkbox] {
 
 .team-name {
     overflow: hidden;
+    word-wrap: break-word;
+}
+.disabled{
+    color: grey;
 }
