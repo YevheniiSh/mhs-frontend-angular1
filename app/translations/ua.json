@@ -46,7 +46,7 @@
   "SAVE_ROUNDS_BUTTON": "Зберегти",
   "ACCEPT_BUTTON": "Підтвердити",
   "ROUND_NAME_LABEL": "Ім'я раунда",
-  "QUESTION_COUNT_LABEL": "Кількість запитань",
+  "QUESTION_COUNT_LABEL": "Запитання",
   "ROUND_NAME_PLACEHOLDER": "Ім'я раунда",
   "ROUND_SAVED_MESSAGE": "Відмінно! Раунди були збережені",
   "CONFIG_TEAMS_ERROR": "Налаштуйте команди",
@@ -112,7 +112,7 @@
   "AUCTION_ROUND": "Аукціон",
   "CAPTAIN_ROUND": "Капітанський",
   "DEFAULT_ROUND": "Стандартний",
-  "HINT_ROUND": "Підказки",
+  "HINTS_ROUND": "Підказки",
   "ALL_SEASONS_SELECT": "Усі сезони",
   "GAME_SEASON_LABEL": "Сезон",
   "SEASON_PLACEHOLDER":"Сезон",
@@ -133,5 +133,7 @@
   "CANCEL_BTN": "Скасувати",
   "TEAM_POSITION_OF": "з",
   "GAMES_LABEL": "Ігри",
+  "START_INPUT_LABEL": "Бали",
+  "STEP_INPUT_LABEL": "Крок",
   "CURRENT_SEASON_TOOLTIP": "Поточний сезон"
 }
