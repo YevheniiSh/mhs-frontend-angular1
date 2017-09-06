@@ -35,11 +35,6 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
     }
 
     function initPreviousQuizResults() {
-        // ResultServiceFactory.getByRoundAndQuiz(
-        //     $routeParams.roundNumber,
-        //     $routeParams.quizNumber - 1,
-        //     $routeParams.gameId
-        // )
         ResultServiceFactory.filter({by: "round", val: $routeParams.roundNumber}, $routeParams.gameId)
             .then(results => {
                 res = {}
