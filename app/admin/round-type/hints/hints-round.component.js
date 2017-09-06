@@ -57,4 +57,6 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
     function isFirstQuiz() {
         return $routeParams.quizNumber === '1';
     }
+
+
 }

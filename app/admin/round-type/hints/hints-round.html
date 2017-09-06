@@ -4,13 +4,16 @@
             <label class="clickable-label">
                 <div class='switcher'>
                     <label  class='switcher-label switcher-off' for='{{$index+"off"}}'>off</label>
-                    <input id='{{$index+"off"}}' class='switcher-radio-off' type='radio' name='{{$index}}' value='off'>
+                    <input id='{{$index+"off"}}' class='switcher-radio-off' type='radio' name='{{$index}}'
+                           ng-model="result.score" ng-value="0" ng-change="$ctrl.saveResult({result:result})">
 
                     <label class='switcher-label switcher-neutral' for='{{$index+"def"}}'>neutral</label>
-                    <input id='{{$index+"def"}}' class='switcher-radio-neutral' type='radio' name='{{$index}}' value='neutral' checked>
+                    <input id='{{$index+"def"}}' class='switcher-radio-neutral' type='radio' name='{{$index}}'
+                           ng-model="result.score" ng-change="$ctrl.saveResult({result:result})" checked>
 
                     <label class='switcher-label switcher-on' for='{{$index+"on"}}'>on</label>
-                    <input id='{{$index+"on"}}' class='switcher-radio-on' type='radio' name='{{$index}}' value='on'>
+                    <input id='{{$index+"on"}}' class='switcher-radio-on' type='radio' name='{{$index}}'
+                           ng-model="result.score" ng-value="$ctrl.weight" ng-change="$ctrl.saveResult({result:result})">
                     <div class='switcher-slider'></div>
                 </div>
                 <div class="team-name">{{result.teamName}}</div>
@@ -18,3 +21,4 @@
         </li>
     </ul>
 </div>
+
