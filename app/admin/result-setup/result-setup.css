@@ -18,7 +18,7 @@ h2 {
     column-count: 3;
 }
 #team-list li{
-    padding: 2px 0;
+    padding: 5px 0;
 }
 
 #team-list label {
@@ -82,4 +82,7 @@ input[type=checkbox] {
 .team-name {
     overflow: hidden;
     word-wrap: break-word;
+}
+.disabled{
+    color: grey;
 }

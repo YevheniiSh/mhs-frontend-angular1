@@ -1,1 +1,17 @@
-cccc
+<div class="form-group row">
+    <ul id="team-list">
+        <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
+            <label class="clickable-label" ng-class={'disabled':$ctrl.isDisabled(result.teamId)}>
+                <div class="result-control">
+                    <input type="checkbox"
+                           ng-model="result.score"
+                           ng-change="$ctrl.saveResult({result:result})"
+                           class="score-by-checkbox"
+                           ng-true-value="{{$ctrl.weight}}" ng-false-value="0"
+                           ng-disabled="$ctrl.isDisabled(result.teamId)">
+                </div>
+                <div class="team-name">{{result.teamName}}</div>
+            </label>
+        </li>
+    </ul>
+</div>

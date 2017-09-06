@@ -1,1 +1,21 @@
-aaa
+<div class="form-group row">
+    <ul id="auction-team-list">
+        <li ng-repeat="result in $ctrl.results | orderBy: 'teamName' track by $index" class="team">
+
+            <label>
+                <input class="result-rate" ng-model="result.rate" type="number" ng-change="$ctrl.onSave(result)">
+            </label>
+
+            <input id="{{$index}}"
+                   class="cmn-toggle cmn-toggle-round"
+                   type="checkbox"
+                   ng-model="result.status"
+                   ng-change="$ctrl.onSave(result)"
+                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
+                   ng-true-value="1" ng-false-value="-1">
+            <label class="result-toggle" for="{{$index}}"></label>
+
+            <span class="team-name">{{result.teamName}}</span>
+        </li>
+    </ul>
+</div>
