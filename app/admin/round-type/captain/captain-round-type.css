@@ -1,0 +1,9 @@
+.captains-round-quiz{
+    position: relative;
+}
+.noCaptainsAlert{
+    position: absolute;
+    background-color: lightgrey;
+    top: 30%;
+    left: 40%;
+}

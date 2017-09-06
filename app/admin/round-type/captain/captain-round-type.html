@@ -1,4 +1,4 @@
-<div class="form-group row">
+<div class="form-group row captains-round-quiz">
     <ul id="team-list">
         <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
             <label class="clickable-label" ng-class={'disabled':$ctrl.isDisabled(result.teamId)}>
@@ -14,4 +14,9 @@
             </label>
         </li>
     </ul>
+    <div class="alert noCaptainsAlert" ng-if="$ctrl.noCaptainsAlertDisplay">
+        <a ng-click="$ctrl.closeAlert()" class="close">×</a>
+        <p>{{"NO_CAPTAINS_ALERT" | translate}}</p>
+        <button ng-click="$ctrl.closeRound()" class="btn btn-danger">{{"ROUND_FINISH_BUTTON" | translate}}</button>
+    </div>
 </div>

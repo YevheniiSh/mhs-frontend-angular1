@@ -136,5 +136,7 @@
   "GAMES_LABEL": "Games",
   "START_INPUT_LABEL": "Point",
   "STEP_INPUT_LABEL": "Step",
-  "CURRENT_SEASON_TOOLTIP": "Current season"
+  "CURRENT_SEASON_TOOLTIP": "Current season",
+  "NO_CAPTAINS_ALERT": "All captains are left",
+  "ROUND_FINISH_BUTTON": "Finish round"
 }

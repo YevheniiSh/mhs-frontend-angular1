@@ -10,13 +10,16 @@ angular.module('resultSetup')
     });
 
 CaptainRoundTypeController.$inject = [
+    '$location',
     '$routeParams',
     'GameServiceFactory',
-    'ResultServiceFactory'
+    'ResultServiceFactory',
+    'resultSetupService'
 ];
 
-function CaptainRoundTypeController($routeParams, GameServiceFactory, ResultServiceFactory) {
+function CaptainRoundTypeController($location, $routeParams, GameServiceFactory, ResultServiceFactory, resultSetupService) {
     let vm = this;
+    vm.noCaptainsAlertDisplay = false;
 
     vm.$onInit = onInit;
 
@@ -42,8 +45,15 @@ function CaptainRoundTypeController($routeParams, GameServiceFactory, ResultServ
         )
             .then(results => {
                 vm.previousQuizResults = results;
+                if (getCaptainsInGameCount(results) === 0 && !isFirstQuiz()){
+                    vm.noCaptainsAlertDisplay = true;
+                }
             })
     }
+
+    vm.closeAlert = function () {
+        vm.noCaptainsAlertDisplay = false;
+    };
 
     vm.isDisabled = function (teamId) {
         if (!isFirstQuiz()) {
@@ -55,6 +65,23 @@ function CaptainRoundTypeController($routeParams, GameServiceFactory, ResultServ
             }
             return false;
         }
+    };
+
+    vm.closeRound = function () {
+        resultSetupService.closeRound($routeParams.roundNumber,$routeParams.gameId)
+            .then(() => {
+                $location.path(`/games/${$routeParams.gameId}/rounds`);
+            });
+    };
+
+    function getCaptainsInGameCount(results) {
+        let captainsCount = 0;
+        results.forEach((result)=>{
+            if(result.score !== 0){
+                captainsCount++;
+            }
+        });
+        return captainsCount;
     };
 
     function isFirstQuiz() {

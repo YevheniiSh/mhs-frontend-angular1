@@ -135,5 +135,7 @@
   "GAMES_LABEL": "Игры",
   "START_INPUT_LABEL": "Балы",
   "STEP_INPUT_LABEL": "Шаг",
-  "CURRENT_SEASON_TOOLTIP": "Текущий сезон"
+  "CURRENT_SEASON_TOOLTIP": "Текущий сезон",
+  "NO_CAPTAINS_ALERT": "Все капитаны выбыли",
+  "ROUND_FINISH_BUTTON": "Закончить раунд"
 }
