@@ -2,8 +2,8 @@ angular
     .module('season')
     .component('season',
         {
-            templateUrl: 'admin/season/season.html',
-            css: 'admin/season/season.css',
+          templateUrl: 'app/admin/season/season.html',
+          css: 'app/admin/season/season.css',
             controller: seasonsController
         });
 seasonsController.$inject = ['GameServiceFactory', '$location', 'seasonService', '$routeParams', '$window', 'userAuthService'];
