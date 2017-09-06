@@ -6,13 +6,14 @@ import { RouterModule } from '@angular/router';
 import { PhoneListComponent } from './admin/phone-list.component';
 import { UpgradeAdapter } from "@angular/upgrade";
 import * as angular from 'angular';
+import { HeroDetailDirective } from "./teamlist";
 
 const adapter = new UpgradeAdapter(forwardRef(() => AppModule));
 
 @NgModule({
   declarations: [
     PhoneListComponent,
-    adapter.upgradeNg1Component('teamList')
+    HeroDetailDirective
   ],
   imports: [
     BrowserModule,
@@ -20,9 +21,7 @@ const adapter = new UpgradeAdapter(forwardRef(() => AppModule));
     HttpModule,
     RouterModule,
   ],
-  entryComponents: [
-    PhoneListComponent
-  ],
+  entryComponents: [],
   providers: [],
 })
 export class AppModule {
@@ -31,7 +30,7 @@ export class AppModule {
   }
 
   ngDoBootstrap() {
-    adapter.bootstrap(document.documentElement, ['mhs']);
+    adapter.bootstrap(document.documentElement, ['mhs'], {strictDi: false});
   }
 }
 
