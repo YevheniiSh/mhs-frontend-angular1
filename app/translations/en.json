@@ -132,5 +132,6 @@
   "TEAMS_MODAL_HEADER": "Teams requests for games",
   "TEAMS_MODAL_PLACEHOLDER": "There are no requests yet",
   "TEAMS_MODAL_SHOW_BUTTON": "Teams requests",
-  "CURRENT_SEASON_TOOLTIP": "Current season"
+  "CURRENT_SEASON_TOOLTIP": "Current season",
+  "EMPTY_FIELD_MASSAGE": "Can't be empty"
 }

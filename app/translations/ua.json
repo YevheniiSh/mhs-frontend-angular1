@@ -131,5 +131,6 @@
   "TEAMS_MODAL_HEADER": "Заявки команд на гру",
   "TEAMS_MODAL_PLACEHOLDER": "Поки немає жодної заявки на гру",
   "TEAMS_MODAL_SHOW_BUTTON": "Заявки",
-  "CURRENT_SEASON_TOOLTIP": "Поточний сезон"
+  "CURRENT_SEASON_TOOLTIP": "Поточний сезон",
+  "EMPTY_FIELD_MASSAGE": "Не може бути порожнім"
 }
