@@ -8,12 +8,16 @@
 /* labels animation time */
 /* label text color */
 /* colors: si, ?, no*/
+.team-name{
+    display: inline-block;
+}
 .wrapper {
     width: 12rem;
     height: 4rem;
     position: relative;
     border-radius: 2rem;
     background: gray;
+    display: inline-block;
 }
 .wrapper .toggle {
     width: 4.8rem;
@@ -57,42 +61,42 @@
     opacity: 0;
 }
 
-#yes_radio:checked {
+.yes_radio:checked {
     background: red;
 }
-#yes_radio:checked ~ .toggle {
+.yes_radio:checked ~ .toggle {
     border: 0.1rem solid #008000;
     background: #00b300;
     box-shadow: 0 0 0.2rem 0.1rem #008000 inset, 0 0 0.2rem 0.1rem #008000;
     left: -0.4rem;
 }
 
-#no_radio:checked {
+.no_radio:checked {
     background: red;
 }
-#no_radio:checked ~ .toggle {
+.no_radio:checked ~ .toggle {
     border: 0.1rem solid #ff0000;
     background: #ff3333;
     box-shadow: 0 0 0.2rem 0.1rem #ff0000 inset, 0 0 0.2rem 0.1rem #ff0000;
     left: 7.6rem;
 }
 
-#default_radio, #default-lbl {
+.default_radio, .default-lbl {
     left: 33.33333%;
 }
 
-#no_radio, #no-lbl {
+.no_radio, .no-lbl {
     left: 66.66667%;
 }
 
-#default-lbl {
+.default-lbl {
     -webkit-animation-delay: 2s;
     -o-animation-delay: 2s;
     -moz-animation-delay: 2s;
     animation-delay: 2s;
 }
 
-#no-lbl {
+.no-lbl {
     -webkit-animation-delay: 4s;
     -o-animation-delay: 4s;
     -moz-animation-delay: 4s;
