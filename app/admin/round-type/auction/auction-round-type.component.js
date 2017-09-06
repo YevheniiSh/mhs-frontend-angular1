@@ -11,11 +11,18 @@ angular.module('resultSetup')
     });
 
 AuctionRoundTypeController.$inject = [
-    '$scope'
+    '$scope',
+    '$routeParams',
+    'GameServiceFactory'
 ];
 
-function AuctionRoundTypeController($scope) {
+function AuctionRoundTypeController($scope, $routeParams, GameServiceFactory) {
     let vm = this;
+
+    GameServiceFactory.getRoundByGameAndId($routeParams.gameId, $routeParams.roundNumber)
+        .then((round) => {
+            vm.round = round;
+        });
 
     $scope.$watch(() => {
         return vm.results;

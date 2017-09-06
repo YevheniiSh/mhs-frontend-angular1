@@ -3,7 +3,8 @@
         <li ng-repeat="result in $ctrl.results | orderBy: 'teamName' track by $index" class="team">
 
             <label>
-                <input class="result-rate" ng-model="result.rate" type="number" ng-change="$ctrl.onSave(result)">
+                <input class="result-rate" ng-model="result.rate" type="number" min="{{$ctrl.round.roundType.start}}"
+                       step="{{$ctrl.round.roundType.step}}" ng-change="$ctrl.onSave(result)">
             </label>
 
             <input id="{{$index}}"
