@@ -129,8 +129,8 @@
   "CLOSE_BTN": "Close",
   "CANCEL_BTN": "Cancel",
   "GAMES_LABEL": "Games",
-  "CONFIRMED_TEAMS_MODAL_HEADER": "Confirmed teams",
-  "CONFIRMED_TEAMS_MODAL_PLACEHOLDER": "There are no confirmed teams yet",
-  "CONFIRMED_TEAMS_MODAL_SHOW_BUTTON": "Confirmed teams",
+  "TEAMS_MODAL_HEADER": "Teams requests for games",
+  "TEAMS_MODAL_PLACEHOLDER": "There are no requests yet",
+  "TEAMS_MODAL_SHOW_BUTTON": "Teams requests",
   "CURRENT_SEASON_TOOLTIP": "Current season"
 }

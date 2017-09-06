@@ -128,8 +128,8 @@
   "CANCEL_BTN": "Отмена",
   "TEAM_POSITION_OF": "из",
   "GAMES_LABEL": "Игры",
-  "CONFIRMED_TEAMS_MODAL_HEADER": "Подтвержденные команды",
-  "CONFIRMED_TEAMS_MODAL_PLACEHOLDER": "Пока нет подтвержденных команд",
-  "CONFIRMED_TEAMS_MODAL_SHOW_BUTTON": "Подтвержденные команды",
+  "TEAMS_MODAL_HEADER": "Заявки команд на игру",
+  "TEAMS_MODAL_PLACEHOLDER": "Пока нет заявок на игру",
+  "TEAMS_MODAL_SHOW_BUTTON": "Заявки",
   "CURRENT_SEASON_TOOLTIP": "Текущий сезон"
 }

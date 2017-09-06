@@ -7,9 +7,9 @@
             controller: OpenGameList
         });
 
-    OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location', 'userAuthService', '$uibModal'];
+    OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location', 'userAuthService', 'gameRequestServiceFactory', '$uibModal'];
 
-    function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService, $uibModal) {
+    function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService, gameRequestService, $uibModal) {
         let vm = this;
         vm.$onInit = onInit;
 
@@ -87,25 +87,32 @@
             });
 
         vm.open = function (gameId, parentSelector) {
-            openGameFactory.getTeams(gameId)
+            gameRequestService.getAllTeamRequestsByGameId(gameId)
                 .then((teams) => {
                     console.log(teams);
-                    let items = teams;
-                    var parentElem = parentSelector ?
-                        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-                    $uibModal.open({
-                        animation: false,
-                        ariaLabelledBy: 'modal-title',
-                        ariaDescribedBy: 'modal-body',
-                        templateUrl: 'myModalContent.html',
-                        component: 'modalComponent',
-                        appendTo: parentElem,
-                        resolve: {
-                            items: function () {
-                                return items;
-                            }
-                        }
-                    });
+                    var items = teams;
+                    openGameFactory.getDate(gameId)
+                        .then((date) => {
+                            var gameDate = new Date(date);
+                            var parentElem = parentSelector ?
+                                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                            $uibModal.open({
+                                animation: false,
+                                ariaLabelledBy: 'modal-title',
+                                ariaDescribedBy: 'modal-body',
+                                templateUrl: 'myModalContent.html',
+                                component: 'modalComponent',
+                                appendTo: parentElem,
+                                resolve: {
+                                    items: function () {
+                                        return items;
+                                    },
+                                    date: function () {
+                                        return gameDate;
+                                    }
+                                }
+                            });
+                        });
                 })
         };
     }

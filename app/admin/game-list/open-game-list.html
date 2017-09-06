@@ -22,7 +22,7 @@
             </button>
             <button class="btn btn-info game-button"
                     ng-click="$ctrl.open(openGame.$id)"
-                    ng-if="!$ctrl.auth">{{'CONFIRMED_TEAMS_MODAL_SHOW_BUTTON' | translate}}
+                    ng-if="!$ctrl.auth">{{'TEAMS_MODAL_SHOW_BUTTON' | translate}}
             </button>
             <a class="btn btn-info game-button"
                ng-href="/#!/games/{{openGame.$id}}/registration">
@@ -59,13 +59,14 @@
 
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">{{'CONFIRMED_TEAMS_MODAL_HEADER' | translate}}</h3>
+        <h3 class="modal-title" id="modal-title">{{'TEAMS_MODAL_HEADER' | translate}}: {{$ctrl.date | date:'d MMM
+            y'}}</h3>
     </div>
     <div class="modal-body" id="modal-body">
-        <span ng-if="$ctrl.items.length === 0">{{'CONFIRMED_TEAMS_MODAL_PLACEHOLDER' | translate}}</span>
+        <span ng-if="$ctrl.items.length === 0">{{'TEAMS_MODAL_PLACEHOLDER' | translate}}</span>
         <ul>
-            <li ng-repeat="item in $ctrl.items | orderBy:'name'">
-                {{ item.name }}
+            <li ng-repeat="item in $ctrl.items | orderBy:'teamName'">
+                {{ item.teamName }}
             </li>
         </ul>
     </div>

@@ -8,7 +8,7 @@ angular.module('game-list').component('modalComponent', {
 
         $ctrl.$onInit = function () {
             $ctrl.items = $ctrl.resolve.items;
-
+            $ctrl.date = $ctrl.resolve.date;
         };
     }
 });
