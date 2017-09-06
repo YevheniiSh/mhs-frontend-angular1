@@ -80,7 +80,6 @@ input[type=checkbox] {
 }
 
 .team-name {
-    display: inline-block;
     overflow: hidden;
     word-wrap: break-word;
 }
