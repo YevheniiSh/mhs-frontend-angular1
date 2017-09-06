@@ -31,28 +31,44 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
     }
 
     function getQuizWeight(round) {
-        vm.weight = round.roundType.start - (round.roundType.step * ($routeParams.quizNumber - 1));
+        vm.weight = round.roundType.start + (round.roundType.step * ($routeParams.quizNumber - 1));
         console.log(vm.weight);
     }
 
     function initPreviousQuizResults() {
-        ResultServiceFactory.getByRoundAndQuiz(
-            $routeParams.roundNumber,
-            $routeParams.quizNumber - 1,
-            $routeParams.gameId
-        )
+        // ResultServiceFactory.getByRoundAndQuiz(
+        //     $routeParams.roundNumber,
+        //     $routeParams.quizNumber - 1,
+        //     $routeParams.gameId
+        // )
+        ResultServiceFactory.filter({by: "round", val: $routeParams.roundNumber}, $routeParams.gameId)
             .then(results => {
-                vm.previousQuizResults = results;
+                res = {}
+                results.forEach(result => {
+                    res[result.teamId] = result.quiz;
+                })
+                vm.previousQuizResults = res;
             })
     }
 
     vm.isDisabled = function (teamId) {
         if (!isFirstQuiz()) {
-            let resultKey = [$routeParams.roundNumber, $routeParams.quizNumber - 1, teamId].join('_');
-            return +vm.previousQuizResults[resultKey] || vm.previousQuizResults[resultKey] === undefined;
+            if(vm.previousQuizResults[teamId]===undefined){
+                return false
+            }else{
+                if(vm.previousQuizResults[teamId]< (+$routeParams.quizNumber)){
+                    return true
+                }
+
+            }
+            return false
         }
-        return false;
     };
+
+    vm.clearResult = function (result) {
+        let resultKey = [result.round, result.quiz, result.teamId].join('_');
+        ResultServiceFactory.deleteResult($routeParams.gameId, resultKey)
+    }
 
     function isFirstQuiz() {
         return $routeParams.quizNumber === '1';

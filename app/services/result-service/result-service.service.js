@@ -209,7 +209,6 @@ angular
                     resultFactory.getGameWinner(gameId)
                         .then((res) => {
                             res.forEach((item) => {
-                                console.log(item);
                                 let obj = new $firebaseObject(ref.child(`${gameId}/winner/${item.teamId}`));
                                 obj.$value = {name: item.teamName, score: item.total};
                                 obj.$save();
@@ -286,6 +285,13 @@ angular
                     return obj.$loaded();
                 })
             };
+
+            resultFactory.deleteResult = function (gameId, resId){
+                let ref = gameService.getGameRef(gameId);
+                return ref.then((res) => {
+                    res.child(`${gameId}/results/${resId}`).remove();
+                })
+            }
 
             return resultFactory;
         }]
