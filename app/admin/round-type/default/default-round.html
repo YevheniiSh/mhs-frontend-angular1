@@ -12,7 +12,8 @@
     <ul id="team-list">
         <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
             <label class="clickable-label">
-                <span class="result-control">
+                <div class="result-control">
+                <span>
                     <input type="checkbox"
                            ng-model="result.score"
                            ng-change="$ctrl.saveResult(result)"
@@ -21,7 +22,7 @@
                            ng-if="!$ctrl.isManualInput"
                            ng-true-value="1" ng-false-value="0">
                 </span>
-                <span class="result-control">
+                    <span>
                     <input type="number"
                            ng-model="result.numberOfCorrectAnswers"
                            ng-change="$ctrl.saveResult(result)"
@@ -30,7 +31,8 @@
                            ng-if="$ctrl.isManualInput"
                            ng-focus="$ctrl.selectAllContent($event)">
                 </span>
-                <span class="team-name">{{result.teamName}}</span>
+                </div>
+                <div class="team-name">{{result.teamName}}</div>
             </label>
         </li>
     </ul>
