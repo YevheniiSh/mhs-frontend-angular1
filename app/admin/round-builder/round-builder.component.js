@@ -20,6 +20,7 @@ function roundBuilder(roundTypeService) {
     }
 
     vm.dragAndDropRound = function($index){
+        console.log(vm.rounds);
         vm.rounds.splice($index, 1);
     };
 

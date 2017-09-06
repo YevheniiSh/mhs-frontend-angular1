@@ -44,7 +44,7 @@
   "DELETE_ROUND_BUTTON": "Delete",
   "SAVE_ROUNDS_BUTTON": "Save",
   "ROUND_NAME_LABEL": "Round name",
-  "QUESTION_COUNT_LABEL": "Question number",
+  "QUESTION_COUNT_LABEL": "Questions",
   "QUESTION_QUANTITY_LABEL": "Question quantity",
   "ROUND_NAME_PLACEHOLDER": "Round name",
   "ROUND_SAVED_MESSAGE": "Well done! Rounds have been saved",
@@ -134,5 +134,7 @@
   "CLOSE_BTN": "Close",
   "CANCEL_BTN": "Cancel",
   "GAMES_LABEL": "Games",
+  "START_INPUT_LABEL": "Point",
+  "STEP_INPUT_LABEL": "Step",
   "CURRENT_SEASON_TOOLTIP": "Current season"
 }

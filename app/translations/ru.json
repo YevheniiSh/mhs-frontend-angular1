@@ -46,7 +46,7 @@
   "SAVE_ROUNDS_BUTTON": "Сохранить",
   "ACCEPT_BUTTON": "Подтвердить",
   "ROUND_NAME_LABEL": "Имя раунда",
-  "QUESTION_COUNT_LABEL": "Количество вопросов",
+  "QUESTION_COUNT_LABEL": "Вопросы",
   "ROUND_NAME_PLACEHOLDER": "Имя раунда",
   "ROUND_SAVED_MESSAGE": "Отлично! Раунды были сохранены",
   "CONFIG_TEAMS_ERROR": "Настройте команды",
@@ -133,5 +133,7 @@
   "CANCEL_BTN": "Отмена",
   "TEAM_POSITION_OF": "из",
   "GAMES_LABEL": "Игры",
+  "START_INPUT_LABEL": "Балы",
+  "STEP_INPUT_LABEL": "Шаг",
   "CURRENT_SEASON_TOOLTIP": "Текущий сезон"
 }
