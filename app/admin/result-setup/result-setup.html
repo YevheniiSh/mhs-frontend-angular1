@@ -4,7 +4,8 @@
         <h1>{{'QUESTION_SET_RESULTS_HEADER'|translate}} #{{$ctrl.selectedQuiz}}</h1>
     </div>
 
-    <default-round results="$ctrl.results" save-result="$ctrl.saveResult(result)" is-manual-input="$ctrl.isManualInput"></default-round>
+    <default-round results="$ctrl.results" on-save="$ctrl.saveResult(result)"
+                   is-manual-input="$ctrl.isManualInput"></default-round>
 
     <div id="control-panel" class="form-inline">
         <div class="nav-btn">
