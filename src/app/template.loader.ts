@@ -23,15 +23,13 @@ export function upgradeDirective(moduleName, invokedName) {
 
       delete directive.templateUrl;
 
-      let directiveTemplate = readTextFile(directiveTemplateUrl);
+      directive.template = readTextFile(directiveTemplateUrl);
+    }
 
-      if (directive.hasOwnProperty('css')) {
-        let cssUrl = directive.css.substring(directive.css.indexOf('app/'));
-        let directiveCss = readTextFile(cssUrl);
-        directive.template = '<style>' + directiveCss + '</style>' + directiveTemplate;
-      } else {
-        directive.template = directiveTemplate;
-      }
+    if (directive.hasOwnProperty('css')) {
+      let cssUrl = directive.css.substring(directive.css.indexOf('app/'));
+      let directiveCss = readTextFile(cssUrl);
+      directive.template = directive.template.replace(/^/, '<style>' + directiveCss + '</style>');
     }
 
     return $delegate;
