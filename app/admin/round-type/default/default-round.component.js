@@ -20,21 +20,16 @@
         function onInit() {
             vm.selectedQuiz = $routeParams.quizNumber;
 
-            initDefaultNumberOfCorrectAnswers();
+            getQuizResults()
+                .then((results) => {
+                    if (results[Object.keys(results)[4]] !== null) {
+                        getWeightOfResponse(results[Object.keys(results)[4]])
+                    }
+                })
         }
 
-        function initDefaultNumberOfCorrectAnswers() {
-            let unregister = $scope.$watch(() => {
-                return vm.results;
-            }, (results) => {
-                if (results !== undefined) {
-                    unregister();
-                    results.forEach((result) => {
-                        getWeightOfResponse(result);
-                        result.numberOfCorrectAnswers === undefined ? result.numberOfCorrectAnswers = 0 : result.numberOfCorrectAnswers
-                    });
-                }
-            })
+        function getQuizResults() {
+            return resultSetupService.getQuizResults($routeParams.roundNumber, vm.selectedQuiz, $routeParams.gameId);
         }
 
         function getWeightOfResponse(result) {
@@ -68,6 +63,13 @@
 
         vm.recalculateScore = function () {
             for (let result of vm.results) {
+                if (result.numberOfCorrectAnswers === undefined) {
+                    result.numberOfCorrectAnswers = 0;
+                    continue;
+                }
+                if (result.numberOfCorrectAnswers === 0) {
+                    continue;
+                }
                 result.score = calculateScore(result);
                 save(result);
             }
