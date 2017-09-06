@@ -1,5 +1,4 @@
 
-
 /* height */
 /* width */
 /* toggle dimensions */
@@ -13,7 +12,6 @@
     width: 12rem;
     height: 4rem;
     position: relative;
-    margin: 2rem auto;
     border-radius: 2rem;
     background: gray;
 }
