@@ -6,7 +6,7 @@ angular.module('resultSetup')
         ,
         bindings: {
             results: '=',
-            onSave: '&'
+            saveResult: '&'
         }
     });
 
@@ -24,9 +24,9 @@ function AuctionRoundTypeController($scope) {
             initResults(res);
     });
 
-    vm.saveResult = function (result) {
+    vm.onSave = function (result) {
         result.score = result.rate * result.status;
-        vm.onSave({result: result})
+        vm.saveResult({result: result})
     };
 
     function initResults(res) {
