@@ -9,6 +9,9 @@
     </tr>
     </thead>
     <tbody>
+    <tr ng-if="$ctrl.openGames.length == 0">
+        <td class="no-games-label" colspan="4">There are no open games yet!</td>
+    </tr>
     <tr class="game-row td games" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
         <td>{{openGame.date | date:'d MMM y'}}</td>
         <td>{{openGame.time}}</td>

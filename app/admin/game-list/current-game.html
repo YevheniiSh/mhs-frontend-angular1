@@ -8,6 +8,9 @@
     </tr>
     </thead>
     <tbody>
+    <tr  ng-if="$ctrl.games.length == 0">
+        <td class="no-games-label" colspan="4">There are no current games yet!</td>
+    </tr>
     <tr class="game-row" ng-repeat="game in $ctrl.games | orderBy:'-date'">
         <td>{{game.date | date:'d MMM y'}}</td>
         <td>{{game.time}}</td>
