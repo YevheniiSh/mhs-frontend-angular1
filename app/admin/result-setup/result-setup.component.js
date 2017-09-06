@@ -114,14 +114,10 @@
                 }
                 vm.setQuiz(+vm.selectedQuiz + 1);
             } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
-                resultSetupService.roundIncrement(vm.round.$id, $routeParams.gameId)
+                resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
                     .then(() => {
-                        resultSetupService.setCurrentQuiz(1, $routeParams.gameId)
-                            .then(() => {
-                                $location.path(`/games/${$routeParams.gameId}/rounds`);
-                            })
-                        }
-                    )
+                        $location.path(`/games/${$routeParams.gameId}/rounds`);
+                    });
             }
         };
 

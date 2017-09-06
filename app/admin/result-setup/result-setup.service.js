@@ -16,7 +16,8 @@
             getCurrentQuiz: getCurrentQuiz,
             getCurrentRound: getCurrentRound,
             saveQuizResults: saveQuizResults,
-            setCurrentQuiz: setCurrentQuiz
+            setCurrentQuiz: setCurrentQuiz,
+            closeRound: closeRound
         };
 
         function getGameTeams(gameId) {
@@ -27,6 +28,14 @@
                     },
                     (err) => {
                         throw err;
+                    }
+                )
+        }
+
+        function closeRound(roundNumber, gameId) {
+            return roundIncrement(roundNumber, gameId)
+                .then(() => {
+                        setCurrentQuiz(1, gameId);
                     }
                 )
         }
