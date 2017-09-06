@@ -1,9 +1,8 @@
 <div class="form-group row">
     <ul id="team-list">
         <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
-            <label
-                   ng-class="{'disabled':$ctrl.isDisabled(result.teamId)}">
-                <div class='switcher'>
+            <label ng-class="{'disabled':$ctrl.isDisabled(result.teamId)}">
+                <div class='switcher result-control'>
                     <label class='switcher-label switcher-on' for='{{$index+"on"}}'>on</label>
                     <input id='{{$index+"on"}}'
                            class='switcher-radio-on'
@@ -32,8 +31,6 @@
                            ng-model="result.score"
                            ng-change="$ctrl.clearResult(result)"
                            ng-disabled="$ctrl.isDisabled(result.teamId)">
-
-
                     <div class='switcher-slider'></div>
                 </div>
                 <div class="team-name">{{result.teamName}}</div>
