@@ -3,8 +3,8 @@ angular.module('configGame')
     .component('configGame', {
         templateUrl: 'admin/game-build/config-game/config-game.html',
         css: 'admin/game-build/config-game/config-game.css',
-        controller: ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout','$locale','convertServiceFactory',
-            function ($location, OpenGameService, $routeParams, $timeout,$locale,convertService) {
+        controller: ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout', '$locale', 'convertServiceFactory',
+            function ($location, OpenGameService, $routeParams, $timeout, $locale, convertService) {
                 let vm = this;
                 let gameId = $routeParams.gameId;
                 vm.isCalendarVisible = false;
@@ -95,34 +95,22 @@ angular.module('configGame')
                     });
                 }
 
-                vm.ChangeCalendarStatus = function () {
-                    if (vm.isCalendarVisible) {
-                        saveDate();
-                        vm.isCalendarVisible = false;
-
-                    } else if (vm.isTimeVisible) {
-                        saveTime();
-                        vm.isTimeVisible = false;
-                        vm.isCalendarVisible = true;
-                    }
-                    else {
-                        vm.isCalendarVisible = true;
-                    }
+                vm.openCalendarStatus = function () {
+                    vm.isCalendarVisible = true;
                 };
 
-                this.ChangeTimeStatus = function () {
-                    if (vm.isTimeVisible) {
-                        saveTime();
-                        vm.isTimeVisible = false;
-                    }
-                    else if (vm.isCalendarVisible) {
-                        saveDate();
-                        vm.isTimeVisible = true;
-                        vm.isCalendarVisible = false;
-                    }
-                    else {
-                        vm.isTimeVisible = true;
-                    }
+                vm.openTimeStatus = function () {
+                    vm.isTimeVisible = true;
+                };
+
+                vm.closeCalendarPiker = function () {
+                    saveDate();
+                    vm.isCalendarVisible = false;
+                };
+
+                vm.closeTimePiker = function () {
+                    saveTime();
+                    vm.isTimeVisible = false;
                 };
             }]
     });
