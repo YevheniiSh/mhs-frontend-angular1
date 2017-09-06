@@ -10,16 +10,28 @@ export function upgradeDirective(moduleName, invokedName) {
   function decorator($delegate) {
     let directive = $delegate[0];
 
+    if (directive.hasOwnProperty('compile')) {
+      delete $delegate[0].compile;
+    }
+
     if (directive.hasOwnProperty('replace')) {
       delete directive.replace;
     }
 
     if (directive.hasOwnProperty('templateUrl')) {
-      let key = directive.templateUrl.substring(directive.templateUrl.indexOf('app/'));
+      let directiveTemplateUrl = directive.templateUrl.substring(directive.templateUrl.indexOf('app/'));
 
       delete directive.templateUrl;
-//todo add css key parser and add css in template
-      directive.template = readTextFile(key);
+
+      let directiveTemplate = readTextFile(directiveTemplateUrl);
+
+      if (directive.hasOwnProperty('css')) {
+        let cssUrl = directive.css.substring(directive.css.indexOf('app/'));
+        let directiveCss = readTextFile(cssUrl);
+        directive.template = '<style>' + directiveCss + '</style>' + directiveTemplate;
+      } else {
+        directive.template = directiveTemplate;
+      }
     }
 
     return $delegate;
