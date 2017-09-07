@@ -21,18 +21,23 @@
         <tr ng-repeat="round in $ctrl.roundsResult">
             <td class="round-name">{{round.roundNum}}. {{round.roundName}}</td>
             <td class="quiz-row">
+
                 <form name="resultForm">
                     <div ng-switch="round.roundType.type">
-                        <default-result ng-switch-when="DEFAULT_ROUND" results="round.quizzes"
+                        <default-result ng-switch-when="DEFAULT_ROUND"
+                                        round="round"
                                         result-disabled="$ctrl.gameStatus"
                                         save-result="$ctrl.setTeamResult(round,quiz)"></default-result>
-                        <captain-result ng-switch-when="CAPTAIN_ROUND" results="round.quizzes"
+                        <captain-result ng-switch-when="CAPTAIN_ROUND"
+                                        round="round"
                                         result-disabled="$ctrl.gameStatus"
                                         save-result="$ctrl.setTeamResult(round,quiz)"></captain-result>
-                        <auction-result ng-switch-when="AUCTION_ROUND" results="round.quizzes"
+                        <auction-result ng-switch-when="AUCTION_ROUND"
+                                        round="round"
                                         result-disabled="$ctrl.gameStatus"
                                         save-result="$ctrl.setTeamResult(round,quiz)"></auction-result>
-                        <hints-result ng-switch-when="HINTS_ROUND" results="round.quizzes"
+                        <hints-result ng-switch-when="HINTS_ROUND"
+                                      round="round"
                                       result-disabled="$ctrl.gameStatus"
                                       save-result="$ctrl.setTeamResult(round,quiz)"></hints-result>
                     </div>
