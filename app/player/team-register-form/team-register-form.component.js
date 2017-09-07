@@ -6,9 +6,9 @@
             controller: TeamRegister
         });
 
-    TeamRegister.$inject = ['teamRequestService', 'TeamServiceFactory', '$routeParams', '$window', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope', '$location'];
+    TeamRegister.$inject = ['teamRequestService', 'TeamServiceFactory', '$routeParams', '$window', 'gameRequestServiceFactory', 'OpenGameServiceFactory', '$scope', '$location', '$timeout'];
 
-    function TeamRegister(teamRequestService, TeamService, $routeParams, $window, gameRequestServiceFactory, OpenGameService, $scope, $location) {
+    function TeamRegister(teamRequestService, TeamService, $routeParams, $window, gameRequestServiceFactory, OpenGameService, $scope, $location, $timeout) {
         let vm = this;
         vm.$onInit = onInit;
         let gameId = $routeParams.gameId;
@@ -211,7 +211,7 @@
             gameRequestServiceFactory.save(gameId, team)
                 .then(() => {
                     vm.submitted = true;
-                    setTimeout(() => {
+                    vm.timer = $timeout(() => {
                         $window.history.back();
                     }, 2000);
                 });
@@ -253,5 +253,9 @@
         vm.hideAlert = function () {
             vm.isCorrectLastDigits = true;
         };
+
+        $scope.$on('$destroy', function(){
+            $timeout.cancel(vm.timer);
+        });
     }
 })();

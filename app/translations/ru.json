@@ -136,7 +136,14 @@
   "GAMES_LABEL": "Игры",
   "START_INPUT_LABEL": "Балы",
   "STEP_INPUT_LABEL": "Шаг",
-  "CURRENT_SEASON_TOOLTIP": "Текущий сезон",
   "NO_CAPTAINS_ALERT": "Все капитаны выбыли",
-  "ROUND_FINISH_BUTTON": "Закончить раунд"
+  "ROUND_FINISH_BUTTON": "Закончить раунд",
+  "TEAMS_MODAL_HEADER": "Заявки команд на игру",
+  "TEAMS_MODAL_PLACEHOLDER": "Пока нет заявок на игру",
+  "TEAMS_MODAL_SHOW_BUTTON": "Заявки",
+  "CURRENT_SEASON_TOOLTIP": "Текущий сезон",
+  "EMPTY_FIELD_MASSAGE": "Не может быть пустым",
+  "NO_OPEN_GAME_PLACEHOLDER" :"Открытых игр ещё нет!",
+  "NO_CURRENT_GAME_PLACEHOLDER" :"Текущих игр ещё нет!",
+  "NO_FINISHED_GAME_PLACEHOLDER" :"Завершенных игр ещё нет!"
 }

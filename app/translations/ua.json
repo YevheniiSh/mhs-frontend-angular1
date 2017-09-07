@@ -138,5 +138,12 @@
   "STEP_INPUT_LABEL": "Крок",
   "CURRENT_SEASON_TOOLTIP": "Поточний сезон",
   "NO_CAPTAINS_ALERT": "Усі капітани вибули",
-  "ROUND_FINISH_BUTTON": "Завершити раунд"
+  "ROUND_FINISH_BUTTON": "Завершити раунд",
+  "TEAMS_MODAL_HEADER": "Заявки команд на гру",
+  "TEAMS_MODAL_PLACEHOLDER": "Поки немає жодної заявки на гру",
+  "TEAMS_MODAL_SHOW_BUTTON": "Заявки",
+  "EMPTY_FIELD_MASSAGE": "Не може бути порожнім",
+  "NO_OPEN_GAME_PLACEHOLDER" :"Відкритих ігр ще немає!",
+  "NO_CURRENT_GAME_PLACEHOLDER" :"Поточних ігр ще немає!",
+  "NO_FINISHED_GAME_PLACEHOLDER" :"Завершених ігр ще немає!"
 }

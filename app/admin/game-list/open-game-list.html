@@ -9,6 +9,9 @@
     </tr>
     </thead>
     <tbody>
+    <tr ng-if="$ctrl.openGames.length == 0">
+        <td class="no-games-label" colspan="4">{{'NO_OPEN_GAME_PLACEHOLDER' | translate}}</td>
+    </tr>
     <tr class="game-row td games" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
         <td>{{openGame.date | date:'d MMM y'}}</td>
         <td>{{openGame.time}}</td>
@@ -19,6 +22,10 @@
             <button class="btn btn-danger game-button"
                     ng-click="$ctrl.deleteGameRequest(openGame)"
                     ng-if="$ctrl.auth">{{'DELETE_BUTTON' | translate}}
+            </button>
+            <button class="btn btn-info game-button"
+                    ng-click="$ctrl.open(openGame.$id)"
+                    ng-if="!$ctrl.auth">{{'TEAMS_MODAL_SHOW_BUTTON' | translate}}
             </button>
             <a class="btn btn-info game-button"
                ng-href="/#!/games/{{openGame.$id}}/registration">
@@ -52,3 +59,18 @@
     </tr>
     </tbody>
 </table>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">{{'TEAMS_MODAL_HEADER' | translate}}: {{$ctrl.date | date:'d MMM
+            y'}}</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <span ng-if="$ctrl.items.length === 0">{{'TEAMS_MODAL_PLACEHOLDER' | translate}}</span>
+        <ul>
+            <li ng-repeat="item in $ctrl.items | orderBy:'teamName'">
+                {{ item.teamName }}
+            </li>
+        </ul>
+    </div>
+</script>

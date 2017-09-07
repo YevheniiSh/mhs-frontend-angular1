@@ -103,7 +103,14 @@ angular.module('createGame')
                                 vm.isSeasonGame = true;
                                 setCurrentSeason();
                             })
+                    } else {
+                        vm.showSeasonNameValidation = true;
                     }
+                };
+
+                vm.closeSeasonEditor = function () {
+                    vm.showSeasonNameValidation = false;
+                    vm.seasonEditor = false;
                 }
             }]
 

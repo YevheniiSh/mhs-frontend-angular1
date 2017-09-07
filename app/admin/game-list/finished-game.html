@@ -13,6 +13,9 @@
     </tr>
     </thead>
     <tbody>
+    <tr  ng-if="$ctrl.games.length == 0">
+        <td class="no-games-label" colspan="4">{{'NO_FINISHED_GAME_PLACEHOLDER' | translate}}</td>
+    </tr>
     <tr class="game-row" ng-repeat="game in $ctrl.games | filter:$ctrl.selectedSeason.id |orderBy:'-date'" ng-click="$ctrl.openGameInfo(game.$id)">
         <td>{{game.date | date:'d MMM y'}}</td>
         <td>

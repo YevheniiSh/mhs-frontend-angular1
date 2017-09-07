@@ -4,6 +4,7 @@
         .component('currentGameList',
             {
                 templateUrl: 'admin/game-list/current-game.html',
+                css: 'admin/game-list/current-game.css',
                 controller: CurrentGameListController
             });
     CurrentGameListController.$inject = ['GameServiceFactory', '$location', 'userAuthService'];

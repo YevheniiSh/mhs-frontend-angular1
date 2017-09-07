@@ -25,7 +25,7 @@
 }
 
 
-#season-name{
+#season-name-switch{
     padding-top: 2.5%;
     padding-left: 10%;
     display: inline-block;
@@ -109,3 +109,14 @@ div.uib-daypicker.ng-scope:focus{
 .clickable{
     cursor: pointer ;
 }
+
+input#season-name-input.invalid-season-name{
+    border-color: #ff9b9b;
+    box-shadow: 0 0 20px 0 #ff9b9b;
+}
+
+.empty-season-name{
+    position: absolute;
+    color: #f00;
+}
+
