@@ -18,7 +18,8 @@ function hintsResultController(){
     vm.$onInit = onInit;
 
     function onInit() {
-
+        console.log(vm.results);
+        vm.score = 1;
     }
 
 

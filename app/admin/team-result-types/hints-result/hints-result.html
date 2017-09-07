@@ -1,22 +1,20 @@
 <div>
+    <form name="hintForm">
     <span class="inp"
-          ng-repeat="quiz in results.quizzes  track by quiz.quizNum"
+          ng-repeat="quiz in $ctrl.results  track by quiz.quizNum"
           ng-class="{'btn-success' : +(quiz.score) > 0,
                           'btn-silver' : +(quiz.score) === 0,
                           'btn-danger' : +(quiz.score) < 0}">
                         <span uib-tooltip="№ {{quiz.quizNum}}">
                             <input
-                                    name="{{round.roundNum}}_{{quiz.quizNum}}"
+                                    name="{{quiz.quizNum}}"
                                     class="quiz-input"
-                                    ng-class="{'edited' : quiz.edit}"
-                                    type="number"
-                                    ng-model="quiz.score"
-                                    ng-disabled="$ctrl.gameStatus"
-                                    ng-change="$ctrl.setTeamResult(round,quiz)"
-                                    ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
-                                    min="-20"
-                                    max="20"
-                                    ng-focus="$ctrl.selectAllContent($event)">
+                                    type="radio"
+                                    ng-value="quiz.quizNum"
+                                    ng-model="$ctrl.score"
+
+                            >
                         </span>
                     </span>
+    </form>
 </div>
