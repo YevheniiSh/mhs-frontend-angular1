@@ -95,23 +95,43 @@ angular.module('configGame')
                     });
                 }
 
-                vm.openCalendarStatus = function () {
-                    vm.isCalendarVisible = true;
+                vm.openCalendarPiker = function () {
+                    if (!isCalendarPikerOpen())
+                        vm.isCalendarVisible = true;
                 };
 
-                vm.openTimeStatus = function () {
-                    vm.isTimeVisible = true;
+                vm.openTimePiker = function () {
+                    if (!isTimePikerOpen())
+                        vm.isTimeVisible = true;
                 };
 
                 vm.closeCalendarPiker = function () {
-                    saveDate();
-                    vm.isCalendarVisible = false;
+                    isCalendarPikerOpen()
                 };
 
                 vm.closeTimePiker = function () {
-                    saveTime();
-                    vm.isTimeVisible = false;
+                    isTimePikerOpen()
                 };
+
+
+                function isTimePikerOpen() {
+                    if (vm.isTimeVisible) {
+                        saveTime();
+                        vm.isTimeVisible = false;
+                        return true
+                    }
+                    return false
+
+                }
+
+                function isCalendarPikerOpen() {
+                    if (vm.isCalendarVisible) {
+                        saveDate();
+                        vm.isCalendarVisible = false;
+                        return true
+                    }
+                    return false
+                }
             }]
     });
 

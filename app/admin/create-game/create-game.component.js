@@ -49,13 +49,13 @@ angular.module('createGame')
                         .addLocation(vm.location);
                     if (vm.isSeasonGame) {
                         gameBuider.addSeason({id: vm.season.$id, name: vm.season.name});
-                    }else{
+                    } else {
                         delete gameBuider.game.season;
                     }
                     let game = gameBuider.buildGame();
                     OpenGameServiceFactory.createNewGame(game)
                         .then((gameId) => {
-                            if(vm.isSeasonGame){
+                            if (vm.isSeasonGame) {
                                 seasonService.addGameToSeason(vm.season.$id, gameId)
                             }
                             vm.isCalendarVisible = false;
@@ -69,31 +69,6 @@ angular.module('createGame')
                     return convertService.convertTimeForView(vm.gameTime)
                 };
 
-                vm.ChangeCalendarStatus = function () {
-                    if (vm.isCalendarVisible) {
-                        vm.isCalendarVisible = false;
-                    } else if (vm.isTimeVisible) {
-                        vm.isTimeVisible = false;
-                        vm.isCalendarVisible = true;
-                    }
-                    else {
-                        vm.isCalendarVisible = true;
-                    }
-                };
-
-                vm.ChangeTimeStatus = function () {
-                    if (vm.isTimeVisible) {
-                        vm.isTimeVisible = false;
-                    }
-                    else if (vm.isCalendarVisible) {
-                        vm.isTimeVisible = true;
-                        vm.isCalendarVisible = false;
-                    }
-                    else {
-                        vm.isTimeVisible = true;
-                    }
-                };
-
                 vm.saveSeason = function () {
                     if (vm.newSeasonName !== '') {
                         seasonService.save({name: vm.newSeasonName})
@@ -104,8 +79,42 @@ angular.module('createGame')
                                 setCurrentSeason();
                             })
                     }
+                };
+
+                vm.openCalendarPiker = function () {
+                    if (!isCalendarPikerOpen())
+                        vm.isCalendarVisible = true;
+                };
+
+                vm.openTimePiker = function () {
+                    if (!isTimePikerOpen())
+                        vm.isTimeVisible = true;
+                };
+
+                vm.closeCalendarPiker = function () {
+                    isCalendarPikerOpen()
+                };
+
+                vm.closeTimePiker = function () {
+                    isTimePikerOpen()
+                };
+
+
+                function isTimePikerOpen() {
+                    if (vm.isTimeVisible) {
+                        vm.isTimeVisible = false;
+                        return true
+                    }
+                    return false
+                }
+
+                function isCalendarPikerOpen() {
+                    if (vm.isCalendarVisible) {
+                        vm.isCalendarVisible = false;
+                        return true
+                    }
+                    return false
                 }
             }]
-
     })
 ;
