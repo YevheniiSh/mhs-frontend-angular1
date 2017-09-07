@@ -10,7 +10,7 @@
                            name='{{$index}}'
                            ng-model="result.score"
                            ng-value="$ctrl.weight"
-                           ng-change="$ctrl.saveResult({result:result})"
+                           ng-change="result.answer = '1';$ctrl.saveResult({result:result})"
                            ng-disabled="$ctrl.isDisabled(result.teamId)">
 
                     <label  class='switcher-label switcher-off' for='{{$index+"off"}}'>off</label>
@@ -20,7 +20,7 @@
                            name='{{$index}}'
                            ng-model="result.score"
                            ng-value="0"
-                           ng-change="$ctrl.saveResult({result:result})"
+                           ng-change="result.answer = '0';$ctrl.saveResult({result:result})"
                            ng-disabled="$ctrl.isDisabled(result.teamId)">
 
                     <label class='switcher-label switcher-neutral' for='{{$index+"def"}}'>neutral</label>
