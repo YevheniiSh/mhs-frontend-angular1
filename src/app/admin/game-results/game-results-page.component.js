@@ -1,7 +1,7 @@
 angular.module('gameResultsPage')
     .component('gameResultsPage', {
-        templateUrl: 'admin/game-results/game-results-page.html',
-        css: 'admin/game-results/game-results-page.css',
+      templateUrl: 'app/admin/game-results/game-results-page.html',
+      css: 'app/admin/game-results/game-results-page.css',
         controller: [
             'ResultServiceFactory',
             'GameServiceFactory',

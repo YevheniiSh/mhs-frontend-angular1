@@ -1,24 +1,24 @@
 'use strict';
 (function () {
-    angular
-        .module('resultSetup')
-        .factory('resultSetupService', resultSetupService);
+  angular
+    .module('resultSetup')
+    .factory('resultSetupService', resultSetupService);
 
-    resultSetupService.$inject = ['GameServiceFactory', 'ResultServiceFactory', 'resultSetupBuilder'];
+  resultSetupService.$inject = ['GameServiceFactory', 'ResultServiceFactory', 'resultSetupBuilder'];
 
-    function resultSetupService(gameFactory, resultFactory, resultSetupBuilder) {
-        return {
-            getRound: getRound,
-            getGameTeams: getGameTeams,
-            saveQuizResult: saveQuizResult,
-            roundIncrement: roundIncrement,
-            getQuizResults: getQuizResults,
-            getCurrentQuiz: getCurrentQuiz,
-            getCurrentRound: getCurrentRound,
-            saveQuizResults: saveQuizResults,
-            setCurrentQuiz: setCurrentQuiz,
-            closeRound: closeRound
-        };
+  function resultSetupService(gameFactory, resultFactory, resultSetupBuilder) {
+    return {
+      getRound: getRound,
+      getGameTeams: getGameTeams,
+      saveQuizResult: saveQuizResult,
+      roundIncrement: roundIncrement,
+      getQuizResults: getQuizResults,
+      getCurrentQuiz: getCurrentQuiz,
+      getCurrentRound: getCurrentRound,
+      saveQuizResults: saveQuizResults,
+      setCurrentQuiz: setCurrentQuiz,
+      closeRound: closeRound
+    };
 
         function getGameTeams(gameId) {
             return gameFactory.getGameTeams(gameId)
@@ -32,21 +32,21 @@
                 )
         }
 
-        function closeRound(roundNumber, gameId) {
-            return roundIncrement(roundNumber, gameId)
-                .then(() => {
-                        setCurrentQuiz(1, gameId);
-                    }
-                )
-        }
+    function closeRound(roundNumber, gameId) {
+      return roundIncrement(roundNumber, gameId)
+        .then(() => {
+            setCurrentQuiz(1, gameId);
+          }
+        )
+    }
 
         function saveQuizResult(result, gameId) {
-            let res = resultSetupBuilder
-                .addRound(result.round)
-                .addQuiz(result.quiz)
-                .addTeamId(result.teamId)
-                .addScore(result.score)
-                .getResult();
+          let res = resultSetupBuilder
+            .addRound(result.round)
+            .addQuiz(result.quiz)
+            .addTeamId(result.teamId)
+            .addScore(result.score)
+            .getResult();
 
             resultFactory.saveResult('current', res, gameId);
         }
@@ -84,5 +84,5 @@
         function getCurrentRound(gameId) {
             return gameFactory.getCurrentRound(gameId);
         }
-    }
+  }
 })();

@@ -1,7 +1,7 @@
 angular.module('gameResultsPage')
     .component('gameResults', {
-        templateUrl: 'admin/game-results/game-results.html',
-        css: 'admin/game-results/game-results.css',
+      templateUrl: 'app/admin/game-results/game-results.html',
+      css: 'app/admin/game-results/game-results.css',
         controller: ['GameServiceFactory','ResultServiceFactory', '$rootScope', '$routeParams', '$location', function (GameService, ResultService, $rootScope, $routeParams, $location) {
             this.isPresentationMode = $rootScope.presentationMode;
 

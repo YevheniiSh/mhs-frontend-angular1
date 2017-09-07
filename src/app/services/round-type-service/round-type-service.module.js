@@ -1,1 +1,1 @@
-angular.module('roundTypeService',[]);
+angular.module('roundTypeService', []);

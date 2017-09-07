@@ -1,24 +1,24 @@
 <div>
-    <ol dnd-list="$ctrl.rounds" class="round-input">
-        <li ng-class-odd="'odd'" ng-repeat="round in $ctrl.rounds" dnd-draggable="round"
-            dnd-moved="$ctrl.dragAndDropRound($index)">
-            <div class="row round-row" dnd-nodrag>
-                <div class="round-name col-md-4 form-group round-form">
+  <ol dnd-list="$ctrl.rounds" class="round-input">
+    <li ng-class-odd="'odd'" ng-repeat="round in $ctrl.rounds" dnd-draggable="round"
+        dnd-moved="$ctrl.dragAndDropRound($index)">
+      <div class="row round-row" dnd-nodrag>
+        <div class="round-name col-md-4 form-group round-form">
 
-                    <label class="control-label" for="roundName">{{'ROUND_NAME_LABEL' | translate}}</label>
-                    <input class="form-control round-input" ng-model="round.name"
-                           id="roundName"
+          <label class="control-label" for="roundName">{{'ROUND_NAME_LABEL' | translate}}</label>
+          <input class="form-control round-input" ng-model="round.name"
+                 id="roundName"
                            maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
                            required placeholder="{{'ROUND_NAME_PLACEHOLDER' | translate}}"></div>
-                <div class="col-md-4 round-input form-group round-form">
-                    <label class="control-label" for="roundType">{{'ROUND_TYPE' | translate}}</label>
-                    <select class="form-control" ng-model="round.roundType"
-                            id="roundType"
-                            ng-options="item.type | translate for item in $ctrl.roundTypes track by item.type">
-                    </select>
-                </div>
-                <div class="col-md-2 round-input form-group round-form">
-                    <label class="control-label" for="quizCount">{{'QUESTION_COUNT_LABEL' | translate}}</label>
+        <div class="col-md-4 round-input form-group round-form">
+          <label class="control-label" for="roundType">{{'ROUND_TYPE' | translate}}</label>
+          <select class="form-control" ng-model="round.roundType"
+                  id="roundType"
+                  ng-options="item.type | translate for item in $ctrl.roundTypes track by item.type">
+          </select>
+        </div>
+        <div class="col-md-2 round-input form-group round-form">
+          <label class="control-label" for="quizCount">{{'QUESTION_COUNT_LABEL' | translate}}</label>
                     <input class="form-control"
                            id="quizCount"
                            min="1" max="20" ng-model="round.numberOfQuestions"
@@ -26,34 +26,34 @@
                 </div>
 
 
-                <button class="btn btn-danger col-md-2 btn-drop-round " ng-click="$ctrl.deleteRound($index)">
-                    {{'DELETE_ROUND_BUTTON' | translate}}
-                </button>
-            </div>
-            <div class="row round-row" dnd-nodrag ng-if="round.roundType.type !== 'DEFAULT_ROUND'">
-                <div class="count-quest col-md-3  col-md-offset-4 round-input">
-                    <div class="input-group">
-                        <span class="input-group-addon">{{'START_INPUT_LABEL' | translate}}</span>
+        <button class="btn btn-danger col-md-2 btn-drop-round " ng-click="$ctrl.deleteRound($index)">
+          {{'DELETE_ROUND_BUTTON' | translate}}
+        </button>
+      </div>
+      <div class="row round-row" dnd-nodrag ng-if="round.roundType.type !== 'DEFAULT_ROUND'">
+        <div class="count-quest col-md-3  col-md-offset-4 round-input">
+          <div class="input-group">
+            <span class="input-group-addon">{{'START_INPUT_LABEL' | translate}}</span>
 
-                        <input class="form-control"
-                               id="startValueInput"
-                           ng-model="round.roundType.start"
-                           type="number"
-                           placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" required>
-                    </div>
-                </div>
-                <div class="count-quest col-md-3 round-input">
-                    <div class="input-group">
-                        <span class="input-group-addon">{{'STEP_INPUT_LABEL' | translate}}</span>
-                    <input class="form-control"
-                           ng-model="round.roundType.step"
-                           type="number"
-                           placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" required>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ol>
+            <input class="form-control"
+                   id="startValueInput"
+                   ng-model="round.roundType.start"
+                   type="number"
+                   placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" required>
+          </div>
+        </div>
+        <div class="count-quest col-md-3 round-input">
+          <div class="input-group">
+            <span class="input-group-addon">{{'STEP_INPUT_LABEL' | translate}}</span>
+            <input class="form-control"
+                   ng-model="round.roundType.step"
+                   type="number"
+                   placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" required>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ol>
     <button ng-click="$ctrl.addRound($event)" class=" btn btn-info btn-block add-round">
         {{'ADD_ROUND_BUTTON' | translate}}
     </button>

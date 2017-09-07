@@ -12,15 +12,15 @@ roundBuilder.$inject = ['roundTypeService'];
 
 function roundBuilder(roundTypeService) {
     let vm = this;
-    vm.$onInit = onInit;
+  vm.$onInit = onInit;
 
-    function onInit() {
-        getRoundTypes()
-            .then(setDefaultType);
-    }
+  function onInit() {
+    getRoundTypes()
+      .then(setDefaultType);
+  }
 
     vm.dragAndDropRound = function($index){
-        console.log(vm.rounds);
+      console.log(vm.rounds);
         vm.rounds.splice($index, 1);
     };
 
@@ -34,26 +34,26 @@ function roundBuilder(roundTypeService) {
     };
 
     function createRound() {
-        return {numberOfQuestions: 10, name: "", roundType: vm.defaultType}
+      return {numberOfQuestions: 10, name: "", roundType: vm.defaultType}
     }
 
-    function getRoundTypes() {
-        return roundTypeService.getRoundTypes()
-            .then((types) => {
-                vm.roundTypes = types;
-                vm.roundTypes.forEach((item) => {
-                    item.type = item.$id;
-                });
-                return types;
-            });
-    }
-
-    function setDefaultType(type) {
-        type.forEach((item) => {
-            if (item.$id === "DEFAULT_ROUND") {
-                vm.defaultType = item;
-            }
+  function getRoundTypes() {
+    return roundTypeService.getRoundTypes()
+      .then((types) => {
+        vm.roundTypes = types;
+        vm.roundTypes.forEach((item) => {
+          item.type = item.$id;
         });
-        return type;
+        return types;
+      });
+  }
+
+  function setDefaultType(type) {
+    type.forEach((item) => {
+      if (item.$id === "DEFAULT_ROUND") {
+        vm.defaultType = item;
+      }
+    });
+    return type;
     }
 }

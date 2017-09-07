@@ -2,8 +2,8 @@
 (function () {
     angular.module('resultSetup')
         .component('resultSetup', {
-            templateUrl: 'admin/result-setup/result-setup.html',
-            css: 'admin/result-setup/result-setup.css',
+          templateUrl: 'app/admin/result-setup/result-setup.html',
+          css: 'app/admin/result-setup/result-setup.css',
             controller: ResultSetupController
         });
 
@@ -11,10 +11,10 @@
         'resultSetupService',
         '$routeParams',
         '$location',
-        'resultSetupBuilder'
+      'resultSetupBuilder'
     ];
 
-    function ResultSetupController(resultSetupService, $routeParams, $location, resultSetupBuilder) {
+  function ResultSetupController(resultSetupService, $routeParams, $location, resultSetupBuilder) {
         let vm = this;
 
         vm.isManualInput = false;
@@ -27,7 +27,7 @@
             initCurrentQuiz();
             getTeams()
                 .then(() => {
-                    buildResults();
+                  buildResults();
                     assignResults()
                         .then(initInputType);
                 })
@@ -75,12 +75,12 @@
             angular.forEach(vm.teams, function (team) {
                 let resultKey = [vm.round.$id, vm.selectedQuiz, team.teamId].join('_');
 
-                let result = resultSetupBuilder
-                    .addQuiz(vm.selectedQuiz)
-                    .addRound(vm.round.$id)
-                    .addTeamId(team.teamId)
-                    .addScore()
-                    .getResult();
+              let result = resultSetupBuilder
+                .addQuiz(vm.selectedQuiz)
+                .addRound(vm.round.$id)
+                .addTeamId(team.teamId)
+                .addScore()
+                .getResult();
 
                 vm.results[resultKey] = result;
                 vm.results[resultKey].teamName = team.name;
@@ -114,15 +114,15 @@
                 }
                 vm.setQuiz(+vm.selectedQuiz + 1);
             } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
-                resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
-                    .then(() => {
-                        $location.path(`/games/${$routeParams.gameId}/rounds`);
-                    });
+              resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
+                .then(() => {
+                  $location.path(`/games/${$routeParams.gameId}/rounds`);
+                });
             }
         };
 
         vm.range = function (n) {
-            return new Array(n).fill().map((e, i) => i + 1);
+          return new Array(n).fill().map((e, i) => i + 1);
         };
     }
 })();

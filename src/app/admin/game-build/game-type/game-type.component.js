@@ -28,9 +28,9 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
     }
 
     vm.saveRounds = function () {
-        console.log(vm.configRounds);
+      console.log(vm.configRounds);
         openGameService.addRounds(vm.gameId, vm.configRounds)
-        // .then(rounds => vm.configRounds = convertRoundsObjectToArray(rounds));
+      // .then(rounds => vm.configRounds = convertRoundsObjectToArray(rounds));
         vm.submitted = true;
         vm.templateFormShow = true;
         $timeout(() => {

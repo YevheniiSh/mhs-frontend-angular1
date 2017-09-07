@@ -256,7 +256,7 @@ angular
                                         roundNum: i + 1,
                                         roundName: rounds[i].name,
                                         quizzes: [],
-                                        roundType: rounds[i].roundType,
+                                      roundType: rounds[i].roundType,
                                         total: 0
                                     };
                                     for (let j = 1; j <= rounds[i].numberOfQuestions; j++) {
@@ -287,12 +287,12 @@ angular
                 })
             };
 
-            resultFactory.deleteResult = function (gameId, resId){
-                let ref = gameService.getGameRef(gameId);
-                return ref.then((res) => {
-                    res.child(`${gameId}/results/${resId}`).remove();
-                })
-            }
+          resultFactory.deleteResult = function (gameId, resId) {
+            let ref = gameService.getGameRef(gameId);
+            return ref.then((res) => {
+              res.child(`${gameId}/results/${resId}`).remove();
+            })
+          }
 
             return resultFactory;
         }]
