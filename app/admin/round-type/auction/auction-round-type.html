@@ -3,7 +3,6 @@
         <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
             <label ng-class="{'disabled':$ctrl.isDisabled(result.teamId)}">
                 <div class='result-control'>
-
                     <label>
                             <input class="result-rate form-control" ng-model="result.rate" type="number" min="{{$ctrl.round.roundType.start}}"
                                step="{{$ctrl.round.roundType.step}}" ng-change="$ctrl.onSave(result)">
@@ -18,13 +17,9 @@
                                ng-false-value="-1">
                         <span class="slider round"></span>
                     </label>
-
-
                 </div>
                 <div class="team-name">{{result.teamName}}</div>
             </label>
         </li>
     </ul>
 </div>
-
-
