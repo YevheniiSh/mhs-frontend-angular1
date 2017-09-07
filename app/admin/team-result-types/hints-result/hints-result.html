@@ -10,9 +10,9 @@
                                     name="{{quiz.quizNum}}"
                                     class="quiz-input"
                                     type="radio"
-                                    ng-value="$ctrl.start - ($index * $ctrl.step)"
-                                    ng-model="$ctrl.score"
-                                    ng-change="$ctrl.onChange(quiz)"
+                                    ng-value="quiz.quizNum"
+                                    ng-model="$ctrl.quizNum"
+                                    ng-change="$ctrl.onChange()"
                             >
                         </span>
 
@@ -22,6 +22,7 @@
                                 <input id="season"
                                        type="checkbox"
                                        ng-model="$ctrl.status"
+                                       ng-change="$ctrl.onChange()"
                                        ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
                                        ng-true-value="1"
                                        ng-false-value="0">

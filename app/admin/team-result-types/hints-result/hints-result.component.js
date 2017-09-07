@@ -23,21 +23,21 @@ function hintsResultController(resultService, $routeParams) {
         console.log(vm.round);
         vm.start = vm.round.roundType.start;
         vm.step = vm.round.roundType.step;
-        vm.round.quizzes.forEach((item) => {
+        vm.round.quizzes.forEach((item, index) => {
             if (item.score !== 0) {
-                vm.score = item.score;
+                vm.quizNum = index + 1;
                 vm.status = 1;
             }
             else if (item.real === true) {
                 vm.status = 0;
-                vm.score = vm.start - ((item.quizNum - 1) * vm.step);
+                vm.quizNum = index + 1;
             }
         })
     }
 
-    vm.onChange = function (quiz) {
-        let scoreToSet = vm.score * vm.status;
-        let quizSave = {quizNum: quiz.quizNum, score: scoreToSet};
+    vm.onChange = function () {
+        let scoreToSet = (vm.start - ((vm.quizNum - 1) * vm.step)) * vm.status;
+        let quizSave = {quizNum: vm.quizNum, score: scoreToSet};
         vm.round.quizzes.forEach((item) => {
             if (item.real) {
                 vm.quizToDelete = item.quizNum;
@@ -49,7 +49,7 @@ function hintsResultController(resultService, $routeParams) {
         resultService.deleteResult(vm.gameId, resultKey)
             .then(() => {
                 vm.saveResult({round: vm.round, quiz: quizSave});
-                quiz.real = true;
+                vm.round.quizzes[vm.quizNum - 1].real = true;
 
             });
 
