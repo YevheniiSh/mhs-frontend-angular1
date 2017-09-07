@@ -265,6 +265,8 @@ angular
                                 }
                                 teamResults.forEach(quizResult => {
                                     roundResult[quizResult.round].quizzes[quizResult.quiz - 1].score = quizResult.score;
+                                    if(quizResult.hasOwnProperty("weightOfResponse"))
+                                        roundResult[quizResult.round].quizzes[quizResult.quiz - 1].weightOfResponse = quizResult.weightOfResponse;
                                 });
                                 for (let round in roundResult) {
                                     roundResult[round].total = roundResult[round].quizzes.reduce((sum, current) => {
