@@ -1,0 +1,9 @@
+<form name="resultForm">
+    <div id="captain-result">
+        <span ng-repeat="result in $ctrl.results  track by result.quizNum">
+            <label>
+                <input type="radio" name="captain-result">{{result.score}}
+            </label>
+        </span>
+    </div>
+</form>

@@ -1,0 +1,10 @@
+#captain-result{
+    background-color: #66afe9;
+    border-radius: 100px;
+}
+#captain-result input[type=radio]{
+    /*display: none;*/
+}
+.result-label{
+
+}
