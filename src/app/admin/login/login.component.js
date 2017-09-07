@@ -1,7 +1,7 @@
-angular
-  .module('login')
+angular.module('login')
     .component('login', {
-      templateUrl: "app/admin/login/login.html",
+        templateUrl: "admin/login/login.html",
+        css: 'admin/login/login.css',
         controller: [
             'userAuthService',
             '$location',

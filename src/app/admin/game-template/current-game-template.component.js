@@ -1,6 +1,7 @@
 angular.module('gameTemplate')
     .component('currentGameTemplate', {
-      templateUrl: 'app/admin/game-template/current-game-template.html',
+        templateUrl: 'admin/game-template/current-game-template.html',
+        css: 'admin/game-template/current-game-template.css',
         controller: currentGameTemplate,
     });
 

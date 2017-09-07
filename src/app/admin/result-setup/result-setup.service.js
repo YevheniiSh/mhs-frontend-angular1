@@ -1,8 +1,25 @@
 'use strict';
-angular.module('resultSetup').factory('resultSetupService', [
-    'GameServiceFactory',
-    'ResultServiceFactory',
-    function (gameFactory, resultFactory) {
+(function () {
+    angular
+        .module('resultSetup')
+        .factory('resultSetupService', resultSetupService);
+
+    resultSetupService.$inject = ['GameServiceFactory', 'ResultServiceFactory', 'resultSetupBuilder'];
+
+    function resultSetupService(gameFactory, resultFactory, resultSetupBuilder) {
+        return {
+            getRound: getRound,
+            getGameTeams: getGameTeams,
+            saveQuizResult: saveQuizResult,
+            roundIncrement: roundIncrement,
+            getQuizResults: getQuizResults,
+            getCurrentQuiz: getCurrentQuiz,
+            getCurrentRound: getCurrentRound,
+            saveQuizResults: saveQuizResults,
+            setCurrentQuiz: setCurrentQuiz,
+            closeRound: closeRound
+        };
+
         function getGameTeams(gameId) {
             return gameFactory.getGameTeams(gameId)
                 .then(
@@ -15,21 +32,26 @@ angular.module('resultSetup').factory('resultSetupService', [
                 )
         }
 
+        function closeRound(roundNumber, gameId) {
+            return roundIncrement(roundNumber, gameId)
+                .then(() => {
+                        setCurrentQuiz(1, gameId);
+                    }
+                )
+        }
+
         function saveQuizResult(result, gameId) {
-            let res = buildResult(result.round, result.quiz, result.teamId, result.score);
+            let res = resultSetupBuilder
+                .addRound(result.round)
+                .addQuiz(result.quiz)
+                .addTeamId(result.teamId)
+                .addScore(result.score)
+                .getResult();
+
             resultFactory.saveResult('current', res, gameId);
         }
 
         function saveQuizResults(results, gameId) {
-            // let promices = [];
-            // angular.forEach(results, function (result) {
-            //     if (result.score == undefined) {
-            //         result.score = 0;
-            //     }
-            //     promices.push(saveQuizResult(result, gameId));
-            // });
-            // return promices;
-
             results.forEach((result) => {
                 if (result.score === undefined) {
                     result.score = 0;
@@ -62,27 +84,5 @@ angular.module('resultSetup').factory('resultSetupService', [
         function getCurrentRound(gameId) {
             return gameFactory.getCurrentRound(gameId);
         }
-
-        function buildResult(round, quiz, teamId, score) {
-            return {
-                quiz: quiz,
-                round: round,
-                teamId: teamId,
-                score: score
-            }
-        }
-
-
-        return {
-            getRound: getRound,
-            getGameTeams: getGameTeams,
-            saveQuizResult: saveQuizResult,
-            roundIncrement: roundIncrement,
-            buildResult: buildResult,
-            getQuizResults: getQuizResults,
-            getCurrentQuiz: getCurrentQuiz,
-            getCurrentRound: getCurrentRound,
-            saveQuizResults: saveQuizResults,
-            setCurrentQuiz: setCurrentQuiz
-        };
-    }]);
+    }
+})();

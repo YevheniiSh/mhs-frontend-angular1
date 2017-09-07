@@ -2,7 +2,8 @@
 (function () {
     angular.module('resultSetup')
         .component('resultSetup', {
-          templateUrl: 'app/admin/result-setup/result-setup-page.html',
+            templateUrl: 'admin/result-setup/result-setup.html',
+            css: 'admin/result-setup/result-setup.css',
             controller: ResultSetupController
         });
 
@@ -10,11 +11,10 @@
         'resultSetupService',
         '$routeParams',
         '$location',
-        '$scope',
-        '$window'
+        'resultSetupBuilder'
     ];
 
-    function ResultSetupController(resultSetupService, $routeParams, $location, $scope, $window) {
+    function ResultSetupController(resultSetupService, $routeParams, $location, resultSetupBuilder) {
         let vm = this;
 
         vm.isManualInput = false;
@@ -27,7 +27,7 @@
             initCurrentQuiz();
             getTeams()
                 .then(() => {
-                    buildResults()
+                    buildResults();
                     assignResults()
                         .then(initInputType);
                 })
@@ -39,7 +39,6 @@
                 if (result.score != 0 && result.score != 1 && result.score != undefined) {
                     vm.isManualInput = true;
                 }
-                ;
             })
         }
 
@@ -75,7 +74,14 @@
             vm.results = {};
             angular.forEach(vm.teams, function (team) {
                 let resultKey = [vm.round.$id, vm.selectedQuiz, team.teamId].join('_');
-                let result = resultSetupService.buildResult(vm.round.$id, vm.selectedQuiz, team.teamId);
+
+                let result = resultSetupBuilder
+                    .addQuiz(vm.selectedQuiz)
+                    .addRound(vm.round.$id)
+                    .addTeamId(team.teamId)
+                    .addScore()
+                    .getResult();
+
                 vm.results[resultKey] = result;
                 vm.results[resultKey].teamName = team.name;
             });
@@ -108,19 +114,15 @@
                 }
                 vm.setQuiz(+vm.selectedQuiz + 1);
             } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
-                resultSetupService.roundIncrement(vm.round.$id, $routeParams.gameId)
+                resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
                     .then(() => {
-                        resultSetupService.setCurrentQuiz(1, $routeParams.gameId)
-                            .then(() => {
-                                $location.path(`/games/${$routeParams.gameId}/rounds`);
-                            })
-                        }
-                    )
+                        $location.path(`/games/${$routeParams.gameId}/rounds`);
+                    });
             }
         };
 
         vm.range = function (n) {
-            return new Array(n);
+            return new Array(n).fill().map((e, i) => i + 1);
         };
     }
 })();

@@ -28,9 +28,13 @@
       ".read": "auth != null",
       ".write": "auth != null"
     },
-    "seasons":{
+    "seasons": {
       ".read": "true",
       ".write": "true"
+    },
+    "roundTypes": {
+      ".read": "true",
+      ".write": "false"
     }
   }
 }

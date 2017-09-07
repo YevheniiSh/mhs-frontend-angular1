@@ -2,7 +2,8 @@
     angular
         .module('teamList')
         .component('teamList', {
-          templateUrl: 'app/admin/team-list/team-list.html',
+                templateUrl: 'admin/team-list/team-list.html',
+            css: 'admin/team-list/team-list.css',
                 controller: TeamList
             }
         );
@@ -88,7 +89,7 @@
             vm.auth = false;
         });
 
-        vm.selectTeamForEdit = function(teamId){
+        vm.selectTeamForEdit = function (teamId) {
             vm.editableTeam = teamId;
         };
 

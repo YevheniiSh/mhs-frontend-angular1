@@ -1,7 +1,8 @@
 (function () {
     angular.module('teamGamesList')
         .component('teamGamesList', {
-          templateUrl: 'app/player/team-games-list/team-games-list.html',
+            templateUrl: 'player/team-games-list/team-games-list.html',
+            css: 'player/team-games-list/team-games-list.css',
             controller: TeamGamesList
         });
 

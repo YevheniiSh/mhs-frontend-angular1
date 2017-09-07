@@ -10,6 +10,7 @@ angular.module('convertService')
                 convertTime: convertTime,
                 buildTemplateForFirebase: buildTemplateForFirebase,
                 convertTimeFromFirebase: convertTimeFromFirebase,
+                getSimpleObjectFromFirebaseObject: getSimpleObjectFromFirebaseObject,
                 convertTimeForView: convertTimeForView
             };
 
@@ -26,10 +27,21 @@ angular.module('convertService')
                 for (let i = 0; i < rounds.length; i++) {
                     convertedRounds[i+1] = {
                         numberOfQuestions: rounds[i].numberOfQuestions,
-                        name: rounds[i].name
+                        name: rounds[i].name,
+                        roundType: getSimpleObjectFromFirebaseObject(rounds[i].roundType)
                     };
                 }
                 return convertedRounds
+            }
+
+            function getSimpleObjectFromFirebaseObject(obj) {
+                let newObj = {};
+                for (let key in obj) {
+                    if (key.indexOf('$') < 0 && obj.hasOwnProperty(key)) {
+                        newObj[key] = obj[key];
+                    }
+                }
+                return newObj;
             }
 
             function buildTemplateForFirebase(template) {
