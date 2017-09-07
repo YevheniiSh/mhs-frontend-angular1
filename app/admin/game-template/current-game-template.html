@@ -1,6 +1,6 @@
 <game-template selected-template-id="$ctrl.templateId"></game-template>
 <div class="col-md-6">
-    <form ng-submit="$ctrl.saveTemplate()" novalidate>
+    <form ng-submit="$ctrl.saveTemplate()">
         <span class="template-name-title">{{'TEMPLATE_NAME_LABEL' | translate}}</span>
         <input class="form-control" ng-model="$ctrl.currentTemplateName"
                maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
