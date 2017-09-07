@@ -1,22 +1,30 @@
 <div class="form-group row">
-    <ul id="auction-team-list">
-        <li ng-repeat="result in $ctrl.results | orderBy: 'teamName' track by $index" class="team">
+    <ul id="team-list">
+        <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
+            <label ng-class="{'disabled':$ctrl.isDisabled(result.teamId)}">
+                <div class='result-control'>
 
-            <label>
-                <input class="result-rate" ng-model="result.rate" type="number" min="{{$ctrl.round.roundType.start}}"
-                       step="{{$ctrl.round.roundType.step}}" ng-change="$ctrl.onSave(result)">
+                    <label>
+                            <input class="result-rate form-control" ng-model="result.rate" type="number" min="{{$ctrl.round.roundType.start}}"
+                               step="{{$ctrl.round.roundType.step}}" ng-change="$ctrl.onSave(result)">
+                    </label>
+                    <label class="switch">
+                        <input id="season"
+                               type="checkbox"
+                               ng-model="result.status"
+                               ng-change="$ctrl.onSave(result)"
+                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
+                               ng-true-value="1"
+                               ng-false-value="-1">
+                        <span class="slider round"></span>
+                    </label>
+
+
+                </div>
+                <div class="team-name">{{result.teamName}}</div>
             </label>
-
-            <input id="{{$index}}"
-                   class="cmn-toggle cmn-toggle-round"
-                   type="checkbox"
-                   ng-model="result.status"
-                   ng-change="$ctrl.onSave(result)"
-                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
-                   ng-true-value="1" ng-false-value="-1">
-            <label class="result-toggle" for="{{$index}}"></label>
-
-            <span class="team-name">{{result.teamName}}</span>
         </li>
     </ul>
 </div>
+
+
