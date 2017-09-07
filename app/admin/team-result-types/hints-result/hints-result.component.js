@@ -20,18 +20,24 @@ function hintsResultController(resultService, $routeParams) {
     function onInit() {
         vm.teamId = $routeParams.teamId;
         vm.gameId = $routeParams.gameId;
-        console.log(vm.teamId);
+        console.log(vm.round);
         vm.start = vm.round.roundType.start;
         vm.step = vm.round.roundType.step;
         vm.round.quizzes.forEach((item) => {
             if (item.score !== 0) {
                 vm.score = item.score;
+                vm.status = 1;
+            }
+            else if (item.real === true) {
+                vm.status = 0;
+                vm.score = vm.start - ((item.quizNum - 1) * vm.step);
             }
         })
     }
 
     vm.onChange = function (quiz) {
-        let quizSave = {quizNum: quiz.quizNum, score: vm.score};
+        let scoreToSet = vm.score * vm.status;
+        let quizSave = {quizNum: quiz.quizNum, score: scoreToSet};
         vm.round.quizzes.forEach((item) => {
             if (item.real) {
                 vm.quizToDelete = item.quizNum;
