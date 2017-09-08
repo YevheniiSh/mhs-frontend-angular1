@@ -20,10 +20,11 @@
         <td>
             <button class="btn btn-info game-button"
                     ng-click="$ctrl.continueGame(game.$id)">
-                {{'CONTINUE_BUTTON' | translate}}
+                <i class="fa fa-play" aria-hidden="true"></i>
             </button>
             <button class="btn btn-info game-button"
-                    ng-click="$ctrl.reOpenGame(game.$id)">{{'REOPEN_BUTTON' | translate}}
+                    ng-click="$ctrl.reOpenGame(game.$id)">
+                <i class="fa fa-undo" aria-hidden="true"></i>
             </button>
             <span class="error text-danger" ng-if="game.invalid">{{game.error}}</span>
         </td>

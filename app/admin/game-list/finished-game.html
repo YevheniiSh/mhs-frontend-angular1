@@ -2,7 +2,7 @@
 </div>
 <div ng-if="$ctrl.games.length != 0 && $ctrl.games.length !== undefined">
 <div class="col-md-3 col-md-offset-9 row">
-    <select class="form-control" ng-model="$ctrl.selectedSeason" ng-options="season.name for season in $ctrl.seasons">
+    <select id = "select-season" class="form-control" ng-model="$ctrl.selectedSeason" ng-options="season.name for season in $ctrl.seasons">
         <option value="">{{'ALL_SEASONS_SELECT'|translate}}</option>
     </select>
 </div>
