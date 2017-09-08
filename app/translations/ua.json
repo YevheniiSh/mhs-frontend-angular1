@@ -142,8 +142,8 @@
   "TEAMS_MODAL_PLACEHOLDER": "Поки немає жодної заявки на гру",
   "TEAMS_MODAL_SHOW_BUTTON": "Заявки",
   "EMPTY_FIELD_MASSAGE": "Не може бути порожнім",
-  "NO_OPEN_GAME_PLACEHOLDER" :"Відкритих ігр ще немає!",
-  "NO_CURRENT_GAME_PLACEHOLDER" :"Поточних ігр ще немає!",
+  "NO_OPEN_GAME_PLACEHOLDER": "Відкритих ігр поки немає!",
+  "NO_CURRENT_GAME_PLACEHOLDER": "Поточних ігр поки немає!",
   "GAME_PHOTO": "Фотографії з гри",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершених ігр ще немає!"
 }

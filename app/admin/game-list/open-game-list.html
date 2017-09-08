@@ -1,5 +1,7 @@
 <create-game ng-if="$ctrl.auth"></create-game>
-<table class="table table-sm table-striped table-hover">
+<div ng-if="$ctrl.openGames.length == 0" class="no-games-label">{{'NO_OPEN_GAME_PLACEHOLDER' | translate}}</div>
+<table ng-if="$ctrl.openGames.length != 0 && $ctrl.openGames.length !== undefined"
+       class="table table-sm table-striped table-hover">
     <thead>
     <tr class="game-property">
         <th>{{'DATE_LABEL' | translate}}</th>
@@ -9,9 +11,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-if="$ctrl.openGames.length == 0">
-        <td class="no-games-label" colspan="4">{{'NO_OPEN_GAME_PLACEHOLDER' | translate}}</td>
-    </tr>
     <tr class="game-row td games" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
         <td>{{openGame.date | date:'d MMM y'}}</td>
         <td>{{openGame.time}}</td>
@@ -21,24 +20,28 @@
         <td>
             <button class="btn btn-danger game-button"
                     ng-click="$ctrl.deleteGameRequest(openGame)"
-                    ng-if="$ctrl.auth">{{'DELETE_BUTTON' | translate}}
+                    ng-if="$ctrl.auth">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
             <button class="btn btn-info game-button"
                     ng-click="$ctrl.open(openGame.$id)"
                     ng-if="!$ctrl.auth">{{'TEAMS_MODAL_SHOW_BUTTON' | translate}}
             </button>
-            <a class="btn btn-info game-button"
+
+            <button class="btn btn-info game-button"
+                    ng-if="$ctrl.auth"
+                    ng-click="$ctrl.configGame(openGame.$id)">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-success game-button"
+                    ng-click="$ctrl.startGame(openGame)"
+                    ng-if="$ctrl.auth">
+                <i class="fa fa-play" aria-hidden="true"></i>
+            </button>
+            <a class="registration"
                ng-href="/#!/games/{{openGame.$id}}/registration">
                 {{'REGISTER_BUTTON' | translate}}
             </a>
-            <button class="btn btn-info game-button"
-                    ng-if="$ctrl.auth"
-                    ng-click="$ctrl.configGame(openGame.$id)">{{'CONFIG_BUTTON' | translate}}
-            </button>
-            <button class="btn btn-info game-button"
-                    ng-click="$ctrl.startGame(openGame)"
-                    ng-if="$ctrl.auth">{{'START_BUTTON' | translate}}
-            </button>
             <span id="err-message" class="error text-danger"
                   ng-if="openGame.invalid">{{openGame.error| translate}}</span>
 
