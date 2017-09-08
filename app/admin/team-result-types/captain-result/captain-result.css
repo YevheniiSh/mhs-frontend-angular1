@@ -1,0 +1,27 @@
+#captain-result{
+    margin: 5px;
+}
+
+#captain-result input[type=radio]{
+    display: none;
+}
+
+#captain-result div{
+    float: left;
+}
+
+#captain-result div label{
+    border-radius: 0;
+    font-weight: bold;
+    width: 50px;
+}
+
+#captain-result div:first-of-type label{
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+#captain-result div:last-of-type label{
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}

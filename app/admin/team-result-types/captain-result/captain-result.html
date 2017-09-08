@@ -1,0 +1,32 @@
+<div id="captain-result">
+    <div>
+        <input
+                id="cancel"
+                type="radio"
+                name="captain-result"
+                ng-click="$ctrl.setLastResultIndex(0)"
+                ng-checked="$index == $ctrl.lastResultIndex"
+        >
+        <label
+                class="btn btn-default"
+                ng-class="{'btn-danger':$ctrl.lastResultIndex == 0}"
+                for="cancel">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </label>
+    </div>
+    <div ng-repeat="result in $ctrl.round.quizzes  track by result.quizNum">
+        <input
+                id="{{$index}}"
+                type="radio"
+                name="captain-result"
+                ng-click="$ctrl.setResult(result.quizNum)"
+                ng-checked="$index == $ctrl.lastResultIndex"
+        >
+        <label
+                class="btn btn-default"
+                ng-class="{'btn-success': result.quizNum <= $ctrl.lastResultIndex}"
+                for="{{$index}}">
+            {{result.quizNum}}
+        </label>
+    </div>
+</div>

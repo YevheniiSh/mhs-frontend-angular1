@@ -260,11 +260,12 @@ angular
                                         total: 0
                                     };
                                     for (let j = 1; j <= rounds[i].numberOfQuestions; j++) {
-                                        roundResult[i + 1].quizzes.push({quizNum: j, score: 0})
+                                        roundResult[i + 1].quizzes.push({quizNum: j, score: 0, real: false})
                                     }
                                 }
                                 teamResults.forEach(quizResult => {
                                     roundResult[quizResult.round].quizzes[quizResult.quiz - 1].score = quizResult.score;
+                                    roundResult[quizResult.round].quizzes[quizResult.quiz - 1].real = true;
                                 });
                                 for (let round in roundResult) {
                                     roundResult[round].total = roundResult[round].quizzes.reduce((sum, current) => {
