@@ -57,3 +57,37 @@ input:checked + .slider:before {
 .result-control{
     margin-right: 20px;
 }
+.result-rate{
+    float: left;
+    display: inline-block;
+    height: 32px;
+    width: 70px;
+    margin-right: 5px;
+}
+.quiz-result{
+    margin-right: 8%;
+    margin-bottom: 0;
+    width: 136px;
+    height: 41px;
+    display: inline-block;
+    position: relative;
+    padding: 8px 0;
+}
+
+
+
+.result{
+    background: 0;
+    text-align:center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.result{
+    border-radius: 30%;
+    color: #ffffff;
+    display: inline-block;
+    width: 44px;
+    height: 31px;
+    font-size: 17px;
+    border: none;
+}
