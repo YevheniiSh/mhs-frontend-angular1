@@ -5,38 +5,33 @@ angular.module('teamResults')
         controller: captainResultController,
         bindings: {
             round: '=',
-            setTeamResult: '&'
+            saveResult: '&'
         }
     });
 
-captainResultController.$inject = ['ResultServiceFactory','$routeParams'];
+captainResultController.$inject = [];
 
-function captainResultController(ResultServiceFactory,$routeParams){
+function captainResultController() {
     let vm = this;
 
     vm.$onInit = onInit;
-    
+
     function onInit() {
         vm.lastResultIndex = getLastResult();
     }
 
     function getLastResult() {
         let lastResultIndex = 0;
-        vm.round.quizzes.forEach((result,key)=>{
-            if (result.score !== 0){
-                lastResultIndex = key;
+        vm.round.quizzes.forEach((quiz) => {
+            if (quiz.score !== 0) {
+                lastResultIndex = quiz.quizNum;
             }
         });
         return lastResultIndex;
     }
 
-    function resultKey(result) {
-        return [result.round, result.quiz, result.teamId].join('_');
-    }
-
-    vm.setLastResultIndex = function(index){
+    vm.setLastResultIndex = function (index) {
         vm.lastResultIndex = index;
-        console.log(vm.lastResultIndex)
     };
 
     vm.setResult = function (index) {
@@ -45,18 +40,16 @@ function captainResultController(ResultServiceFactory,$routeParams){
     };
 
     vm.saveCaptainResults = function () {
-        vm.round.quizzes.forEach((result)=>{
-            if (vm.lastResultIndex <= result.quizNum){
-                result.score = vm.round.roundType.start + vm.round.roundType.step*result.quizNum;
-                //vm.saveResult(vm.round.roundNum,result);
+        angular.forEach(vm.round.quizzes, (quiz) => {
+            if (vm.lastResultIndex >= quiz.quizNum) {
+                quiz.score = vm.round.roundType.start + vm.round.roundType.step * (quiz.quizNum - 1);
+                vm.saveResult({round: vm.round, quiz: quiz});
             }
-            else if(vm.lastResultIndex > result.quizNum){
-                console.log(result)
-                ResultServiceFactory.deleteResult($routeParams.gameId,resultKey(result));
+            else if (vm.lastResultIndex < quiz.quizNum) {
+                quiz.score = 0;
+                vm.saveResult({round: vm.round, quiz: quiz});
             }
         })
-        console.log(result);
     }
-
 
 }
