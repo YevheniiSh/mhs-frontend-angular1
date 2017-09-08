@@ -82,7 +82,6 @@
   "MINIMUM_3_CHARACTERS_ERROR": "Минимум 3 символа",
   "MAXIMUM_40_CHARACTERS_ERROR": "Максимум 40 символов",
   "MINIMUM_10_CHARACTERS_ERROR": "Минимум 10 символов",
-  "MAXIMUM_13_CHARACTERS_ERROR": "Максимум 13 символов",
   "WRONG_FORMAT_ERROR":"Неверный формат",
   "WELL_DONE_MESSAGE":"Отлично!",
   "SEND_REQUEST_MESSAGE": "Ваша заявка отправлена!",

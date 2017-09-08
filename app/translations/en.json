@@ -82,7 +82,6 @@
   "MINIMUM_3_CHARACTERS_ERROR": "Min 3 symbols",
   "MAXIMUM_40_CHARACTERS_ERROR": "Max 40 символов",
   "MINIMUM_10_CHARACTERS_ERROR": "Min 10 symbols",
-  "MAXIMUM_13_CHARACTERS_ERROR": "Max 13 symbols",
   "WRONG_FORMAT_ERROR": "Wrong format",
   "WELL_DONE_MESSAGE": "Well done!",
   "SEND_REQUEST_MESSAGE": "Your request have been",
