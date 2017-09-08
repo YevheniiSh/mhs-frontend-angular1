@@ -27,7 +27,7 @@
 
 
                 <button class="btn btn-danger col-md-2 btn-drop-round " ng-click="$ctrl.deleteRound($index)">
-                    {{'DELETE_ROUND_BUTTON' | translate}}
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="row round-row" dnd-nodrag ng-if="round.roundType.type !== 'DEFAULT_ROUND'">
