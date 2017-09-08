@@ -73,12 +73,16 @@ angular.module('teamResults')
                     let score = parseFloat(quiz.score);
                     let quizNum = parseFloat(quiz.quizNum);
                     let roundNumber = parseFloat(roundNum);
+                    let weightOfResponse = null;
+                    if(quiz.hasOwnProperty("weightOfResponse"))
+                         weightOfResponse = quiz.weightOfResponse;
                     quiz.edit = true;
                     let result = {
                         quiz: quizNum,
                         round: roundNumber,
                         score: score,
-                        teamId: vm.teamId
+                        teamId: vm.teamId,
+                        weightOfResponse: weightOfResponse
                     };
 
                     ResultService.saveResult(vm.state, result, vm.gameId)
