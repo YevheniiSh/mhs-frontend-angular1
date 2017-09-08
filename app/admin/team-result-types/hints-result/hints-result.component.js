@@ -52,9 +52,6 @@ function hintsResultController(resultService, $routeParams) {
                 vm.round.quizzes[vm.quizNum - 1].real = true;
 
             });
-
-
-
     }
 
 
