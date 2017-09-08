@@ -5,9 +5,12 @@
                     id="{{$ctrl.round.roundNum}}_{{result.quizNum}}"
                     type="radio"
                     name="captain-result"
-                    ng-checked="result.quizNum === $ctrl.quizNum">
+                    ng-checked="result.quizNum === $ctrl.quizNum"
+                    ng-disabled="$ctrl.resultDisabled"
+            >
             <label for="{{$ctrl.round.roundNum}}_{{result.quizNum}}"
                    class="btn btn-default"
+                   ng-disabled="$ctrl.resultDisabled"
                    ng-class="{'btn-success': result.quizNum === $ctrl.quizNum && $ctrl.status===1,
                                'btn-danger': result.quizNum === $ctrl.quizNum && $ctrl.status===0}"
                    ng-click="$ctrl.onChange(result.quizNum)">

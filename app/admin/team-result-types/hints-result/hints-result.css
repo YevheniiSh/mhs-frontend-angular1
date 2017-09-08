@@ -42,6 +42,10 @@ input:focus + .slider {
     box-shadow: 0 0 1px #449d44;
 }
 
+input:disabled + .slider {
+    cursor: default;
+}
+
 input:checked + .slider:before {
     -webkit-transform: translateX(24px);
     -ms-transform: translateX(24px);
@@ -67,6 +71,11 @@ input:checked + .slider:before {
 
 #hint-result input[type=radio] {
     display: none;
+}
+
+#hint-result .btn[disabled] {
+    cursor: default;
+    opacity: 1;
 }
 
 #hint-result div {
