@@ -5,7 +5,7 @@ angular.module('teamResults')
         controller: captainResultController,
         bindings: {
             round: '=',
-            saveResult: '&'
+            setTeamResult: '&'
         }
     });
 
@@ -39,17 +39,23 @@ function captainResultController(ResultServiceFactory,$routeParams){
         console.log(vm.lastResultIndex)
     };
 
+    vm.setResult = function (index) {
+        vm.setLastResultIndex(index);
+        vm.saveCaptainResults();
+    };
+
     vm.saveCaptainResults = function () {
         vm.round.quizzes.forEach((result)=>{
             if (vm.lastResultIndex <= result.quizNum){
                 result.score = vm.round.roundType.start + vm.round.roundType.step*result.quizNum;
-                // vm.saveResult(vm.round.roundNum,result);
+                //vm.saveResult(vm.round.roundNum,result);
             }
             else if(vm.lastResultIndex > result.quizNum){
                 console.log(result)
                 ResultServiceFactory.deleteResult($routeParams.gameId,resultKey(result));
             }
         })
+        console.log(result);
     }
 
 

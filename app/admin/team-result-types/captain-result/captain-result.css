@@ -1,22 +1,27 @@
 #captain-result{
-    border-radius: 100px;
-    display: inline-block;
-    padding: 2px;
-    margin-top: 3px;
-    background-color: #ccc;
+    margin: 5px;
 }
-#captain-result label{
-    font-size: 12pt;
-    margin: 2px;
-    padding: 4px;
-    cursor: pointer;
-    width: 30px;
-    text-align: center;
-}
-#captain-result input[type=radio]:checked + label{
-    background-color: white;
-    border-radius: 50%;
-}
+
 #captain-result input[type=radio]{
     display: none;
+}
+
+#captain-result div{
+    float: left;
+}
+
+#captain-result div label{
+    border-radius: 0;
+    font-weight: bold;
+    width: 50px;
+}
+
+#captain-result div:first-of-type label{
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+#captain-result div:last-of-type label{
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
