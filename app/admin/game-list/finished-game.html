@@ -11,20 +11,17 @@
         <tr class="game-property">
             <th>{{'DATE_LABEL' | translate}}</th>
             <th>{{'WINNER_TEAM_LABEL' | translate}}</th>
-            <th>{{'NUMBER_OF_TEAMS_LABEL' | translate}}</th>
+            <th class="teams-number">{{'NUMBER_OF_TEAMS_LABEL' | translate}}</th>
             <th>{{'GAME_SEASON_LABEL' | translate}}</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-if="$ctrl.games.length == 0">
-            <td class="no-games-label" colspan="4">{{'NO_FINISHED_GAME_PLACEHOLDER' | translate}}</td>
-        </tr>
         <tr class="game-row" ng-repeat="game in $ctrl.games | filter:$ctrl.selectedSeason.id |orderBy:'-date'" ng-click="$ctrl.openGameInfo(game.$id)">
             <td>{{game.date | date:'d MMM y'}}</td>
             <td>
                 <div ng-repeat="winner in game.winner"><i id="trophy" class="fa fa-trophy"></i> {{winner.name}}</div>
             </td>
-            <td>{{game.teamsNumber}}</td>
+            <td class="teams-number">{{game.teamsNumber}}</td>
             <td ng-click="$event.stopPropagation();"><a ng-href='/#!/seasons/{{game.season.id}}'>{{game.season.name}}</a> </td>
         </tr>
         </tbody>
