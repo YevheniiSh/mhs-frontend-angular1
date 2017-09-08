@@ -10,22 +10,30 @@ angular.module('teamResults')
         }
     });
 
-AuctionResultController.$inject = [];
+AuctionResultController.$inject = ['userAuthService'];
 
-function AuctionResultController() {
+function AuctionResultController(userAuthService) {
 
     let vm = this;
+    vm.resultDisabled = true;
+
+    vm.$onInit = onInit;
+
+    function onInit() {
+        userAuthService.currentUser().then(res => {
+            vm.user = res
+        })
+    }
 
     vm.getClass = function (quiz) {
         let score = +quiz.score;
-        switch (score) {
-            case score > 0:
-                return "btn-success";
-            case score < 0:
-                return "btn-danger";
-            default:
-                return "btn-silver"
-        }
+
+        if (score > 0)
+            return "btn-success";
+        else if (score < 0)
+            return "btn-danger";
+        else
+            return "btn-silver"
     };
 
     vm.initResults = function (result) {
