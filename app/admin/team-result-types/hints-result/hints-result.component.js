@@ -5,6 +5,7 @@ angular.module('teamResults')
         controller: hintsResultController,
         bindings: {
             round: "=",
+            resultDisabled: "=",
             saveResult: "&"
         }
     });
@@ -35,23 +36,26 @@ function hintsResultController(resultService, $routeParams) {
     }
 
     vm.onChange = function (quizNum) {
-        vm.quizNum = quizNum;
-        let scoreToSet = (vm.start - ((vm.quizNum - 1) * vm.step)) * vm.status;
-        let quizSave = {quizNum: vm.quizNum, score: scoreToSet};
-        vm.round.quizzes.forEach((item) => {
-            if (item.real) {
-                vm.quizToDelete = item.quizNum;
-                item.real = false;
-                item.score = 0;
-            }
-        });
-        let resultKey = [vm.round.roundNum, vm.quizToDelete, vm.teamId].join('_');
-        resultService.deleteResult(vm.gameId, resultKey)
-            .then(() => {
-                vm.saveResult({round: vm.round, quiz: quizSave});
-                vm.round.quizzes[vm.quizNum - 1].real = true;
-
+        if (!vm.resultDisabled) {
+            vm.quizNum = quizNum;
+            let scoreToSet = (vm.start - ((vm.quizNum - 1) * vm.step)) * vm.status;
+            let quizSave = {quizNum: vm.quizNum, score: scoreToSet};
+            vm.round.quizzes.forEach((item) => {
+                if (item.real) {
+                    vm.quizToDelete = item.quizNum;
+                    item.real = false;
+                    item.score = 0;
+                }
             });
+            let resultKey = [vm.round.roundNum, vm.quizToDelete, vm.teamId].join('_');
+            resultService.deleteResult(vm.gameId, resultKey)
+                .then(() => {
+                    vm.saveResult({round: vm.round, quiz: quizSave});
+                    vm.round.quizzes[vm.quizNum - 1].real = true;
+
+                });
+        }
+
     }
 
 

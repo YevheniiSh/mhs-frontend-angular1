@@ -17,7 +17,7 @@
     right: 0;
     bottom: 0;
     margin: 0;
-    background-color: #ED8282;
+    background-color: #c9302c;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -35,11 +35,11 @@
 }
 
 input:checked + .slider {
-    background-color: #81EA89;
+    background-color: #449d44;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #81EA89;
+    box-shadow: 0 0 1px #449d44;
 }
 
 input:checked + .slider:before {
@@ -61,27 +61,35 @@ input:checked + .slider:before {
 }
 
 #hint-result {
-    border-radius: 100px;
-    display: inline-block;
-    padding: 2px;
-    margin-top: 3px;
-    background-color: #ccc;
-}
-
-#hint-result label {
-    font-size: 12pt;
-    margin: 2px;
-    padding: 4px;
-    cursor: pointer;
-    width: 30px;
-    text-align: center;
-}
-
-#hint-result input[type=radio]:checked + label {
-    background-color: #398439;
+    margin: 5px;
+    width: auto;
 }
 
 #hint-result input[type=radio] {
     display: none;
+}
+
+#hint-result div {
+    float: left;
+}
+
+#hint-result div label {
+    border-radius: 0;
+    font-weight: bold;
+    width: 50px;
+}
+
+#hint-result div:first-of-type label {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+#hint-result div:last-of-type label {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.switchSpan {
+    margin: 10px;
 }
 
