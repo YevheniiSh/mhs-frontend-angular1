@@ -142,8 +142,8 @@
   "TEAMS_MODAL_SHOW_BUTTON": "Заявки",
   "CURRENT_SEASON_TOOLTIP": "Текущий сезон",
   "EMPTY_FIELD_MASSAGE": "Не может быть пустым",
-  "NO_OPEN_GAME_PLACEHOLDER" :"Открытых игр ещё нет!",
-  "NO_CURRENT_GAME_PLACEHOLDER" :"Текущих игр ещё нет!",
+  "NO_OPEN_GAME_PLACEHOLDER": "Открытых игр пока-что нет!",
+  "NO_CURRENT_GAME_PLACEHOLDER": "Текущих игр пока-что нет!",
   "GAME_PHOTO": "Фотографии с игры",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершенных игр ещё нет!"
 }
