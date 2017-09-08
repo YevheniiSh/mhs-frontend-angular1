@@ -144,5 +144,6 @@
   "EMPTY_FIELD_MASSAGE": "Не может быть пустым",
   "NO_OPEN_GAME_PLACEHOLDER" :"Открытых игр ещё нет!",
   "NO_CURRENT_GAME_PLACEHOLDER" :"Текущих игр ещё нет!",
+  "GAME_PHOTO": "Фотографии с игры",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершенных игр ещё нет!"
 }
