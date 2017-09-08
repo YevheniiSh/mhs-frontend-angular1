@@ -1,1 +1,1 @@
-angular.module('teamResults', ['resultService', 'gameFactory']);
+angular.module('teamResults', ['resultService', 'gameFactory', 'focused']);
