@@ -50,7 +50,7 @@ function hintsResultController(resultService, $routeParams) {
             let resultKey = [vm.round.roundNum, vm.quizToDelete, vm.teamId].join('_');
             resultService.deleteResult(vm.gameId, resultKey)
                 .then(() => {
-                    vm.saveResult({round: vm.round, quiz: quizSave});
+                    vm.saveResult({roundNum: vm.round.roundNum, quiz: quizSave});
                     vm.round.quizzes[vm.quizNum - 1].real = true;
 
                 });
