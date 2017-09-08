@@ -1,5 +1,5 @@
 <label for="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}" ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum">
-    <span class=" btn inp"
+    <span class="btn inp"
           ng-if="quiz.weightOfResponse === undefined  || !$ctrl.auth"
           ng-class="{'btn-success' : +(quiz.score) > 0,
                      'btn-silver' : +(quiz.score) === 0,
@@ -32,8 +32,7 @@
                        ng-focus=" $event.target.select()"
                        min="0"
                        max="50">
-              <span class="input-group-addon">= {{quiz.score.toFixed(1)}}</span>
-
+              {{quiz.score.toFixed(1)}}
         </span>
     </span>
 </label>
