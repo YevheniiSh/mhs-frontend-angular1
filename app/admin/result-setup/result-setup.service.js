@@ -45,10 +45,13 @@
                 .addRound(result.round)
                 .addQuiz(result.quiz)
                 .addTeamId(result.teamId)
-                .addScore(result.score)
-                .getResult();
+                .addScore(result.score);
 
-            resultFactory.saveResult('current', res, gameId);
+            if(result.answer){
+                res.addValue("answer", result.answer)
+            }
+
+            resultFactory.saveResult('current', res.getResult(), gameId);
         }
 
         function saveQuizResults(results, gameId) {

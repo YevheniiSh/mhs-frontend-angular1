@@ -27,19 +27,19 @@
                         <default-result ng-switch-when="DEFAULT_ROUND"
                                         round="round"
                                         result-disabled="$ctrl.gameStatus"
-                                        save-result="$ctrl.setTeamResult(round,quiz)"></default-result>
+                                        save-result="$ctrl.setTeamResult(roundNum,quiz)"></default-result>
                         <captain-result ng-switch-when="CAPTAIN_ROUND"
                                         round="round"
                                         result-disabled="$ctrl.gameStatus"
-                                        save-result="$ctrl.setTeamResult(round,quiz)"></captain-result>
+                                        save-result="$ctrl.setTeamResult(roundNum,quiz)"></captain-result>
                         <auction-result ng-switch-when="AUCTION_ROUND"
                                         round="round"
                                         result-disabled="$ctrl.gameStatus"
-                                        save-result="$ctrl.setTeamResult(round,quiz)"></auction-result>
+                                        save-result="$ctrl.setTeamResult(roundNum,quiz)"></auction-result>
                         <hints-result ng-switch-when="HINTS_ROUND"
                                       round="round"
                                       result-disabled="$ctrl.gameStatus"
-                                      save-result="$ctrl.setTeamResult(round,quiz)"></hints-result>
+                                      save-result="$ctrl.setTeamResult(roundNum,quiz)"></hints-result>
                     </div>
                 </form>
             </td>
