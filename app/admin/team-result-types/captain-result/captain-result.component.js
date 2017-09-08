@@ -5,7 +5,8 @@ angular.module('teamResults')
         controller: captainResultController,
         bindings: {
             round: '=',
-            saveResult: '&'
+            saveResult: '&',
+            resultDisabled: '='
         }
     });
 
@@ -43,11 +44,11 @@ function captainResultController() {
         angular.forEach(vm.round.quizzes, (quiz) => {
             if (vm.lastResultIndex >= quiz.quizNum) {
                 quiz.score = vm.round.roundType.start + vm.round.roundType.step * (quiz.quizNum - 1);
-                vm.saveResult({round: vm.round, quiz: quiz});
+                vm.saveResult({roundNum: vm.round.roundNum, quiz: quiz});
             }
             else if (vm.lastResultIndex < quiz.quizNum) {
                 quiz.score = 0;
-                vm.saveResult({round: vm.round, quiz: quiz});
+                vm.saveResult({roundNum: vm.round.roundNum, quiz: quiz});
             }
         })
     }
