@@ -1,8 +1,15 @@
-<label class="quiz-result">
-        <input class="result-rate form-control">
-        <label class="switch">
-            <input
-                   type="checkbox">
-            <span class="slider round"></span>
-        </label>
+<label class="quiz-result" ng-repeat="quiz in $ctrl.round.quizzes" ng-init="$ctrl.initResults(quiz)">
+
+    <input class="result-rate form-control" ng-model="quiz.rate" type="number"
+           ng-change="$ctrl.onSave($ctrl.round.roundNum, quiz)">
+
+    <label class="switch">
+        <input type="checkbox" ng-model="quiz.status"
+               ng-change="$ctrl.onSave($ctrl.round.roundNum, quiz)"
+               step="{{$ctrl.round.roundType.step}}"
+               ng-true-value="1"
+               ng-false-value="-1">
+        <span class="slider round"></span>
+    </label>
+
 </label>
