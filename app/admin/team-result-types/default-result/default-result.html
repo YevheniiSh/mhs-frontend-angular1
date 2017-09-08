@@ -1,39 +1,84 @@
-<label for="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
-       ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum">
+<label for="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}" ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum">
     <span class=" btn inp"
-
+          ng-if="quiz.weightOfResponse === undefined "
           ng-class="{'btn-success' : +(quiz.score) > 0,
                      'btn-silver' : +(quiz.score) === 0,
                      'btn-danger' : +(quiz.score) < 0}">
-    <span uib-tooltip="№ {{quiz.quizNum}}" ng-if="quiz.weightOfResponse === undefined ">
-
-        <input
-                type="checkbox"
-                id="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}" class="quiz-input"
-                ng-class="{'edited' : quiz.edit}"
-                ng-model="quiz.score"
-                ng-disabled="$ctrl.resultDisabled"
-                ng-change="$ctrl.saveResult({roundNum:$ctrl.round.roundNum ,quiz:quiz})"
-                ng-model-options="{ updateOn: 'default blur' }"
-                ng-hide="true"
-                ng-true-value="1"
-                ng-false-value="0">
-            {{quiz.score}}
-
+        <span uib-tooltip="№ {{quiz.quizNum}}" ng-if="quiz.weightOfResponse === undefined ">
+            <input
+                    type="checkbox"
+                    id="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}" class="quiz-input"
+                    ng-class="{'edited' : quiz.edit}"
+                    ng-model="quiz.score"
+                    ng-disabled="$ctrl.resultDisabled"
+                    ng-change="$ctrl.saveResult({roundNum:$ctrl.round.roundNum ,quiz:quiz})"
+                    ng-model-options="{ updateOn: 'default blur' }"
+                    ng-hide="true"
+                    ng-true-value="1"
+                    ng-false-value="0">
+             {{quiz.score}}
+        </span>
     </span>
-        <span uib-tooltip="№ {{quiz.quizNum}}" ng-if="quiz.weightOfResponse!== undefined">
+    <span uib-tooltip="№ {{quiz.quizNum}}" ng-if="quiz.weightOfResponse!== undefined">
+        <span class="input-group">
+            <!--<span class="input-group-addon" >{{quiz.weightOfResponse}} *</span>-->
+            <!--<span class="inp" ng-if="quiz.weightOfResponse !== undefined "-->
+            <!--ng-class="{'btn-success' : +(quiz.score) > 0,-->
+            <!--'btn-silver' : +(quiz.score) === 0,-->
+            <!--'btn-danger' : +(quiz.score) < 0}">-->
+            <!--<input name="{{round.roundNum}}_{{quiz.quizNum}}"-->
+            <!--class="quiz-input"-->
+            <!--ng-class="{'edited' : quiz.edit}"-->
+            <!--type="number"-->
+            <!--ng-model="quiz.score"-->
+            <!--ng-disabled="$ctrl.resultDisabled"-->
+            <!--ng-change="$ctrl.saveResult({roundNum:$ctrl.round.roundNum ,quiz:quiz})"-->
+            <!--ng-model-options="{ updateOn: 'default blur' , debounce: { default: 1000, blur: 0 } }"-->
+            <!--min="-20"-->
+            <!--max="20">-->
+            <!--<span class="input-group-addon">{{quiz.score}}</span>-->
+            <!--</span>-->
 
-        <input
-                type="number"
-                class="quiz-input"
-                ng-class="{'edited' : quiz.edit}"
-                ng-model="quiz.score"
-                ng-disabled="$ctrl.resultDisabled"
-                ng-change="$ctrl.saveResult({roundNum:$ctrl.round.roundNum ,quiz:quiz})"
-                ng-model-options="{ updateOn: 'default blur' }">
 
+  <span class="input-group-addon">{{quiz.weightOfResponse}} X</span>
 
+             <!--ng-class="{'edited' : quiz.edit,'btn-success' : +(quiz.score) > 0,-->
+            <!--'btn-silver' : +(quiz.score) === 0,-->
+            <!--'btn-danger' : +(quiz.score) < 0}"-->
+                       <!--class="quiz-input"-->
+                <input name="{{round.roundNum}}_{{quiz.quizNum}}"
+                       type="number"
+                       class="form-control"
+                       ng-model="quiz.countAnswer"
+                       ng-disabled="$ctrl.resultDisabled"
+                       ng-change="$ctrl.setScore($ctrl.round.roundNum, quiz)"
+                       ng-model-options="{ updateOn: 'default blur'}"
+                       ng-focus=" $event.target.select()"
+                       min="0"
+                       max="50">
+              <span class="input-group-addon">= {{quiz.score.toFixed(1)}}</span>
+
+        </span>
     </span>
-
-</span>
 </label>
+
+
+<!--<span class="inp" ng-if="quiz.weightOfResponse!== undefined"-->
+<!--ng-repeat="quiz in round.quizzes  track by quiz.quizNum"-->
+<!--ng-class="{'btn-success' : +(quiz.score) > 0,-->
+<!--'btn-silver' : +(quiz.score) === 0,-->
+<!--'btn-danger' : +(quiz.score) < 0}">-->
+<!--<span uib-tooltip="№ {{quiz.quizNum}}">-->
+<!--<input name="{{round.roundNum}}_{{quiz.quizNum}}"-->
+<!--class="quiz-input"-->
+<!--ng-class="{'edited' : quiz.edit}"-->
+<!--type="number"-->
+<!--ng-model="quiz.score"-->
+<!--ng-disabled="$ctrl.gameStatus"-->
+<!--ng-change="$ctrl.setTeamResult(round,quiz)"-->
+<!--ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"-->
+<!--min="-20"-->
+<!--max="20"-->
+<!--ng-focus="$ctrl.selectAllContent($event)">-->
+<!--</span>-->
+<!--</span>-->
