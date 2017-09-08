@@ -18,10 +18,9 @@
             </label>
         </div>
     </div>
-    <span class="switchSpan">
+    <span class="switchSpan" ng-if="!$ctrl.resultDisabled">
         <label class="switch">
             <input id="season"
-                   ng-disabled="$ctrl.resultDisabled"
                    type="checkbox"
                    ng-model="$ctrl.status"
                    ng-change="$ctrl.onChange($ctrl.quizNum)"
