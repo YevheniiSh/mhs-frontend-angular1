@@ -5,6 +5,7 @@ angular.module('teamResults')
         bindings: {
             round: '=',
             resultDisabled: '<',
+            auth: '<',
             saveResult: '&'
         },
         controller: defaultResultController
