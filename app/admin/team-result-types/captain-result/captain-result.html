@@ -1,0 +1,22 @@
+<div id="captain-result">
+    <input
+            id="zero"
+            type="radio"
+            name="captain-result"
+            ng-click="$ctrl.setLastResultIndex(0)"
+            ng-checked="0 == $ctrl.lastResultIndex"
+    >
+    <label for="zero">0</label>
+    <span ng-repeat="result in $ctrl.round.quizzes  track by result.quizNum">
+        <input
+                id="result.quizNum"
+                type="radio"
+                name="captain-result"
+                ng-click="$ctrl.setLastResultIndex(result.quizNum)"
+                ng-checked="result.quizNum == $ctrl.lastResultIndex"
+        >
+        <label for="result.quizNum">
+            {{$ctrl.round.roundType.start + $index*$ctrl.round.roundType.step}}
+        </label>
+    </span>
+</div>
