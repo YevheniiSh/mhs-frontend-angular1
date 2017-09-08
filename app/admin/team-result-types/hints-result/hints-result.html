@@ -1,5 +1,5 @@
 <div>
-    <div id="hint-result">
+    <div id="hint-result" ng-if="!$ctrl.resultDisabled">
         <div ng-repeat="result in $ctrl.round.quizzes  track by result.quizNum">
             <input
                     id="{{$ctrl.round.roundNum}}_{{result.quizNum}}"
@@ -30,4 +30,15 @@
             <span class="slider round"/>
         </label>
     </span>
+    <div id="captain-result-user" ng-if="$ctrl.resultDisabled">
+    <span class="btn inp"
+          ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum"
+          ng-class="{'btn-success' : +(quiz.score) > 0,
+                          'btn-silver' : +(quiz.score) === 0,
+                          'btn-danger' : +(quiz.score) < 0}">
+        <span uib-tooltip="№ {{quiz.quizNum}}">
+            {{quiz.score}}
+        </span>
+    </span>
+    </div>
 </div>
