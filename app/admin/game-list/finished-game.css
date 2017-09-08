@@ -1,7 +1,8 @@
 .finished-games-table {
     vertical-align: middle;
 }
-table tr td.no-games-label{
+
+.no-games-label {
     background: #fff;
     font-size: 4em;
     text-align: center;

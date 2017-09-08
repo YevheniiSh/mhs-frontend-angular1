@@ -1,5 +1,7 @@
 <create-game ng-if="$ctrl.auth"></create-game>
-<table class="table table-sm table-striped table-hover">
+<div ng-if="$ctrl.openGames.length == 0" class="no-games-label">{{'NO_OPEN_GAME_PLACEHOLDER' | translate}}</div>
+<table ng-if="$ctrl.openGames.length != 0 && $ctrl.openGames.length !== undefined"
+       class="table table-sm table-striped table-hover">
     <thead>
     <tr class="game-property">
         <th>{{'DATE_LABEL' | translate}}</th>
@@ -9,9 +11,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-if="$ctrl.openGames.length == 0">
-        <td class="no-games-label" colspan="4">{{'NO_OPEN_GAME_PLACEHOLDER' | translate}}</td>
-    </tr>
     <tr class="game-row td games" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
         <td>{{openGame.date | date:'d MMM y'}}</td>
         <td>{{openGame.time}}</td>

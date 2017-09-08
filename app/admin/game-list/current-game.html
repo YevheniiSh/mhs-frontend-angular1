@@ -1,4 +1,7 @@
-<table class="table table-sm table-striped table-hover">
+<div ng-if="$ctrl.games.length == 0" class="no-games-label" colspan="4">{{'NO_CURRENT_GAME_PLACEHOLDER' | translate}}
+</div>
+<table ng-if="$ctrl.games.length != 0 && $ctrl.games.length !== undefined"
+       class="table table-sm table-striped table-hover">
     <thead>
     <tr class="game-property">
         <th>{{'DATE_LABEL' | translate}}</th>
@@ -8,9 +11,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr  ng-if="$ctrl.games.length == 0">
-        <td class="no-games-label" colspan="4">{{'NO_CURRENT_GAME_PLACEHOLDER' | translate}}</td>
-    </tr>
     <tr class="game-row" ng-repeat="game in $ctrl.games | orderBy:'-date'">
         <td>{{game.date | date:'d MMM y'}}</td>
         <td>{{game.time}}</td>
