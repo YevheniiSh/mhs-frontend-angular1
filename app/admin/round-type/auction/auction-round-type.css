@@ -57,3 +57,10 @@ input:checked + .slider:before {
 .result-control{
     margin-right: 20px;
 }
+
+.team-name {
+    font-weight: bold;
+    font-size: 20px;
+    padding-right: 10px;
+    float: left;
+}
