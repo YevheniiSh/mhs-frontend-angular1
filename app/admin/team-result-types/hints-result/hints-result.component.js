@@ -20,7 +20,6 @@ function hintsResultController(resultService, $routeParams) {
     function onInit() {
         vm.teamId = $routeParams.teamId;
         vm.gameId = $routeParams.gameId;
-        console.log(vm.round);
         vm.start = vm.round.roundType.start;
         vm.step = vm.round.roundType.step;
         vm.round.quizzes.forEach((item, index) => {
@@ -35,7 +34,8 @@ function hintsResultController(resultService, $routeParams) {
         })
     }
 
-    vm.onChange = function () {
+    vm.onChange = function (quizNum) {
+        vm.quizNum = quizNum;
         let scoreToSet = (vm.start - ((vm.quizNum - 1) * vm.step)) * vm.status;
         let quizSave = {quizNum: vm.quizNum, score: scoreToSet};
         vm.round.quizzes.forEach((item) => {
