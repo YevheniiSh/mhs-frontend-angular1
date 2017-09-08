@@ -24,6 +24,7 @@
                     <div ng-switch="round.roundType.type">
                         <default-result ng-switch-when="DEFAULT_ROUND"
                                         round="round"
+                                        auth ="$ctrl.auth"
                                         result-disabled="$ctrl.gameStatus"
                                         save-result="$ctrl.setTeamResult(roundNum,quiz)"></default-result>
                         <captain-result ng-switch-when="CAPTAIN_ROUND"
