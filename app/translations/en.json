@@ -146,5 +146,6 @@
   "CURRENT_SEASON_TOOLTIP": "Current season",
   "NO_CAPTAINS_ALERT": "All captains are left",
   "GAME_PHOTO": "Game photos",
+  "FEW_ROUNDS_ERROR": "Min amount of rounds is 2",
   "ROUND_FINISH_BUTTON": "Finish round"
 }
