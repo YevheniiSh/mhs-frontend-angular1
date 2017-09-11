@@ -147,5 +147,7 @@
   "GAME_PHOTO": "Фотографии с игры",
   "FEW_ROUNDS_ERROR": "Минимальное количество раундов - 2",
   "GAME_TEMPLATES": "Шаблоны игр",
+  "START_VALUE_TOOLTIP": "Начальное значение",
+  "STEP_VALUE_TOOLTIP": "Шаг",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершенных игр ещё нет!"
 }
