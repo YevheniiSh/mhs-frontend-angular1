@@ -14,7 +14,7 @@
             </label>
         </li>
     </ul>
-    <div class="alert noCaptainsAlert" ng-if="$ctrl.noCaptainsAlertDisplay">
+    <div class="alert noCaptainsAlert" ng-if="$ctrl.isCaptainsOut">
         <a ng-click="$ctrl.closeAlert()" class="close">×</a>
         <p>{{"NO_CAPTAINS_ALERT" | translate}}</p>
         <button ng-click="$ctrl.closeRound()" class="btn btn-danger">{{"ROUND_FINISH_BUTTON" | translate}}</button>
