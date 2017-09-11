@@ -261,6 +261,9 @@ angular
                                     };
                                     for (let j = 1; j <= rounds[i].numberOfQuestions; j++) {
                                         roundResult[i + 1].quizzes.push({quizNum: j, score: 0, real: false})
+                                        if (rounds[i].quizzesWithWeight.hasOwnProperty(j)) {
+                                            roundResult[i + 1].quizzes[j - 1].weightOfResponse = rounds[i].quizzesWithWeight[j].weight;
+                                        }
                                     }
                                 }
                                 teamResults.forEach(quizResult => {
