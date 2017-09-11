@@ -5,13 +5,13 @@
           ng-if="quiz.weightOfResponse === undefined  || !$ctrl.auth"
           ng-class="{'btn-success' : +(quiz.score) > 0,
                      'btn-silver' : +(quiz.score) === 0,
-                     'btn-danger' : +(quiz.score) < 0}">
+                     'btn-danger' : +(quiz.score) < 0,
+                     'edited' : quiz.edited}">
         <span uib-tooltip="№ {{quiz.quizNum}}">
             <input
                     type="checkbox"
                     id="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
                     class="quiz-input"
-                    ng-class="{'edited' : quiz.edit}"
                     ng-model="quiz.score"
                     ng-disabled="$ctrl.resultDisabled"
                     ng-change="$ctrl.saveResult({roundNum:$ctrl.round.roundNum ,quiz:quiz})"
