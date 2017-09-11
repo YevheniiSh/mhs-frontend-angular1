@@ -6,10 +6,6 @@
     vertical-align: middle;
 }
 
-.odd {
-    background-color: #f9f9f9;
-}
-
 .count-quest {
     margin-top: 5px;
 }
@@ -29,4 +25,46 @@
 
 .round-form {
     margin-bottom: 0px;
+}
+
+.round-item{
+    border: 1px solid lightgrey;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    padding: 5px;
+    padding-right: 25px;
+    padding-left: 10px;
+}
+.round-list{
+    list-style: none;
+    padding: 0px ;
+    margin: 0px;
+}
+
+.select-label{
+    color:#428bca;
+    cursor: pointer;
+}
+
+
+ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+
+ul[dnd-list] .dndPlaceholder {
+    background-color: #ddd;
+    display: block;
+    min-height: 65px;
+    border-radius: 10px;
+}
+
+.dnd-icon{
+    cursor: pointer;
+    margin-top: 2%;
+}
+
+.icon-bar{
+    padding-left: 45%;
 }

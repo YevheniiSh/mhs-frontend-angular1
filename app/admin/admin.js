@@ -67,7 +67,7 @@ angular
             template: '<team-results></team-results>',
         });
         $routeProvider.when('/templates', {
-            template: '<game-template></game-template>',
+            template: '<current-game-template></current-game-template>',
         });
         $routeProvider.when('/templates/:templateId', {
             template: '<current-game-template></current-game-template>',
