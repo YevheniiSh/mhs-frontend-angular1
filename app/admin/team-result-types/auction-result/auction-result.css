@@ -85,9 +85,9 @@ span.inp{
     padding-right: 5px;
 }
 .result, span.inp{
+    padding: 4px 0;
     border-radius: 30%;
     color: #ffffff;
-    display: inline-table;
     width: 44px;
     height: 31px;
     font-size: 17px;
