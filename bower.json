@@ -21,6 +21,8 @@
     "angucomplete-alt": "^3.0.0",
     "angular-input-masks": "^2.6.0",
     "ngMask": "angular-mask#^3.1.1",
+    "angular-dynamic-locale": "0.1.32",
+    "angular-i18n": "1.2",
     "angular-drag-and-drop-lists": "^2.1.0"
   }
 }
