@@ -35,7 +35,10 @@
                 </select>
                 <div ng-show="!round.showSelect">
                     <div style="padding: 0px;padding-right: 5px" class="col-md-6">
-                        <div class="input-group">
+                        <div class="input-group"
+                             tooltip-popup-delay="1000"
+                             tooltip-append-to-body="true"
+                             uib-tooltip="{{'START_VALUE_TOOLTIP'|translate}}">
                             <div class="input-group-addon">
                                 <i class="fa fa-flag-o" aria-hidden="true"></i>
                             </div>
@@ -50,7 +53,10 @@
                         </div>
                     </div>
                     <div style="padding: 0px;padding-right: 5px" class="col-md-6">
-                        <div class="input-group">
+                        <div class="input-group"
+                             tooltip-popup-delay="1000"
+                             tooltip-append-to-body="true"
+                             uib-tooltip="{{'STEP_VALUE_TOOLTIP'|translate}}">
                             <div class="input-group-addon">
                                 |<i class="fa fa-arrows-h" aria-hidden="true"></i>|
                             </div>
