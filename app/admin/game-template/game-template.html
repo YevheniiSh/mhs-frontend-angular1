@@ -12,7 +12,7 @@
             <span ng-class="{'selected': template.$id == $ctrl.selectedTemplateId}" class="list-item">
                 {{template.name}}
                 <button class="btn btn-danger delete-btn" ng-click="$ctrl.deleteTemplate(template.$id)">
-                    {{'DELETE_ROUND_BUTTON' | translate}}
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
             </span>
         </li>
