@@ -16,3 +16,6 @@
 .quiz-input{
 
 }
+#inp-label:nth-child(5){
+    margin-right: 30px;
+}
