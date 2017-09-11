@@ -15,7 +15,7 @@
 .picker {
     position: fixed;
     display: inline-block;
-    min-height: 290px;
+    /*min-height: 290px;*/
     z-index: 100;
 }
 

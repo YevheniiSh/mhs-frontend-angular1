@@ -82,7 +82,6 @@
   "MINIMUM_3_CHARACTERS_ERROR": "Мінімум 3 символа",
   "MAXIMUM_40_CHARACTERS_ERROR": "Максимум 40 символів",
   "MINIMUM_10_CHARACTERS_ERROR": "Мінімум 10 символів",
-  "MAXIMUM_13_CHARACTERS_ERROR": "Максимум 13 символів",
   "WRONG_FORMAT_ERROR": "Невірний формат",
   "WELL_DONE_MESSAGE": "Відмінно!",
   "SEND_REQUEST_MESSAGE": "Вашу заявку відправлено!",
@@ -106,7 +105,7 @@
   "TEAM_POSITION_LABEL":"Місце",
   "AUTOCOMPLETE_BUTTON": "Автодоповнення",
   "CLOSE_BUTTON": "Закрити",
-  "TEAMS_HEADER":" Команди Mead Head Show",
+  "TEAMS_HEADER":" Команди Mad Head Show",
   "NUMBER_OF_TEAMS_LABEL": "Кількість команд",
   "NO_LINK_TO_PHOTOS_LABEL": "Відсутнє посилання на фотографії",
   "ROUND_TYPE": "Тип раунда",
@@ -143,7 +142,9 @@
   "TEAMS_MODAL_PLACEHOLDER": "Поки немає жодної заявки на гру",
   "TEAMS_MODAL_SHOW_BUTTON": "Заявки",
   "EMPTY_FIELD_MASSAGE": "Не може бути порожнім",
-  "NO_OPEN_GAME_PLACEHOLDER" :"Відкритих ігр ще немає!",
-  "NO_CURRENT_GAME_PLACEHOLDER" :"Поточних ігр ще немає!",
+  "NO_OPEN_GAME_PLACEHOLDER": "Відкритих ігр поки немає!",
+  "NO_CURRENT_GAME_PLACEHOLDER": "Поточних ігр поки немає!",
+  "GAME_PHOTO": "Фотографії з гри",
+  "FEW_ROUNDS_ERROR": "Мінімальна кількість раундів - 2",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершених ігр ще немає!"
 }

@@ -65,3 +65,9 @@ input:checked + .slider:before {
 #team-list #switch-checkbox{
     display: none;
 }
+.team-name {
+    font-weight: bold;
+    font-size: 20px;
+    padding-right: 10px;
+    float: left;
+}

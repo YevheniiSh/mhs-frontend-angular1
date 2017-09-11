@@ -35,3 +35,8 @@ h1 {
 #err-message{
     position: absolute;
 }
+
+.registration{
+    float: right;
+    margin-top: 1%;
+}

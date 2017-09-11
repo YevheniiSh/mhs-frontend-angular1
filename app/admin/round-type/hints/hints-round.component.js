@@ -31,6 +31,7 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
     }
 
     function getQuizWeight(round) {
+        vm.step = round.roundType.step;
         vm.weight = round.roundType.start - (round.roundType.step * ($routeParams.quizNumber - 1));
     }
 
@@ -39,18 +40,26 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
             .then(results => {
                 res = {}
                 results.forEach(result => {
-                    res[result.teamId] = result.quiz;
+                    res[result.teamId] = {};
+                    res[result.teamId].quizNumber = result.quiz;
+                    res[result.teamId].score = result.score;
                 })
                 vm.previousQuizResults = res;
             })
     }
 
-    vm.isDisabled = function (teamId) {
+    vm.isDisabled = function (result) {
         if (!isFirstQuiz()) {
-            if (!vm.previousQuizResults[teamId] === undefined) {
+            if (!vm.previousQuizResults[result.teamId] === undefined) {
                 return false
             } else {
-                if (vm.previousQuizResults[teamId] < (+$routeParams.quizNumber)) {
+                if (vm.previousQuizResults[result.teamId].quizNumber < (+$routeParams.quizNumber)) {
+                    if (vm.previousQuizResults[result.teamId].score > 0) {
+                        result.score = vm.previousQuizResults[result.teamId].score - ((+$routeParams.quizNumber) - vm.previousQuizResults[result.teamId].quizNumber) * vm.step;
+                    }
+                    else {
+                        result.score = 0;
+                    }
                     return true
                 }
             }

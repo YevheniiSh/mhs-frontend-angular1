@@ -5,18 +5,19 @@ angular.module('gameTemplate')
         controller: currentGameTemplate,
     });
 
-currentGameTemplate.$inject = ['$routeParams','gameTemplateServiceFactory'];
+currentGameTemplate.$inject = ['$routeParams', 'gameTemplateServiceFactory'];
 
-function currentGameTemplate($routeParams, templateService){
+function currentGameTemplate($routeParams, templateService) {
     let vm = this;
     vm.selected = false;
 
     vm.$onInit = onInit;
+
     function onInit() {
         vm.templateId = $routeParams.templateId;
         templateService.getById(vm.templateId).then(template => {
             templateService.getRounds(vm.templateId)
-                .then(rounds=>{
+                .then(rounds => {
                     vm.currentTemplateRounds = rounds;
                     if (!template.rounds) vm.currentTemplateRounds = [{numberOfQuestions: 10, name: ""}];
                 });
@@ -25,7 +26,15 @@ function currentGameTemplate($routeParams, templateService){
     }
 
     vm.saveTemplate = function () {
-        templateService.update(vm.templateId, {name:vm.currentTemplateName, rounds: vm.currentTemplateRounds})
-            .then(template => vm.currentTemplateRounds = template.rounds.slice(1, template.rounds.length))
+        if(vm.currentTemplateRounds.length<2){
+            vm.roundCountError = true;
+        }else{
+            templateService.update(vm.templateId, {name:vm.currentTemplateName, rounds: vm.currentTemplateRounds})
+                .then(template => {
+                    vm.currentTemplateRounds = template.rounds.slice(1, template.rounds.length);
+                    vm.roundCountError = false;
+                })
+        }
+
     }
 }

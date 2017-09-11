@@ -8,17 +8,20 @@
         <form ng-submit="$ctrl.saveRequest()" name="request" class="request-team-form">
             <div class="autocomplete-form">
                 <label class="request-description"><b>{{'TEAM_NAME_LABEL' | translate}}</b></label>
-                <angucomplete-alt id="team-name"
-                                  placeholder="{{'TEAM_NAME_PLACEHOLDER'|translate}}"
-                                  pause="100"
-                                  selected-object="$ctrl.selectedTeam"
-                                  local-data="$ctrl.teams"
-                                  search-fields="name"
-                                  title-field="name"
-                                  minlength="1"
-                                  input-changed="$ctrl.getTeamName"
-                                  input-class="form-control form-control-small">
-                </angucomplete-alt>
+                <div angucomplete-alt id="team-name"
+                     placeholder="{{'TEAM_NAME_PLACEHOLDER'|translate}}"
+                     pause="100"
+                     selected-object="$ctrl.selectedTeam"
+                     local-data="$ctrl.teams"
+                     search-fields="name"
+                     title-field="name"
+                     minlength="1"
+                     input-changed="$ctrl.getTeamName"
+                     input-class="form-control form-control-small"
+                     field-required="true"
+                     input-name="teamName">
+                </div>
+
             </div>
             <script type="text/ng-template" id="alert.html">
                 <div ng-transclude></div>
@@ -39,11 +42,11 @@
                         <div class="captain-name-spans">
                             <label for="captain-name" class="control-label request-description">{{'CAPTAIN_NAME_LABEL'|translate}}</label>
                             <span ng-show="request.name.$error.minlength" class="err">
-                            {{'MINIMUM_3_CHARACTERS_ERROR'|translate}}
-                        </span>
+                        {{'MINIMUM_3_CHARACTERS_ERROR'|translate}}
+                    </span>
                             <span ng-show="request.name.$error.maxlength" class="err">
-                            {{'MAXIMUM_40_CHARACTERS_ERROR'|translate}}
-                        </span>
+                        {{'MAXIMUM_40_CHARACTERS_ERROR'|translate}}
+                    </span>
                         </div>
                         <input id="captain-name"
                                class="form-control" placeholder="{{'CAPTAIN_NAME_PLACEHOLDER'|translate}}"
@@ -56,21 +59,30 @@
                             <label for="captain-phone" class="control-label request-description">
                                 {{'PHONE_LABEL'|translate}}
                             </label>
+                            <span ng-show="request.phone.$error.minlength" class="err">
+                                {{'MINIMUM_10_CHARACTERS_ERROR'|translate}}
+                            </span>
+                            <span ng-show="request.phone.$error.mask&&!request.phone.$error.minlength"
+                                  class="err">
+                                {{'WRONG_FORMAT_ERROR'|translate}}
+                            </span>
                         </div>
                         <div class="phone-panel">
                             <input id="captain-phone"
                                    class="form-control"
                                    placeholder="(XXX)XX-XX-XXX"
-                                   type="text" ng-model="$ctrl.phone" name="phone"
+                                   type="text" ng-model="$ctrl.phone"
                                    ng-model-options="{'updateOn': 'default blur','debounce': {'default': 1000,'blur': 0}}"
-                                   required
-                                   mask="(999)99-99-999">
+                                   minlength="10"
+                                   maxlength="14"
+                                   mask="(999)99-99-999"
+                                   name="phone"
+                                   required>
                         </div>
                     </div>
                 </div>
 
                 <div class="vertical-line animate-show-hide animated" ng-show="$ctrl.showPhoneVerifyRequest"></div>
-
 
                 <div class="autocomplete-panel animate-come-gone animated" ng-show="$ctrl.showPhoneVerifyRequest">
                     <label class="control-label request-description">
@@ -100,7 +112,7 @@
             </div>
             <div class="control-panel">
                 <button class="btn btn-success btn-block" type="submit"
-                        ng-disabled="$ctrl.disabled">
+                        ng-disabled="$ctrl.disabled||!request.phone.$valid||!$ctrl.teamName">
                     {{'SUBMIT_BUTTON'|translate}}
                 </button>
                 <div class="alert alert-dismissible alert-success" ng-show="$ctrl.submitted">

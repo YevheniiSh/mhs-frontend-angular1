@@ -1,15 +1,17 @@
 <div class="container main">
-    <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
-    <h1 class="header">MEAD HEAD SHOW {{'NAVBAR_SEASONS' | translate}}</h1>
-    <div class="col-md-6 col-md-offset-3 ">
-        <select class="form-control" ng-model="$ctrl.selectedSeason" ng-click="$ctrl.setSeasonUrl()"
-                ng-options="season.name for season in $ctrl.seasons">
-        </select>
+    <div class="season-header">
+        <div class="col-md-4 season-header-back-panel">
+            <button class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}</button>
+        </div>
+        <span class="col-md-4 season-name">{{$ctrl.selectedSeason.name}}</span>
+        <div class="col-md-4 season-header-close-panel">
+            <button class="btn btn-danger close-season"
+                    ng-if="$ctrl.isCurrentSeason && $ctrl.admin && !$ctrl.showCloseSeasonAlert"
+                    ng-click="$ctrl.showAlert()">
+                {{'CLOSE_SEASON_BUTTON' | translate}}
+            </button>
+        </div>
     </div>
-    <button class="btn btn-danger close-season" ng-if="$ctrl.currentSeason && $ctrl.admin && !$ctrl.showCloseSeasonAlert"
-        ng-click="$ctrl.showAlert()">
-        {{'CLOSE_SEASON_BUTTON' | translate}}
-    </button>
 
     <div class="season-open-games-alert" ng-if="$ctrl.showCloseSeasonError && $ctrl.hasOpenGames">
         {{'SEASON_OPEN_GAMES_ALERT' | translate}}
@@ -28,10 +30,11 @@
         </p>
     </div>
 
-    <div ng-if="$ctrl.seasonTeams.length == 0 && $ctrl.seasonDropTeams.length == 0" class="col-md-6  col-md-offset-3  season-alert">
-        <div class="alert alert-sm alert-dismissible alert-danger">
+    <div ng-if="$ctrl.seasonTeams.length == 0 && $ctrl.seasonDropTeams.length == 0"
+         class="col-md-12 season-alert">
+        <span>
             {{'EMPTY_SEASON_MESSAGE' | translate}}
-        </div>
+        </span>
     </div>
 
     <table ng-if=" $ctrl.seasonTeams.length != 0" class="table table-sm table-striped table-hover ">
