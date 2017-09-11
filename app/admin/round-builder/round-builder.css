@@ -56,8 +56,10 @@ ul[dnd-list] .dndDraggingSource {
 ul[dnd-list] .dndPlaceholder {
     background-color: #ddd;
     display: block;
-    min-height: 65px;
+    height: 71px;
     border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .dnd-icon{
