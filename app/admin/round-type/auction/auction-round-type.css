@@ -69,7 +69,7 @@ input:checked + .slider:before {
 }
 .team-name {
     font-weight: bold;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .team-name-panel {
@@ -77,14 +77,6 @@ input:checked + .slider:before {
     float: left;
 }
 
-#team-list {
-    list-style: none;
-    -webkit-column-count: 2; /* Chrome, Safari, Opera */
-    -moz-column-count: 2; /* Firefox */
-    column-count: 2;
-}
-
 .team {
-    margin-bottom: 20px;
     margin-left: 5%;
 }
