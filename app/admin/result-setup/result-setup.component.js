@@ -19,6 +19,7 @@
 
         vm.isManualInput = false;
         vm.selectedQuiz = $routeParams.quizNumber;
+        vm.isCaptainsOut = false;
         vm.$onInit = onInit;
 
         function onInit() {
@@ -40,6 +41,17 @@
                     vm.isManualInput = true;
                 }
             })
+        }
+
+        function isCaptainsInGame() {
+            let isCaptainsInGame = false;
+            for (let res of vm.results) {
+                if (res.score) {
+                    isCaptainsInGame = true;
+                    break;
+                }
+            }
+            return isCaptainsInGame;
         }
 
         function initRound() {
@@ -107,6 +119,11 @@
         };
 
         vm.nextQuiz = function () {
+            if (!isCaptainsInGame() && vm.round.roundType.type == 'CAPTAIN_ROUND') {
+                    vm.isCaptainsOut = true;
+                return;
+            }
+
             if (vm.selectedQuiz < vm.round.numberOfQuestions) {
                 if (vm.currentQuiz == vm.selectedQuiz) {
                     vm.currentQuiz++;

@@ -5,7 +5,8 @@ angular.module('resultSetup')
         controller: CaptainRoundTypeController,
         bindings: {
             results: '=',
-            saveResult: '&'
+            saveResult: '&',
+            isCaptainsOut: '='
         },
     });
 
@@ -45,14 +46,11 @@ function CaptainRoundTypeController($location, $routeParams, GameServiceFactory,
         )
             .then(results => {
                 vm.previousQuizResults = results;
-                if (getCaptainsInGameCount(results) === 0 && !isFirstQuiz()){
-                    vm.noCaptainsAlertDisplay = true;
-                }
             })
     }
 
     vm.closeAlert = function () {
-        vm.noCaptainsAlertDisplay = false;
+        vm.isCaptainsOut = false;
     };
 
     vm.isDisabled = function (teamId) {
