@@ -145,5 +145,6 @@
   "NO_OPEN_GAME_PLACEHOLDER": "Відкритих ігр поки немає!",
   "NO_CURRENT_GAME_PLACEHOLDER": "Поточних ігр поки немає!",
   "GAME_PHOTO": "Фотографії з гри",
+  "FEW_ROUNDS_ERROR": "Мінімальна кількість раундів - 2",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершених ігр ще немає!"
 }
