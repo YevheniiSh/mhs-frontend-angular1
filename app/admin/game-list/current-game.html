@@ -22,7 +22,7 @@
                     ng-click="$ctrl.continueGame(game.$id)">
                 <i class="fa fa-play" aria-hidden="true"></i>
             </button>
-            <button class="btn btn-info game-button"
+            <button class="btn btn-info game-button" ng-if="game.hasUnfinishedRound"
                     ng-click="$ctrl.reOpenGame(game.$id)">
                 <i class="fa fa-undo" aria-hidden="true"></i>
             </button>
