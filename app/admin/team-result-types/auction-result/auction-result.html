@@ -14,6 +14,9 @@
 
 </label>
 
-<span ng-if="$ctrl.resultDisabled" class="btn inp" ng-class="$ctrl.getClass(quiz)" ng-repeat="quiz in $ctrl.round.quizzes">
-    <input class="result" type="number" ng-model="quiz.score" disabled>
+<span
+        ng-if="$ctrl.resultDisabled"
+        class="btn inp" ng-class="$ctrl.getClass(quiz)"
+        ng-repeat="quiz in $ctrl.round.quizzes">
+    {{quiz.score}}
 </span>
