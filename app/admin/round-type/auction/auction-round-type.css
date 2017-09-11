@@ -5,7 +5,9 @@
     height: 30px;
 }
 
-.switch input {display:none;}
+.switch input {
+    display: none;
+}
 
 .slider {
     position: absolute;
@@ -54,13 +56,28 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-.result-control{
+.result-control {
     margin-right: 20px;
 }
 
 .team-name {
     font-weight: bold;
-    font-size: 20px;
-    padding-right: 10px;
+    font-size: 15px;
+}
+
+.team-name-panel {
+    width: 250px;
     float: left;
+}
+
+#team-list {
+    list-style: none;
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+}
+
+.team {
+    margin-bottom: 20px;
+    margin-left: 5%;
 }
