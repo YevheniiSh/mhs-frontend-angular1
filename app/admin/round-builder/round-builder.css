@@ -61,5 +61,10 @@ ul[dnd-list] .dndPlaceholder {
 }
 
 .dnd-icon{
+    cursor: pointer;
     margin-top: 2%;
+}
+
+.icon-bar{
+    padding-left: 45%;
 }
