@@ -5,9 +5,9 @@ angular.module('gameTemplate')
         controller: currentGameTemplate,
     });
 
-currentGameTemplate.$inject = ['$routeParams', 'gameTemplateServiceFactory'];
+currentGameTemplate.$inject = ['$routeParams', 'gameTemplateServiceFactory','$timeout'];
 
-function currentGameTemplate($routeParams, templateService) {
+function currentGameTemplate($routeParams, templateService,$timeout) {
     let vm = this;
     vm.selected = false;
 
@@ -28,11 +28,18 @@ function currentGameTemplate($routeParams, templateService) {
     vm.saveTemplate = function () {
         if(vm.currentTemplateRounds.length<2){
             vm.roundCountError = true;
+            $timeout(()=>{
+                vm.roundCountError = false;
+            },2000)
         }else{
             templateService.update(vm.templateId, {name:vm.currentTemplateName, rounds: vm.currentTemplateRounds})
                 .then(template => {
                     vm.currentTemplateRounds = template.rounds.slice(1, template.rounds.length);
                     vm.roundCountError = false;
+                    vm.templateSaved = true;
+                    $timeout(()=>{
+                        vm.templateSaved = false;
+                        },2000)
                 })
         }
 

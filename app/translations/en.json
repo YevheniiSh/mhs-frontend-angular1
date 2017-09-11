@@ -148,5 +148,7 @@
   "GAME_PHOTO": "Game photos",
   "FEW_ROUNDS_ERROR": "Min amount of rounds is 2",
   "GAME_TEMPLATES": "Game templates",
+  "START_VALUE_TOOLTIP": "Start value",
+  "STEP_VALUE_TOOLTIP": "Step",
   "ROUND_FINISH_BUTTON": "Finish round"
 }
