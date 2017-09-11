@@ -44,9 +44,4 @@ function defaultResultController() {
         quiz.editMode = false;
         vm.editMode = false
     };
-
-    vm.getStyleToViewMode = function () {
-        if (!vm.editMode)
-            return "inp-label"
-    }
 }

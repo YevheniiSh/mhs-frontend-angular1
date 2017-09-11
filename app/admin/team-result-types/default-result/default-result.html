@@ -1,5 +1,5 @@
 <label for="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
-       ng-class="$ctrl.getStyleToViewMode()"
+       ng-class="{'inp-label': !$ctrl.editMode}"
        ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum">
     <span class="btn inp"
           ng-if="quiz.weightOfResponse === undefined  || !$ctrl.auth"
@@ -52,4 +52,3 @@
          </span>
     </span>
 </label>
-
