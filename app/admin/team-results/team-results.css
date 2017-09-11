@@ -13,14 +13,18 @@ h1{
     padding-left: 5px;
     padding-right: 5px;
 }
-.quiz-input, span.inp{
+
+.result, span.inp{
+    padding: 4px 0;
     border-radius: 30%;
     color: #ffffff;
-    display: inline-block;
-    width: 50px;
+    width: 44px;
     height: 31px;
     font-size: 17px;
     border: none;
+}
+span.inp{
+    margin: 5px;
 }
 
 .edited {

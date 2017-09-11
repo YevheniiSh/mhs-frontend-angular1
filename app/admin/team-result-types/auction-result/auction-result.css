@@ -73,10 +73,6 @@ input:checked + .slider:before {
     padding: 6px 0;
 }
 
-
-span.inp{
-    margin: 5px;
-}
 .result{
     background: 0;
     text-align:center;
