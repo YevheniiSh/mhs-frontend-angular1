@@ -44,7 +44,6 @@
         }
 
         function save(result) {
-            result.weightOfResponse = vm.weightOfResponse;
             if (result.weightOfResponse === undefined) {
                 resultSetupService.saveQuizResult(result, $routeParams.gameId);
             } else {
@@ -57,8 +56,10 @@
             if (parseInt(result.numberOfCorrectAnswers) !== result.numberOfCorrectAnswers) result.numberOfCorrectAnswers = 0;
             if (vm.isManualInput) {
                 result.score = calculateScore(result);
-                save(result);
-                return;
+                result.weightOfResponse = vm.weightOfResponse;
+            } else {
+                if (result.hasOwnProperty("weightOfResponse"))
+                    delete result.weightOfResponse;
             }
             save(result);
         };
