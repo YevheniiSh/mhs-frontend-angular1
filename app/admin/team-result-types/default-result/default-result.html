@@ -1,5 +1,5 @@
 <label for="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
-       ng-class="$ctrl.getStyleToEditMode()"
+       ng-class="$ctrl.getStyleToViewMode()"
        ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum">
     <span class="btn inp"
           ng-if="quiz.weightOfResponse === undefined  || !$ctrl.auth"

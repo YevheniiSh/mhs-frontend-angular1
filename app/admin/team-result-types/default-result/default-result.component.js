@@ -27,12 +27,12 @@ function defaultResultController() {
         }
     }
 
-    vm.editMode = false;
     vm.setScore = function (roundNum, quiz) {
         quiz.score = +((quiz.weightOfResponse * quiz.countAnswer).toFixed(1));
         vm.saveResult({roundNum: roundNum, quiz: quiz})
     };
 
+    vm.editMode = false;
     vm.showEditMode = function (quiz) {
         if (!vm.resultDisabled) {
             quiz.editMode = true;
@@ -44,7 +44,8 @@ function defaultResultController() {
         quiz.editMode = false;
         vm.editMode = false
     };
-    vm.getStyleToEditMode = function () {
+
+    vm.getStyleToViewMode = function () {
         if (!vm.editMode)
             return "inp-label"
     }
