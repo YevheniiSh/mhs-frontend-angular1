@@ -1,5 +1,5 @@
 <div class="checkbox">
-    <label id="manual-input"><input type="checkbox" ng-model="$ctrl.isManualInput">{{'MANUAL_INPUT_CHECKBOX'|translate}}</label>
+    <label id="manual-input"><input type="checkbox" ng-change="$ctrl.setWeight()" ng-model="$ctrl.isManualInput">{{'MANUAL_INPUT_CHECKBOX'|translate}}</label>
 
     <label ng-if="$ctrl.isManualInput">
         <input type="number" placeholder="{{'WEIGHT_INPUT' | translate}}" class="form-control weight-of-response"

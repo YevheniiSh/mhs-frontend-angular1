@@ -6,7 +6,8 @@ angular
 
         return {
             getRounds: getRounds,
-            getRoundNames: getRoundNames
+            getRoundNames: getRoundNames,
+            setQuizStatus: setQuizStatus
         };
 
         function getRounds(gameId) {
@@ -21,6 +22,21 @@ angular
             return gameService.getGameRef(gameId)
                 .then((ref) => {
                     let fbObj = new $firebaseArray(ref.child(gameId).child('rounds'));
+                    return fbObj.$loaded();
+                });
+        }
+
+        function setQuizStatus(gameId, roundId, quizId, object) {
+            return gameService.getGameRef(gameId)
+                .then((ref) => {
+                    console.log(gameId);
+                    console.log(roundId);
+                    console.log(quizId);
+                    console.log(object);
+
+                    let fbObj = new $firebaseObject(ref.child(`${gameId}/rounds/${roundId}/quizzesWithWeight/${quizId}`));
+                    fbObj.$value = object;
+                    fbObj.$save();
                     return fbObj.$loaded();
                 });
         }
