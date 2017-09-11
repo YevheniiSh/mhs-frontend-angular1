@@ -65,19 +65,14 @@ input:checked + .slider:before {
     margin-right: 5px;
 }
 .quiz-result{
-    margin-right: 8%;
-    margin-bottom: 0;
+    margin: 0 8% 0 5px;
     width: 136px;
     height: 41px;
     display: inline-block;
     position: relative;
-    padding: 8px 0;
+    padding: 6px 0;
 }
 
-
-span.inp{
-    margin: 5px;
-}
 .result{
     background: 0;
     text-align:center;
@@ -85,9 +80,9 @@ span.inp{
     padding-right: 5px;
 }
 .result, span.inp{
+    padding: 4px 0;
     border-radius: 30%;
     color: #ffffff;
-    display: inline-table;
     width: 44px;
     height: 31px;
     font-size: 17px;

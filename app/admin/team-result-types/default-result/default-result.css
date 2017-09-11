@@ -1,18 +1,8 @@
-/*.result-weight{*/
-    /*width: 1px;*/
-    /*!*position: absolute;*!*/
-    /*!*left: 10px;*!*/
-/*}*/
-/*.span-weight{*/
-    /*!*position: relative;*!*/
-    /*!*margin-left: auto;*!*/
-/*}*/
-.input-group{
-    /*display: inline-block;*/
-    /*vertical-align: middle;*/
+.input-group {
     display: inline-table;
     vertical-align: middle;
 }
-.quiz-input{
 
+.inp-label:nth-child(5) {
+    margin-right: 25px;
 }
