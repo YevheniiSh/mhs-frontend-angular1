@@ -57,10 +57,6 @@
             if (parseInt(result.numberOfCorrectAnswers) !== result.numberOfCorrectAnswers) result.numberOfCorrectAnswers = 0;
             if (vm.isManualInput) {
                 result.score = calculateScore(result);
-                result.weightOfResponse = vm.weightOfResponse;
-            } else {
-                if (result.hasOwnProperty("weightOfResponse"))
-                    delete result.weightOfResponse;
             }
             save(result);
         };
