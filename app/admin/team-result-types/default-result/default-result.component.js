@@ -28,6 +28,7 @@ function defaultResultController() {
     }
 
     vm.setScore = function (roundNum, quiz) {
+        quiz.edited = true;
         quiz.score = +((quiz.weightOfResponse * quiz.countAnswer).toFixed(1));
         vm.saveResult({roundNum: roundNum, quiz: quiz})
     };
