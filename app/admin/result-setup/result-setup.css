@@ -10,14 +10,14 @@ h2 {
     margin-bottom: 0;
 }
 
-
 #team-list {
     list-style: none;
     -webkit-column-count: 3; /* Chrome, Safari, Opera */
     -moz-column-count: 3; /* Firefox */
     column-count: 3;
 }
-#team-list li{
+
+#team-list li {
     padding: 5px 0;
 }
 
@@ -34,7 +34,8 @@ h2 {
     display: inline-block;
     margin: 0 10px 0 0;
 }
-#team-list input[type="number"]{
+
+#team-list input[type="number"] {
     height: 32px;
 }
 
@@ -75,7 +76,7 @@ input[type=checkbox] {
     margin-top: 5px;
 }
 
-.result-control{
+.result-control {
     float: left;
 }
 
@@ -83,6 +84,7 @@ input[type=checkbox] {
     overflow: hidden;
     word-wrap: break-word;
 }
-.disabled{
+
+.disabled {
     color: lightgrey;
 }
