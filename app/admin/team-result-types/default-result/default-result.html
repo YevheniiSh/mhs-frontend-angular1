@@ -36,6 +36,8 @@
                        ng-focus=" $event.target.select()"
                        ng-blur="$ctrl.hideEditMode(quiz)"
                        focused="true"
+                       enter-key="$ctrl.hideEditMode(quiz)"
+                       esc-key="$ctrl.hideEditMode(quiz)"
                        min="0"
                        max="50">
             <span class="input-group-addon">= {{quiz.score.toFixed(1)}}</span>
@@ -46,9 +48,7 @@
                      'btn-silver' : +(quiz.score) === 0,
                      'btn-danger' : +(quiz.score) < 0}"
               ng-click="$ctrl.showEditMode(quiz)">
-               <span uib-tooltip="№ {{quiz.quizNum}}">
             {{quiz.score}}
-               </span>
          </span>
     </span>
 </label>
