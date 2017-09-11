@@ -1,7 +1,7 @@
 <div class="container">
     <H1 id="game-templates">{{'GAME_TEMPLATES'|translate}}</H1>
     <game-template selected-template-id="$ctrl.templateId"></game-template>
-    <div id = "current-template" class="col-md-8 col-md-offset-1">
+    <div ng-if="$ctrl.templateId" id = "current-template" class="col-md-8 col-md-offset-1">
         <form ng-submit="$ctrl.saveTemplate()">
             <span class="template-name-title">{{'TEMPLATE_NAME_LABEL' | translate}}</span>
             <input class="form-control" ng-model="$ctrl.currentTemplateName"
@@ -13,7 +13,8 @@
                 type="submit">
             {{'SAVE_ROUNDS_BUTTON' | translate}}
         </button>
-    </form>
+        </form>
+    </div>
     <div class="alert alert-danger"
          role="alert" ng-show="$ctrl.roundCountError"
         id ="round-count-alert">
