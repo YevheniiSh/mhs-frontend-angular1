@@ -42,11 +42,11 @@ td.td-cell{
     cursor: pointer;
     font-size: 20px;
 }
-th.th-cell.round-number{
+th.th-cell.dragable-icon{
     padding-right: 0.9em;
 }
 td.round-score, td.total-score,
-th.round-number, th.total-title{
+th.dragable-icon, th.total-title{
     text-align: right;
 }
 th{
