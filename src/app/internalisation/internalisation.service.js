@@ -1,16 +1,25 @@
 angular
     .module('internalisation')
-    .config(['$translateProvider', function ($translateProvider) {
+    .config(['$translateProvider', 'tmhDynamicLocaleProvider', function ($translateProvider, tmhDynamicLocaleProvider) {
 
-        if (localStorage.getItem("locale") === null) {
+
+        var locale = localStorage.getItem("locale")
+        if (locale === null) {
             localStorage.setItem("locale", "ru");
         }
 
         $translateProvider
             .useStaticFilesLoader({
-              prefix: 'app/translations/',
-                suffix: '.json'
+                files: [{
+                    prefix: '/translations/',
+                    suffix: '.json'
+                }
+                ]
             })
             .preferredLanguage(localStorage.getItem("locale"))
             .useMissingTranslationHandlerLog();
+
+        tmhDynamicLocaleProvider.defaultLocale(locale);
+        tmhDynamicLocaleProvider.localeLocationPattern(`/bower_components/angular-i18n/angular-locale_{{locale}}.js`);
+
     }]);

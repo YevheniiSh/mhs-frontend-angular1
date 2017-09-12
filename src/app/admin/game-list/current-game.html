@@ -1,4 +1,7 @@
-<table class="table table-sm table-striped table-hover">
+<div ng-if="$ctrl.games.length == 0" class="no-games-label" colspan="4">{{'NO_CURRENT_GAME_PLACEHOLDER' | translate}}
+</div>
+<table ng-if="$ctrl.games.length != 0 && $ctrl.games.length !== undefined"
+       class="table table-sm table-striped table-hover">
     <thead>
     <tr class="game-property">
         <th>{{'DATE_LABEL' | translate}}</th>
@@ -8,9 +11,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr  ng-if="$ctrl.games.length == 0">
-        <td class="no-games-label" colspan="4">{{'NO_CURRENT_GAME_PLACEHOLDER' | translate}}</td>
-    </tr>
     <tr class="game-row" ng-repeat="game in $ctrl.games | orderBy:'-date'">
         <td>{{game.date | date:'d MMM y'}}</td>
         <td>{{game.time}}</td>
@@ -20,10 +20,11 @@
         <td>
             <button class="btn btn-info game-button"
                     ng-click="$ctrl.continueGame(game.$id)">
-                {{'CONTINUE_BUTTON' | translate}}
+                <i class="fa fa-play" aria-hidden="true"></i>
             </button>
-            <button class="btn btn-info game-button"
-                    ng-click="$ctrl.reOpenGame(game.$id)">{{'REOPEN_BUTTON' | translate}}
+            <button class="btn btn-info game-button" ng-if="game.hasUnfinishedRound"
+                    ng-click="$ctrl.reOpenGame(game.$id)">
+                <i class="fa fa-undo" aria-hidden="true"></i>
             </button>
             <span class="error text-danger" ng-if="game.invalid">{{game.error}}</span>
         </td>

@@ -4,7 +4,7 @@
             <tr>
                 <th class="th-cell position-title">#</th>
                 <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}}</th>
-                <th class="th-cell round-number" ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
+                <th class="th-cell dragable-icon" ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
                 <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
             </tr>
         </thead>

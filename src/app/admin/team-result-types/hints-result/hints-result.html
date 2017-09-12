@@ -1,0 +1,44 @@
+<div>
+    <div id="hint-result" ng-if="!$ctrl.resultDisabled">
+        <div ng-repeat="result in $ctrl.round.quizzes  track by result.quizNum">
+            <input
+                    id="{{$ctrl.round.roundNum}}_{{result.quizNum}}"
+                    type="radio"
+                    name="captain-result"
+                    ng-checked="result.quizNum === $ctrl.quizNum"
+                    ng-disabled="$ctrl.resultDisabled"
+            >
+            <label for="{{$ctrl.round.roundNum}}_{{result.quizNum}}"
+                   class="btn btn-default"
+                   ng-disabled="$ctrl.resultDisabled"
+                   ng-class="{'btn-success': result.quizNum === $ctrl.quizNum && $ctrl.status===1,
+                               'btn-danger': result.quizNum === $ctrl.quizNum && $ctrl.status===0}"
+                   ng-click="$ctrl.onChange(result.quizNum)">
+                        {{$ctrl.round.roundType.start - $index*$ctrl.round.roundType.step}}
+            </label>
+        </div>
+    </div>
+    <span class="switchSpan" ng-if="!$ctrl.resultDisabled">
+        <label class="switch">
+            <input id="season"
+                   type="checkbox"
+                   ng-model="$ctrl.status"
+                   ng-change="$ctrl.onChange($ctrl.quizNum)"
+                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
+                   ng-true-value="1"
+                   ng-false-value="0">
+            <span class="slider round"/>
+        </label>
+    </span>
+    <div id="captain-result-user" ng-if="$ctrl.resultDisabled">
+    <span class="btn inp"
+          ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum"
+          ng-class="{'btn-success' : +(quiz.score) > 0,
+                          'btn-silver' : +(quiz.score) === 0,
+                          'btn-danger' : +(quiz.score) < 0}">
+        <span uib-tooltip="№ {{quiz.quizNum}}">
+            {{quiz.score}}
+        </span>
+    </span>
+    </div>
+</div>

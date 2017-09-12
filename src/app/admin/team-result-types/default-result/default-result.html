@@ -1,0 +1,54 @@
+<label for="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
+       ng-class="{'inp-label': !$ctrl.editMode}"
+       ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum">
+    <span class="btn inp"
+          ng-if="quiz.weightOfResponse === undefined  || !$ctrl.auth"
+          ng-class="{'btn-success' : +(quiz.score) > 0,
+                     'btn-silver' : +(quiz.score) === 0,
+                     'btn-danger' : +(quiz.score) < 0,
+                     'edited' : quiz.edited}">
+        <span uib-tooltip="№ {{quiz.quizNum}}">
+            <input
+                    type="checkbox"
+                    id="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
+                    class="quiz-input"
+                    ng-model="quiz.score"
+                    ng-disabled="$ctrl.resultDisabled"
+                    ng-change="$ctrl.saveResult({roundNum:$ctrl.round.roundNum ,quiz:quiz})"
+                    ng-model-options="{ updateOn: 'default blur' }"
+                    ng-hide="true"
+                    ng-true-value="1"
+                    ng-false-value="0">
+             {{quiz.score}}
+        </span>
+    </span>
+    <span uib-tooltip="№ {{quiz.quizNum}}" ng-if="quiz.weightOfResponse!== undefined && $ctrl.auth">
+        <span class="input-group" ng-if="quiz.editMode">
+            <span class="input-group-addon">{{quiz.weightOfResponse}} X</span>
+
+                <input name="{{round.roundNum}}_{{quiz.quizNum}}"
+                       type="number"
+                       class="form-control "
+                       ng-model="quiz.countAnswer"
+                       ng-disabled="$ctrl.resultDisabled"
+                       ng-change="$ctrl.setScore($ctrl.round.roundNum, quiz)"
+                       ng-model-options="{ updateOn: 'default blur'}"
+                       ng-focus=" $event.target.select()"
+                       ng-blur="$ctrl.hideEditMode(quiz)"
+                       focused="true"
+                       enter-key="$ctrl.hideEditMode(quiz)"
+                       esc-key="$ctrl.hideEditMode(quiz)"
+                       min="0"
+                       max="50">
+            <span class="input-group-addon">= {{quiz.score.toFixed(1)}}</span>
+        </span>
+        <span class="btn inp"
+              ng-hide="quiz.editMode"
+              ng-class="{'btn-success' : +(quiz.score) > 0,
+                     'btn-silver' : +(quiz.score) === 0,
+                     'btn-danger' : +(quiz.score) < 0}"
+              ng-click="$ctrl.showEditMode(quiz)">
+            {{quiz.score}}
+         </span>
+    </span>
+</label>

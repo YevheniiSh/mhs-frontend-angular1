@@ -18,6 +18,11 @@
                 .getAllCurrentGames()
                 .then((games) => {
                     vm.games = games;
+
+                    for (let game of games) {
+                        game.hasUnfinishedRound = hasUnfinishedRound(game)
+                    }
+
                     vm.parseDate();
                     vm.games.$watch(() => {
                         vm.parseDate();
@@ -32,6 +37,11 @@
                 vm.auth = false;
             });
         };
+
+        function hasUnfinishedRound(game) {
+            let roundCount = game.rounds.length - 1;
+            return !(roundCount < game.currentRound)
+        }
 
         vm.parseDate = function () {
             vm.games.forEach((item) => {

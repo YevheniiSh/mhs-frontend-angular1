@@ -1,2 +1,2 @@
 angular
-    .module('navbar', ['internalisation']);
+    .module('navbar', ['internalisation', 'tmh.dynamicLocale']);

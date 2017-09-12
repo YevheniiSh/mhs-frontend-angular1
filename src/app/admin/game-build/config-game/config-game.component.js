@@ -1,10 +1,10 @@
 'use strict';
 angular.module('configGame')
     .component('configGame', {
-      templateUrl: 'app/admin/game-build/config-game/config-game.html',
-      css: 'app/admin/game-build/config-game/config-game.css',
-        controller: ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout','$locale','convertServiceFactory',
-            function ($location, OpenGameService, $routeParams, $timeout,$locale,convertService) {
+        templateUrl: 'admin/game-build/config-game/config-game.html',
+        css: 'admin/game-build/config-game/config-game.css',
+        controller: ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout', '$locale', 'convertServiceFactory',
+            function ($location, OpenGameService, $routeParams, $timeout, $locale, convertService) {
                 let vm = this;
                 let gameId = $routeParams.gameId;
                 vm.isCalendarVisible = false;
@@ -95,35 +95,43 @@ angular.module('configGame')
                     });
                 }
 
-                vm.ChangeCalendarStatus = function () {
-                    if (vm.isCalendarVisible) {
-                        saveDate();
-                        vm.isCalendarVisible = false;
-
-                    } else if (vm.isTimeVisible) {
-                        saveTime();
-                        vm.isTimeVisible = false;
+                vm.openCalendarPiker = function () {
+                    if (!isCalendarPikerOpen())
                         vm.isCalendarVisible = true;
-                    }
-                    else {
-                        vm.isCalendarVisible = true;
-                    }
                 };
 
-                this.ChangeTimeStatus = function () {
+                vm.openTimePiker = function () {
+                    if (!isTimePikerOpen())
+                        vm.isTimeVisible = true;
+                };
+
+                vm.closeCalendarPiker = function () {
+                    isCalendarPikerOpen()
+                };
+
+                vm.closeTimePiker = function () {
+                    isTimePikerOpen()
+                };
+
+
+                function isTimePikerOpen() {
                     if (vm.isTimeVisible) {
                         saveTime();
                         vm.isTimeVisible = false;
+                        return true
                     }
-                    else if (vm.isCalendarVisible) {
+                    return false
+
+                }
+
+                function isCalendarPikerOpen() {
+                    if (vm.isCalendarVisible) {
                         saveDate();
-                        vm.isTimeVisible = true;
                         vm.isCalendarVisible = false;
+                        return true
                     }
-                    else {
-                        vm.isTimeVisible = true;
-                    }
-                };
+                    return false
+                }
             }]
     });
 

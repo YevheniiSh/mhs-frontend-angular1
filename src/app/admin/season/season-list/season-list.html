@@ -5,7 +5,7 @@
         <tr class="">
             <th>{{'GAME_SEASON_LABEL' | translate}}</th>
             <th>{{'WINNER_TEAM_LABEL' | translate}}</th>
-            <th>{{'NUMBER_OF_GAMES_LABEL' | translate}}</th>
+            <th class="games-number">{{'NUMBER_OF_GAMES_LABEL' | translate}}</th>
         </tr>
         </thead>
         <tbody>
@@ -20,7 +20,7 @@
                     <i id="trophy" class="fa fa-trophy"></i> {{winner.teamName}}
                 </div>
             </td>
-            <td>{{season.numberOfGames}}</td>
+            <td class="games-number">{{season.numberOfGames}}</td>
         </tr>
         </tbody>
     </table>

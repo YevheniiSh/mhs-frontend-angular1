@@ -1,8 +1,9 @@
 .weight-of-response {
-  font-weight: bold;
-  width: 100px;
+    font-weight: bold;
+    width: 100px;
 }
-
-#manual-input {
-  padding: 6px 0;
+#manual-input{
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-left: 3px;
 }
