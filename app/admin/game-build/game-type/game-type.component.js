@@ -6,10 +6,12 @@ angular.module('gameType')
         controller: GameType
     });
 
-GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$location', '$timeout'];
+GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$location', '$timeout', '$scope'];
 
-function GameType(gameTemplateService, openGameService, $routeParams, $location, $timeout) {
+function GameType(gameTemplateService, openGameService, $routeParams, $location, $timeout, $scope) {
     let vm = this;
+
+    vm.templateName = "";
 
     vm.$onInit = onInit;
     function onInit() {
@@ -25,9 +27,15 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
         openGameService.getRounds(vm.gameId).then(rounds => {
             if(rounds.length)vm.configRounds = rounds.slice();
         });
+
+        openGameService.getTemplateName(vm.gameId).then(templateName => {
+            vm.templateName = templateName;
+        })
     }
 
+
     vm.saveRounds = function () {
+        openGameService.setTemplateName(vm.gameId, vm.templateName);
         console.log(vm.configRounds);
         openGameService.addRounds(vm.gameId, vm.configRounds)
         // .then(rounds => vm.configRounds = convertRoundsObjectToArray(rounds));
@@ -57,6 +65,7 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
 
     vm.selectTemplate = function (template) {
         if(template){
+            vm.templateName = template.name;
             gameTemplateService.getRounds(template.$id)
                 .then(rounds=>{
                     vm.configRounds = rounds;
