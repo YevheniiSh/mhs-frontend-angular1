@@ -150,5 +150,6 @@
   "GAME_TEMPLATES": "Game templates",
   "START_VALUE_TOOLTIP": "Start value",
   "STEP_VALUE_TOOLTIP": "Step",
+  "INVALID_EMAIL_MESSAGE": "Invalid e-mail or password",
   "ROUND_FINISH_BUTTON": "Finish round"
 }

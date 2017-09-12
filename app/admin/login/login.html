@@ -9,7 +9,7 @@
                     <form ng-submit="$ctrl.login()">
                         <fieldset>
                             <div class="form-group">
-                                <p class="panel-title error-message">{{$ctrl.errMessage}}</p>
+                                <p class="panel-title error-message">{{$ctrl.errMessage | translate}}</p>
                             </div>
                             <div class="form-group">
                                 <input id="email" ng-model='$ctrl.email' type="email"
