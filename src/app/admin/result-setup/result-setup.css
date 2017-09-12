@@ -18,7 +18,7 @@ h2 {
 }
 
 #team-list li {
-    padding: 5px 0;
+  padding: 5px 0;
 }
 
 #team-list label {
@@ -86,5 +86,5 @@ input[type=checkbox] {
 }
 
 .disabled {
-    color: lightgrey;
+  color: lightgrey;
 }

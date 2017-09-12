@@ -69,30 +69,30 @@ angular.module('teamResults')
                     });
                 };
 
-                vm.setTeamResult = function (roundNum, quiz) {
+              vm.setTeamResult = function (roundNum, quiz) {
                     let score = parseFloat(quiz.score);
                     let quizNum = parseFloat(quiz.quizNum);
-                    let roundNumber = parseFloat(roundNum);
-                    let weightOfResponse = null;
-                    if(quiz.hasOwnProperty("weightOfResponse"))
-                         weightOfResponse = quiz.weightOfResponse;
+                let roundNumber = parseFloat(roundNum);
+                let weightOfResponse = null;
+                if (quiz.hasOwnProperty("weightOfResponse"))
+                  weightOfResponse = quiz.weightOfResponse;
                     quiz.edit = true;
                     let result = {
                         quiz: quizNum,
-                        round: roundNumber,
+                      round: roundNumber,
                         score: score,
-                        teamId: vm.teamId,
-                        weightOfResponse: weightOfResponse
+                      teamId: vm.teamId,
+                      weightOfResponse: weightOfResponse
                     };
 
                     ResultService.saveResult(vm.state, result, vm.gameId)
                         .then(() => {
-                            vm.getQuiz(roundNumber, quiz);
+                          vm.getQuiz(roundNumber, quiz);
                         });
                 };
 
-                vm.getQuiz = function (roundNum, quiz) {
-                    let resultKey = [roundNum, quiz.quizNum, vm.teamId].join('_');
+              vm.getQuiz = function (roundNum, quiz) {
+                let resultKey = [roundNum, quiz.quizNum, vm.teamId].join('_');
                     ResultService.getQuiz(vm.gameId, resultKey)
                         .then((res) => {
                             vm.setQuizResult(res);

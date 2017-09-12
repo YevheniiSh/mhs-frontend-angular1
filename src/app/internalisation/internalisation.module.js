@@ -1,2 +1,2 @@
 angular
-    .module('internalisation', ['pascalprecht.translate', 'tmh.dynamicLocale']);
+  .module('internalisation', ['pascalprecht.translate', 'tmh.dynamicLocale']);

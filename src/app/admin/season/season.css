@@ -19,14 +19,14 @@
 }
 
 .season-alert {
-    /*font-size: 24px;*/
-    /*padding-top: 10px;*/
-    background: #fff;
-    font-size: 4em;
-    text-align: center;
-    color: #c7c7c7;
-    padding-top: 1em;
-    cursor: default;
+  /*font-size: 24px;*/
+  /*padding-top: 10px;*/
+  background: #fff;
+  font-size: 4em;
+  text-align: center;
+  color: #c7c7c7;
+  padding-top: 1em;
+  cursor: default;
 }
 
 .position-title {
@@ -71,19 +71,19 @@
 }
 
 .season-name {
-    font-weight: bold;
-    font-size: 35px;
-    text-align: center;
+  font-weight: bold;
+  font-size: 35px;
+  text-align: center;
 }
 
 .season-header {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .season-header-back-panel {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 .season-header-close-panel {
-    padding-right: 0;
+  padding-right: 0;
 }

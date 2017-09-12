@@ -9,20 +9,20 @@
                      'edited' : quiz.edited}">
         <span uib-tooltip="№ {{quiz.quizNum}}">
             <input
-                    type="checkbox"
-                    id="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
-                    class="quiz-input"
-                    ng-model="quiz.score"
-                    ng-disabled="$ctrl.resultDisabled"
-                    ng-change="$ctrl.saveResult({roundNum:$ctrl.round.roundNum ,quiz:quiz})"
-                    ng-model-options="{ updateOn: 'default blur' }"
-                    ng-hide="true"
-                    ng-true-value="1"
-                    ng-false-value="0">
+              type="checkbox"
+              id="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
+              class="quiz-input"
+              ng-model="quiz.score"
+              ng-disabled="$ctrl.resultDisabled"
+              ng-change="$ctrl.saveResult({roundNum:$ctrl.round.roundNum ,quiz:quiz})"
+              ng-model-options="{ updateOn: 'default blur' }"
+              ng-hide="true"
+              ng-true-value="1"
+              ng-false-value="0">
              {{quiz.score}}
         </span>
     </span>
-    <span uib-tooltip="№ {{quiz.quizNum}}" ng-if="quiz.weightOfResponse!== undefined && $ctrl.auth">
+  <span uib-tooltip="№ {{quiz.quizNum}}" ng-if="quiz.weightOfResponse!== undefined && $ctrl.auth">
         <span class="input-group" ng-if="quiz.editMode">
             <span class="input-group-addon">{{quiz.weightOfResponse}} X</span>
 

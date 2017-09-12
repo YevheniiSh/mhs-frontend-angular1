@@ -23,7 +23,7 @@
 }
 
 .autocomplete-panel {
-    margin-top: 10px;
+  margin-top: 10px;
     float: right;
     width: 45%;
     display: inline-block;
@@ -32,19 +32,19 @@
 .animate-come-gone.ng-hide-add {
     transform: rotateZ(0);
     transform-origin: right;
-    transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .animate-come-gone.ng-hide-add.ng-hide-add-active {
     transform: rotateY(-90deg);
     transform-origin: right;
-    transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .animate-come-gone.ng-hide-remove {
     transform: rotateY(90deg);
     transform-origin: right;
-    transition: all 0.8s linear;
+  transition: all 0.8s linear;
 }
 
 .animate-come-gone.ng-hide-remove.ng-hide-remove-active {
@@ -108,14 +108,14 @@ label {
 
 .autocomplete-captain-name-panel {
     width: 100%;
-    transition: all cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.7s;
+  transition: all cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.7s;
 }
 
 .autocomplete-captain-phone-panel {
     display: inline-block;
     float: left;
     width: 100%;
-    transition: all cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.7s;
+  transition: all cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.7s;
 }
 
 .verify-phone-placeholder {
@@ -139,11 +139,11 @@ label {
 }
 
 .vertical-line {
-    margin-top: 20px;
+  margin-top: 20px;
     display: inline-block;
     margin-left: 5%;
     border-left: 1px solid silver;
-    height: 120px;
+  height: 120px;
 }
 
 .animate-show-hide.ng-hide {

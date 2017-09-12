@@ -55,7 +55,7 @@ angular.module('createGame')
                     let game = gameBuider.buildGame();
                     OpenGameServiceFactory.createNewGame(game)
                         .then((gameId) => {
-                            if (vm.isSeasonGame) {
+                          if (vm.isSeasonGame) {
                                 seasonService.addGameToSeason(vm.season.$id, gameId)
                             }
                             vm.isCalendarVisible = false;
@@ -88,39 +88,39 @@ angular.module('createGame')
                     vm.seasonEditor = false;
                 };
 
-                vm.openCalendarPiker = function () {
-                    if (!isCalendarPikerOpen())
-                        vm.isCalendarVisible = true;
-                };
+              vm.openCalendarPiker = function () {
+                if (!isCalendarPikerOpen())
+                  vm.isCalendarVisible = true;
+              };
 
-                vm.openTimePiker = function () {
-                    if (!isTimePikerOpen())
-                        vm.isTimeVisible = true;
-                };
+              vm.openTimePiker = function () {
+                if (!isTimePikerOpen())
+                  vm.isTimeVisible = true;
+              };
 
-                vm.closeCalendarPiker = function () {
-                    isCalendarPikerOpen()
-                };
+              vm.closeCalendarPiker = function () {
+                isCalendarPikerOpen()
+              };
 
-                vm.closeTimePiker = function () {
-                    isTimePikerOpen()
-                };
+              vm.closeTimePiker = function () {
+                isTimePikerOpen()
+              };
 
-                function isTimePikerOpen() {
-                    if (vm.isTimeVisible) {
-                        vm.isTimeVisible = false;
-                        return true
-                    }
-                    return false
+              function isTimePikerOpen() {
+                if (vm.isTimeVisible) {
+                  vm.isTimeVisible = false;
+                  return true
                 }
+                return false
+              }
 
-                function isCalendarPikerOpen() {
-                    if (vm.isCalendarVisible) {
-                        vm.isCalendarVisible = false;
-                        return true
-                    }
-                    return false
+              function isCalendarPikerOpen() {
+                if (vm.isCalendarVisible) {
+                  vm.isCalendarVisible = false;
+                  return true
                 }
+                return false
+              }
             }]
     })
 ;

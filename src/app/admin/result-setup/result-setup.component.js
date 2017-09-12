@@ -2,8 +2,8 @@
 (function () {
     angular.module('resultSetup')
         .component('resultSetup', {
-            templateUrl: 'admin/result-setup/result-setup.html',
-            css: 'admin/result-setup/result-setup.css',
+          templateUrl: 'app/admin/result-setup/result-setup.html',
+          css: 'app/admin/result-setup/result-setup.css',
             controller: ResultSetupController
         });
 
@@ -11,16 +11,16 @@
         'resultSetupService',
         '$routeParams',
         '$location',
-        '$window',
-        'resultSetupBuilder'
+      '$window',
+      'resultSetupBuilder'
     ];
 
-    function ResultSetupController(resultSetupService, $routeParams, $location, $window, resultSetupBuilder) {
+  function ResultSetupController(resultSetupService, $routeParams, $location, $window, resultSetupBuilder) {
         let vm = this;
 
         vm.isManualInput = false;
         vm.selectedQuiz = $routeParams.quizNumber;
-        vm.isCaptainsOut = false;
+    vm.isCaptainsOut = false;
         vm.$onInit = onInit;
 
         function onInit() {
@@ -29,7 +29,7 @@
             initCurrentQuiz();
             getTeams()
                 .then(() => {
-                    buildResults();
+                  buildResults();
                     assignResults()
                         .then(initInputType);
                 })
@@ -44,16 +44,16 @@
             })
         }
 
-        function isCaptainsInGame() {
-            let isCaptainsInGame = false;
-            for (let res of vm.results) {
-                if (res.score) {
-                    isCaptainsInGame = true;
-                    break;
-                }
-            }
-            return isCaptainsInGame;
+    function isCaptainsInGame() {
+      let isCaptainsInGame = false;
+      for (let res of vm.results) {
+        if (res.score) {
+          isCaptainsInGame = true;
+          break;
         }
+      }
+      return isCaptainsInGame;
+    }
 
         function initRound() {
             resultSetupService.getRound($routeParams.gameId, $routeParams.roundNumber)
@@ -88,12 +88,12 @@
             angular.forEach(vm.teams, function (team) {
                 let resultKey = [vm.round.$id, vm.selectedQuiz, team.teamId].join('_');
 
-                let result = resultSetupBuilder
-                    .addQuiz(vm.selectedQuiz)
-                    .addRound(vm.round.$id)
-                    .addTeamId(team.teamId)
-                    .addScore()
-                    .getResult();
+              let result = resultSetupBuilder
+                .addQuiz(vm.selectedQuiz)
+                .addRound(vm.round.$id)
+                .addTeamId(team.teamId)
+                .addScore()
+                .getResult();
 
                 vm.results[resultKey] = result;
                 vm.results[resultKey].teamName = team.name;
@@ -120,10 +120,10 @@
         };
 
         vm.nextQuiz = function () {
-            if (!isCaptainsInGame() && vm.round.roundType.type == 'CAPTAIN_ROUND') {
-                    vm.isCaptainsOut = true;
-                return;
-            }
+          if (!isCaptainsInGame() && vm.round.roundType.type == 'CAPTAIN_ROUND') {
+            vm.isCaptainsOut = true;
+            return;
+          }
 
             if (vm.selectedQuiz < vm.round.numberOfQuestions) {
                 if (vm.currentQuiz == vm.selectedQuiz) {
@@ -132,16 +132,16 @@
                 }
                 vm.setQuiz(+vm.selectedQuiz + 1);
             } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
-                resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
-                    .then(() => {
-                        $window.location.href = `#!/games/${$routeParams.gameId}/rounds`;
-                        $window.location.reload();
-                    });
+              resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
+                .then(() => {
+                  $window.location.href = `#!/games/${$routeParams.gameId}/rounds`;
+                  $window.location.reload();
+                });
             }
         };
 
         vm.range = function (n) {
-            return new Array(n).fill().map((e, i) => i + 1);
+          return new Array(n).fill().map((e, i) => i + 1);
         };
     }
 })();

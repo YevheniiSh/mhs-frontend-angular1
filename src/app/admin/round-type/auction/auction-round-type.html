@@ -1,10 +1,10 @@
 <div class="form-group row">
-    <ul id="team-list">
-        <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
-            <div class="team-name-panel">
-                <span class="team-name">{{result.teamName}}</span>
-            </div>
-            <label ng-class="{'disabled':$ctrl.isDisabled(result.teamId)}">
+  <ul id="team-list">
+    <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
+      <div class="team-name-panel">
+        <span class="team-name">{{result.teamName}}</span>
+      </div>
+      <label ng-class="{'disabled':$ctrl.isDisabled(result.teamId)}">
 
                 <span class='result-control'>
                     <label>
@@ -24,7 +24,7 @@
                     </label>
                 </span>
 
-            </label>
-        </li>
-    </ul>
+      </label>
+    </li>
+  </ul>
 </div>

@@ -17,16 +17,19 @@ table thead th.th-cell{
 span.ng-binding.date{
     float: right;
 }
+
 .dragable-icon, .round-score {
     text-align: right;
 }
-.th-cell.dragable-icon{
+
+.th-cell.dragable-icon {
     padding-right: 0.9em;
 }
 .teams-title, .team-name{
     width: 15%;
 }
-.dragable-icon, .round-score{
+
+.dragable-icon, .round-score {
     width: 8%;
 }
 .total-title, .total-score{

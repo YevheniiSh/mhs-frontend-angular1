@@ -1,89 +1,90 @@
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 30px;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
 }
 
 .switch input {
-    display: none;
+  display: none;
 }
 
 .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0;
-    background-color: #ED8282;
-    -webkit-transition: .4s;
-    transition: .4s;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  background-color: #ED8282;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 .slider:before {
-    position: absolute;
-    content: "";
-    height: 24px;
-    width: 24px;
-    left: 4px;
-    bottom: 3px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 input:checked + .slider {
-    background-color: #81EA89;
+  background-color: #81EA89;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #81EA89;
+  box-shadow: 0 0 1px #81EA89;
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(24px);
-    -ms-transform: translateX(24px);
-    transform: translateX(24px);
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
 }
 
 .slider.round {
-    border-radius: 30px;
+  border-radius: 30px;
 }
 
 .slider.round:before {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .result-control {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
-.result-rate{
-    float: left;
+.result-rate {
+  float: left;
 }
 
-#team-list #switch-checkbox{
-    display: none;
+#team-list #switch-checkbox {
+  display: none;
 }
+
 .team-name {
-    font-weight: bold;
-    font-size: 15px;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 .team-name-panel {
-    width: 280px;
-    float: left;
+  width: 280px;
+  float: left;
 }
 
 #team-list {
-    list-style: none;
-    -webkit-column-count: 2; /* Chrome, Safari, Opera */
-    -moz-column-count: 2; /* Firefox */
-    column-count: 2;
+  list-style: none;
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
 }
 
 .team {
-    margin-left: 5%;
+  margin-left: 5%;
 }

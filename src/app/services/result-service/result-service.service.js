@@ -260,15 +260,15 @@ angular
                                         total: 0
                                     };
                                     for (let j = 1; j <= rounds[i].numberOfQuestions; j++) {
-                                        roundResult[i + 1].quizzes.push({quizNum: j, score: 0, real: false})
-                                        if (rounds[i].quizzesWithWeight !== undefined && rounds[i].quizzesWithWeight.hasOwnProperty(j)) {
-                                            roundResult[i + 1].quizzes[j - 1].weightOfResponse = rounds[i].quizzesWithWeight[j].weight;
-                                        }
+                                      roundResult[i + 1].quizzes.push({quizNum: j, score: 0, real: false})
+                                      if (rounds[i].quizzesWithWeight !== undefined && rounds[i].quizzesWithWeight.hasOwnProperty(j)) {
+                                        roundResult[i + 1].quizzes[j - 1].weightOfResponse = rounds[i].quizzesWithWeight[j].weight;
+                                      }
                                     }
                                 }
                                 teamResults.forEach(quizResult => {
                                     roundResult[quizResult.round].quizzes[quizResult.quiz - 1].score = quizResult.score;
-                                    roundResult[quizResult.round].quizzes[quizResult.quiz - 1].real = true;
+                                  roundResult[quizResult.round].quizzes[quizResult.quiz - 1].real = true;
                                 });
                                 for (let round in roundResult) {
                                     roundResult[round].total = roundResult[round].quizzes.reduce((sum, current) => {
