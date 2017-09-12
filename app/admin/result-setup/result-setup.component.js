@@ -11,10 +11,11 @@
         'resultSetupService',
         '$routeParams',
         '$location',
+        '$window',
         'resultSetupBuilder'
     ];
 
-    function ResultSetupController(resultSetupService, $routeParams, $location, resultSetupBuilder) {
+    function ResultSetupController(resultSetupService, $routeParams, $location, $window, resultSetupBuilder) {
         let vm = this;
 
         vm.isManualInput = false;
@@ -133,7 +134,8 @@
             } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
                 resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
                     .then(() => {
-                        $location.path(`/games/${$routeParams.gameId}/rounds`);
+                        $window.location.href = `#!/games/${$routeParams.gameId}/rounds`;
+                        $window.location.reload();
                     });
             }
         };
