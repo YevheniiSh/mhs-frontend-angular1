@@ -41,7 +41,7 @@
                                       save-result="$ctrl.setTeamResult(roundNum,quiz)"></hints-result>
                     </div>
             </td>
-            <td class="total-score" ng-model="round.total" ng-class="$ctrl.totalColor(round)">{{round.total}}</td>
+            <td class="total-score" ng-model="round.total" ng-class="$ctrl.totalColor(round)">{{round.total.toFixed(1)}}</td>
         </tr>
         </tbody>
     </table>
