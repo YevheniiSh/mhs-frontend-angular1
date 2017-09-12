@@ -256,9 +256,21 @@ angular.module('seasonService')
 
                         return parsedResults;
                     })
+                    .then(sortGamesArray)
                     .then(sortParsedResults)
                     .then(setTeamsPosition);
             }
+
+            function sortGamesArray(arr) {
+                console.log(arr);
+                arr.forEach((item) => {
+                    item.gamesArr.sort((a, b) => {
+                        return ((a.gameId > b.gameId) ? 1 : (b.gameId > a.gameId) ? -1 : 0);
+                    })
+                });
+                return arr;
+            }
+
 
             function sortParsedResults(score) {
                 return score.sort((a, b) => {
