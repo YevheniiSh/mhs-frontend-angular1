@@ -57,6 +57,10 @@
             if (parseInt(result.numberOfCorrectAnswers) !== result.numberOfCorrectAnswers) result.numberOfCorrectAnswers = 0;
             if (vm.isManualInput) {
                 result.score = calculateScore(result);
+                result.weightOfResponse = vm.weightOfResponse;
+            } else {
+                if (result.hasOwnProperty("weightOfResponse"))
+                    delete result.weightOfResponse;
             }
             save(result);
         };
@@ -81,7 +85,6 @@
         };
 
         vm.setWeight = function () {
-            console.log('hi');
             if (vm.isManualInput) {
                 RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, {weight: vm.weightOfResponse});
             }
