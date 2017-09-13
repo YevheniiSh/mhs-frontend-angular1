@@ -6,7 +6,8 @@
                 <div class="input-group">
                     <select class="form-control"
                             ng-model="selectedTemplate"
-                            ng-options="template.name for template in $ctrl.templates | filter : '!'+ $ctrl.templateName">
+                            ng-options="template.name for template in $ctrl.templates
+                             | filter : $ctrl.templateNameFilter()">
                         <option value="">{{$ctrl.templateName}}</option>
                     </select>
                     <span class="input-group-btn">

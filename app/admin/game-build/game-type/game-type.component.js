@@ -6,10 +6,12 @@ angular.module('gameType')
         controller: GameType
     });
 
-GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$location', '$timeout', '$scope'];
+GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$location', '$timeout', '$scope', '$rootScope'];
 
-function GameType(gameTemplateService, openGameService, $routeParams, $location, $timeout, $scope) {
+function GameType(gameTemplateService, openGameService, $routeParams, $location, $timeout, $scope, $rootScope) {
     let vm = this;
+
+    let templateRounds = [];
 
     vm.templateName = "";
 
@@ -25,7 +27,11 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
             });
 
         openGameService.getRounds(vm.gameId).then(rounds => {
-            if(rounds.length)vm.configRounds = rounds.slice();
+            if (rounds.length) {
+                vm.configRounds = rounds.slice();
+                templateRounds = rounds.slice();
+                console.log("GET RUNDS");
+            }
         });
 
         openGameService.getTemplateName(vm.gameId).then(templateName => {
@@ -33,11 +39,16 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
         })
     }
 
-
     vm.saveRounds = function () {
-        openGameService.setTemplateName(vm.gameId, vm.templateName);
+        console.log(templateRounds);
         console.log(vm.configRounds);
-        openGameService.addRounds(vm.gameId, vm.configRounds)
+        console.log(angular.equals(templateRounds, vm.configRounds));
+        if (templateRounds === vm.configRounds){
+            vm.templateName = '';
+            openGameService.setTemplateName(vm.gameId, vm.templateName)
+        } else
+            openGameService.setTemplateName(vm.gameId, vm.templateName);
+        openGameService.addRounds(vm.gameId, vm.configRounds);
         // .then(rounds => vm.configRounds = convertRoundsObjectToArray(rounds));
         vm.submitted = true;
         vm.templateFormShow = true;
@@ -64,12 +75,18 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
     };
 
     vm.selectTemplate = function (template) {
-        if(template){
+        if (template) {
+            vm.roundsChanged = false;
             vm.templateName = template.name;
             gameTemplateService.getRounds(template.$id)
-                .then(rounds=>{
+                .then(rounds => {
                     vm.configRounds = rounds;
                 })
         }
+    };
+
+    vm.templateNameFilter = function(){
+            if (vm.templateName) return "!" + vm.templateName;
+            else return ''
     }
 }
