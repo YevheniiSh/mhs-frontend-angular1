@@ -1,0 +1,203 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "mhs"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico",
+        {
+          "glob": "**/*.html",
+          "input": "./app/",
+          "output": "./app/"
+        },
+        {
+          "glob": "**/*.css",
+          "input": "./app/",
+          "output": "./app/"
+        },
+        {
+          "glob": "**/translations/*",
+          "input": "./app/",
+          "output": "./app/"
+        },
+        {
+          "glob": "**/bower_components/angular-i18n/*",
+          "input": "./app/",
+          "output": "./app/"
+        }
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css",
+        "app/public/css/spinner.css",
+        "app/bower_components/html5-boilerplate/dist/css/normalize.css",
+        "app/bower_components/html5-boilerplate/dist/css/main.css",
+        "app/app.css",
+        "app/public/css/bootstrapSilverButton.css",
+        "app/bower_components/angucomplete-alt/angucomplete-alt.css"
+      ],
+      "scripts": [
+        "app/bower_components/angular/angular.js",
+        "app/bower_components/angular-messages/angular-messages.js",
+        "app/bower_components/angular-translate/angular-translate.js",
+        "app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
+        "app/bower_components/angular-bootstrap/ui-bootstrap.js",
+        "app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+        "app/bower_components/angular-animate/angular-animate.js",
+        "app/bower_components/ngMask/dist/ngMask.js",
+        "app/bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js",
+        "app/bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js",
+        "app/shared/esc-key.js",
+        "app/shared/enter-key.js",
+        "app/shared/focused.js",
+        "app/internalisation/internalisation.module.js",
+        "app/internalisation/internalisation.service.js",
+        "app/bower_components/angularfire/dist/angularfire.js",
+        "app/services/firebase-service/firebase-service.module.js",
+        "app/services/firebase-service/firebase-service.service.js",
+        "app/services/user-auth-service/user-auth-service.module.js",
+        "app/services/user-auth-service/user-auth-service.service.js",
+        "app/services/game-template-service/game-template-service.module.js",
+        "app/services/game-template-service/game-template-service.service.js",
+        "app/player/team-games-list/team-games-list.module.js",
+        "app/player/team-games-list/team-games-list.component.js",
+        "app/bower_components/angular-route/angular-route.js",
+        "app/bower_components/angular-css/angular-css.js",
+        "app/services/team-service/team-service.module.js",
+        "app/services/team-service/team-service.service.js",
+        "app/services/game-service/game-service.module.js",
+        "app/services/game-service/game-service.service.js",
+        "app/services/result-service/result-service.module.js",
+        "app/services/game-request-service/game-request-service.module.js",
+        "app/services/game-request-service/game-request-service.service.js",
+        "app/services/game-request-service/game-request-service.service.js",
+        "app/admin/create-game/create-game.module.js",
+        "app/services/result-service/result-service.service.js",
+        "app/admin/round-builder/round-builder.module.js",
+        "app/admin/round-builder/round-builder.component.js",
+        "app/admin/team-list/team-list.module.js",
+        "app/admin/team-list/team-list.component.js",
+        "app/app.js",
+        "app/player/player.js",
+        "app/admin/admin.js",
+        "app/services/prev-location-service.js",
+        "app/spinner/spinner.service.js",
+        "app/shared/outsideClick.js",
+        "app/bower_components/angucomplete-alt/angucomplete-alt.js",
+        "app/player/team-register-form/team-register-form.module.js",
+        "app/player/team-register-form/team-register-form.component.js",
+        "app/admin/add-teams/add-teams.module.js",
+        "app/services/convert-service/convert-service.module.js",
+        "app/services/convert-service/convert-service.service.js",
+        "app/services/game-service/open-game-service/open-game.module.js",
+        "app/services/game-service/open-game-service/open-game.service.js",
+        "app/admin/game-results/game-results-page.module.js",
+        "app/admin/game-results/game-results-page.component.js",
+        "app/admin/game-results/game-results.component.js",
+        "app/presentation-mode/presentationMode.controller.js",
+        "app/admin/season/season.module.js",
+        "app/admin/season/season.component.js",
+        "app/admin/season/season-list/season-list.component.js",
+        "app/services/team-request-service/team-request-service.module.js",
+        "app/services/team-request-service/team-request-service.service.js",
+        "app/admin/create-game/create-game.component.js",
+        "app/admin/team-results/team-results.module.js",
+        "app/admin/team-results/team-results.component.js",
+        "app/admin/team-result-types/auction-result/auction-result.component.js",
+        "app/admin/team-result-types/captain-result/captain-result.component.js",
+        "app/admin/team-result-types/default-result/default-result.component.js",
+        "app/admin/team-result-types/hints-result/hints-result.component.js",
+        "app/admin/add-teams/team-exist.directive.js",
+        "app/admin/game-build/game-type/game-type.module.js",
+        "app/admin/game-build/game-type/game-type.component.js",
+        "app/admin/result-setup/result-setup.module.js",
+        "app/admin/result-setup/result-setup.service.js",
+        "app/admin/result-setup/result-setup.component.js",
+        "app/admin/result-setup/result-setup.builder.js",
+        "app/admin/game-build/config-game/config-game.module.js",
+        "app/admin/game-build/config-game/config-game.component.js",
+        "app/bower_components/angular-socialshare/dist/angular-socialshare.js",
+        "app/admin/add-teams/add-teams.component.js",
+        "app/admin/round-type/hints/hints-round.component.js",
+        "app/admin/round-type/captain/captain-round-type.component.js",
+        "app/admin/round-type/auction/auction-round-type.component.js",
+        "app/admin/round-type/default/default-round.component.js",
+        "app/admin/round-type/default/default-round.service.js",
+        "app/admin/round-status/round-status.module.js",
+        "app/admin/round-status/round-status-component.js",
+        "app/admin/login/login.module.js",
+        "app/admin/login/login.component.js",
+        "app/admin/login-panel/login-panel.module.js",
+        "app/admin/login-panel/login-panel.component.js",
+        "app/admin/game-list/game-list.module.js",
+        "app/admin/game-list/game-list.component.js",
+        "app/admin/game-list/finished-game.component.js",
+        "app/admin/game-list/open-game-list.component.js",
+        "app/admin/game-list/game-teams-modal.component.js",
+        "app/admin/add-teams/print-teams/print-teams.component.js",
+        "app/admin/game-template/game-template.module.js",
+        "app/admin/game-template/game-template.component.js",
+        "app/admin/game-template/current-game-template.component.js",
+        "app/services/round-service/round-service.module.js",
+        "app/services/round-service/round-service.service.js",
+        "app/services/firebase-service/dbConfig.js",
+        "app/admin/navbar/navbar.module.js",
+        "app/admin/navbar/navbar.component.js",
+        "app/admin/game-list/current-game.component.js",
+        "app/services/game-build-service/game-build-service.module.js",
+        "app/services/game-build-service/game-build-service.service.js",
+        "app/services/season-service/season-service.module.js",
+        "app/services/season-service/season-service.service.js",
+        "app/services/round-type-service/round-type-service.module.js",
+        "app/services/round-type-service/round-type-service.service.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {},
+    "serve": {
+      "port": 8000
+    }
+  }
+}

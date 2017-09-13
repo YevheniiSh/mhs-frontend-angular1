@@ -1,0 +1,45 @@
+#button-back {
+    position: relative;
+    left: 0px;
+    margin-bottom: 10px;
+}
+
+#button-panel {
+    padding: 0px;
+}
+
+#add-team-panel {
+    margin-top: 10px;
+}
+
+.picker {
+    position: fixed;
+    display: inline-block;
+  /*min-height: 290px;*/
+    z-index: 100;
+}
+
+.alert-sm {
+    padding-bottom: 6px;
+    padding-top: 6px;
+    margin-bottom: 0px;
+}
+
+.game-alert {
+    position: fixed;
+    display: inline-block;
+    z-index: 100;
+    width: auto;
+}
+
+.date-picker {
+    cursor: pointer;
+}
+
+.time-picker {
+    cursor: pointer;
+}
+
+.data-picker-label {
+    cursor: pointer;
+}

@@ -1,0 +1,32 @@
+<div class="container">
+    <div id="login-panel" class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{'LOGIN_FORM_TITLE' | translate}}</h3>
+                </div>
+                <div class="panel-body">
+                    <form ng-submit="$ctrl.login()">
+                        <fieldset>
+                            <div class="form-group">
+                                <p class="panel-title error-message">{{$ctrl.errMessage | translate}}</p>
+                            </div>
+                            <div class="form-group">
+                                <input id="email" ng-model='$ctrl.email' type="email"
+                                       placeholder="{{'EMAIL_PLACEHOLDER' | translate}}" required
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input id="password" ng-model='$ctrl.password' type="password"
+                                       placeholder="{{'PASSWORD_PLACEHOLDER' | translate}}"
+                                       required
+                                       class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-success">{{'LOGIN_BUTTON' | translate}}</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

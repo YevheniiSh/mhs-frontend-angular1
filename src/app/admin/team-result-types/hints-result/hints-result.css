@@ -1,0 +1,105 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  margin: 0;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  background-color: #c9302c;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #449d44;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #449d44;
+}
+
+input:disabled + .slider {
+  cursor: default;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+}
+
+.slider.round {
+  border-radius: 30px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.result-control {
+  margin-right: 20px;
+}
+
+#hint-result {
+  margin: 5px;
+  width: auto;
+}
+
+#hint-result input[type=radio] {
+  display: none;
+}
+
+#hint-result .btn[disabled] {
+  cursor: default;
+  opacity: 1;
+}
+
+#hint-result div {
+  float: left;
+}
+
+#hint-result div label {
+  border-radius: 0;
+  font-weight: bold;
+  width: 50px;
+}
+
+#hint-result div:first-of-type label {
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+#hint-result div:last-of-type label {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.switchSpan {
+  margin: 10px;
+}
+

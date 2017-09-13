@@ -1,0 +1,18 @@
+<ul class="template-list col-md-3">
+  <li ng-click="$ctrl.showTemplate(template.$id)"
+      ng-repeat="template in $ctrl.templates">
+            <span ng-class="{'selected': template.$id == $ctrl.selectedTemplateId}" class="list-item">
+                {{template.name}}
+                <button class="btn btn-danger delete-btn" ng-click="$ctrl.deleteTemplate(template.$id)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+            </span>
+  </li>
+  <li>
+    <div class="new-template">
+                <span class="btn btn-success btn-block new-template-btn" ng-click="$ctrl.newTemplate()">
+                {{'CREATE_TEMPLATE_BUTTON' | translate}}
+            </span>
+    </div>
+  </li>
+</ul>
