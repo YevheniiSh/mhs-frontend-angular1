@@ -81,7 +81,6 @@
         "app/services/result-service/result-service.module.js",
         "app/services/game-request-service/game-request-service.module.js",
         "app/services/game-request-service/game-request-service.service.js",
-        "app/services/game-request-service/game-request-service.service.js",
         "app/admin/create-game/create-game.module.js",
         "app/services/result-service/result-service.service.js",
         "app/admin/round-builder/round-builder.module.js",
