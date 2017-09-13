@@ -8,20 +8,20 @@
         <form ng-submit="$ctrl.saveRequest()" name="request" class="request-team-form">
             <div class="autocomplete-form">
                 <label class="request-description"><b>{{'TEAM_NAME_LABEL' | translate}}</b></label>
-              <div angucomplete-alt id="team-name"
-                   placeholder="{{'TEAM_NAME_PLACEHOLDER'|translate}}"
-                   pause="100"
-                   selected-object="$ctrl.selectedTeam"
-                   local-data="$ctrl.teams"
-                   search-fields="name"
-                   title-field="name"
-                   minlength="1"
-                   maxlength="40"
-                   input-changed="$ctrl.getTeamName"
-                   input-class="form-control form-control-small"
-                   field-required="true"
-                   input-name="teamName">
-              </div>
+                <div angucomplete-alt id="team-name"
+                     placeholder="{{'TEAM_NAME_PLACEHOLDER'|translate}}"
+                     pause="100"
+                     selected-object="$ctrl.selectedTeam"
+                     local-data="$ctrl.teams"
+                     search-fields="name"
+                     title-field="name"
+                     minlength="1"
+                     maxlength="50"
+                     input-changed="$ctrl.getTeamName"
+                     input-class="form-control form-control-small"
+                     field-required="true"
+                     input-name="teamName">
+                </div>
 
             </div>
             <script type="text/ng-template" id="alert.html">
@@ -60,11 +60,11 @@
                             <label for="captain-phone" class="control-label request-description">
                                 {{'PHONE_LABEL'|translate}}
                             </label>
-                          <span ng-show="request.phone.$error.minlength" class="err">
+                            <span ng-show="request.phone.$error.minlength" class="err">
                                 {{'MINIMUM_10_CHARACTERS_ERROR'|translate}}
                             </span>
-                          <span ng-show="request.phone.$error.mask&&!request.phone.$error.minlength"
-                                class="err">
+                            <span ng-show="request.phone.$error.mask&&!request.phone.$error.minlength"
+                                  class="err">
                                 {{'WRONG_FORMAT_ERROR'|translate}}
                             </span>
                         </div>

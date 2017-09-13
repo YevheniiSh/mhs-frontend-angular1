@@ -89,8 +89,9 @@
                 </a>
             </td>
 
-            <td class="td-cell" ng-repeat="game in team.gamesArr | orderBy:'gameId'">
-                {{game.rating}}
+            <td class="td-cell" ng-repeat="teamGame in team.gamesArr track by teamGame.gameId"
+                ng-class="{'missed-game': !teamGame.played}">
+                {{teamGame.rating}}
             </td>
             <td class="td-cell total-score season-total">{{team.total}}</td>
         </tr>

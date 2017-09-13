@@ -14,7 +14,7 @@ angular.module('login')
                             $location.path($rootScope.getPreviousLocation());
                         })
                         .catch(() => {
-                            this.errMessage = 'Invalid e-mail or password';
+                            this.errMessage = "INVALID_EMAIL_MESSAGE";
                         });
                 };
 

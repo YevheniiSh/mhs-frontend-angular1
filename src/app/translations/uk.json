@@ -149,5 +149,6 @@
   "GAME_TEMPLATES": "Шаблони ігор",
   "START_VALUE_TOOLTIP": "Початкове значення",
   "STEP_VALUE_TOOLTIP": "Крок",
+  "INVALID_EMAIL_MESSAGE": "Невірний e-mail чи пароль",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершених ігр ще немає!"
 }

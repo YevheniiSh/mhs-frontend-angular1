@@ -40,5 +40,24 @@ tbody tr.table-row:nth-child(odd){
 }
 
 .position-data, .position-title {
+    position: relative;
     width: 2%;
+}
+
+.trophy {
+    margin-left: 5px;
+    position: absolute;
+    top: 5px;
+}
+
+.gold {
+    color: gold;
+}
+
+.silver {
+    color: silver;
+}
+
+.bronze {
+    color: saddlebrown;
 }
