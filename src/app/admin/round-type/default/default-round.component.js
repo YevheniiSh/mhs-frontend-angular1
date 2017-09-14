@@ -5,6 +5,7 @@
       css: 'app/admin/round-type/default/default-round.css',
       controller: DefaultRoundController,
       bindings: {
+        answerCount: '=',
         results: '=',
         isManualInput: '='
       }
@@ -20,6 +21,11 @@
     function onInit() {
       vm.selectedQuiz = $routeParams.quizNumber;
       vm.weightOfResponse = 0.1;
+      vm.results.forEach(result=>{
+        if(result.score){
+          vm.answerCount++;
+        }
+      })
 
       getQuizResults()
         .then((results) => {
@@ -87,8 +93,7 @@
     vm.setWeight = function () {
       if (vm.isManualInput) {
         RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, {weight: vm.weightOfResponse});
-      }
-      else {
+      }else {
         RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, null);
       }
     }

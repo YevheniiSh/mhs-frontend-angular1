@@ -2,10 +2,11 @@
   <div id="header">
     <h2>{{'ROUND_SET_RESULTS_HEADER'|translate}} #{{$ctrl.round.$id}}: {{$ctrl.round.name}}</h2>
     <h1>{{'QUESTION_SET_RESULTS_HEADER'|translate}} #{{$ctrl.selectedQuiz}}</h1>
+    <h1>{{$ctrl.answerCount}}</h1>
   </div>
 
   <div ng-switch="$ctrl.round.roundType.type">
-    <default-round ng-switch-when="DEFAULT_ROUND" results="$ctrl.results"
+    <default-round ng-switch-when="DEFAULT_ROUND" answer-count="$ctrl.answerCount" results="$ctrl.results"
                    save-result="$ctrl.saveResult(result)" is-manual-input="$ctrl.isManualInput"></default-round>
     <captain-round ng-switch-when="CAPTAIN_ROUND" results="$ctrl.results"
                    save-result="$ctrl.saveResult(result)"
