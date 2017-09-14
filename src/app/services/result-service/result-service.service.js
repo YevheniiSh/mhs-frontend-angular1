@@ -60,7 +60,7 @@ angular
                 let parsedResults = prepareResultsToSave(results);
                 let ref = getRefByState(state);
                 let resultsRef = ref.child(`${gameId}/results/`);
-                resultsRef.update(parsedResults);
+                return resultsRef.update(parsedResults);
             };
 
             resultFactory.filter = function (filter, gameId) {
