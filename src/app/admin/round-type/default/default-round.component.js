@@ -68,6 +68,12 @@
         if (result.hasOwnProperty("weightOfResponse"))
           delete result.weightOfResponse;
       }
+      if (result.score !== 0) {
+        vm.answerCount++;
+      }
+      else {
+        vm.answerCount--;
+      }
       save(result);
     };
 

@@ -112,6 +112,12 @@
     }
 
     vm.saveResult = function (result) {
+      if (result.score === 0) {
+        vm.answerCount--;
+      }
+      else {
+        vm.answerCount++;
+      }
       resultSetupService.saveQuizResult(result, $routeParams.gameId);
     };
 
