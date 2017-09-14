@@ -44,8 +44,7 @@
 
     vm.switchEditState = function () {
       vm.showInputs = !vm.showInputs;
-      if (!vm.showInputs) vm.editStateText = 'Score';
-      else vm.editStateText = 'Correctness';
+      !vm.showInputs? vm.editStateText = 'Score': vm.editStateText = 'Correctness';
     };
 
     function initResults(res) {
