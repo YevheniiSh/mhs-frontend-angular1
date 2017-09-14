@@ -10,9 +10,21 @@
       }
     });
 
-  DefaultRoundController.$inject = ['$routeParams', 'DefaultRoundFactory', 'resultSetupService', '$scope', 'RoundStatusService'];
+  DefaultRoundController.$inject = [
+    '$routeParams',
+    'DefaultRoundFactory',
+    'resultSetupService',
+    '$scope',
+    'RoundStatusService',
+    'ResultServiceFactory'
+  ];
 
-  function DefaultRoundController($routeParams, DefaultRoundFactory, resultSetupService, $scope, RoundService) {
+  function DefaultRoundController(
+    $routeParams, DefaultRoundFactory,
+    resultSetupService,
+    $scope,
+    RoundService,
+    resultServiceFactory) {
     let vm = this;
 
     vm.$onInit = onInit;
@@ -76,8 +88,8 @@
         }
         result.score = calculateScore(result);
         result.weightOfResponse = vm.weightOfResponse;
-        save(result);
       }
+      resultServiceFactory.saveQuizResults('current',vm.results,$routeParams.gameId);
       RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, {weight: vm.weightOfResponse});
     };
 

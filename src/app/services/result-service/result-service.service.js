@@ -20,17 +20,39 @@ angular
                 return [result.round, result.quiz, result.teamId].join('_');
             }
 
+            function getRefByState(state) {
+              if (state === "current") {
+                return currentRef;
+              }
+              else if (state === "finished") {
+                return finishedRef;
+              }
+            };
+
+            function removeHashKeyFromResults(results) {
+              let updatedResults = {}
+              angular.copy(results).forEach((result)=>{
+                updatedResults[resultKey(result)] = result;
+              });
+              return updatedResults;
+            }
+
             resultFactory.saveResult = function (state, result, gameId) {
-                let ref;
-                if (state === "current") {
-                    ref = currentRef;
-                }
-                else if (state === "finished") {
-                    ref = finishedRef;
-                }
+                let ref = getRefByState(state);
                 let resultKey = [result.round, result.quiz, result.teamId].join('_');
                 let resultRef = ref.child(`${gameId}/results/${resultKey}/`);
-                return resultRef.set(result);
+                let resultObj = new $firebaseObject(resultRef);
+                resultObj.$value = result;
+                resultObj.$save();
+                return resultObj.$loaded();
+            };
+
+            resultFactory.saveQuizResults = function (state, results, gameId) {
+                let parsedResults = removeHashKeyFromResults(results);
+                let ref = getRefByState(state);
+                let resultsRef = ref.child(`${gameId}/results/`);
+                resultsRef.update(parsedResults);
+
             };
 
             resultFactory.filter = function (filter, gameId) {
