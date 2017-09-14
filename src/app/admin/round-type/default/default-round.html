@@ -4,7 +4,6 @@
   <label ng-if="$ctrl.isManualInput">
     <input type="number" placeholder="{{'WEIGHT_INPUT' | translate}}" class="form-control weight-of-response"
            ng-model="$ctrl.weightOfResponse" ng-change="$ctrl.recalculateScore()"
-           ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
     >
   </label>
 </div>
