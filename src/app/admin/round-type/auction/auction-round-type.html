@@ -1,29 +1,26 @@
 <div class="form-group row">
+  <button ng-class="{'btn-info': $ctrl.showInputs, 'btn-primary': !$ctrl.showInputs}"
+          ng-click="$ctrl.switchEditState()" class="edit-state btn">{{$ctrl.editStateText}}
+  </button>
   <ul id="team-list">
     <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
-      <div class="team-name-panel">
-        <span class="team-name">{{result.teamName}}</span>
-      </div>
-      <label ng-class="{'disabled':$ctrl.isDisabled(result.teamId)}">
-
-                <span class='result-control'>
-                    <label>
-                            <input class="result-rate form-control" ng-model="result.rate" type="number"
-                                   min="{{$ctrl.round.roundType.start}}"
-                                   step="{{$ctrl.round.roundType.step}}" ng-change="$ctrl.onSave(result)">
-                    </label>
-                    <label class="switch">
-                        <input id="switch-checkbox"
-                               type="checkbox"
-                               ng-model="result.status"
-                               ng-change="$ctrl.onSave(result)"
-                               ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
-                               ng-true-value="1"
-                               ng-false-value="-1">
-                        <span class="slider round"></span>
-                    </label>
-                </span>
-
+      <label>
+        <div ng-if="$ctrl.showInputs" class="result-rate">
+          <input class=" form-control" ng-model="result.rate" type="number"
+                 min="{{$ctrl.round.roundType.start}}"
+                 step="{{$ctrl.round.roundType.step}}" ng-change="$ctrl.onSave(result)">
+        </div>
+        <div ng-if="!$ctrl.showInputs" class="switch">
+          <input id="switch-checkbox"
+                 type="checkbox"
+                 ng-model="result.status"
+                 ng-change="$ctrl.onSave(result)"
+                 ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
+                 ng-true-value="1"
+                 ng-false-value="-1">
+          <span class="slider round"></span>
+        </div>
+        <div class="team-name">{{result.teamName}}</div>
       </label>
     </li>
   </ul>
