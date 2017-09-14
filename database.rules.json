@@ -3,7 +3,14 @@
     "games": {
       "open": {
         ".read": "true",
-        ".write": "true"
+        "$gameId": {
+          "requests": {
+            "$requestId": {
+              ".write": "!data.exists() || (auth != null && root.child('users/'+auth.uid).val() === true)"
+            }
+          }
+        },
+        ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
       },
       "current": {
         ".read": "auth != null && root.child('users/'+auth.uid).val() === true",
@@ -22,7 +29,7 @@
     },
     "teamsRequests": {
       ".read": "true",
-      ".write": "true"
+      ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
     },
     "gameTemplates": {
       ".read": "auth != null && root.child('users/'+auth.uid).val() === true",
