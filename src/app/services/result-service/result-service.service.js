@@ -29,10 +29,12 @@ angular
               }
             };
 
-            function removeHashKeyFromResults(results) {
-              let updatedResults = {}
+            function prepareResultsToSave(results) {
+              let updatedResults = {};
               angular.copy(results).forEach((result)=>{
-                updatedResults[resultKey(result)] = result;
+                if (result.score !== undefined){
+                  updatedResults[resultKey(result)] = result;
+                }
               });
               return updatedResults;
             }
@@ -48,11 +50,10 @@ angular
             };
 
             resultFactory.saveQuizResults = function (state, results, gameId) {
-                let parsedResults = removeHashKeyFromResults(results);
+                let parsedResults = prepareResultsToSave(results);
                 let ref = getRefByState(state);
                 let resultsRef = ref.child(`${gameId}/results/`);
                 resultsRef.update(parsedResults);
-
             };
 
             resultFactory.filter = function (filter, gameId) {
