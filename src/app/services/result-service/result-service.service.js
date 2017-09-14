@@ -29,10 +29,17 @@ angular
               }
             };
 
+            function removeTeamName(result) {
+              if(result.teamName !== undefined){
+                delete result.teamName;
+              }
+            }
+
             function prepareResultsToSave(results) {
               let updatedResults = {};
               angular.copy(results).forEach((result)=>{
                 if (result.score !== undefined){
+                  removeTeamName(result);
                   updatedResults[resultKey(result)] = result;
                 }
               });
