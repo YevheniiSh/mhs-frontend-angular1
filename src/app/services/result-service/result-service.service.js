@@ -30,10 +30,7 @@ angular
                 }
                 let resultKey = [result.round, result.quiz, result.teamId].join('_');
                 let resultRef = ref.child(`${gameId}/results/${resultKey}/`);
-                let resultObj = new $firebaseObject(resultRef);
-                resultObj.$value = result;
-                resultObj.$save();
-                return resultObj.$loaded();
+                return resultRef.set(result);
             };
 
             resultFactory.filter = function (filter, gameId) {

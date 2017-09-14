@@ -75,6 +75,7 @@
           continue;
         }
         result.score = calculateScore(result);
+        result.weightOfResponse = vm.weightOfResponse;
         save(result);
       }
       RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, {weight: vm.weightOfResponse});
