@@ -28,8 +28,7 @@ export function upgradeDirective(moduleName, invokedName) {
 
     if (directive.hasOwnProperty('css')) {
       let cssUrl = directive.css.substring(directive.css.indexOf('app/'));
-      let directiveCss = readTextFile(cssUrl);
-      directive.template = directive.template.replace(/^/, '<style>' + directiveCss + '</style>');
+      directive.template = directive.template.replace(/^/, '<link href="' + cssUrl + '" rel="stylesheet">');
     }
 
     return $delegate;

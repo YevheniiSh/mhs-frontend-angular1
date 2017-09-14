@@ -1,83 +1,91 @@
-/*.container,html{
-    height: 100%;
-}*/
 #fb-share-button {
-    float: right;
-    background: #3b5998;
-    border-radius: 3px;
-    font-weight: 600;
-    padding: 5px 8px;
-    height: 33px;
-    display: inline-block;
-    position: static;
+  float: right;
+  background: #3b5998;
+  border-radius: 3px;
+  font-weight: 600;
+  padding: 5px 8px;
+  height: 33px;
+  display: inline-block;
+  position: static;
 }
+
 .fa-facebook {
-    color: white;
+  color: white;
 }
 
 .photos-link {
-    line-height: 280%;
-    float: right;
-    margin-right: 28px;
+  line-height: 280%;
+  float: right;
+  margin-right: 28px;
 }
-.photos-link-editor{
-    line-height: 280%;
-    float: right;
-    margin-right: 8px;
+
+.photos-link-editor {
+  line-height: 280%;
+  float: right;
+  margin-right: 8px;
 }
 
 #fb-share-button:hover {
-    cursor: pointer;
-    background: #213A6F
+  cursor: pointer;
+  background: #213A6F
 }
 
 #fb-share-button span {
-    vertical-align: middle;
-    color: white;
-    font-size: 14px;
-    padding: 0 3px
+  vertical-align: middle;
+  color: white;
+  font-size: 14px;
+  padding: 0 3px
 }
 
-td.td-cell{
-    cursor: pointer;
-    font-size: 20px;
+td.td-cell {
+  cursor: pointer;
+  font-size: 20px;
 }
 
 th.th-cell.dragable-icon {
-    padding-right: 0.9em;
+  padding-right: 0.9em;
 }
+
 td.round-score, td.total-score,
 th.dragable-icon, th.total-title {
-    text-align: right;
+  text-align: right;
 }
-th{
-    font-size: 23px;
+
+th {
+  font-size: 23px;
 }
-h1#game-results{
-    padding-bottom: 1%;
-    border-bottom: solid 1px;
-    text-align: center;
+
+h1#game-results {
+  padding-bottom: 1%;
+  border-bottom: solid 1px;
+  text-align: center;
 }
-span.ng-binding.date{
-    float: right;
+
+span.ng-binding.date {
+  float: right;
 }
-.link-icon{
-    cursor: pointer;
-    margin-left: 5px;
-    font-size: 18px;
+
+.link-icon {
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 18px;
 }
-.photosUrlContainer{
-    display: inline-block;
+
+.photosUrlContainer {
+  display: inline-block;
 }
-.photos-url-editor{
-    display: inline-block;
-    width: auto;
+
+.photos-url-editor {
+  display: inline-block;
+  width: auto;
 }
-.no-photos-link{
-    cursor: default;
-    color: #515151;
-    font-style: italic;
+
+.no-photos-link {
+  cursor: default;
+  color: #515151;
+  font-style: italic;
 }
-a{
-    cursor: pointer;
+
+a {
+  cursor: pointer;
 }

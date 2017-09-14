@@ -1,23 +1,30 @@
-angular.module('gameResultsPage')
+(function () {
+  angular
+    .module('gameResultsPage')
     .component('gameResults', {
       templateUrl: 'app/admin/game-results/game-results.html',
       css: 'app/admin/game-results/game-results.css',
-        controller: ['GameServiceFactory','ResultServiceFactory', '$rootScope', '$routeParams', '$location', function (GameService, ResultService, $rootScope, $routeParams, $location) {
-            this.isPresentationMode = $rootScope.presentationMode;
+      controller: GameResultsController
+    });
 
-            this.getDetails = function (teamResult) {
-                if (!this.isPresentationMode) {
-                    $location.path(`/games/${$routeParams.gameId}/results/${teamResult.teamId}`);
-                }
-            };
+  GameResultsController.$inject = ['ResultServiceFactory', '$rootScope', '$routeParams', '$location'];
 
-            ResultService.getParsedResults($routeParams.gameId)
-                .then((result) => {
-                    this.results = result;
-                });
+  function GameResultsController(ResultService, $rootScope, $routeParams, $location) {
+    this.isPresentationMode = $rootScope.presentationMode;
 
-            this.getTeamGames = function(teamId){
-                $location.path(`/teams/${teamId}`);
-            }
-        }]
-});
+    this.getDetails = function (teamResult) {
+      if (!this.isPresentationMode) {
+        $location.path(`/games/${$routeParams.gameId}/results/${teamResult.teamId}`);
+      }
+    };
+
+    ResultService.getParsedResults($routeParams.gameId)
+      .then((result) => {
+        this.results = result;
+      });
+
+    this.getTeamGames = function (teamId) {
+      $location.path(`/teams/${teamId}`);
+    }
+  }
+})();
