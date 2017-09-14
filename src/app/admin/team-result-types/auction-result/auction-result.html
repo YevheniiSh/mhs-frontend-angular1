@@ -14,10 +14,12 @@
   </label>
 
 </label>
-
+<label id="auction-result">
 <span
   ng-if="$ctrl.resultDisabled"
   class="btn inp" ng-class="$ctrl.getClass(quiz)"
-  ng-repeat="quiz in $ctrl.round.quizzes">
+  ng-repeat="quiz in $ctrl.round.quizzes"
+  disabled>
     {{quiz.score}}
 </span>
+</label>

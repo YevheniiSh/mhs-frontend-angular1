@@ -1,4 +1,4 @@
-<label for="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
+<label id="default-result" for="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
        ng-class="{'inp-label': !$ctrl.editMode}"
        ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum">
     <span class="btn inp"
@@ -6,7 +6,8 @@
           ng-class="{'btn-success' : +(quiz.score) > 0,
                      'btn-silver' : +(quiz.score) === 0,
                      'btn-danger' : +(quiz.score) < 0,
-                     'edited' : quiz.edited}">
+                     'edited' : quiz.edited}"
+          disabled>
         <span uib-tooltip="№ {{quiz.quizNum}}">
             <input
               type="checkbox"

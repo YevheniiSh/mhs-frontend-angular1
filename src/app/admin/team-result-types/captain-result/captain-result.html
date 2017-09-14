@@ -36,7 +36,7 @@
           ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum"
           ng-class="{'btn-success' : +(quiz.score) > 0,
                           'btn-silver' : +(quiz.score) === 0,
-                          'btn-danger' : +(quiz.score) < 0}">
+                          'btn-danger' : +(quiz.score) < 0}" disabled>
         <span uib-tooltip="№ {{quiz.quizNum}}">
             {{quiz.score}}
         </span>
