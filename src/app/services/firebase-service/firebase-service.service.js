@@ -16,6 +16,7 @@ function firebaseDataService() {
         gameTemplates: root.child('gameTemplates'),
         openGames: root.child('games').child('open'),
       roundTypes: root.child('roundTypes'),
-        seasons: root.child('seasons')
+      seasons: root.child('seasons'),
+      users: root.child('users')
     };
 }

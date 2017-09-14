@@ -1,6 +1,7 @@
 angular.module('userAuthService')
-    .factory('userAuthService', ['firebaseDataService', '$firebaseAuth', '$q', function (firebaseDataService, $firebaseAuth, $q) {
+  .factory('userAuthService', ['firebaseDataService', '$firebaseAuth', '$q', '$firebaseObject', function (firebaseDataService, $firebaseAuth, $q, $firebaseObject) {
         let auth = firebaseDataService.auth;
+    let usersRef = firebaseDataService.users;
         return {
             signInWithEmailAndPassword: function (email, pass) {
                 let defer = $q.defer();
@@ -13,6 +14,20 @@ angular.module('userAuthService')
                     })
                 return defer.promise;
             },
+
+          isAuthorisedUser: function (uid) {
+            let fbObj = $firebaseObject(usersRef.child(uid));
+            return fbObj.$loaded()
+              .then((res) => {
+                console.log(res);
+                if (res.$value) {
+                  return res.$value;
+                }
+                else {
+                  return false
+                }
+              });
+          },
 
             isAuthenticated: function () {
                 let defer = $q.defer();
