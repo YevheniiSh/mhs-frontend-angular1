@@ -22,6 +22,9 @@
   function AuctionRoundTypeController($scope, $routeParams, GameServiceFactory) {
     let vm = this;
 
+    vm.showInputs = true;
+    vm.editStateText = 'Correctness';
+
     GameServiceFactory.getRoundByGameAndId($routeParams.gameId, $routeParams.roundNumber)
       .then((round) => {
         vm.round = round;
@@ -37,6 +40,12 @@
     vm.onSave = function (result) {
       result.score = result.rate * result.status;
       vm.saveResult({result: result})
+    };
+
+    vm.switchEditState = function () {
+      vm.showInputs = !vm.showInputs;
+      if (!vm.showInputs) vm.editStateText = 'Score';
+      else vm.editStateText = 'Correctness';
     };
 
     function initResults(res) {

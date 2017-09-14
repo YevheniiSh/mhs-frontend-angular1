@@ -2,7 +2,7 @@
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 30px;
+  height: 32px;
 }
 
 .switch input {
@@ -70,21 +70,25 @@ input:checked + .slider:before {
 
 .team-name {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 14pt;
 }
 
 .team-name-panel {
-  width: 280px;
+  width: 211px;
   float: left;
 }
 
 #team-list {
   list-style: none;
-  -webkit-column-count: 2; /* Chrome, Safari, Opera */
-  -moz-column-count: 2; /* Firefox */
-  column-count: 2;
+  -webkit-column-count: 3; /* Chrome, Safari, Opera */
+  -moz-column-count: 3; /* Firefox */
+  column-count: 3;
 }
 
 .team {
   margin-left: 5%;
+}
+
+.edit-state{
+  width: 101.47px;
 }
