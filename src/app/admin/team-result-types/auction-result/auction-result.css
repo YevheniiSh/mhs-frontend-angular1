@@ -93,3 +93,8 @@ input:checked + .slider:before {
   font-size: 17px;
   border: none;
 }
+
+#auction-result .btn[disabled] {
+  cursor: default;
+  opacity: 1;
+}

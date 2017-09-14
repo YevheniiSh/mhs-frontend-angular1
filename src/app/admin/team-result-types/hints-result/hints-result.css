@@ -74,7 +74,7 @@ input:checked + .slider:before {
   display: none;
 }
 
-#hint-result .btn[disabled] {
+#user-result .btn[disabled] {
   cursor: default;
   opacity: 1;
 }
