@@ -6,34 +6,38 @@
         ".write": "true"
       },
       "current": {
-        ".read": "auth != null",
-        ".write": "auth != null"
+        ".read": "auth != null && root.child('users/'+auth.uid).val() === true",
+        ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
       },
       "finished": {
         ".read": true,
         "$gameId": {
-          ".write": "auth != null"
+          ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
         }
       }
     },
     "teams": {
       ".read": true,
-      ".write": "auth != null"
+      ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
     },
     "teamsRequests": {
       ".read": "true",
       ".write": "true"
     },
     "gameTemplates": {
-      ".read": "auth != null",
-      ".write": "auth != null"
+      ".read": "auth != null && root.child('users/'+auth.uid).val() === true",
+      ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
     },
     "seasons": {
       ".read": "true",
-      ".write": "true"
+      ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
     },
     "roundTypes": {
       ".read": "true",
+      ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
+    },
+    "users": {
+      ".read": "root.child('users/'+auth.uid).val() === true",
       ".write": "false"
     }
   }

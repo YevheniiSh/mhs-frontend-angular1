@@ -7,11 +7,20 @@ angular.module('userAuthService')
                 let defer = $q.defer();
                 auth.signInWithEmailAndPassword(email, pass)
                     .then((user) => {
-                        defer.resolve(user);
+                      this.isAuthorisedUser(user.uid)
+                        .then((value) => {
+                          if (value) {
+                            defer.resolve(user);
+                          }
+                          else {
+                            this.signOut();
+                            defer.reject("Error");
+                          }
+                        })
                     })
                     .catch((er) => {
                         defer.reject(er);
-                    })
+                    });
                 return defer.promise;
             },
 
@@ -26,6 +35,9 @@ angular.module('userAuthService')
                 else {
                   return false
                 }
+              })
+              .catch((er) => {
+                return false
               });
           },
 
