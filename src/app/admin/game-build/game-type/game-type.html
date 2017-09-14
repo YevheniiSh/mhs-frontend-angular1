@@ -4,12 +4,11 @@
             <div class="form-group">
                 <label>{{'SELECT_TEMPLATE_LABEL' | translate}}</label>
                 <div class="input-group">
-                    <select class="form-control" ng-model="selectedTemplate">
-                        <option ng-repeat="template in $ctrl.templates"
-                                ng-selected="selectedTemplate = template"
-                                ng-value="template">
-                            {{template.name}}
-                        </option>
+                    <select class="form-control"
+                            ng-model="selectedTemplate"
+                            ng-options="template.name for template in $ctrl.templates
+                             | filter : $ctrl.templateNameFilter()">
+                        <option value="">{{$ctrl.templateName}}</option>
                     </select>
                     <span class="input-group-btn">
                          <span class="btn btn-success" ng-click="$ctrl.selectTemplate(selectedTemplate)">
@@ -18,7 +17,7 @@
                      </span>
                 </div>
             </div>
-            <round-builder rounds="$ctrl.configRounds"></round-builder>
+            <round-builder rounds="$ctrl.configRounds" ></round-builder>
             <button id="btn-save" class="btn btn-success btn-block"
                     type="submit">
                 {{'SAVE_ROUNDS_BUTTON' | translate}}
