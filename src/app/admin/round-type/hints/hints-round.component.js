@@ -22,8 +22,13 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
 
   function onInit() {
     getRound()
-      .then(getQuizWeight);
-    initPreviousQuizResults();
+      .then(getQuizWeight)
+      .then(() => {
+        return initPreviousQuizResults();
+      })
+      .then(() => {
+        isDisabled();
+      });
   }
 
   function getRound() {
@@ -36,7 +41,7 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
   }
 
   function initPreviousQuizResults() {
-    ResultServiceFactory.filter({by: "round", val: $routeParams.roundNumber}, $routeParams.gameId)
+    return ResultServiceFactory.filter({by: "round", val: $routeParams.roundNumber}, $routeParams.gameId)
       .then(results => {
         res = {}
         results.forEach(result => {
@@ -45,32 +50,35 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
           res[result.teamId].score = result.score;
         })
         vm.previousQuizResults = res;
+        return res;
       })
   }
 
-  vm.isDisabled = function (result) {
-    if (!isFirstQuiz()) {
-      if (!vm.previousQuizResults[result.teamId] === undefined) {
-        return false
-      } else {
-        if (vm.previousQuizResults[result.teamId].quizNumber < (+$routeParams.quizNumber)) {
-          if (vm.previousQuizResults[result.teamId].score > 0) {
-            result.score = vm.previousQuizResults[result.teamId].score - ((+$routeParams.quizNumber) - vm.previousQuizResults[result.teamId].quizNumber) * vm.step;
+  function isDisabled() {
+    vm.results.forEach(result => {
+      if (!isFirstQuiz()) {
+        if (vm.previousQuizResults[result.teamId] === undefined) {
+          result.disabled = false;
+        } else {
+          if (vm.previousQuizResults[result.teamId].quizNumber < (+$routeParams.quizNumber)) {
+            if (vm.previousQuizResults[result.teamId].score > 0) {
+              result.score = vm.previousQuizResults[result.teamId].score - ((+$routeParams.quizNumber) - vm.previousQuizResults[result.teamId].quizNumber) * vm.step;
+            }
+            else {
+              result.score = -1;
+            }
+            result.disabled = true;
           }
-          else {
-            result.score = 0;
-          }
-          return true
         }
       }
-      return false
-    }
+    })
   };
 
   vm.clearResult = function (result) {
+    result.checked = 0;
     let resultKey = [result.round, result.quiz, result.teamId].join('_');
     ResultServiceFactory.deleteResult($routeParams.gameId, resultKey)
-  }
+  };
 
   function isFirstQuiz() {
     return $routeParams.quizNumber === '1';

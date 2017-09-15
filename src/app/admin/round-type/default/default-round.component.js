@@ -23,9 +23,9 @@
       vm.weightOfResponse = 0.1;
       vm.results.forEach(result=>{
         if(result.score){
-          vm.answerCount++;
+          result.checked = 1;
         }
-      })
+      });
 
       getQuizResults()
         .then((results) => {
@@ -69,10 +69,10 @@
           delete result.weightOfResponse;
       }
       if (result.score !== 0) {
-        vm.answerCount++;
+        result.checked = 1;
       }
       else {
-        vm.answerCount--;
+        result.checked = 0;
       }
       save(result);
     };

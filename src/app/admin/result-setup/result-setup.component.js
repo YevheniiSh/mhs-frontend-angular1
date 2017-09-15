@@ -9,13 +9,14 @@
 
   ResultSetupController.$inject = [
     'resultSetupService',
+    '$scope',
     '$routeParams',
     '$location',
     '$window',
     'resultSetupBuilder'
   ];
 
-  function ResultSetupController(resultSetupService, $routeParams, $location, $window, resultSetupBuilder) {
+  function ResultSetupController(resultSetupService, $scope, $routeParams, $location, $window, resultSetupBuilder) {
     let vm = this;
 
     vm.isManualInput = false;
@@ -98,7 +99,19 @@
 
         vm.results[resultKey] = result;
         vm.results[resultKey].teamName = team.name;
+
       });
+      $scope.$watch(() => {
+        return vm.results;
+      }, (newValue) => {
+        vm.answerCount = 0;
+        newValue.forEach((item) => {
+          if (item.checked) {
+            vm.answerCount++;
+          }
+        })
+      }, true)
+
     }
 
     function assignResults() {
@@ -111,14 +124,31 @@
         });
     }
 
-    vm.saveResult = function (result) {
-      if (result.score === 0) {
-        vm.answerCount--;
+    function countAnswers(result) {
+      if (result.score === -1) {
+        result.checked = 1;
+        result.score = 0;
+      }
+      else if (result.score !== 0 && result.score !== undefined) {
+        result.checked = 1;
       }
       else {
-        vm.answerCount++;
+        result.checked = 0;
       }
-      resultSetupService.saveQuizResult(result, $routeParams.gameId);
+    }
+
+    function convertScoreForHints(result) {
+      if (result.score === 0 && result.checked === 1) {
+        result.score = -1;
+      }
+    }
+
+    vm.saveResult = function (result) {
+      countAnswers(result);
+      resultSetupService.saveQuizResult(result, $routeParams.gameId)
+        .then(() => {
+          convertScoreForHints(result);
+        });
     };
 
     vm.setQuiz = function (quizNumber) {

@@ -1,7 +1,7 @@
 <div class="form-group row">
   <ul id="team-list">
     <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
-      <label ng-class="{'disabled':$ctrl.isDisabled(result)}">
+      <label ng-class="{'disabled': result.disabled}">
         <div class='switcher result-control'>
           <label class='switcher-label switcher-on' for='{{$index+"on"}}'>on</label>
           <input id='{{$index+"on"}}'
@@ -11,7 +11,7 @@
                  ng-model="result.score"
                  ng-value="$ctrl.weight"
                  ng-change="result.answer = '1';$ctrl.saveResult({result:result})"
-                 ng-disabled="$ctrl.isDisabled(result.teamId)">
+                 ng-disabled="result.disabled">
 
           <label class='switcher-label switcher-off' for='{{$index+"off"}}'>off</label>
           <input id='{{$index+"off"}}'
@@ -19,9 +19,9 @@
                  type='radio'
                  name='{{$index}}'
                  ng-model="result.score"
-                 ng-value="0"
+                 ng-value=-1
                  ng-change="result.answer = '0';$ctrl.saveResult({result:result})"
-                 ng-disabled="$ctrl.isDisabled(result.teamId)">
+                 ng-disabled="result.disabled">
 
           <label class='switcher-label switcher-neutral' for='{{$index+"def"}}'>neutral</label>
           <input id='{{$index+"def"}}'
@@ -30,12 +30,11 @@
                  name='{{$index}}'
                  ng-model="result.score"
                  ng-change="$ctrl.clearResult(result)"
-                 ng-disabled="$ctrl.isDisabled(result)">
+                 ng-disabled="result.disabled">
           <div class='switcher-slider'></div>
         </div>
         <div class="team-name">{{result.teamName}}</div>
-      </label
-      >
+      </label>
     </li>
   </ul>
 </div>
