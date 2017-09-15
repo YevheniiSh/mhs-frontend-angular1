@@ -41,6 +41,7 @@ function captainResultController() {
   };
 
   vm.saveCaptainResults = function () {
+    vm.edited = true;
     angular.forEach(vm.round.quizzes, (quiz) => {
       if (vm.lastResultIndex >= quiz.quizNum) {
         quiz.score = vm.round.roundType.start + vm.round.roundType.step * (quiz.quizNum - 1);
