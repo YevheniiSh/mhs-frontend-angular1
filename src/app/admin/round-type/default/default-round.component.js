@@ -5,6 +5,7 @@
       css: 'app/admin/round-type/default/default-round.css',
       controller: DefaultRoundController,
       bindings: {
+        answerCount: '=',
         results: '=',
         isManualInput: '='
       }
@@ -32,6 +33,11 @@
     function onInit() {
       vm.selectedQuiz = $routeParams.quizNumber;
       vm.weightOfResponse = 0.1;
+      vm.results.forEach(result=>{
+        if(result.score){
+          result.checked = 1;
+        }
+      });
 
       getQuizResults()
         .then((results) => {
@@ -74,6 +80,12 @@
         if (result.hasOwnProperty("weightOfResponse"))
           delete result.weightOfResponse;
       }
+      if (result.score !== 0) {
+        result.checked = 1;
+      }
+      else {
+        result.checked = 0;
+      }
       save(result);
     };
 
@@ -97,11 +109,21 @@
       $event.target.select();
     };
 
+    function deleteQuizResults() {
+      vm.results.forEach((item) => {
+        let resultKey = [item.round, item.quiz, item.teamId].join('_');
+        resultServiceFactory.deleteResult($routeParams.gameId, resultKey);
+        item.score = 0;
+        item.numberOfCorrectAnswers = 0;
+        item.checked = 0;
+      });
+    }
+
     vm.setWeight = function () {
+      deleteQuizResults();
       if (vm.isManualInput) {
         RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, {weight: vm.weightOfResponse});
-      }
-      else {
+      }else {
         RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, null);
       }
     }

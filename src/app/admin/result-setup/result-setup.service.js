@@ -51,7 +51,7 @@
             res.addValue("answer", result.answer)
           }
 
-          resultFactory.saveResult('current', res.getResult(), gameId);
+          return resultFactory.saveResult('current', res.getResult(), gameId);
         }
 
         function saveQuizResults(results, gameId) {

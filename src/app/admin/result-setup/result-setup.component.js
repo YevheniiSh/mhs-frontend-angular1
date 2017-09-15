@@ -1,48 +1,50 @@
 'use strict';
 (function () {
-    angular.module('resultSetup')
-        .component('resultSetup', {
-          templateUrl: 'app/admin/result-setup/result-setup.html',
-          css: 'app/admin/result-setup/result-setup.css',
-            controller: ResultSetupController
-        });
+  angular.module('resultSetup')
+    .component('resultSetup', {
+      templateUrl: 'app/admin/result-setup/result-setup.html',
+      css: 'app/admin/result-setup/result-setup.css',
+      controller: ResultSetupController
+    });
 
-    ResultSetupController.$inject = [
-        'resultSetupService',
-        '$routeParams',
-        '$location',
-      '$window',
-      'resultSetupBuilder'
-    ];
+  ResultSetupController.$inject = [
+    'resultSetupService',
+    '$scope',
+    '$routeParams',
+    '$location',
+    '$window',
+    'resultSetupBuilder'
+  ];
 
-  function ResultSetupController(resultSetupService, $routeParams, $location, $window, resultSetupBuilder) {
-        let vm = this;
+  function ResultSetupController(resultSetupService, $scope, $routeParams, $location, $window, resultSetupBuilder) {
+    let vm = this;
 
-        vm.isManualInput = false;
-        vm.selectedQuiz = $routeParams.quizNumber;
+    vm.isManualInput = false;
+    vm.selectedQuiz = $routeParams.quizNumber;
     vm.isCaptainsOut = false;
-        vm.$onInit = onInit;
+    vm.$onInit = onInit;
 
-        function onInit() {
-            initRound();
-            initCurrentRound();
-            initCurrentQuiz();
-            getTeams()
-                .then(() => {
-                  buildResults();
-                    assignResults()
-                        .then(initInputType);
-                })
+    function onInit() {
+      vm.answerCount = 0;
+      initRound();
+      initCurrentRound();
+      initCurrentQuiz();
+      getTeams()
+        .then(() => {
+          buildResults();
+          assignResults()
+            .then(initInputType);
+        })
 
+    }
+
+    function initInputType() {
+      angular.forEach(vm.results, (result) => {
+        if (result.score != 0 && result.score != 1 && result.score != undefined) {
+          vm.isManualInput = true;
         }
-
-        function initInputType() {
-            angular.forEach(vm.results, (result) => {
-                if (result.score != 0 && result.score != 1 && result.score != undefined) {
-                    vm.isManualInput = true;
-                }
-            })
-        }
+      })
+    }
 
     function isCaptainsInGame() {
       let isCaptainsInGame = false;
@@ -55,75 +57,123 @@
       return isCaptainsInGame;
     }
 
-        function initRound() {
-            resultSetupService.getRound($routeParams.gameId, $routeParams.roundNumber)
-                .then((round) => {
-                    vm.round = round;
-                });
-        }
+    function initRound() {
+      resultSetupService.getRound($routeParams.gameId, $routeParams.roundNumber)
+        .then((round) => {
+          vm.round = round;
+        });
+    }
 
-        function initCurrentQuiz() {
-            resultSetupService.getCurrentQuiz($routeParams.gameId)
-                .then((quiz) => {
-                    vm.currentQuiz = quiz;
-                })
-        }
+    function initCurrentQuiz() {
+      resultSetupService.getCurrentQuiz($routeParams.gameId)
+        .then((quiz) => {
+          vm.currentQuiz = quiz;
+        })
+    }
 
-        function initCurrentRound() {
-            resultSetupService.getCurrentRound($routeParams.gameId)
-                .then((round) => {
-                    vm.currentRound = round;
-                })
-        }
+    function initCurrentRound() {
+      resultSetupService.getCurrentRound($routeParams.gameId)
+        .then((round) => {
+          vm.currentRound = round;
+        })
+    }
 
-        function getTeams() {
-            return resultSetupService.getGameTeams($routeParams.gameId)
-                .then((teams) => {
-                    vm.teams = teams;
-                });
-        }
+    function getTeams() {
+      return resultSetupService.getGameTeams($routeParams.gameId)
+        .then((teams) => {
+          vm.teams = teams;
+        });
+    }
 
-        function buildResults() {
-            vm.results = {};
-            angular.forEach(vm.teams, function (team) {
-                let resultKey = [vm.round.$id, vm.selectedQuiz, team.teamId].join('_');
+    function buildResults() {
+      vm.results = {};
+      angular.forEach(vm.teams, function (team) {
+        let resultKey = [vm.round.$id, vm.selectedQuiz, team.teamId].join('_');
 
-              let result = resultSetupBuilder
-                .addQuiz(vm.selectedQuiz)
-                .addRound(vm.round.$id)
-                .addTeamId(team.teamId)
-                .addScore()
-                .getResult();
+        let result = resultSetupBuilder
+          .addQuiz(vm.selectedQuiz)
+          .addRound(vm.round.$id)
+          .addTeamId(team.teamId)
+          .addScore()
+          .getResult();
 
-                vm.results[resultKey] = result;
-                vm.results[resultKey].teamName = team.name;
-            });
-        }
+        vm.results[resultKey] = result;
+        vm.results[resultKey].teamName = team.name;
 
-        function assignResults() {
-            return resultSetupService.getQuizResults(vm.round.$id, vm.selectedQuiz, $routeParams.gameId)
-                .then((res) => {
-                    res.forEach((result, key) => {
-                        Object.assign(vm.results[key], result)
-                    });
-                    vm.results = Object.keys(vm.results).map(it => vm.results[it])
-                });
-        }
-
-        vm.saveResult = function (result) {
-            resultSetupService.saveQuizResult(result, $routeParams.gameId);
-        };
-
-        vm.setQuiz = function (quizNumber) {
-            let ref = `/games/${$routeParams.gameId}/rounds/${$routeParams.roundNumber}/${quizNumber}`;
-            $location.path(ref);
-        };
-
-        vm.nextQuiz = function () {
-          if (!isCaptainsInGame() && vm.round.roundType.type == 'CAPTAIN_ROUND') {
-            vm.isCaptainsOut = true;
-            return;
+      });
+      $scope.$watch(() => {
+        return vm.results;
+      }, (newValue) => {
+        vm.answerCount = 0;
+        newValue.forEach((item) => {
+          if (item.checked) {
+            vm.answerCount++;
           }
+        })
+      }, true)
+
+    }
+
+    function assignResults() {
+      return resultSetupService.getQuizResults(vm.round.$id, vm.selectedQuiz, $routeParams.gameId)
+        .then((res) => {
+          res.forEach((result, key) => {
+            if (result.hasOwnProperty("answer") && result.score === 0) {
+              result.score = -1;
+            }
+            Object.assign(vm.results[key], result)
+            setChecked(vm.results[key]);
+          });
+          vm.results = Object.keys(vm.results).map(it => vm.results[it])
+        });
+    }
+
+    function setChecked(result) {
+      if (result.score === -1 && result.hasOwnProperty("answer") && result.needSave === true) {
+        result.checked = 1;
+        result.score = 0;
+      }
+      else if (result.hasOwnProperty("auction")) {
+        if (result.auction > 0) {
+          result.checked = 1;
+        }
+        else {
+          result.checked = 0;
+        }
+      }
+      else if ((result.score !== 0 && result.score !== undefined)) {
+        result.checked = 1;
+      }
+      else {
+        result.checked = 0;
+      }
+    }
+
+    function convertScoreForHintsRound(result) {
+      if (result.score === 0 && result.checked === 1) {
+        result.score = -1;
+      }
+    }
+
+    vm.saveResult = function (result) {
+      result.needSave = true;
+      setChecked(result);
+      resultSetupService.saveQuizResult(result, $routeParams.gameId)
+        .then(() => {
+          convertScoreForHintsRound(result);
+        });
+    };
+
+    vm.setQuiz = function (quizNumber) {
+      let ref = `/games/${$routeParams.gameId}/rounds/${$routeParams.roundNumber}/${quizNumber}`;
+      $location.path(ref);
+    };
+
+    vm.nextQuiz = function () {
+      if (!isCaptainsInGame() && vm.round.roundType.type == 'CAPTAIN_ROUND') {
+        vm.isCaptainsOut = true;
+        return;
+      }
 
             if (vm.selectedQuiz < vm.round.numberOfQuestions) {
                 if (vm.currentQuiz == vm.selectedQuiz) {
@@ -139,8 +189,8 @@
             }
         };
 
-        vm.range = function (n) {
-          return new Array(n).fill().map((e, i) => i + 1);
-        };
-    }
+    vm.range = function (n) {
+      return new Array(n).fill().map((e, i) => i + 1);
+    };
+  }
 })();
