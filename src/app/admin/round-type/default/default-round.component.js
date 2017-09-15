@@ -109,7 +109,18 @@
       $event.target.select();
     };
 
+    function deleteQuizResults() {
+      vm.results.forEach((item) => {
+        let resultKey = [item.round, item.quiz, item.teamId].join('_');
+        resultServiceFactory.deleteResult($routeParams.gameId, resultKey);
+        item.score = 0;
+        item.numberOfCorrectAnswers = 0;
+        item.checked = 0;
+      });
+    }
+
     vm.setWeight = function () {
+      deleteQuizResults();
       if (vm.isManualInput) {
         RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, {weight: vm.weightOfResponse});
       }else {
