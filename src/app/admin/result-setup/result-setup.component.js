@@ -135,7 +135,6 @@
               resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
                 .then(() => {
                   $window.location.href = `#!/games/${$routeParams.gameId}/rounds`;
-                  $window.location.reload();
                 });
             }
         };

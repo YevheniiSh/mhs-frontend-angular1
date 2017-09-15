@@ -3,7 +3,8 @@
 
   <label ng-if="$ctrl.isManualInput">
     <input type="number" placeholder="{{'WEIGHT_INPUT' | translate}}" class="form-control weight-of-response"
-           ng-model="$ctrl.weightOfResponse" ng-change="$ctrl.recalculateScore()">
+           ng-model="$ctrl.weightOfResponse" ng-change="$ctrl.recalculateScore()"
+    >
   </label>
 </div>
 
