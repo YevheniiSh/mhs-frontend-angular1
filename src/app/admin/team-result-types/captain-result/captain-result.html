@@ -1,4 +1,4 @@
-<div id="captain-result-admin" ng-if="!$ctrl.resultDisabled">
+<div id="captain-result-admin" ng-if="!$ctrl.resultDisabled" ng-class="{'captain-edited':$ctrl.edited}">
   <div>
     <input
       id="cancel"
@@ -25,7 +25,7 @@
     >
     <label
       class="btn btn-default"
-      ng-class="{'btn-success': result.quizNum <= $ctrl.lastResultIndex}"
+      ng-class="{'btn-success': result.quizNum <= $ctrl.lastResultIndex,'edited':result.edited}"
       for="{{$index}}">
       {{result.quizNum}}
     </label>

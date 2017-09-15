@@ -1,5 +1,5 @@
 <div>
-  <div id="hint-result" ng-if="!$ctrl.resultDisabled">
+  <div id="hint-result" ng-if="!$ctrl.resultDisabled" ng-class="{'hints-edited':$ctrl.round.quizzes[0].edited}">
     <div ng-repeat="result in $ctrl.round.quizzes  track by result.quizNum">
       <input
         id="{{$ctrl.round.roundNum}}_{{result.quizNum}}"
@@ -12,7 +12,7 @@
              class="btn btn-default"
              ng-disabled="$ctrl.resultDisabled"
              ng-class="{'btn-success': result.quizNum === $ctrl.quizNum && $ctrl.status===1,
-                               'btn-danger': result.quizNum === $ctrl.quizNum && $ctrl.status===0}"
+                        'btn-danger': result.quizNum === $ctrl.quizNum && $ctrl.status===0}"
              ng-click="$ctrl.onChange(result.quizNum)">
         {{$ctrl.round.roundType.start - $index*$ctrl.round.roundType.step}}
       </label>

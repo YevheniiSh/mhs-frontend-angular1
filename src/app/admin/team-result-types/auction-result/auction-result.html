@@ -1,7 +1,8 @@
 <label ng-if="$ctrl.user && !$ctrl.resultDisabled" class="quiz-result" ng-repeat="quiz in $ctrl.round.quizzes"
        ng-init="$ctrl.initResults(quiz)">
 
-  <input class="result-rate form-control" ng-model="quiz.rate" type="number"
+  <input ng-class="{'edited':quiz.edited}" class="result-rate form-control" ng-model="quiz.rate" type="number" min="0"
+         max="50"
          ng-change="$ctrl.onSave($ctrl.round.roundNum, quiz)">
 
   <label class="switch">
@@ -10,7 +11,7 @@
            step="{{$ctrl.round.roundType.step}}"
            ng-true-value="1"
            ng-false-value="-1">
-    <span class="slider round"></span>
+    <span class="auction-slider round"></span>
   </label>
 
 </label>

@@ -1,12 +1,21 @@
 <div class="container">
     <button class="btn btn-success" ng-click="$ctrl.showGameResults()">{{'BACK_BUTTON' | translate}}</button>
-  <button class="btn btn-danger"
-          ng-if="$ctrl.state === 'finished' && $ctrl.auth && $ctrl.gameStatus && !$ctrl.isGameInFinishedSeason"
+  <button class="btn btn-info"
+          ng-if="$ctrl.state === 'finished' && $ctrl.auth && $ctrl.gameStatus&&  !$ctrl.isEmptyEditedQuizzes() && !$ctrl.isGameInFinishedSeason"
           ng-click="$ctrl.editResults()">{{'EDIT_RESULTS_BUTTON' | translate}}
-    </button>
-    <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && !$ctrl.gameStatus"
-            ng-click="$ctrl.blockEditing()">{{'SAVE_RESULTS_BUTTON' | translate}}
-    </button>
+  </button>
+
+  <button class="btn btn-success" ng-if=" $ctrl.auth && $ctrl.isEmptyEditedQuizzes()"
+          ng-click="$ctrl.saveChanges()">{{'SAVE_RESULTS_BUTTON' | translate}}
+  </button>
+  <button class="btn btn-info"
+          ng-if="$ctrl.state === 'finished' && !$ctrl.isEmptyEditedQuizzes()&& $ctrl.auth && !$ctrl.gameStatus  && !$ctrl.isGameInFinishedSeason"
+          ng-click="$ctrl.discardChanges()">{{'DISCARD_EDIT_RESULTS_BUTTON' | translate}}
+  </button>
+  <button class="btn btn-danger"
+          ng-if=" $ctrl.isEmptyEditedQuizzes() && $ctrl.auth && !$ctrl.gameStatus"
+          ng-click="$ctrl.discardChanges()">{{'DISCARD_RESULT_CHANGES_BUTTON' | translate}}
+  </button>
 
     <h1>{{$ctrl.teamName}} : <span class="team-total"> {{$ctrl.teamTotal.toFixed(1)}}</span>
         <span class="date"><a ng-href="#!/games/{{$ctrl.gameId}}/results">{{$ctrl.date}}</a></span>
@@ -27,7 +36,7 @@
                               auth="$ctrl.auth"
                               result-disabled="$ctrl.gameStatus"
                               save-result="$ctrl.setTeamResult(roundNum,quiz)"></default-result>
-              <captain-result ng-switch-when="CAPTAIN_ROUND"
+              <captain-result ng-switch-when="CAPTAIN_ROUND" class="clearfix"
                               round="round"
                               result-disabled="$ctrl.gameStatus"
                               save-result="$ctrl.setTeamResult(roundNum,quiz)"></captain-result>
