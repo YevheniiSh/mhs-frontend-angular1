@@ -94,3 +94,7 @@ input[type=checkbox] {
   color: lightgrey;
 }
 
+.counter {
+  float: right;
+}
+

@@ -43,6 +43,9 @@
     };
 
     vm.switchEditState = function () {
+      vm.results.forEach((item) => {
+        item.checked = false;
+      });
       vm.showInputs = !vm.showInputs;
       !vm.showInputs? vm.editStateText = 'Score': vm.editStateText = 'Correctness';
     };

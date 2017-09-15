@@ -1,17 +1,18 @@
 <div class="container">
   <div id="header">
     <h2><span class="round-name-label">{{'ROUND_SET_RESULTS_HEADER'|translate}} #{{$ctrl.round.$id}}: {{$ctrl.round.name}}</span>
-      <span class="quiz-name-label">{{'QUESTION_SET_RESULTS_HEADER'|translate}} #{{$ctrl.selectedQuiz}}</span></h2>
-    <h1>{{$ctrl.answerCount}}</h1>
+      <span class="quiz-name-label">{{'QUESTION_SET_RESULTS_HEADER'|translate}} #{{$ctrl.selectedQuiz}}</span>
+      <span class="counter">{{$ctrl.answerCount}}</span>
+    </h2>
   </div>
 
   <div ng-switch="$ctrl.round.roundType.type">
-    <default-round ng-switch-when="DEFAULT_ROUND" answer-count="$ctrl.answerCount" results="$ctrl.results"
+    <default-round ng-switch-when="DEFAULT_ROUND" results="$ctrl.results"
                    save-result="$ctrl.saveResult(result)" is-manual-input="$ctrl.isManualInput"></default-round>
     <captain-round ng-switch-when="CAPTAIN_ROUND" results="$ctrl.results"
                    save-result="$ctrl.saveResult(result)"
                    is-captains-out="$ctrl.isCaptainsOut"></captain-round>
-    <auction-round ng-switch-when="AUCTION_ROUND" results="$ctrl.results"
+    <auction-round ng-switch-when="AUCTION_ROUND" disable-next="$ctrl.disableNext" results="$ctrl.results"
                    save-result="$ctrl.saveResult(result)"></auction-round>
     <hints-round ng-switch-when="HINTS_ROUND" results="$ctrl.results"
                  save-result="$ctrl.saveResult(result)"></hints-round>

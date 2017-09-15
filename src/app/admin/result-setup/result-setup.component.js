@@ -125,11 +125,19 @@
     }
 
     function countAnswers(result) {
-      if (result.score === -1) {
+      if (result.score === -1 && result.hasOwnProperty("answer")) {
         result.checked = 1;
         result.score = 0;
       }
-      else if (result.score !== 0 && result.score !== undefined) {
+      else if (result.hasOwnProperty("auction")) {
+        if (result.auction > 0) {
+          result.checked = 1;
+        }
+        else {
+          result.checked = 0;
+        }
+      }
+      else if ((result.score !== 0 && result.score !== undefined)) {
         result.checked = 1;
       }
       else {
