@@ -122,14 +122,14 @@
               result.score = -1;
             }
             Object.assign(vm.results[key], result)
-            countAnswers(vm.results[key], false);
+            setChecked(vm.results[key]);
           });
           vm.results = Object.keys(vm.results).map(it => vm.results[it])
         });
     }
 
-    function countAnswers(result, isSaving) {
-      if (result.score === -1 && result.hasOwnProperty("answer") && isSaving) {
+    function setChecked(result) {
+      if (result.score === -1 && result.hasOwnProperty("answer") && result.needSave === true) {
         result.checked = 1;
         result.score = 0;
       }
@@ -149,17 +149,18 @@
       }
     }
 
-    function convertScoreForHints(result) {
+    function convertScoreForHintsRound(result) {
       if (result.score === 0 && result.checked === 1) {
         result.score = -1;
       }
     }
 
     vm.saveResult = function (result) {
-      countAnswers(result, true);
+      result.needSave = true;
+      setChecked(result);
       resultSetupService.saveQuizResult(result, $routeParams.gameId)
         .then(() => {
-          convertScoreForHints(result);
+          convertScoreForHintsRound(result);
         });
     };
 
