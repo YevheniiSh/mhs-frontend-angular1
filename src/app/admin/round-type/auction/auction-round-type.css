@@ -96,7 +96,7 @@ input:checked + .slider:before {
 
 .edit-state{
   top: -68px;
-  right: 60px;
+  right: 26px;
   position: absolute;
   width: 101.47px;
 }

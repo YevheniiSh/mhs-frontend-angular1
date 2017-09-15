@@ -150,5 +150,6 @@
   "START_VALUE_TOOLTIP": "Начальное значение",
   "STEP_VALUE_TOOLTIP": "Шаг",
   "INVALID_EMAIL_MESSAGE": "Неверный e-mail или пароль",
+  "ANSWERS_COUNT_LABEL": "Ответов: ",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершенных игр ещё нет!"
 }

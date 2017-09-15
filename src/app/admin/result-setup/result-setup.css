@@ -96,5 +96,6 @@ input[type=checkbox] {
 
 .counter {
   float: right;
+  font-size: 24px;
 }
 

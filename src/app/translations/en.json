@@ -151,5 +151,6 @@
   "START_VALUE_TOOLTIP": "Start value",
   "STEP_VALUE_TOOLTIP": "Step",
   "INVALID_EMAIL_MESSAGE": "Invalid e-mail or password",
+  "ANSWERS_COUNT_LABEL": "Answers number: ",
   "ROUND_FINISH_BUTTON": "Finish round"
 }
