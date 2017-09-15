@@ -28,8 +28,10 @@ function defaultResultController() {
   }
 
   vm.setScore = function (roundNum, quiz) {
-    quiz.edited = true;
+    if (quiz.hasOwnProperty("weightOfResponse"))
     quiz.score = +((quiz.weightOfResponse * quiz.countAnswer).toFixed(1));
+    if (quiz.score !== 0)
+      quiz.real = true;
     vm.saveResult({roundNum: roundNum, quiz: quiz})
   };
 

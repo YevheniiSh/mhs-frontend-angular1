@@ -44,10 +44,12 @@ function captainResultController() {
     angular.forEach(vm.round.quizzes, (quiz) => {
       if (vm.lastResultIndex >= quiz.quizNum) {
         quiz.score = vm.round.roundType.start + vm.round.roundType.step * (quiz.quizNum - 1);
+        quiz.real = true;
         vm.saveResult({roundNum: vm.round.roundNum, quiz: quiz});
       }
       else if (vm.lastResultIndex < quiz.quizNum) {
         quiz.score = 0;
+        quiz.real = false;
         vm.saveResult({roundNum: vm.round.roundNum, quiz: quiz});
       }
     })

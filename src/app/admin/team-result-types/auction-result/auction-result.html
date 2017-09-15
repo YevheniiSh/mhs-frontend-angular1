@@ -1,7 +1,7 @@
 <label ng-if="$ctrl.user && !$ctrl.resultDisabled" class="quiz-result" ng-repeat="quiz in $ctrl.round.quizzes"
        ng-init="$ctrl.initResults(quiz)">
 
-  <input class="result-rate form-control" ng-model="quiz.rate" type="number"
+  <input class="result-rate form-control" ng-model="quiz.rate" type="number" min="0"
          ng-change="$ctrl.onSave($ctrl.round.roundNum, quiz)">
 
   <label class="switch">

@@ -1,12 +1,16 @@
 <div class="container">
     <button class="btn btn-success" ng-click="$ctrl.showGameResults()">{{'BACK_BUTTON' | translate}}</button>
   <button class="btn btn-danger"
-          ng-if="$ctrl.state === 'finished' && $ctrl.auth && $ctrl.gameStatus && !$ctrl.isGameInFinishedSeason"
+          ng-if="$ctrl.state === 'finished' && $ctrl.auth && !$ctrl.isEmptyEditedQuizzes() && !$ctrl.isGameInFinishedSeason"
           ng-click="$ctrl.editResults()">{{'EDIT_RESULTS_BUTTON' | translate}}
     </button>
-    <button class="btn btn-danger" ng-if="$ctrl.state === 'finished' && $ctrl.auth && !$ctrl.gameStatus"
-            ng-click="$ctrl.blockEditing()">{{'SAVE_RESULTS_BUTTON' | translate}}
-    </button>
+
+  <button class="btn btn-danger" ng-if=" $ctrl.auth && $ctrl.isEmptyEditedQuizzes()"
+          ng-click="$ctrl.saveChanges()">{{'SAVE_RESULTS_BUTTON' | translate}}
+  </button>
+  <button class="btn btn-danger" ng-if=" $ctrl.auth && $ctrl.isEmptyEditedQuizzes()"
+          ng-click="$ctrl.discardChanges()">Discard Changes
+  </button>
 
     <h1>{{$ctrl.teamName}} : <span class="team-total"> {{$ctrl.teamTotal.toFixed(1)}}</span>
         <span class="date"><a ng-href="#!/games/{{$ctrl.gameId}}/results">{{$ctrl.date}}</a></span>

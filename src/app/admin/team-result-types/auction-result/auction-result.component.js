@@ -43,6 +43,7 @@ function AuctionResultController(userAuthService) {
 
   vm.onSave = function (roundNumber, result) {
     result.score = calculateScore(result);
+    result.real = true;
     vm.saveResult({roundNum: roundNumber, quiz: result});
   };
 
