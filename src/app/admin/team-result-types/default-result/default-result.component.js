@@ -32,6 +32,7 @@ function defaultResultController() {
     quiz.score = +((quiz.weightOfResponse * quiz.countAnswer).toFixed(1));
     if (quiz.score !== 0)
       quiz.real = true;
+    quiz.edited = true;
     vm.saveResult({roundNum: roundNum, quiz: quiz})
   };
 

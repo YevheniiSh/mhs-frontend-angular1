@@ -42,6 +42,7 @@ function hintsResultController(resultService, $routeParams) {
       vm.round.quizzes.forEach((item) => {
         if (quizNum === item.quizNum) {
           item.real = true;
+          item.edited = true
           item.score = (vm.start - ((quizNum - 1) * vm.step)) * vm.status;
         }
 

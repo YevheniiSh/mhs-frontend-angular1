@@ -92,24 +92,24 @@ angular.module('teamResults')
               }
 
               vm.setTeamResult = function (roundNum, quiz) {
-                quiz.edited = true;
                 addQuizToSaveQueue(roundNum, quiz)
               };
 
               function addQuizToSaveQueue(roundNum, quiz) {
-                if (!removeDuplicate(roundNum, quiz))
+                let isItemUpdated = updateQuiz(roundNum, quiz)
+                if (!isItemUpdated)
                   editedQuizzes.push({quiz: quiz, roundNum: roundNum})
               }
 
-              function removeDuplicate(roundNum, quiz) {
-                let isItemRemoved = false;
+              function updateQuiz(roundNum, quiz) {
+                let isItemUpdated = false;
                 for (let i in editedQuizzes) {
                   if (editedQuizzes[i].roundNum === roundNum && editedQuizzes[i].quiz.quizNum === quiz.quizNum) {
                     editedQuizzes[i] = {quiz: quiz, roundNum: roundNum};
-                    isItemRemoved = true
+                    isItemUpdated = true
                   }
                 }
-                return isItemRemoved
+                return isItemUpdated
               }
 
               function saveResult(result) {

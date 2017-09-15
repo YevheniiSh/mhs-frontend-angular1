@@ -12,7 +12,8 @@
              class="btn btn-default"
              ng-disabled="$ctrl.resultDisabled"
              ng-class="{'btn-success': result.quizNum === $ctrl.quizNum && $ctrl.status===1,
-                               'btn-danger': result.quizNum === $ctrl.quizNum && $ctrl.status===0}"
+                        'btn-danger': result.quizNum === $ctrl.quizNum && $ctrl.status===0,
+                        'edited':result.edited}"
              ng-click="$ctrl.onChange(result.quizNum)">
         {{$ctrl.round.roundType.start - $index*$ctrl.round.roundType.step}}
       </label>
