@@ -1,13 +1,18 @@
-h1 {
+h2  {
     margin-top: 5px;
-    margin-bottom: 3%;
-    padding-bottom: 2%;
+    margin-bottom: 15px;
+    padding-bottom: 18px;
     border-bottom: solid 1px;
-    text-align: center;
+
 }
 
-h2 {
-    margin-bottom: 0;
+h2 .quiz-name-label{
+  position: absolute;
+  left: 47%;
+}
+
+h2 .round-name-label{
+
 }
 
 #team-list {
@@ -88,3 +93,4 @@ input[type=checkbox] {
 .disabled {
   color: lightgrey;
 }
+

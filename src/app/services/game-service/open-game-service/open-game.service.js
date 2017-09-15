@@ -26,7 +26,9 @@
             getTeams: getTeams,
             updateTeamSize: updateTeamSize,
             getOpenGameById: getOpenGameById,
-            removeOpenGame: removeOpenGame
+            removeOpenGame: removeOpenGame,
+            getTemplateName:getTemplateName,
+            setTemplateName:setTemplateName
         };
 
         function getAllOpenGames() {
@@ -132,6 +134,20 @@
             teamSize.$value = numberOfPlayers;
             teamSize.$save();
             return teamSize.$loaded();
+        }
+
+        function setTemplateName(gameId, templateName) {
+            let gameTemplateName = new $firebaseObject(openGamesRef.child(`${gameId}/templateName`));
+            gameTemplateName.$value = templateName;
+            gameTemplateName.$save();
+            return gameTemplateName.$loaded();
+        }
+
+        function getTemplateName(gameId) {
+           return new $firebaseObject(openGamesRef.child(`${gameId}/templateName`))
+               .$loaded().then(res => {
+                   return res.$value
+               });
         }
 
         function removeOpenGame(gameId) {

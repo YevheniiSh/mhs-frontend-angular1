@@ -20,20 +20,47 @@ angular
                 return [result.round, result.quiz, result.teamId].join('_');
             }
 
+            function getRefByState(state) {
+              if (state === "current") {
+                return currentRef;
+              }
+              else if (state === "finished") {
+                return finishedRef;
+              }
+            };
+
+            function removeTeamName(result) {
+              if(result.teamName !== undefined){
+                delete result.teamName;
+              }
+            }
+
+            function prepareResultsToSave(results) {
+              let updatedResults = {};
+              angular.copy(results).forEach((result)=>{
+                if (result.score !== undefined){
+                  removeTeamName(result);
+                  updatedResults[resultKey(result)] = result;
+                }
+              });
+              return updatedResults;
+            }
+
             resultFactory.saveResult = function (state, result, gameId) {
-                let ref;
-                if (state === "current") {
-                    ref = currentRef;
-                }
-                else if (state === "finished") {
-                    ref = finishedRef;
-                }
+                let ref = getRefByState(state);
                 let resultKey = [result.round, result.quiz, result.teamId].join('_');
                 let resultRef = ref.child(`${gameId}/results/${resultKey}/`);
                 let resultObj = new $firebaseObject(resultRef);
                 resultObj.$value = result;
                 resultObj.$save();
                 return resultObj.$loaded();
+            };
+
+            resultFactory.saveQuizResults = function (state, results, gameId) {
+                let parsedResults = prepareResultsToSave(results);
+                let ref = getRefByState(state);
+                let resultsRef = ref.child(`${gameId}/results/`);
+                return resultsRef.update(parsedResults);
             };
 
             resultFactory.filter = function (filter, gameId) {

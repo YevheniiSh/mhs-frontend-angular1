@@ -162,20 +162,19 @@
         return;
       }
 
-      if (vm.selectedQuiz < vm.round.numberOfQuestions) {
-        if (vm.currentQuiz == vm.selectedQuiz) {
-          vm.currentQuiz++;
-          resultSetupService.setCurrentQuiz(vm.currentQuiz, $routeParams.gameId);
-        }
-        vm.setQuiz(+vm.selectedQuiz + 1);
-      } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
-        resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
-          .then(() => {
-            $window.location.href = `#!/games/${$routeParams.gameId}/rounds`;
-            $window.location.reload();
-          });
-      }
-    };
+            if (vm.selectedQuiz < vm.round.numberOfQuestions) {
+                if (vm.currentQuiz == vm.selectedQuiz) {
+                    vm.currentQuiz++;
+                    resultSetupService.setCurrentQuiz(vm.currentQuiz, $routeParams.gameId);
+                }
+                vm.setQuiz(+vm.selectedQuiz + 1);
+            } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
+              resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
+                .then(() => {
+                  $window.location.href = `#!/games/${$routeParams.gameId}/rounds`;
+                });
+            }
+        };
 
     vm.range = function (n) {
       return new Array(n).fill().map((e, i) => i + 1);
