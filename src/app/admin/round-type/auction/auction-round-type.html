@@ -14,7 +14,7 @@
           <input id="switch-checkbox"
                  type="checkbox"
                  ng-model="result.status"
-                 ng-change="result.auction = result.status; $ctrl.onSave(result)"
+                 ng-change="result.auction = result.status > 0 ? 1 : null; $ctrl.onSave(result)"
                  ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
                  ng-true-value="1"
                  ng-false-value="-1">

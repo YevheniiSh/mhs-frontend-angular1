@@ -134,7 +134,7 @@
         result.score = 0;
       }
       else if (result.hasOwnProperty("auction")) {
-        if (result.auction > 0) {
+        if (result.auction !== null) {
           result.checked = 1;
         }
         else {
@@ -150,7 +150,7 @@
     }
 
     function convertScoreForHintsRound(result) {
-      if (result.score === 0 && result.checked === 1) {
+      if (result.score === 0 && result.hasOwnProperty("answer")) {
         result.score = -1;
       }
     }

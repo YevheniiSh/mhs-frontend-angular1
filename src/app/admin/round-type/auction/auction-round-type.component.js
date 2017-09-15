@@ -39,14 +39,34 @@
 
     vm.onSave = function (result) {
       result.score = result.rate * result.status;
+      console.log(result);
       vm.saveResult({result: result})
     };
 
     vm.switchEditState = function () {
-      vm.results.forEach((item) => {
-        item.checked = false;
-      });
       vm.showInputs = !vm.showInputs;
+      if (!vm.showInputs) {
+        vm.results.forEach((item) => {
+          if (item.status < 0) {
+            item.checked = false;
+          }
+          else {
+            item.checked = true;
+          }
+        });
+      }
+      else {
+        vm.results.forEach((item) => {
+          delete item["auction"];
+
+          if (item.score !== 0 && item.score !== undefined) {
+            item.checked = true;
+          }
+          else {
+            item.checked = false;
+          }
+        });
+      }
       !vm.showInputs? vm.editStateText = 'Score': vm.editStateText = 'Correctness';
     };
 
