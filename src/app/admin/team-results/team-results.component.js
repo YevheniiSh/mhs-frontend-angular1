@@ -165,11 +165,12 @@ angular.module('teamResults')
                   }
                   quiz.quiz.edited = false
                 }
-                if (vm.state === "finished")
-                  vm.gameStatus = true;
                 editedQuizzes = [];
-                    ResultService.setGameWinner(this.state, vm.gameId);
-                    ResultService.setTeamPosition(vm.gameId);
+                if (vm.state === "finished") {
+                  vm.gameStatus = true;
+                  ResultService.setGameWinner(this.state, vm.gameId);
+                  ResultService.setTeamPosition(vm.gameId);
+                }
               };
 
               vm.discardChanges = function () {
