@@ -13,7 +13,11 @@ angular.module('login')
                             $rootScope.currentUser = user.email;
                             $location.path($rootScope.getPreviousLocation());
                         })
-                        .catch(() => {
+                        .catch((err) => {
+                            if (err === 'rulesError'){
+                              this.errMessage = "INVALID_RULES_MESSAGE";
+                              return;
+                            }
                             this.errMessage = "INVALID_EMAIL_MESSAGE";
                         });
                 };

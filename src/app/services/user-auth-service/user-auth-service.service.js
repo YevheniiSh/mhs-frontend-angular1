@@ -14,7 +14,7 @@ angular.module('userAuthService')
                           }
                           else {
                             this.signOut();
-                            defer.reject("Error");
+                            defer.reject('rulesError');
                           }
                         })
                     })
@@ -74,7 +74,7 @@ angular.module('userAuthService')
                     })
                     .catch((er) => {
                         defer.reject(er);
-                    })
+                    });
                 return defer.promise;
             }
         };

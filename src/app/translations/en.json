@@ -151,5 +151,6 @@
   "START_VALUE_TOOLTIP": "Start value",
   "STEP_VALUE_TOOLTIP": "Step",
   "INVALID_EMAIL_MESSAGE": "Invalid e-mail or password",
+  "INVALID_RULES_MESSAGE":"Your account is not verified. Contact with administrator!",
   "ROUND_FINISH_BUTTON": "Finish round"
 }
