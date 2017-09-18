@@ -68,7 +68,9 @@
   "ROUND_NAME_TABLE_HEADER": "Round",
   "QUIZZES_TABLE_HEADER": "Quizzes",
   "EDIT_RESULTS_BUTTON": "Edit results",
+  "DISCARD_EDIT_RESULTS_BUTTON": "Cancel editing",
   "SAVE_RESULTS_BUTTON": "Save results",
+  "DISCARD_RESULT_CHANGES_BUTTON": "Discard changes",
   "TEAM_NAME_CHANGED_ALERT": "Team name changed",
   "TEAM_NAME_EXISTS_ALERT": "Team name exist",
   "SEARCH_PLACEHOLDER": "Search",
@@ -152,5 +154,6 @@
   "STEP_VALUE_TOOLTIP": "Step",
   "INVALID_EMAIL_MESSAGE": "Invalid e-mail or password",
   "INVALID_RULES_MESSAGE":"Your account is not verified. Contact with administrator!",
+  "ANSWERS_COUNT_LABEL": "Answers number: ",
   "ROUND_FINISH_BUTTON": "Finish round"
 }

@@ -6,3 +6,8 @@
 .inp-label:nth-child(5) {
   margin-right: 25px;
 }
+
+#default-result .btn[disabled] {
+  cursor: default;
+  opacity: 1;
+}

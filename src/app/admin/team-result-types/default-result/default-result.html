@@ -1,4 +1,4 @@
-<label for="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
+<label id="default-result" for="{{$ctrl.round.roundNum}}_{{quiz.quizNum}}"
        ng-class="{'inp-label': !$ctrl.editMode}"
        ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum">
     <span class="btn inp"
@@ -6,7 +6,10 @@
           ng-class="{'btn-success' : +(quiz.score) > 0,
                      'btn-silver' : +(quiz.score) === 0,
                      'btn-danger' : +(quiz.score) < 0,
-                     'edited' : quiz.edited}">
+                     'edited' : quiz.edited}"
+          ng-disabled="$ctrl.resultDisabled"
+    >
+
         <span uib-tooltip="№ {{quiz.quizNum}}">
             <input
               type="checkbox"
@@ -14,7 +17,7 @@
               class="quiz-input"
               ng-model="quiz.score"
               ng-disabled="$ctrl.resultDisabled"
-              ng-change="$ctrl.saveResult({roundNum:$ctrl.round.roundNum ,quiz:quiz})"
+              ng-change="$ctrl.setScore($ctrl.round.roundNum, quiz);"
               ng-model-options="{ updateOn: 'default blur' }"
               ng-hide="true"
               ng-true-value="1"
@@ -46,7 +49,8 @@
               ng-hide="quiz.editMode"
               ng-class="{'btn-success' : +(quiz.score) > 0,
                      'btn-silver' : +(quiz.score) === 0,
-                     'btn-danger' : +(quiz.score) < 0}"
+                     'btn-danger' : +(quiz.score) < 0,
+                     'edited' : quiz.edited}"
               ng-click="$ctrl.showEditMode(quiz)">
             {{quiz.score}}
          </span>

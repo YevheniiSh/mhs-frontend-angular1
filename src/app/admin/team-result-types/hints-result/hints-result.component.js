@@ -38,22 +38,23 @@ function hintsResultController(resultService, $routeParams) {
   vm.onChange = function (quizNum) {
     if (!vm.resultDisabled) {
       vm.quizNum = quizNum;
-      let scoreToSet = (vm.start - ((vm.quizNum - 1) * vm.step)) * vm.status;
-      let quizSave = {quizNum: vm.quizNum, score: scoreToSet};
-      vm.round.quizzes.forEach((item) => {
-        if (item.real) {
-          vm.quizToDelete = item.quizNum;
-          item.real = false;
-          item.score = 0;
-        }
-      });
-      let resultKey = [vm.round.roundNum, vm.quizToDelete, vm.teamId].join('_');
-      resultService.deleteResult(vm.gameId, resultKey)
-        .then(() => {
-          vm.saveResult({roundNum: vm.round.roundNum, quiz: quizSave});
-          vm.round.quizzes[vm.quizNum - 1].real = true;
 
-        });
+      vm.round.quizzes.forEach((item) => {
+        item.edited = true;
+        if (quizNum === item.quizNum) {
+          item.real = true;
+          item.score = (vm.start - ((quizNum - 1) * vm.step)) * vm.status;
+        }
+
+        else {
+          item.real = false;
+          item.score = 0
+        }
+        vm.saveResult({roundNum: vm.round.roundNum, quiz: item});
+
+      });
+
+
     }
 
   }

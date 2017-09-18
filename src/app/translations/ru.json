@@ -69,7 +69,9 @@
   "ROUND_NAME_TABLE_HEADER": "Раунд",
   "QUIZZES_TABLE_HEADER": "Вопросы",
   "EDIT_RESULTS_BUTTON": "Редактировать ответы",
+  "DISCARD_EDIT_RESULTS_BUTTON": "Отменить редактирование",
   "SAVE_RESULTS_BUTTON": "Сохранить ответы",
+  "DISCARD_RESULT_CHANGES_BUTTON": "Отменить изменения",
   "TEAM_NAME_CHANGED_ALERT": "Название команды изменено",
   "TEAM_NAME_EXISTS_ALERT": "Название занято",
   "SEARCH_PLACEHOLDER": "Поиск",
@@ -151,5 +153,6 @@
   "STEP_VALUE_TOOLTIP": "Шаг",
   "INVALID_EMAIL_MESSAGE": "Неверный e-mail или пароль",
   "INVALID_RULES_MESSAGE":"Ваш аккаунт не подтвержден. Обратитесь к администратору!",
+  "ANSWERS_COUNT_LABEL": "Ответов: ",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершенных игр ещё нет!"
 }

@@ -69,7 +69,9 @@
   "ROUND_NAME_TABLE_HEADER": "Раунд",
   "QUIZZES_TABLE_HEADER": "Запитання",
   "EDIT_RESULTS_BUTTON": "Редагувати відповіді",
+  "DISCARD_EDIT_RESULTS_BUTTON": "Відмінити редагування",
   "SAVE_RESULTS_BUTTON": "Зберегти відповіді",
+  "DISCARD_RESULT_CHANGES_BUTTON": "Відмінити зміни",
   "TEAM_NAME_CHANGED_ALERT": "Назву команди змінено",
   "TEAM_NAME_EXISTS_ALERT": "Назву занято",
   "SEARCH_PLACEHOLDER": "Пошук",
@@ -151,5 +153,6 @@
   "STEP_VALUE_TOOLTIP": "Крок",
   "INVALID_EMAIL_MESSAGE": "Невірний e-mail чи пароль",
   "INVALID_RULES_MESSAGE":"Ваш аккаунт не підтверджено. Зверніться до адміністратора!",
+  "ANSWERS_COUNT_LABEL": "Відповідей: ",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершених ігр ще немає!"
 }
