@@ -3,12 +3,12 @@ import { UpgradeComponent } from '@angular/upgrade/static';
 import { upgradeDirective } from '../../template.loader';
 
 @Directive({
-  selector: 'team-list',
+  selector: 'navbar',
 })
-export class TeamListComponentUpgrade extends UpgradeComponent {
+export class NavbarComponentUpgrade extends UpgradeComponent {
   constructor(elementRef: ElementRef, injector: Injector) {
-    super('teamList', elementRef, injector);
+    super('navbar', elementRef, injector);
   }
 }
 
-upgradeDirective('mhs.admin', 'teamList');
+upgradeDirective('navbar', 'navbar');

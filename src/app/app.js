@@ -24,7 +24,7 @@ angular.module('mhs', [
 ])
   .config(['$locationProvider', '$routeProvider', '$animateProvider',
     function ($locationProvider, $routeProvider, $animateProvider) {
+      $locationProvider.html5Mode(true);
       $animateProvider.classNameFilter(/animated/);
-      $locationProvider.hashPrefix('!');
       $routeProvider.otherwise({redirectTo: '/games'});
     }]);

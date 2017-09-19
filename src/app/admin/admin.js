@@ -78,6 +78,9 @@ angular
     $routeProvider.when('/seasons/:seasonId', {
       template: '<season></season>'
     });
+    $routeProvider.when('/test', {
+      template: '<phone-list></phone-list>'
+    });
   }])
   .run(["$rootScope", "$location", 'userAuthService', function ($rootScope, $location, userAuthService) {
     $rootScope.$on("$routeChangeError", function () {
