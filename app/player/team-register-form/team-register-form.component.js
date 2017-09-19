@@ -212,13 +212,13 @@
                 .then(() => {
                     vm.submitted = true;
                     vm.timer = $timeout(() => {
-                        $window.history.back();
+                        $location.path('/games');
                     }, 2000);
                 });
         }
 
         vm.onBack = function () {
-            $window.history.back();
+            $location.path('/games');
         };
 
         function getOpenGame() {
