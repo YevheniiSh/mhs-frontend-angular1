@@ -9,7 +9,8 @@
       ,
       bindings: {
         results: '=',
-        saveResult: '&'
+        saveResult: '&',
+        disableNext: '='
       }
     });
 
@@ -30,13 +31,6 @@
         vm.round = round;
       });
 
-    $scope.$watch(() => {
-      return vm.results;
-    }, (res) => {
-      if (res !== undefined && res[0].rate === undefined)
-        initResults(res);
-    });
-
     vm.onSave = function (result) {
       result.score = result.rate * result.status;
       console.log(result);
@@ -44,6 +38,7 @@
     };
 
     vm.switchEditState = function () {
+      vm.disableNext = false;
       vm.showInputs = !vm.showInputs;
       if (!vm.showInputs) {
         vm.results.forEach((item) => {
@@ -70,26 +65,6 @@
       !vm.showInputs? vm.editStateText = 'Score': vm.editStateText = 'Correctness';
     };
 
-    function initResults(res) {
-      for (let result of res) {
-        if (result.score !== undefined) {
-          result.rate = Math.abs(result.score);
-
-          setResultStatus(result);
-        }
-        else {
-          result.rate = 0;
-          result.status = -1
-        }
-      }
-    }
-
-    function setResultStatus(result) {
-      if (result.score <= 0) {
-        result.status = -1
-      } else
-        result.status = 1
-    }
   }
 })();
 
