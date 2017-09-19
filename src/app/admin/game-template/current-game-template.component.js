@@ -19,7 +19,7 @@ function currentGameTemplate($routeParams, templateService, $timeout) {
             templateService.getRounds(vm.templateId)
               .then(rounds => {
                     vm.currentTemplateRounds = rounds;
-                    if (!template.rounds) vm.currentTemplateRounds = [{numberOfQuestions: 10, name: ""}];
+                if (!template.rounds) vm.currentTemplateRounds = [];
                 });
             vm.currentTemplateName = template.name;
         });
