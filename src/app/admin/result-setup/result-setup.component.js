@@ -33,7 +33,8 @@
         .then(() => {
           buildResults();
           assignResults()
-            .then(initInputType);
+            .then(initInputType)
+            .then(initAuctionResults);
         })
 
     }
@@ -76,6 +77,31 @@
         .then((round) => {
           vm.currentRound = round;
         })
+    }
+
+    function initAuctionResults() {
+      if (vm.round.roundType.type === 'AUCTION_ROUND') {
+        vm.disableNext = true;
+
+        for (let result of vm.results) {
+          if (result.score !== undefined) {
+            result.rate = Math.abs(result.score);
+
+            setResultStatus(result);
+          }
+          else {
+            result.rate = 0;
+            result.status = -1
+          }
+        }
+      }
+    }
+
+    function setResultStatus(result) {
+      if (result.score <= 0) {
+        result.status = -1
+      } else
+        result.status = 1
     }
 
     function getTeams() {

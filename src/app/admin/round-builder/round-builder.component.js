@@ -16,7 +16,8 @@ function roundBuilder(roundTypeService) {
 
   function onInit() {
     getRoundTypes()
-      .then(setDefaultType);
+      .then(setDefaultType)
+      .then(initFirstRound);
   }
 
     vm.dragAndDropRound = function($index){
@@ -56,4 +57,9 @@ function roundBuilder(roundTypeService) {
     });
     return type;
     }
+
+  function initFirstRound() {
+    if (vm.rounds.length === 0)
+      vm.rounds.push(createRound());
+  }
 }
