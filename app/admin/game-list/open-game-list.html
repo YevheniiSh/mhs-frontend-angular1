@@ -65,14 +65,14 @@
 
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">{{'TEAMS_MODAL_HEADER' | translate}}: {{$ctrl.date | date:'d
-            MMMy'}}</h3>
+        <h3 class="modal-title" id="modal-title">{{'TEAMS_MODAL_HEADER' | translate}}: {{$ctrl.date |
+            date:'dMMMy'}}</h3>
     </div>
     <div class="modal-body" id="modal-body">
         <span ng-if="$ctrl.items.length === 0">{{'TEAMS_MODAL_PLACEHOLDER' | translate}}</span>
         <ul>
-            <li ng-repeat="item in $ctrl.items | orderBy:'name'">
-                {{ item.name }}
+            <li ng-repeat="item in $ctrl.items | filter:{status:'!archived'} | orderBy:'teamName'">
+                {{ item.teamName }}
             </li>
         </ul>
     </div>

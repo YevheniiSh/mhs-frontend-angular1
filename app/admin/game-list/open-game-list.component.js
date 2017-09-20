@@ -7,9 +7,9 @@
             controller: OpenGameList
         });
 
-    OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location', 'userAuthService', '$uibModal'];
+    OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location', 'userAuthService', 'gameRequestServiceFactory', '$uibModal'];
 
-    function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService, $uibModal) {
+    function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService, gameRequestService, $uibModal) {
         let vm = this;
         vm.$onInit = onInit;
 
@@ -87,7 +87,7 @@
             });
 
         vm.open = function (gameId, parentSelector) {
-            openGameFactory.getTeams(gameId)
+            gameRequestService.getAllTeamRequestsByGameId(gameId)
                 .then((teams) => {
                     console.log(teams);
                     var items = teams;
