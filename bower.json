@@ -24,7 +24,6 @@
     "angular-dynamic-locale": "0.1.32",
     "angular-i18n": "1.6",
     "angular-drag-and-drop-lists": "^2.1.0",
-    "components-font-awesome": "^4.7.0",
-    "firebase": "^4.3.1"
+    "components-font-awesome": "^4.7.0"
   }
 }
