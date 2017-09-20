@@ -50,7 +50,7 @@
         "app/bower_components/angucomplete-alt/angucomplete-alt.css"
       ],
       "scripts": [
-        "app/bower_components/firebase/firebase.js",
+        "../node_modules/firebase/firebase.js",
         "app/bower_components/angular/angular.js",
         "app/bower_components/angular-messages/angular-messages.js",
         "app/bower_components/angular-translate/angular-translate.js",
