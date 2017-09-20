@@ -135,7 +135,7 @@
   "CANCEL_BTN": "Cancel",
   "GAMES_LABEL": "Games",
   "TEAMS_MODAL_HEADER": "Teams requests for games",
-  "TEAMS_MODAL_PLACEHOLDER": "There are no requests yet",
+  "TEAMS_MODAL_PLACEHOLDER": "There are no confirmed teams yet",
   "TEAMS_MODAL_SHOW_BUTTON": "Teams requests",
   "EMPTY_FIELD_MASSAGE": "Can't be empty",
   "NO_OPEN_GAME_PLACEHOLDER": "There are no open games yet!",
