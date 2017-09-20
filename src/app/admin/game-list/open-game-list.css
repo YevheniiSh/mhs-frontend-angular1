@@ -1,21 +1,96 @@
-.delete-game-alert {
-    width: 300px;
-    margin: 6% 0 0 0;
-    position: absolute;
-    right: 0;
-    z-index: 999999;
+/*.delete-game-alert {*/
+/*width: 300px;*/
+/*margin: 6% 0 0 0;*/
+/*position: absolute;*/
+/*right: 0;*/
+/*z-index: 999999;*/
+/*}*/
+
+/*.games td {*/
+/*position: relative;*/
+/*}*/
+
+/*.no-games-label {*/
+/*background: #fff;*/
+/*font-size: 4em;*/
+/*text-align: center;*/
+/*color: #c7c7c7;*/
+/*padding-top: 1em;*/
+/*cursor: default;*/
+/*width: 100%;*/
+/*}*/
+.header{
+  font-weight: bold;
+
 }
 
-.games td {
-    position: relative;
+ul.game-list {
+  list-style: none;
+  padding: 0px;
 }
 
-.no-games-label {
-    background: #fff;
-    font-size: 4em;
-    text-align: center;
-    color: #c7c7c7;
-    padding-top: 1em;
-    cursor: default;
-  width: 100%;
+.game-list-item > div {
+  display: inline-block;
+  float: left;
+}
+
+.game-list-item {
+  padding: 1% 2%;
+  margin: 0px;
+  border-bottom: 1px lightgrey solid;
+}
+
+div.buttons-panel > .btn{
+  float: right;
+  margin-left: 1%;
+}
+
+.game-date {
+  width: 15%;
+}
+
+.game-time {
+  width: 15%;
+}
+
+.game-location {
+  width: 18%;
+}
+
+.game-season {
+  width: 15%;
+}
+
+.buttons-panel {
+  width: 37%;
+}
+
+@media screen and (max-width: 750px) {
+  .game-date {
+    width: 25%;
+  }
+
+  .game-time {
+    width: 20%;
+  }
+
+  .game-location {
+    width: 35%;
+  }
+
+  .game-season {
+    width: 20%;
+  }
+
+  .buttons-panel {
+    margin-top: 1%;
+    width: 100%;
+  }
+  .register-button{
+    width: 49%;
+  }
+
+  .request-button{
+    width: 49%;
+  }
 }
