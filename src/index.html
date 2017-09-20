@@ -3,16 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>Mad Head Show</title>
-  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="/__/firebase/4.3.0/firebase-app.js"></script>
   <script src="/__/firebase/4.3.0/firebase-auth.js"></script>
   <script src="/__/firebase/4.3.0/firebase-database.js"></script>
 
   <script src="/__/firebase/init.js"></script>
-
-  <script src="https://use.fontawesome.com/50300bbbf7.js"></script>
-  <link rel="stylesheet" href="app/public/css/bootstrap.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css">
 
   <base href="/">
 
@@ -22,7 +17,6 @@
 <body>
 <div class="container">
   <navbar ng-if="!presentationMode && !loading"></navbar>
-  <!--<div ng-if="!presentationMode" class="main-panel"></div>-->
   <div ng-show="!loading" ng-view></div>
 </div>
 </body>
