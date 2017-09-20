@@ -8,6 +8,8 @@ import {TeamListComponentUpgrade} from "./admin/team-list/team-list.component.up
 import {NavbarComponent} from './admin/navbar/navbar.component';
 import {LoginPanelComponentUpgrade} from "./admin/login-panel/login-panel.component.upgrade";
 import {BackupService} from './services/backup/backup.service';
+import {CollapseModule} from 'ngx-bootstrap/collapse';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -19,6 +21,8 @@ const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
     LoginPanelComponentUpgrade
   ],
   imports: [
+    BsDropdownModule.forRoot(),
+    CollapseModule.forRoot(),
     BrowserModule,
     AppModule
   ],
@@ -44,7 +48,7 @@ export class HybridAppModule {
 
   private downgradeNewComponents() {
     this.mhsAdminModule.directive('phoneList', upgradeAdapter.downgradeNg2Component(PhoneListComponent));
-    this.mhsAdminModule.directive('navbar', upgradeAdapter.downgradeNg2Component(NavbarComponent));
+    this.mhsAdminModule.directive('appNavbar', upgradeAdapter.downgradeNg2Component(NavbarComponent));
   }
 
   private downgradeNewProviders() {
