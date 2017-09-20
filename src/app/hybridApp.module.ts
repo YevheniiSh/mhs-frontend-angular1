@@ -1,10 +1,11 @@
-import { forwardRef, NgModule } from "@angular/core";
-import { UpgradeAdapter } from "@angular/upgrade";
-import { BrowserModule } from "@angular/platform-browser";
-import { PhoneListComponent } from "./admin/phone-list.component";
+import {forwardRef, NgModule} from "@angular/core";
+import {UpgradeAdapter} from "@angular/upgrade";
+import {BrowserModule} from "@angular/platform-browser";
+import {PhoneListComponent} from "./admin/phone-list.component";
 import * as angular from 'angular';
-import { AppModule } from "./app.module";
-import { TeamListComponentUpgrade } from "./admin/team-list/team-list.component.upgrade";
+import {AppModule} from "./app.module";
+import {TeamListComponentUpgrade} from "./admin/team-list/team-list.component.upgrade";
+import {BackupService} from './services/backup/backup.service';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -18,13 +19,15 @@ const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
     AppModule
   ],
   entryComponents: [],
-  providers: [],
+  providers: [BackupService],
 })
 export class HybridAppModule {
+  private mhsAdminModule = angular.module('mhs.admin');
 
   constructor() {
     this.upgradeOldProviders();
     this.downgradeNewComponents();
+    this.downgradeNewProviders();
   }
 
   ngDoBootstrap() {
@@ -36,9 +39,11 @@ export class HybridAppModule {
   }
 
   private downgradeNewComponents() {
-    const mhsAdminModule = angular.module('mhs.admin');
+    this.mhsAdminModule.directive('phoneList', upgradeAdapter.downgradeNg2Component(PhoneListComponent));
+  }
 
-    mhsAdminModule.directive('phoneList', upgradeAdapter.downgradeNg2Component(PhoneListComponent));
+  private downgradeNewProviders() {
+    this.mhsAdminModule.service('backup', upgradeAdapter.downgradeNg2Provider(BackupService));
   }
 }
 
