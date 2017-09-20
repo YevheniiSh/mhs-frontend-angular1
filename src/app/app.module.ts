@@ -2,18 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Component, ComponentFactoryResolver, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes, UrlHandlingStrategy } from '@angular/router';
 import { PhoneListComponent } from './admin/phone-list.component';
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
 import { HybridService } from './hybrid.service';
 import { UpgradeModule } from '@angular/upgrade/static';
+import { Ng1Ng2UrlHandlingStrategy } from './Ng1Ng2UrlHandlingStrategy';
+import { APP_BASE_HREF, HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-mhs',
   template: `
     <router-outlet></router-outlet>
     <div class="container">
-      <!--<navbar ng-if="!presentationMode && !loading"></navbar>-->
       <div ng-show="!loading" ng-view></div>
     </div>
   `,
@@ -21,9 +22,15 @@ import { UpgradeModule } from '@angular/upgrade/static';
 export class OldAppComponent {
 }
 
-export function exportRepository(m: UpgradeModule): any {
-  return m.$injector.get('TeamServiceFactory');
+export function exportRepository(m: any): any {
+  // return m.$injector.get('TeamServiceFactory');
+  return m.get('TeamServiceFactory');
 }
+
+const routes: Routes = [
+  { path: '', redirectTo: 'games', pathMatch: 'full' },
+  { path: 'phones', component: PhoneListComponent },
+];
 
 @NgModule({
   declarations: [
@@ -36,20 +43,19 @@ export function exportRepository(m: UpgradeModule): any {
     FormsModule,
     HttpModule,
     UpgradeModule,
-    RouterModule.forRoot([], {useHash: true, initialNavigation: false, enableTracing: true}),
-    // RouterModule.forChild([
-    //   { path: 'settings', children: [
-    //     { path: '', component: PhoneListComponent },
-    //     { path: 'pagesize', component: PhoneListComponent }
-    //   ] },
-    // ])
+    RouterModule.forRoot(routes, { initialNavigation: false, enableTracing: true })
+    // RouterModule.forRoot(routes)
   ],
   entryComponents: [
-    PhoneListComponent
+    PhoneListComponent,
+    OldAppComponent
   ],
   providers: [
-    // {provide: UrlHandlingStrategy, useClass: Ng1Ng2UrlHandlingStrategy},
-    {provide: 'TeamServiceFactory', useFactory: exportRepository, deps: [UpgradeModule]}
+    { provide: '$scope', useExisting: '$rootScope' },
+    { provide: APP_BASE_HREF, useValue: '!' },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: UrlHandlingStrategy, useClass: Ng1Ng2UrlHandlingStrategy },
+    { provide: 'TeamServiceFactory', useFactory: exportRepository, deps: ['$injector'] },
   ],
   bootstrap: [OldAppComponent]
 })
