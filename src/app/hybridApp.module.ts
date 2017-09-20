@@ -44,6 +44,7 @@ export class HybridAppModule {
 
   private upgradeOldProviders() {
     upgradeAdapter.upgradeNg1Provider('TeamServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('InternationalisationServiceFactory');
   }
 
   private downgradeNewComponents() {
