@@ -38,8 +38,8 @@
 }
 
 td.td-cell {
+  font-size: 20px;
   cursor: pointer;
-  font-size: 16px;
 }
 
 th.th-cell.dragable-icon {
@@ -51,9 +51,6 @@ th.dragable-icon, th.total-title {
   text-align: right;
 }
 
-th {
-  font-size: 23px;
-}
 
 h1#game-results {
   padding-bottom: 1%;
@@ -88,4 +85,8 @@ span.ng-binding.date {
 
 a {
   cursor: pointer;
+}
+
+@media screen and (min-width: 0px) and (max-width: 720px) {
+  td.td-cell { font-size: 16px; }
 }

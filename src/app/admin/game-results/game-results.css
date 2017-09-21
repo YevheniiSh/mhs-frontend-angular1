@@ -1,13 +1,8 @@
-@media screen and (min-width: 0px) and (max-width: 720px) {
-  td.round-result { display: none; }
-  table th.round-result { display: none; }
-}
 table thead th.th-cell {
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .td-cell.ng-binding {
-  font-size: 17px;
   vertical-align: middle;
 }
 
@@ -27,10 +22,6 @@ td.position-data{
 
 .dragable-icon, .round-score {
   text-align: right;
-}
-
-.th-cell.dragable-icon {
-  padding-right: 0.9em;
 }
 
 .teams-title, .team-name {
@@ -65,4 +56,14 @@ tbody tr.table-row:nth-child(odd) {
 
 .bronze {
   color: saddlebrown;
+}
+@media screen and (min-width: 800px) {
+  .td-cell.ng-binding { font-size: 20px; }
+  table thead th.th-cell { font-size: 20px; }
+}
+@media screen and (min-width: 0px) and (max-width: 500px) {
+  td.round-result { display: none; }
+  table th.round-result { display: none; }
+  table thead th.th-cell { font-size: 16px; }
+  .td-cell.ng-binding { font-size: 16px; }
 }
