@@ -1,4 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
@@ -8,15 +9,18 @@ import {Component, Inject, OnInit} from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   currentUser;
-  locale: String;
+  locale: string;
   public isCollapsed = true;
   i18nFactory;
   userAuthService;
+  translate: TranslateService
 
   constructor(@Inject('InternationalisationServiceFactory') InternationalisationServiceFactory,
-              @Inject('userAuthService') UserAuthService) {
+              @Inject('userAuthService') UserAuthService,
+              translate: TranslateService) {
     this.i18nFactory = InternationalisationServiceFactory;
     this.userAuthService = UserAuthService;
+    this.translate = translate;
   }
 
   ngOnInit() {
@@ -27,11 +31,13 @@ export class NavbarComponent implements OnInit {
 
     });
     this.locale = this.i18nFactory.getLanguage();
+    this.translate.use(this.locale);
   }
 
-  changeLang(locale: String) {
+  changeLang(locale: string) {
     this.locale = locale;
     this.i18nFactory.changeLanguage(locale);
+    this.translate.use(locale);
   }
 
 }

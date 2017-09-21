@@ -9,15 +9,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/#!/">{{'NAVBAR_TITLE'}}</a>
+        <a class="navbar-brand" href="/#!/">{{'NAVBAR_TITLE' | translate}}</a>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" [collapse]="isCollapsed">
         <ul class="nav navbar-nav">
-          <li><a href="/#!/seasons">{{'NAVBAR_SEASONS' }}</a></li>
-          <li><a href="/#!/games">{{'NAVBAR_GAME_LIST_BUTTON' }}</a></li>
-          <li><a href="/#!/teams">{{'NAVBAR_TEAM_EDIT_BUTTON' }}</a></li>
-          <li *ngIf="currentUser"><a href="/#!/templates">{{'NAVBAR_GAME_TEMPLATES' }}</a></li>
+          <li><a href="/#!/seasons">{{'NAVBAR_SEASONS' | translate}}</a></li>
+          <li><a href="/#!/games">{{'NAVBAR_GAME_LIST_BUTTON' | translate}}</a></li>
+          <li><a href="/#!/teams">{{'NAVBAR_TEAM_EDIT_BUTTON' | translate}}</a></li>
+          <li *ngIf="currentUser"><a href="/#!/templates">{{'NAVBAR_GAME_TEMPLATES' | translate}}</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>

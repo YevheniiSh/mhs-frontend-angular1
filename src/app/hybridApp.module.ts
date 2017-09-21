@@ -1,6 +1,7 @@
 import {forwardRef, NgModule} from "@angular/core";
 import {UpgradeAdapter} from "@angular/upgrade";
 import {BrowserModule} from "@angular/platform-browser";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {PhoneListComponent} from "./admin/phone-list.component";
 import * as angular from 'angular';
 import {AppModule} from "./app.module";
@@ -10,8 +11,15 @@ import {LoginPanelComponentUpgrade} from "./admin/login-panel/login-panel.compon
 import {BackupService} from './services/backup/backup.service';
 import {CollapseModule} from 'ngx-bootstrap/collapse';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -24,6 +32,14 @@ const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     BrowserModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     AppModule
   ],
   entryComponents: [],
