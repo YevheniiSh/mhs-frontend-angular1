@@ -78,7 +78,8 @@ ul.game-list > li:nth-child(even) { background: #f9f9f9; }
   }
 
   #select-season {
-    width: 100%;
+    margin-right: 2%;
+    width: 96%;
     margin-bottom: 10px;
   }
 }

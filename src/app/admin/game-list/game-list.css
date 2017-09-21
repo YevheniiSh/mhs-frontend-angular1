@@ -34,7 +34,7 @@ h1 {
 }
 
 #err-message {
-  position: absolute;
+  /*position: absolute;*/
 }
 
 .registration {
@@ -43,5 +43,6 @@ h1 {
 }
 
 #tab-bar > ul.nav > li > a {
+  margin-left: 10px;
   padding: 10px 5px;
 }
