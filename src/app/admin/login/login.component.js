@@ -6,7 +6,8 @@ angular.module('login')
             'userAuthService',
             '$location',
             '$rootScope',
-            function (auth, $location, $rootScope) {
+          'login',
+          function (auth, $location, $rootScope, loginService) {
                 this.login = function () {
                     auth.signInWithEmailAndPassword(this.email, this.password)
                         .then((user) => {
@@ -20,6 +21,7 @@ angular.module('login')
                             }
                             this.errMessage = "INVALID_EMAIL_MESSAGE";
                         });
+                  loginService.login(this.email, this.password);
                 };
 
             }]

@@ -6,15 +6,16 @@
             controller: LoginPanel
         });
 
-    LoginPanel.$inject = ['userAuthService', '$location', '$rootScope'];
+  LoginPanel.$inject = ['userAuthService', '$location', '$rootScope', 'login'];
 
-    function LoginPanel(userAuthService, $location, $rootScope) {
+  function LoginPanel(userAuthService, $location, $rootScope, loginService) {
         this.logOut = function () {
             userAuthService.signOut()
                 .then(() => {
                     $rootScope.currentUser = null;
                     $location.path('/login');
                 });
+          loginService.logout();
         }
     }
 })();

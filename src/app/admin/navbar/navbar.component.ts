@@ -1,5 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {Observable} from 'rxjs/Observable';
+import {AngularFireAuth} from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-navbar',
@@ -13,14 +16,17 @@ export class NavbarComponent implements OnInit {
   public isCollapsed = true;
   i18nFactory;
   userAuthService;
-  translate: TranslateService
+  translate: TranslateService;
+  user: Observable<firebase.User>;
 
   constructor(@Inject('InternationalisationServiceFactory') InternationalisationServiceFactory,
               @Inject('userAuthService') UserAuthService,
-              translate: TranslateService) {
+              translate: TranslateService,
+              public afAuth: AngularFireAuth) {
     this.i18nFactory = InternationalisationServiceFactory;
     this.userAuthService = UserAuthService;
     this.translate = translate;
+    this.user = afAuth.authState;
   }
 
   ngOnInit() {

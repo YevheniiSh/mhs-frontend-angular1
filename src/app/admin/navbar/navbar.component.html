@@ -17,7 +17,7 @@
           <li><a href="/#!/seasons">{{'NAVBAR_SEASONS' | translate}}</a></li>
           <li><a href="/#!/games">{{'NAVBAR_GAME_LIST_BUTTON' | translate}}</a></li>
           <li><a href="/#!/teams">{{'NAVBAR_TEAM_EDIT_BUTTON' | translate}}</a></li>
-          <li *ngIf="currentUser"><a href="/#!/templates">{{'NAVBAR_GAME_TEMPLATES' | translate}}</a></li>
+          <li *ngIf="(user | async)"><a href="/#!/templates">{{'NAVBAR_GAME_TEMPLATES' | translate}}</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
@@ -30,15 +30,15 @@
             <ul class="dropdown-menu" *dropdownMenu aria-labelledby="simple-dropdown" role="menu">
               <li *ngIf="locale !== 'uk'"
                   (click)="changeLang('uk')">
-                <a href="">Українська</a>
+                <a>Українська</a>
               </li>
               <li *ngIf="locale !== 'en'"
                   (click)="changeLang('en')">
-                <a href="">English</a>
+                <a>English</a>
               </li>
               <li *ngIf="locale !== 'ru'"
                   (click)="changeLang('ru')">
-                <a href="">Русский</a>
+                <a>Русский</a>
               </li>
             </ul>
           </li>

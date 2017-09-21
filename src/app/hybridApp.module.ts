@@ -13,6 +13,11 @@ import {CollapseModule} from 'ngx-bootstrap/collapse';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {environment} from '../environments/environment';
+import {LoginService} from './services/login-service/login.service';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -29,6 +34,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginPanelComponentUpgrade
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     BrowserModule,
@@ -43,7 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppModule
   ],
   entryComponents: [],
-  providers: [BackupService],
+  providers: [BackupService, LoginService],
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');
@@ -71,7 +79,7 @@ export class HybridAppModule {
 
   private downgradeNewProviders() {
     this.mhsAdminModule.service('backup', upgradeAdapter.downgradeNg2Provider(BackupService));
-
+    this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
   }
 }
 
