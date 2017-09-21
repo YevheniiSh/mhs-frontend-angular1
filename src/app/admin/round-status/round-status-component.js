@@ -48,9 +48,9 @@
 
         backupService.saveBackup().then((res) => {
           console.log(res);
-          vm.disableFinised = false;
           $location.path("games/" + vm.gameId + "/results")
-        });
+          $scope.$apply();
+        })
 
 
       } else
@@ -65,10 +65,10 @@
                 .then(() => {
                     GameService.finishGame(vm.gameId);
                     seasonService.finishGame(vm.gameId);
-
-                  createBackup();
                 })
-
+              .then(() => {
+                createBackup();
+              })
         };
 
         vm.onPublished = function () {
