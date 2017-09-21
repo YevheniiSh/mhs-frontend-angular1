@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {Observable} from 'rxjs/Observable';
-import {AngularFireAuth} from 'angularfire2/auth';
+import { Component, Inject, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -30,7 +30,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    //Todo get current user
     this.userAuthService.currentUser().then((user) => {
       this.currentUser = user;
       console.log(this.userAuthService.user);
