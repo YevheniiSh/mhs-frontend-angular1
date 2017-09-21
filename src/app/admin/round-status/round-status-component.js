@@ -13,10 +13,12 @@
         'RoundStatusService',
         'GameServiceFactory',
         'ResultServiceFactory',
-        'seasonService'
+      'seasonService',
+      'backup',
+      '$scope'
     ];
 
-    function RoundStatusController($routeParams, $location, RoundStatusService, GameService, ResultService, seasonService) {
+  function RoundStatusController($routeParams, $location, RoundStatusService, GameService, ResultService, seasonService, backupService, $scope) {
         let vm = this;
         let nextRounds = [];
         let prevRounds = [];
@@ -29,6 +31,9 @@
         vm.prevRounds = prevRounds;
         vm.gameId = $routeParams.gameId;
 
+    vm.isCreateBackupChecked = false;
+    vm.disableFinised = false;
+
         GameService.getGameStatus(vm.gameId)
             .then((status) => {
                 vm.status = status;
@@ -37,7 +42,22 @@
                 }
             });
 
-        vm.onFinished = function () {
+    function createBackup() {
+      if (vm.isCreateBackupChecked) {
+        vm.disableFinised = true;
+
+        backupService.saveBackup().then((res) => {
+          console.log(res);
+          vm.disableFinised = false;
+          $location.path("games/" + vm.gameId + "/results")
+        });
+
+
+      } else
+        $location.path("games/" + vm.gameId + "/results")
+    }
+
+    vm.onFinished = function () {
             ResultService.setGameWinner(vm.status, vm.gameId)
                 .then(() => {
                     return ResultService.setTeamPosition(vm.gameId)
@@ -45,10 +65,9 @@
                 .then(() => {
                     GameService.finishGame(vm.gameId);
                     seasonService.finishGame(vm.gameId);
+
+                  createBackup();
                 })
-                .then(() => {
-                    $location.path("games/" + vm.gameId + "/results")
-                });
 
         };
 

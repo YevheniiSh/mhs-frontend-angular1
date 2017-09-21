@@ -1,11 +1,11 @@
-import {forwardRef, NgModule} from "@angular/core";
-import {UpgradeAdapter} from "@angular/upgrade";
-import {BrowserModule} from "@angular/platform-browser";
-import {PhoneListComponent} from "./admin/phone-list.component";
+import { forwardRef, NgModule } from '@angular/core';
+import { UpgradeAdapter } from '@angular/upgrade';
+import { BrowserModule } from '@angular/platform-browser';
+import { PhoneListComponent } from './admin/phone-list.component';
 import * as angular from 'angular';
-import {AppModule} from "./app.module";
-import {TeamListComponentUpgrade} from "./admin/team-list/team-list.component.upgrade";
-import {BackupService} from './services/backup/backup.service';
+import { AppModule } from './app.module';
+import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
+import { BackupService } from './services/backup/backup.service';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -31,11 +31,12 @@ export class HybridAppModule {
   }
 
   ngDoBootstrap() {
-    upgradeAdapter.bootstrap(document.documentElement, ['mhs'], {strictDi: false});
+    upgradeAdapter.bootstrap(document.documentElement, ['mhs'], { strictDi: false });
   }
 
   private upgradeOldProviders() {
     upgradeAdapter.upgradeNg1Provider('TeamServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('firebaseDataService');
   }
 
   private downgradeNewComponents() {
