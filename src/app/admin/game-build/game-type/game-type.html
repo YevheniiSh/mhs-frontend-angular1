@@ -50,6 +50,10 @@
             <button type="button" class="close" ng-click="$ctrl.dissmiss()">&times;</button>
             {{'ROUND_SAVED_MESSAGE' | translate}}
         </div>
+    <div class="alert alert-dismissible alert-danger" ng-if="$ctrl.roundCountError">
+      <button type="button" class="close" ng-click="$ctrl.roundCountError=false">&times;</button>
+      {{'FEW_ROUNDS_ERROR' | translate}}
+    </div>
     </div>
 </div>
 

@@ -37,13 +37,17 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
       vm.templateName = '';
       openGameService.setTemplateName(vm.gameId, vm.templateName)
     }
-    openGameService.addRounds(vm.gameId, vm.configRounds);
-    // .then(rounds => vm.configRounds = convertRoundsObjectToArray(rounds));
-    vm.submitted = true;
-    vm.templateFormShow = true;
-    $timeout(() => {
-      vm.submitted = false;
-    }, 1500);
+
+    if (vm.configRounds.length >= 2) {
+      openGameService.addRounds(vm.gameId, vm.configRounds);
+      vm.templateFormShow = true;
+      // .then(rounds => vm.configRounds = convertRoundsObjectToArray(rounds));
+      showSubmittedMessage();
+    }
+    else {
+      showRoundCountError();
+    }
+
   };
 
   let convertRoundsObjectToArray = function (object) {
@@ -95,5 +99,19 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
     openGameService.getTemplateName(gameId).then(templateName => {
       vm.templateName = templateName;
     })
+  };
+
+  function showRoundCountError() {
+    vm.roundCountError = true;
+    $timeout(() => {
+      vm.roundCountError = false;
+    }, 1500);
+  }
+
+  function showSubmittedMessage() {
+    vm.submitted = true;
+    $timeout(() => {
+      vm.submitted = false;
+    }, 1500);
   }
 }
