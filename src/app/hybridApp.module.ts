@@ -18,7 +18,7 @@ const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, "/app/translations/", ".json");
 }
 
 @NgModule({
