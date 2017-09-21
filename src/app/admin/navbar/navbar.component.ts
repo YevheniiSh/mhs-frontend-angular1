@@ -30,7 +30,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    //Todo get current user
     this.userAuthService.currentUser().then((user) => {
       this.currentUser = user;
       console.log(this.userAuthService.user);

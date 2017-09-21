@@ -86,3 +86,54 @@ th.total{
 .team-total{
    color: #0085ff;
 }
+
+@media screen and (max-width: 720px) {
+  .container {
+    padding: 0;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  td.round-name.ng-binding {
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    width: auto;
+  }
+
+  td.total-score.ng-binding {
+    text-align: center;
+    vertical-align: middle;
+    width: auto;
+    padding: 0;
+  }
+
+  table tr td.quiz-row {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+  }
+
+  thead {
+    display: none;
+  }
+
+  span.inp:nth-child(5) {
+    margin-right: 5px;
+  }
+
+  label#default-result.inp-label:nth-child(5) {
+    margin-right: 0;
+  }
+
+  .date {
+    font-size: 16px;
+    padding-top: 5px;
+  }
+
+  tr {
+    border: 2px solid lightgray;
+  }
+}
