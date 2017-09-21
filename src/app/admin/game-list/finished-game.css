@@ -8,10 +8,14 @@
     cursor: default;
 }
 
+#select-season-container.row{
+  margin:0px;
+}
+
 #select-season {
   margin-top: 10px;
   float: right;
-  width: 15%
+  width: 25%
 }
 
 
@@ -56,7 +60,7 @@ ul.game-list > li:nth-child(even) { background: #f9f9f9; }
 
 .team-count-value{
   position: relative;
-  padding-left: 6%;
+  padding-left: 5%;
 }
 
 @media screen and (max-width: 720px){
@@ -69,11 +73,11 @@ ul.game-list > li:nth-child(even) { background: #f9f9f9; }
   }
 
   .team-count-cell{
-    width: 28%;
+    width: 23%;
   }
 
   .season-cell{
-    width: 18%;
+    width: 23%;
   }
 
   .team-count-value{
