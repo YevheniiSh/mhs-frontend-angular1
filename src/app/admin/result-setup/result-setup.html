@@ -30,6 +30,9 @@
       </button>
       <span class="counter">{{'ANSWERS_COUNT_LABEL' | translate}}<strong>{{$ctrl.answerCount}}</strong></span>
     </div>
-    <button class="btn btn-success submit-button" ng-click="$ctrl.nextQuiz()">{{'NEXT_BUTTON'|translate}}</button>
+    <button class="btn btn-success submit-button"
+            ng-disabled="$ctrl.disableNext  && $ctrl.round.roundType.type === 'AUCTION_ROUND'"
+            ng-click="$ctrl.nextQuiz()">{{'NEXT_BUTTON'|translate}}
+    </button>
   </div>
 </div>

@@ -20,7 +20,7 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
   function onInit() {
     vm.gameId = $routeParams.gameId;
 
-    vm.configRounds = [{numberOfQuestions: 10, name: ""}];
+    vm.configRounds = [];
 
     gameTemplateService.getAll()
       .then((templates) => {

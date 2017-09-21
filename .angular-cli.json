@@ -39,6 +39,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "app/bower_components/components-font-awesome/css/font-awesome.min.css",
         "styles.css",
         "app/public/css/spinner.css",
         "app/bower_components/html5-boilerplate/dist/css/normalize.css",
@@ -48,6 +50,7 @@
         "app/bower_components/angucomplete-alt/angucomplete-alt.css"
       ],
       "scripts": [
+        "../node_modules/firebase/firebase.js",
         "app/bower_components/angular/angular.js",
         "app/bower_components/angular-messages/angular-messages.js",
         "app/bower_components/angular-translate/angular-translate.js",
@@ -151,8 +154,6 @@
         "app/services/round-service/round-service.module.js",
         "app/services/round-service/round-service.service.js",
         "app/services/firebase-service/dbConfig.js",
-        "app/admin/navbar/navbar.module.js",
-        "app/admin/navbar/navbar.component.js",
         "app/admin/game-list/current-game.component.js",
         "app/services/game-build-service/game-build-service.module.js",
         "app/services/game-build-service/game-build-service.service.js",
