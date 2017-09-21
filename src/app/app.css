@@ -28,3 +28,9 @@
     /*margin-top: 30px;*/
 /*}*/
 
+@media screen and (max-width: 720px) {
+  #navbar.container, #root-container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
