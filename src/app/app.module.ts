@@ -61,6 +61,7 @@ const routes: Routes = [
 })
 export class AppModule {
   constructor(private resolver: ComponentFactoryResolver, public upgrade: UpgradeModule) {
+    //todo hs as DI
     const hybridService = new HybridService(resolver, AppModule);
     hybridService.downgradeComponent('mhs.admin', {
       phoneList: PhoneListComponent,
