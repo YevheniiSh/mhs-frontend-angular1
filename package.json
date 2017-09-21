@@ -29,6 +29,7 @@
     "@ngx-translate/core": "^8.0.0",
     "@ngx-translate/http-loader": "^2.0.0",
     "angular": "^1.6.6",
+    "angularfire2": "^4.0.0-rc.2",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.0",
     "firebase": "^4.3.1",
