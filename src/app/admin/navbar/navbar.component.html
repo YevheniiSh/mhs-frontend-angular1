@@ -1,0 +1,49 @@
+<div class="container">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1" (click)="isCollapsed = !isCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/#!/">{{'NAVBAR_TITLE' | translate}}</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" [collapse]="isCollapsed">
+        <ul class="nav navbar-nav">
+          <li><a href="/#!/seasons">{{'NAVBAR_SEASONS' | translate}}</a></li>
+          <li><a href="/#!/games">{{'NAVBAR_GAME_LIST_BUTTON' | translate}}</a></li>
+          <li><a href="/#!/teams">{{'NAVBAR_TEAM_EDIT_BUTTON' | translate}}</a></li>
+          <li *ngIf="currentUser"><a href="/#!/templates">{{'NAVBAR_GAME_TEMPLATES' | translate}}</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <login-panel id="login-button"></login-panel>
+          </li>
+          <li dropdown class="dropdown">
+            <a ng-href="/#!/" id="simple-dropdown" class="dropdown-toggle" data-toggle="dropdown"
+               dropdownToggle role="button" aria-expanded="false">{{locale | uppercase}}
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu" *dropdownMenu aria-labelledby="simple-dropdown" role="menu">
+              <li *ngIf="locale !== 'uk'"
+                  (click)="changeLang('uk')">
+                <a href="">Українська</a>
+              </li>
+              <li *ngIf="locale !== 'en'"
+                  (click)="changeLang('en')">
+                <a href="">English</a>
+              </li>
+              <li *ngIf="locale !== 'ru'"
+                  (click)="changeLang('ru')">
+                <a href="">Русский</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

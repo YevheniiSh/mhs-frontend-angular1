@@ -1,0 +1,22 @@
+.auth-panel {
+  border-left: 1px solid #333;
+}
+
+.manage-teams-dropdown {
+  width: 20px;
+}
+
+#login-button {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+ul.navbar-nav {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+login-panel {
+  margin-top: 5px;
+}
