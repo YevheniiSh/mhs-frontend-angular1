@@ -7,18 +7,25 @@ import {Component, Inject, OnInit} from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  currentUser: boolean;
+  currentUser;
   locale: String;
   public isCollapsed = true;
   i18nFactory;
+  userAuthService;
 
-  constructor(@Inject('InternationalisationServiceFactory') InternationalisationServiceFactory) {
+  constructor(@Inject('InternationalisationServiceFactory') InternationalisationServiceFactory,
+              @Inject('userAuthService') UserAuthService) {
     this.i18nFactory = InternationalisationServiceFactory;
+    this.userAuthService = UserAuthService;
   }
 
   ngOnInit() {
     //Todo get current user
-    this.currentUser = true;
+    this.userAuthService.currentUser().then((user) => {
+      this.currentUser = user;
+      console.log(this.userAuthService.user);
+
+    });
     this.locale = this.i18nFactory.getLanguage();
   }
 

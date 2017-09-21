@@ -17,7 +17,7 @@
           <li><a href="/#!/seasons">{{'NAVBAR_SEASONS' }}</a></li>
           <li><a href="/#!/games">{{'NAVBAR_GAME_LIST_BUTTON' }}</a></li>
           <li><a href="/#!/teams">{{'NAVBAR_TEAM_EDIT_BUTTON' }}</a></li>
-          <li><a href="/#!/templates" [hidden]="currentUser">{{'NAVBAR_GAME_TEMPLATES' }}</a></li>
+          <li *ngIf="currentUser"><a href="/#!/templates">{{'NAVBAR_GAME_TEMPLATES' }}</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
