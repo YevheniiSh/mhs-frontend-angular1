@@ -1,14 +1,13 @@
+@media screen and (min-width: 0px) and (max-width: 720px) {
+  td.round-result { display: none; }
+  table th.round-result { display: none; }
+}
 table thead th.th-cell {
-  font-size: 1.3em;
-  padding-top: 0.05em;
-  padding-bottom: 0.1em;
+  font-size: 17px;
 }
 
 .td-cell.ng-binding {
   font-size: 17px;
-  padding-top: 0.15em;
-  padding-bottom: 0.15em;
-  border: none;
   vertical-align: middle;
 }
 
@@ -20,6 +19,10 @@ table thead th.th-cell {
 
 span.ng-binding.date {
   float: right;
+}
+
+td.position-data{
+  white-space:nowrap;
 }
 
 .dragable-icon, .round-score {
@@ -49,13 +52,7 @@ tbody tr.table-row:nth-child(odd) {
 .position-data, .position-title {
   position: relative;
   width: 2%;
-}
-
-.trophy {
-  margin-left: 5px;
-  position: absolute;
-  top: 5px;
-  line-height: 190%;
+  word-break: keep-all;
 }
 
 .gold {
