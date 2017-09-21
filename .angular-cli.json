@@ -154,8 +154,6 @@
         "app/services/round-service/round-service.module.js",
         "app/services/round-service/round-service.service.js",
         "app/services/firebase-service/dbConfig.js",
-        "app/admin/navbar/navbar.module.js",
-        "app/admin/navbar/navbar.component.js",
         "app/admin/game-list/current-game.component.js",
         "app/services/game-build-service/game-build-service.module.js",
         "app/services/game-build-service/game-build-service.service.js",

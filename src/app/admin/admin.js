@@ -15,7 +15,6 @@ angular
     'roundBuilder',
     'ui.bootstrap',
     'teamList',
-    'navbar',
     'gameTemplate',
     'season'])
   .config(['$routeProvider', function ($routeProvider) {
