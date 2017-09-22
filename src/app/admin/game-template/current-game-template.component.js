@@ -3,6 +3,9 @@ angular.module('gameTemplate')
       templateUrl: 'app/admin/game-template/current-game-template.html',
       css: 'app/admin/game-template/current-game-template.css',
         controller: currentGameTemplate,
+      bindings: {
+        selectedTemplateId: '='
+      }
     });
 
 currentGameTemplate.$inject = ['$routeParams', 'gameTemplateServiceFactory', '$timeout'];

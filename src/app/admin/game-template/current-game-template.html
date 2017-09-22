@@ -1,28 +1,22 @@
-<div class="container">
-  <H1 id="game-templates">{{'GAME_TEMPLATES'|translate}}</H1>
-  <game-template selected-template-id="$ctrl.templateId"></game-template>
-  <div ng-if="$ctrl.templateId" id="current-template" class="col-md-8 col-md-offset-1">
-    <form ng-submit="$ctrl.saveTemplate()">
-      <span class="template-name-title">{{'TEMPLATE_NAME_LABEL' | translate}}</span>
-      <input class="form-control" ng-model="$ctrl.currentTemplateName"
-             maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
-             required>
-      <round-builder rounds="$ctrl.currentTemplateRounds"></round-builder>
+<div ng-if="$ctrl.templateId" id="current-template" class="col-md-8 col-md-offset-1">
+  <form ng-submit="$ctrl.saveTemplate()">
+    <span class="template-name-title">{{'TEMPLATE_NAME_LABEL' | translate}}</span>
+    <input class="form-control" ng-model="$ctrl.currentTemplateName"
+           maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
+           required>
+    <round-builder rounds="$ctrl.currentTemplateRounds"></round-builder>
 
-      <button id="btn-save" class="btn btn-success btn-block"
-              type="submit">
-        {{'SAVE_ROUNDS_BUTTON' | translate}}
-      </button>
-      <div class="alert alert-dismissible alert-danger" ng-if="$ctrl.roundCountError">
-        <button type="button" class="close" ng-click="$ctrl.roundCountError=false">&times;</button>
-        {{'FEW_ROUNDS_ERROR' | translate}}
-      </div>
-      <div class="alert alert-dismissible alert-success" ng-if="$ctrl.templateSaved">
-        <button type="button" class="close" ng-click="$ctrl.templateSaved = false">&times;</button>
-        {{'TEMPLATE_SAVED_MESSAGE' | translate}}
-      </div>
-    </form>
-  </div>
-
-
+    <button id="btn-save" class="btn btn-success btn-block"
+            type="submit">
+      {{'SAVE_ROUNDS_BUTTON' | translate}}
+    </button>
+    <div class="alert alert-dismissible alert-danger" ng-if="$ctrl.roundCountError">
+      <button type="button" class="close" ng-click="$ctrl.roundCountError=false">&times;</button>
+      {{'FEW_ROUNDS_ERROR' | translate}}
+    </div>
+    <div class="alert alert-dismissible alert-success" ng-if="$ctrl.templateSaved">
+      <button type="button" class="close" ng-click="$ctrl.templateSaved = false">&times;</button>
+      {{'TEMPLATE_SAVED_MESSAGE' | translate}}
+    </div>
+  </form>
 </div>

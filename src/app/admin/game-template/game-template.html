@@ -1,7 +1,9 @@
-<ul class="template-list col-md-3">
+<div class="container">
+  <H1 id="game-templates">{{'GAME_TEMPLATES'|translate}}</H1>
+  <ul class="template-list col-md-3">
   <li ng-click="$ctrl.showTemplate(template.$id)"
       ng-repeat="template in $ctrl.templates">
-            <span ng-class="{'selected': template.$id == $ctrl.selectedTemplateId}" class="list-item">
+            <span ng-class="{'selected': template.$id == $ctrl.selectedTemplated}" class="list-item">
                 {{template.name}}
                 <button class="btn btn-danger delete-btn" ng-click="$ctrl.deleteTemplate(template.$id)">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -16,3 +18,5 @@
     </div>
   </li>
 </ul>
+  <current-game-template selected-template-id="$ctrl.selectedTemplated"></current-game-template>
+</div>
