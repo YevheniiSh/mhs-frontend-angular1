@@ -1,43 +1,6 @@
 <create-game ng-if="$ctrl.auth"></create-game>
 <div ng-if="$ctrl.openGames.length == 0" class="no-games-label">{{'NO_OPEN_GAME_PLACEHOLDER' | translate}}</div>
 
-<!--<ul class="game-list">-->
-<!--<li ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">-->
-<!--<div class="game-date">{{openGame.date | date:'d MMM y'}}</div>-->
-<!--<div class="game-time">{{openGame.time}}</div>-->
-<!--<div class="game-location">{{openGame.location}}</div>-->
-<!--<div class="game-season" ng-click="$event.stopPropagation();">-->
-<!--<a ng-href='/#!/seasons/{{openGame.season.id}}'>{{openGame.season.name}}</a>-->
-<!--</div>-->
-<!--<div class="buttons-panel">-->
-<!--<button class="btn btn-danger game-button"-->
-<!--ng-click="$ctrl.deleteGameRequest(openGame)"-->
-<!--ng-if="$ctrl.auth">-->
-<!--<i class="fa fa-trash-o" aria-hidden="true"></i>-->
-<!--</button>-->
-<!--<button class="btn btn-info game-button"-->
-<!--ng-click="$ctrl.open(openGame.$id)"-->
-<!--ng-if="!$ctrl.auth">{{'TEAMS_MODAL_SHOW_BUTTON' | translate}}-->
-<!--</button>-->
-
-<!--<button class="btn btn-info game-button"-->
-<!--ng-if="$ctrl.auth"-->
-<!--ng-click="$ctrl.configGame(openGame.$id)">-->
-<!--<i class="fa fa-cog" aria-hidden="true"></i>-->
-<!--</button>-->
-<!--<button class="btn btn-success game-button"-->
-<!--ng-click="$ctrl.startGame(openGame)"-->
-<!--ng-if="$ctrl.auth">-->
-<!--<i class="fa fa-play" aria-hidden="true"></i>-->
-<!--</button>-->
-<!--<a class="registration"-->
-<!--ng-href="/#!/games/{{openGame.$id}}/registration">-->
-<!--{{'REGISTER_BUTTON' | translate}}-->
-<!--</a>-->
-<!--</div>-->
-<!--</li>-->
-<!--</ul>-->
-
 <ul class="game-list" ng-if="$ctrl.openGames.length != 0 && $ctrl.openGames.length !== undefined">
   <li>
     <div  class="row game-list-item header">
