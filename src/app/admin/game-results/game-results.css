@@ -23,7 +23,9 @@ table th.round-result, td.round-score {
 .teams-title, .team-name {
   width: 15%;
 }
-
+.round-score {
+  width: 8%;
+}
 
 .total-title, .total-score {
   width: 12%;
