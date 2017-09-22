@@ -18,6 +18,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginService } from './services/login-service/login.service';
 import { firebaseConfig } from './services/firebase-service/firebase-config';
+import { ToastModule } from 'ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationComponent } from "./notification/notification.component";
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -30,7 +33,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     TeamListComponentUpgrade,
     NavbarComponent,
-    LoginPanelComponentUpgrade
+    LoginPanelComponentUpgrade,
+    NotificationComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
@@ -40,6 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CollapseModule.forRoot(),
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -73,6 +79,7 @@ export class HybridAppModule {
 
   private downgradeNewComponents() {
     this.mhsAdminModule.directive('appNavbar', upgradeAdapter.downgradeNg2Component(NavbarComponent));
+    this.mhsAdminModule.directive('notification', upgradeAdapter.downgradeNg2Component(NotificationComponent));
   }
 
   private downgradeNewProviders() {
