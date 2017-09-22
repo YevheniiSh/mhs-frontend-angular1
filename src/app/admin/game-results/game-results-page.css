@@ -42,12 +42,9 @@ td.td-cell {
   cursor: pointer;
 }
 
-th.th-cell.dragable-icon {
-  padding-right: 0.9em;
-}
 
-td.round-score, td.total-score,
-th.dragable-icon, th.total-title {
+
+td.round-score, td.total-score, th.total-title {
   text-align: right;
 }
 
@@ -56,10 +53,6 @@ h1#game-results {
   padding-bottom: 1%;
   border-bottom: solid 1px;
   text-align: center;
-}
-
-span.ng-binding.date {
-  float: right;
 }
 
 .link-icon {
@@ -87,6 +80,7 @@ a {
   cursor: pointer;
 }
 
-@media screen and (min-width: 0px) and (max-width: 720px) {
+@media screen and (min-width: 0px) and (max-width: 500px) {
   td.td-cell { font-size: 16px; }
+  #game-results{ font-size: 16px; }
 }

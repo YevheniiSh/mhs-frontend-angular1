@@ -12,15 +12,11 @@ table thead th.th-cell {
   position: relative;
 }
 
-span.ng-binding.date {
-  float: right;
-}
-
 td.position-data{
   white-space:nowrap;
 }
 
-.dragable-icon, .round-score {
+table th.round-result, td.round-score {
   text-align: right;
 }
 
@@ -28,9 +24,6 @@ td.position-data{
   width: 15%;
 }
 
-.dragable-icon, .round-score {
-  width: 8%;
-}
 
 .total-title, .total-score {
   width: 12%;

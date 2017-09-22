@@ -3,7 +3,7 @@
     <tr>
       <th class="th-cell position-title">#</th>
       <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}}</th>
-      <th class="th-cell round-result dragable-icon" ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
+      <th class="th-cell round-result" ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
       <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
     </tr>
     </thead>
@@ -31,8 +31,8 @@
       <td ng-if="$ctrl.isPresentationMode" class="td-cell team-name">
         {{teamResult.teamName}}
       </td>
-      <td class="td-cell round-result round-score" ng-repeat="round in teamResult.rounds">{{round.score}}</td>
-      <td class="td-cell total-score">{{teamResult.total}}</td>
+      <td class="td-cell round-result round-score" ng-repeat="round in teamResult.rounds">{{$ctrl.parseScoreView(round.score)}}</td>
+      <td class="td-cell total-score">{{$ctrl.parseScoreView(teamResult.total)}}</td>
     </tr>
     </tbody>
   </table>
