@@ -88,9 +88,6 @@ th.total{
 }
 
 @media screen and (max-width: 720px) {
-  .container {
-    padding: 0;
-  }
 
   table, thead, tbody, th, td, tr {
     display: block;
