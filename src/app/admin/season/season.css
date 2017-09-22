@@ -1,89 +1,75 @@
-.team-name {
-    cursor: pointer;
-}
-
-.header {
-    text-align: center;
-}
-
-.game-rating {
-    cursor: pointer;
-}
-
-.missed-game {
-    color: red;
-}
-
-.close-season {
-    float: right;
-}
-
-.season-alert {
-  /*font-size: 24px;*/
-  /*padding-top: 10px;*/
-  background: #fff;
-  font-size: 4em;
+season .season-alert {
+  font-size: 3em;
   text-align: center;
   color: #c7c7c7;
-  padding-top: 1em;
+  padding-top: 100px;
   cursor: default;
 }
 
-.position-title {
-    width: 5%;
+season .season-close-alert {
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 60px;
 }
 
-.teams-title {
-    width: 30%;
+season .season-open-games-alert {
+  color: red;
+  position: absolute;
+  right: 130px;
+  line-height: 250%;
 }
 
-.total-title {
-    width: 15%;
+season .games-label {
+  float: right;
 }
 
-.table-caption {
-    font-weight: bold;
-    font-size: 2em;
+season #back-btn {
+  width: 33.3%;
+  display: inline-block;
+  float: left;
 }
 
-.games-label {
-    float: right;
+season #season-name {
+  width: 33.4%;
+  text-align: center;
+  font-size: 28px;
+  display: inline-block;
+  float: left;
 }
 
-.container {
-    position: relative;
+season #close-season-panel {
+  width: 33.3%;
+  display: inline-block;
+  float: right;
 }
 
-.season-close-alert {
-    display: inline-block;
-    position: absolute;
-    right: 40px;
-    top: 60px;
+season #close-season-btn {
+  float: right;
 }
 
-.season-open-games-alert {
-    color: red;
-    font-size: 90%;
-}
-
-.season-total {
-    cursor: default;
-}
-
-.season-name {
+season .table-header {
+  font-size: 24px;
+  color: #777;
   font-weight: bold;
-  font-size: 35px;
+}
+
+season .total-label {
+  width: 10%;
   text-align: center;
 }
 
-.season-header {
-  margin-bottom: 50px;
+season .team-position {
+  width: 3%;
 }
 
-.season-header-back-panel {
-  padding-left: 0;
+season .game-result {
+  width: 8%;
 }
 
-.season-header-close-panel {
-  padding-right: 0;
+@media screen and (max-width: 500px) {
+  season .game-result, season .games-label {
+    display: none;
+  }
 }
+
