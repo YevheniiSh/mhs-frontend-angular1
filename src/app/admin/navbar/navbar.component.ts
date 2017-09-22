@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {Observable} from 'rxjs/Observable';
-import {AngularFireAuth} from 'angularfire2/auth';
+import { Component, Inject, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 @Component({
