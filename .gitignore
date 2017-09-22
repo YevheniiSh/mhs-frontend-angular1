@@ -12,6 +12,7 @@
 /.idea
 *.iml
 /package-lock.json
+/lib/
 .project
 .classpath
 .c9/
@@ -47,6 +48,5 @@ Thumbs.db
 logs/*
 !.gitkeep
 bower_components/
-/src/environments/environment.ts
 /src/app/services/firebase-service/dbConfig.js
 .firebaserc
