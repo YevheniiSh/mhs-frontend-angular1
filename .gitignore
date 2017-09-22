@@ -48,5 +48,4 @@ Thumbs.db
 logs/*
 !.gitkeep
 bower_components/
-/src/app/services/firebase-service/dbConfig.js
 .firebaserc

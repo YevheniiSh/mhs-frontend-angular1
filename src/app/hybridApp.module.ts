@@ -17,7 +17,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginService } from './services/login-service/login.service';
-import { firebaseConfig } from './firebase-config';
+import { firebaseConfig } from './services/firebase-service/firebase-config';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 

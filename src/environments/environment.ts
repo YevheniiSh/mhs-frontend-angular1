@@ -90,7 +90,7 @@ import 'app/admin/game-template/game-template.component.js';
 import 'app/admin/game-template/current-game-template.component.js';
 import 'app/services/round-service/round-service.module.js';
 import 'app/services/round-service/round-service.service.js';
-import 'app/services/firebase-service/dbConfig.js';
+import 'app/services/firebase-service/firebase-initializr.ts';
 import 'app/admin/game-list/current-game.component.js';
 import 'app/services/game-build-service/game-build-service.module.js';
 import 'app/services/game-build-service/game-build-service.service.js';
