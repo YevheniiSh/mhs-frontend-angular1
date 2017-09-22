@@ -29,7 +29,7 @@ angular
       resolve: isAuth
     });
     $routeProvider.when('/games/:gameId/rounds', {
-      template: '<round-status></round-status>',
+      template: '<app-round-status></app-round-status>',
       resolve: isAuth
     });
     $routeProvider.when('/login', {
