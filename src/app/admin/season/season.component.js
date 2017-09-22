@@ -75,14 +75,6 @@
       $window.history.back();
     };
 
-    vm.showGame = function (gameId) {
-      $location.path("/games/" + gameId + "/results");
-    };
-
-    vm.goToTeam = function (id) {
-      $location.path(`/teams/${id}`);
-    };
-
     function setSelectedSeason() {
       for (let season  in vm.seasons) {
         if (vm.seasons[season].id === seasonId)

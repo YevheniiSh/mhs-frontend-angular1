@@ -1,5 +1,5 @@
- <div class="container">
-    <uib-tabset active="$ctrl.activeTab">
+ <div class="row">
+    <uib-tabset id="tab-bar" active="$ctrl.activeTab">
         <uib-tab  index="$ctrl.tabs[0]" heading="{{'OPEN_GAMES_TAB_NAME' | translate}}" ng-click="$ctrl.updateUrlPath($ctrl.tabs[0])">
             <open-game-list></open-game-list>
         </uib-tab>
