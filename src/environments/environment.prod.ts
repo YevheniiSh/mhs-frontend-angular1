@@ -85,7 +85,7 @@ import '../../lib/admin/game-template/game-template.component.js';
 import '../../lib/admin/game-template/current-game-template.component.js';
 import '../../lib/services/round-service/round-service.module.js';
 import '../../lib/services/round-service/round-service.service.js';
-import 'app/services/firebase-service/dbConfig.js';
+import 'app/services/firebase-service/firebase-initializr.ts';
 import '../../lib/admin/game-list/current-game.component.js';
 import '../../lib/services/game-build-service/game-build-service.module.js';
 import '../../lib/services/game-build-service/game-build-service.service.js';
