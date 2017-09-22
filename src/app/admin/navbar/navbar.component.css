@@ -20,3 +20,10 @@ ul.navbar-nav {
 login-panel {
   margin-top: 5px;
 }
+
+@media screen and (max-width: 720px) {
+  .container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}

@@ -1,14 +1,8 @@
 table thead th.th-cell {
-  font-size: 1.3em;
-  padding-top: 0.05em;
-  padding-bottom: 0.1em;
+  font-size: 20px;
 }
 
 .td-cell.ng-binding {
-  font-size: 17px;
-  padding-top: 0.15em;
-  padding-bottom: 0.15em;
-  border: none;
   vertical-align: middle;
 }
 
@@ -18,23 +12,18 @@ table thead th.th-cell {
   position: relative;
 }
 
-span.ng-binding.date {
-  float: right;
+td.position-data{
+  white-space:nowrap;
 }
 
-.dragable-icon, .round-score {
+table th.round-result, td.round-score {
   text-align: right;
-}
-
-.th-cell.dragable-icon {
-  padding-right: 0.9em;
 }
 
 .teams-title, .team-name {
   width: 15%;
 }
-
-.dragable-icon, .round-score {
+.round-score {
   width: 8%;
 }
 
@@ -49,13 +38,7 @@ tbody tr.table-row:nth-child(odd) {
 .position-data, .position-title {
   position: relative;
   width: 2%;
-}
-
-.trophy {
-  margin-left: 5px;
-  position: absolute;
-  top: 5px;
-  line-height: 190%;
+  word-break: keep-all;
 }
 
 .gold {
@@ -68,4 +51,14 @@ tbody tr.table-row:nth-child(odd) {
 
 .bronze {
   color: saddlebrown;
+}
+@media screen and (min-width: 800px) {
+  .td-cell.ng-binding { font-size: 20px; }
+  table thead th.th-cell { font-size: 20px; }
+}
+@media screen and (min-width: 0px) and (max-width: 500px) {
+  td.round-result { display: none; }
+  table th.round-result { display: none; }
+  table thead th.th-cell { font-size: 16px; }
+  .td-cell.ng-binding { font-size: 16px; }
 }

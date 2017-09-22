@@ -1,79 +1,118 @@
 <create-game ng-if="$ctrl.auth"></create-game>
 <div ng-if="$ctrl.openGames.length == 0" class="no-games-label">{{'NO_OPEN_GAME_PLACEHOLDER' | translate}}</div>
-<table ng-if="$ctrl.openGames.length != 0 && $ctrl.openGames.length !== undefined"
-       class="table table-sm table-striped table-hover">
-    <thead>
-    <tr class="game-property">
-        <th>{{'DATE_LABEL' | translate}}</th>
-        <th>{{'TIME_LABEL' | translate}}</th>
-        <th>{{'LOCATION_LABEL' | translate}}</th>
-        <th>{{'GAME_SEASON_LABEL' | translate}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="game-row td games" ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
-        <td>{{openGame.date | date:'d MMM y'}}</td>
-        <td>{{openGame.time}}</td>
-        <td>{{openGame.location}}</td>
-        <td  ng-click="$event.stopPropagation();"><a ng-href='/#!/seasons/{{openGame.season.id}}'>{{openGame.season.name}}</a> </td>
 
-        <td>
-            <button class="btn btn-danger game-button"
-                    ng-click="$ctrl.deleteGameRequest(openGame)"
-                    ng-if="$ctrl.auth">
-              <i class="fa fa-trash-o" aria-hidden="true"></i>
+<!--<ul class="game-list">-->
+<!--<li ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">-->
+<!--<div class="game-date">{{openGame.date | date:'d MMM y'}}</div>-->
+<!--<div class="game-time">{{openGame.time}}</div>-->
+<!--<div class="game-location">{{openGame.location}}</div>-->
+<!--<div class="game-season" ng-click="$event.stopPropagation();">-->
+<!--<a ng-href='/#!/seasons/{{openGame.season.id}}'>{{openGame.season.name}}</a>-->
+<!--</div>-->
+<!--<div class="buttons-panel">-->
+<!--<button class="btn btn-danger game-button"-->
+<!--ng-click="$ctrl.deleteGameRequest(openGame)"-->
+<!--ng-if="$ctrl.auth">-->
+<!--<i class="fa fa-trash-o" aria-hidden="true"></i>-->
+<!--</button>-->
+<!--<button class="btn btn-info game-button"-->
+<!--ng-click="$ctrl.open(openGame.$id)"-->
+<!--ng-if="!$ctrl.auth">{{'TEAMS_MODAL_SHOW_BUTTON' | translate}}-->
+<!--</button>-->
+
+<!--<button class="btn btn-info game-button"-->
+<!--ng-if="$ctrl.auth"-->
+<!--ng-click="$ctrl.configGame(openGame.$id)">-->
+<!--<i class="fa fa-cog" aria-hidden="true"></i>-->
+<!--</button>-->
+<!--<button class="btn btn-success game-button"-->
+<!--ng-click="$ctrl.startGame(openGame)"-->
+<!--ng-if="$ctrl.auth">-->
+<!--<i class="fa fa-play" aria-hidden="true"></i>-->
+<!--</button>-->
+<!--<a class="registration"-->
+<!--ng-href="/#!/games/{{openGame.$id}}/registration">-->
+<!--{{'REGISTER_BUTTON' | translate}}-->
+<!--</a>-->
+<!--</div>-->
+<!--</li>-->
+<!--</ul>-->
+
+<ul class="game-list" ng-if="$ctrl.openGames.length != 0 && $ctrl.openGames.length !== undefined">
+  <li>
+    <div  class="row game-list-item header">
+      <div class="game-date">{{'DATE_LABEL' | translate}}</div>
+      <div class="game-time">{{'TIME_LABEL' | translate}}</div>
+      <div class="game-location">{{'LOCATION_LABEL' | translate}}</div>
+      <div class="game-season">{{'GAME_SEASON_LABEL' | translate}}</div>
+      <div class="buttons-panel"></div>
+    </div>
+  </li>
+  <li ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
+    <div  class="row game-list-item">
+      <div class="game-date">{{openGame.date | date:'d MMM y'}}</div>
+      <div class="game-time">{{openGame.time}}</div>
+      <div class="game-location">{{openGame.location}}</div>
+      <div class="game-season" ng-click="$event.stopPropagation();">
+        <a ng-href='/#!/seasons/{{openGame.season.id}}'>{{openGame.season.name}}</a>
+      </div>
+      <div class="buttons-panel">
+        <button class="btn btn-danger"
+                ng-click="$ctrl.deleteGameRequest(openGame)"
+                ng-if="$ctrl.auth">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </button>
+
+        <button class="btn btn-info request-button"
+                ng-click="$ctrl.open(openGame.$id)"
+                ng-if="!$ctrl.auth">{{'TEAMS_MODAL_SHOW_BUTTON' | translate}}
+        </button>
+
+        <button class="btn btn-info"
+                ng-if="$ctrl.auth"
+                ng-click="$ctrl.configGame(openGame.$id)">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-success"
+                ng-click="$ctrl.startGame(openGame)"
+                ng-if="$ctrl.auth">
+          <i class="fa fa-play" aria-hidden="true"></i>
+        </button>
+        <a class="btn btn-info register-button"
+           ng-href="/#!/games/{{openGame.$id}}/registration">
+          {{'REGISTER_BUTTON' | translate}}
+        </a>
+
+        <div style="position: absolute;" ng-if="openGame.invalid" class="alert alert-danger">
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+          <strong>{{openGame.error| translate}}!</strong>
+        </div>
+        <div ng-if="openGame.isDeleteGameRequested"
+             class="alert alert-danger alert-dismissible fade in delete-game-alert" role="alert">
+          <p>{{'DELETE_GAME_ALERT' | translate}}</p>
+          <p>
+            <button ng-click="$ctrl.deleteGame(openGame)" type="button" class="btn btn-danger">
+              {{'DELETE_BUTTON'| translate}}
             </button>
-            <button class="btn btn-info game-button"
-                    ng-click="$ctrl.open(openGame.$id)"
-                    ng-if="!$ctrl.auth">{{'TEAMS_MODAL_SHOW_BUTTON' | translate}}
+            <button ng-click="$ctrl.cancelDeleteGameRequest(openGame)" type="button" class="btn btn-default">
+              {{'CLOSE_BUTTON' | translate}}
             </button>
-
-            <button class="btn btn-info game-button"
-                    ng-if="$ctrl.auth"
-                    ng-click="$ctrl.configGame(openGame.$id)">
-              <i class="fa fa-cog" aria-hidden="true"></i>
-            </button>
-          <button class="btn btn-success game-button"
-                  ng-click="$ctrl.startGame(openGame)"
-                  ng-if="$ctrl.auth">
-            <i class="fa fa-play" aria-hidden="true"></i>
-            </button>
-          <a class="registration"
-             ng-href="/#!/games/{{openGame.$id}}/registration">
-            {{'REGISTER_BUTTON' | translate}}
-          </a>
-            <span id="err-message" class="error text-danger"
-                  ng-if="openGame.invalid">{{openGame.error| translate}}</span>
-
-            <div ng-if="openGame.isDeleteGameRequested"
-                 class="alert alert-danger alert-dismissible fade in delete-game-alert" role="alert">
-                <p>{{'DELETE_GAME_ALERT' | translate}}</p>
-                <p>
-                    <button ng-click="$ctrl.deleteGame(openGame)" type="button" class="btn btn-danger">{{'DELETE_BUTTON'
-                        | translate}}
-                    </button>
-                    <button ng-click="$ctrl.cancelDeleteGameRequest(openGame)" type="button" class="btn btn-default">
-                        {{'CLOSE_BUTTON' | translate}}
-                    </button>
-                </p>
-            </div>
-
-        </td>
-    </tr>
-    </tbody>
-</table>
-
+          </p>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
 <script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">{{'TEAMS_MODAL_HEADER' | translate}}: {{$ctrl.date | date:'d MMM
-            y'}}</h3>
-    </div>
-    <div class="modal-body" id="modal-body">
-        <span ng-if="$ctrl.items.length === 0">{{'TEAMS_MODAL_PLACEHOLDER' | translate}}</span>
-        <ul>
-            <li ng-repeat="item in $ctrl.items | orderBy:'teamName'">
-                {{ item.teamName }}
-            </li>
-        </ul>
-    </div>
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">{{'TEAMS_MODAL_HEADER' | translate}}: {{$ctrl.date | date:'d MMM y'}}</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <span ng-if="$ctrl.items.length === 0">{{'TEAMS_MODAL_PLACEHOLDER' | translate}}</span>
+    <ul>
+      <li ng-repeat="item in $ctrl.items | orderBy:'teamName'">
+        {{ item.teamName }}
+      </li>
+    </ul>
+  </div>
 </script>

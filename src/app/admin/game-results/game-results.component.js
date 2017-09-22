@@ -26,5 +26,19 @@
     this.getTeamGames = function (teamId) {
       $location.path(`/teams/${teamId}`);
     }
+
+    function isInteger(score){
+      return Math.trunc(score) === score;
+    }
+
+    this.parseScoreView = function(score) {
+      let parsedScore = Number(score);
+      if (isInteger(score)){
+        Math.round(parsedScore);
+        console.log(parsedScore);
+      }
+      return parsedScore;
+    }
+
   }
 })();
