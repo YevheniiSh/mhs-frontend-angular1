@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange} from '@angular/core';
 
 @Component({
   selector: 'app-auction-round-type',
   templateUrl: './auction-round-type.component.html',
   styleUrls: ['./auction-round-type.component.css']
 })
-export class AuctionRoundTypeComponent implements OnInit {
+export class AuctionRoundTypeComponent implements OnInit, OnChanges {
 
   gameServiceFactory;
   showInputs: Boolean;
@@ -13,7 +13,6 @@ export class AuctionRoundTypeComponent implements OnInit {
   @Input() disableNext: Boolean;
   @Input() results;
   @Output() saved = new EventEmitter<any>();
-  @Output() disableNextChange = new EventEmitter<any>();
   round;
   routeParams;
 
@@ -32,9 +31,15 @@ export class AuctionRoundTypeComponent implements OnInit {
     this.gameServiceFactory.getRoundByGameAndId(this.routeParams.gameId, this.routeParams.roundNumber)
       .then((round) => {
         this.round = round;
-        console.log(this.round);
       });
-    console.log(this.results);
+  }
+
+  ngOnChanges(changes: { [propKey: string]: SimpleChange }): void {
+    for (let propName in changes) {
+      if (propName === 'disableNext') {
+        this.switchEditState()
+      }
+    }
   }
 
   private getCheckboxValue(status){
@@ -42,19 +47,16 @@ export class AuctionRoundTypeComponent implements OnInit {
   }
 
   onSave(result){
-
     result.score = result.rate * this.getCheckboxValue(result.status);
     console.log(result);
     this.saved.emit(result);
   }
 
   switchEditState() {
-    this.disableNext = !this.disableNext;
-    this.disableNextChange.emit(this.disableNext);
     this.showInputs = !this.showInputs;
     if (!this.showInputs) {
       this.results.forEach((item) => {
-        if (item.status < 0) {
+        if (item.status === false) {
           item.checked = false;
         }
         else {

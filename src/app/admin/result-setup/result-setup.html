@@ -11,8 +11,8 @@
     <captain-round ng-switch-when="CAPTAIN_ROUND" results="$ctrl.results"
                    save-result="$ctrl.saveResult(result)"
                    is-captains-out="$ctrl.isCaptainsOut"></captain-round>
-    <app-auction-round-type ng-switch-when="AUCTION_ROUND" [(disable-next)]="$ctrl.disableNext" [(results)]="$ctrl.results"
-                   (saved)="$ctrl.saveResult($event)"></app-auction-round-type>
+    <app-auction-round-type ng-switch-when="AUCTION_ROUND" [disable-next]="$ctrl.disableNext" [results]="$ctrl.results"
+                            (saved)="$ctrl.saveResult($event)"></app-auction-round-type>
     <hints-round ng-switch-when="HINTS_ROUND" results="$ctrl.results"
                  save-result="$ctrl.saveResult(result)"></hints-round>
   </div>
@@ -33,6 +33,11 @@
     <button class="btn btn-success submit-button"
             ng-disabled="$ctrl.disableNext  && $ctrl.round.roundType.type === 'AUCTION_ROUND'"
             ng-click="$ctrl.nextQuiz()">{{'NEXT_BUTTON'|translate}}
+    </button>
+    <button ng-if="$ctrl.round.roundType.type === 'AUCTION_ROUND'"
+            class="btn btn-info submit-button"
+            ng-class="{'btn-info':$ctrl.disableNext, 'btn-primary':!$ctrl.disableNext}"
+            ng-click="$ctrl.confirmBets()">{{$ctrl.confirmBetsButtonText | translate}}
     </button>
   </div>
 </div>
