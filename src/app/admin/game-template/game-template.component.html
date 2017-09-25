@@ -1,0 +1,25 @@
+<div class="container">
+  <H1 id="game-templates">{{'GAME_TEMPLATES'|translate}}</H1>
+  <ul class="template-list col-md-3">
+    <li (click)="showTemplate(template.$id)"
+        *ngFor="let template of templates">
+            <span [ngClass]="{'selected': template.$id == templateId}" class="list-item">
+                {{template.name}}
+                <button class="btn btn-danger delete-btn" (click)="deleteTemplate(template.$id)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+            </span>
+    </li>
+    <li>
+      <div class="new-template">
+                <span class="btn btn-success btn-block new-template-btn" (click)="newTemplate()">
+                {{'CREATE_TEMPLATE_BUTTON' | translate}}
+            </span>
+      </div>
+    </li>
+  </ul>
+
+  <app-current-template *ngIf="template || isNewTemplate" [(template)]="template" [(isNewTemplate)]="isNewTemplate"
+                        [(templateId)]="templateId"></app-current-template>
+
+</div>

@@ -85,8 +85,6 @@ import 'app/admin/game-list/open-game-list.component.js';
 import 'app/admin/game-list/game-teams-modal.component.js';
 import 'app/admin/add-teams/print-teams/print-teams.component.js';
 import 'app/admin/game-template/game-template.module.js';
-import 'app/admin/game-template/game-template.component.js';
-import 'app/admin/game-template/current-game-template.component.js';
 import 'app/services/round-service/round-service.module.js';
 import 'app/services/round-service/round-service.service.js';
 import 'app/services/firebase-service/firebase-initializr.ts';
