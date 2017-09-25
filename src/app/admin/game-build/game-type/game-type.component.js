@@ -6,9 +6,9 @@ angular.module('gameType')
     controller: GameType
   });
 
-GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$location', '$timeout', '$scope', '$rootScope'];
+GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$timeout','ToastsManager','$translate'];
 
-function GameType(gameTemplateService, openGameService, $routeParams, $location, $timeout, $scope, $rootScope) {
+function GameType(gameTemplateService, openGameService, $routeParams, $timeout ,ToastsManager,$translate) {
   let vm = this;
 
   let templateRounds = [];
@@ -41,14 +41,27 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
     if (vm.configRounds.length >= 2) {
       openGameService.addRounds(vm.gameId, vm.configRounds);
       vm.templateFormShow = true;
-      // .then(rounds => vm.configRounds = convertRoundsObjectToArray(rounds));
-      showSubmittedMessage();
+      showSuccessNotification('ROUND_SAVED_MESSAGE');
     }
     else {
-      showRoundCountError();
+      showErrorNotification('FEW_ROUNDS_ERROR');
     }
 
   };
+
+  function showSuccessNotification(message) {
+    $translate(message)
+      .then((message)=>{
+        ToastsManager.success(message, '',{dismiss: 'click',toastLife: 2000});
+      })
+  }
+
+  function showErrorNotification(message) {
+    $translate(message)
+      .then((message)=>{
+        ToastsManager.error(message, '', {dismiss: 'click',toastLife: 2000});
+      })
+  }
 
   let convertRoundsObjectToArray = function (object) {
     let array = [];
@@ -61,10 +74,8 @@ function GameType(gameTemplateService, openGameService, $routeParams, $location,
   vm.saveTemplate = function () {
     gameTemplateService.saveFromGame(vm.gameId, vm.templateName);
     vm.templateFormShow = false;
-    vm.templateSaved = true;
-    $timeout(() => {
-      vm.templateSaved = false;
-    }, 1500);
+    showSuccessNotification('TEMPLATE_SAVED_MESSAGE');
+
   };
 
   vm.selectTemplate = function (template) {

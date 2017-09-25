@@ -92,6 +92,8 @@ export class HybridAppModule {
   private downgradeNewProviders() {
     this.mhsAdminModule.service('backup', upgradeAdapter.downgradeNg2Provider(BackupService));
     this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
+    this.mhsAdminModule.service('ToastsManager', upgradeAdapter.downgradeNg2Provider(ToastsManager));
+    this.mhsAdminModule.service('viewContainerRef', upgradeAdapter.downgradeNg2Provider(ViewContainerRef));
   }
 }
 
