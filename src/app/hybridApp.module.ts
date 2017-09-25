@@ -1,4 +1,4 @@
-import {forwardRef, NgModule} from '@angular/core';
+import {forwardRef, NgModule, ViewContainerRef} from '@angular/core';
 import {UpgradeAdapter} from '@angular/upgrade';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -19,7 +19,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {LoginService} from './services/login-service/login.service';
 import {firebaseConfig} from './services/firebase-service/firebase-config';
-import {ToastModule} from 'ng2-toastr';
+import {ToastModule, ToastsManager} from 'ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NotificationComponent} from "./notification/notification.component";
 import {AuctionRoundTypeComponent} from './admin/round-type/auction-round-type/auction-round-type.component';
