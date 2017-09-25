@@ -3,7 +3,7 @@
   <ul class="template-list col-md-3">
   <li ng-click="$ctrl.showTemplate(template.$id)"
       ng-repeat="template in $ctrl.templates">
-            <span ng-class="{'selected': template.$id == $ctrl.selectedTemplated}" class="list-item">
+            <span ng-class="{'selected': template.$id == $ctrl.templateId}" class="list-item">
                 {{template.name}}
                 <button class="btn btn-danger delete-btn" ng-click="$ctrl.deleteTemplate(template.$id)">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -18,5 +18,9 @@
     </div>
   </li>
 </ul>
-  <current-game-template selected-template-id="$ctrl.selectedTemplated"></current-game-template>
+  <current-game-template template="$ctrl.template"
+                         selected-template="$ctrl.templateId"
+                         is-new-template="$ctrl.isNewTemplate">
+
+  </current-game-template>
 </div>

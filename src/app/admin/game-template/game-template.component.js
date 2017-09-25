@@ -1,34 +1,54 @@
 'use strict';
 angular.module('gameTemplate')
-    .component('gameTemplate', {
-      templateUrl: 'app/admin/game-template/game-template.html',
-      css: 'app/admin/game-template/game-template.css',
-        controller: gameTemplate,
+  .component('gameTemplate', {
+    templateUrl: 'app/admin/game-template/game-template.html',
+    css: 'app/admin/game-template/game-template.css',
+    controller: gameTemplate,
 
-    });
+  });
 
 gameTemplate.$inject = ['$routeParams', '$location', 'gameTemplateServiceFactory'];
 
 function gameTemplate($routeParams, $location, templateService) {
-    let vm = this;
+  let vm = this;
 
-    vm.selected = false;
-  vm.selectedTemplated = $routeParams.templateId;
-    templateService.getAll().then((val) => {
-        vm.templates = val
+  vm.$onInit = onInit;
+
+  function onInit() {
+    templateService.getAll().then((res) => {
+      vm.templates = res;
     });
 
-    vm.showTemplate = function (templateId) {
-      vm.selectedTemplated = templateId;
-        $location.path(`/templates/${templateId}`);
-    };
+    if ($routeParams.hasOwnProperty("templateId")) {
+      vm.templateId = $routeParams.templateId;
+      getTemplate();
+    }
+  }
 
-    vm.newTemplate = function () {
-      vm.ne
-    };
+  vm.showTemplate = function (templateId) {
+    vm.templateId = templateId;
+    $location.path(`/templates/${templateId}`);
+    getTemplate();
+  };
 
-    vm.deleteTemplate = function (templateId) {
-        templateService.remove(templateId);
-        if ($routeParams.templateId === templateId) $location.path(`/templates`)
+  let getTemplate = function () {
+    vm.template = {};
+    templateService.getById(vm.templateId).then(template => {
+      vm.template.name = template.name;
+      vm.template.rounds = template.rounds.slice(1, template.rounds.length); // first round is undefined!
+      vm.template.id = vm.templateId;
+    });
+  };
+
+  vm.newTemplate = function () {
+    vm.isNewTemplate = true;
+    vm.template = {
+      rounds: []
     };
+  };
+
+  vm.deleteTemplate = function (templateId) {
+    templateService.remove(templateId);
+    if ($routeParams.templateId === templateId) $location.path(`/templates`)
+  };
 }

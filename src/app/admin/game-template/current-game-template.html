@@ -1,11 +1,10 @@
-<div ng-if="$ctrl.templateId" id="current-template" class="col-md-8 col-md-offset-1">
+<div ng-if="$ctrl.template.id || $ctrl.isNewTemplate" id="current-template" class="col-md-8 col-md-offset-1">
   <form ng-submit="$ctrl.saveTemplate()">
     <span class="template-name-title">{{'TEMPLATE_NAME_LABEL' | translate}}</span>
-    <input class="form-control" ng-model="$ctrl.currentTemplateName"
+    <input class="form-control" ng-model="$ctrl.template.name"
            maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
            required>
-    <round-builder rounds="$ctrl.currentTemplateRounds"></round-builder>
-
+    <round-builder rounds="$ctrl.template.rounds"></round-builder>
     <button id="btn-save" class="btn btn-success btn-block"
             type="submit">
       {{'SAVE_ROUNDS_BUTTON' | translate}}
