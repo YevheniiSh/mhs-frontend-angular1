@@ -1,6 +1,6 @@
 <div class="form-group row">
   <ul id="team-list">
-    <li *ngFor="let result of results" class="team">
+    <li *ngFor="let result of results | orderBy: 'teamName'" class="team">
       <label>
         <div *ngIf="showInputs" class="result-rate">
           <input class=" form-control" [(ngModel)]="result.rate" type="number"

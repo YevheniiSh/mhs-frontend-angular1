@@ -23,6 +23,7 @@ import {ToastModule, ToastsManager} from 'ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NotificationComponent} from "./notification/notification.component";
 import {AuctionRoundTypeComponent} from './admin/round-type/auction-round-type/auction-round-type.component';
+import {OrderByPipe} from './pipe/order-by.pipe';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -37,7 +38,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarComponent,
     LoginPanelComponentUpgrade,
     NotificationComponent,
-    AuctionRoundTypeComponent
+    AuctionRoundTypeComponent,
+    OrderByPipe
   ],
   imports: [
     FormsModule,
