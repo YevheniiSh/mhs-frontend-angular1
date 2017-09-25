@@ -9,7 +9,6 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
 
   gameServiceFactory;
   showInputs: Boolean;
-  editStateText:string;
   @Input() disableNext: Boolean;
   @Input() results;
   @Output() saved = new EventEmitter<any>();
@@ -24,7 +23,6 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.showInputs = true;
-    this.editStateText = 'Correctness';
     console.log(this.routeParams.gameId);
 
 
@@ -76,7 +74,6 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
         }
       });
     }
-    !this.showInputs? this.editStateText = 'Score': this.editStateText = 'Correctness';
   }
 
 }

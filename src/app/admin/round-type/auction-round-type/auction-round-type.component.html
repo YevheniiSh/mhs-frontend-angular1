@@ -10,7 +10,6 @@
         <div *ngIf="!showInputs" class="switch">
           <input id="switch-checkbox"
                  type="checkbox"
-                 [checked]=false
                  [(ngModel)]="result.status"
                  (change)="result.auction = result.status > 0 ? 1 : null; onSave(result)"
                  >
