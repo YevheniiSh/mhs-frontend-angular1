@@ -3,6 +3,7 @@ import { UpgradeAdapter } from '@angular/upgrade';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
+import { FormsModule } from '@angular/forms';
 
 import { AppModule } from './app.module';
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
@@ -18,6 +19,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginService } from './services/login-service/login.service';
 import { firebaseConfig } from './services/firebase-service/firebase-config';
+import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type/auction-round-type.component';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -30,7 +32,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     TeamListComponentUpgrade,
     NavbarComponent,
-    LoginPanelComponentUpgrade
+    LoginPanelComponentUpgrade,
+    AuctionRoundTypeComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
@@ -47,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    FormsModule,
     AppModule
   ],
   entryComponents: [],
@@ -69,10 +73,13 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('TeamServiceFactory');
     upgradeAdapter.upgradeNg1Provider('InternationalisationServiceFactory');
     upgradeAdapter.upgradeNg1Provider('userAuthService');
+    upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('$routeParams');
   }
 
   private downgradeNewComponents() {
     this.mhsAdminModule.directive('appNavbar', upgradeAdapter.downgradeNg2Component(NavbarComponent));
+    this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
   }
 
   private downgradeNewProviders() {
