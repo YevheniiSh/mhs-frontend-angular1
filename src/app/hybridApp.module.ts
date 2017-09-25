@@ -18,6 +18,10 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginService } from './services/login-service/login.service';
 import { firebaseConfig } from './services/firebase-service/firebase-config';
+import { GameTemplateComponent } from './admin/game-template/game-template.component';
+import { CurrentTemplateComponent } from './admin/game-template/current-template/current-template.component';
+import { FormsModule } from '@angular/forms';
+import { RoundBuilderComponentUpgrade } from './admin/round-builder/round-builder.component.upgrade';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -30,7 +34,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     TeamListComponentUpgrade,
     NavbarComponent,
-    LoginPanelComponentUpgrade
+    LoginPanelComponentUpgrade,
+    RoundBuilderComponentUpgrade,
+    GameTemplateComponent,
+    CurrentTemplateComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
@@ -40,6 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CollapseModule.forRoot(),
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -69,10 +77,16 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('TeamServiceFactory');
     upgradeAdapter.upgradeNg1Provider('InternationalisationServiceFactory');
     upgradeAdapter.upgradeNg1Provider('userAuthService');
+    upgradeAdapter.upgradeNg1Provider('$routeParams');
+    upgradeAdapter.upgradeNg1Provider('$location');
+    upgradeAdapter.upgradeNg1Provider('gameTemplateServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('roundTypeService');
   }
 
   private downgradeNewComponents() {
     this.mhsAdminModule.directive('appNavbar', upgradeAdapter.downgradeNg2Component(NavbarComponent));
+    this.mhsAdminModule.directive('appGameTemplate', upgradeAdapter.downgradeNg2Component(GameTemplateComponent));
+    this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
   }
 
   private downgradeNewProviders() {
