@@ -24,6 +24,8 @@
     vm.isCaptainsOut = false;
     vm.$onInit = onInit;
 
+    vm.confirmBetsButtonText = "CONFIRM_BETS_BUTTON";
+
     function onInit() {
       vm.answerCount = 0;
       initRound();
@@ -91,7 +93,7 @@
           }
           else {
             result.rate = 0;
-            result.status = -1
+            result.status = false
           }
         }
       }
@@ -99,9 +101,9 @@
 
     function setResultStatus(result) {
       if (result.score <= 0) {
-        result.status = -1
+        result.status = false
       } else
-        result.status = 1
+        result.status = true
     }
 
     function getTeams() {
@@ -180,6 +182,16 @@
         result.score = -1;
       }
     }
+
+    vm.confirmBets = function () {
+      vm.disableNext = !vm.disableNext;
+      if (vm.disableNext) {
+        vm.confirmBetsButtonText = "CONFIRM_BETS_BUTTON";
+      }
+      else {
+        vm.confirmBetsButtonText = "CHANGE_BETS_BUTTON";
+      }
+    };
 
     vm.saveResult = function (result) {
       result.needSave = true;

@@ -3,6 +3,7 @@ import { UpgradeAdapter } from '@angular/upgrade';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
+import { FormsModule } from '@angular/forms';
 
 import { AppModule } from './app.module';
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
@@ -21,6 +22,7 @@ import { firebaseConfig } from './services/firebase-service/firebase-config';
 import { ToastModule } from 'ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationComponent } from "./notification/notification.component";
+import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type/auction-round-type.component';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -34,7 +36,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TeamListComponentUpgrade,
     NavbarComponent,
     LoginPanelComponentUpgrade,
-    NotificationComponent
+    NotificationComponent,
+    AuctionRoundTypeComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
@@ -53,6 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    FormsModule,
     AppModule
   ],
   entryComponents: [],
@@ -75,11 +79,14 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('TeamServiceFactory');
     upgradeAdapter.upgradeNg1Provider('InternationalisationServiceFactory');
     upgradeAdapter.upgradeNg1Provider('userAuthService');
+    upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('$routeParams');
   }
 
   private downgradeNewComponents() {
     this.mhsAdminModule.directive('appNavbar', upgradeAdapter.downgradeNg2Component(NavbarComponent));
     this.mhsAdminModule.directive('notification', upgradeAdapter.downgradeNg2Component(NotificationComponent));
+    this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
   }
 
   private downgradeNewProviders() {
