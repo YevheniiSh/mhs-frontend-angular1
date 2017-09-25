@@ -19,7 +19,7 @@
       <div class="game-season" ng-click="$event.stopPropagation();">
         <a ng-href='/#!/seasons/{{openGame.season.id}}'>{{openGame.season.name}}</a>
       </div>
-      <div class="buttons-panel">
+      <div class="buttons-panel" ng-class="{'wide-panel':!openGame.season}">
         <button class="btn btn-danger"
                 ng-click="$ctrl.deleteGameRequest(openGame)"
                 ng-if="$ctrl.auth">

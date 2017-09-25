@@ -155,5 +155,6 @@
   "INVALID_EMAIL_MESSAGE": "Invalid e-mail or password",
   "INVALID_RULES_MESSAGE":"Your account is not verified. Contact with administrator!",
   "ANSWERS_COUNT_LABEL": "Answers number: ",
+  "REVIEW_RESULTS_BUTTON": "Review results",
   "ROUND_FINISH_BUTTON": "Finish round"
 }
