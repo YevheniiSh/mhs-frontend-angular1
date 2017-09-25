@@ -52,14 +52,14 @@ function GameType(gameTemplateService, openGameService, $routeParams, $timeout ,
   function showSuccessNotification(message) {
     $translate(message)
       .then((message)=>{
-        ToastsManager.success(message, '',{dismiss: 'click',toastLife: 2000});
+        ToastsManager.success(message, '',{showCloseButton: true,toastLife: 2000});
       })
   }
 
   function showErrorNotification(message) {
     $translate(message)
       .then((message)=>{
-        ToastsManager.error(message, '', {dismiss: 'click',toastLife: 2000});
+        ToastsManager.error(message, '', {showCloseButton: true,toastLife: 2000});
       })
   }
 

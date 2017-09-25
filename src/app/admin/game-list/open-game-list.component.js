@@ -7,9 +7,9 @@
             controller: OpenGameList
         });
 
-    OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location', 'userAuthService', 'gameRequestServiceFactory', '$uibModal'];
+    OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location', 'userAuthService', 'gameRequestServiceFactory', '$uibModal','ToastsManager','$translate'];
 
-    function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService, gameRequestService, $uibModal) {
+    function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService, gameRequestService, $uibModal,ToastsManager,$translate) {
         let vm = this;
         vm.$onInit = onInit;
 
@@ -43,12 +43,10 @@
             Promise.all([rounds, teams]).then((res) => {
                 if (res[0].length < 2) {
                     game.invalid = true;
-                    game.error = 'CONFIG_ROUNDS_ERROR';
-                    $rootScope.$apply();
+                    showErrorNotification('CONFIG_ROUNDS_ERROR');
                 } else if (res[1].length < 2) {
                     game.invalid = true;
-                    game.error = 'CONFIG_TEAMS_ERROR';
-                    $rootScope.$apply();
+                    showErrorNotification('CONFIG_TEAMS_ERROR');
                 } else {
                     gameServiceFactory.startGame(gameId);
                     $location.path('/games/' + gameId + '/rounds');
@@ -57,6 +55,13 @@
 
 
         };
+
+      function showErrorNotification(message) {
+        $translate(message)
+          .then((message)=>{
+            ToastsManager.error(message, '', {showCloseButton: true,toastLife: 2000});
+          })
+      }
 
         vm.configGame = function (gameId) {
             $location.path('/games/' + gameId + '/config')
