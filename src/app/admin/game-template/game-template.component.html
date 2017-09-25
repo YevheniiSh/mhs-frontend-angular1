@@ -20,6 +20,6 @@
   </ul>
 
   <app-current-template *ngIf="template || isNewTemplate" [(template)]="template" [(isNewTemplate)]="isNewTemplate"
-                        [(templateId)]="templateId"></app-current-template>
+                        (save)="onCreateTemplate($event)"></app-current-template>
 
 </div>

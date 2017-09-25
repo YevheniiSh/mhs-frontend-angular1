@@ -19,7 +19,7 @@
       <div class="game-season" ng-click="$event.stopPropagation();">
         <a ng-href='/#!/seasons/{{openGame.season.id}}'>{{openGame.season.name}}</a>
       </div>
-      <div class="buttons-panel">
+      <div class="buttons-panel" ng-class="{'wide-panel':!openGame.season}">
         <button class="btn btn-danger"
                 ng-click="$ctrl.deleteGameRequest(openGame)"
                 ng-if="$ctrl.auth">
@@ -66,16 +66,4 @@
     </div>
   </li>
 </ul>
-<script type="text/ng-template" id="myModalContent.html">
-  <div class="modal-header">
-    <h3 class="modal-title" id="modal-title">{{'TEAMS_MODAL_HEADER' | translate}}: {{$ctrl.date | date:'d MMM y'}}</h3>
-  </div>
-  <div class="modal-body" id="modal-body">
-    <span ng-if="$ctrl.items.length === 0">{{'TEAMS_MODAL_PLACEHOLDER' | translate}}</span>
-    <ul>
-      <li ng-repeat="item in $ctrl.items | orderBy:'teamName'">
-        {{ item.teamName }}
-      </li>
-    </ul>
-  </div>
-</script>
+

@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { Template } from '../template';
 
 @Component({
@@ -11,8 +11,9 @@ export class CurrentTemplateComponent implements OnInit {
   templateSaved;
   name;
   @Input() template: Template;
-  @Input() templateId: string;
+
   @Input() isNewTemplate: boolean;
+  @Output() save: EventEmitter<Template> = new EventEmitter();
 
   constructor(@Inject('$routeParams') private $routeParams,
               @Inject('$location') private $location,
@@ -26,19 +27,14 @@ export class CurrentTemplateComponent implements OnInit {
     if (this.template.rounds.length < 2) {
       this.showRoundCountError();
     } else if (this.isNewTemplate) {
-      this.createTemplate();
+      this.createNewTemplate();
     } else {
       this.updateTemplate();
     }
   }
 
-  createTemplate() {
-    this.templateService.save(this.template.name, this.template.rounds).then((res) => {
-      this.templateId = res.$id;
-      this.template.id = res.$id;
-      this.isNewTemplate = false;
-      this.$location.path(`/templates/${ this.template.id }`);
-    });
+  createNewTemplate() {
+    this.save.emit(this.template);
   }
 
   updateTemplate = function () {
