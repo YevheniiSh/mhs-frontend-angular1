@@ -156,5 +156,6 @@
   "ANSWERS_COUNT_LABEL": "Відповідей: ",
   "NO_FINISHED_GAME_PLACEHOLDER": "Завершених ігр ще немає!",
   "CONFIRM_BETS_BUTTON": "Прийняти ставки",
-  "CHANGE_BETS_BUTTON": "Змінити ставки"
+  "CHANGE_BETS_BUTTON": "Змінити ставки",
+  "REVIEW_RESULTS_BUTTON": "Переглянути результати"
 }
