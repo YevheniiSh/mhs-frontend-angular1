@@ -1,9 +1,12 @@
 import {Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange} from '@angular/core';
+import {trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-auction-round-type',
   templateUrl: './auction-round-type.component.html',
-  styleUrls: ['./auction-round-type.component.css']
+  styleUrls: ['./auction-round-type.component.css'],
+  animations: [
+    trigger('myChecked', [])]
 })
 export class AuctionRoundTypeComponent implements OnInit, OnChanges {
 
@@ -40,14 +43,14 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
     }
   }
 
-  private getCheckboxValue(status){
-    return status ? 1 : -1;
-  }
-
-  onSave(result){
+  onSave(result) {
     result.score = result.rate * this.getCheckboxValue(result.status);
     console.log(result);
     this.saved.emit(result);
+  }
+
+  private getCheckboxValue(status) {
+    return status ? 1 : -1;
   }
 
   switchEditState() {

@@ -8,7 +8,8 @@
                  step="{{round.roundType.step}}" (change)="onSave(result)">
         </div>
         <div *ngIf="!showInputs" class="switch">
-          <input id="switch-checkbox"
+          <input [@myChecked]
+                 id="switch-checkbox"
                  type="checkbox"
                  [(ngModel)]="result.status"
                  (change)="result.auction = result.status > 0 ? 1 : null; onSave(result)"
