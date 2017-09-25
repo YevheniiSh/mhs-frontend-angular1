@@ -89,18 +89,16 @@
         vm.open = function (gameId, parentSelector) {
             gameRequestService.getAllTeamRequestsByGameId(gameId)
                 .then((teams) => {
-                    console.log(teams);
                     var items = teams;
                     openGameFactory.getDate(gameId)
                         .then((date) => {
                             var gameDate = new Date(date);
                             var parentElem = parentSelector ?
                                 angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-                            $uibModal.open({
+                            vm.modalInstance = $uibModal.open({
                                 animation: false,
                                 ariaLabelledBy: 'modal-title',
                                 ariaDescribedBy: 'modal-body',
-                                templateUrl: 'myModalContent.html',
                                 component: 'modalComponent',
                                 appendTo: parentElem,
                                 resolve: {
@@ -109,11 +107,17 @@
                                     },
                                     date: function () {
                                         return gameDate;
-                                    }
-                                }
+                                    },
+                                  cancel: function () {
+                                    return cancel;
+                                  }}
                             });
                         });
                 })
         };
+
+        function cancel() {
+          vm.modalInstance.close();
+        }
     }
 })();

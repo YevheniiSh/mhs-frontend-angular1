@@ -154,5 +154,6 @@
   "INVALID_EMAIL_MESSAGE": "Невірний e-mail чи пароль",
   "INVALID_RULES_MESSAGE":"Ваш аккаунт не підтверджено. Зверніться до адміністратора!",
   "ANSWERS_COUNT_LABEL": "Відповідей: ",
+  "REVIEW_RESULTS_BUTTON": "Переглянути результати",
   "NO_FINISHED_GAME_PLACEHOLDER" :"Завершених ігр ще немає!"
 }
