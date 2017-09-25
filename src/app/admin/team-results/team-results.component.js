@@ -2,8 +2,19 @@ angular.module('teamResults')
     .component('teamResults', {
       templateUrl: 'app/admin/team-results/team-results.html',
       css: 'app/admin/team-results/team-results.css',
-        controller: ['userAuthService', 'GameServiceFactory', 'ResultServiceFactory', 'RoundStatusService', 'TeamServiceFactory', '$routeParams', '$rootScope', '$location', '$window',
-            function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location, $window) {
+        controller: [
+          'userAuthService',
+          'GameServiceFactory',
+          'ResultServiceFactory',
+          'RoundStatusService',
+          'TeamServiceFactory',
+          '$routeParams',
+          '$rootScope',
+          '$location',
+          '$window',
+          'ToastsManager',
+          '$translate',
+            function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location, $window, ToastsManager, $translate) {
                 let vm = this;
                 this.$onInit = onInit;
 
@@ -171,6 +182,7 @@ angular.module('teamResults')
                   ResultService.setGameWinner(this.state, vm.gameId);
                   ResultService.setTeamPosition(vm.gameId);
                 }
+                showSuccessNotification('CHANGES_SAVED');
               };
 
               vm.discardChanges = function () {
@@ -180,6 +192,13 @@ angular.module('teamResults')
                 if (vm.state === "finished")
                   vm.gameStatus = true;
               };
+
+              function showSuccessNotification(message) {
+                $translate(message)
+                  .then((message)=>{
+                    ToastsManager.success(message, '',{showCloseButton: true,toastLife: 2000});
+                  })
+              }
 
               vm.isEmptyEditedQuizzes = function () {
                 return (editedQuizzes.length !== 0)

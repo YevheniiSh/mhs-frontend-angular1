@@ -45,11 +45,6 @@
            ng-href="/#!/games/{{openGame.$id}}/registration">
           {{'REGISTER_BUTTON' | translate}}
         </a>
-
-        <div style="position: absolute;" ng-if="openGame.invalid" class="alert alert-danger">
-          <a href="#" class="close" data-dismiss="alert">&times;</a>
-          <strong>{{openGame.error| translate}}!</strong>
-        </div>
         <div ng-if="openGame.isDeleteGameRequested"
              class="alert alert-danger alert-dismissible fade in delete-game-alert" role="alert">
           <p>{{'DELETE_GAME_ALERT' | translate}}</p>

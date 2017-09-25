@@ -157,5 +157,7 @@
   "NO_FINISHED_GAME_PLACEHOLDER": "Завершенных игр ещё нет!",
   "CONFIRM_BETS_BUTTON": "Принять ставки",
   "CHANGE_BETS_BUTTON": "Изменить ставки",
-  "REVIEW_RESULTS_BUTTON": "Посмотреть результаты"
+  "REVIEW_RESULTS_BUTTON": "Посмотреть результаты",
+  "CHANGES_SAVED": "Изменения сохранены",
+  "CHANGES_DISCARDED": "Изменения отклонены"
 }

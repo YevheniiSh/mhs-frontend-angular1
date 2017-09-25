@@ -158,5 +158,7 @@
   "CONFIRM_BETS_BUTTON": "Confirm bets",
   "CHANGE_BETS_BUTTON": "Change bets",
   "REVIEW_RESULTS_BUTTON": "Review results",
-  "ROUND_FINISH_BUTTON": "Finish round"
+  "ROUND_FINISH_BUTTON": "Finish round",
+  "CHANGES_SAVED": "Changes saved",
+  "CHANGES_DISCARDED": "Changes discarded"
 }
