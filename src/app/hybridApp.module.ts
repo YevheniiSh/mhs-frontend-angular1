@@ -1,4 +1,4 @@
-import { forwardRef, NgModule } from '@angular/core';
+import { forwardRef, NgModule, ViewContainerRef } from '@angular/core';
 import { UpgradeAdapter } from '@angular/upgrade';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -18,9 +18,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginService } from './services/login-service/login.service';
 import { firebaseConfig } from './services/firebase-service/firebase-config';
-import { ToastModule } from 'ng2-toastr';
+import { ToastModule, ToastsManager } from 'ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NotificationComponent } from "./notification/notification.component";
+import { NotificationComponent } from './notification/notification.component';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -85,6 +85,8 @@ export class HybridAppModule {
   private downgradeNewProviders() {
     this.mhsAdminModule.service('backup', upgradeAdapter.downgradeNg2Provider(BackupService));
     this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
+    this.mhsAdminModule.service('ToastsManager', upgradeAdapter.downgradeNg2Provider(ToastsManager));
+    this.mhsAdminModule.service('viewContainerRef', upgradeAdapter.downgradeNg2Provider(ViewContainerRef));
   }
 }
 
