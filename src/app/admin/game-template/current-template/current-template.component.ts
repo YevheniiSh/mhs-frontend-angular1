@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Template } from '../template';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
   selector: 'app-current-template',
@@ -16,7 +17,9 @@ export class CurrentTemplateComponent implements OnInit {
 
   constructor(@Inject('$routeParams') private $routeParams,
               @Inject('$location') private $location,
-              @Inject('gameTemplateServiceFactory') private templateService) {
+              @Inject('gameTemplateServiceFactory') private templateService,
+              @Inject('$translate') private $translate,
+              private toastsManager: ToastsManager) {
   }
 
   ngOnInit() {
@@ -24,7 +27,7 @@ export class CurrentTemplateComponent implements OnInit {
 
   saveTemplate() {
     if (this.template.rounds.length < 2) {
-      this.showRoundCountError();
+      this.showTemplateErrorMessage('FEW_ROUNDS_ERROR');
     } else if (this.isNewTemplate) {
       this.createTemplate();
     } else {
@@ -44,21 +47,23 @@ export class CurrentTemplateComponent implements OnInit {
   updateTemplate = function () {
     this.templateService.update(this.template.id, { name: this.template.name, rounds: this.template.rounds })
       .then(() => {
-        this.showTemplateSavedMessage();
+        this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
       });
   };
 
-  showTemplateSavedMessage() {
-    this.templateSaved = true;
-    setTimeout(() => {
-      this.templateSaved = false;
-    }, 2000);
+  showTemplateSavedMessage(message) {
+        const config = {showCloseButton: true, toastLife: 2000};
+        this.$translate(message)
+          .then((mess) => {
+            this.toastsManager.success(mess, '', config);
+          });
   }
 
-  showRoundCountError() {
-    this.roundCountError = true;
-    setTimeout(() => {
-      this.roundCountError = false;
-    }, 2000);
+  showTemplateErrorMessage(message) {
+    const config = {showCloseButton: true, toastLife: 2000};
+    this.$translate(message)
+      .then((mess) => {
+        this.toastsManager.error(mess, '', config);
+      });
   }
 }
