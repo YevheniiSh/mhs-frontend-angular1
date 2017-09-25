@@ -1,0 +1,9 @@
+.modal .close-button{
+  float:right;
+  display: block;
+}
+
+.modal #modal-title{
+  float:left;
+  display: block;
+}

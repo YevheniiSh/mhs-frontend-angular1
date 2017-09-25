@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <button class="btn close-button" ng-click="$ctrl.cancel()">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </button>
+  <h3 class="modal-title" id="modal-title">{{'TEAMS_MODAL_HEADER' | translate}}: {{$ctrl.date | date:'d MMM y'}}</h3>
+</div>
+<div class="modal-body" id="modal-body">
+  <span ng-if="$ctrl.items.length === 0">{{'TEAMS_MODAL_PLACEHOLDER' | translate}}</span>
+  <ol>
+    <li ng-repeat="item in $ctrl.items | orderBy:'teamName'">
+      {{ item.teamName }}
+    </li>
+  </ol>
+</div>
