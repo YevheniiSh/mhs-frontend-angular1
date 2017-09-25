@@ -93,10 +93,3 @@ input:checked + .slider:before {
 .team {
   margin-left: 5%;
 }
-
-.edit-state{
-  top: -68px;
-  right: 26px;
-  position: absolute;
-  width: 101.47px;
-}

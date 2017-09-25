@@ -14,15 +14,14 @@
   max-height: 15px;
 }
 
-.dragable-icon {
-    padding-top: 8px;
-}
 .round-name {
     max-width: 300px;
 }
+
 #btn-save{
     margin-top: 20px;
 }
+
 .count-quest {
     max-width: 140px;
 }
@@ -30,8 +29,4 @@
 #template-form{
     margin-top: 20px;
 }
-/*input[type=number]::-webkit-inner-spin-button,*/
-/*input[type=number]::-webkit-outer-spin-button {*/
-/*-webkit-appearance: none;*/
-/*margin: 0;*/
-/*}*/
+

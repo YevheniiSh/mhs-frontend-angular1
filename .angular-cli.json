@@ -39,6 +39,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "app/bower_components/components-font-awesome/css/font-awesome.min.css",
         "styles.css",
@@ -65,7 +66,8 @@
         "app/bower_components/angular-route/angular-route.js",
         "app/bower_components/angular-css/angular-css.js",
         "app/bower_components/angucomplete-alt/angucomplete-alt.js",
-        "app/bower_components/angular-socialshare/dist/angular-socialshare.js"
+        "app/bower_components/angular-socialshare/dist/angular-socialshare.js",
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
