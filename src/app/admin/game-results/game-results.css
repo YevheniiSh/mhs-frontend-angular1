@@ -1,6 +1,6 @@
-table thead th.th-cell {
-  font-size: 20px;
-}
+/*table thead th.th-cell {*/
+  /*font-size: 20px;*/
+/*}*/
 
 .td-cell.ng-binding {
   vertical-align: middle;
@@ -53,8 +53,18 @@ tbody tr.table-row:nth-child(odd) {
   color: saddlebrown;
 }
 @media screen and (min-width: 500px) {
-  .td-cell.ng-binding { font-size: 20px; }
-  table thead th.th-cell { font-size: 20px; }
+  .presentation-mode table .td-cell.ng-binding {
+    font-size: 15pt;
+    font-weight:bold;
+    margin: 0px;
+    padding: 2px 0px 0px 0px;
+  }
+  .presentation-mode table th.th-cell {
+    font-size: 15pt;
+    font-weight:bold;
+    margin: 0px;
+    padding: 2px 0px 0px 0px;
+  }
 }
 @media screen and (min-width: 0px) and (max-width: 499px) {
   td.round-result { display: none; }
