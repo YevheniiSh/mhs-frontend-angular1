@@ -5,3 +5,7 @@ current-game-list .no-games-label {
   padding-top: 1em;
   cursor: default;
 }
+
+current-game-list .game-row{
+  cursor: default;
+}

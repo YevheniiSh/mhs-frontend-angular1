@@ -30,10 +30,11 @@ ul.game-list {
   float: left;
 }
 
-.game-list-item {
+open-game-list .game-list-item {
   padding: 1% 2%;
   margin: 0px;
   border-bottom: 1px lightgrey solid;
+  cursor: default;
 }
 
 div.buttons-panel > .btn ~ .btn {

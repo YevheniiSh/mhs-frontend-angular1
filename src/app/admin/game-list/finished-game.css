@@ -35,10 +35,11 @@ ul.game-list > li:nth-child(even) { background: #f9f9f9; }
   float: left;
 }
 
-.game-list-item {
+finished-game-list .game-list-item {
   padding: 1% 2%;
   margin: 0px;
   border-bottom: 1px lightgrey solid;
+  cursor: pointer;
 }
 
 .winner-cell{
