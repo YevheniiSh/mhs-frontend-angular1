@@ -53,6 +53,7 @@
                            ng-blur="focusLeave = true"
                            ng-click="$event.stopPropagation()"
                            ng-model="team.name"
+                           ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
                            ng-disabled="!$ctrl.auth || $ctrl.editableTeam != team.$id||focusLeave"
                            esc-key="$ctrl.selectTeamForEdit()">
 

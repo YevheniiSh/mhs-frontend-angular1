@@ -1,0 +1,14 @@
+<div id="current-template" class="col-md-8 col-md-offset-1">
+  <form>
+    <span class="template-name-title">{{'TEMPLATE_NAME_LABEL' | translate}}</span>
+    <input [(ngModel)]="template.name" [ngModelOptions]="{standalone: true}" class="form-control"
+           maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
+           required>
+    <round-builder [(rounds)]="template.rounds"></round-builder>
+    <!--<app-round-builder [(rounds)]="template.rounds"></app-round-builder>-->
+    <button id="btn-save" class="btn btn-success btn-block"
+            (click)="saveTemplate()">
+      {{'SAVE_ROUNDS_BUTTON' | translate}}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,15 @@
+.modal .close-button-panel{
+  float:right;
+  display: block;
+  width: 15%;
+}
+
+.modal .close-button{
+  float:right;
+}
+
+.modal #modal-title{
+  float:left;
+  display: block;
+  width: 85%;
+}

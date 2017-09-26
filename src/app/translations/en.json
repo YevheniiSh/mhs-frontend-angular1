@@ -84,6 +84,7 @@
   "MINIMUM_3_CHARACTERS_ERROR": "Min 3 symbols",
   "MAXIMUM_40_CHARACTERS_ERROR": "Max 40 символов",
   "MINIMUM_10_CHARACTERS_ERROR": "Min 10 symbols",
+  "ROUND_NAME_EXIST_ERROR": "The round exist with same name",
   "WRONG_FORMAT_ERROR": "Wrong format",
   "WELL_DONE_MESSAGE": "Well done!",
   "SEND_REQUEST_MESSAGE": "Your request have been",
@@ -155,5 +156,10 @@
   "INVALID_EMAIL_MESSAGE": "Invalid e-mail or password",
   "INVALID_RULES_MESSAGE":"Your account is not verified. Contact with administrator!",
   "ANSWERS_COUNT_LABEL": "Answers number: ",
-  "ROUND_FINISH_BUTTON": "Finish round"
+  "CONFIRM_BETS_BUTTON": "Confirm bets",
+  "CHANGE_BETS_BUTTON": "Change bets",
+  "REVIEW_RESULTS_BUTTON": "Review results",
+  "ROUND_FINISH_BUTTON": "Finish round",
+  "CHANGES_SAVED": "Changes saved",
+  "CHANGES_DISCARDED": "Changes discarded"
 }

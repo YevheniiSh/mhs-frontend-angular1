@@ -41,9 +41,6 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-/*.container,html{*/
-/*height: 100%;*/
-/*}*/
 td.ng-binding{
     font-size: 20px;
     width: 200px;

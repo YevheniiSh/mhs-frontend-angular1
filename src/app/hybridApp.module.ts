@@ -1,8 +1,9 @@
-import { forwardRef, NgModule } from '@angular/core';
-import { UpgradeAdapter } from '@angular/upgrade';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {forwardRef, NgModule, ViewContainerRef} from '@angular/core';
+import {UpgradeAdapter} from '@angular/upgrade';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import * as angular from 'angular';
+import {FormsModule} from '@angular/forms';
 
 import { AppModule } from './app.module';
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
@@ -18,8 +19,15 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginService } from './services/login-service/login.service';
 import { firebaseConfig } from './services/firebase-service/firebase-config';
+import { GameTemplateComponent } from './admin/game-template/game-template.component';
+import { CurrentTemplateComponent } from './admin/game-template/current-template/current-template.component';
+import { RoundBuilderComponentUpgrade } from './admin/round-builder/round-builder.component.upgrade';
+import {ToastModule, ToastsManager} from 'ng2-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NotificationComponent} from './notification/notification.component';
+import {AuctionRoundTypeComponent} from './admin/round-type/auction-round-type/auction-round-type.component';
+import {OrderByPipe} from './pipe/order-by.pipe';
 import { RoundStatusComponent } from './admin/round-status/round-status.component';
-import { FormsModule } from "@angular/forms";
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -33,9 +41,18 @@ export function HttpLoaderFactory(http: HttpClient) {
     TeamListComponentUpgrade,
     NavbarComponent,
     LoginPanelComponentUpgrade,
+    NotificationComponent,
+    AuctionRoundTypeComponent,
+    OrderByPipe,
+    LoginPanelComponentUpgrade,
+    RoundBuilderComponentUpgrade,
+    GameTemplateComponent,
+    CurrentTemplateComponent,
+    LoginPanelComponentUpgrade,
     RoundStatusComponent
   ],
   imports: [
+    FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -43,7 +60,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CollapseModule.forRoot(),
     BrowserModule,
     HttpClientModule,
-    FormsModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -76,6 +94,13 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('userAuthService');
     upgradeAdapter.upgradeNg1Provider('$routeParams');
     upgradeAdapter.upgradeNg1Provider('$location');
+    upgradeAdapter.upgradeNg1Provider('gameTemplateServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('roundTypeService');
+    upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('$translate');
+
+    upgradeAdapter.upgradeNg1Provider('$routeParams');
+    upgradeAdapter.upgradeNg1Provider('$location');
     upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
     upgradeAdapter.upgradeNg1Provider('RoundStatusService');
     upgradeAdapter.upgradeNg1Provider('ResultServiceFactory');
@@ -85,11 +110,17 @@ export class HybridAppModule {
   private downgradeNewComponents() {
     this.mhsAdminModule.directive('appNavbar', upgradeAdapter.downgradeNg2Component(NavbarComponent));
     this.mhsAdminModule.directive('appRoundStatus', upgradeAdapter.downgradeNg2Component(RoundStatusComponent));
+    this.mhsAdminModule.directive('appGameTemplate', upgradeAdapter.downgradeNg2Component(GameTemplateComponent));
+    this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
+    this.mhsAdminModule.directive('notification', upgradeAdapter.downgradeNg2Component(NotificationComponent));
+    this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
   }
 
   private downgradeNewProviders() {
     this.mhsAdminModule.service('backup', upgradeAdapter.downgradeNg2Provider(BackupService));
     this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
+    this.mhsAdminModule.service('ToastsManager', upgradeAdapter.downgradeNg2Provider(ToastsManager));
+    this.mhsAdminModule.service('viewContainerRef', upgradeAdapter.downgradeNg2Provider(ViewContainerRef));
   }
 }
 

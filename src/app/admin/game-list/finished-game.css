@@ -1,11 +1,10 @@
 
-.no-games-label {
-    background: #fff;
-    font-size: 4em;
-    text-align: center;
-    color: #c7c7c7;
-    padding-top: 1em;
-    cursor: default;
+finished-game-list .no-games-label {
+  font-size: 3em;
+  text-align: center;
+  color: #c7c7c7;
+  padding-top: 1em;
+  cursor: default;
 }
 
 #select-season-container.row{
@@ -36,10 +35,11 @@ ul.game-list > li:nth-child(even) { background: #f9f9f9; }
   float: left;
 }
 
-.game-list-item {
+finished-game-list .game-list-item {
   padding: 1% 2%;
   margin: 0px;
   border-bottom: 1px lightgrey solid;
+  cursor: pointer;
 }
 
 .winner-cell{
