@@ -62,4 +62,11 @@ function roundBuilder(roundTypeService) {
     if (vm.rounds.length === 0)
       vm.rounds.push(createRound());
   }
+
+  vm.getMaxQuizCount = function (round) {
+    if(round.roundType.type === 'HINTS_ROUND'){
+      return Math.floor(Math.abs(round.roundType.start/round.roundType.step));
+    }
+    return 20;
+  }
 }
