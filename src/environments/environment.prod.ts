@@ -94,3 +94,22 @@ import '../../lib/services/round-type-service/round-type-service.service.js';
 export const environment = {
   production: true
 };
+
+(function () {
+  let method;
+  const noop = function () {
+  };
+  const methods = [
+    'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+    'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+    'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+    'timeStamp', 'trace', 'warn'
+  ];
+  let length = methods.length;
+  const console = (window.console || {});
+
+  while (length--) {
+    method = methods[length];
+    console[method] = noop;
+  }
+}());
