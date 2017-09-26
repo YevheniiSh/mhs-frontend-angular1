@@ -52,11 +52,11 @@ tbody tr.table-row:nth-child(odd) {
 .bronze {
   color: saddlebrown;
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 500px) {
   .td-cell.ng-binding { font-size: 20px; }
   table thead th.th-cell { font-size: 20px; }
 }
-@media screen and (min-width: 0px) and (max-width: 500px) {
+@media screen and (min-width: 0px) and (max-width: 499px) {
   td.round-result { display: none; }
   table th.round-result { display: none; }
   table thead th.th-cell { font-size: 16px; }

@@ -1,1 +1,0 @@
-angular.module('gameTemplate', ['gameTemplateService']);

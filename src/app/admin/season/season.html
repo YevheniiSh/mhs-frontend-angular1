@@ -15,10 +15,6 @@
     </div>
   </div>
 
-  <div class="season-open-games-alert" ng-if="$ctrl.showCloseSeasonError && $ctrl.hasOpenGames">
-    {{'SEASON_OPEN_GAMES_ALERT' | translate}}
-  </div>
-
   <div ng-if="$ctrl.showCloseSeasonAlert && !$ctrl.hasOpenGames"
        class="alert alert-danger season-close-alert" role="alert">
     <p>{{'CLOSE_SEASON_ALERT_QUESTION' | translate}}</p>

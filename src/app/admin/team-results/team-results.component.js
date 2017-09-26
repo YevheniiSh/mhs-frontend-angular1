@@ -12,9 +12,8 @@ angular.module('teamResults')
           '$rootScope',
           '$location',
           '$window',
-          'ToastsManager',
-          '$translate',
-            function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location, $window, ToastsManager, $translate) {
+          'NotificationService',
+            function (userAuthService, GameService, ResultService, RoundService, TeamService, $routeParams, $rootScope, $location, $window, NotificationService) {
                 let vm = this;
                 this.$onInit = onInit;
 
@@ -182,7 +181,7 @@ angular.module('teamResults')
                   ResultService.setGameWinner(this.state, vm.gameId);
                   ResultService.setTeamPosition(vm.gameId);
                 }
-                showSuccessNotification('CHANGES_SAVED');
+                NotificationService.showSuccess('CHANGES_SAVED');
               };
 
               vm.discardChanges = function () {
@@ -192,13 +191,6 @@ angular.module('teamResults')
                 if (vm.state === "finished")
                   vm.gameStatus = true;
               };
-
-              function showSuccessNotification(message) {
-                $translate(message)
-                  .then((message)=>{
-                    ToastsManager.success(message, '',{showCloseButton: true,toastLife: 2000});
-                  })
-              }
 
               vm.isEmptyEditedQuizzes = function () {
                 return (editedQuizzes.length !== 0)
