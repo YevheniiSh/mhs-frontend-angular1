@@ -64,7 +64,7 @@ function GameType(gameTemplateService, openGameService, $routeParams, $timeout, 
         vm.templateFormShow = false;
         showSuccessNotification('TEMPLATE_SAVED_MESSAGE');
       } else {
-        showErrorNotification('ROUND_NAME_EXIST_ERROR');
+        showErrorNotification('TEMPLATE_NAME_EXIST_ERROR');
       }
     });
 
