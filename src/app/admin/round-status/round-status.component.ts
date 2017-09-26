@@ -15,7 +15,8 @@ export class RoundStatusComponent implements OnInit {
   nextRounds = [];
   prevRounds = [];
   currentRound;
-  url
+  url;
+  date;
   startRoundTooltip = false;
   checked = false;
   disableFinished: boolean;
@@ -90,6 +91,7 @@ export class RoundStatusComponent implements OnInit {
       this.disableFinished = true;
       this.backupService.saveBackup().then((res) => {
         this.url = this.sanitizer.bypassSecurityTrustResourceUrl(res);
+        this.date = new Date();
         // this.$location.path('games/' + this.gameId + '/results');
       });
     } else {
