@@ -27,6 +27,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NotificationComponent} from "./notification/notification.component";
 import {AuctionRoundTypeComponent} from './admin/round-type/auction-round-type/auction-round-type.component';
 import {OrderByPipe} from './pipe/order-by.pipe';
+import { NotificationService } from './services/notification-service/notification.service';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -69,7 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppModule
   ],
   entryComponents: [],
-  providers: [BackupService, LoginService],
+  providers: [BackupService, LoginService, NotificationService],
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');
