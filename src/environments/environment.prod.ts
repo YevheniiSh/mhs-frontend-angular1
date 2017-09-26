@@ -79,7 +79,6 @@ import '../../lib/admin/game-list/finished-game.component.js';
 import '../../lib/admin/game-list/open-game-list.component.js';
 import '../../lib/admin/game-list/game-teams-modal.component.js';
 import '../../lib/admin/add-teams/print-teams/print-teams.component.js';
-import '../../lib/admin/game-template/game-template.module.js';
 import '../../lib/services/round-service/round-service.module.js';
 import '../../lib/services/round-service/round-service.service.js';
 import 'app/services/firebase-service/firebase-initializr.ts';
