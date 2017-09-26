@@ -12,7 +12,6 @@ export class CurrentTemplateComponent implements OnInit {
   templateSaved;
   name;
   @Input() template: Template;
-  @Input() templateId: string;
   @Input() isNewTemplate: boolean;
 
   constructor(@Inject('$routeParams') private $routeParams,
@@ -29,38 +28,45 @@ export class CurrentTemplateComponent implements OnInit {
     if (this.template.rounds.length < 2) {
       this.showTemplateErrorMessage('FEW_ROUNDS_ERROR');
     } else if (this.isNewTemplate) {
-      this.createTemplate();
+      this.createNewTemplate();
     } else {
       this.updateTemplate();
     }
   }
 
-  createTemplate() {
-    this.templateService.save(this.template.name, this.template.rounds).then((res) => {
-      this.templateId = res.$id;
-      this.template.id = res.$id;
-      this.isNewTemplate = false;
-      this.$location.path(`/templates/${ this.template.id }`);
+  createNewTemplate() {
+    this.templateService.createTemplate(this.template).then((res) => {
+      if (res) {
+        this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
+        this.$location.path(`/templates/${res.$id}`);
+      } else {
+        this.showTemplateErrorMessage('ROUND_NAME_EXIST_ERROR');
+      }
     });
   }
 
   updateTemplate = function () {
     this.templateService.update(this.template.id, { name: this.template.name, rounds: this.template.rounds })
-      .then(() => {
-        this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
+      .then((res) => {
+        if (res) {
+          this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
+
+        } else {
+          this.showTemplateErrorMessage('ROUND_NAME_EXIST_ERROR');
+        }
       });
   };
 
   showTemplateSavedMessage(message) {
-        const config = {showCloseButton: true, toastLife: 2000};
-        this.$translate(message)
-          .then((mess) => {
-            this.toastsManager.success(mess, '', config);
-          });
+    const config = { showCloseButton: true, toastLife: 2000 };
+    this.$translate(message)
+      .then((mess) => {
+        this.toastsManager.success(mess, '', config);
+      });
   }
 
   showTemplateErrorMessage(message) {
-    const config = {showCloseButton: true, toastLife: 2000};
+    const config = { showCloseButton: true, toastLife: 2000 };
     this.$translate(message)
       .then((mess) => {
         this.toastsManager.error(mess, '', config);
