@@ -84,3 +84,11 @@ a {
   td.td-cell { font-size: 16px; }
   #game-results{ font-size: 16px; }
 }
+@media screen and (min-width: 500px) {
+  table .td-cell.ng-binding {
+    font-size: 20px;
+  }
+  table th.th-cell {
+    font-size: 20px;
+  }
+}
