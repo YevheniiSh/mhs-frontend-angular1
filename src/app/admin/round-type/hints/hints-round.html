@@ -4,6 +4,7 @@
     <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
       <label ng-class="{'disabled': result.disabled}">
         <div class='switcher result-control'>
+          <label class='switcher-label switcher-on' for='{{$index+"on"}}'></label>
           <input id='{{$index+"on"}}'
                  class='switcher-radio-on'
                  type='radio'
@@ -13,6 +14,7 @@
                  ng-change="result.answer = '1';$ctrl.saveResult({result:result})"
                  ng-disabled="result.disabled">
 
+          <label class='switcher-label switcher-off' for='{{$index+"off"}}'></label>
           <input id='{{$index+"off"}}'
                  class='switcher-radio-off'
                  type='radio'
@@ -22,6 +24,7 @@
                  ng-change="result.answer = '0';$ctrl.saveResult({result:result})"
                  ng-disabled="result.disabled">
 
+          <label class='switcher-label switcher-neutral' for='{{$index+"def"}}'></label>
           <input id='{{$index+"def"}}'
                  class='switcher-radio-neutral'
                  type='radio'
