@@ -34,38 +34,34 @@ angular.module('gameTemplateService')
             }
 
           function createTemplate(template) {
-            return getAll().then((templates) => {
-              if (hasUniqueName(template, templates)) {
-                let fbObj = new $firebaseObject(gameTemplatesRef.push());
-                fbObj.$value = convertService.buildTemplateForFirebase(template);
-                fbObj.$save();
-                return fbObj.$loaded();
-              } else
-                return false
-            });
+            let fbObj = new $firebaseObject(gameTemplatesRef.push());
+            return saveTemplateWithUniqueName(template, fbObj);
             }
 
-            function update(templateId, template) {
-
+          function update(templateId, template) {
               return getTemplateName(templateId).then((name) => {
                 let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId));
-                fbObj.$value = convertService.buildTemplateForFirebase(template);
                 if (template.name === name) {
+                  fbObj.$value = convertService.buildTemplateForFirebase(template);
                   fbObj.$save();
                   return fbObj.$loaded();
                 }
                 else {
-                  return getAll().then((templates) => {
-                    if (hasUniqueName(template, templates)) {
-
-                      fbObj.$save();
-                      return fbObj.$loaded();
-                    } else
-                      return false
-                  });
+                  return saveTemplateWithUniqueName(template, templateId, fbObj);
                 }
               });
-            }
+          }
+
+          function saveTemplateWithUniqueName(template, fbObj) {
+            return getAll().then((templates) => {
+              if (hasUniqueName(template, templates)) {
+                fbObj.$value = convertService.buildTemplateForFirebase(template);
+                      fbObj.$save();
+                      return fbObj.$loaded();
+              } else
+                      return false
+            });
+          }
 
             function updateName(templateId, name) {
                 let fbObj = new $firebaseObject(gameTemplatesRef.child(`${templateId}/name`));
