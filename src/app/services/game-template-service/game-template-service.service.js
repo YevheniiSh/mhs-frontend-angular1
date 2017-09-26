@@ -47,7 +47,7 @@ angular.module('gameTemplateService')
                   return fbObj.$loaded();
                 }
                 else {
-                  return saveTemplateWithUniqueName(template, templateId, fbObj);
+                  return saveTemplateWithUniqueName(template, fbObj);
                 }
               });
           }
