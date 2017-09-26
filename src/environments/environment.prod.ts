@@ -8,6 +8,7 @@ import '../../lib/services/firebase-service/firebase-service.service.js';
 import '../../lib/services/user-auth-service/user-auth-service.module.js';
 import '../../lib/services/user-auth-service/user-auth-service.service.js';
 import '../../lib/services/game-template-service/game-template-service.module.js';
+import '../../lib/services/game-template-service/game-template-service.service.js';
 import '../../lib/player/team-games-list/team-games-list.module.js';
 import '../../lib/player/team-games-list/team-games-list.component.js';
 import '../../lib/services/team-service/team-service.module.js';
