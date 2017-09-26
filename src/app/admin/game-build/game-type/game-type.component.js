@@ -62,9 +62,9 @@ function GameType(gameTemplateService, openGameService, $routeParams, $timeout, 
     gameTemplateService.saveFromGame(vm.gameId, vm.templateName).then((res) => {
       if (res) {
         vm.templateFormShow = false;
-        showSuccessNotification('TEMPLATE_SAVED_MESSAGE');
+        NotificationService.showSuccess('TEMPLATE_SAVED_MESSAGE');
       } else {
-        showErrorNotification('TEMPLATE_NAME_EXIST_ERROR');
+        NotificationService.showError('TEMPLATE_NAME_EXIST_ERROR');
       }
     });
 

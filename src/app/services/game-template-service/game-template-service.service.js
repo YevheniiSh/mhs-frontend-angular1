@@ -35,8 +35,7 @@
     }
 
     function createTemplate(template) {
-      let fbObj = new $firebaseObject(gameTemplatesRef.push());
-      return saveTemplateWithUniqueName(template, fbObj);
+      return saveTemplateWithUniqueName(template, gameTemplatesRef.push());
     }
 
     function update(templateId, template) {
@@ -48,14 +47,15 @@
           return fbObj.$loaded();
         }
         else {
-          return saveTemplateWithUniqueName(template, fbObj);
+          return saveTemplateWithUniqueName(template, gameTemplatesRef.child(templateId));
         }
       });
     }
 
-    function saveTemplateWithUniqueName(template, fbObj) {
+    function saveTemplateWithUniqueName(template, ref) {
       return getAll().then((templates) => {
         if (hasUniqueName(template, templates)) {
+          let fbObj = new $firebaseObject(ref);
           fbObj.$value = convertService.buildTemplateForFirebase(template);
           fbObj.$save();
           return fbObj.$loaded();
