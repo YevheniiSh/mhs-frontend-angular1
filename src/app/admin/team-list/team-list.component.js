@@ -8,9 +8,9 @@
       }
     );
 
-  TeamList.$inject = ['userAuthService', 'TeamServiceFactory', '$location', 'ToastsManager', '$translate'];
+  TeamList.$inject = ['userAuthService', 'TeamServiceFactory', '$location', 'NotificationService'];
 
-  function TeamList(userService, TeamService, $location, ToastsManager, $translate) {
+  function TeamList(userService, TeamService, $location, notificationService) {
     let vm = this;
     vm.$onInit = onInit;
     vm.editableTeam = 'none';
@@ -38,27 +38,13 @@
               .changeTeamName(team.$id, team.name)
               .then((res) => {
                 vm.teams[vm.teams.indexOf(team)] = setTeamNumberOfGames(team);
-                showSuccessAlert('TEAM_NAME_CHANGED_ALERT');
+                notificationService.showSuccess('TEAM_NAME_CHANGED_ALERT');
               });
           } else {
-            showErrorAlert('TEAM_NAME_EXISTS_ALERT');
+            notificationService.showError('TEAM_NAME_EXISTS_ALERT');
           }
         });
     };
-
-    function showSuccessAlert(message) {
-      $translate(message)
-        .then((translatedMessage) => {
-          ToastsManager.success(translatedMessage, '', vm.toastConfig);
-        })
-    }
-
-    function showErrorAlert(message) {
-      $translate(message)
-        .then((translatedMessage) => {
-          ToastsManager.error(translatedMessage, '', vm.toastConfig);
-        })
-    }
 
     vm.showTeamGames = function (teamId) {
       $location.path(`/teams/${teamId}`);
