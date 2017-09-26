@@ -1,4 +1,5 @@
 'use strict';
+import {NotificationService} from "../../services/notification-service/notification.service";
 (function () {
   angular
     .module('season')
@@ -8,9 +9,9 @@
             controller: seasonsController
         });
 
-  seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService'];
+  seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService','NotificationService'];
 
-  function seasonsController($location, seasonService, $routeParams, $window, userAuthService) {
+  function seasonsController($location, seasonService, $routeParams, $window, userAuthService, notificationService) {
 
     let vm = this;
 
@@ -53,14 +54,12 @@
     }
 
     vm.showAlert = function () {
-      if (vm.hasOpenGames) vm.showCloseSeasonError = true;
+      if (vm.hasOpenGames) notificationService.showError('SEASON_OPEN_GAMES_ALERT');
       else vm.showCloseSeasonAlert = true;
     };
 
     vm.closeCurrentSeason = function () {
       seasonService.finishSeason(seasonId);
-      vm.showCloseSeasonAlert = false;
-      vm.isCurrentSeason = false;
     };
 
     vm.setSeasonUrl = function () {
