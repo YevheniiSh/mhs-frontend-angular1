@@ -37,8 +37,7 @@ angular.module('gameTemplateService')
             return getAll().then((templates) => {
               if (hasUniqueName(template, templates)) {
                 let fbObj = new $firebaseObject(gameTemplatesRef.push());
-                fbObj.$value = convertService.buildTemplateForFirebase({name: template.name, rounds: template.rounds});
-                ;
+                fbObj.$value = convertService.buildTemplateForFirebase(template);
                 fbObj.$save();
                 return fbObj.$loaded();
               } else
@@ -47,10 +46,25 @@ angular.module('gameTemplateService')
             }
 
             function update(templateId, template) {
+
+              return getTemplateName(templateId).then((name) => {
                 let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId));
                 fbObj.$value = convertService.buildTemplateForFirebase(template);
-                fbObj.$save();
-                return fbObj.$loaded();
+                if (template.name === name) {
+                  fbObj.$save();
+                  return fbObj.$loaded();
+                }
+                else {
+                  return getAll().then((templates) => {
+                    if (hasUniqueName(template, templates)) {
+
+                      fbObj.$save();
+                      return fbObj.$loaded();
+                    } else
+                      return false
+                  });
+                }
+              });
             }
 
             function updateName(templateId, name) {

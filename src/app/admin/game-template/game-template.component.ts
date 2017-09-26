@@ -49,15 +49,6 @@ export class GameTemplateComponent implements OnInit {
     this.template.rounds = [];
   }
 
-  //
-  // private createNewTemplate(template) {
-  //   this.templateService.save(template.name, template.rounds).then((res) => {
-  //     this.templateId = res.$id;
-  //     this.isNewTemplate = false;
-  //     this.$location.path(`/templates/${ this.templateId }`);
-  //   });
-  // }
-
   deleteTemplate(templateId) {
     this.templateService.remove(templateId);
     if (this.$routeParams.templateId === templateId) {

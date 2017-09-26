@@ -47,8 +47,13 @@ export class CurrentTemplateComponent implements OnInit {
 
   updateTemplate = function () {
     this.templateService.update(this.template.id, { name: this.template.name, rounds: this.template.rounds })
-      .then(() => {
-        this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
+      .then((res) => {
+        if (res) {
+          this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
+
+        } else {
+          this.showTemplateErrorMessage('ROUND_NAME_EXIST_ERROR');
+        }
       });
   };
 
