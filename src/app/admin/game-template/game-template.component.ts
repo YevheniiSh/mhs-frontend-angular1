@@ -8,9 +8,9 @@ import { Template } from './template';
 })
 export class GameTemplateComponent implements OnInit {
   private templateId: string;
-  private template: Template;
+  template: Template;
   templates: Template[];
-  private isNewTemplate: boolean;
+  isNewTemplate: boolean;
 
   constructor(@Inject('$routeParams') private $routeParams,
               @Inject('$location') private $location,
@@ -49,31 +49,14 @@ export class GameTemplateComponent implements OnInit {
     this.template.rounds = [];
   }
 
-  onCreateTemplate(template) {
-    if (this.hasUniqueName(template)) {
-      this.createNewTemplate(template);
-    } else {
-      console.log('can`t create template');
-    }
-  }
-
-  private createNewTemplate(template) {
-    this.templateService.save(template.name, template.rounds).then((res) => {
-      this.templateId = res.$id;
-      this.isNewTemplate = false;
-      this.$location.path(`/templates/${ this.templateId }`);
-    });
-  }
-
-  private hasUniqueName(template) {
-    let isTemplateNameUnique = true;
-    this.templates.forEach(t => {
-      if (t.name === template.name) {
-        isTemplateNameUnique = false;
-      }
-    });
-    return isTemplateNameUnique;
-  }
+  //
+  // private createNewTemplate(template) {
+  //   this.templateService.save(template.name, template.rounds).then((res) => {
+  //     this.templateId = res.$id;
+  //     this.isNewTemplate = false;
+  //     this.$location.path(`/templates/${ this.templateId }`);
+  //   });
+  // }
 
   deleteTemplate(templateId) {
     this.templateService.remove(templateId);

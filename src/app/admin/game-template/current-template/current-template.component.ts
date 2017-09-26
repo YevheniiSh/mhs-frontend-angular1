@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Template } from '../template';
 import { ToastsManager } from 'ng2-toastr';
 
@@ -12,9 +12,7 @@ export class CurrentTemplateComponent implements OnInit {
   templateSaved;
   name;
   @Input() template: Template;
-
   @Input() isNewTemplate: boolean;
-  @Output() save: EventEmitter<Template> = new EventEmitter();
 
   constructor(@Inject('$routeParams') private $routeParams,
               @Inject('$location') private $location,
@@ -37,7 +35,14 @@ export class CurrentTemplateComponent implements OnInit {
   }
 
   createNewTemplate() {
-    this.save.emit(this.template);
+    this.templateService.createTemplate(this.template).then((res) => {
+      if (res) {
+        this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
+        this.$location.path(`/templates/${res.$id}`);
+      } else {
+        this.showTemplateErrorMessage('ROUND_NAME_EXIST_ERROR');
+      }
+    });
   }
 
   updateTemplate = function () {
@@ -48,15 +53,15 @@ export class CurrentTemplateComponent implements OnInit {
   };
 
   showTemplateSavedMessage(message) {
-        const config = {showCloseButton: true, toastLife: 2000};
-        this.$translate(message)
-          .then((mess) => {
-            this.toastsManager.success(mess, '', config);
-          });
+    const config = { showCloseButton: true, toastLife: 2000 };
+    this.$translate(message)
+      .then((mess) => {
+        this.toastsManager.success(mess, '', config);
+      });
   }
 
   showTemplateErrorMessage(message) {
-    const config = {showCloseButton: true, toastLife: 2000};
+    const config = { showCloseButton: true, toastLife: 2000 };
     this.$translate(message)
       .then((mess) => {
         this.toastsManager.error(mess, '', config);

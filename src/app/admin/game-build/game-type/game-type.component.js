@@ -72,9 +72,15 @@ function GameType(gameTemplateService, openGameService, $routeParams, $timeout ,
   };
 
   vm.saveTemplate = function () {
-    gameTemplateService.saveFromGame(vm.gameId, vm.templateName);
-    vm.templateFormShow = false;
-    showSuccessNotification('TEMPLATE_SAVED_MESSAGE');
+    gameTemplateService.saveFromGame(vm.gameId, vm.templateName).then((res) => {
+      if (res) {
+        vm.templateFormShow = false;
+        showSuccessNotification('TEMPLATE_SAVED_MESSAGE');
+      } else {
+        showErrorNotification('ROUND_NAME_EXIST_ERROR');
+      }
+    });
+
 
   };
 
