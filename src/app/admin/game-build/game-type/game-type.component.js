@@ -6,9 +6,9 @@ angular.module('gameType')
     controller: GameType
   });
 
-GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$timeout','ToastsManager','$translate'];
+GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$timeout','NotificationService'];
 
-function GameType(gameTemplateService, openGameService, $routeParams, $timeout ,ToastsManager,$translate) {
+function GameType(gameTemplateService, openGameService, $routeParams, $timeout, NotificationService) {
   let vm = this;
 
   let templateRounds = [];
@@ -41,27 +41,14 @@ function GameType(gameTemplateService, openGameService, $routeParams, $timeout ,
     if (vm.configRounds.length >= 2) {
       openGameService.addRounds(vm.gameId, vm.configRounds);
       vm.templateFormShow = true;
-      showSuccessNotification('ROUND_SAVED_MESSAGE');
+      NotificationService.showSuccess('ROUND_SAVED_MESSAGE');
     }
     else {
-      showErrorNotification('FEW_ROUNDS_ERROR');
+      NotificationService.showError('FEW_ROUNDS_ERROR');
     }
 
   };
 
-  function showSuccessNotification(message) {
-    $translate(message)
-      .then((message)=>{
-        ToastsManager.success(message, '',{showCloseButton: true,toastLife: 2000});
-      })
-  }
-
-  function showErrorNotification(message) {
-    $translate(message)
-      .then((message)=>{
-        ToastsManager.error(message, '', {showCloseButton: true,toastLife: 2000});
-      })
-  }
 
   let convertRoundsObjectToArray = function (object) {
     let array = [];
@@ -111,18 +98,4 @@ function GameType(gameTemplateService, openGameService, $routeParams, $timeout ,
       vm.templateName = templateName;
     })
   };
-
-  function showRoundCountError() {
-    vm.roundCountError = true;
-    $timeout(() => {
-      vm.roundCountError = false;
-    }, 1500);
-  }
-
-  function showSubmittedMessage() {
-    vm.submitted = true;
-    $timeout(() => {
-      vm.submitted = false;
-    }, 1500);
-  }
 }
