@@ -43,7 +43,7 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
   function initPreviousQuizResults() {
     return ResultServiceFactory.filter({by: "round", val: $routeParams.roundNumber}, $routeParams.gameId)
       .then(results => {
-        res = {}
+        let res = {};
         results.forEach(result => {
           res[result.teamId] = {};
           res[result.teamId].quizNumber = result.quiz;
