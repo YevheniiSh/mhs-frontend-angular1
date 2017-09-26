@@ -1,7 +1,5 @@
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Component, Input, ViewContainerRef } from '@angular/core';
-
-//Todo change selector
+import { Component, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'notification-panel',
