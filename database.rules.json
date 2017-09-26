@@ -1,5 +1,6 @@
 {
   "rules": {
+    ".read": "auth != null && root.child('users/'+auth.uid).val() === true",
     "games": {
       "open": {
         ".read": "true",

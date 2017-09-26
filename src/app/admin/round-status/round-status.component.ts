@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { BackupService } from '../../services/backup/backup.service';
+import { DomSanitizer } from "@angular/platform-browser";
 
 
 @Component({
@@ -14,6 +15,7 @@ export class RoundStatusComponent implements OnInit {
   nextRounds = [];
   prevRounds = [];
   currentRound;
+  url
   startRoundTooltip = false;
   checked = false;
   disableFinished: boolean;
@@ -25,7 +27,8 @@ export class RoundStatusComponent implements OnInit {
               @Inject('RoundStatusService') private RoundStatusService,
               @Inject('ResultServiceFactory') private ResultService,
               @Inject('seasonService') private seasonService,
-              private backupService: BackupService) {
+              private backupService: BackupService,
+              private sanitizer: DomSanitizer) {
     this.gameId = $routeParams.gameId;
 
     GameService
@@ -44,6 +47,7 @@ export class RoundStatusComponent implements OnInit {
       }, (err) => {
         console.error(err);
       });
+    this.createBackup();
   }
 
   private addRound(round, currentRound) {
@@ -82,14 +86,14 @@ export class RoundStatusComponent implements OnInit {
   }
 
   createBackup(): void {
-    if (this.isCreateBackupChecked) {
+    if (!this.isCreateBackupChecked) {
       this.disableFinished = true;
       this.backupService.saveBackup().then((res) => {
-        console.log(res);
-        this.$location.path('games/' + this.gameId + '/results');
+        this.url = this.sanitizer.bypassSecurityTrustResourceUrl(res);
+        // this.$location.path('games/' + this.gameId + '/results');
       });
     } else {
-      this.$location.path('games/' + this.gameId + '/results');
+      // this.$location.path('games/' + this.gameId + '/results');
     }
   }
 }
