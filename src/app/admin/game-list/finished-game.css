@@ -1,11 +1,10 @@
 
-.no-games-label {
-    background: #fff;
-    font-size: 4em;
-    text-align: center;
-    color: #c7c7c7;
-    padding-top: 1em;
-    cursor: default;
+finished-game-list .no-games-label {
+  font-size: 3em;
+  text-align: center;
+  color: #c7c7c7;
+  padding-top: 1em;
+  cursor: default;
 }
 
 #select-season-container.row{
