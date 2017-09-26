@@ -8,14 +8,14 @@
       }
     );
 
-  TeamList.$inject = ['userAuthService', 'TeamServiceFactory', '$timeout', '$location'];
+  TeamList.$inject = ['userAuthService', 'TeamServiceFactory', '$location', 'ToastsManager', '$translate'];
 
-  function TeamList(userService, TeamService, $timeout, $location) {
+  function TeamList(userService, TeamService, $location, ToastsManager, $translate) {
     let vm = this;
     vm.$onInit = onInit;
-    vm.showSuccessAlert = false;
-    vm.showErrorAlert = false;
     vm.editableTeam = 'none';
+    vm.toastConfig = {showCloseButton: true, toastLife: 2000};
+
 
     function onInit() {
       TeamService.getAllTeams()
@@ -27,13 +27,8 @@
         });
     }
 
-    function showSuccessAlert() {
-      $timeout(() => {
-        vm.showSuccessAlert = false;
-      }, 2000);
-    }
-
     vm.changeTeamName = function (team) {
+
 
       TeamService
         .checkTeamNameCoincidence(team.name)
@@ -42,21 +37,28 @@
             TeamService
               .changeTeamName(team.$id, team.name)
               .then((res) => {
-                vm.teams[vm.teams.indexOf(team)] = setTeamNumberOfGames(team)
-                vm.showSuccessAlert = true;
-                vm.showErrorAlert = false;
-                showSuccessAlert();
+                vm.teams[vm.teams.indexOf(team)] = setTeamNumberOfGames(team);
+                showSuccessAlert('TEAM_NAME_CHANGED_ALERT');
               });
           } else {
-            vm.showErrorAlert = true;
+            showErrorAlert('TEAM_NAME_EXISTS_ALERT');
           }
         });
     };
 
-    vm.hideAlert = function () {
-      vm.showSuccessAlert = false;
-      vm.showErrorAlert = false;
-    };
+    function showSuccessAlert(message) {
+      $translate(message)
+        .then((translatedMessage) => {
+          ToastsManager.success(translatedMessage, '', vm.toastConfig);
+        })
+    }
+
+    function showErrorAlert(message) {
+      $translate(message)
+        .then((translatedMessage) => {
+          ToastsManager.error(translatedMessage, '', vm.toastConfig);
+        })
+    }
 
     vm.showTeamGames = function (teamId) {
       $location.path(`/teams/${teamId}`);
@@ -95,7 +97,6 @@
 
     vm.setPensile = function (teamId) {
       vm.pensilId = teamId
-
     }
 
   }
