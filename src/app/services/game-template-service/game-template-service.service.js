@@ -30,20 +30,41 @@ angular.module('gameTemplateService')
                 let fbObj = new $firebaseObject(gameTemplatesRef.push());
                 fbObj.$value = convertService.buildTemplateForFirebase({name: name, rounds: rounds});
                 fbObj.$save();
-                return fbObj.$loaded();
+
             }
 
-            function createTemplate() {
+          function createTemplate(template) {
+            return getAll().then((templates) => {
+              if (hasUniqueName(template, templates)) {
                 let fbObj = new $firebaseObject(gameTemplatesRef.push());
-                fbObj.$save();
-                return fbObj.$loaded();
-            }
-
-            function update(templateId, template) {
-                let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId));
                 fbObj.$value = convertService.buildTemplateForFirebase(template);
                 fbObj.$save();
                 return fbObj.$loaded();
+              } else
+                return false
+            });
+            }
+
+            function update(templateId, template) {
+
+              return getTemplateName(templateId).then((name) => {
+                let fbObj = new $firebaseObject(gameTemplatesRef.child(templateId));
+                fbObj.$value = convertService.buildTemplateForFirebase(template);
+                if (template.name === name) {
+                  fbObj.$save();
+                  return fbObj.$loaded();
+                }
+                else {
+                  return getAll().then((templates) => {
+                    if (hasUniqueName(template, templates)) {
+
+                      fbObj.$save();
+                      return fbObj.$loaded();
+                    } else
+                      return false
+                  });
+                }
+              });
             }
 
             function updateName(templateId, name) {
@@ -77,9 +98,9 @@ angular.module('gameTemplateService')
             }
 
             function saveFromGame(gameId, name){
-                openGameService.getRounds(gameId)
+              return openGameService.getRounds(gameId)
                     .then((res) => {
-                        save(name, res);
+                      return createTemplate({name: name, rounds: res});
                     })
             }
 
@@ -98,6 +119,16 @@ angular.module('gameTemplateService')
                     return err;
                 });
             }
+
+          function hasUniqueName(template, templates) {
+            let isTemplateNameUnique = true;
+            templates.forEach(t => {
+              if (t.name === template.name) {
+                isTemplateNameUnique = false;
+              }
+            });
+            return isTemplateNameUnique;
+          }
 
 
         }]

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="row">
   <H1 id="game-templates">{{'GAME_TEMPLATES'|translate}}</H1>
   <ul class="template-list col-md-3">
     <li (click)="showTemplate(template.$id)"
@@ -19,7 +19,7 @@
     </li>
   </ul>
 
-  <app-current-template *ngIf="template || isNewTemplate" [(template)]="template" [(isNewTemplate)]="isNewTemplate"
-                        [(templateId)]="templateId"></app-current-template>
+  <app-current-template *ngIf="template || isNewTemplate" [(template)]="template"
+                        [(isNewTemplate)]="isNewTemplate"></app-current-template>
 
 </div>

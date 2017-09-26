@@ -8,7 +8,7 @@
 <div class="modal-body" id="modal-body">
   <span ng-if="$ctrl.items.length === 0">{{'TEAMS_MODAL_PLACEHOLDER' | translate}}</span>
   <ol>
-    <li ng-repeat="item in $ctrl.items | orderBy:'teamName'">
+    <li ng-repeat="item in $ctrl.items | filter:{status:'!archived'} | orderBy:'teamName'">
       {{ item.teamName }}
     </li>
   </ol>

@@ -85,6 +85,7 @@
   "MAXIMUM_40_CHARACTERS_ERROR": "Максимум 40 символов",
   "MINIMUM_10_CHARACTERS_ERROR": "Минимум 10 символов",
   "WRONG_FORMAT_ERROR":"Неверный формат",
+  "ROUND_NAME_EXIST_ERROR": "Раунд з таким именем существует",
   "WELL_DONE_MESSAGE":"Отлично!",
   "SEND_REQUEST_MESSAGE": "Ваша заявка отправлена!",
   "NAVBAR_LANGUAGES": "Выбрать язык",
