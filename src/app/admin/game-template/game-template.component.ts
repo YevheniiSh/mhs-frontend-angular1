@@ -7,10 +7,10 @@ import { Template } from './template';
   styleUrls: ['./game-template.component.css']
 })
 export class GameTemplateComponent implements OnInit {
-  templateId: string;
+  private templateId: string;
   template: Template;
-  templates;
-  isNewTemplate;
+  templates: Template[];
+  isNewTemplate: boolean;
 
   constructor(@Inject('$routeParams') private $routeParams,
               @Inject('$location') private $location,
@@ -34,7 +34,7 @@ export class GameTemplateComponent implements OnInit {
   }
 
   getTemplate() {
-    this.template = new Template;
+    this.template = new Template();
     this.templateService.getById(this.templateId).then(template => {
       this.template.name = template.name;
       this.template.rounds = template.rounds.slice(1, template.rounds.length); // first round is undefined!
@@ -43,7 +43,9 @@ export class GameTemplateComponent implements OnInit {
   }
 
   newTemplate() {
+    this.templateId = '';
     this.isNewTemplate = true;
+    this.template = new Template();
     this.template.rounds = [];
   }
 

@@ -1,11 +1,11 @@
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Component, Input, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 
 @Component({
-  selector: 'notification',
-  templateUrl: 'notification.component.html'
+  selector: 'notification-panel',
+  templateUrl: 'notification-panel.component.html'
 })
-export class NotificationComponent {
+export class NotificationPanelComponent {
 
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
