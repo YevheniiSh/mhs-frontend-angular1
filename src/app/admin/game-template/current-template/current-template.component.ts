@@ -40,7 +40,7 @@ export class CurrentTemplateComponent implements OnInit {
         this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
         this.$location.path(`/templates/${res.$id}`);
       } else {
-        this.showTemplateErrorMessage('ROUND_NAME_EXIST_ERROR');
+        this.showTemplateErrorMessage('TEMPLATE_NAME_EXIST_ERROR');
       }
     });
   }
@@ -52,7 +52,7 @@ export class CurrentTemplateComponent implements OnInit {
           this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
 
         } else {
-          this.showTemplateErrorMessage('ROUND_NAME_EXIST_ERROR');
+          this.showTemplateErrorMessage('TEMPLATE_NAME_EXIST_ERROR');
         }
       });
   };

@@ -84,7 +84,7 @@
   "MINIMUM_3_CHARACTERS_ERROR": "Min 3 symbols",
   "MAXIMUM_40_CHARACTERS_ERROR": "Max 40 символов",
   "MINIMUM_10_CHARACTERS_ERROR": "Min 10 symbols",
-  "ROUND_NAME_EXIST_ERROR": "The round exist with same name",
+  "TEMPLATE_NAME_EXIST_ERROR": "The template exist with same name",
   "WRONG_FORMAT_ERROR": "Wrong format",
   "WELL_DONE_MESSAGE": "Well done!",
   "SEND_REQUEST_MESSAGE": "Your request have been",
