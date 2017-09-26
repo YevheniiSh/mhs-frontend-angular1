@@ -1,9 +1,9 @@
+<div id="weight-label">{{"NUMBER_OF_POINTS"|translate}}: {{$ctrl.weight}}</div>
 <div class="form-group row">
   <ul id="team-list">
     <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
       <label ng-class="{'disabled': result.disabled}">
         <div class='switcher result-control'>
-          <label class='switcher-label switcher-on' for='{{$index+"on"}}'>on</label>
           <input id='{{$index+"on"}}'
                  class='switcher-radio-on'
                  type='radio'
@@ -13,7 +13,6 @@
                  ng-change="result.answer = '1';$ctrl.saveResult({result:result})"
                  ng-disabled="result.disabled">
 
-          <label class='switcher-label switcher-off' for='{{$index+"off"}}'>off</label>
           <input id='{{$index+"off"}}'
                  class='switcher-radio-off'
                  type='radio'
@@ -23,7 +22,6 @@
                  ng-change="result.answer = '0';$ctrl.saveResult({result:result})"
                  ng-disabled="result.disabled">
 
-          <label class='switcher-label switcher-neutral' for='{{$index+"def"}}'>neutral</label>
           <input id='{{$index+"def"}}'
                  class='switcher-radio-neutral'
                  type='radio'
