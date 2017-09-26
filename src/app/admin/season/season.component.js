@@ -1,15 +1,14 @@
 'use strict';
-import {NotificationService} from "../../services/notification-service/notification.service";
 (function () {
   angular
     .module('season')
     .component('season', {
       templateUrl: 'app/admin/season/season.html',
       css: 'app/admin/season/season.css',
-            controller: seasonsController
-        });
+      controller: seasonsController
+    });
 
-  seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService','NotificationService'];
+  seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService', 'NotificationService'];
 
   function seasonsController($location, seasonService, $routeParams, $window, userAuthService, notificationService) {
 
@@ -75,7 +74,7 @@ import {NotificationService} from "../../services/notification-service/notificat
     };
 
     function setSelectedSeason() {
-      for (let season  in vm.seasons) {
+      for (let season in vm.seasons) {
         if (vm.seasons[season].id === seasonId)
           vm.selectedSeason = vm.seasons[season];
       }
