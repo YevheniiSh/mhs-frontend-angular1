@@ -1,0 +1,38 @@
+ <table class="table table-sm table-striped table-hover">
+    <thead>
+    <tr>
+      <th class="th-cell position-title">#</th>
+      <th class="th-cell teams-title">{{'TEAMS_TABLE_HEADER' | translate}}</th>
+      <th class="th-cell round-result" ng-repeat="round in $ctrl.results[0].rounds">{{round.roundNumber}}</th>
+      <th class="th-cell total-title">{{'TOTAL_TABLE_HEADER' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-row" ng-repeat="teamResult in $ctrl.results"
+        ng-click="$ctrl.getDetails(teamResult)">
+      <td class="td-cell position-data">
+        {{teamResult.positionTeam}}
+        <i ng-if="teamResult.positionTeam <= 3"
+           ng-class="{
+                            'gold':teamResult.positionTeam==1,
+                            'silver':teamResult.positionTeam==2,
+                            'bronze':teamResult.positionTeam==3
+                       }"
+           class="fa fa-trophy"
+           aria-hidden="true">
+        </i>
+
+      </td>
+      <td ng-if="!$ctrl.isPresentationMode" class="td-cell team-name">
+        <a ng-click="$ctrl.getDetails(teamResult)">
+          {{teamResult.teamName}}
+        </a>
+      </td>
+      <td ng-if="$ctrl.isPresentationMode" class="td-cell team-name">
+        {{teamResult.teamName}}
+      </td>
+      <td class="td-cell round-result round-score" ng-repeat="round in teamResult.rounds">{{$ctrl.parseScoreView(round.score)}}</td>
+      <td class="td-cell total-score">{{$ctrl.parseScoreView(teamResult.total)}}</td>
+    </tr>
+    </tbody>
+  </table>

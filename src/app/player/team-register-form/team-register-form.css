@@ -1,0 +1,173 @@
+#captain-phone {
+    border-right: solid 1px silver;
+    border-radius: 5px;
+}
+
+#team-size {
+    margin-bottom: 20px;
+    width: 75px;
+}
+
+.form-control.ng-invalid.ng-not-empty {
+    border-color: #ff9b9b;
+    box-shadow: 0 0 20px 0 #ff9b9b;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.request-team-form {
+    margin: auto;
+}
+
+.autocomplete-panel {
+  margin-top: 10px;
+    float: right;
+    width: 45%;
+    display: inline-block;
+}
+
+.animate-come-gone.ng-hide-add {
+    transform: rotateZ(0);
+    transform-origin: right;
+  transition: all 0.2s ease-in-out;
+}
+
+.animate-come-gone.ng-hide-add.ng-hide-add-active {
+    transform: rotateY(-90deg);
+    transform-origin: right;
+  transition: all 0.2s ease;
+}
+
+.animate-come-gone.ng-hide-remove {
+    transform: rotateY(90deg);
+    transform-origin: right;
+  transition: all 0.8s linear;
+}
+
+.animate-come-gone.ng-hide-remove.ng-hide-remove-active {
+    transform: rotateY(0);
+}
+
+span.err {
+    color: #f00;
+    float: right;
+}
+
+label {
+    margin: 0;
+}
+
+.request-description {
+    padding-top: 10px;
+    padding-bottom: 1px;
+}
+
+#team-name_dropdown {
+    width: 100%;
+    top: 40px;
+}
+
+.incorrect-last-3-digits-alert {
+    position: fixed;
+    right: 6.4%;
+    top: 34%;
+    width: 200px;
+    height: 90px;
+    display: block;
+    z-index: 99999999;
+}
+
+.autocomplete-by-phone-panel {
+    float: left;
+    width: 25%;
+    margin-top: 155px;
+    margin-left: 10px;
+}
+
+.phone-verify-request-alert {
+    padding-bottom: 25px;
+}
+
+.cancel-changes-button {
+    padding-top: 10px;
+}
+
+.captain-name-panel {
+    display: inline-block;
+    width: 45%;
+}
+
+.captain-phone-panel {
+    display: inline-block;
+    float: left;
+    width: 45%;
+}
+
+.autocomplete-captain-name-panel {
+    width: 100%;
+  transition: all cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.7s;
+}
+
+.autocomplete-captain-phone-panel {
+    display: inline-block;
+    float: left;
+    width: 100%;
+  transition: all cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.7s;
+}
+
+.verify-phone-placeholder {
+    float: left;
+    padding-top: 47px;
+    width: 20%;
+    text-align: right;
+}
+
+.phone-panel {
+    width: 100%;
+}
+
+.btn-cancel-autocomplete {
+    margin-top: 11px;
+}
+
+.btn-autocomplete {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.vertical-line {
+  margin-top: 20px;
+    display: inline-block;
+    margin-left: 5%;
+    border-left: 1px solid silver;
+  height: 120px;
+}
+
+.animate-show-hide.ng-hide {
+    opacity: 0;
+}
+
+.animate-show-hide.ng-hide-add {
+    transition: all linear 0.1s;
+}
+
+.animate-show-hide.ng-hide-remove {
+    transition: all linear 0.7s;
+}
+
+.team-register-panel {
+    max-width: 650px;
+    margin: auto;
+}
+
+.captain-info {
+    float: left;
+    width: 100%;
+}
+
+.last-digits-panel {
+    width: 100%;
+}

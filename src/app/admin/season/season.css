@@ -1,0 +1,79 @@
+season .season-alert {
+  font-size: 3em;
+  text-align: center;
+  color: #c7c7c7;
+  padding-top: 100px;
+  cursor: default;
+}
+
+season .season-close-alert {
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 60px;
+}
+
+season .season-open-games-alert {
+  color: red;
+  position: absolute;
+  right: 130px;
+  line-height: 250%;
+}
+
+season .games-label {
+  float: right;
+}
+
+season #back-btn {
+  width: 33.3%;
+  display: inline-block;
+  float: left;
+}
+
+season #season-name {
+  width: 33.4%;
+  text-align: center;
+  font-size: 28px;
+  display: inline-block;
+  float: left;
+}
+
+season #close-season-panel {
+  width: 33.3%;
+  display: inline-block;
+  float: right;
+}
+
+season #close-season-btn {
+  float: right;
+}
+
+season .table-header {
+  font-size: 24px;
+  color: #777;
+  font-weight: bold;
+}
+
+season .total-label {
+  width: 10%;
+  text-align: center;
+}
+
+season .team-position {
+  width: 3%;
+}
+
+season .game-result {
+  width: 8%;
+}
+
+season .missed-game{
+  color:red;
+}
+
+@media screen and (max-width: 500px) {
+  season .game-result, season .games-label {
+    display: none;
+  }
+}
+

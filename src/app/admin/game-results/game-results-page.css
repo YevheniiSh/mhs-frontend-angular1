@@ -1,0 +1,86 @@
+#fb-share-button {
+  float: right;
+  background: #3b5998;
+  border-radius: 3px;
+  font-weight: 600;
+  padding: 5px 8px;
+  height: 33px;
+  display: inline-block;
+  position: static;
+}
+
+.fa-facebook {
+  color: white;
+}
+
+.photos-link {
+  line-height: 280%;
+  float: right;
+  margin-right: 28px;
+}
+
+.photos-link-editor {
+  line-height: 280%;
+  float: right;
+  margin-right: 8px;
+}
+
+#fb-share-button:hover {
+  cursor: pointer;
+  background: #213A6F
+}
+
+#fb-share-button span {
+  vertical-align: middle;
+  color: white;
+  font-size: 14px;
+  padding: 0 3px
+}
+
+td.td-cell {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+td.round-score, td.total-score, th.total-title {
+  text-align: right;
+}
+
+
+h1#game-results {
+  padding-bottom: 1%;
+  border-bottom: solid 1px;
+  text-align: center;
+}
+
+.link-icon {
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 18px;
+}
+
+.photosUrlContainer {
+  display: inline-block;
+}
+
+.photos-url-editor {
+  display: inline-block;
+  width: auto;
+}
+
+.no-photos-link {
+  cursor: default;
+  color: #515151;
+  font-style: italic;
+}
+
+a {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 0px) and (max-width: 500px) {
+  td.td-cell { font-size: 16px; }
+  #game-results{ font-size: 16px; }
+}

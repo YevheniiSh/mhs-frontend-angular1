@@ -1,0 +1,71 @@
+.add-round{
+    margin-bottom: 2%;
+}
+
+.table .td-round-number {
+    vertical-align: middle;
+}
+
+.count-quest {
+  margin-top: 5px;
+}
+
+.round-input {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.round-row {
+  margin: 0px;
+}
+
+.btn-drop-round {
+  margin-top: 25px;
+}
+
+.round-form {
+  margin-bottom: 0px;
+}
+
+.round-item {
+  border: 1px solid lightgrey;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  padding: 5px;
+  padding-right: 25px;
+  padding-left: 10px;
+}
+
+.round-list {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.select-label {
+  color: #428bca;
+  cursor: pointer;
+}
+
+ul[dnd-list] .dndDraggingSource {
+  display: none;
+}
+
+ul[dnd-list] .dndPlaceholder {
+  background-color: #ddd;
+  display: block;
+  height: 71px;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.dnd-icon {
+  cursor: pointer;
+  margin-top: 2%;
+}
+
+.icon-bar {
+  padding-left: 45%;
+}

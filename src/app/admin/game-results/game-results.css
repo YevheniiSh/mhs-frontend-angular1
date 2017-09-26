@@ -1,0 +1,64 @@
+table thead th.th-cell {
+  font-size: 20px;
+}
+
+.td-cell.ng-binding {
+  vertical-align: middle;
+}
+
+.total-title, .total-score {
+  text-align: right;
+  font-weight: bold;
+  position: relative;
+}
+
+td.position-data{
+  white-space:nowrap;
+}
+
+table th.round-result, td.round-score {
+  text-align: right;
+}
+
+.teams-title, .team-name {
+  width: 15%;
+}
+.round-score {
+  width: 8%;
+}
+
+.total-title, .total-score {
+  width: 12%;
+}
+
+tbody tr.table-row:nth-child(odd) {
+  background: rgba(68, 52, 52, 0.1);
+}
+
+.position-data, .position-title {
+  position: relative;
+  width: 2%;
+  word-break: keep-all;
+}
+
+.gold {
+  color: gold;
+}
+
+.silver {
+  color: silver;
+}
+
+.bronze {
+  color: saddlebrown;
+}
+@media screen and (min-width: 500px) {
+  .td-cell.ng-binding { font-size: 20px; }
+  table thead th.th-cell { font-size: 20px; }
+}
+@media screen and (min-width: 0px) and (max-width: 499px) {
+  td.round-result { display: none; }
+  table th.round-result { display: none; }
+  table thead th.th-cell { font-size: 16px; }
+  .td-cell.ng-binding { font-size: 16px; }
+}

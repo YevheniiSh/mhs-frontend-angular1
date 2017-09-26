@@ -1,0 +1,38 @@
+#captain-result-admin {
+  margin: 5px;
+}
+
+#captain-result-admin input[type=radio] {
+  display: none;
+}
+
+#captain-result-admin div {
+  float: left;
+}
+
+#captain-result-admin div label {
+  border-radius: 0;
+  font-weight: bold;
+  width: 50px;
+}
+
+#captain-result-admin div:first-of-type label {
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+#captain-result-admin div:last-of-type label {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+#captain-result-user .btn[disabled] {
+  cursor: default;
+  opacity: 1;
+}
+
+.captain-edited {
+  float: left;
+  box-shadow: 0px 0px 4px 3px #ffbc35;;
+  border-radius: 50px;
+}

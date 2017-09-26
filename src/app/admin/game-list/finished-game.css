@@ -1,0 +1,87 @@
+
+finished-game-list .no-games-label {
+  font-size: 3em;
+  text-align: center;
+  color: #c7c7c7;
+  padding-top: 1em;
+  cursor: default;
+}
+
+#select-season-container.row{
+  margin:0px;
+}
+
+#select-season {
+  margin-top: 10px;
+  float: right;
+  width: 25%
+}
+
+
+.header{
+  font-weight: bold;
+
+}
+
+ul.game-list {
+  list-style: none;
+  padding: 0px;
+}
+
+ul.game-list > li:nth-child(even) { background: #f9f9f9; }
+
+.game-list-item > div {
+  display: inline-block;
+  float: left;
+}
+
+finished-game-list .game-list-item {
+  padding: 1% 2%;
+  margin: 0px;
+  border-bottom: 1px lightgrey solid;
+  cursor: pointer;
+}
+
+.winner-cell{
+  width: 30%;
+}
+
+.game-date-cell{
+  width: 25%
+}
+
+.team-count-cell{
+  text-align: center;
+  padding-right: 3%;
+  width: 30%;
+}
+
+.season-cell{
+  width: 15%;
+}
+
+@media screen and (max-width: 720px){
+  .winner-cell{
+    width: 37%;
+  }
+
+  .game-date-cell{
+    width: 17%
+  }
+
+  .team-count-cell{
+    width: 20%;
+  }
+
+  .season-cell{
+    width: 25%;
+  }
+
+  #select-season {
+    margin-right: 2%;
+    width: 96%;
+    margin-bottom: 10px;
+  }
+}
+
+
