@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Template } from '../template';
-import { ToastsManager } from 'ng2-toastr';
+import { NotificationService } from '../../../services/notification-service/notification.service';
 
 @Component({
   selector: 'app-current-template',
@@ -17,8 +17,7 @@ export class CurrentTemplateComponent implements OnInit {
   constructor(@Inject('$routeParams') private $routeParams,
               @Inject('$location') private $location,
               @Inject('gameTemplateServiceFactory') private templateService,
-              @Inject('$translate') private $translate,
-              private toastsManager: ToastsManager) {
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -26,7 +25,7 @@ export class CurrentTemplateComponent implements OnInit {
 
   saveTemplate() {
     if (this.template.rounds.length < 2) {
-      this.showTemplateErrorMessage('FEW_ROUNDS_ERROR');
+      this.notificationService.showError('FEW_ROUNDS_ERROR');
     } else if (this.isNewTemplate) {
       this.createNewTemplate();
     } else {
@@ -37,10 +36,10 @@ export class CurrentTemplateComponent implements OnInit {
   createNewTemplate() {
     this.templateService.createTemplate(this.template).then((res) => {
       if (res) {
-        this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
+        this.notificationService.showSuccess('TEMPLATE_SAVED_MESSAGE');
         this.$location.path(`/templates/${res.$id}`);
       } else {
-        this.showTemplateErrorMessage('TEMPLATE_NAME_EXIST_ERROR');
+        this.notificationService.showError('TEMPLATE_NAME_EXIST_ERROR');
       }
     });
   }
@@ -49,27 +48,11 @@ export class CurrentTemplateComponent implements OnInit {
     this.templateService.update(this.template.id, { name: this.template.name, rounds: this.template.rounds })
       .then((res) => {
         if (res) {
-          this.showTemplateSavedMessage('TEMPLATE_SAVED_MESSAGE');
+          this.notificationService.showSuccess('TEMPLATE_SAVED_MESSAGE');
 
         } else {
-          this.showTemplateErrorMessage('TEMPLATE_NAME_EXIST_ERROR');
+          this.notificationService.showError('TEMPLATE_NAME_EXIST_ERROR');
         }
       });
   };
-
-  showTemplateSavedMessage(message) {
-    const config = { showCloseButton: true, toastLife: 2000 };
-    this.$translate(message)
-      .then((mess) => {
-        this.toastsManager.success(mess, '', config);
-      });
-  }
-
-  showTemplateErrorMessage(message) {
-    const config = { showCloseButton: true, toastLife: 2000 };
-    this.$translate(message)
-      .then((mess) => {
-        this.toastsManager.error(mess, '', config);
-      });
-  }
 }

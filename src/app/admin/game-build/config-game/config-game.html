@@ -1,68 +1,57 @@
 <div class="row">
-    <div id="button-panel" class="col-md-1">
-        <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}
-        </button>
+  <div id="button-panel" class="col-md-1">
+    <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}
+    </button>
+  </div>
+  <div class="col-md-2">
+    <div outside-click="$ctrl.closeCalendarPiker()">
+      <div ng-click="$ctrl.openCalendarPiker()" class="date-picker">
+        <label class="control-label data-picker-label" for="game-calendar">
+          <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+        </label>
+        <span>{{$ctrl.gameDate | date:'d MMM y'}}</span>
+      </div>
+      <div class="picker" ng-show="$ctrl.isCalendarVisible">
+        <div uib-datepicker ng-model="$ctrl.gameDate"
+             class="well well-sm" datepicker-options="$ctrl.options"></div>
+      </div>
     </div>
-    <div class="col-md-2">
-      <div outside-click="$ctrl.closeCalendarPiker()">
-        <div ng-click="$ctrl.openCalendarPiker()" class="date-picker">
-          <label class="control-label data-picker-label" for="game-calendar">
-            <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
-          </label>
-          <span>{{$ctrl.gameDate | date:'d MMM y'}}</span>
-        </div>
-        <div class="picker" ng-show="$ctrl.isCalendarVisible">
-          <div uib-datepicker ng-model="$ctrl.gameDate"
-               class="well well-sm" datepicker-options="$ctrl.options"></div>
-        </div>
-        </div>
-    </div>
-    <div class="col-md-2">
-      <div outside-click="$ctrl.closeTimePiker()">
-        <div ng-click="$ctrl.openTimePiker()"
-             class="time-picker">
-          <label class="control-label data-picker-label" for="game-time">
-            <i id="game-time" class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
-          </label>
-          <span> {{$ctrl.getTimeForView()}}</span>
-        </div>
+  </div>
+  <div class="col-md-2">
+    <div outside-click="$ctrl.closeTimePiker()">
+      <div ng-click="$ctrl.openTimePiker()"
+           class="time-picker">
+        <label class="control-label data-picker-label" for="game-time">
+          <i id="game-time" class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
+        </label>
+        <span> {{$ctrl.getTimeForView()}}</span>
+      </div>
 
-        <div class="picker" ng-show="$ctrl.isTimeVisible">
-          <div uib-timepicker
-               show-meridian="$ctrl.isMeridian" name="time" ng-model="$ctrl.gameTime"
-               class="well well-sm">
-          </div>
-            </div>
+      <div class="picker" ng-show="$ctrl.isTimeVisible">
+        <div uib-timepicker
+             show-meridian="$ctrl.isMeridian" name="time" ng-model="$ctrl.gameTime"
+             class="well well-sm">
         </div>
+      </div>
     </div>
-    <div class="col-md-2">
-        <input class="form-control" ng-blur="$ctrl.changeLocation()" ng-model="$ctrl.location"
-               maxlength="34"
-               name="location"
-               required placeholder="{{'LOCATION_PLACEHOLDER' | translate}}">
-    </div>
-    <div class="col-md-4 game-alert">
-        <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.dateSaved">
-            {{'SAVE_DATE_MESSAGE' | translate}}
-        </div>
-        <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.timeSaved">
-            {{'SAVE_TIME_MESSAGE' | translate}}
-        </div>
-        <div class="alert alert-sm alert-dismissible alert-success" ng-if="$ctrl.locationSaved">
-            {{'SAVE_LOCATION_MESSAGE' | translate}}
-        </div>
-    </div>
-    <div class="row"></div>
-    <uib-tabset active="$ctrl.activeTab">
-        <uib-tab index="$ctrl.tabs[0]" heading="{{'TEAMS_TAB_NAME' | translate}}"
-                 ng-click="$ctrl.updateUrlPath($ctrl.tabs[0])">
-            <div id="add-team-panel">
-                <add-teams></add-teams>
-            </div>
-        </uib-tab>
-        <uib-tab index="$ctrl.tabs[1]" heading="{{'ROUNDS_TAB_NAME' | translate}}"
-                 ng-click="$ctrl.updateUrlPath($ctrl.tabs[1])">
-            <game-type></game-type>
-        </uib-tab>
-    </uib-tabset>
+  </div>
+  <div class="col-md-2">
+    <input class="form-control" ng-blur="$ctrl.changeLocation()" ng-model="$ctrl.location"
+           maxlength="34"
+           name="location"
+           required placeholder="{{'LOCATION_PLACEHOLDER' | translate}}">
+  </div>
+  <div class="row"></div>
+  <uib-tabset active="$ctrl.activeTab">
+    <uib-tab index="$ctrl.tabs[0]" heading="{{'TEAMS_TAB_NAME' | translate}}"
+             ng-click="$ctrl.updateUrlPath($ctrl.tabs[0])">
+      <div id="add-team-panel">
+        <add-teams></add-teams>
+      </div>
+    </uib-tab>
+    <uib-tab index="$ctrl.tabs[1]" heading="{{'ROUNDS_TAB_NAME' | translate}}"
+             ng-click="$ctrl.updateUrlPath($ctrl.tabs[1])">
+      <game-type></game-type>
+    </uib-tab>
+  </uib-tabset>
 </div>
