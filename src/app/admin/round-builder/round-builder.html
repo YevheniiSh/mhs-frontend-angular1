@@ -14,7 +14,8 @@
                        id="{{'roundName'+$index}}"
                        maxlength="34" minlength="3" pattern="^[^-\s][\wа-яА-ЯіІїЇєЄ\s-]+$"
                        required placeholder="{{'ROUND_NAME_PLACEHOLDER' | translate}}"
-                       dnd-nodrag></div>
+                       dnd-nodrag>
+            </div>
             <div class="col-md-4 round-input form-group round-form" dnd-nodrag>
                 <label ng-show="round.showSelect"
                        class="control-label"
@@ -87,6 +88,6 @@
         </div>
     </li>
 </ul>
-<button ng-click="$ctrl.addRound($event)" class=" btn btn-info btn-block add-round">
+<button ng-click="$ctrl.addRound($event)" class="btn btn-info btn-block add-round">
     {{'ADD_ROUND_BUTTON' | translate}}
 </button>
