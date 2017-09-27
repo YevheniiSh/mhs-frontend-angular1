@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Template } from '../template';
-import { NotificationService } from "../../../services/notification-service/notification.service";
+import { NotificationService } from '../../../services/notification-service/notification.service';
 
 @Component({
   selector: 'app-current-template',
