@@ -6,9 +6,9 @@ angular.module('gameType')
     controller: GameType
   });
 
-GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', '$timeout','NotificationService'];
+GameType.$inject = ['gameTemplateServiceFactory', 'OpenGameServiceFactory', '$routeParams', 'NotificationService'];
 
-function GameType(gameTemplateService, openGameService, $routeParams, $timeout, NotificationService) {
+function GameType(gameTemplateService, openGameService, $routeParams, NotificationService) {
   let vm = this;
 
   let templateRounds = [];
