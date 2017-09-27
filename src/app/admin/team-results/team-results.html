@@ -16,11 +16,12 @@
             ng-if=" $ctrl.isEmptyEditedQuizzes() && $ctrl.auth && !$ctrl.gameStatus"
             ng-click="$ctrl.discardChanges()">{{'DISCARD_RESULT_CHANGES_BUTTON' | translate}}
     </button>
+    <h1><span class="date"><a ng-href="#!/games/{{$ctrl.gameId}}/results">{{$ctrl.date}}</a></span>
+      {{$ctrl.teamName}} : <span class="team-total"> {{$ctrl.teamTotal.toFixed(1)}}</span>
+
+    </h1>
   </div>
 
-  <h1>{{$ctrl.teamName}} : <span class="team-total"> {{$ctrl.teamTotal.toFixed(1)}}</span>
-    <span class="date"><a ng-href="#!/games/{{$ctrl.gameId}}/results">{{$ctrl.date}}</a></span>
-  </h1>
   <table class="table table-sm table-striped table-hover ">
     <thead>
     <th>{{'ROUND_NAME_TABLE_HEADER' | translate}}</th>

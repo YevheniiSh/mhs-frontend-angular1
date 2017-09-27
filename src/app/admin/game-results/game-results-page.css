@@ -97,6 +97,14 @@ a {
   }
 
 }
+
+@media screen and (max-width: 720px) {
+  game-results-page .btn-panel {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
 @media screen and (min-width: 500px) {
   table .td-cell.ng-binding {
     font-size: 20px;
