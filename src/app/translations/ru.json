@@ -85,7 +85,7 @@
   "MAXIMUM_40_CHARACTERS_ERROR": "Максимум 40 символов",
   "MINIMUM_10_CHARACTERS_ERROR": "Минимум 10 символов",
   "WRONG_FORMAT_ERROR":"Неверный формат",
-  "ROUND_NAME_EXIST_ERROR": "Раунд з таким именем существует",
+  "TEMPLATE_NAME_EXIST_ERROR": "Шаблон з таким именем существует",
   "WELL_DONE_MESSAGE":"Отлично!",
   "SEND_REQUEST_MESSAGE": "Ваша заявка отправлена!",
   "NAVBAR_LANGUAGES": "Выбрать язык",
@@ -160,5 +160,6 @@
   "CHANGE_BETS_BUTTON": "Изменить ставки",
   "REVIEW_RESULTS_BUTTON": "Посмотреть результаты",
   "CHANGES_SAVED": "Изменения сохранены",
+  "NUMBER_OF_POINTS":"Количество балов за ответ",
   "CHANGES_DISCARDED": "Изменения отклонены"
 }

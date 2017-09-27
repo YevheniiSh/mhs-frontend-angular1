@@ -8,6 +8,7 @@ import '../../lib/services/firebase-service/firebase-service.service.js';
 import '../../lib/services/user-auth-service/user-auth-service.module.js';
 import '../../lib/services/user-auth-service/user-auth-service.service.js';
 import '../../lib/services/game-template-service/game-template-service.module.js';
+import '../../lib/services/game-template-service/game-template-service.service.js';
 import '../../lib/player/team-games-list/team-games-list.module.js';
 import '../../lib/player/team-games-list/team-games-list.component.js';
 import '../../lib/services/team-service/team-service.module.js';
@@ -78,7 +79,6 @@ import '../../lib/admin/game-list/finished-game.component.js';
 import '../../lib/admin/game-list/open-game-list.component.js';
 import '../../lib/admin/game-list/game-teams-modal.component.js';
 import '../../lib/admin/add-teams/print-teams/print-teams.component.js';
-import '../../lib/admin/game-template/game-template.module.js';
 import '../../lib/services/round-service/round-service.module.js';
 import '../../lib/services/round-service/round-service.service.js';
 import 'app/services/firebase-service/firebase-initializr.ts';
@@ -93,3 +93,22 @@ import '../../lib/services/round-type-service/round-type-service.service.js';
 export const environment = {
   production: true
 };
+
+(function () {
+  let method;
+  const noop = function () {
+  };
+  const methods = [
+    'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+    'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+    'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+    'timeStamp', 'trace', 'warn'
+  ];
+  let length = methods.length;
+  const console = (window.console || {});
+
+  while (length--) {
+    method = methods[length];
+    console[method] = noop;
+  }
+}());

@@ -32,8 +32,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.userAuthService.currentUser().then((user) => {
       this.currentUser = user;
-      console.log(this.userAuthService.user);
-
     });
     this.locale = this.i18nFactory.getLanguage();
     this.translate.use(this.locale);

@@ -76,7 +76,7 @@
                 <label class="control-label" for="{{'quizCount'+$index}}">{{'QUESTION_COUNT_LABEL' | translate}}</label>
                 <input class="form-control"
                        id="{{'quizCount'+$index}}"
-                       min="1" max="20" ng-model="round.numberOfQuestions"
+                       min="1" max="{{$ctrl.getMaxQuizCount(round)}}" ng-model="round.numberOfQuestions"
                        placeholder="{{'QUIZ_COUNT_PLACEHOLDER'|translate}}" type="number" required>
             </div>
             <div class="col-md-1" dnd-nodrag>
