@@ -1,4 +1,5 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 declare let firebase: any;
 
@@ -9,36 +10,26 @@ export class BackupService {
 
   jsonToBackup: any;
 
+  private url;
   private dbRef: any;
 
-  constructor(@Inject('firebaseDataService') firebaseDataService) {
-    this.dbRef = firebaseDataService.root.child('/');
+  constructor(db: AngularFireDatabase) {
+    this.dbRef = db.object('/');
     this.storageRef = firebase.storage().ref('/backups');
   }
 
-
-  public saveBackup(): Promise<any> {
+  public getBackupBlob(): Promise<any> {
     return new Promise((resolve, reject) => {
 
       const backupName: string = new Date() + 'backup.json';
       this.backupJsonRef = this.storageRef.child(backupName);
 
-      this.dbRef.once('value')
-        .then(res => {
-          this.jsonToBackup = JSON.stringify(res.val());
-          const blob = new Blob([this.jsonToBackup], { type: 'application/json' });
-          const url = window.URL.createObjectURL(blob);
-          resolve(url);
-          console.log(url);
-        });
-      // .then(() => {
-      //   this.backupJsonRef.putString(this.jsonToBackup).then(function (snapshot) {
-      //     console.log('backup Created!');
-      //     resolve('backup Created! ' + backupName);
-      //   }, () => {
-      //     reject('backup not! Created');
-      //   });
-      // });
+      this.dbRef.subscribe(res => {
+        this.jsonToBackup = JSON.stringify(res);
+        const blob = new Blob([this.jsonToBackup], { type: 'application/json' });
+        // this.url = window.URL.createObjectURL(blob);
+        resolve(blob);
+      });
     });
   }
 

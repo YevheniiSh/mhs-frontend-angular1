@@ -18,6 +18,7 @@ export class RoundStatusComponent implements OnInit {
   url;
   date;
   startRoundTooltip = false;
+  showBackupUrl;
   checked = false;
   disableFinished: boolean;
   isCreateBackupChecked: boolean;
@@ -48,7 +49,6 @@ export class RoundStatusComponent implements OnInit {
       }, (err) => {
         console.error(err);
       });
-    this.createBackup();
   }
 
   private addRound(round, currentRound) {
@@ -70,6 +70,7 @@ export class RoundStatusComponent implements OnInit {
         }
       });
 
+    this.showBackupUrl = false;
   }
 
   onFinished(): void {
@@ -82,20 +83,23 @@ export class RoundStatusComponent implements OnInit {
         this.seasonService.finishGame(this.gameId);
       })
       .then(() => {
-        this.createBackup();
+        // this.createBackup();
       });
   }
 
-  createBackup(): void {
-    if (!this.isCreateBackupChecked) {
-      this.disableFinished = true;
-      this.backupService.saveBackup().then((res) => {
-        this.url = this.sanitizer.bypassSecurityTrustResourceUrl(res);
-        this.date = new Date();
-        // this.$location.path('games/' + this.gameId + '/results');
-      });
-    } else {
+  getBackupUrl(): void {
+    this.disableFinished = true;
+    this.backupService.getBackupBlob().then((blob) => {
+      this.url = window.URL.createObjectURL(blob);
+      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+      this.date = new Date();
+      this.showBackupUrl = true;
       // this.$location.path('games/' + this.gameId + '/results');
-    }
+    });
+  }
+
+  destroyBackupUrl(): void {
+    this.showBackupUrl = false;
+    window.URL.revokeObjectURL(this.url);
   }
 }

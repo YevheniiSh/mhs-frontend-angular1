@@ -1,9 +1,9 @@
-import {forwardRef, NgModule} from '@angular/core';
-import {UpgradeAdapter} from '@angular/upgrade';
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { forwardRef, NgModule } from '@angular/core';
+import { UpgradeAdapter } from '@angular/upgrade';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -28,9 +28,8 @@ import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type
 import { OrderByPipe } from './pipe/order-by.pipe';
 import { NotificationService } from './services/notification-service/notification.service';
 import { NotificationPanelComponent } from './notification/notification-panel.component';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { RoundStatusComponent } from "./admin/round-status/round-status.component";
-import { ToastModule } from "ng2-toastr";
+import { RoundStatusComponent } from './admin/round-status/round-status.component';
+
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
