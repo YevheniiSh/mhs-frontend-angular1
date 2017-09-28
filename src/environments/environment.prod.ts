@@ -63,7 +63,6 @@ import '../../lib/admin/result-setup/result-setup.builder.js';
 import '../../lib/admin/game-build/config-game/config-game.module.js';
 import '../../lib/admin/game-build/config-game/config-game.component.js';
 import '../../lib/admin/add-teams/add-teams.component.js';
-import '../../lib/admin/round-type/hints/hints-round.component.js';
 import '../../lib/admin/round-type/captain/captain-round-type.component.js';
 import '../../lib/admin/round-type/default/default-round.component.js';
 import '../../lib/admin/round-type/default/default-round.service.js';

@@ -1,0 +1,42 @@
+<div id="weight-label">{{"NUMBER_OF_POINTS"|translate}}: {{weight}}</div>
+<div class="form-group row">
+  <ul id="team-list">
+    <li *ngFor="let result of results | orderBy: 'teamName'; let i = index" class="team">
+      <label [ngClass]="{'disabled': result.disabled}">
+        <span class='switcher result-control'>
+          <label class='switcher-label switcher-on' for='{{i+"on"}}'></label>
+          <input id='{{i+"on"}}'
+                 class='switcher-radio-on'
+                 type='radio'
+                 name='{{i}}'
+                 [(ngModel)]="result.score"
+                 [value]="weight"
+                 (change)="result.answer = '1';saveResult(result)"
+                 [disabled]="result.disabled">
+
+          <label class='switcher-label switcher-off' for='{{i+"off"}}'></label>
+          <input id='{{i+"off"}}'
+                 class='switcher-radio-off'
+                 type='radio'
+                 name='{{i}}'
+                 [(ngModel)]="result.score"
+                 [value]=-1
+                 (change)="result.answer = '0';saveResult(result)"
+                 [disabled]="result.disabled">
+
+          <label class='switcher-label switcher-neutral' for='{{i+"def"}}'></label>
+          <input id='{{i+"def"}}'
+                 class='switcher-radio-neutral'
+                 type='radio'
+                 name='{{i}}'
+                 [(ngModel)]="result.score"
+                 (change)="clearResult(result)"
+                 [disabled]="result.disabled">
+          <div class='switcher-slider'></div>
+        </span>
+        <span class="team-name">{{result.teamName}}</span>
+      </label>
+    </li>
+  </ul>
+</div>
+
