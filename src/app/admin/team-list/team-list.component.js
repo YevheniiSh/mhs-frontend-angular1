@@ -2,7 +2,7 @@
   angular
     .module('teamList')
     .component('teamList', {
-        templateUrl: 'app/admin/team-list/team-list.html',
+        template: require('app/admin/team-list/team-list.html'),
         css: 'app/admin/team-list/team-list.css',
         controller: TeamList
       }

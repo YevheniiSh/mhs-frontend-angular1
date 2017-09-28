@@ -11,4 +11,4 @@ export class TeamListComponentUpgrade extends UpgradeComponent {
   }
 }
 
-upgradeDirective('mhs.admin', 'teamList');
+// upgradeDirective('mhs.admin', 'teamList');

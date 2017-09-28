@@ -1,7 +1,7 @@
 (function () {
     angular.module('login-panel')
         .component('loginPanel', {
-          templateUrl: "app/admin/login-panel/login-panel.html",
+          template: require('app/admin/login-panel/login-panel.html'),
           css: 'app/admin/login-panel/login-panel.css',
             controller: LoginPanel
         });
