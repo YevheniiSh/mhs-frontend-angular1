@@ -60,6 +60,16 @@
       return isCaptainsInGame;
     }
 
+    function isAllTeamsAnswered() {
+      let isAllTeamsDisabled = true;
+      vm.results.forEach((item) => {
+        if (!item.score) {
+          isAllTeamsDisabled = false;
+        }
+      });
+      return isAllTeamsDisabled;
+    }
+
     function initRound() {
       resultSetupService.getRound($routeParams.gameId, $routeParams.roundNumber)
         .then((round) => {
@@ -213,6 +223,11 @@
         return;
       }
 
+      if (isAllTeamsAnswered() && vm.round.roundType.type == 'HINTS_ROUND') {
+        vm.isCaptainsOut = true;
+        return;
+      }
+
             if (vm.selectedQuiz < vm.round.numberOfQuestions) {
                 if (vm.currentQuiz == vm.selectedQuiz) {
                     vm.currentQuiz++;
@@ -229,6 +244,13 @@
 
     vm.range = function (n) {
       return new Array(n).fill().map((e, i) => i + 1);
+    };
+
+    vm.closeRound = function () {
+      resultSetupService.closeRound($routeParams.roundNumber, $routeParams.gameId)
+        .then(() => {
+          $location.path(`/games/${$routeParams.gameId}/rounds`);
+        });
     };
   }
 })();

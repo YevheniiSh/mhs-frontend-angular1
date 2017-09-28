@@ -142,7 +142,7 @@
   "START_INPUT_LABEL": "Бали",
   "STEP_INPUT_LABEL": "Крок",
   "CURRENT_SEASON_TOOLTIP": "Поточний сезон",
-  "NO_CAPTAINS_ALERT": "Усі капітани вибули",
+  "NO_CAPTAINS_ALERT": "Усі капітани вибули, завершити раунд?",
   "ROUND_FINISH_BUTTON": "Завершити раунд",
   "TEAMS_MODAL_HEADER": "Заявки команд на гру",
   "TEAMS_MODAL_PLACEHOLDER": "Поки немає жодної заявки на гру",
@@ -163,5 +163,6 @@
   "CHANGE_BETS_BUTTON": "Змінити ставки",
   "REVIEW_RESULTS_BUTTON": "Переглянути результати",
   "NUMBER_OF_POINTS":"Кількість балів за відповідь",
-  "CHANGES_DISCARDED": "Зміни відхилено"
+  "CHANGES_DISCARDED": "Зміни відхилено",
+  "FINISH_HINTS_ROUND_CONFIRMATION": "Всі команди відповіли, закінчити раунд?"
 }

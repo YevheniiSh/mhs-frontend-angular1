@@ -150,7 +150,7 @@
   "START_INPUT_LABEL": "Point",
   "STEP_INPUT_LABEL": "Step",
   "CURRENT_SEASON_TOOLTIP": "Current season",
-  "NO_CAPTAINS_ALERT": "All captains are left",
+  "NO_CAPTAINS_ALERT": "All captains are left, do you want to finish round?",
   "GAME_PHOTO": "Game photos",
   "FEW_ROUNDS_ERROR": "Min amount of rounds is 2",
   "GAME_TEMPLATES": "Game templates",
@@ -164,5 +164,6 @@
   "REVIEW_RESULTS_BUTTON": "Review results",
   "ROUND_FINISH_BUTTON": "Finish round",
   "NUMBER_OF_POINTS":"Number of points for an answer",
-  "CHANGES_DISCARDED": "Changes discarded"
+  "CHANGES_DISCARDED": "Changes discarded",
+  "FINISH_HINTS_ROUND_CONFIRMATION": "All teams answered, do you want to finish round?"
 }

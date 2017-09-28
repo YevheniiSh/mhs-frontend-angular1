@@ -10,11 +10,14 @@
                    save-result="$ctrl.saveResult(result)" is-manual-input="$ctrl.isManualInput"></default-round>
     <captain-round ng-switch-when="CAPTAIN_ROUND" results="$ctrl.results"
                    save-result="$ctrl.saveResult(result)"
+                   close-round="$ctrl.closeRound()"
                    is-captains-out="$ctrl.isCaptainsOut"></captain-round>
     <app-auction-round-type ng-switch-when="AUCTION_ROUND" [disable-next]="$ctrl.disableNext" [results]="$ctrl.results"
                             (saved)="$ctrl.saveResult($event)"></app-auction-round-type>
     <hints-round ng-switch-when="HINTS_ROUND" results="$ctrl.results"
-                 save-result="$ctrl.saveResult(result)"></hints-round>
+                 save-result="$ctrl.saveResult(result)"
+                 is-captains-out="$ctrl.isCaptainsOut"
+                 close-round="$ctrl.closeRound()"></hints-round>
   </div>
 
   <div id="control-panel" class="form-inline">

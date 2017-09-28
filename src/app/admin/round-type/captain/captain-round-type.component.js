@@ -6,19 +6,20 @@ angular.module('resultSetup')
     bindings: {
       results: '=',
       saveResult: '&',
-      isCaptainsOut: '='
+      isCaptainsOut: '=',
+      closeRound: "&"
     },
   });
 
 CaptainRoundTypeController.$inject = [
-  '$location',
+  '$scope',
   '$routeParams',
   'GameServiceFactory',
   'ResultServiceFactory',
-  'resultSetupService'
+  'CustomConfirmationService'
 ];
 
-function CaptainRoundTypeController($location, $routeParams, GameServiceFactory, ResultServiceFactory, resultSetupService) {
+function CaptainRoundTypeController($scope, $routeParams, GameServiceFactory, ResultServiceFactory, CustomConfirmationService) {
   let vm = this;
   vm.noCaptainsAlertDisplay = false;
 
@@ -28,6 +29,25 @@ function CaptainRoundTypeController($location, $routeParams, GameServiceFactory,
     getRound()
       .then(getQuizWeight);
     initPreviousQuizResults();
+
+    $scope.$watch(() => {
+        return vm.isCaptainsOut
+      },
+      (newValue) => {
+        console.log(newValue);
+        if (newValue) {
+          showCloseRoundDialog();
+        }
+      });
+  }
+
+  function showCloseRoundDialog() {
+    CustomConfirmationService.create('NO_CAPTAINS_ALERT')
+      .then((res) => {
+        if (res.resolved) {
+          vm.closeRound();
+        }
+      })
   }
 
   function getRound() {
@@ -49,10 +69,6 @@ function CaptainRoundTypeController($location, $routeParams, GameServiceFactory,
       })
   }
 
-  vm.closeAlert = function () {
-    vm.isCaptainsOut = false;
-  };
-
   vm.isDisabled = function (teamId) {
     if (!isFirstQuiz()) {
       let resultKey = [$routeParams.roundNumber, $routeParams.quizNumber - 1, teamId].join('_');
@@ -65,22 +81,6 @@ function CaptainRoundTypeController($location, $routeParams, GameServiceFactory,
     }
   };
 
-  vm.closeRound = function () {
-    resultSetupService.closeRound($routeParams.roundNumber, $routeParams.gameId)
-      .then(() => {
-        $location.path(`/games/${$routeParams.gameId}/rounds`);
-      });
-  };
-
-  function getCaptainsInGameCount(results) {
-    let captainsCount = 0;
-    results.forEach((result) => {
-      if (result.score !== 0) {
-        captainsCount++;
-      }
-    });
-    return captainsCount;
-  };
 
   function isFirstQuiz() {
     return $routeParams.quizNumber === '1';

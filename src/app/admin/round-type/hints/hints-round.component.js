@@ -5,17 +5,22 @@ angular.module('resultSetup')
     controller: hintsRoundController,
     bindings: {
       results: "=",
-      saveResult: "&"
+      saveResult: "&",
+      isCaptainsOut: '=',
+      closeRound: "&"
     }
   });
 
 hintsRoundController.$inject = [
   '$routeParams',
+  '$scope',
   'GameServiceFactory',
-  'ResultServiceFactory'
+  'ResultServiceFactory',
+  'CustomConfirmationService',
+  'resultSetupService'
 ];
 
-function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFactory) {
+function hintsRoundController($routeParams, $scope, GameServiceFactory, ResultServiceFactory, CustomConfirmationService, resultSetupService) {
   let vm = this;
 
   vm.$onInit = onInit;
@@ -29,6 +34,26 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
       .then(() => {
         isDisabled();
       });
+
+    $scope.$watch(() => {
+        return vm.isCaptainsOut
+      },
+      (newValue) => {
+        console.log(newValue);
+        if (newValue) {
+          showCloseRoundDialog();
+        }
+      });
+
+  }
+
+  function showCloseRoundDialog() {
+    CustomConfirmationService.create('FINISH_HINTS_ROUND_CONFIRMATION')
+      .then((res) => {
+        if (res.resolved) {
+          vm.closeRound();
+        }
+      })
   }
 
   function getRound() {
@@ -83,6 +108,5 @@ function hintsRoundController($routeParams, GameServiceFactory, ResultServiceFac
   function isFirstQuiz() {
     return $routeParams.quizNumber === '1';
   }
-
 
 }
