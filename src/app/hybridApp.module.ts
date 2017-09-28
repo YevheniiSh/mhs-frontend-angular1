@@ -1,9 +1,9 @@
-import {forwardRef, NgModule} from '@angular/core';
-import {UpgradeAdapter} from '@angular/upgrade';
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { forwardRef, NgModule } from '@angular/core';
+import { UpgradeAdapter } from '@angular/upgrade';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -28,6 +28,8 @@ import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type
 import { OrderByPipe } from './pipe/order-by.pipe';
 import { NotificationService } from './services/notification-service/notification.service';
 import { NotificationPanelComponent } from './notification/notification-panel.component';
+import { ConfirmationsComponent, JasperoConfirmationsModule } from '@jaspero/ng2-confirmations';
+import { CustomConfirmationService } from './services/confirmation-service/confirmation.service';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -51,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     FormsModule,
+    JasperoConfirmationsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -70,7 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppModule
   ],
   entryComponents: [],
-  providers: [BackupService, LoginService, NotificationService]
+  providers: [BackupService, LoginService, NotificationService, CustomConfirmationService]
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');
@@ -104,12 +107,14 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
     this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
+    this.mhsAdminModule.directive('jasperoConfirmations', upgradeAdapter.downgradeNg2Component(ConfirmationsComponent));
   }
 
   private downgradeNewProviders() {
     this.mhsAdminModule.service('backup', upgradeAdapter.downgradeNg2Provider(BackupService));
     this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
     this.mhsAdminModule.service('NotificationService', upgradeAdapter.downgradeNg2Provider(NotificationService));
+    this.mhsAdminModule.service('CustomConfirmationService', upgradeAdapter.downgradeNg2Provider(CustomConfirmationService));
   }
 }
 
