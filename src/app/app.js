@@ -2,7 +2,6 @@
 
 angular.module('mhs', [
   'ngRoute',
-  'ngMessages',
   'mhs.admin',
   'mhs.player',
   'angularCSS',
