@@ -11,7 +11,7 @@
     'userAuthService', 'gameRequestServiceFactory', '$uibModal', 'NotificationService', 'CustomConfirmationService'];
 
   function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location,
-                        userService, gameRequestService, $uibModal, notificationService, CustomConfirmationService) {
+                        userService, gameRequestService, $uibModal, notificationService, customConfirmationService) {
         let vm = this;
         vm.$onInit = onInit;
 
@@ -63,7 +63,7 @@
         };
 
         vm.deleteGame = function (game) {
-          CustomConfirmationService.create('DELETE_GAME_ALERT')
+          customConfirmationService.create('DELETE_GAME_ALERT')
             .then((res) => {
               if (res.resolved)
                 openGameFactory.removeOpenGame(game.$id)

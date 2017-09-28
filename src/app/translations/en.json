@@ -77,6 +77,7 @@
   "WRONG_TIME_ERROR": "Wrong time",
   "QUIZ_COUNT_PLACEHOLDER": "Quizz number",
   "CONFIRMATION_DELETE_TEMPLATE_TEXT": "Do you really want to remove the template?",
+  "CONFIRMATION_CLOSE_SEASON": "Do you really want to close the season?",
   "CONFIRMATION_CONFIRM_TEXT": "Yes",
   "CONFIRMATION_DECLINE_TEXT": "No",
   "QUESTION_QUANTITY_PLACEHOLDER": "Question quantity",

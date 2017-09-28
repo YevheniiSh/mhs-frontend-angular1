@@ -8,9 +8,11 @@
       controller: seasonsController
     });
 
-  seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService', 'NotificationService'];
+  seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService',
+    'NotificationService', 'CustomConfirmationService'];
 
-  function seasonsController($location, seasonService, $routeParams, $window, userAuthService, notificationService) {
+  function seasonsController($location, seasonService, $routeParams, $window, userAuthService,
+                             notificationService, customConfirmationService) {
 
     let vm = this;
 
@@ -52,13 +54,15 @@
       })
     }
 
-    vm.showAlert = function () {
-      if (vm.hasOpenGames) notificationService.showError('SEASON_OPEN_GAMES_ALERT');
-      else vm.showCloseSeasonAlert = true;
-    };
-
     vm.closeCurrentSeason = function () {
-      seasonService.finishSeason(seasonId);
+      if (vm.hasOpenGames) notificationService.showError('SEASON_OPEN_GAMES_ALERT');
+      else
+        customConfirmationService.create('CONFIRMATION_CLOSE_SEASON').then((res) => {
+          if (res.resolved)
+            seasonService.finishSeason(seasonId).then((seasonStatus) => {
+              vm.isCurrentSeason = seasonStatus
+            });
+        });
     };
 
     vm.setSeasonUrl = function () {
