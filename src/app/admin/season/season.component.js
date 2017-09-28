@@ -24,11 +24,6 @@
 
     function onInit() {
 
-      seasonService.getSeasonsNames().then((res) => {
-        vm.seasons = res;
-        setSelectedSeason();
-      });
-
       seasonService.getContenderTeams(seasonId).then((res) => {
         vm.seasonTeams = res;
       });
@@ -55,33 +50,23 @@
     }
 
     vm.closeCurrentSeason = function () {
-      if (vm.hasOpenGames) notificationService.showError('SEASON_OPEN_GAMES_ALERT');
+      if (!vm.hasOpenGames)
+        showSeasonCloseConfirmation();
       else
-        customConfirmationService.create('CONFIRMATION_CLOSE_SEASON').then((res) => {
-          if (res.resolved)
-            seasonService.finishSeason(seasonId).then((seasonStatus) => {
-              vm.isCurrentSeason = seasonStatus
-            });
-        });
+        notificationService.showError('SEASON_OPEN_GAMES_ALERT');
     };
 
-    vm.setSeasonUrl = function () {
-      if (vm.selectedSeason !== undefined)
-        if (seasonId !== vm.selectedSeason.id) {
-          seasonId = vm.selectedSeason.id;
-          $location.path("seasons/" + seasonId)
-        }
-    };
+    function showSeasonCloseConfirmation() {
+      customConfirmationService.create('CONFIRMATION_CLOSE_SEASON').then((res) => {
+        if (res.resolved)
+          seasonService.finishSeason(seasonId).then((seasonStatus) => {
+            vm.isCurrentSeason = seasonStatus
+          });
+      });
+    }
 
     vm.onBack = function () {
       $window.history.back();
     };
-
-    function setSelectedSeason() {
-      for (let season in vm.seasons) {
-        if (vm.seasons[season].id === seasonId)
-          vm.selectedSeason = vm.seasons[season];
-      }
-    }
   }
 })();
