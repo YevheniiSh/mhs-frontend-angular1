@@ -15,11 +15,9 @@ export class CustomConfirmationService {
 
   constructor(@Inject('$translate') private translateService,
               private _confirmation: ConfirmationService) {
-    console.log(this.options);
   }
 
-  public create(text: string): Promise<any> {
-    console.log(this.options);
+  public create(text: string): Promise<ResolveEmit> {
     return new Promise((resolve, reject) => {
       this.translateButtons().then(() => {
         this.translateMessage(text).then((t) => {
@@ -31,7 +29,7 @@ export class CustomConfirmationService {
     });
   }
 
-  private translateButtons(): Promise<any> {
+  private translateButtons(): Promise<string> {
     return new Promise((resolve, reject) => {
       this.translateMessage('CONFIRMATION_CONFIRM_TEXT').then((text) => {
         this.options.confirmText = text;

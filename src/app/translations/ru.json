@@ -77,6 +77,7 @@
   "SEARCH_PLACEHOLDER": "Поиск",
   "WRONG_TIME_ERROR": "Вы ввели неправильное время",
   "CONFIRMATION_DELETE_TEMPLATE_TEXT": "Вы действительно хотите удалить шаблон?",
+  "CONFIRMATION_CLOSE_SEASON": "Вы действительно хотите закрыть сезон?",
   "CONFIRMATION_CONFIRM_TEXT": "Да",
   "CONFIRMATION_DECLINE_TEXT": "Нет",
   "QUIZ_COUNT_PLACEHOLDER": "Количество вопросов",
