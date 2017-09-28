@@ -15,11 +15,9 @@ export class CustomConfirmationService {
 
   constructor(@Inject('$translate') private translateService,
               private _confirmation: ConfirmationService) {
-    console.log(this.options);
   }
 
   public create(text: string): Promise<any> {
-    console.log(this.options);
     return new Promise((resolve, reject) => {
       this.translateButtons().then(() => {
         this.translateMessage(text).then((t) => {
