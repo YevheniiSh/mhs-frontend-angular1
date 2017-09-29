@@ -118,6 +118,7 @@ angular
                                     }
                                 }
                                 gameResults.forEach(quizResult => {
+                                  if(roundResult[quizResult.teamId].rounds[quizResult.round - 1] !== undefined)
                                     roundResult[quizResult.teamId].rounds[quizResult.round - 1].score += quizResult.score;
                                 });
                                 for (let team in roundResult) {
@@ -294,8 +295,10 @@ angular
                                     }
                                 }
                                 teamResults.forEach(quizResult => {
+                                  if(roundResult[quizResult.round]!== undefined){
                                     roundResult[quizResult.round].quizzes[quizResult.quiz - 1].score = quizResult.score;
-                                  roundResult[quizResult.round].quizzes[quizResult.quiz - 1].real = true;
+                                    roundResult[quizResult.round].quizzes[quizResult.quiz - 1].real = true;
+                                  }
                                 });
                                 for (let round in roundResult) {
                                     roundResult[round].total = roundResult[round].quizzes.reduce((sum, current) => {
