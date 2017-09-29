@@ -23,6 +23,7 @@
   line-height: 280%;
   float: right;
   margin-right: 8px;
+  display: inline;
 }
 
 #fb-share-button:hover {
@@ -83,7 +84,27 @@ a {
 @media screen and (min-width: 0px) and (max-width: 500px) {
   td.td-cell { font-size: 16px; }
   #game-results{ font-size: 16px; }
+
+  game-results-page .btn-panel {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  game-results-page .photos-link {
+    float: none;
+    margin: auto;
+    text-align: center;
+  }
+
 }
+
+@media screen and (max-width: 720px) {
+  game-results-page .btn-panel {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
 @media screen and (min-width: 500px) {
   table .td-cell.ng-binding {
     font-size: 20px;

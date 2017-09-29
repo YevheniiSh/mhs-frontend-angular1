@@ -13,7 +13,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppModule } from './app.module';
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
 import { NavbarComponent } from './admin/navbar/navbar.component';
 import { LoginPanelComponentUpgrade } from './admin/login-panel/login-panel.component.upgrade';
@@ -76,7 +75,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    AppModule
   ],
   entryComponents: [],
   providers: [BackupService, LoginService, NotificationService, CustomConfirmationService]

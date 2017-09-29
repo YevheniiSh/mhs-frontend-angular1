@@ -1,0 +1,42 @@
+<div id="weight-label">{{"NUMBER_OF_POINTS"|translate}}: {{$ctrl.weight.toFixed(1)}}</div>
+<div class="form-group row">
+  <ul id="team-list">
+    <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
+      <label ng-class="{'disabled': result.disabled}">
+        <div class='switcher result-control'>
+          <label class='switcher-label switcher-on' for='{{$index+"on"}}'></label>
+          <input id='{{$index+"on"}}'
+                 class='switcher-radio-on'
+                 type='radio'
+                 name='{{$index}}'
+                 ng-model="result.score"
+                 ng-value="$ctrl.weight"
+                 ng-change="result.answer = '1';$ctrl.saveResult({result:result})"
+                 ng-disabled="result.disabled">
+
+          <label class='switcher-label switcher-off' for='{{$index+"off"}}'></label>
+          <input id='{{$index+"off"}}'
+                 class='switcher-radio-off'
+                 type='radio'
+                 name='{{$index}}'
+                 ng-model="result.score"
+                 ng-value=-1
+                 ng-change="result.answer = '0';$ctrl.saveResult({result:result})"
+                 ng-disabled="result.disabled">
+
+          <label class='switcher-label switcher-neutral' for='{{$index+"def"}}'></label>
+          <input id='{{$index+"def"}}'
+                 class='switcher-radio-neutral'
+                 type='radio'
+                 name='{{$index}}'
+                 ng-model="result.score"
+                 ng-change="$ctrl.clearResult(result)"
+                 ng-disabled="result.disabled">
+          <div class='switcher-slider'></div>
+        </div>
+        <div class="team-name">{{result.teamName}}</div>
+      </label>
+    </li>
+  </ul>
+</div>
+
