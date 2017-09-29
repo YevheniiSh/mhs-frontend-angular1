@@ -1,37 +1,33 @@
-import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
-import { CustomConfirmationService } from "../../../services/confirmation-service/confirmation.service";
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-hint-round-type',
   templateUrl: './hint-round-type.component.html',
   styleUrls: ['./hint-round-type.component.css']
 })
-export class HintRoundTypeComponent implements OnInit, OnChanges {
+export class HintRoundTypeComponent implements OnInit {
 
   step;
   weight;
   previousQuizResults;
   @Input() results;
   @Output() saved = new EventEmitter<any>();
-  @Input() isTeamsOut;
-  @Output() closeRound = new EventEmitter<any>();
   clearResult = function (result) {
     result.checked = 0;
     let resultKey = [result.round, result.quiz, result.teamId].join('_');
-    this.resultServiceFactory.deleteResult(this.routeParams.gameId, resultKey)
+    this.resultServiceFactory.deleteResult(this.routeParams.gameId, resultKey);
   };
 
   constructor(@Inject('GameServiceFactory') private gameServiceFactory,
               @Inject('$routeParams') private routeParams,
-              @Inject('ResultServiceFactory') private resultServiceFactory,
-              private confirmationService: CustomConfirmationService) {
+              @Inject('ResultServiceFactory') private resultServiceFactory) {
 
   }
 
   ngOnInit() {
     this.getRound()
       .then((round) => {
-        this.getQuizWeight(round)
+        this.getQuizWeight(round);
       })
       .then(() => {
         return this.initPreviousQuizResults();
@@ -39,25 +35,6 @@ export class HintRoundTypeComponent implements OnInit, OnChanges {
       .then(() => {
         this.isDisabled();
       });
-  }
-
-  ngOnChanges(changes: { [propKey: string]: SimpleChange }): void {
-    for (let propName in changes) {
-      if (propName === 'isTeamsOut') {
-        if (changes[propName].currentValue === true) {
-          this.showCloseDialog();
-        }
-      }
-    }
-  }
-
-  showCloseDialog() {
-    // this.confirmationService.create('FINISH_HINTS_ROUND_CONFIRMATION')
-    //   .then((res) => {
-    //     if (res.resolved) {
-    //       this.closeRound.emit();
-    //     }
-    //   })
   }
 
   getRound() {
@@ -70,17 +47,17 @@ export class HintRoundTypeComponent implements OnInit, OnChanges {
   }
 
   initPreviousQuizResults() {
-    return this.resultServiceFactory.filter({by: "round", val: this.routeParams.roundNumber}, this.routeParams.gameId)
+    return this.resultServiceFactory.filter({ by: 'round', val: this.routeParams.roundNumber }, this.routeParams.gameId)
       .then(results => {
         let res = {};
         results.forEach(result => {
           res[result.teamId] = {};
           res[result.teamId].quizNumber = result.quiz;
           res[result.teamId].score = result.score;
-        })
+        });
         this.previousQuizResults = res;
         return res;
-      })
+      });
   }
 
   isDisabled() {
@@ -100,8 +77,8 @@ export class HintRoundTypeComponent implements OnInit, OnChanges {
           }
         }
       }
-    })
-  };
+    });
+  }
 
   isFirstQuiz() {
     return this.routeParams.quizNumber === '1';

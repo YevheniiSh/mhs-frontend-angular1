@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-import { CustomConfirmationService } from '../../../services/confirmation-service/confirmation.service';
 
 @Component({
   selector: 'app-captain-round-type',
@@ -10,7 +9,6 @@ export class CaptainRoundTypeComponent implements OnInit {
   @Input() results;
   @Input() saveResult;
   @Input() closeRound;
-  @Input() isCaptainsOut;
   @Output() saved = new EventEmitter<any>();
   weight;
   previousQuizResults;
@@ -20,8 +18,7 @@ export class CaptainRoundTypeComponent implements OnInit {
 
   constructor(@Inject('$routeParams') private $routeParams,
               @Inject('GameServiceFactory') private gameServiceFactory,
-              @Inject('ResultServiceFactory') private resultService,
-              private customConfirmationService: CustomConfirmationService) {
+              @Inject('ResultServiceFactory') private resultService) {
 
     this.quizNumber = this.$routeParams.quizNumber;
     this.gameId = this.$routeParams.gameId;
@@ -35,31 +32,11 @@ export class CaptainRoundTypeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // $scope.$watch(() => {
-    //     return this.isCaptainsOut;
-    //   },
-    //   (newValue) => {
-    //     console.log(newValue);
-    //     if (newValue) {
-    //       this.showCloseRoundDialog();
-    //     }
-    //   });
   }
-
-  // vm.noCaptainsAlertDisplay = false;
 
   save(result) {
     result.score = result.status ? this.weight : 0;
     this.saved.emit(result);
-  }
-
-  showCloseRoundDialog() {
-    this.customConfirmationService.create('NO_CAPTAINS_ALERT')
-      .then((res) => {
-        if (res.resolved) {
-          this.closeRound();
-        }
-      });
   }
 
   getRound() {

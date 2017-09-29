@@ -11,18 +11,13 @@
 
     <app-hint-round-type ng-switch-when="HINTS_ROUND"
                          (saved)="$ctrl.saveResult($event)"
-                         [results]="$ctrl.results"
-                         [is-teams-out]="$ctrl.isCaptainsOut"
-                         (close-round)="$ctrl.closeRound()"></app-hint-round-type>
-    <!--<captain-round ng-switch-when="CAPTAIN_ROUND" results="$ctrl.results"-->
-    <!--save-result="$ctrl.saveResult(result)"-->
-    <!--close-round="$ctrl.closeRound()"-->
-    <!--is-captains-out="$ctrl.isCaptainsOut"></captain-round>-->
+                         [results]="$ctrl.results">
+
+    </app-hint-round-type>
     <app-captain-round-type ng-switch-when="CAPTAIN_ROUND"
                             [(isCaptainsOut)]="$ctrl.isCaptainsOut"
                             [results]="$ctrl.results"
-                            (saved)="$ctrl.saveResult($event)"
-                            (closeRound)="$ctrl.closeRound()">
+                            (saved)="$ctrl.saveResult($event)">
 
 
     </app-captain-round-type>
