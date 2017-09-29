@@ -13,10 +13,11 @@
     '$routeParams',
     '$location',
     '$window',
-    'resultSetupBuilder'
+    'resultSetupBuilder',
+    'CustomConfirmationService'
   ];
 
-  function ResultSetupController(resultSetupService, $scope, $routeParams, $location, $window, resultSetupBuilder) {
+  function ResultSetupController(resultSetupService, $scope, $routeParams, $location, $window, resultSetupBuilder, customConfirmationService) {
     let vm = this;
 
     vm.isManualInput = false;
@@ -36,7 +37,8 @@
           buildResults();
           assignResults()
             .then(initInputType)
-            .then(initAuctionResults);
+            .then(initAuctionResults)
+            .then(initCaptainResults);
         })
 
     }
@@ -109,11 +111,15 @@
       }
     }
 
+    function initCaptainResults() {
+      if (vm.round.roundType.type === 'CAPTAIN_ROUND')
+        for (let result of vm.results) {
+          setResultStatus(result);
+        }
+    }
+
     function setResultStatus(result) {
-      if (result.score <= 0) {
-        result.status = false
-      } else
-        result.status = true
+      result.status = result.score > 0;
     }
 
     function getTeams() {
@@ -220,33 +226,51 @@
     vm.nextQuiz = function () {
       if (!isCaptainsInGame() && vm.round.roundType.type == 'CAPTAIN_ROUND') {
         vm.isCaptainsOut = true;
-        return;
-      }
+        console.log("isCaptainsOut");
+        customConfirmationService.create('NO_CAPTAINS_ALERT').then((res) => {
+          if (res.resolved) {
+            closeRound();
+            console.log('closeRound');
+          }
+          else {
+            console.log('return');
+            return
+          }
 
-      if (isAllTeamsAnswered() && vm.round.roundType.type == 'HINTS_ROUND') {
+        });
+
+      } else if (isAllTeamsAnswered() && vm.round.roundType.type == 'HINTS_ROUND') {
         vm.isCaptainsOut = true;
-        return;
-      }
-
-            if (vm.selectedQuiz < vm.round.numberOfQuestions) {
-                if (vm.currentQuiz == vm.selectedQuiz) {
-                    vm.currentQuiz++;
-                    resultSetupService.setCurrentQuiz(vm.currentQuiz, $routeParams.gameId);
-                }
-                vm.setQuiz(+vm.selectedQuiz + 1);
-            } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
-              resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
-                .then(() => {
-                  $window.location.href = `#!/games/${$routeParams.gameId}/rounds`;
-                });
+        customConfirmationService.create('FINISH_HINTS_ROUND_CONFIRMATION')
+          .then((res) => {
+            if (res.resolved) {
+              closeRound();
+              console.log('closeRound');
+            } else {
+              console.log('return');
+              return
             }
-        };
+          });
+
+      } else if (vm.selectedQuiz < vm.round.numberOfQuestions) {
+        if (vm.currentQuiz == vm.selectedQuiz) {
+          vm.currentQuiz++;
+          resultSetupService.setCurrentQuiz(vm.currentQuiz, $routeParams.gameId);
+        }
+        vm.setQuiz(+vm.selectedQuiz + 1);
+      } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
+        resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
+          .then(() => {
+            $window.location.href = `#!/games/${$routeParams.gameId}/rounds`;
+          });
+      }
+    };
 
     vm.range = function (n) {
       return new Array(n).fill().map((e, i) => i + 1);
     };
 
-    vm.closeRound = function () {
+    function closeRound() {
       resultSetupService.closeRound($routeParams.roundNumber, $routeParams.gameId)
         .then(() => {
           $location.path(`/games/${$routeParams.gameId}/rounds`);

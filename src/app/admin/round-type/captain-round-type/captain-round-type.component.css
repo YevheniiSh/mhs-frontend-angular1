@@ -1,0 +1,16 @@
+.captains-round-quiz {
+  position: relative;
+}
+
+.noCaptainsAlert {
+  position: absolute;
+  background-color: lightgrey;
+  top: 30%;
+  left: 40%;
+}
+
+#weight-label {
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

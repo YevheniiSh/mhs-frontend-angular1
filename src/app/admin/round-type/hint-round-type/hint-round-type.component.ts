@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange} from '@angular/core';
-import {CustomConfirmationService} from "../../../services/confirmation-service/confirmation.service";
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
+import { CustomConfirmationService } from "../../../services/confirmation-service/confirmation.service";
 
 @Component({
   selector: 'app-hint-round-type',
@@ -52,12 +52,12 @@ export class HintRoundTypeComponent implements OnInit, OnChanges {
   }
 
   showCloseDialog() {
-    this.confirmationService.create('FINISH_HINTS_ROUND_CONFIRMATION')
-      .then((res) => {
-        if (res.resolved) {
-          this.closeRound.emit();
-        }
-      })
+    // this.confirmationService.create('FINISH_HINTS_ROUND_CONFIRMATION')
+    //   .then((res) => {
+    //     if (res.resolved) {
+    //       this.closeRound.emit();
+    //     }
+    //   })
   }
 
   getRound() {
