@@ -51,27 +51,6 @@
       })
     }
 
-    function isCaptainsInGame() {
-      let isCaptainsInGame = false;
-      for (let res of vm.results) {
-        if (res.score) {
-          isCaptainsInGame = true;
-          break;
-        }
-      }
-      return isCaptainsInGame;
-    }
-
-    function isAllTeamsAnswered() {
-      let isAllTeamsDisabled = true;
-      vm.results.forEach((item) => {
-        if (!item.score) {
-          isAllTeamsDisabled = false;
-        }
-      });
-      return isAllTeamsDisabled;
-    }
-
     function initRound() {
       resultSetupService.getRound($routeParams.gameId, $routeParams.roundNumber)
         .then((round) => {
@@ -165,7 +144,7 @@
             if (result.hasOwnProperty("answer") && result.score === 0) {
               result.score = -1;
             }
-            Object.assign(vm.results[key], result)
+            Object.assign(vm.results[key], result);
             setChecked(vm.results[key]);
           });
           vm.results = Object.keys(vm.results).map(it => vm.results[it])
@@ -224,57 +203,76 @@
     };
 
     vm.nextQuiz = function () {
-      if (!isCaptainsInGame() && vm.round.roundType.type == 'CAPTAIN_ROUND') {
-        vm.isCaptainsOut = true;
-        console.log("isCaptainsOut");
-        customConfirmationService.create('NO_CAPTAINS_ALERT').then((res) => {
-          if (res.resolved) {
-            closeRound();
-            console.log('closeRound');
-          }
-          else {
-            console.log('return');
-            return
-          }
-
-        });
-
-      } else if (isAllTeamsAnswered() && vm.round.roundType.type == 'HINTS_ROUND') {
-        vm.isCaptainsOut = true;
-        customConfirmationService.create('FINISH_HINTS_ROUND_CONFIRMATION')
-          .then((res) => {
-            if (res.resolved) {
-              closeRound();
-              console.log('closeRound');
-            } else {
-              console.log('return');
-              return
-            }
-          });
-
+      if (checkConfirmationCondition()) {
+        createCloseRoundConfirmation(vm.round.roundType.type)
       } else if (vm.selectedQuiz < vm.round.numberOfQuestions) {
-        if (vm.currentQuiz == vm.selectedQuiz) {
-          vm.currentQuiz++;
-          resultSetupService.setCurrentQuiz(vm.currentQuiz, $routeParams.gameId);
-        }
-        vm.setQuiz(+vm.selectedQuiz + 1);
-      } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
-        resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
-          .then(() => {
-            $window.location.href = `#!/games/${$routeParams.gameId}/rounds`;
-          });
+        incrementQuiz();
+      } else if (+vm.selectedQuiz === +vm.round.numberOfQuestions) {
+        closeRound();
       }
     };
 
-    vm.range = function (n) {
-      return new Array(n).fill().map((e, i) => i + 1);
-    };
+    function checkConfirmationCondition() {
+      let showConfirmation = false;
+      switch (vm.round.roundType.type) {
+        case 'CAPTAIN_ROUND': {
+          showConfirmation = !isCaptainsInGame();
+          break;
+        }
+        case 'HINTS_ROUND': {
+          showConfirmation = isAllTeamsAnswered();
+          break;
+        }
+      }
+      return showConfirmation;
+    }
+
+    function createCloseRoundConfirmation(message) {
+      customConfirmationService.create(message).then((res) => {
+        if (res.resolved) {
+          closeRound();
+        }
+      });
+    }
+
+    function isCaptainsInGame() {
+      let isCaptainsInGame = false;
+      for (let res of vm.results) {
+        if (res.score) {
+          isCaptainsInGame = true;
+          break;
+        }
+      }
+      return isCaptainsInGame;
+    }
+
+    function isAllTeamsAnswered() {
+      let isAllTeamsDisabled = true;
+      vm.results.forEach((item) => {
+        if (!item.score) {
+          isAllTeamsDisabled = false;
+        }
+      });
+      return isAllTeamsDisabled;
+    }
+
+    function incrementQuiz() {
+      if (+vm.currentQuiz === +vm.selectedQuiz) {
+        vm.currentQuiz++;
+        resultSetupService.setCurrentQuiz(vm.currentQuiz, $routeParams.gameId);
+      }
+      vm.setQuiz(+vm.selectedQuiz + 1);
+    }
 
     function closeRound() {
       resultSetupService.closeRound($routeParams.roundNumber, $routeParams.gameId)
         .then(() => {
           $location.path(`/games/${$routeParams.gameId}/rounds`);
         });
+    }
+
+    vm.range = function (n) {
+      return new Array(n).fill().map((e, i) => i + 1);
     };
   }
 })();
