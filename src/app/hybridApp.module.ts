@@ -1,9 +1,9 @@
-import {forwardRef, NgModule} from '@angular/core';
-import {UpgradeAdapter} from '@angular/upgrade';
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { forwardRef, NgModule } from '@angular/core';
+import { UpgradeAdapter } from '@angular/upgrade';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -13,7 +13,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppModule } from './app.module';
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
 import { NavbarComponent } from './admin/navbar/navbar.component';
 import { LoginPanelComponentUpgrade } from './admin/login-panel/login-panel.component.upgrade';
@@ -67,7 +66,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    AppModule
   ],
   entryComponents: [],
   providers: [BackupService, LoginService, NotificationService]
@@ -95,7 +93,6 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('roundTypeService');
     upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
     upgradeAdapter.upgradeNg1Provider('$translate');
-
   }
 
   private downgradeNewComponents() {
