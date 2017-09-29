@@ -32,6 +32,7 @@ import { ConfirmationsComponent, JasperoConfirmationsModule } from '@jaspero/ng2
 import { CustomConfirmationService } from './services/confirmation-service/confirmation.service';
 import { CaptainRoundTypeComponent } from './admin/round-type/captain-round-type/captain-round-type.component';
 import { HintRoundTypeComponent } from './admin/round-type/hint-round-type/hint-round-type.component';
+import { DefaultRoundTypeComponent } from './admin/round-type/default-round-type/default-round-type.component';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -53,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     GameTemplateComponent,
     CurrentTemplateComponent,
     HintRoundTypeComponent,
+    DefaultRoundTypeComponent,
     CaptainRoundTypeComponent,
   ],
   imports: [
