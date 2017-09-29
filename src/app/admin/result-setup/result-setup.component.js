@@ -204,7 +204,7 @@
 
     vm.nextQuiz = function () {
       if (checkConfirmationCondition()) {
-        createCloseRoundConfirmation(vm.round.roundType.type)
+        createCloseRoundConfirmation('FINISH_' + vm.round.roundType.type + '_CONFIRMATION')
       } else if (vm.selectedQuiz < vm.round.numberOfQuestions) {
         incrementQuiz();
       } else if (+vm.selectedQuiz === +vm.round.numberOfQuestions) {

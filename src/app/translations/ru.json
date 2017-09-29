@@ -142,7 +142,6 @@
   "GAMES_LABEL": "Игры",
   "START_INPUT_LABEL": "Балы",
   "STEP_INPUT_LABEL": "Шаг",
-  "NO_CAPTAINS_ALERT": "Все капитаны выбыли, закончить раунд?",
   "ROUND_FINISH_BUTTON": "Закончить раунд",
   "TEAMS_MODAL_HEADER": "Заявки команд на игру",
   "TEAMS_MODAL_PLACEHOLDER": "Пока нет заявок на игру",
@@ -166,5 +165,6 @@
   "CHANGES_SAVED": "Изменения сохранены",
   "NUMBER_OF_POINTS":"Количество балов за ответ",
   "CHANGES_DISCARDED": "Изменения отклонены",
-  "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?"
+  "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?",
+  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?"
 }
