@@ -7,9 +7,9 @@
       controller: ConfigGameController
     });
 
-  ConfigGameController.$inject = ['$location', 'OpenGameServiceFactory', '$routeParams', '$timeout', '$locale', 'convertServiceFactory'];
+  ConfigGameController.$inject = ['$location', 'OpenGameServiceFactory', '$routeParams', '$locale', 'convertServiceFactory', 'NotificationService'];
 
-  function ConfigGameController($location, OpenGameService, $routeParams, $timeout, $locale, convertService) {
+  function ConfigGameController($location, OpenGameService, $routeParams, $locale, convertService, NotificationService) {
     let vm = this;
     let gameId = $routeParams.gameId;
     this.location = "";
@@ -72,28 +72,19 @@
 
     function saveLocation() {
       OpenGameService.changeLocation(gameId, vm.location).then(() => {
-        vm.locationSaved = true;
-        $timeout(function () {
-          vm.locationSaved = false;
-        }, 1000);
+        NotificationService.showSuccess('SAVE_LOCATION_MESSAGE');
       });
     }
 
     function saveDate() {
       OpenGameService.changeDate(gameId, vm.gameDate).then(() => {
-        vm.dateSaved = true;
-        $timeout(function () {
-          vm.dateSaved = false;
-        }, 1000);
+        NotificationService.showSuccess('SAVE_DATE_MESSAGE');
       });
     }
 
     function saveTime() {
       OpenGameService.changeTime(gameId, vm.gameTime).then(() => {
-        vm.timeSaved = true;
-        $timeout(function () {
-          vm.timeSaved = false;
-        }, 1000);
+        NotificationService.showSuccess('SAVE_TIME_MESSAGE');
       });
     }
 
