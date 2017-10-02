@@ -4,15 +4,15 @@ angular.module('login')
       css: 'app/admin/login/login.css',
         controller: [
             'userAuthService',
-            '$location',
+          '$window',
             '$rootScope',
           'login',
-          function (auth, $location, $rootScope, loginService) {
+          function (auth, $window, $rootScope, loginService) {
                 this.login = function () {
                     auth.signInWithEmailAndPassword(this.email, this.password)
                         .then((user) => {
                             $rootScope.currentUser = user.email;
-                            $location.path($rootScope.getPreviousLocation());
+                          $window.history.back();
                         })
                         .catch((err) => {
                             if (err === 'rulesError'){
