@@ -8,9 +8,8 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 export class CaptainRoundTypeComponent implements OnInit {
   @Input() results;
   @Input() saveResult;
-  @Input() closeRound;
+  @Input() quizWeight;
   @Output() saved = new EventEmitter<any>();
-  weight;
   previousQuizResults;
   quizNumber;
   gameId;
@@ -23,36 +22,19 @@ export class CaptainRoundTypeComponent implements OnInit {
     this.quizNumber = this.$routeParams.quizNumber;
     this.gameId = this.$routeParams.gameId;
     this.roundNumber = this.$routeParams.roundNumber;
-
-    this.getRound()
-      .then((round) => {
-        this.getQuizWeight(round);
-      });
-    this.initPreviousQuizResults();
   }
 
   ngOnInit() {
+    this.initPreviousQuizResults();
   }
 
   save(result) {
-    result.score = result.status ? this.weight : 0;
+    result.score = result.status ? this.quizWeight : 0;
     this.saved.emit(result);
   }
 
-  getRound() {
-    return this.gameServiceFactory.getRoundByGameAndId(this.gameId, this.roundNumber);
-  }
-
-  getQuizWeight(round) {
-    this.weight = +(round.roundType.start + (round.roundType.step * (this.quizNumber - 1))).toFixed(1);
-  }
-
   initPreviousQuizResults() {
-    this.resultService.getByRoundAndQuiz(
-      this.roundNumber,
-      this.quizNumber - 1,
-      this.gameId
-    )
+    this.resultService.getByRoundAndQuiz(this.roundNumber, this.quizNumber - 1, this.gameId)
       .then(results => {
         this.previousQuizResults = results;
       });

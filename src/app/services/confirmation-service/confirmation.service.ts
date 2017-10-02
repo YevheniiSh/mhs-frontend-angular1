@@ -14,31 +14,36 @@ export class CustomConfirmationService {
   };
 
   constructor(@Inject('$translate') private translateService,
-              private _confirmation: ConfirmationService) {
+              private confirmation: ConfirmationService) {
   }
 
   public create(text: string): Promise<ResolveEmit> {
     return new Promise((resolve, reject) => {
-      this.translateButtons().then(() => {
-        this.translateMessage(text).then((t) => {
-          this._confirmation.create('', t, this.options).subscribe((ans: ResolveEmit) => {
-            resolve(ans);
-          });
+      this.translateButtons()
+        .then(() => {
+          this.translateMessage(text)
+            .then((t) => {
+              this.confirmation.create('', t, this.options).subscribe((ans: ResolveEmit) => {
+                resolve(ans);
+              });
+            });
         });
-      });
     });
   }
 
   private translateButtons(): Promise<string> {
     return new Promise((resolve, reject) => {
-      this.translateMessage('CONFIRMATION_CONFIRM_TEXT').then((text) => {
-        this.options.confirmText = text;
-      }).then(() => {
-        this.translateMessage('CONFIRMATION_DECLINE_TEXT').then((text) => {
-          this.options.declineText = text;
-          resolve('translated');
+      this.translateMessage('CONFIRMATION_CONFIRM_TEXT')
+        .then((text) => {
+          this.options.confirmText = text;
+        })
+        .then(() => {
+          this.translateMessage('CONFIRMATION_DECLINE_TEXT')
+            .then((text) => {
+              this.options.declineText = text;
+              resolve('translated');
+            });
         });
-      });
     });
   }
 

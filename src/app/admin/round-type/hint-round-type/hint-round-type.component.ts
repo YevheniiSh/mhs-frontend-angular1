@@ -14,7 +14,7 @@ export class HintRoundTypeComponent implements OnInit {
   @Output() saved = new EventEmitter<any>();
   clearResult = function (result) {
     result.checked = 0;
-    let resultKey = [result.round, result.quiz, result.teamId].join('_');
+    const resultKey = [result.round, result.quiz, result.teamId].join('_');
     this.resultServiceFactory.deleteResult(this.routeParams.gameId, resultKey);
   };
 
@@ -33,7 +33,7 @@ export class HintRoundTypeComponent implements OnInit {
         return this.initPreviousQuizResults();
       })
       .then(() => {
-        this.isDisabled();
+        this.updateResultDisabledStatus();
       });
   }
 
@@ -60,7 +60,7 @@ export class HintRoundTypeComponent implements OnInit {
       });
   }
 
-  isDisabled() {
+  updateResultDisabledStatus() {
     this.results.forEach(result => {
       if (!this.isFirstQuiz()) {
         if (this.previousQuizResults[result.teamId] === undefined) {
@@ -68,9 +68,9 @@ export class HintRoundTypeComponent implements OnInit {
         } else {
           if (this.previousQuizResults[result.teamId].quizNumber < (+this.routeParams.quizNumber)) {
             if (this.previousQuizResults[result.teamId].score > 0) {
-              result.score = this.previousQuizResults[result.teamId].score - ((+this.routeParams.quizNumber) - this.previousQuizResults[result.teamId].quizNumber) * this.step;
-            }
-            else {
+              result.score = this.previousQuizResults[result.teamId].score - ((+this.routeParams.quizNumber) -
+                this.previousQuizResults[result.teamId].quizNumber) * this.step;
+            } else {
               result.score = -1;
             }
             result.disabled = true;
