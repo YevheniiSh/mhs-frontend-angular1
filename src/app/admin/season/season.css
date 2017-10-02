@@ -71,9 +71,21 @@ season .missed-game{
   color:red;
 }
 
+@media screen and (max-width: 720px) {
+  season .btn-panel {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+
 @media screen and (max-width: 500px) {
   season .game-result, season .games-label {
     display: none;
+  }
+
+  season .btn-panel {
+    padding-right: 5px;
+    padding-left: 5px;
   }
 }
 

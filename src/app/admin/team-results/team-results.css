@@ -86,48 +86,54 @@ th.total{
 
 @media screen and (max-width: 720px) {
 
-  table, thead, tbody, th, td, tr {
+  team-results .btn-panel {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  team-results table, thead, tbody, th, td, tr {
     display: block;
   }
 
-  td.round-name.ng-binding {
+  team-results td.round-name.ng-binding {
     font-size: 18px;
     text-align: center;
     vertical-align: middle;
     width: auto;
   }
 
-  td.total-score.ng-binding {
+  team-results td.total-score.ng-binding {
     text-align: center;
     vertical-align: middle;
     width: auto;
     padding: 0;
   }
 
-  table tr td.quiz-row {
+  team-results table tr td.quiz-row {
     width: 100%;
     padding: 0;
     text-align: center;
   }
 
-  thead {
+  team-results thead {
     display: none;
   }
 
-  span.inp:nth-child(5) {
+  team-results span.inp:nth-child(5) {
     margin-right: 5px;
   }
 
-  label#default-result.inp-label:nth-child(5) {
+  team-results label#default-result.inp-label:nth-child(5) {
     margin-right: 0;
   }
 
-  .date {
-    font-size: 16px;
-    padding-top: 5px;
+  team-results .date {
+    float: none;
+    display: block;
+    margin-bottom: 5px;
   }
 
-  tr {
+  team-results tr {
     border: 2px solid lightgray;
   }
 }

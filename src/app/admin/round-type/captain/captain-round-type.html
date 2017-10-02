@@ -1,4 +1,4 @@
-<div id="weight-label">{{"NUMBER_OF_POINTS"|translate}}: {{$ctrl.weight}}</div>
+<div id="weight-label">{{"NUMBER_OF_POINTS"|translate}}: {{$ctrl.weight.toFixed(1)}}</div>
 <div class="form-group row captains-round-quiz">
   <ul id="team-list">
     <li ng-repeat="result in $ctrl.results | orderBy: 'teamName'" class="team">
