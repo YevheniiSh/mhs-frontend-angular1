@@ -1,0 +1,39 @@
+const gulp = require('gulp');
+const ngHtml2Js = require('gulp-ng-html2js');
+const minifyHtml = require('gulp-minify-html');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+
+function minifyPipe() {
+  return minifyHtml({
+    empty: true,
+    spare: true,
+    quotes: true
+  });
+}
+
+function ngHtml2JsPipe(templatePathPrefix) {
+  return ngHtml2Js({
+    prefix: templatePathPrefix,
+    moduleName: 'mhs',
+  });
+}
+
+function cacheTemplates(src, templatePathPrefix, outName, outDir = './tmp') {
+  return gulp.src(src)
+    .pipe(minifyPipe())
+    .pipe(ngHtml2JsPipe(templatePathPrefix))
+    .pipe(concat(outName + '.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(outDir));
+}
+
+gulp.task('cache-admin-templates', function () {
+  cacheTemplates('src/app/admin/**/*.html', 'app/admin/', 'admin-template-cache')
+});
+
+gulp.task('cache-player-templates', function () {
+  cacheTemplates('src/app/player/**/*.html', 'app/player/', 'player-template-cache')
+});
+
+gulp.task('default', ['cache-admin-templates', 'cache-player-templates']);
