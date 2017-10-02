@@ -6,14 +6,14 @@
       controller: loginController
     });
 
-  loginController.$inject = ['userAuthService', '$window', '$rootScope', 'login'];
+  loginController.$inject = ['userAuthService', '$location', '$rootScope', 'login'];
 
-  function loginController(auth, $window, $rootScope, loginService) {
+  function loginController(auth, $location, $rootScope, loginService) {
     this.login = function () {
       auth.signInWithEmailAndPassword(this.email, this.password)
         .then((user) => {
           $rootScope.currentUser = user.email;
-          $window.history.back();
+          successAuthRedirect();
         })
         .catch((err) => {
           if (err === 'rulesError') {
@@ -23,6 +23,12 @@
           this.errMessage = "INVALID_EMAIL_MESSAGE";
         });
       loginService.login(this.email, this.password);
+
+      function successAuthRedirect() {
+        if (($rootScope.hasOwnProperty('beforeAuthUrl') && $rootScope.beforeAuthUrl !== '/login'))
+          $location.url($rootScope.beforeAuthUrl);
+        else $location.path('/games')
+      }
     };
   }
 })();
