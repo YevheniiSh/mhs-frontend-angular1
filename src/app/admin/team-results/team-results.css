@@ -1,14 +1,21 @@
 td{
     font-size: 24px;
 }
+
 th{
     font-size: 20px;
 }
-h1{
-    border-bottom: solid 1px;
+
+tr{
+  padding-left: 15px;
+  padding-right: 15px;
 }
+
+team-results .btn-panel{
+  border-bottom: solid 1px;
+}
+
 .quiz-input{
-  /*background: 0;*/
     text-align:center;
     padding-left: 5px;
     padding-right: 5px;
@@ -28,55 +35,15 @@ span.inp {
   margin: 5px;
 }
 
-.edited {
+team-results .edited {
     box-shadow: 0px 0px 4px 3px #ffbc35;
 }
 
-span.inp:nth-child(5){
-    margin-right: 30px;
-}
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+team-results .total-score,
+team-results #total-title{
+  text-align: center;
 }
 
-td.ng-binding{
-    font-size: 20px;
-    width: 200px;
-    text-align: center;
-}
-td.total-point{
-    font-weight: bold;
-}
-th#quiz-title, table tr td.quiz-row{
-  width: 66%;
-    font-size: 20px;
-    padding: 0 0 0 7%;
-}
-td.round-name.ng-binding{
-    font-size: 14px;
-    text-align: left;
-    vertical-align: middle;
-}
-#total, #round{
-    vertical-align: middle;
-}
-th#total-title{
-    padding-right: 3%;
-    text-align: right;
-}
-td.total-score.ng-binding{
-    padding-right: 40px;
-    text-align: right;
-    vertical-align: middle;
-}
-th.total{
-    text-align: right;
-}
-.silver-total{
-    color:#D4D4D4;
-}
 .date{
     float: right;
 }
@@ -87,8 +54,8 @@ th.total{
 @media screen and (max-width: 720px) {
 
   team-results .btn-panel {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   team-results table, thead, tbody, th, td, tr {
@@ -97,16 +64,33 @@ th.total{
 
   team-results td.round-name.ng-binding {
     font-size: 18px;
-    text-align: center;
     vertical-align: middle;
     width: auto;
   }
 
-  team-results td.total-score.ng-binding {
-    text-align: center;
-    vertical-align: middle;
-    width: auto;
-    padding: 0;
+  team-results td{
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 16pt;
+  }
+
+  team-results tr{
+    position: relative;
+    border-bottom: 1px solid lightgrey;
+  }
+
+  .table>tbody>tr>td, .table>tbody>tr>th,
+  .table>thead>tr>td, .table>thead>tr>th{
+    border: none;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  team-results td.total-score {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    padding: 0px;
   }
 
   team-results table tr td.quiz-row {
@@ -131,9 +115,5 @@ th.total{
     float: none;
     display: block;
     margin-bottom: 5px;
-  }
-
-  team-results tr {
-    border: 2px solid lightgray;
   }
 }
