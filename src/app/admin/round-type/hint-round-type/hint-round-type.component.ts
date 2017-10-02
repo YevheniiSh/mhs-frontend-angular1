@@ -18,9 +18,9 @@ export class HintRoundTypeComponent implements OnInit {
     this.resultServiceFactory.deleteResult(this.routeParams.gameId, resultKey);
   };
 
-  constructor(@Inject('GameServiceFactory') private gameServiceFactory,
-              @Inject('$routeParams') private routeParams,
-              @Inject('ResultServiceFactory') private resultServiceFactory) {
+  constructor(@Inject('GameServiceFactory')private gameServiceFactory,
+              @Inject('$routeParams')private routeParams,
+              @Inject('ResultServiceFactory')private resultServiceFactory) {
 
   }
 
