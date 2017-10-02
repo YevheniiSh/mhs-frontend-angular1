@@ -74,7 +74,16 @@ auction-result .result {
   font-size: 14pt;
   border: none;
 }
+
 auction-result .result-label .btn[disabled] {
   cursor: default;
   opacity: 1;
 }
+
+@media screen and (max-width: 720px){
+  auction-result .result-label{
+    width: 20%;
+    margin:0 0 10px 0;
+  }
+}
+

@@ -7,29 +7,9 @@ tr {
   padding-right: 15px;
 }
 
-team-results .btn-panel {
+team-results .header {
   border-bottom: solid 1px;
 }
-
-/*.quiz-input{*/
-/*text-align:center;*/
-/*padding-left: 5px;*/
-/*padding-right: 5px;*/
-/*}*/
-
-/*.result, span.inp {*/
-/*padding: 4px 0;*/
-/*border-radius: 30%;*/
-/*color: #ffffff;*/
-/*width: 44px;*/
-/*height: 31px;*/
-/*font-size: 17px;*/
-/*border: none;*/
-/*}*/
-
-/*span.inp {*/
-/*margin: 5px;*/
-/*}*/
 
 team-results .edited {
   box-shadow: 0px 0px 4px 3px #ffbc35;
@@ -44,15 +24,16 @@ team-results .date {
   float: right;
 }
 
-team-results.team-total {
-  color: #0085ff;
+team-results .team-total {
+  color: #5CB85C;
 }
 
 @media screen and (max-width: 720px) {
 
-  team-results .btn-panel {
+  team-results .header {
     padding-left: 15px;
     padding-right: 15px;
+    border-bottom: 1px solid lightgrey;
   }
 
   team-results table, thead, tbody, th, td, tr {
@@ -99,12 +80,6 @@ team-results.team-total {
     display: none;
   }
 
-  /*team-results span.inp:nth-child(5) {*/
-  /*margin-right: 5px;*/
-  /*}*/
-  /*team-results label#default-result.inp-label:nth-child(5) {*/
-  /*margin-right: 0;*/
-  /*}*/
   team-results .date {
     float: none;
     display: block;
