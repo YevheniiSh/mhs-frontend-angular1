@@ -24,11 +24,6 @@
           "glob": "**/translations/*",
           "input": "./app/",
           "output": "./app/"
-        },
-        {
-          "glob": "**/bower_components/angular-i18n/*",
-          "input": "./app/",
-          "output": "./app/"
         }
       ],
       "index": "index.html",
