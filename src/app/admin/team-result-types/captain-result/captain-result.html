@@ -21,7 +21,7 @@
            ng-checked="$index == $ctrl.lastResultIndex"
            ng-disabled="$ctrl.resultDisabled">
     <label class="btn btn-default"
-           ng-class="{'btn-success': result.quizNum <= $ctrl.lastResultIndex,'edited':result.edited}"
+           ng-class="{'btn-success': result.quizNum <= $ctrl.lastResultIndex}"
            for="{{$index}}">
       {{result.quizNum}}
     </label>

@@ -27,7 +27,6 @@ default-result .result{
 @media screen and (max-width: 720px){
   default-result .result-label{
     width: 20%;
-    text-align: left;
     margin:0 0 10px 0;
   }
 }

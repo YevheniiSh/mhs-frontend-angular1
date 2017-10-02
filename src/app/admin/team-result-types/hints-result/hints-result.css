@@ -1,16 +1,16 @@
-.switch {
+hints-result .switch {
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 30px;
-  margin: 0;
+  height: 28px;
+  margin: -2px 10px;
 }
 
-.switch input {
+hints-result .switch input {
   display: none;
 }
 
-.slider {
+hints-result .slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -23,11 +23,11 @@
   transition: .4s;
 }
 
-.slider:before {
+hints-result .slider:before {
   position: absolute;
   content: "";
-  height: 24px;
-  width: 24px;
+  height: 23px;
+  width: 23px;
   left: 4px;
   bottom: 3px;
   background-color: white;
@@ -35,79 +35,107 @@
   transition: .4s;
 }
 
-input:checked + .slider {
+hints-result input:checked + .slider {
   background-color: #81EA89;
 }
 
-input:focus + .slider {
+hints-result input:focus + .slider {
   box-shadow: 0 0 1px #449d44;
 }
 
-input:disabled + .slider {
+hints-result input:disabled + .slider {
   cursor: default;
 }
 
-input:checked + .slider:before {
+hints-result input:checked + .slider:before {
   -webkit-transform: translateX(24px);
   -ms-transform: translateX(24px);
   transform: translateX(24px);
 }
 
-.slider.round {
+hints-result .slider.round {
   float: left;
   top: 6px;
   bottom: -6px;
-  border-radius: 30px;
+  border-radius: 28px;
 }
 
-.slider.round:before {
+hints-result .slider.round:before {
   border-radius: 50%;
 }
 
-.result-control {
-  margin-right: 20px;
-}
-
-#hint-result {
+hints-result .result-control {
   float: left;
-  margin: 5px;
   width: auto;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 
-#hint-result input[type=radio] {
+hints-result .result-control input[type=radio] {
   display: none;
 }
 
-#user-result .btn[disabled] {
-  cursor: default;
-  opacity: 1;
-}
 
-#hint-result div {
+
+hints-result .result-control div {
   float: left;
 }
 
-#hint-result div label {
+hints-result .result-control div label {
   border-radius: 0;
   font-weight: bold;
   width: 50px;
 }
 
-#hint-result div:first-of-type label {
+hints-result .result-control div:first-of-type label {
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
 }
 
-#hint-result div:last-of-type label {
+hints-result .result-control div:last-of-type label {
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
 }
 
-.switchSpan {
+hints-result .switchSpan {
   margin: 10px;
 }
 
-.hints-edited {
+hints-result .hints-edited {
   box-shadow: 0px 0px 4px 3px #ffbc35;;
   border-radius: 50px;
+}
+
+hints-result .result-label .btn[disabled] {
+  cursor: default;
+  opacity: 1;
+}
+
+hints-result .result-label{
+  margin-right: 1%;
+  text-align: left;
+}
+
+hints-result .result{
+  padding: 4px 0;
+  border-radius: 30%;
+  text-align: center;
+  color: white;
+  width: 44px;
+  height: 31px;
+  font-size: 14pt;
+  border: none;
+}
+
+@media screen and (min-width: 721px){
+  hints-result .result-label:nth-child(5) {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 720px){
+  hints-result .result-label{
+    width: 20%;
+    margin:0 0 10px 0;
+  }
 }
