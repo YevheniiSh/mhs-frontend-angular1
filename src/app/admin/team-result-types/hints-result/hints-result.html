@@ -15,26 +15,27 @@
     </label>
   </div>
 </div>
-  <label class="switch" ng-if="!$ctrl.resultDisabled">
-    <input id="season"
-                   type="checkbox"
-                   ng-model="$ctrl.status"
-                   ng-change="$ctrl.onChange($ctrl.quizNum)"
-                   ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
-                   ng-true-value="1"
-                   ng-false-value="0">
-    <span class="slider round"></span>
-  </label>
+
+<label class="switch" ng-if="!$ctrl.resultDisabled">
+  <input id="season"
+         type="checkbox"
+         ng-model="$ctrl.status"
+         ng-change="$ctrl.onChange($ctrl.quizNum)"
+         ng-model-options="{'updateOn': 'default blur','debounce': {'default': 250,'blur': 0}}"
+         ng-true-value="1"
+         ng-false-value="0">
+  <span class="slider round"></span>
+</label>
 
 <label class="result-label"
        ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum"
        ng-if="$ctrl.resultDisabled">
-    <span class="btn result"
+  <span class="btn result"
           ng-class="{'btn-success' : +(quiz.score) > 0,
                           'btn-silver' : +(quiz.score) === 0,
                           'btn-danger' : +(quiz.score) < 0}" disabled>
-        <span uib-tooltip="№ {{quiz.quizNum}}">
-            {{quiz.score}}
-        </span>
+    <span uib-tooltip="№ {{quiz.quizNum}}">
+      {{quiz.score}}
     </span>
+  </span>
 </label>
