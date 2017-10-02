@@ -97,9 +97,8 @@ module.exports = {
     ]
   },
   "output": {
-    "path": path.join(process.cwd(), "dist"),
-    "filename": "[name].bundle.js",
-    "chunkFilename": "[id].chunk.js"
+    "filename": "[name].[chunkhash].bundle.js",
+    path: path.resolve(__dirname, 'dist')
   },
   "module": {
     "rules": [
@@ -188,16 +187,19 @@ module.exports = {
   },
   "plugins": [
     new UglifyJSPlugin({
-      exclude: "main.bundle.js",
+      exclude: /.*main\.\w+.*/,
       sourceMap: false,
-      ecma: 5
+      ecma: 5,
+      output: {
+        comments: false
+      }
     }),
     new NoEmitOnErrorsPlugin(),
     new ConcatPlugin({
       "uglify": false,
       "sourceMap": false,
       "name": "scripts",
-      "fileName": "[name].bundle.js",
+      "fileName": "[name].[hash].bundle.js",
       "filesToConcat": [
         "node_modules/systemjs/dist/system.js",
         "node_modules/firebase/firebase.js",
