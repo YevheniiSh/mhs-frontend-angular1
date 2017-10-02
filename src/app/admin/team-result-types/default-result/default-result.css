@@ -1,13 +1,33 @@
-.input-group {
-  display: inline-table;
-  vertical-align: middle;
+default-result .result-label{
+  margin-right: 1%;
+  text-align: left;
 }
 
-.inp-label:nth-child(5) {
-  margin-right: 25px;
-}
-
-#default-result .btn[disabled] {
+default-result .result-label .btn[disabled] {
   cursor: default;
   opacity: 1;
+}
+
+default-result .result{
+  padding: 4px 0;
+  border-radius: 30%;
+  color: white;
+  width: 44px;
+  height: 31px;
+  font-size: 14pt;
+  border: none;
+}
+
+@media screen and (min-width: 721px){
+  default-result .result-label:nth-child(5) {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 720px){
+  default-result .result-label{
+    width: 20%;
+    text-align: left;
+    margin:0 0 10px 0;
+  }
 }
