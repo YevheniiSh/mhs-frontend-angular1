@@ -5,13 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "npm install && bower install && ng serve",
-    "build": "gulp && babel src/app -d lib && ng build --env=prod && rimraf lib tmp && npm run precache",
-    "prod-build": "rimraf dist && babel src/app -d lib && webpack && rimraf lib tmp && npm run precache",
+    "build": "gulp && rimraf dist && babel src/app -d lib && webpack && rimraf lib tmp && npm run precache",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "tsc": "tsc",
-    "init-precache": "sw-precache && sw-precache --root=dist --verbose --maximumFileSizeToCacheInBytes=8388608",
     "precache": "sw-precache --root=dist --verbose --config=sw-precache-config.js"
   },
   "private": true,
