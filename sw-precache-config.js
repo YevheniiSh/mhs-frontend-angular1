@@ -15,6 +15,5 @@ module.exports = {
   ],
   root: 'dist',
   stripPrefix: 'dist/',
-  navigateFallback: '/index.html',
-  maximumFileSizeToCacheInBytes:8388608
+  navigateFallback: '/index.html'
 };
