@@ -1,4 +1,5 @@
 import * as angular from 'angular';
+import { environment } from '../environments/environment';
 
 export function upgradeDirective(moduleName, invokedName) {
   angular.module(moduleName).config(config);
@@ -14,10 +15,28 @@ export function upgradeDirective(moduleName, invokedName) {
       delete directive.compile;
     }
 
-    // if (directive.hasOwnProperty('replace')) {
-    //   delete directive.replace;
-    // }
+    if (!environment.production) {
+      if (directive.hasOwnProperty('templateUrl')) {
+        const directiveTemplateUrl = directive.templateUrl.substring(directive.templateUrl.indexOf('app/'));
+
+        delete directive.templateUrl;
+
+        directive.template = readTextFile(directiveTemplateUrl);
+      }
+
+      if (directive.hasOwnProperty('css')) {
+        const cssUrl = directive.css.substring(directive.css.indexOf('app/'));
+        directive.template = directive.template.replace(/^/, '<link href="' + cssUrl + '" rel="stylesheet">');
+      }
+    }
 
     return $delegate;
   }
+}
+
+function readTextFile(file) {
+  const rawFile = new XMLHttpRequest();
+  rawFile.open('GET', file, false);
+  rawFile.send(null);
+  return rawFile.responseText;
 }
