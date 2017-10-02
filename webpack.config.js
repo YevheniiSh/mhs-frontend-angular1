@@ -202,7 +202,6 @@ module.exports = {
         "node_modules/systemjs/dist/system.js",
         "node_modules/firebase/firebase.js",
         "src/app/bower_components/angular/angular.min.js",
-        "src/app/bower_components/angular-messages/angular-messages.js",
         "src/app/bower_components/angular-translate/angular-translate.js",
         "src/app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
         "src/app/bower_components/angular-bootstrap/ui-bootstrap.min.js",
@@ -243,14 +242,6 @@ module.exports = {
         "context": "src/app/",
         "to": "./app/",
         "from": {
-          "glob": "**/*.html",
-          "dot": true
-        }
-      },
-      {
-        "context": "src/app/",
-        "to": "./app/",
-        "from": {
           "glob": "**/*.css",
           "dot": true
         }
@@ -263,14 +254,6 @@ module.exports = {
           "dot": true
         }
       },
-      {
-        "context": "src/app/",
-        "to": "./app/",
-        "from": {
-          "glob": "**/bower_components/angular-i18n/*",
-          "dot": true
-        }
-      }
     ], {
       "ignore": [
         ".gitkeep"
