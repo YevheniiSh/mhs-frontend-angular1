@@ -13,7 +13,7 @@
       auth.signInWithEmailAndPassword(this.email, this.password)
         .then((user) => {
           $rootScope.currentUser = user.email;
-          successAuthRedirect();
+          redirectToPreviousPage();
         })
         .catch((err) => {
           if (err === 'rulesError') {
@@ -24,7 +24,7 @@
         });
       loginService.login(this.email, this.password);
 
-      function successAuthRedirect() {
+      function redirectToPreviousPage() {
         if (($rootScope.hasOwnProperty('beforeAuthUrl') && $rootScope.beforeAuthUrl !== '/login'))
           $location.url($rootScope.beforeAuthUrl);
         else $location.path('/games')
