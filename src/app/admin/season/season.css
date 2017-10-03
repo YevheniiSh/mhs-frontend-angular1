@@ -6,20 +6,6 @@ season .season-alert {
   cursor: default;
 }
 
-season .season-close-alert {
-  display: inline-block;
-  position: absolute;
-  right: 0px;
-  top: 60px;
-}
-
-season .season-open-games-alert {
-  color: red;
-  position: absolute;
-  right: 130px;
-  line-height: 250%;
-}
-
 season .games-label {
   float: right;
 }
@@ -73,8 +59,8 @@ season .missed-game{
 
 @media screen and (max-width: 720px) {
   season .btn-panel {
-    padding-right: 5px;
-    padding-left: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
@@ -84,8 +70,17 @@ season .missed-game{
   }
 
   season .btn-panel {
-    padding-right: 5px;
-    padding-left: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  season .table>tbody>tr>td,
+  season .table>thead>tr>th{
+    padding: 8px 15px;
+  }
+
+  season .table-header{
+    padding-left: 15px;
   }
 }
 
