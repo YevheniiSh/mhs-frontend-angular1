@@ -1,3 +1,11 @@
+open-game-list .no-games-label {
+  font-size: 3em;
+  text-align: center;
+  color: #c7c7c7;
+  padding-top: 1em;
+  cursor: default;
+}
+
 open-game-list .header {
   font-weight: bold;
 }
@@ -13,7 +21,7 @@ open-game-list .game-list-item > div {
 }
 
 open-game-list .game-list-item {
-  padding: 10px 0;
+  padding: 10px 15px;
   margin: 0px;
   border-bottom: 1px lightgrey solid;
   cursor: default;
@@ -71,9 +79,5 @@ open-game-list .wide-panel {
   open-game-list .register-button,
   open-game-list .request-button {
     width: 49%;
-  }
-
-  open-game-list .game-list-item {
-    padding: 10px 15px;
   }
 }
