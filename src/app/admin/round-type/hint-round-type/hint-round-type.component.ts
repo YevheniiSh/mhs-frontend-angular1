@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-hint-round-type',
@@ -39,7 +39,7 @@ export class HintRoundTypeComponent implements OnInit {
   }
 
   initPreviousQuizResults() {
-    return this.resultServiceFactory.filter({by: 'round', val: this.routeParams.roundNumber}, this.routeParams.gameId)
+    return this.resultServiceFactory.filter({ by: 'round', val: this.routeParams.roundNumber }, this.routeParams.gameId)
       .then(results => {
         let res = {};
         results.forEach(result => {

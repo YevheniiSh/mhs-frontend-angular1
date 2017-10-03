@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange} from '@angular/core';
-import {trigger} from "@angular/animations";
+import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange } from '@angular/core';
+import { trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-switcher',

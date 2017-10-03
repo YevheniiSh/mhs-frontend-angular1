@@ -209,7 +209,7 @@
     };
 
     vm.nextQuiz = function () {
-      if (isExistTeamToAnswer()) {
+      if (!isExistTeamToAnswer()) {
         createCloseRoundConfirmation('FINISH_ROUND_CONFIRMATION_TITLE', `FINISH_${vm.round.roundType.type}_CONFIRMATION`)
       } else if (vm.selectedQuiz < vm.round.numberOfQuestions) {
         incrementQuiz();
@@ -219,14 +219,14 @@
     };
 
     function isExistTeamToAnswer() {
-      let isTeamExist = false;
+      let isTeamExist = true;
       switch (vm.round.roundType.type) {
         case 'CAPTAIN_ROUND': {
-          isTeamExist = !vm.results.some(getScore);
+          isTeamExist = vm.results.some(getScore);
           break;
         }
         case 'HINTS_ROUND': {
-          isTeamExist = vm.results.every(getScore);
+          isTeamExist = !vm.results.every(getScore);
           break;
         }
       }
