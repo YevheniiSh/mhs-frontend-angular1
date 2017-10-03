@@ -18,13 +18,12 @@ angular.module('mhs', [
   'gameTemplateService',
   'gameBuildService',
   'convertService',
-  '720kb.socialshare',
   'roundTypeService',
   'seasonService'
 ])
   .config(['$locationProvider', '$routeProvider', '$animateProvider',
     function ($locationProvider, $routeProvider, $animateProvider) {
       $animateProvider.classNameFilter(/animated/);
-      $locationProvider.hashPrefix('!');
+      $locationProvider.html5Mode(true).hashPrefix('!');
       $routeProvider.otherwise({redirectTo: '/games'});
     }]);
