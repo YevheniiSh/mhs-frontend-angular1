@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Template } from './template';
-import { CustomConfirmationService } from '../../services/confirmation-service/confirmation.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Template} from './template';
+import {CustomConfirmationService} from '../../services/confirmation-service/confirmation.service';
 
 @Component({
   selector: 'app-game-template',
@@ -52,7 +52,7 @@ export class GameTemplateComponent implements OnInit {
   }
 
   deleteTemplate(templateId) {
-    this.confirmation.create('CONFIRMATION_DELETE_TEMPLATE_TEXT')
+    this.confirmation.create('DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE', 'CONFIRMATION_DELETE_TEMPLATE_TEXT')
       .then((res) => {
         if (res && this.$routeParams.templateId === templateId) {
           this.templateService.remove(templateId);

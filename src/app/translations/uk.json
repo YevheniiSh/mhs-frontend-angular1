@@ -164,6 +164,8 @@
   "REVIEW_RESULTS_BUTTON": "Переглянути результати",
   "NUMBER_OF_POINTS":"Кількість балів за відповідь",
   "CHANGES_DISCARDED": "Зміни відхилено",
+  "DELETE_OPEN_GAME_CONFIRMATION_TITLE": "Видалити гру?",
+  "DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE": "Видалити шаблон?",
   "FINISH_ROUND_CONFIRMATION_TITLE": "Завершити раунд?",
   "FINISH_HINTS_ROUND_CONFIRMATION": "Всі команди відповіли, закінчити раунд?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Усі капітани вибули, завершити раунд?"
