@@ -33,8 +33,7 @@
             <tr class="teams-property">
                 <th>#</th>
                 <th>{{'TEAMS_TABLE_HEADER'|translate}}</th>
-                <th>{{'GAMES_TABLE_HEADER'|translate}}</th>
-
+                <th class="games">{{'GAMES_TABLE_HEADER'|translate}}</th>
             </tr>
             </thead>
             <tbody class="teams">
@@ -58,7 +57,7 @@
                            esc-key="$ctrl.selectTeamForEdit()">
 
                 </td>
-                <td>{{team.games}}</td>
+                <td class="games">{{team.games}}</td>
             </tr>
             </tbody>
         </table>
