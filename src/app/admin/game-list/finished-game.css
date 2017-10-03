@@ -1,4 +1,3 @@
-
 finished-game-list .no-games-label {
   font-size: 3em;
   text-align: center;
@@ -7,80 +6,81 @@ finished-game-list .no-games-label {
   cursor: default;
 }
 
-#select-season-container.row{
+finished-game-list #select-season-container.row{
   margin:0px;
 }
 
-#select-season {
+finished-game-list #select-season {
   margin-top: 10px;
   float: right;
   width: 25%
 }
 
-
-.header{
+finished-game-list .header{
   font-weight: bold;
-
 }
 
-ul.game-list {
+finished-game-list ul.game-list {
   list-style: none;
   padding: 0px;
 }
 
-ul.game-list > li:nth-child(even) { background: #f9f9f9; }
+finished-game-list ul.game-list > li:nth-child(even) { background: #f9f9f9; }
 
-.game-list-item > div {
+finished-game-list .game-list-item > div {
   display: inline-block;
   float: left;
 }
 
 finished-game-list .game-list-item {
-  padding: 1% 2%;
+  padding: 10px 15px;
   margin: 0px;
   border-bottom: 1px lightgrey solid;
   cursor: pointer;
 }
 
-.winner-cell{
+finished-game-list .winner-cell{
   width: 30%;
 }
 
-.game-date-cell{
+finished-game-list .game-date-cell{
   width: 25%
 }
 
-.team-count-cell{
+finished-game-list .team-count-cell{
   text-align: center;
-  padding-right: 3%;
   width: 30%;
 }
 
-.season-cell{
+finished-game-list .season-cell{
   width: 15%;
 }
 
+finished-game-list .trophy {
+  color: goldenrod;
+}
+
 @media screen and (max-width: 720px){
-  .winner-cell{
+  finished-game-list .winner-cell{
     width: 37%;
   }
 
-  .game-date-cell{
+  finished-game-list .game-date-cell{
     width: 17%
   }
 
-  .team-count-cell{
+  finished-game-list .team-count-cell{
     width: 20%;
   }
 
-  .season-cell{
+  finished-game-list .season-cell{
     width: 25%;
+    text-align: center;
   }
 
-  #select-season {
-    margin-right: 2%;
-    width: 96%;
-    margin-bottom: 10px;
+  finished-game-list #select-season {
+    margin: 10px 15px;
+    width: -webkit-fill-available;
   }
 }
 
