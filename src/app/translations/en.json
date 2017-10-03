@@ -165,6 +165,7 @@
   "ROUND_FINISH_BUTTON": "Finish round",
   "NUMBER_OF_POINTS":"Number of points for an answer",
   "CHANGES_DISCARDED": "Changes discarded",
+  "FINISH_ROUND_CONFIRMATION_TITLE": "Finish round?",
   "FINISH_HINTS_ROUND_CONFIRMATION": "All teams answered, do you want to finish round?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?"
 }

@@ -165,6 +165,7 @@
   "CHANGES_SAVED": "Изменения сохранены",
   "NUMBER_OF_POINTS":"Количество балов за ответ",
   "CHANGES_DISCARDED": "Изменения отклонены",
+  "FINISH_ROUND_CONFIRMATION_TITLE": "Закончить раунд?",
   "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?"
 }

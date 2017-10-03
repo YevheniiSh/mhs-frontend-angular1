@@ -210,7 +210,7 @@
 
     vm.nextQuiz = function () {
       if (isExistTeamToAnswer()) {
-        createCloseRoundConfirmation(`FINISH_${vm.round.roundType.type}_CONFIRMATION`)
+        createCloseRoundConfirmation('FINISH_ROUND_CONFIRMATION_TITLE', `FINISH_${vm.round.roundType.type}_CONFIRMATION`)
       } else if (vm.selectedQuiz < vm.round.numberOfQuestions) {
         incrementQuiz();
       } else if (+vm.selectedQuiz === +vm.round.numberOfQuestions) {
@@ -233,8 +233,8 @@
       return isTeamExist;
     }
 
-    function createCloseRoundConfirmation(message) {
-      customConfirmationService.create(message).then((res) => {
+    function createCloseRoundConfirmation(title, message) {
+      customConfirmationService.create(title, message).then((res) => {
         if (res) {
           finishRound();
         }
