@@ -33,7 +33,7 @@ import {CaptainRoundTypeComponent} from './admin/round-type/captain-round-type/c
 import {HintRoundTypeComponent} from './admin/round-type/hint-round-type/hint-round-type.component';
 import {SwitcherComponent} from './admin/round-type/hint-round-type/switcher/switcher.component';
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {ConfirmComponentComponent} from './admin/confirm-component/confirm-component.component';
+import {ConfirmComponent} from './admin/confirm/confirm.component';
 
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
@@ -58,7 +58,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HintRoundTypeComponent,
     CaptainRoundTypeComponent,
     SwitcherComponent,
-    ConfirmComponentComponent,
+    ConfirmComponent,
   ],
   imports: [
     FormsModule,
@@ -81,7 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     BootstrapModalModule.forRoot({container: document.body}),
   ],
-  entryComponents: [],
+  entryComponents: [ConfirmComponent],
   providers: [BackupService, LoginService, NotificationService, CustomConfirmationService]
 })
 export class HybridAppModule {

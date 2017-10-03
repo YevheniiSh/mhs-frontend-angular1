@@ -8,9 +8,9 @@ export interface ConfirmModel {
 
 @Component({
   selector: 'app-confirm-component',
-  templateUrl: './confirm-component.component.html'
+  templateUrl: './confirm.component.html'
 })
-export class ConfirmComponentComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
+export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
   title: string;
   message: string;
 
