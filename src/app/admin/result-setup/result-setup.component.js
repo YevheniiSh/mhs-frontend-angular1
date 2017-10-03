@@ -235,7 +235,7 @@
 
     function createCloseRoundConfirmation(message) {
       customConfirmationService.create(message).then((res) => {
-        if (res.resolved) {
+        if (res) {
           finishRound();
         }
       });
