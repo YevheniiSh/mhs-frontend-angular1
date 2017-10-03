@@ -1,17 +1,17 @@
-import { forwardRef, NgModule } from '@angular/core';
-import { UpgradeAdapter } from '@angular/upgrade';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {forwardRef, NgModule} from '@angular/core';
+import {UpgradeAdapter} from '@angular/upgrade';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import * as angular from 'angular';
-import { FormsModule } from '@angular/forms';
-import { ToastModule } from 'ng2-toastr';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
+import {ToastModule} from 'ng2-toastr';
+import {CollapseModule} from 'ngx-bootstrap/collapse';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {TeamListComponentUpgrade} from './admin/team-list/team-list.component.upgrade';
 import {NavbarComponent} from './admin/navbar/navbar.component';
@@ -27,7 +27,6 @@ import {AuctionRoundTypeComponent} from './admin/round-type/auction-round-type/a
 import {OrderByPipe} from './pipe/order-by.pipe';
 import {NotificationService} from './services/notification-service/notification.service';
 import {NotificationPanelComponent} from './notification/notification-panel.component';
-import {ConfirmationsComponent, JasperoConfirmationsModule} from '@jaspero/ng2-confirmations';
 import {CustomConfirmationService} from './services/confirmation-service/confirmation.service';
 import {CaptainRoundTypeComponent} from './admin/round-type/captain-round-type/captain-round-type.component';
 import {HintRoundTypeComponent} from './admin/round-type/hint-round-type/hint-round-type.component';
@@ -70,7 +69,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    JasperoConfirmationsModule,
     ToastModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -117,8 +115,9 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
     this.mhsAdminModule.directive('appHintRoundType', upgradeAdapter.downgradeNg2Component(HintRoundTypeComponent));
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
-    this.mhsAdminModule.directive('jasperoConfirmations', upgradeAdapter.downgradeNg2Component(ConfirmationsComponent));
+    this.mhsAdminModule.directive('appConfirmComponent', upgradeAdapter.downgradeNg2Component(ConfirmComponent));
     this.mhsAdminModule.directive('appCaptainRoundType', upgradeAdapter.downgradeNg2Component(CaptainRoundTypeComponent));
+    this.mhsAdminModule.directive('appSwitcher', upgradeAdapter.downgradeNg2Component(SwitcherComponent));
   }
 
   private downgradeNewProviders() {

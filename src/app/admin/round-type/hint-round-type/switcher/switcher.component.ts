@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange} from '@angular/core';
-import {CustomConfirmationService} from "../../../../services/confirmation-service/confirmation.service";
+import {Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange} from '@angular/core';
 import {trigger} from "@angular/animations";
 
 @Component({
@@ -9,7 +8,7 @@ import {trigger} from "@angular/animations";
   animations: [
     trigger('myRadio', [])]
 })
-export class SwitcherComponent implements OnInit, OnChanges {
+export class SwitcherComponent implements OnChanges {
 
 
   @Input() result;
@@ -25,20 +24,12 @@ export class SwitcherComponent implements OnInit, OnChanges {
   };
 
   constructor(@Inject('$routeParams') private routeParams,
-              @Inject('ResultServiceFactory') private resultServiceFactory,
-              private confirmation: CustomConfirmationService) {
-  }
-
-  ngOnInit() {
-    // this.confirmation.create(`FINISH_HINTS_ROUND_CONFIRMATION`)
-    //   .then((res) => {
-    //   console.log(res);
-    //   })
+              @Inject('ResultServiceFactory') private resultServiceFactory) {
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }): void {
     for (let propName in changes) {
-      if (propName === 'previousQuizResults') {
+      if (propName === 'previousQuizResults' && changes[propName].currentValue !== undefined) {
         this.setDisableStatuses();
       }
     }
