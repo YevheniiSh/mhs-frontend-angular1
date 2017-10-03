@@ -27,4 +27,7 @@ angular.module('mhs', [
       $animateProvider.classNameFilter(/animated/);
       $locationProvider.hashPrefix('!');
       $routeProvider.otherwise({redirectTo: '/games'});
-    }]);
+    }])
+  .run(['firebaseOfflineService', (firebaseOfflineService) => {
+    firebaseOfflineService.enableOffline();
+  }]);
