@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-hint-round-type',
@@ -13,14 +13,14 @@ export class HintRoundTypeComponent implements OnInit {
   @Input() results;
   @Output() saved = new EventEmitter<any>();
   clearResult = function (result) {
-    result.checked = 0;
+    result.checked = 1;
     const resultKey = [result.round, result.quiz, result.teamId].join('_');
     this.resultServiceFactory.deleteResult(this.routeParams.gameId, resultKey);
   };
 
-  constructor(@Inject('GameServiceFactory')private gameServiceFactory,
-              @Inject('$routeParams')private routeParams,
-              @Inject('ResultServiceFactory')private resultServiceFactory) {
+  constructor(@Inject('GameServiceFactory') private gameServiceFactory,
+              @Inject('$routeParams') private routeParams,
+              @Inject('ResultServiceFactory') private resultServiceFactory) {
 
   }
 
@@ -33,7 +33,7 @@ export class HintRoundTypeComponent implements OnInit {
         return this.initPreviousQuizResults();
       })
       .then(() => {
-        this.updateResultDisabledStatus();
+        this.setDisableStatuses();
       });
   }
 
@@ -47,7 +47,7 @@ export class HintRoundTypeComponent implements OnInit {
   }
 
   initPreviousQuizResults() {
-    return this.resultServiceFactory.filter({ by: 'round', val: this.routeParams.roundNumber }, this.routeParams.gameId)
+    return this.resultServiceFactory.filter({by: 'round', val: this.routeParams.roundNumber}, this.routeParams.gameId)
       .then(results => {
         let res = {};
         results.forEach(result => {
@@ -60,28 +60,51 @@ export class HintRoundTypeComponent implements OnInit {
       });
   }
 
-  updateResultDisabledStatus() {
-    this.results.forEach(result => {
-      if (!this.isFirstQuiz()) {
-        if (this.previousQuizResults[result.teamId] === undefined) {
-          result.disabled = false;
-        } else {
-          if (this.previousQuizResults[result.teamId].quizNumber < (+this.routeParams.quizNumber)) {
-            if (this.previousQuizResults[result.teamId].score > 0) {
-              result.score = this.previousQuizResults[result.teamId].score - ((+this.routeParams.quizNumber) -
-                this.previousQuizResults[result.teamId].quizNumber) * this.step;
-            } else {
-              result.score = -1;
-            }
-            result.disabled = true;
-          }
-        }
-      }
-    });
+  setDisableStatuses() {
+    if (!this.isFirstQuiz()) {
+      this.results.forEach(result => {
+        this.setInputDisableStatus(result);
+      });
+    }
   }
 
   isFirstQuiz() {
     return this.routeParams.quizNumber === '1';
+  }
+
+  private setInputDisableStatus(result) {
+    if (this.isTeamAnsweredInRound(result) && this.isTeamAnsweredToPreviousQuestion(result)) {
+        this.disableInput(result);
+    }
+  }
+
+  private isTeamAnsweredInRound(result) {
+    return this.previousQuizResults[result.teamId] !== undefined;
+  }
+
+  private isTeamAnsweredToPreviousQuestion(result) {
+    return this.previousQuizResults[result.teamId].quizNumber < (+this.routeParams.quizNumber);
+  }
+
+  private disableInput(result) {
+    if (this.isPreviousAnswerCorrect(result)) {
+      this.setSwitcherScoreOn(result);
+    } else {
+      this.setSwitcherScoreOff(result);
+    }
+    result.disabled = true;
+  }
+
+  private isPreviousAnswerCorrect(result) {
+    return this.previousQuizResults[result.teamId].score > 0;
+  }
+
+  private setSwitcherScoreOn(result) {
+    result.score = this.weight;
+  }
+
+  private setSwitcherScoreOff(result) {
+    result.score = -1;
   }
 
   saveResult(result) {
