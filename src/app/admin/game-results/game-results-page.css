@@ -1,16 +1,5 @@
-#fb-share-button {
+app-facebook-share {
   float: right;
-  background: #3b5998;
-  border-radius: 3px;
-  font-weight: 600;
-  padding: 5px 8px;
-  height: 33px;
-  display: inline-block;
-  position: static;
-}
-
-.fa-facebook {
-  color: white;
 }
 
 .photos-link {
@@ -24,18 +13,6 @@
   float: right;
   margin-right: 8px;
   display: inline;
-}
-
-#fb-share-button:hover {
-  cursor: pointer;
-  background: #213A6F
-}
-
-#fb-share-button span {
-  vertical-align: middle;
-  color: white;
-  font-size: 14px;
-  padding: 0 3px
 }
 
 td.td-cell {

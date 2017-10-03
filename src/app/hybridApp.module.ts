@@ -27,6 +27,8 @@ import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type
 import { OrderByPipe } from './pipe/order-by.pipe';
 import { NotificationService } from './services/notification-service/notification.service';
 import { NotificationPanelComponent } from './notification/notification-panel.component';
+import { FacebookModule } from 'ngx-facebook';
+import { FacebookShareComponent } from './facebook-share/facebook-share.component';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -47,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoundBuilderComponentUpgrade,
     GameTemplateComponent,
     CurrentTemplateComponent,
+    FacebookShareComponent
   ],
   imports: [
     FormsModule,
@@ -66,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    FacebookModule.forRoot()
   ],
   entryComponents: [],
   providers: [BackupService, LoginService, NotificationService]
@@ -101,6 +105,7 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
     this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
+    this.mhsAdminModule.directive('appFacebookShare', upgradeAdapter.downgradeNg2Component(FacebookShareComponent));
   }
 
   private downgradeNewProviders() {
