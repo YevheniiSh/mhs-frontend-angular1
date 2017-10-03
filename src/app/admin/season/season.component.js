@@ -58,7 +58,7 @@
 
     function showSeasonCloseConfirmation() {
       customConfirmationService.create('CONFIRMATION_CLOSE_SEASON').then((res) => {
-        if (res.resolved)
+        if (res)
           seasonService.finishSeason(seasonId).then((seasonStatus) => {
             vm.isCurrentSeason = seasonStatus
           });
