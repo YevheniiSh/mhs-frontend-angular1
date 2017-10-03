@@ -1,106 +1,79 @@
-.delete-game-alert {
-  width: 300px;
-  margin: 0 0 0 0;
-  position: absolute;
-  z-index: 999999;
-}
-
-open-game-list .no-games-label {
-  font-size: 3em;
-  text-align: center;
-  color: #c7c7c7;
-  padding-top: 1em;
-  cursor: default;
-}
-
-
-
-.header {
+open-game-list .header {
   font-weight: bold;
-
 }
 
-ul.game-list {
+open-game-list ul.game-list {
   list-style: none;
   padding: 0px;
 }
 
-.game-list-item > div {
+open-game-list .game-list-item > div {
   display: inline-block;
   float: left;
 }
 
 open-game-list .game-list-item {
-  padding: 1% 2%;
+  padding: 10px 0;
   margin: 0px;
   border-bottom: 1px lightgrey solid;
   cursor: default;
 }
 
-div.buttons-panel > .btn ~ .btn {
-  float: right;
+open-game-list div.buttons-panel > .btn ~ .btn {
   margin: 0px 5px 0px 0px;
 }
 
-div.buttons-panel > .btn {
+open-game-list div.buttons-panel > .btn {
   float: right;
 }
 
-.game-date {
+open-game-list .game-date,
+open-game-list .game-time{
   width: 17%;
 }
 
-.game-time {
-  width: 17%;
-}
 
-.game-location {
+open-game-list .game-location {
   width: 21%;
 }
 
-.game-season {
+open-game-list .game-season {
   width: 15%;
 }
 
-.buttons-panel {
+open-game-list .buttons-panel {
   width: 30%;
 }
 
-.wide-panel {
+open-game-list .wide-panel {
   width: 45%;
 }
 
 @media screen and (max-width: 750px) {
-  .game-date {
+  open-game-list .game-date {
     width: 25%;
   }
 
-  .game-time {
+  open-game-list .game-time,
+  open-game-list .game-season{
     width: 20%;
   }
 
-  .game-location {
+  open-game-list .game-location {
     width: 35%;
   }
 
-  .game-season {
-    width: 20%;
-  }
-
-  .buttons-panel {
+  open-game-list .buttons-panel {
     margin-top: 1%;
     width: 100%;
   }
 
-  .register-button {
+  open-game-list .register-button,
+  open-game-list .request-button {
     width: 49%;
   }
 
-  .request-button {
-    width: 49%;
-  }
-
-  .game-list-item {
-    padding: 2%;
+  open-game-list .game-list-item {
+    padding: 10px 15px;
   }
 }
