@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { ConfirmationService } from '@jaspero/ng2-confirmations';
 import { ResolveEmit } from '@jaspero/ng2-confirmations/src/interfaces/resolve-emit';
+import { DialogService } from 'ng2-bootstrap-modal';
+import { ConfirmComponentComponent } from '../../admin/confirm-component/confirm-component.component';
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class CustomConfirmationService {
   };
 
   constructor(@Inject('$translate') private translateService,
-              private confirmation: ConfirmationService) {
+              private confirmation: DialogService) {
   }
 
   public create(text: string): Promise<ResolveEmit> {
@@ -23,7 +24,10 @@ export class CustomConfirmationService {
         .then(() => {
           this.translateMessage(text)
             .then((t) => {
-              this.confirmation.create('', t, this.options).subscribe((ans: ResolveEmit) => {
+              this.confirmation.addDialog(ConfirmComponentComponent, {
+                title: '',
+                message: t
+              }, { closeByClickingOutside: true }).subscribe((ans) => {
                 resolve(ans);
               });
             });
