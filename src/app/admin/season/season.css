@@ -62,12 +62,6 @@ season .missed-game{
     padding-right: 15px;
     padding-left: 15px;
   }
-}
-
-@media screen and (max-width: 500px) {
-  season .game-result, season .games-label {
-    display: none;
-  }
 
   season .btn-panel {
     padding-right: 15px;
@@ -81,6 +75,12 @@ season .missed-game{
 
   season .table-header{
     padding-left: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  season .game-result, season .games-label {
+    display: none;
   }
 }
 
