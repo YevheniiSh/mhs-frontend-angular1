@@ -80,7 +80,6 @@ angular
           .then((res) => {
             if (res.$value !== null) {
               return ref = currentGameRef;
-
             }
             else {
               return ref = finishedGameRef;
@@ -91,13 +90,11 @@ angular
           });
       }
 
-
       function getGameStatus(gameId) {
         return getCurrentGameById(gameId)
           .then((res) => {
             if (res.$value !== null) {
               return 'current';
-
             }
             else {
               return 'finished';
@@ -114,6 +111,7 @@ angular
       }
 
       function getCurrentGameById(gameId) {
+        storeCurrentGame(gameId);
         return new $firebaseObject(currentGameRef.child(gameId))
           .$loaded();
       }
@@ -139,6 +137,7 @@ angular
           obj.$value = convertService.getSimpleObjectFromFirebaseObject(res);
           obj.$save();
           res.$remove();
+          clearStorage();
         });
       }
 
@@ -241,6 +240,21 @@ angular
         obj.$value = link;
         obj.$save();
         return obj.$loaded();
+      }
+
+      function storeCurrentGame(gameId) {
+        let gameRef = firebase.database().ref(`games/current/${gameId}`);
+        gameRef.on('value', function (snap) {
+          if(snap.val()){
+            localStorage.setItem('currentGameId',snap.key);
+            localStorage.setItem('currentGame',JSON.stringify(snap));
+          }
+        });
+      }
+
+      function clearStorage() {
+        localStorage.removeItem('currentGameId');
+        localStorage.removeItem('currentGame');
       }
 
       function getGameTeamsNumber(gameId) {
