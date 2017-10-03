@@ -2,17 +2,20 @@
   <h1 class="season-title">{{'SEASONS_HEADER' | translate}}</h1>
   <table class="table table-sm table-striped table-hover seasons">
     <thead>
-    <tr class="">
+    <tr>
       <th>{{'GAME_SEASON_LABEL' | translate}}</th>
       <th>{{'WINNER_TEAM_LABEL' | translate}}</th>
-      <th class="games-number">{{'NUMBER_OF_GAMES_LABEL' | translate}}</th>
+      <th class="games-number">
+        {{'NUMBER_OF_GAMES_LABEL' | translate}}
+      </th>
     </tr>
     </thead>
     <tbody>
     <tr class="season-row" ng-repeat="season in $ctrl.seasons | orderBy : '-$id'"
         ng-click="$ctrl.goToSeason(season.$id)">
       <td>
-        <i class="fa fa-caret-right current-season-pointer" uib-tooltip="{{'CURRENT_SEASON_TOOLTIP' | translate}}"
+        <i class="fa fa-caret-right current-season-pointer"
+           uib-tooltip="{{'CURRENT_SEASON_TOOLTIP' | translate}}"
            ng-if="season.current"></i>
         {{season.name}}
       </td>
