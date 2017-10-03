@@ -41,7 +41,7 @@ team-results .team-total {
   }
 
   team-results td.round-name.ng-binding {
-    font-size: 18px;
+    font-size: 16pt;
     vertical-align: middle;
     width: auto;
   }
