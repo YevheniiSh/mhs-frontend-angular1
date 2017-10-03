@@ -7,7 +7,6 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 })
 export class CaptainRoundTypeComponent implements OnInit {
   @Input() results;
-  @Input() saveResult;
   @Input() quizWeight;
   @Output() saved = new EventEmitter<any>();
   previousQuizResults;
@@ -16,7 +15,6 @@ export class CaptainRoundTypeComponent implements OnInit {
   roundNumber;
 
   constructor(@Inject('$routeParams') private $routeParams,
-              @Inject('GameServiceFactory') private gameServiceFactory,
               @Inject('ResultServiceFactory') private resultService) {
 
     this.quizNumber = this.$routeParams.quizNumber;
@@ -44,14 +42,22 @@ export class CaptainRoundTypeComponent implements OnInit {
     if (!this.isFirstQuiz()) {
       const resultKey = [this.roundNumber, this.quizNumber - 1, teamId].join('_');
       if (this.previousQuizResults !== undefined) {
-        if (this.previousQuizResults[resultKey] === undefined) {
-          return true;
-        } else if (!this.previousQuizResults[resultKey].score) {
-          return true;
-        }
+        return !this.isTeamAnswered(resultKey);
       }
+    }
+    return false;
+  }
+
+  private isTeamAnswered(resultKey: string) {
+    if (this.previousQuizResults[resultKey] !== undefined) {
+      return this.isPositiveScore(this.previousQuizResults[resultKey]);
+    } else {
       return false;
     }
+  }
+
+  private isPositiveScore(result) {
+    return result.score > 0;
   }
 
   isFirstQuiz() {
