@@ -13,10 +13,10 @@ export class GameTemplateComponent implements OnInit {
   templates: Template[];
   isNewTemplate: boolean;
 
-  constructor(@Inject('$routeParams') private $routeParams,
-              @Inject('$location') private $location,
-              @Inject('gameTemplateServiceFactory') private templateService,
-              private _confirmation: CustomConfirmationService) {
+  constructor(@Inject('$routeParams')private $routeParams,
+              @Inject('$location')private $location,
+              @Inject('gameTemplateServiceFactory')private templateService,
+              private confirmation: CustomConfirmationService) {
     if ($routeParams.hasOwnProperty('templateId')) {
       this.templateId = $routeParams.templateId;
       this.getTemplate();
@@ -52,9 +52,9 @@ export class GameTemplateComponent implements OnInit {
   }
 
   deleteTemplate(templateId) {
-    this._confirmation.create('CONFIRMATION_DELETE_TEMPLATE_TEXT')
+    this.confirmation.create('CONFIRMATION_DELETE_TEMPLATE_TEXT')
       .then((res) => {
-        if (res.resolved && this.$routeParams.templateId === templateId) {
+        if (res && this.$routeParams.templateId === templateId) {
           this.templateService.remove(templateId);
           this.$location.path(`/templates`);
         }
