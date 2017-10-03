@@ -73,12 +73,8 @@ export class HintRoundTypeComponent implements OnInit {
   }
 
   private setInputDisableStatus(result) {
-    if (!this.isTeamAnsweredInRound(result)) {
-      this.enableInput(result);
-    } else {
-      if (this.isTeamAnsweredToPreviousQuestion(result)) {
+    if (this.isTeamAnsweredInRound(result) && this.isTeamAnsweredToPreviousQuestion(result)) {
         this.disableInput(result);
-      }
     }
   }
 
@@ -88,10 +84,6 @@ export class HintRoundTypeComponent implements OnInit {
 
   private isTeamAnsweredToPreviousQuestion(result) {
     return this.previousQuizResults[result.teamId].quizNumber < (+this.routeParams.quizNumber);
-  }
-
-  private enableInput(result) {
-    result.disabled = false;
   }
 
   private disableInput(result) {
