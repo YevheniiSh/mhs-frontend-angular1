@@ -7,7 +7,6 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 })
 export class CaptainRoundTypeComponent implements OnInit {
   @Input() results;
-  @Input() saveResult;
   @Input() quizWeight;
   @Output() saved = new EventEmitter<any>();
   previousQuizResults;
