@@ -1,38 +1,38 @@
-import {forwardRef, NgModule} from '@angular/core';
-import {UpgradeAdapter} from '@angular/upgrade';
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { forwardRef, NgModule } from '@angular/core';
+import { UpgradeAdapter } from '@angular/upgrade';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
-import {FormsModule} from '@angular/forms';
-import {ToastModule} from 'ng2-toastr';
-import {CollapseModule} from 'ngx-bootstrap/collapse';
-import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {AngularFireModule} from 'angularfire2';
-import {AngularFireDatabaseModule} from 'angularfire2/database';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'ng2-toastr';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {TeamListComponentUpgrade} from './admin/team-list/team-list.component.upgrade';
-import {NavbarComponent} from './admin/navbar/navbar.component';
-import {LoginPanelComponentUpgrade} from './admin/login-panel/login-panel.component.upgrade';
-import {BackupService} from './services/backup/backup.service';
-import {AngularFireAuthModule} from 'angularfire2/auth';
-import {LoginService} from './services/login-service/login.service';
-import {firebaseConfig} from './services/firebase-service/firebase-config';
-import {GameTemplateComponent} from './admin/game-template/game-template.component';
-import {CurrentTemplateComponent} from './admin/game-template/current-template/current-template.component';
-import {RoundBuilderComponentUpgrade} from './admin/round-builder/round-builder.component.upgrade';
-import {AuctionRoundTypeComponent} from './admin/round-type/auction-round-type/auction-round-type.component';
-import {OrderByPipe} from './pipe/order-by.pipe';
-import {NotificationService} from './services/notification-service/notification.service';
-import {NotificationPanelComponent} from './notification/notification-panel.component';
-import {CustomConfirmationService} from './services/confirmation-service/confirmation.service';
-import {CaptainRoundTypeComponent} from './admin/round-type/captain-round-type/captain-round-type.component';
-import {HintRoundTypeComponent} from './admin/round-type/hint-round-type/hint-round-type.component';
-import {SwitcherComponent} from './admin/round-type/hint-round-type/switcher/switcher.component';
-import {BootstrapModalModule} from 'ng2-bootstrap-modal';
-import {ConfirmComponent} from './admin/confirm/confirm.component';
+import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
+import { NavbarComponent } from './admin/navbar/navbar.component';
+import { LoginPanelComponentUpgrade } from './admin/login-panel/login-panel.component.upgrade';
+import { BackupService } from './services/backup/backup.service';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { LoginService } from './services/login-service/login.service';
+import { firebaseConfig } from './services/firebase-service/firebase-config';
+import { GameTemplateComponent } from './admin/game-template/game-template.component';
+import { CurrentTemplateComponent } from './admin/game-template/current-template/current-template.component';
+import { RoundBuilderComponentUpgrade } from './admin/round-builder/round-builder.component.upgrade';
+import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type/auction-round-type.component';
+import { OrderByPipe } from './pipe/order-by.pipe';
+import { NotificationService } from './services/notification-service/notification.service';
+import { NotificationPanelComponent } from './notification/notification-panel.component';
+import { CustomConfirmationService } from './services/confirmation-service/confirmation.service';
+import { CaptainRoundTypeComponent } from './admin/round-type/captain-round-type/captain-round-type.component';
+import { HintRoundTypeComponent } from './admin/round-type/hint-round-type/hint-round-type.component';
+import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/switcher.component';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { ConfirmComponent } from './admin/confirm/confirm.component';
 
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
@@ -77,7 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    BootstrapModalModule.forRoot({container: document.body}),
+    BootstrapModalModule.forRoot({ container: document.body }),
   ],
   entryComponents: [ConfirmComponent],
   providers: [BackupService, LoginService, NotificationService, CustomConfirmationService]
