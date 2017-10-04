@@ -17,6 +17,15 @@
     ],
     "headers": [
       {
+        "source": "**/*.@(eot|otf|ttf|ttc|woff)",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      },
+      {
         "source": "/**",
         "headers": [
           {
