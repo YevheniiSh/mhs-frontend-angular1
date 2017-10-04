@@ -93,6 +93,7 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('roundTypeService');
     upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
     upgradeAdapter.upgradeNg1Provider('$translate');
+    upgradeAdapter.upgradeNg1Provider('firebaseOfflineService');
   }
 
   private downgradeNewComponents() {
