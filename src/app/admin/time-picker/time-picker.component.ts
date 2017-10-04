@@ -20,6 +20,7 @@ export class TimePickerComponent implements OnInit {
     this.gametime.setMinutes(0);
     this.isPopupVisible = false;
     this.getTimeForView();
+    this.time.emit(this.gametime);
   }
 
   toogleTimePicker() {

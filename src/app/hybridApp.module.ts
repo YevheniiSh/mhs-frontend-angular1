@@ -32,6 +32,7 @@ import { NotificationPanelComponent } from './notification/notification-panel.co
 import { DatePickerComponent } from './admin/date-picker/date-picker.component';
 import { TimePickerComponent } from './admin/time-picker/time-picker.component';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { SeasonPickerComponent } from './admin/season-picker/season-picker.component';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -54,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CurrentTemplateComponent,
     DatePickerComponent,
     TimePickerComponent,
+    SeasonPickerComponent,
   ],
   imports: [
     FormsModule,
@@ -104,6 +106,8 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
     upgradeAdapter.upgradeNg1Provider('$translate');
     upgradeAdapter.upgradeNg1Provider('convertServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('seasonService');
+
   }
 
   private downgradeNewComponents() {
@@ -114,6 +118,8 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
     this.mhsAdminModule.directive('appDatePicker', upgradeAdapter.downgradeNg2Component(DatePickerComponent));
     this.mhsAdminModule.directive('appTimePicker', upgradeAdapter.downgradeNg2Component(TimePickerComponent));
+    this.mhsAdminModule.directive('appSeasonPicker', upgradeAdapter.downgradeNg2Component(SeasonPickerComponent));
+
   }
 
   private downgradeNewProviders() {
