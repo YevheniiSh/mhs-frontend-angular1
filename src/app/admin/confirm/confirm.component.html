@@ -2,15 +2,24 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" (click)="close()">&times;</button>
-      <h4 class="modal-title">{{title | translate}}</h4>
+      <h4 translate class="modal-title">{{title}}</h4>
     </div>
     <div class="modal-body">
-      <p>{{message | translate}}</p>
+      <p translate>{{message}}</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="confirm()">{{'CONFIRMATION_CONFIRM_TEXT' | translate}}
+      <button type="button"
+              class="btn btn-danger"
+              (click)="confirm()"
+              translate>
+        {{'CONFIRMATION_CONFIRM_TEXT'}}
       </button>
-      <button type="button" class="btn btn-default" (click)="cancel()">{{'CONFIRMATION_DECLINE_TEXT' | translate}}
+
+      <button type="button"
+              class="btn btn-default"
+              (click)="cancel()"
+              translate>
+        {{'CONFIRMATION_DECLINE_TEXT'}}
       </button>
     </div>
   </div>
