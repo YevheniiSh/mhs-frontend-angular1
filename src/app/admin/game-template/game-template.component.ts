@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Template } from './template';
+import { CustomConfirmationService } from '../../services/confirmation-service/confirmation.service';
 
 @Component({
   selector: 'app-game-template',
@@ -7,14 +8,15 @@ import { Template } from './template';
   styleUrls: ['./game-template.component.css']
 })
 export class GameTemplateComponent implements OnInit {
-  private templateId: string;
   template: Template;
   templates: Template[];
   isNewTemplate: boolean;
+  private templateId: string;
 
-  constructor(@Inject('$routeParams') private $routeParams,
-              @Inject('$location') private $location,
-              @Inject('gameTemplateServiceFactory') private templateService) {
+  constructor(@Inject('$routeParams')private $routeParams,
+              @Inject('$location')private $location,
+              @Inject('gameTemplateServiceFactory')private templateService,
+              private confirmation: CustomConfirmationService) {
     if ($routeParams.hasOwnProperty('templateId')) {
       this.templateId = $routeParams.templateId;
       this.getTemplate();
@@ -50,9 +52,10 @@ export class GameTemplateComponent implements OnInit {
   }
 
   deleteTemplate(templateId) {
-    this.templateService.remove(templateId);
-    if (this.$routeParams.templateId === templateId) {
-      this.$location.path(`/templates`);
-    }
+    this.confirmation.create('DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE', 'CONFIRMATION_DELETE_TEMPLATE_TEXT')
+      .then(() => {
+        this.templateService.remove(templateId);
+        this.$location.path(`/templates`);
+      });
   }
 }

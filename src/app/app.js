@@ -17,7 +17,6 @@ angular.module('mhs', [
   'gameTemplateService',
   'gameBuildService',
   'convertService',
-  '720kb.socialshare',
   'roundTypeService',
   'seasonService'
 ])

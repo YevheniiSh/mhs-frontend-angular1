@@ -13,10 +13,11 @@
     '$routeParams',
     '$location',
     '$window',
-    'resultSetupBuilder'
+    'resultSetupBuilder',
+    'CustomConfirmationService'
   ];
 
-  function ResultSetupController(resultSetupService, $scope, $routeParams, $location, $window, resultSetupBuilder) {
+  function ResultSetupController(resultSetupService, $scope, $routeParams, $location, $window, resultSetupBuilder, customConfirmationService) {
     let vm = this;
 
     vm.isManualInput = false;
@@ -36,7 +37,9 @@
           buildResults();
           assignResults()
             .then(initInputType)
-            .then(initAuctionResults);
+            .then(initAuctionResults)
+            .then(initCaptainResults)
+            .then(initHintsResults);
         })
 
     }
@@ -49,21 +52,13 @@
       })
     }
 
-    function isCaptainsInGame() {
-      let isCaptainsInGame = false;
-      for (let res of vm.results) {
-        if (res.score) {
-          isCaptainsInGame = true;
-          break;
-        }
-      }
-      return isCaptainsInGame;
-    }
-
     function initRound() {
       resultSetupService.getRound($routeParams.gameId, $routeParams.roundNumber)
         .then((round) => {
           vm.round = round;
+          vm.roundStep = round.roundType.step;
+          vm.roundStart = round.roundType.start;
+          vm.quizNumber = $routeParams.quizNumber;
         });
     }
 
@@ -99,11 +94,31 @@
       }
     }
 
+    function initCaptainResults() {
+      if (vm.round.roundType.type === 'CAPTAIN_ROUND') {
+        initQuizWeightToCaptain();
+        for (let result of vm.results) {
+          setResultStatus(result);
+        }
+      }
+    }
+
+    function initHintsResults() {
+      if (vm.round.roundType.type === 'HINTS_ROUND') {
+        initQuizWeightToHint();
+      }
+    }
+
+    function initQuizWeightToCaptain() {
+      vm.quizWeight = +(vm.roundStart + (vm.roundStep * (vm.quizNumber - 1))).toFixed(1);
+    }
+
+    function initQuizWeightToHint() {
+      vm.quizWeight = +(vm.roundStart - (vm.roundStep * (vm.quizNumber - 1))).toFixed(1);
+    }
+
     function setResultStatus(result) {
-      if (result.score <= 0) {
-        result.status = false
-      } else
-        result.status = true
+      result.status = result.score > 0;
     }
 
     function getTeams() {
@@ -149,7 +164,7 @@
             if (result.hasOwnProperty("answer") && result.score === 0) {
               result.score = -1;
             }
-            Object.assign(vm.results[key], result)
+            Object.assign(vm.results[key], result);
             setChecked(vm.results[key]);
           });
           vm.results = Object.keys(vm.results).map(it => vm.results[it])
@@ -208,24 +223,50 @@
     };
 
     vm.nextQuiz = function () {
-      if (!isCaptainsInGame() && vm.round.roundType.type == 'CAPTAIN_ROUND') {
-        vm.isCaptainsOut = true;
-        return;
+      if (!isExistTeamToAnswer()) {
+        createCloseRoundConfirmation('FINISH_ROUND_CONFIRMATION_TITLE', `FINISH_${vm.round.roundType.type}_CONFIRMATION`)
+      } else if (vm.selectedQuiz < vm.round.numberOfQuestions) {
+        incrementQuiz();
+      } else if (+vm.selectedQuiz === +vm.round.numberOfQuestions) {
+        finishRound();
       }
+    };
 
-            if (vm.selectedQuiz < vm.round.numberOfQuestions) {
-                if (vm.currentQuiz == vm.selectedQuiz) {
-                    vm.currentQuiz++;
-                    resultSetupService.setCurrentQuiz(vm.currentQuiz, $routeParams.gameId);
-                }
-                vm.setQuiz(+vm.selectedQuiz + 1);
-            } else if (vm.selectedQuiz == vm.round.numberOfQuestions) {
-              resultSetupService.closeRound(vm.round.$id, $routeParams.gameId)
-                .then(() => {
-                  $window.location.href = `#!/games/${$routeParams.gameId}/rounds`;
-                });
-            }
-        };
+    function isExistTeamToAnswer() {
+      let isTeamExist = true;
+      let hasScore = (r) => { return !!r.score };
+      switch (vm.round.roundType.type) {
+        case 'CAPTAIN_ROUND': {
+          isTeamExist = vm.results.some(hasScore);
+          break;
+        }
+        case 'HINTS_ROUND': {
+          isTeamExist = !vm.results.every(hasScore);
+          break;
+        }
+      }
+      return isTeamExist;
+    }
+
+    function createCloseRoundConfirmation(title, message) {
+      customConfirmationService.create(title, message)
+        .then(finishRound);
+    }
+
+    function incrementQuiz() {
+      if (+vm.currentQuiz === +vm.selectedQuiz) {
+        vm.currentQuiz++;
+        resultSetupService.setCurrentQuiz(vm.currentQuiz, $routeParams.gameId);
+      }
+      vm.setQuiz(+vm.selectedQuiz + 1);
+    }
+
+    function finishRound() {
+      resultSetupService.finishRound($routeParams.roundNumber, $routeParams.gameId)
+        .then(() => {
+          $location.path(`/games/${$routeParams.gameId}/rounds`);
+        });
+    }
 
     vm.range = function (n) {
       return new Array(n).fill().map((e, i) => i + 1);

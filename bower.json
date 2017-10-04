@@ -15,7 +15,6 @@
     "angularfire": "^2.3.0",
     "angular-translate-loader-static-files": "^2.15.2",
     "angular-translate": "^2.15.2",
-    "angular-socialshare": "angularjs-socialshare#^2.3.11",
     "angular-bootstrap": "^2.5.0",
     "angucomplete-alt": "^3.0.0",
     "angular-input-masks": "^2.6.0",
