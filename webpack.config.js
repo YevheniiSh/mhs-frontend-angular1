@@ -84,16 +84,16 @@ module.exports = {
       "./src/polyfills.ts"
     ],
     "styles": [
-      "./node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
-      "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-      "./src/app/bower_components/components-font-awesome/css/font-awesome.min.css",
-      "./src/styles.css",
-      "./src/app/public/css/spinner.css",
-      "./src/app/bower_components/html5-boilerplate/dist/css/normalize.css",
-      "./src/app/bower_components/html5-boilerplate/dist/css/main.css",
-      "./src/app/app.css",
-      "./src/app/public/css/bootstrapSilverButton.css",
-      "./src/app/bower_components/angucomplete-alt/angucomplete-alt.css"
+      externalStyles[0],
+      externalStyles[1],
+      externalStyles[2],
+      externalStyles[3],
+      externalStyles[4],
+      externalStyles[5],
+      externalStyles[6],
+      externalStyles[7],
+      externalStyles[8],
+      externalStyles[9]
     ]
   },
   "output": {
@@ -347,8 +347,5 @@ module.exports = {
     "module": false,
     "clearImmediate": false,
     "setImmediate": false
-  },
-  "devServer": {
-    "historyApiFallback": true
   }
 };
