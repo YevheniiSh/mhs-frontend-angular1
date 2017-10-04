@@ -1,15 +1,15 @@
-.switch {
+auction-result .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 30px;
 }
 
-.switch input {
+auction-result .switch input {
   display: none;
 }
 
-.auction-slider {
+auction-result .slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -22,7 +22,7 @@
   transition: .4s;
 }
 
-.auction-slider:before {
+auction-result .slider:before {
   position: absolute;
   content: "";
   height: 24px;
@@ -34,33 +34,29 @@
   transition: .4s;
 }
 
-input:checked + .auction-slider {
+auction-result input:checked + .slider {
   background-color: #81EA89;
 }
 
-input:focus + .auction-slider {
+auction-result input:focus + .slider {
   box-shadow: 0 0 1px #81EA89;
 }
 
-input:checked + .auction-slider:before {
+auction-result input:checked + .slider:before {
   -webkit-transform: translateX(24px);
   -ms-transform: translateX(24px);
   transform: translateX(24px);
 }
 
-.auction-slider.round {
+auction-result .slider.round {
   border-radius: 30px;
 }
 
-.auction-slider.round:before {
+auction-result .slider.round:before {
   border-radius: 50%;
 }
 
-.result-control {
-  margin-right: 20px;
-}
-
-.result-rate {
+auction-result .result-rate {
   float: left;
   display: inline-block;
   height: 32px;
@@ -68,33 +64,26 @@ input:checked + .auction-slider:before {
   margin-right: 5px;
 }
 
-.quiz-result {
-  margin: 0 8% 0 5px;
-  width: 136px;
-  height: 41px;
-  display: inline-block;
-  position: relative;
-  padding: 6px 0;
-}
-
-.result {
-  background: 0;
-  text-align: center;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.result, span.inp {
+auction-result .result {
   padding: 4px 0;
   border-radius: 30%;
-  color: #ffffff;
+  text-align: center;
+  color: white;
   width: 44px;
   height: 31px;
-  font-size: 17px;
+  font-size: 14pt;
   border: none;
 }
 
-#auction-result .btn[disabled] {
+auction-result .result-label .btn[disabled] {
   cursor: default;
   opacity: 1;
 }
+
+@media screen and (max-width: 720px){
+  auction-result .result-label{
+    width: 20%;
+    margin:0 0 10px 0;
+  }
+}
+

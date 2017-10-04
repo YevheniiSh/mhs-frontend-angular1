@@ -1,133 +1,88 @@
-td{
-    font-size: 24px;
-}
-th{
-    font-size: 20px;
-}
-h1{
-    border-bottom: solid 1px;
-}
-.quiz-input{
-  /*background: 0;*/
-    text-align:center;
-    padding-left: 5px;
-    padding-right: 5px;
+th, td {
+  font-size: 20px;
 }
 
-.result, span.inp {
-  padding: 4px 0;
-    border-radius: 30%;
-    color: #ffffff;
-    width: 44px;
-    height: 31px;
-    font-size: 17px;
-    border: none;
+tr {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-span.inp {
-  margin: 5px;
+team-results .header {
+  border-bottom: solid 1px;
 }
 
-.edited {
-    box-shadow: 0px 0px 4px 3px #ffbc35;
+team-results .edited {
+  box-shadow: 0px 0px 4px 3px #ffbc35;
 }
 
-span.inp:nth-child(5){
-    margin-right: 30px;
-}
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+team-results .total-score,
+team-results #total-title {
+  text-align: center;
 }
 
-td.ng-binding{
-    font-size: 20px;
-    width: 200px;
-    text-align: center;
+team-results .date {
+  float: right;
 }
-td.total-point{
-    font-weight: bold;
-}
-th#quiz-title, table tr td.quiz-row{
-  width: 66%;
-    font-size: 20px;
-    padding: 0 0 0 7%;
-}
-td.round-name.ng-binding{
-    font-size: 14px;
-    text-align: left;
-    vertical-align: middle;
-}
-#total, #round{
-    vertical-align: middle;
-}
-th#total-title{
-    padding-right: 3%;
-    text-align: right;
-}
-td.total-score.ng-binding{
-    padding-right: 40px;
-    text-align: right;
-    vertical-align: middle;
-}
-th.total{
-    text-align: right;
-}
-.silver-total{
-    color:#D4D4D4;
-}
-.date{
-    float: right;
-}
-.team-total{
-   color: #0085ff;
+
+team-results .team-total {
+  color: #5CB85C;
 }
 
 @media screen and (max-width: 720px) {
 
-  table, thead, tbody, th, td, tr {
+  team-results .header {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid lightgrey;
+  }
+
+  team-results table, thead, tbody, th, td, tr {
     display: block;
   }
 
-  td.round-name.ng-binding {
-    font-size: 18px;
-    text-align: center;
+  team-results td.round-name.ng-binding {
+    font-size: 16pt;
     vertical-align: middle;
     width: auto;
   }
 
-  td.total-score.ng-binding {
-    text-align: center;
-    vertical-align: middle;
-    width: auto;
-    padding: 0;
+  team-results td {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 16pt;
   }
 
-  table tr td.quiz-row {
+  team-results tr {
+    position: relative;
+    border-bottom: 1px solid lightgrey;
+  }
+
+  .table > tbody > tr > td, .table > tbody > tr > th,
+  .table > thead > tr > td, .table > thead > tr > th {
+    border: none;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  team-results td.total-score {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    padding: 0px;
+  }
+
+  team-results table tr td.quiz-row {
     width: 100%;
     padding: 0;
-    text-align: center;
   }
 
-  thead {
+  team-results thead {
     display: none;
   }
 
-  span.inp:nth-child(5) {
-    margin-right: 5px;
-  }
-
-  label#default-result.inp-label:nth-child(5) {
-    margin-right: 0;
-  }
-
-  .date {
-    font-size: 16px;
-    padding-top: 5px;
-  }
-
-  tr {
-    border: 2px solid lightgray;
+  team-results .date {
+    float: none;
+    display: block;
+    margin-bottom: 5px;
   }
 }

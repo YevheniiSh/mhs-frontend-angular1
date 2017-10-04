@@ -1,5 +1,5 @@
 <div class="row">
-  <div>
+  <div class="btn-panel">
     <div id="back-btn">
       <button class="btn btn-success" ng-click="$ctrl.onBack()">
         {{'BACK_BUTTON' | translate}}
@@ -9,26 +9,11 @@
     <div id="close-season-panel">
       <button id="close-season-btn" class="btn btn-danger"
               ng-if="$ctrl.isCurrentSeason && $ctrl.admin && !$ctrl.showCloseSeasonAlert"
-              ng-click="$ctrl.showAlert()">
+              ng-click="$ctrl.closeCurrentSeason()">
         {{'CLOSE_SEASON_BUTTON' | translate}}
       </button>
     </div>
   </div>
-
-  <div ng-if="$ctrl.showCloseSeasonAlert && !$ctrl.hasOpenGames"
-       class="alert alert-danger season-close-alert" role="alert">
-    <p>{{'CLOSE_SEASON_ALERT_QUESTION' | translate}}</p>
-    <p>
-      <button ng-click="$ctrl.closeCurrentSeason()" type="button" class="btn btn-danger">
-        {{'CLOSE_BTN' | translate}}
-      </button>
-      <button ng-click="$ctrl.showCloseSeasonAlert = false" type="button" class="btn btn-default">
-        {{'CANCEL_BTN' | translate}}
-      </button>
-    </p>
-  </div>
-
-
 
   <table ng-if=" $ctrl.seasonTeams.length != 0" class="table table-sm table-striped table-hover">
     <caption class="table-header">{{'TEAMS_IN_SEASON' | translate}}</caption>
@@ -88,7 +73,7 @@
     </tr>
     </tbody>
   </table>
-  <div class="season-alert" ng-if="$ctrl.seasonTeams.length == 0 && $ctrl.seasonDropTeams.length == 0" >
+  <div class="season-alert" ng-if="$ctrl.seasonTeams.length == 0 && $ctrl.seasonDropTeams.length == 0">
     {{'EMPTY_SEASON_MESSAGE' | translate}}
   </div>
 </div>
