@@ -220,13 +220,16 @@
 
     function isExistTeamToAnswer() {
       let isTeamExist = true;
+      let hasScore = (r) => {
+        return !!r.score
+      };
       switch (vm.round.roundType.type) {
         case 'CAPTAIN_ROUND': {
-          isTeamExist = vm.results.some(getScore);
+          isTeamExist = vm.results.some(hasScore);
           break;
         }
         case 'HINTS_ROUND': {
-          isTeamExist = !vm.results.every(getScore);
+          isTeamExist = !vm.results.every(hasScore);
           break;
         }
       }
@@ -239,10 +242,6 @@
           finishRound();
         }
       });
-    }
-
-    function getScore(result) {
-      return result.score
     }
 
     function incrementQuiz() {
