@@ -1,0 +1,24 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" (click)="close()">&times;</button>
+      <h4 [translate]="title" class="modal-title"></h4>
+    </div>
+    <div class="modal-body">
+      <p [translate]="message"></p>
+    </div>
+    <div class="modal-footer">
+      <button type="button"
+              class="btn btn-danger"
+              (click)="confirm()"
+              translate="{{'CONFIRMATION_CONFIRM_TEXT'}}">
+      </button>
+
+      <button type="button"
+              class="btn btn-default"
+              (click)="cancel()"
+              translate="{{'CONFIRMATION_DECLINE_TEXT'}}">
+      </button>
+    </div>
+  </div>
+</div>

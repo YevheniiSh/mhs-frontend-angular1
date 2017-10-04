@@ -76,6 +76,10 @@
   "TEAM_NAME_EXISTS_ALERT": "Назву занято",
   "SEARCH_PLACEHOLDER": "Пошук",
   "WRONG_TIME_ERROR": "Ви ввели неправильний час",
+  "CONFIRMATION_DELETE_TEMPLATE_TEXT": "Ви дійсно хочете видалити шаблон?",
+  "CONFIRMATION_CLOSE_SEASON": "Ви дійсно хочете закрити сезон?",
+  "CONFIRMATION_CONFIRM_TEXT": "Так",
+  "CONFIRMATION_DECLINE_TEXT": "Ні",
   "QUIZ_COUNT_PLACEHOLDER": "Кількість запитань",
   "EDIT_TEAM_NAME_TOOLTIP": "Змінити назву команди",
   "INCORRECT_LAST_NUMBERS_ERROR": "Останні 3 цифри номера телефона введені невірно",
@@ -139,7 +143,6 @@
   "START_INPUT_LABEL": "Бали",
   "STEP_INPUT_LABEL": "Крок",
   "CURRENT_SEASON_TOOLTIP": "Поточний сезон",
-  "NO_CAPTAINS_ALERT": "Усі капітани вибули",
   "ROUND_FINISH_BUTTON": "Завершити раунд",
   "TEAMS_MODAL_HEADER": "Заявки команд на гру",
   "TEAMS_MODAL_PLACEHOLDER": "Поки немає жодної заявки на гру",
@@ -160,5 +163,11 @@
   "CHANGE_BETS_BUTTON": "Змінити ставки",
   "REVIEW_RESULTS_BUTTON": "Переглянути результати",
   "NUMBER_OF_POINTS":"Кількість балів за відповідь",
-  "CHANGES_DISCARDED": "Зміни відхилено"
+  "CHANGES_DISCARDED": "Зміни відхилено",
+  "DELETE_OPEN_GAME_CONFIRMATION_TITLE": "Видалити гру?",
+  "DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE": "Видалити шаблон?",
+  "FINISH_ROUND_CONFIRMATION_TITLE": "Завершити раунд?",
+  "CLOSE_SEASON_CONFIRMATION_TITLE": "Закрити сезон?",
+  "FINISH_HINTS_ROUND_CONFIRMATION": "Всі команди відповіли, закінчити раунд?",
+  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Усі капітани вибули, завершити раунд?"
 }

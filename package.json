@@ -32,6 +32,7 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.0",
     "firebase": "^4.3.1",
+    "ng2-bootstrap-modal": "^1.0.1",
     "ng2-toastr": "^4.1.2",
     "ngx-bootstrap": "^1.9.3",
     "ngx-facebook": "^2.4.0",

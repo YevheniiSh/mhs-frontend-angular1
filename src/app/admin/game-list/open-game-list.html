@@ -21,7 +21,7 @@
       </div>
       <div class="buttons-panel" ng-class="{'wide-panel':!openGame.season}">
         <button class="btn btn-danger"
-                ng-click="$ctrl.deleteGameRequest(openGame)"
+                ng-click="$ctrl.deleteGame(openGame)"
                 ng-if="$ctrl.auth">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
@@ -45,18 +45,6 @@
            ng-href="/#!/games/{{openGame.$id}}/registration">
           {{'REGISTER_BUTTON' | translate}}
         </a>
-        <div ng-if="openGame.isDeleteGameRequested"
-             class="alert alert-danger alert-dismissible fade in delete-game-alert" role="alert">
-          <p>{{'DELETE_GAME_ALERT' | translate}}</p>
-          <p>
-            <button ng-click="$ctrl.deleteGame(openGame)" type="button" class="btn btn-danger">
-              {{'DELETE_BUTTON'| translate}}
-            </button>
-            <button ng-click="$ctrl.cancelDeleteGameRequest(openGame)" type="button" class="btn btn-default">
-              {{'CLOSE_BUTTON' | translate}}
-            </button>
-          </p>
-        </div>
       </div>
     </div>
   </li>

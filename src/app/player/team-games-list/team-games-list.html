@@ -12,7 +12,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="game in $ctrl.teamGames"
+    <tr style="padding: 15px"
+        ng-repeat="game in $ctrl.teamGames"
         ng-if="game.position"
         ng-click="$ctrl.onClicked(game.$id)">
       <td>{{game.date}}</td>
