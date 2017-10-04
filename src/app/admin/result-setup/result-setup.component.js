@@ -250,9 +250,7 @@
 
     function createCloseRoundConfirmation(title, message) {
       customConfirmationService.create(title, message)
-        .then(() => {
-          finishRound();
-        });
+        .then(finishRound);
     }
 
     function incrementQuiz() {
