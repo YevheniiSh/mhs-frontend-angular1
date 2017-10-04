@@ -27,6 +27,9 @@ import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type
 import { OrderByPipe } from './pipe/order-by.pipe';
 import { NotificationService } from './services/notification-service/notification.service';
 import { NotificationPanelComponent } from './notification/notification-panel.component';
+import { FacebookModule, FacebookService } from 'ngx-facebook';
+import { FacebookShareComponent } from './facebook-share/facebook-share.component';
+import { environment } from '../environments/environment';
 import { CustomConfirmationService } from './services/confirmation-service/confirmation.service';
 import { CaptainRoundTypeComponent } from './admin/round-type/captain-round-type/captain-round-type.component';
 import { HintRoundTypeComponent } from './admin/round-type/hint-round-type/hint-round-type.component';
@@ -58,6 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CaptainRoundTypeComponent,
     SwitcherComponent,
     ConfirmComponent,
+    FacebookShareComponent
   ],
   imports: [
     FormsModule,
@@ -77,6 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    FacebookModule.forRoot(),
     BootstrapModalModule.forRoot({ container: document.body }),
   ],
   entryComponents: [ConfirmComponent],
@@ -85,10 +90,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');
 
-  constructor() {
+  constructor(private fb: FacebookService) {
     this.upgradeOldProviders();
     this.downgradeNewComponents();
     this.downgradeNewProviders();
+
+    this.fb.init({
+      appId: environment.facebookAppId,
+      xfbml: true,
+      version: 'v2.10'
+    });
   }
 
   ngDoBootstrap() {
@@ -115,6 +126,7 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
     this.mhsAdminModule.directive('appHintRoundType', upgradeAdapter.downgradeNg2Component(HintRoundTypeComponent));
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
+    this.mhsAdminModule.directive('mhsFacebookShare', upgradeAdapter.downgradeNg2Component(FacebookShareComponent));
     this.mhsAdminModule.directive('appConfirmComponent', upgradeAdapter.downgradeNg2Component(ConfirmComponent));
     this.mhsAdminModule.directive('appCaptainRoundType', upgradeAdapter.downgradeNg2Component(CaptainRoundTypeComponent));
     this.mhsAdminModule.directive('appSwitcher', upgradeAdapter.downgradeNg2Component(SwitcherComponent));

@@ -1,8 +1,3 @@
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-
 import 'app/shared/esc-key.js';
 import 'app/shared/enter-key.js';
 import 'app/shared/focused.js';
@@ -93,5 +88,6 @@ import 'app/services/round-type-service/round-type-service.module.js';
 import 'app/services/round-type-service/round-type-service.service.js';
 
 export const environment = {
-  production: false
+  production: false,
+  facebookAppId: ''
 };
