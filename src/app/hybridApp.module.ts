@@ -27,8 +27,9 @@ import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type
 import { OrderByPipe } from './pipe/order-by.pipe';
 import { NotificationService } from './services/notification-service/notification.service';
 import { NotificationPanelComponent } from './notification/notification-panel.component';
-import { FacebookModule } from 'ngx-facebook';
+import { FacebookModule, FacebookService } from 'ngx-facebook';
 import { FacebookShareComponent } from './facebook-share/facebook-share.component';
+import { environment } from '../environments/environment';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -77,10 +78,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');
 
-  constructor() {
+  constructor(private fb: FacebookService) {
     this.upgradeOldProviders();
     this.downgradeNewComponents();
     this.downgradeNewProviders();
+
+    this.fb.init({
+      appId: environment.facebookAppId,
+      xfbml: true,
+      version: 'v2.10'
+    });
   }
 
   ngDoBootstrap() {
@@ -105,7 +112,7 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
     this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
-    this.mhsAdminModule.directive('appFacebookShare', upgradeAdapter.downgradeNg2Component(FacebookShareComponent));
+    this.mhsAdminModule.directive('mhsFacebookShare', upgradeAdapter.downgradeNg2Component(FacebookShareComponent));
   }
 
   private downgradeNewProviders() {

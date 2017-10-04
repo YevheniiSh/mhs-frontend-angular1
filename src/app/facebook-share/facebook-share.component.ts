@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { FacebookService, InitParams } from 'ngx-facebook';
+import { FacebookService } from 'ngx-facebook';
 
 @Component({
-  selector: 'app-facebook-share',
+  selector: 'mhs-facebook-share',
   templateUrl: './facebook-share.component.html',
   styleUrls: ['./facebook-share.component.css']
 })
@@ -14,14 +14,6 @@ export class FacebookShareComponent {
   @Input() imageUrl: string;
 
   constructor(private fb: FacebookService) {
-
-    const initParams: InitParams = {
-      appId: '150159422250915',
-      xfbml: true,
-      version: 'v2.10',
-    };
-
-    this.fb.init(initParams);
   }
 
   share() {
