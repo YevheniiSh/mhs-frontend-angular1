@@ -16,7 +16,8 @@
     <app-hint-round-type
       ng-switch-when="HINTS_ROUND"
       (saved)="$ctrl.saveResult($event)"
-      [results]="$ctrl.results">
+      [results]="$ctrl.results"
+      [quiz-weight]="$ctrl.quizWeight">
     </app-hint-round-type>
 
     <app-captain-round-type

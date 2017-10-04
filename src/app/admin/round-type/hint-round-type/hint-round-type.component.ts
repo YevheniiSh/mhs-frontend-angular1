@@ -8,34 +8,18 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 export class HintRoundTypeComponent implements OnInit {
 
   step;
-  weight;
+  @Input() quizWeight;
   previousQuizResults;
   @Input() results;
   @Output() saved = new EventEmitter<any>();
 
-  constructor(@Inject('GameServiceFactory')private gameServiceFactory,
-              @Inject('$routeParams')private routeParams,
+  constructor(@Inject('$routeParams')private routeParams,
               @Inject('ResultServiceFactory')private resultServiceFactory) {
 
   }
 
   ngOnInit() {
-    this.getRound()
-      .then((round) => {
-        this.getQuizWeight(round);
-      })
-      .then(() => {
-        return this.initPreviousQuizResults();
-      });
-  }
-
-  getRound() {
-    return this.gameServiceFactory.getRoundByGameAndId(this.routeParams.gameId, this.routeParams.roundNumber);
-  }
-
-  getQuizWeight(round) {
-    this.step = round.roundType.step;
-    this.weight = round.roundType.start - (round.roundType.step * (this.routeParams.quizNumber - 1));
+    this.initPreviousQuizResults();
   }
 
   initPreviousQuizResults() {

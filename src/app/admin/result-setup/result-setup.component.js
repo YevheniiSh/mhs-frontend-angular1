@@ -38,7 +38,8 @@
           assignResults()
             .then(initInputType)
             .then(initAuctionResults)
-            .then(initCaptainResults);
+            .then(initCaptainResults)
+            .then(initHintsResults);
         })
 
     }
@@ -55,6 +56,9 @@
       resultSetupService.getRound($routeParams.gameId, $routeParams.roundNumber)
         .then((round) => {
           vm.round = round;
+          vm.roundStep = round.roundType.step;
+          vm.roundStart = round.roundType.start;
+          vm.quizNumber = $routeParams.quizNumber;
         });
     }
 
@@ -99,8 +103,18 @@
       }
     }
 
+    function initHintsResults() {
+      if (vm.round.roundType.type === 'HINTS_ROUND') {
+        initQuizWeightToHint();
+      }
+    }
+
     function initQuizWeightToCaptain() {
-      vm.quizWeight = +(vm.round.roundType.start + (vm.round.roundType.step * ($routeParams.quizNumber - 1))).toFixed(1);
+      vm.quizWeight = +(vm.roundStart + (vm.roundStep * (vm.quizNumber - 1))).toFixed(1);
+    }
+
+    function initQuizWeightToHint() {
+      vm.quizWeight = +(vm.roundStart - (vm.roundStep * (vm.quizNumber - 1))).toFixed(1);
     }
 
     function setResultStatus(result) {

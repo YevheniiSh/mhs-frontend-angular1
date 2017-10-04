@@ -12,8 +12,7 @@ export class CustomConfirmationService {
 
   public create(title: string, message: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.confirmation.addDialog
-      (ConfirmComponent, { title, message }, options)
+      this.confirmation.addDialog(ConfirmComponent, { title, message }, options)
         .subscribe((ans) => {
           (ans) ? resolve(ans) : reject(ans);
         });
