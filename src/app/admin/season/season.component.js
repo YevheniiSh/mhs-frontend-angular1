@@ -57,12 +57,11 @@
     };
 
     function showSeasonCloseConfirmation() {
-      customConfirmationService.create('CONFIRMATION_CLOSE_SEASON').then((res) => {
-        if (res)
-          seasonService.finishSeason(seasonId).then((seasonStatus) => {
-            vm.isCurrentSeason = seasonStatus
-          });
-      });
+      customConfirmationService.create('CLOSE_SEASON_CONFIRMATION_TITLE', 'CONFIRMATION_CLOSE_SEASON')
+        .then(() => seasonService.finishSeason(seasonId))
+        .then((seasonStatus) => {
+          vm.isCurrentSeason = seasonStatus
+        });
     }
 
     vm.onBack = function () {

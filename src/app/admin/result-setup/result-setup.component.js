@@ -220,9 +220,7 @@
 
     function isExistTeamToAnswer() {
       let isTeamExist = true;
-      let hasScore = (r) => {
-        return !!r.score
-      };
+      let hasScore = (r) => { return !!r.score };
       switch (vm.round.roundType.type) {
         case 'CAPTAIN_ROUND': {
           isTeamExist = vm.results.some(hasScore);
@@ -237,11 +235,10 @@
     }
 
     function createCloseRoundConfirmation(title, message) {
-      customConfirmationService.create(title, message).then((res) => {
-        if (res) {
+      customConfirmationService.create(title, message)
+        .then(() => {
           finishRound();
-        }
-      });
+        });
     }
 
     function incrementQuiz() {

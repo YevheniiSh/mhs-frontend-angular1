@@ -168,6 +168,7 @@
   "DELETE_OPEN_GAME_CONFIRMATION_TITLE": "Удалить игру?",
   "DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE": "Удалить шаблон?",
   "FINISH_ROUND_CONFIRMATION_TITLE": "Закончить раунд?",
+  "CLOSE_SEASON_CONFIRMATION_TITLE": "Закрыть сезон?",
   "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?"
 }

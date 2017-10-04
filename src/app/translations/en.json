@@ -168,6 +168,7 @@
   "DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE": "Delete template?",
   "DELETE_OPEN_GAME_CONFIRMATION_TITLE": "Delete game?",
   "FINISH_ROUND_CONFIRMATION_TITLE": "Finish round?",
+  "CLOSE_SEASON_CONFIRMATION_TITLE": "Close season?",
   "FINISH_HINTS_ROUND_CONFIRMATION": "All teams answered, do you want to finish round?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?"
 }

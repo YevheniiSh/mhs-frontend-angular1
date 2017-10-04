@@ -53,11 +53,9 @@ export class GameTemplateComponent implements OnInit {
 
   deleteTemplate(templateId) {
     this.confirmation.create('DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE', 'CONFIRMATION_DELETE_TEMPLATE_TEXT')
-      .then((res) => {
-        if (res && this.$routeParams.templateId === templateId) {
-          this.templateService.remove(templateId);
-          this.$location.path(`/templates`);
-        }
+      .then(() => {
+        this.templateService.remove(templateId);
+        this.$location.path(`/templates`);
       });
   }
 }
