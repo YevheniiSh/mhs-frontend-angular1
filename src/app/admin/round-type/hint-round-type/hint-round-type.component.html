@@ -2,8 +2,13 @@
 <div class="form-group row">
   <ul id="team-list">
     <li *ngFor="let result of results | orderBy: 'teamName'; let i = index" class="team">
-      <app-switcher [previousQuizResults]="previousQuizResults" [result]="result" [index]="i"
-                    (saved)="saveResult($event)" [weight]="weight"></app-switcher>
+      <app-switcher
+        [previousQuizResults]="previousQuizResults"
+        [result]="result"
+        [index]="i"
+        (saved)="saveResult($event)"
+        [weight]="weight">
+      </app-switcher>
     </li>
   </ul>
 </div>

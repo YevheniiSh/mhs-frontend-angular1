@@ -23,8 +23,8 @@ export class SwitcherComponent implements OnChanges {
     this.resultServiceFactory.deleteResult(this.routeParams.gameId, resultKey);
   };
 
-  constructor(@Inject('$routeParams') private routeParams,
-              @Inject('ResultServiceFactory') private resultServiceFactory) {
+  constructor(@Inject('$routeParams')private routeParams,
+              @Inject('ResultServiceFactory')private resultServiceFactory) {
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }): void {

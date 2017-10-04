@@ -13,9 +13,9 @@ export class GameTemplateComponent implements OnInit {
   isNewTemplate: boolean;
   private templateId: string;
 
-  constructor(@Inject('$routeParams') private $routeParams,
-              @Inject('$location') private $location,
-              @Inject('gameTemplateServiceFactory') private templateService,
+  constructor(@Inject('$routeParams')private $routeParams,
+              @Inject('$location')private $location,
+              @Inject('gameTemplateServiceFactory')private templateService,
               private confirmation: CustomConfirmationService) {
     if ($routeParams.hasOwnProperty('templateId')) {
       this.templateId = $routeParams.templateId;

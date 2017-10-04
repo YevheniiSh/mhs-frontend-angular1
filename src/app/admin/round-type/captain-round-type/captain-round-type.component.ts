@@ -14,8 +14,8 @@ export class CaptainRoundTypeComponent implements OnInit {
   gameId;
   roundNumber;
 
-  constructor(@Inject('$routeParams') private $routeParams,
-              @Inject('ResultServiceFactory') private resultService) {
+  constructor(@Inject('$routeParams')private $routeParams,
+              @Inject('ResultServiceFactory')private resultService) {
 
     this.quizNumber = this.$routeParams.quizNumber;
     this.gameId = this.$routeParams.gameId;
