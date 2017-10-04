@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {Template} from './template';
-import {CustomConfirmationService} from '../../services/confirmation-service/confirmation.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Template } from './template';
+import { CustomConfirmationService } from '../../services/confirmation-service/confirmation.service';
 
 @Component({
   selector: 'app-game-template',
@@ -8,14 +8,14 @@ import {CustomConfirmationService} from '../../services/confirmation-service/con
   styleUrls: ['./game-template.component.css']
 })
 export class GameTemplateComponent implements OnInit {
-  private templateId: string;
   template: Template;
   templates: Template[];
   isNewTemplate: boolean;
+  private templateId: string;
 
-  constructor(@Inject('$routeParams')private $routeParams,
-              @Inject('$location')private $location,
-              @Inject('gameTemplateServiceFactory')private templateService,
+  constructor(@Inject('$routeParams') private $routeParams,
+              @Inject('$location') private $location,
+              @Inject('gameTemplateServiceFactory') private templateService,
               private confirmation: CustomConfirmationService) {
     if ($routeParams.hasOwnProperty('templateId')) {
       this.templateId = $routeParams.templateId;
