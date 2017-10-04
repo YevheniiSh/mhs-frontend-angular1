@@ -20,15 +20,18 @@ function firebaseOfflineService() {
 
   function enableOffline() {
     let gameId = localStorage.getItem('currentGameId');
-    setGameFromStorage(gameId, getLocalGame());
+    updateGameFromStorage(gameId, getLocalGame());
   }
 
   function getLocalGame() {
     return JSON.parse(localStorage.getItem('currentGame'));
   }
 
-  function setGameFromStorage(gameId, localGame) {
-    firebase.database().ref(`games/current/${gameId}`).set(localGame);
+  function updateGameFromStorage(gameId, localGame) {
+    let game = {};
+    game[gameId] = localGame;
+    let currentGamesRef = firebase.database().ref('games/current');
+    return currentGamesRef.update(game);
   }
 
   function isConnected() {
