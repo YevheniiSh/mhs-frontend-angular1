@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireModule } from 'angularfire2';
@@ -27,6 +29,9 @@ import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type
 import { OrderByPipe } from './pipe/order-by.pipe';
 import { NotificationService } from './services/notification-service/notification.service';
 import { NotificationPanelComponent } from './notification/notification-panel.component';
+import { DatePickerComponent } from './admin/date-picker/date-picker.component';
+import { TimePickerComponent } from './admin/time-picker/time-picker.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -47,6 +52,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoundBuilderComponentUpgrade,
     GameTemplateComponent,
     CurrentTemplateComponent,
+    DatePickerComponent,
+    TimePickerComponent,
   ],
   imports: [
     FormsModule,
@@ -54,7 +61,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     CollapseModule.forRoot(),
+    TimepickerModule.forRoot(),
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -66,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    ClickOutsideModule,
   ],
   entryComponents: [],
   providers: [BackupService, LoginService, NotificationService]
@@ -93,6 +103,7 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('roundTypeService');
     upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
     upgradeAdapter.upgradeNg1Provider('$translate');
+    upgradeAdapter.upgradeNg1Provider('convertServiceFactory');
   }
 
   private downgradeNewComponents() {
@@ -101,6 +112,8 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
     this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
+    this.mhsAdminModule.directive('appDatePicker', upgradeAdapter.downgradeNg2Component(DatePickerComponent));
+    this.mhsAdminModule.directive('appTimePicker', upgradeAdapter.downgradeNg2Component(TimePickerComponent));
   }
 
   private downgradeNewProviders() {

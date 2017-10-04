@@ -1,0 +1,19 @@
+<div class="form-group">
+  <div class="input-group">
+    <input type="text"
+           class="form-control"
+           bsDatepicker
+           #dp="bsDatepicker"
+           [minDate]="minDate"
+           [(ngModel)]="bsValue"
+           [bsConfig]="bsConfig"
+           readonly>
+    <div class="input-group-btn">
+      <button class="btn btn-info"
+              (click)="dp.toggle()">
+        <i id="game-calendar" class="fa fa-calendar" aria-hidden="true"></i>
+      </button>
+    </div>
+
+  </div>
+</div>

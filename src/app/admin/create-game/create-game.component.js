@@ -121,6 +121,15 @@ angular.module('createGame')
                 }
                 return false
               }
+
+              vm.setGameDate = function (date) {
+                vm.gameDate = date;
+              };
+
+              vm.setGameTime = function (time) {
+                vm.gameTime = time;
+              };
+
             }]
     })
 ;

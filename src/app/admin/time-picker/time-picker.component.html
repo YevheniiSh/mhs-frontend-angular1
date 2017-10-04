@@ -1,0 +1,21 @@
+<div (clickOutside)="closeTimePiker()">
+  <div class="form-group">
+    <div class="input-group">
+      <input class="form-control"
+             [ngModel]="visibleTime"
+             (click)="toogleTimePicker()" readonly>
+      <div class="input-group-btn">
+        <button class="btn btn-info"
+                (click)="toogleTimePicker()">
+          <i id="game-time" class="fa fa-clock-o" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <timepicker [ngModel]="gametime"
+              (ngModelChange)="updateTime($event)"
+              [showMeridian]="false"
+              class="time-picker-popup well well-sm"
+              [minuteStep]="1"
+              *ngIf="isPopupVisible"></timepicker>
+</div>

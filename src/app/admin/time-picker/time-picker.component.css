@@ -1,0 +1,6 @@
+.time-picker-popup {
+  position: absolute;
+  display: inline-block;
+  /*min-height: 290px;*/
+  z-index: 100;
+}

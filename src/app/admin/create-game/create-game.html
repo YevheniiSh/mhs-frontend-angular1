@@ -1,33 +1,10 @@
 <div id="create-game-comp" class="container">
     <form name="createForm">
         <div class="col-md-2">
-          <div outside-click="$ctrl.closeCalendarPiker()">
-            <div ng-click="$ctrl.openCalendarPiker()" class="date-picker">
-              <label class="control-label data-picker-label" for="game-calendar">
-                <i id="game-calendar" class="fa fa-calendar fa-2x" aria-hidden="true"></i>
-              </label>
-              <span>{{$ctrl.gameDate | date:'d MMM y'}}</span>
-            </div>
-            <div class="picker" ng-show="$ctrl.isCalendarVisible">
-              <div uib-datepicker ng-model="$ctrl.gameDate" class="well well-sm"
-                   datepicker-options="$ctrl.options"></div>
-            </div>
-          </div>
+          <app-date-picker (date)="$ctrl.setGameDate($event)"></app-date-picker>
         </div>
         <div class="col-md-2">
-          <div outside-click="$ctrl.closeTimePiker()">
-            <div ng-click="$ctrl.openTimePiker()">
-              <label class="control-label data-picker-label" for="game-time">
-                <i id="game-time" class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
-              </label>
-              <span>{{$ctrl.getTimeForView()}}</span>
-            </div>
-
-            <div class="picker" ng-show="$ctrl.isTimeVisible">
-              <div uib-timepicker name="time" ng-model="$ctrl.gameTime" show-meridian="$ctrl.isMeridian"
-                   class="well well-sm"></div>
-            </div>
-            </div>
+          <app-time-picker (time)="$ctrl.setGameTime($event)"></app-time-picker>
         </div>
         <div class="col-md-2">
             <div class="location">
