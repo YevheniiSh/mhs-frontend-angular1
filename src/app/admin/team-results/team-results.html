@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="btn-panel">
+  <div class="header">
     <button class="btn btn-success" ng-click="$ctrl.showGameResults()">{{'BACK_BUTTON' | translate}}</button>
     <button class="btn btn-info"
             ng-if="$ctrl.state === 'finished' && $ctrl.auth && $ctrl.gameStatus&&  !$ctrl.isEmptyEditedQuizzes() && !$ctrl.isGameInFinishedSeason"
@@ -16,9 +16,15 @@
             ng-if=" $ctrl.isEmptyEditedQuizzes() && $ctrl.auth && !$ctrl.gameStatus"
             ng-click="$ctrl.discardChanges()">{{'DISCARD_RESULT_CHANGES_BUTTON' | translate}}
     </button>
-    <h1><span class="date"><a ng-href="#!/games/{{$ctrl.gameId}}/results">{{$ctrl.date}}</a></span>
-      {{$ctrl.teamName}} : <span class="team-total"> {{$ctrl.teamTotal.toFixed(1)}}</span>
-
+    <h1><span class="date">
+      <a ng-href="#!/games/{{$ctrl.gameId}}/results">
+        {{$ctrl.date}}
+      </a>
+    </span>
+      {{$ctrl.teamName}} :
+      <span class="team-total">
+        {{$ctrl.teamTotal.toFixed(1)}}
+      </span>
     </h1>
   </div>
 

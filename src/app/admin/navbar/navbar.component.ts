@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -18,6 +18,13 @@ export class NavbarComponent implements OnInit {
   userAuthService;
   translate: TranslateService;
   user: Observable<firebase.User>;
+
+  @HostListener('document:click', ['$event'])
+  click(event) {
+    if (event.target.href) {
+      this.isCollapsed = true;
+    }
+  }
 
   constructor(@Inject('InternationalisationServiceFactory') InternationalisationServiceFactory,
               @Inject('userAuthService') UserAuthService,

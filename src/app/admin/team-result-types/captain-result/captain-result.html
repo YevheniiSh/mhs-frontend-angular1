@@ -1,44 +1,42 @@
-<div id="captain-result-admin" ng-if="!$ctrl.resultDisabled" ng-class="{'captain-edited':$ctrl.edited}">
+<div class="result-control"
+     ng-if="!$ctrl.resultDisabled"
+     ng-class="{'captain-edited':$ctrl.edited}">
   <div>
-    <input
-      id="cancel"
-      type="radio"
-      name="captain-result"
-      ng-click="$ctrl.setResult(0)"
-      ng-checked="$ctrl.lastResultIndex == 0"
-    >
-    <label
-      class="btn btn-default"
-      ng-class="{'btn-danger':$ctrl.lastResultIndex == 0}"
-      for="cancel">
+    <input id="cancel"
+           type="radio"
+           name="captain-result"
+           ng-click="$ctrl.setResult(0)"
+           ng-checked="$ctrl.lastResultIndex == 0">
+    <label class="btn btn-default"
+           ng-class="{'btn-danger':$ctrl.lastResultIndex == 0}"
+           for="cancel">
       <i class="fa fa-times" aria-hidden="true"></i>
     </label>
   </div>
   <div ng-repeat="result in $ctrl.round.quizzes  track by result.quizNum">
-    <input
-      id="{{$index}}"
-      type="radio"
-      name="captain-result"
-      ng-click="$ctrl.setResult(result.quizNum)"
-      ng-checked="$index == $ctrl.lastResultIndex"
-      ng-disabled="$ctrl.resultDisabled"
-    >
-    <label
-      class="btn btn-default"
-      ng-class="{'btn-success': result.quizNum <= $ctrl.lastResultIndex,'edited':result.edited}"
-      for="{{$index}}">
+    <input id="{{$index}}"
+           type="radio"
+           name="captain-result"
+           ng-click="$ctrl.setResult(result.quizNum)"
+           ng-checked="$index == $ctrl.lastResultIndex"
+           ng-disabled="$ctrl.resultDisabled">
+    <label class="btn btn-default"
+           ng-class="{'btn-success': result.quizNum <= $ctrl.lastResultIndex}"
+           for="{{$index}}">
       {{result.quizNum}}
     </label>
   </div>
 </div>
-<div id="captain-result-user" ng-if="$ctrl.resultDisabled">
-    <span class="btn inp"
-          ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum"
-          ng-class="{'btn-success' : +(quiz.score) > 0,
-                          'btn-silver' : +(quiz.score) === 0,
-                          'btn-danger' : +(quiz.score) < 0}" disabled>
-        <span uib-tooltip="№ {{quiz.quizNum}}">
-            {{quiz.score}}
-        </span>
+<label class="result-label"
+       ng-if="$ctrl.resultDisabled"
+       ng-repeat="quiz in $ctrl.round.quizzes  track by quiz.quizNum">
+  <div class="btn result"
+       ng-class="{'btn-success' : +(quiz.score) > 0,
+                   'btn-silver' : +(quiz.score) === 0,
+                   'btn-danger' : +(quiz.score) < 0}"
+       disabled>
+    <span uib-tooltip="№ {{quiz.quizNum}}">
+      {{quiz.score}}
     </span>
-</div>
+  </div>
+</label>

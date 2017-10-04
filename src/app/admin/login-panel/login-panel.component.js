@@ -9,13 +9,18 @@
   LoginPanel.$inject = ['userAuthService', '$location', '$rootScope', 'login'];
 
   function LoginPanel(userAuthService, $location, $rootScope, loginService) {
-    this.logOut = function () {
-      userAuthService.signOut()
-        .then(() => {
-          $rootScope.currentUser = null;
+        this.logOut = function () {
+            userAuthService.signOut()
+                .then(() => {
+                    $rootScope.currentUser = null;
+                    this.redirectToLogIn();
+                });
+          loginService.logout();
+        };
+
+        this.redirectToLogIn = function () {
+          $rootScope.beforeAuthUrl = $location.url();
           $location.path('/login');
-        });
-      loginService.logout();
+        }
     }
-  }
 })();
