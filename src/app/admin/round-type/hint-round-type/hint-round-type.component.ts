@@ -13,9 +13,9 @@ export class HintRoundTypeComponent implements OnInit {
   @Input() results;
   @Output() saved = new EventEmitter<any>();
 
-  constructor(@Inject('GameServiceFactory') private gameServiceFactory,
-              @Inject('$routeParams') private routeParams,
-              @Inject('ResultServiceFactory') private resultServiceFactory) {
+  constructor(@Inject('GameServiceFactory')private gameServiceFactory,
+              @Inject('$routeParams')private routeParams,
+              @Inject('ResultServiceFactory')private resultServiceFactory) {
 
   }
 
