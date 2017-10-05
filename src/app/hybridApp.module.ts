@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
 import { FormsModule } from '@angular/forms';
-import { ToastModule } from 'ng2-toastr';
+import { ToastModule, ToastOptions } from 'ng2-toastr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -27,6 +27,7 @@ import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type
 import { OrderByPipe } from './pipe/order-by.pipe';
 import { NotificationService } from './services/notification-service/notification.service';
 import { NotificationPanelComponent } from './notification/notification-panel.component';
+import { CustomOption } from "./services/notification-service/customOption";
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -68,7 +69,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
   ],
   entryComponents: [],
-  providers: [BackupService, LoginService, NotificationService]
+  providers: [
+    BackupService,
+    LoginService,
+    {provide: ToastOptions, useClass: CustomOption},
+    NotificationService
+  ]
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');

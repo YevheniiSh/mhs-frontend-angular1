@@ -4,8 +4,6 @@ import { ToastsManager } from 'ng2-toastr';
 @Injectable()
 export class NotificationService {
 
-  private config = { showCloseButton: true, toastLife: 2000 };
-
   constructor(@Inject('$translate') private translateService,
               public toastrService: ToastsManager) {
   }
@@ -17,28 +15,28 @@ export class NotificationService {
   showSuccess(message: string) {
     this.translateMessage(message)
       .then(mess => {
-        this.toastrService.success(mess, '', this.config);
+        this.toastrService.success(mess, null);
       });
   }
 
   showError(message: string) {
     this.translateMessage(message)
       .then(mess => {
-        this.toastrService.error(mess, '', this.config);
+        this.toastrService.error(mess, null);
       });
   }
 
   showWarning(message: string) {
     this.translateMessage(message)
       .then(mess => {
-        this.toastrService.warning(mess, '', this.config);
+        this.toastrService.warning(mess, null);
       });
   }
 
   showInfo(message: string) {
     this.translateMessage(message)
       .then(mess => {
-        this.toastrService.info(mess, '', this.config);
+        this.toastrService.info(mess, null);
       });
   }
 
