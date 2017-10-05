@@ -4,7 +4,7 @@
 // Author : Menelion Elensúle : https://github.com/Oire
 // author : Коренберг Марк : https://github.com/socketpair
 
-import { LocaleData } from '../../../node_modules/ngx-bootstrap/bs-moment/locale/locale.class';
+import { LocaleData } from 'ngx-bootstrap/bs-moment/locale/locale.class';
 
 function plural(word: string, num: number): string {
   const forms = word.split('_');

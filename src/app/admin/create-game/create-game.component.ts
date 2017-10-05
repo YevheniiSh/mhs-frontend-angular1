@@ -57,6 +57,7 @@ export class CreateGameComponent implements OnInit {
     this.defaultTime.setHours(19);
     this.defaultTime.setMinutes(0);
 
+    this.gameDate = this.defaultDate;
     this.gameTime = this.defaultTime;
 
 
