@@ -215,7 +215,6 @@ module.exports = {
         "src/app/bower_components/angular-route/angular-route.min.js",
         "src/app/bower_components/angular-css/angular-css.min.js",
         "src/app/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js",
-        "src/app/bower_components/angular-socialshare/dist/angular-socialshare.min.js",
         "node_modules/ng2-toastr/bundles/ng2-toastr.min.js"
       ]
     }),
