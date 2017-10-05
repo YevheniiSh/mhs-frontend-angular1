@@ -53,7 +53,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationPanelComponent,
     AuctionRoundTypeComponent,
     OrderByPipe,
-    LoginPanelComponentUpgrade,
     RoundBuilderComponentUpgrade,
     GameTemplateComponent,
     CurrentTemplateComponent,
