@@ -3,29 +3,31 @@
 <table ng-if="$ctrl.games.length != 0 && $ctrl.games.length !== undefined"
        class="table table-sm table-striped table-hover">
   <thead>
-  <tr class="game-property">
-    <th>{{'DATE_LABEL' | translate}}</th>
-    <th>{{'TIME_LABEL' | translate}}</th>
-    <th>{{'LOCATION_LABEL' | translate}}</th>
-    <th>{{'GAME_SEASON_LABEL' | translate}}</th>
-  </tr>
+    <tr class="game-property">
+      <th>{{'DATE_LABEL' | translate}}</th>
+      <th>{{'TIME_LABEL' | translate}}</th>
+      <th>{{'LOCATION_LABEL' | translate}}</th>
+      <th>{{'GAME_SEASON_LABEL' | translate}}</th>
+    </tr>
   </thead>
   <tbody>
-  <tr class="game-row" ng-repeat="game in $ctrl.games | orderBy:'-date'">
-    <td>{{game.date | date:'d MMM y'}}</td>
-    <td>{{game.time}}</td>
-    <td>{{game.location}}</td>
-    <td ng-click="$event.stopPropagation();"><a ng-href='/#!/seasons/{{game.season.id}}'>{{game.season.name}}</a></td>
-    <td>
-      <button class="btn btn-info game-button"
-              ng-click="$ctrl.continueGame(game.$id)">
-        <i class="fa fa-play" aria-hidden="true"></i>
-      </button>
-      <button class="btn btn-info game-button" ng-if="game.hasUnfinishedRound"
-              ng-click="$ctrl.reOpenGame(game.$id)">
-        <i class="fa fa-undo" aria-hidden="true"></i>
-      </button>
-    </td>
-  </tr>
+    <tr class="game-row" ng-repeat="game in $ctrl.games | orderBy:'-date'">
+      <td>{{game.date | date:'d MMM y'}}</td>
+      <td>{{game.time}}</td>
+      <td>{{game.location}}</td>
+      <td ng-click="$event.stopPropagation();"><a ng-href='/#!/seasons/{{game.season.id}}'>{{game.season.name}}</a></td>
+
+      <td>
+        <button class="btn btn-info game-button"
+                ng-click="$ctrl.continueGame(game.$id)">
+          <i class="fa fa-play" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-info game-button" ng-if="game.hasUnfinishedRound"
+                ng-click="$ctrl.reOpenGame(game.$id)">
+          <i class="fa fa-undo" aria-hidden="true"></i>
+        </button>
+        <span class="error text-danger" ng-if="game.invalid">{{game.error}}</span>
+      </td>
+    </tr>
   </tbody>
 </table>

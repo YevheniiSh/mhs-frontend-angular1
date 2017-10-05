@@ -187,7 +187,7 @@ module.exports = {
   },
   "plugins": [
     new UglifyJSPlugin({
-      exclude: /.*main\.\w+.*/,
+      exclude: /main\.\w+.*/,
       sourceMap: false,
       ecma: 5,
       output: {
