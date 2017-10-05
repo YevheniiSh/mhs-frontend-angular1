@@ -111,7 +111,6 @@ angular
       }
 
       function getCurrentGameById(gameId) {
-        storeCurrentGame(gameId);
         return new $firebaseObject(currentGameRef.child(gameId))
           .$loaded();
       }
@@ -137,7 +136,6 @@ angular
           obj.$value = convertService.getSimpleObjectFromFirebaseObject(res);
           obj.$save();
           res.$remove();
-          clearStorage();
         });
       }
 
@@ -242,20 +240,20 @@ angular
         return obj.$loaded();
       }
 
-      function storeCurrentGame(gameId) {
-        let gameRef = firebase.database().ref(`games/current/${gameId}`);
-        gameRef.on('value', function (snap) {
-          if(snap.val()){
-            localStorage.setItem('currentGameId',snap.key);
-            localStorage.setItem('currentGame',JSON.stringify(snap));
-          }
-        });
-      }
+      // function storeCurrentGame(gameId) {
+      //   let gameRef = firebase.database().ref(`games/current/${gameId}`);
+      //   gameRef.on('value', function (snap) {
+      //     if(snap.val()){
+      //       localStorage.setItem('currentGameId',snap.key);
+      //       localStorage.setItem('currentGame',JSON.stringify(snap));
+      //     }
+      //   });
+      // }
 
-      function clearStorage() {
-        localStorage.removeItem('currentGameId');
-        localStorage.removeItem('currentGame');
-      }
+      // function clearStorage() {
+      //   localStorage.removeItem('currentGameId');
+      //   localStorage.removeItem('currentGame');
+      // }
 
       function getGameTeamsNumber(gameId) {
         let obj = new $firebaseArray(finishedGameRef.child(`${gameId}/teams`));
