@@ -8,8 +8,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="assets/spinner/spinner.css">
+  <script src="assets/spinner/spinner.js" type="text/javascript"></script>
 </head>
 <body>
+<div id="coverScreen" class="LockOn"></div>
+
 <div class="container" ng-class="{'presentation-mode': presentationMode}">
   <app-navbar ng-if="!presentationMode && !loading"></app-navbar>
   <notification-panel></notification-panel>

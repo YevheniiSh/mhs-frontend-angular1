@@ -37,7 +37,6 @@ import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/s
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
 
-
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
 // AoT requires an exported function for factories
