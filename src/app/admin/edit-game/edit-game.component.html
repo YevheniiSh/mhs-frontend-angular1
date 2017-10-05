@@ -7,8 +7,8 @@
 <div class="col-md-2">
   <div class="location">
     <input class="form-control"
-           [ngModel]="location"
-           (ngModelChange)="setGameLocation($event)"
+           [(ngModel)]="location"
+           (blur)="setGameLocation()"
            name="location"
            minlength="3"
            required
