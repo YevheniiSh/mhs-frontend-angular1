@@ -4,6 +4,17 @@ const minifyHtml = require('gulp-minify-html');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 
+const singleModuleTemplateWithCss = "(function(module) {\n" +
+  "try {\n" +
+  "  module = angular.module('<%= moduleName %>');\n" +
+  "} catch (e) {\n" +
+  "  module = angular.module('<%= moduleName %>', []);\n" +
+  "}\n" +
+  "module.run(['$templateCache', function($templateCache) {\n" +
+  "  $templateCache.put('<%= template.url %>',\n    '<link href=\"<%= template.url.replace(/.html/gi, '.css') %>\" rel=\"stylesheet\"><%= template.prettyEscapedContent %>');\n" +
+  "}]);\n" +
+  "})();\n";
+
 function minifyPipe() {
   return minifyHtml({
     empty: true,
@@ -16,6 +27,7 @@ function ngHtml2JsPipe(templatePathPrefix) {
   return ngHtml2Js({
     prefix: templatePathPrefix,
     moduleName: 'mhs',
+    template: singleModuleTemplateWithCss
   });
 }
 

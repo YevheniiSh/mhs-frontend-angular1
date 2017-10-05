@@ -12,10 +12,7 @@ export function upgradeDirective(moduleName, invokedName) {
     const directive = $delegate[0];
 
     if (directive.hasOwnProperty('compile')) {
-      const linking = directive.compile();
-      const postLink = linking.post || linking;
-      delete $delegate[0].compile;
-      directive.link = postLink;
+      delete directive.compile;
     }
 
     if (!environment.production) {
