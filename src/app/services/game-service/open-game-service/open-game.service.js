@@ -28,7 +28,10 @@
             getOpenGameById: getOpenGameById,
             removeOpenGame: removeOpenGame,
             getTemplateName:getTemplateName,
-            setTemplateName:setTemplateName
+          setTemplateName: setTemplateName,
+          getSeason: getSeason,
+          changeSeason: changeSeason,
+          deleteSeason: deleteSeason
         };
 
         function getAllOpenGames() {
@@ -167,5 +170,25 @@
                     }
                 })
         }
+
+      function getSeason(gameId) {
+        return new $firebaseObject(openGamesRef.child(`${gameId}/season`)).$loaded()
+          .then((season) => {
+            return season.id;
+          });
+      }
+
+      function changeSeason(gameId, season) {
+        let obj = new $firebaseObject(openGamesRef.child(`${gameId}/season`));
+        obj.$value = season
+        obj.$save();
+        return obj.$loaded();
+      }
+
+      function deleteSeason(gameId) {
+        let obj = new $firebaseObject(openGamesRef.child(`${gameId}/season`));
+        obj.$remove();
+        return obj.$loaded();
+      }
     }
 })();

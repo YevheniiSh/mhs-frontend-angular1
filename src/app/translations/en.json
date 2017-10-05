@@ -161,5 +161,6 @@
   "REVIEW_RESULTS_BUTTON": "Review results",
   "ROUND_FINISH_BUTTON": "Finish round",
   "NUMBER_OF_POINTS":"Number of points for an answer",
-  "CHANGES_DISCARDED": "Changes discarded"
+  "CHANGES_DISCARDED": "Changes discarded",
+  "SAVE_SEASON_MESSAGE": "Season changes saved"
 }

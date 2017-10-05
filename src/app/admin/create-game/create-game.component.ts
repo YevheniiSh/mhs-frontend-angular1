@@ -12,6 +12,10 @@ export class CreateGameComponent implements OnInit {
   location;
   isSeasonGame;
   season;
+
+  defaultTime = new Date();
+  defaultDate = new Date();
+
   createNewGame = function () {
     let gameBuider = this.gameBuild.addDate(this.gameDate)
       .addTime(this.gameTime)
@@ -50,7 +54,10 @@ export class CreateGameComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("hello")
+    this.defaultTime.setHours(19);
+    this.defaultTime.setMinutes(0);
+
+    this.gameTime = this.defaultTime;
 
 
   }

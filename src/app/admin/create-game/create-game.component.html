@@ -1,10 +1,10 @@
 <div id="create-game-comp" class="container">
   <form #createForm>
     <div class="col-md-2">
-      <app-date-picker (date)="setGameDate($event)"></app-date-picker>
+      <app-date-picker (date)="setGameDate($event)" [gameDate]="defaultDate"></app-date-picker>
     </div>
     <div class="col-md-2">
-      <app-time-picker (time)="setGameTime($event)"></app-time-picker>
+      <app-time-picker (time)="setGameTime($event)" [currentGameTime]="defaultTime"></app-time-picker>
     </div>
     <div class="col-md-2">
       <div class="location">

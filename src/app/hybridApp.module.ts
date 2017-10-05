@@ -33,9 +33,16 @@ import { DatePickerComponent } from './admin/date-picker/date-picker.component';
 import { TimePickerComponent } from './admin/time-picker/time-picker.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { SeasonPickerComponent } from './admin/season-picker/season-picker.component';
-import { GameLocationComponent } from './admin/game-location/game-location.component';
 import { CreateGameComponent } from './admin/create-game/create-game.component';
 import { EditGameComponent } from './admin/edit-game/edit-game.component';
+import { defineLocale } from 'ngx-bootstrap/bs-moment';
+import { enGb, ru } from 'ngx-bootstrap/locale';
+import { uk } from './translations/uk'
+
+defineLocale('ru', ru);
+defineLocale('en', enGb);
+defineLocale('uk', uk);
+
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -60,7 +67,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     DatePickerComponent,
     TimePickerComponent,
     SeasonPickerComponent,
-    GameLocationComponent,
     EditGameComponent,
   ],
   imports: [
@@ -124,11 +130,8 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
     this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
-    // this.mhsAdminModule.directive('appDatePicker', upgradeAdapter.downgradeNg2Component(DatePickerComponent));
-    // this.mhsAdminModule.directive('appTimePicker', upgradeAdapter.downgradeNg2Component(TimePickerComponent));
-    // this.mhsAdminModule.directive('appSeasonPicker', upgradeAdapter.downgradeNg2Component(SeasonPickerComponent));
-    // this.mhsAdminModule.directive('appGameLocation', upgradeAdapter.downgradeNg2Component(GameLocationComponent));
     this.mhsAdminModule.directive('appCreateGame', upgradeAdapter.downgradeNg2Component(CreateGameComponent));
+    this.mhsAdminModule.directive('appEditGame', upgradeAdapter.downgradeNg2Component(EditGameComponent));
 
   }
 

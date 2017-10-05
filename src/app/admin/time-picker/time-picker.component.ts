@@ -1,14 +1,26 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-time-picker',
   templateUrl: './time-picker.component.html',
   styleUrls: ['./time-picker.component.css'],
 })
-export class TimePickerComponent implements OnInit {
+export class TimePickerComponent implements OnInit, OnChanges {
+  @Input() currentGameTime;
 
   @Output() time = new EventEmitter<any>();
-  private gametime: Date = new Date();
+  private gametime: Date = new Date;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    for (let prop in changes) {
+      if (prop === "currentGameTime") {
+        if (changes[prop].currentValue !== undefined) {
+          this.gametime = changes[prop].currentValue;
+        }
+        this.getTimeForView();
+      }
+    }
+  }
   private visibleTime;
   private isPopupVisible: boolean;
 
@@ -16,11 +28,7 @@ export class TimePickerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gametime.setHours(19);
-    this.gametime.setMinutes(0);
-    this.isPopupVisible = false;
-    this.getTimeForView();
-    this.time.emit(this.gametime);
+
   }
 
   toogleTimePicker() {

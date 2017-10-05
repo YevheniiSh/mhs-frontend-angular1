@@ -161,5 +161,6 @@
   "REVIEW_RESULTS_BUTTON": "Посмотреть результаты",
   "CHANGES_SAVED": "Изменения сохранены",
   "NUMBER_OF_POINTS":"Количество балов за ответ",
-  "CHANGES_DISCARDED": "Изменения отклонены"
+  "CHANGES_DISCARDED": "Изменения отклонены",
+  "SAVE_SEASON_MESSAGE": "Сезон сохранен"
 }

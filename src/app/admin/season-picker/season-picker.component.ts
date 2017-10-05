@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-season-picker',
@@ -10,7 +10,7 @@ export class SeasonPickerComponent implements OnInit {
   season;
   newSeasonName = '';
   isSeasonEditor;
-  isSeasonGame = false;
+  @Input() isSeasonGame = false;
   showSeasonNameValidation;
 
   @Output() isSeasonGameEvent = new EventEmitter<any>();
@@ -39,8 +39,8 @@ export class SeasonPickerComponent implements OnInit {
         .then(seasonId => {
           this.seasonService.openSeason(seasonId);
           this.isSeasonEditor = false;
-          this.isSeasonGame = true;
-          this.checkboxUpdate(true);
+          this.isSeasonGame = false;
+          this.checkboxUpdate(false);
           this.getCurrentSeasonFromDb();
         })
     } else {

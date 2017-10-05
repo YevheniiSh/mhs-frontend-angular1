@@ -21,7 +21,8 @@ angular.module('seasonService')
                 getSeasons: getSeasons,
                 getNumberOfGames: getNumberOfGames,
                 getSeasonWinners: getSeasonWinners,
-                hasOpenGames: hasOpenGames
+              hasOpenGames: hasOpenGames,
+              deleteGameFromSeason: deleteGameFromSeason
             };
 
             function save(season) {
@@ -356,4 +357,10 @@ angular.module('seasonService')
                 })
 
             }
+
+          function deleteGameFromSeason(seasonId, gameId) {
+            let game = new $firebaseObject(seasonRef.child(`${seasonId}/games/${gameId}`));
+            game.$remove();
+            return game.$loaded();
+          }
         }]);
