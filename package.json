@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "npm install && bower install && ng serve",
     "build": "babel src/app -d lib && ng build --env=prod && rimraf lib",
-    "prod-build": "rimraf dist && babel src/app -d lib && webpack && rimraf lib",
+    "prod-build": "rimraf dist && babel src/app -d lib && webpack && rimraf lib && babel dist/main.bundle.js -d .",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
