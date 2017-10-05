@@ -1,0 +1,29 @@
+<div id="create-game-comp" class="container">
+  <form #createForm>
+    <div class="col-md-2">
+      <app-date-picker (date)="setGameDate($event)"></app-date-picker>
+    </div>
+    <div class="col-md-2">
+      <app-time-picker (time)="setGameTime($event)"></app-time-picker>
+    </div>
+    <div class="col-md-2">
+      <div class="location">
+        <input class="form-control"
+               [(ngModel)]="location"
+               name="location"
+               minlength="3"
+               required
+               placeholder="{{'LOCATION_PLACEHOLDER' | translate}}"
+               #gameLocationInput="ngModel">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <app-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
+                         (currentSeason)="setSeason($event)" #seasonPicker></app-season-picker>
+    </div>
+    <button id="game-build" type="submit" class=" btn btn-info"
+            (click)="createNewGame()" [disabled]="gameLocationInput.errors || seasonPicker.isSeasonEditor">
+      {{'CREATE_GAME_BUTTON' | translate}}
+    </button>
+  </form>
+</div>

@@ -10,7 +10,7 @@ angular
     'login',
     'login-panel',
     'game-list',
-    'createGame',
+    // 'createGame',
     'configGame',
     'roundBuilder',
     'ui.bootstrap',
