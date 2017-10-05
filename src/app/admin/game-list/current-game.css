@@ -9,3 +9,8 @@ current-game-list .no-games-label {
 current-game-list .game-row{
   cursor: default;
 }
+
+current-game-list .game-button {
+  float: right;
+  margin-right: 5px;
+}
