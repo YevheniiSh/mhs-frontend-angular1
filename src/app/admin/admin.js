@@ -5,7 +5,6 @@ angular
     'addTeams',
     'gameType',
     'gameResultsPage',
-    'roundStatus',
     'teamResults',
     'login',
     'login-panel',
@@ -28,7 +27,7 @@ angular
       resolve: isAuth
     });
     $routeProvider.when('/games/:gameId/rounds', {
-      template: '<app-round-status></app-round-status>',
+      template: '<mhs-round-status></mhs-round-status>',
       resolve: isAuth
     });
     $routeProvider.when('/login', {

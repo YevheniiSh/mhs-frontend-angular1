@@ -126,7 +126,7 @@ export class HybridAppModule {
 
   private downgradeNewComponents() {
     this.mhsAdminModule.directive('appNavbar', upgradeAdapter.downgradeNg2Component(NavbarComponent));
-    this.mhsAdminModule.directive('appRoundStatus', upgradeAdapter.downgradeNg2Component(RoundStatusComponent));
+    this.mhsAdminModule.directive('mhsRoundStatus', upgradeAdapter.downgradeNg2Component(RoundStatusComponent));
     this.mhsAdminModule.directive('appGameTemplate', upgradeAdapter.downgradeNg2Component(GameTemplateComponent));
     this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
     this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));

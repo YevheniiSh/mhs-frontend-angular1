@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-round-status',
+  selector: 'mhs-round-status',
   templateUrl: './round-status.component.html',
   styleUrls: ['./round-status.component.css']
 })
@@ -53,7 +53,7 @@ export class RoundStatusComponent implements OnInit {
   }
 
   private setRound(round, roundNum) {
-    if (round.$id == roundNum) {
+    if (+round.$id === +roundNum) {
       this.currentRound = round;
     } else {
       (round.$id < roundNum) ? this.prevRounds.push(round) : this.nextRounds.push(round);
@@ -61,15 +61,15 @@ export class RoundStatusComponent implements OnInit {
 
   }
 
-  onFinished() {
-    this.ResultService.setGameWinner(this.gameStatus, this.gameId)
-      .then(() => {
-        this.ResultService.setTeamPosition(this.gameId);
-      })
-      .then(() => {
-        this.GameService.finishGame(this.gameId);
-        this.seasonService.finishGame(this.gameId);
-      })
-      .then(this.$location.path(`games/${this.gameId}/results`));
-  }
+  // onFinished() {
+  //   this.ResultService.setGameWinner(this.gameStatus, this.gameId)
+  //     .then(() => {
+  //       this.ResultService.setTeamPosition(this.gameId);
+  //     })
+  //     .then(() => {
+  //       this.GameService.finishGame(this.gameId);
+  //       this.seasonService.finishGame(this.gameId);
+  //     })
+  //     .then(this.$location.path(`games/${this.gameId}/results`));
+  // }
 }

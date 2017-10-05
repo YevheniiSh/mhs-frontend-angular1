@@ -64,8 +64,6 @@ import '../../lib/admin/game-build/config-game/config-game.component.js';
 import '../../lib/admin/add-teams/add-teams.component.js';
 import '../../lib/admin/round-type/default/default-round.component.js';
 import '../../lib/admin/round-type/default/default-round.service.js';
-import '../../lib/admin/round-status/round-status.module.js';
-import '../../lib/admin/round-status/round-status-component.js';
 import '../../lib/admin/login/login.module.js';
 import '../../lib/admin/login/login.component.js';
 import '../../lib/admin/login-panel/login-panel.module.js';
