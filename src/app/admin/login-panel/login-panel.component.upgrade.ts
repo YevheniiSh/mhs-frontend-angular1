@@ -1,6 +1,6 @@
-import { Directive, ElementRef, Injector } from '@angular/core';
-import { UpgradeComponent } from '@angular/upgrade/static';
-import { upgradeDirective } from '../../template.loader';
+import { Directive, ElementRef, Injector } from "@angular/core";
+import { UpgradeComponent } from "@angular/upgrade/static";
+import { upgradeDirective } from "../../template.loader";
 
 @Directive({
   selector: 'login-panel',
@@ -11,4 +11,4 @@ export class LoginPanelComponentUpgrade extends UpgradeComponent {
   }
 }
 
-upgradeDirective('mhs.admin', 'loginPanel');
+upgradeDirective('login-panel', 'loginPanel');
