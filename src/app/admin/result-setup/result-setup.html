@@ -6,15 +6,33 @@
   </div>
 
   <div ng-switch="$ctrl.round.roundType.type">
-    <default-round ng-switch-when="DEFAULT_ROUND" results="$ctrl.results"
-                   save-result="$ctrl.saveResult(result)" is-manual-input="$ctrl.isManualInput"></default-round>
-    <captain-round ng-switch-when="CAPTAIN_ROUND" results="$ctrl.results"
-                   save-result="$ctrl.saveResult(result)"
-                   is-captains-out="$ctrl.isCaptainsOut"></captain-round>
-    <app-auction-round-type ng-switch-when="AUCTION_ROUND" [disable-next]="$ctrl.disableNext" [results]="$ctrl.results"
-                            (saved)="$ctrl.saveResult($event)"></app-auction-round-type>
-    <hints-round ng-switch-when="HINTS_ROUND" results="$ctrl.results"
-                 save-result="$ctrl.saveResult(result)"></hints-round>
+    <default-round
+      ng-switch-when="DEFAULT_ROUND"
+      results="$ctrl.results"
+      save-result="$ctrl.saveResult(result)"
+      is-manual-input="$ctrl.isManualInput">
+    </default-round>
+
+    <app-hint-round-type
+      ng-switch-when="HINTS_ROUND"
+      (saved)="$ctrl.saveResult($event)"
+      [results]="$ctrl.results"
+      [quiz-weight]="$ctrl.quizWeight">
+    </app-hint-round-type>
+
+    <app-captain-round-type
+      ng-switch-when="CAPTAIN_ROUND"
+      [results]="$ctrl.results"
+      [quiz-weight]="$ctrl.quizWeight"
+      (saved)="$ctrl.saveResult($event)">
+    </app-captain-round-type>
+
+    <app-auction-round-type
+      ng-switch-when="AUCTION_ROUND"
+      [disable-next]="$ctrl.disableNext"
+      [results]="$ctrl.results"
+      (saved)="$ctrl.saveResult($event)">
+    </app-auction-round-type>
   </div>
 
   <div id="control-panel" class="form-inline">

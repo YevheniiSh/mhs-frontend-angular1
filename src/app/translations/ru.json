@@ -76,6 +76,10 @@
   "TEAM_NAME_EXISTS_ALERT": "Название занято",
   "SEARCH_PLACEHOLDER": "Поиск",
   "WRONG_TIME_ERROR": "Вы ввели неправильное время",
+  "CONFIRMATION_DELETE_TEMPLATE_TEXT": "Вы действительно хотите удалить шаблон?",
+  "CONFIRMATION_CLOSE_SEASON": "Вы действительно хотите закрыть сезон?",
+  "CONFIRMATION_CONFIRM_TEXT": "Да",
+  "CONFIRMATION_DECLINE_TEXT": "Нет",
   "QUIZ_COUNT_PLACEHOLDER": "Количество вопросов",
   "EDIT_TEAM_NAME_TOOLTIP": "Изменить название команды",
   "INCORRECT_LAST_NUMBERS_ERROR": "Последние 3 цифры номера телефона введены неверно",
@@ -138,7 +142,6 @@
   "GAMES_LABEL": "Игры",
   "START_INPUT_LABEL": "Балы",
   "STEP_INPUT_LABEL": "Шаг",
-  "NO_CAPTAINS_ALERT": "Все капитаны выбыли",
   "ROUND_FINISH_BUTTON": "Закончить раунд",
   "TEAMS_MODAL_HEADER": "Заявки команд на игру",
   "TEAMS_MODAL_PLACEHOLDER": "Пока нет заявок на игру",
@@ -162,5 +165,11 @@
   "CHANGES_SAVED": "Изменения сохранены",
   "NUMBER_OF_POINTS":"Количество балов за ответ",
   "CHANGES_DISCARDED": "Изменения отклонены",
-  "SAVE_SEASON_MESSAGE": "Сезон сохранен"
+  "SAVE_SEASON_MESSAGE": "Сезон сохранен",
+  "DELETE_OPEN_GAME_CONFIRMATION_TITLE": "Удалить игру?",
+  "DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE": "Удалить шаблон?",
+  "FINISH_ROUND_CONFIRMATION_TITLE": "Закончить раунд?",
+  "CLOSE_SEASON_CONFIRMATION_TITLE": "Закрыть сезон?",
+  "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?",
+  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?"
 }

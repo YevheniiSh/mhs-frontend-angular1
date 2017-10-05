@@ -21,8 +21,8 @@ angular.module('seasonService')
                 getSeasons: getSeasons,
                 getNumberOfGames: getNumberOfGames,
                 getSeasonWinners: getSeasonWinners,
-              hasOpenGames: hasOpenGames,
-              deleteGameFromSeason: deleteGameFromSeason
+                hasOpenGames: hasOpenGames,
+                deleteGameFromSeason: deleteGameFromSeason
             };
 
             function save(season) {
@@ -282,7 +282,8 @@ angular.module('seasonService')
             function setStatus(id, status) {
                 let seasonStatus = new $firebaseObject(seasonRef.child(`${id}/current`));
                 seasonStatus.$value = status;
-                return seasonStatus.$save()
+                seasonStatus.$save();
+                return seasonStatus.$loaded()
                     .then((res) => {
                         return res.$value;
                     });

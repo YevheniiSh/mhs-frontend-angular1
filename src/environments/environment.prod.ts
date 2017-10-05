@@ -60,8 +60,6 @@ import '../../lib/admin/result-setup/result-setup.builder.js';
 import '../../lib/admin/game-build/config-game/config-game.module.js';
 import '../../lib/admin/game-build/config-game/config-game.component.js';
 import '../../lib/admin/add-teams/add-teams.component.js';
-import '../../lib/admin/round-type/hints/hints-round.component.js';
-import '../../lib/admin/round-type/captain/captain-round-type.component.js';
 import '../../lib/admin/round-type/default/default-round.component.js';
 import '../../lib/admin/round-type/default/default-round.service.js';
 import '../../lib/admin/round-status/round-status.module.js';
@@ -88,24 +86,7 @@ import '../../lib/services/round-type-service/round-type-service.module.js';
 import '../../lib/services/round-type-service/round-type-service.service.js';
 
 export const environment = {
-  production: true
+  production: true,
+  facebookAppId: '150159422250915'
 };
 
-(function () {
-  let method;
-  const noop = function () {
-  };
-  const methods = [
-    'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-    'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-    'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-    'timeStamp', 'trace', 'warn'
-  ];
-  let length = methods.length;
-  const console = (window.console || {});
-
-  while (length--) {
-    method = methods[length];
-    console[method] = noop;
-  }
-}());
