@@ -1,0 +1,34 @@
+<label [ngClass]="{'disabled': result.disabled}">
+        <span class='switcher result-control'>
+          <label class='switcher-label switcher-on' for='{{result.teamId+"on"+index}}'></label>
+          <input id='{{result.teamId+"on"+index}}'
+                 class='switcher-radio-on'
+                 type='radio'
+                 name='{{result.teamId+index}}'
+                 [(ngModel)]="result.score"
+                 [value]="weight"
+                 (change)="result.answer = '1';saveResult(result)"
+                 [disabled]="result.disabled">
+
+          <label class='switcher-label switcher-off' for='{{result.teamId+"off"+index}}'></label>
+          <input id='{{result.teamId+"off"+index}}'
+                 class='switcher-radio-off'
+                 type='radio'
+                 name='{{result.teamId+index}}'
+                 [(ngModel)]="result.score"
+                 [value]=-1
+                 (change)="result.answer = '0';saveResult(result)"
+                 [disabled]="result.disabled">
+
+          <label class='switcher-label switcher-neutral' for='{{result.teamId+"def"+index}}'></label>
+          <input id='{{result.teamId+"def"+index}}'
+                 class='switcher-radio-neutral'
+                 type='radio'
+                 name='{{result.teamId+index}}'
+                 [(ngModel)]="result.score"
+                 (change)="clearResult(result)"
+                 [disabled]="result.disabled">
+          <div class='switcher-slider' [@myRadio]></div>
+        </span>
+  <span class="team-name">{{result.teamName}}</span>
+</label>

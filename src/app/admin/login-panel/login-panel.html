@@ -7,7 +7,7 @@
     </div>
     <div ng-hide="$root.currentUser">
         <a class="auth-info" ng-href="/#!/login">{{'NAVBAR_WELCOME_MESSAGE' | translate}}</a>
-        <a class="btn btn-success btn-xs" ng-href="/#!/login">
+        <a class="btn btn-success btn-xs" ng-click="$ctrl.redirectToLogIn()">
             <i class="fa fa-sign-in"></i>
         </a>
     </div>

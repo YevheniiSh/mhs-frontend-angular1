@@ -1,38 +1,69 @@
-#captain-result-admin {
-  margin: 5px;
+captain-result .result-control {
+  margin-bottom: 1px;
+  margin-top: 1px;
+  height: 34px;
 }
 
-#captain-result-admin input[type=radio] {
+captain-result .result-control input[type=radio] {
   display: none;
 }
 
-#captain-result-admin div {
+captain-result .result-control div {
   float: left;
 }
 
-#captain-result-admin div label {
+captain-result .result-control div label {
   border-radius: 0;
   font-weight: bold;
   width: 50px;
 }
 
-#captain-result-admin div:first-of-type label {
+captain-result .result-control div:first-of-type label {
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
 }
 
-#captain-result-admin div:last-of-type label {
+captain-result .result-control div:last-of-type label {
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
 }
 
-#captain-result-user .btn[disabled] {
+captain-result .result-label .btn[disabled] {
   cursor: default;
   opacity: 1;
 }
 
-.captain-edited {
+captain-result .captain-edited {
   float: left;
-  box-shadow: 0px 0px 4px 3px #ffbc35;;
+  box-shadow: 0px 0px 4px 3px #ffbc35;
   border-radius: 50px;
+}
+
+captain-result .result-label{
+  margin-right: 1%;
+  text-align: left;
+}
+
+captain-result .result{
+  padding: 4px 0;
+  border-radius: 30%;
+  text-align: center;
+  color: white;
+  width: 44px;
+  height: 31px;
+  font-size: 14pt;
+  border: none;
+}
+
+@media screen and (min-width: 721px){
+  captain-result .result-label:nth-child(5) {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 720px){
+  captain-result .result-label{
+    width: 20%;
+    margin:0 0 10px 0;
+  }
 }

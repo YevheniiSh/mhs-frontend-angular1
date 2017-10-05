@@ -13,9 +13,14 @@
             userAuthService.signOut()
                 .then(() => {
                     $rootScope.currentUser = null;
-                    $location.path('/login');
+                    this.redirectToLogIn();
                 });
           loginService.logout();
+        };
+
+        this.redirectToLogIn = function () {
+          $rootScope.beforeAuthUrl = $location.url();
+          $location.path('/login');
         }
     }
 })();
