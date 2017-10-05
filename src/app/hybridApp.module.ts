@@ -37,7 +37,7 @@ import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/s
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
 import { RoundStatusComponent } from './admin/round-status/round-status.component';
-
+import { DownloadBackupComponent } from './admin/download-backup/download-backup.component';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -62,8 +62,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     CaptainRoundTypeComponent,
     SwitcherComponent,
     ConfirmComponent,
-    FacebookShareComponent
-    RoundStatusComponent
+    FacebookShareComponent,
+    RoundStatusComponent,
+    DownloadBackupComponent
   ],
   imports: [
     FormsModule,
@@ -135,6 +136,7 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appConfirmComponent', upgradeAdapter.downgradeNg2Component(ConfirmComponent));
     this.mhsAdminModule.directive('appCaptainRoundType', upgradeAdapter.downgradeNg2Component(CaptainRoundTypeComponent));
     this.mhsAdminModule.directive('appSwitcher', upgradeAdapter.downgradeNg2Component(SwitcherComponent));
+    this.mhsAdminModule.directive('mhsDownloadBackup', upgradeAdapter.downgradeNg2Component(DownloadBackupComponent));
   }
 
   private downgradeNewProviders() {

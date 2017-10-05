@@ -169,5 +169,6 @@
   "FINISH_ROUND_CONFIRMATION_TITLE": "Завершити раунд?",
   "CLOSE_SEASON_CONFIRMATION_TITLE": "Закрити сезон?",
   "FINISH_HINTS_ROUND_CONFIRMATION": "Всі команди відповіли, закінчити раунд?",
-  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Усі капітани вибули, завершити раунд?"
+  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Усі капітани вибули, завершити раунд?",
+  "DOWNLOAD_BACKUP": "Скачати backup"
 }
