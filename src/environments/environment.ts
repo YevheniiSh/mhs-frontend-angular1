@@ -1,8 +1,3 @@
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-
 import 'app/shared/esc-key.js';
 import 'app/shared/enter-key.js';
 import 'app/shared/focused.js';
@@ -67,8 +62,6 @@ import 'app/admin/result-setup/result-setup.builder.js';
 import 'app/admin/game-build/config-game/config-game.module.js';
 import 'app/admin/game-build/config-game/config-game.component.js';
 import 'app/admin/add-teams/add-teams.component.js';
-import 'app/admin/round-type/hints/hints-round.component.js';
-import 'app/admin/round-type/captain/captain-round-type.component.js';
 import 'app/admin/round-type/default/default-round.component.js';
 import 'app/admin/round-type/default/default-round.service.js';
 import 'app/admin/round-status/round-status.module.js';
@@ -95,5 +88,6 @@ import 'app/services/round-type-service/round-type-service.module.js';
 import 'app/services/round-type-service/round-type-service.service.js';
 
 export const environment = {
-  production: false
+  production: false,
+  facebookAppId: ''
 };

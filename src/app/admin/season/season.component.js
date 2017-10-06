@@ -8,9 +8,11 @@
       controller: seasonsController
     });
 
-  seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService', 'NotificationService'];
+  seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService',
+    'NotificationService', 'CustomConfirmationService'];
 
-  function seasonsController($location, seasonService, $routeParams, $window, userAuthService, notificationService) {
+  function seasonsController($location, seasonService, $routeParams, $window, userAuthService,
+                             notificationService, customConfirmationService) {
 
     let vm = this;
 
@@ -21,11 +23,6 @@
     vm.$onInit = onInit;
 
     function onInit() {
-
-      seasonService.getSeasonsNames().then((res) => {
-        vm.seasons = res;
-        setSelectedSeason();
-      });
 
       seasonService.getContenderTeams(seasonId).then((res) => {
         vm.seasonTeams = res;
@@ -52,32 +49,23 @@
       })
     }
 
-    vm.showAlert = function () {
-      if (vm.hasOpenGames) notificationService.showError('SEASON_OPEN_GAMES_ALERT');
-      else vm.showCloseSeasonAlert = true;
-    };
-
     vm.closeCurrentSeason = function () {
-      seasonService.finishSeason(seasonId);
+      if (!vm.hasOpenGames)
+        showSeasonCloseConfirmation();
+      else
+        notificationService.showError('SEASON_OPEN_GAMES_ALERT');
     };
 
-    vm.setSeasonUrl = function () {
-      if (vm.selectedSeason !== undefined)
-        if (seasonId !== vm.selectedSeason.id) {
-          seasonId = vm.selectedSeason.id;
-          $location.path("seasons/" + seasonId)
-        }
-    };
+    function showSeasonCloseConfirmation() {
+      customConfirmationService.create('CLOSE_SEASON_CONFIRMATION_TITLE', 'CONFIRMATION_CLOSE_SEASON')
+        .then(() => seasonService.finishSeason(seasonId))
+        .then((seasonStatus) => {
+          vm.isCurrentSeason = seasonStatus
+        });
+    }
 
     vm.onBack = function () {
       $window.history.back();
     };
-
-    function setSelectedSeason() {
-      for (let season in vm.seasons) {
-        if (vm.seasons[season].id === seasonId)
-          vm.selectedSeason = vm.seasons[season];
-      }
-    }
   }
 })();

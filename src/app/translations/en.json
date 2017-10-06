@@ -76,6 +76,10 @@
   "SEARCH_PLACEHOLDER": "Search",
   "WRONG_TIME_ERROR": "Wrong time",
   "QUIZ_COUNT_PLACEHOLDER": "Quizz number",
+  "CONFIRMATION_DELETE_TEMPLATE_TEXT": "Do you really want to remove the template?",
+  "CONFIRMATION_CLOSE_SEASON": "Do you really want to close the season?",
+  "CONFIRMATION_CONFIRM_TEXT": "Yes",
+  "CONFIRMATION_DECLINE_TEXT": "No",
   "QUESTION_QUANTITY_PLACEHOLDER": "Question quantity",
   "EDIT_TEAM_NAME_TOOLTIP": "Edit team name",
   "INCORRECT_LAST_NUMBERS_ERROR": "Last 3 digits of your phone is incorrect",
@@ -147,7 +151,6 @@
   "START_INPUT_LABEL": "Point",
   "STEP_INPUT_LABEL": "Step",
   "CURRENT_SEASON_TOOLTIP": "Current season",
-  "NO_CAPTAINS_ALERT": "All captains are left",
   "GAME_PHOTO": "Game photos",
   "FEW_ROUNDS_ERROR": "Min amount of rounds is 2",
   "GAME_TEMPLATES": "Game templates",
@@ -161,5 +164,11 @@
   "REVIEW_RESULTS_BUTTON": "Review results",
   "ROUND_FINISH_BUTTON": "Finish round",
   "NUMBER_OF_POINTS":"Number of points for an answer",
-  "CHANGES_DISCARDED": "Changes discarded"
+  "CHANGES_DISCARDED": "Changes discarded",
+  "DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE": "Delete template?",
+  "DELETE_OPEN_GAME_CONFIRMATION_TITLE": "Delete game?",
+  "FINISH_ROUND_CONFIRMATION_TITLE": "Finish round?",
+  "CLOSE_SEASON_CONFIRMATION_TITLE": "Close season?",
+  "FINISH_HINTS_ROUND_CONFIRMATION": "All teams answered, do you want to finish round?",
+  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?"
 }
