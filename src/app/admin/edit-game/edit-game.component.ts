@@ -77,7 +77,7 @@ export class EditGameComponent implements OnInit {
     this.isPrivate = this.isPrivate;
     this.openGameService.changeIsPrivate(this.gameId, this.isPrivate)
       .then(() => {
-        this.notificationService.showSuccess('SAVE_TIME_MESSAGE');
+        this.notificationService.showSuccess('GAME_STATUS_SAVE');
       });
   }
 
