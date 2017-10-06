@@ -21,3 +21,8 @@
                      [isSeasonGame]="isSeasonGame"
                      (currentSeason)="setSeason($event)" #seasonPicker></app-season-picker>
 </div>
+<div class="col-md-2">
+  <mhs-private-game (isPrivate)="setIsPrivate($event)"
+                    [isPrivateGame]="isPrivate">
+  </mhs-private-game>
+</div>

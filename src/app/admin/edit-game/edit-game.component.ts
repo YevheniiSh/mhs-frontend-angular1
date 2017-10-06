@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { NotificationService } from "../../services/notification-service/notification.service";
+import { NotificationService } from '../../services/notification-service/notification.service';
 
 @Component({
   selector: 'app-edit-game',
@@ -20,6 +20,7 @@ export class EditGameComponent implements OnInit {
   isSeasonGame;
   seasonId;
   season;
+  isPrivate: boolean;
 
   constructor(@Inject('OpenGameServiceFactory') private openGameService,
               @Inject('seasonService') private seasonService,
@@ -38,16 +39,16 @@ export class EditGameComponent implements OnInit {
   }
 
   setupGameInfo() {
-    this.openGameService.getDate(this.gameId).then((res) => {
-      this.currentGameDate = new Date(res);
-    });
+    this.openGameService.getOpenGameById(this.gameId)
+      .then(game => {
+        this.currentGameDate = new Date(game.date);
+        this.location = game.location;
+        this.isPrivate = game.isPrivate;
+      });
 
     this.openGameService.getTime(this.gameId).then((res) => {
       this.currentGameTime = new Date(res);
-    });
-
-    this.openGameService.getLocation(this.gameId).then((res) => {
-      this.location = res;
+      console.log(this.currentGameTime);
     });
   }
 
@@ -72,13 +73,21 @@ export class EditGameComponent implements OnInit {
     });
   }
 
+  setIsPrivate(isPrivate) {
+    this.isPrivate = this.isPrivate;
+    this.openGameService.changeIsPrivate(this.gameId, this.isPrivate)
+      .then(() => {
+        this.notificationService.showSuccess('GAME_STATUS_SAVE');
+      });
+  }
+
   setIsSeasonGame(isSeasonGame) {
     this.isSeasonGame = isSeasonGame;
     if (this.isSeasonGame) {
-      let seasonInGame = { id: this.season.$id, name: this.season.name };
+      const seasonInGame = { id: this.season.$id, name: this.season.name };
       this.openGameService.changeSeason(this.gameId, seasonInGame).then(() => {
         this.notificationService.showSuccess('SAVE_SEASON_MESSAGE');
-        this.seasonService.addGameToSeason(this.season.$id, this.gameId)
+        this.seasonService.addGameToSeason(this.season.$id, this.gameId);
       });
     }
     else {

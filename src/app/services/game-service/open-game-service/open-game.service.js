@@ -22,6 +22,7 @@
             changeDate: changeDate,
             changeLocation: changeLocation,
             changeTime: changeTime,
+          changeIsPrivate: changeIsPrivate,
             getRounds: getRounds,
             getTeams: getTeams,
             updateTeamSize: updateTeamSize,
@@ -188,6 +189,13 @@
       function deleteSeason(gameId) {
         let obj = new $firebaseObject(openGamesRef.child(`${gameId}/season`));
         obj.$remove();
+        return obj.$loaded();
+      }
+
+      function changeIsPrivate(gameId, isPrivate) {
+        let obj = new $firebaseObject(openGamesRef.child(`${gameId}/isPrivate`));
+        obj.$value = isPrivate;
+        obj.$save();
         return obj.$loaded();
       }
     }
