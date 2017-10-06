@@ -1,8 +1,6 @@
-import { forwardRef, NgModule } from '@angular/core';
-import { UpgradeAdapter } from '@angular/upgrade';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import * as angular from 'angular';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -12,6 +10,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { downgradeInjectable, UpgradeModule } from '@angular/upgrade/static';
+import { environment } from '../environments/environment';
 
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
 import { NavbarComponent } from './admin/navbar/navbar.component';
@@ -29,17 +29,22 @@ import { NotificationService } from './services/notification-service/notificatio
 import { NotificationPanelComponent } from './notification/notification-panel.component';
 import { FacebookModule, FacebookService } from 'ngx-facebook';
 import { FacebookShareComponent } from './facebook-share/facebook-share.component';
-import { environment } from '../environments/environment';
 import { CustomConfirmationService } from './services/confirmation-service/confirmation.service';
 import { CaptainRoundTypeComponent } from './admin/round-type/captain-round-type/captain-round-type.component';
 import { HintRoundTypeComponent } from './admin/round-type/hint-round-type/hint-round-type.component';
 import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/switcher.component';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
+import { ResultService } from './services/result-service/result.service.upgrade';
+import { AngularJsProvider } from './hybrid/AngularJsProvider';
+import { TeamService } from './services/team-service/team.service.upgrade';
+import { InternationalisationService } from './internalisation/internalisation.upgrade';
+import { GameService } from './services/game-service/game.service.upgrade';
+import { UserAuthService } from './services/user-auth-service/user-auth.upgrade';
+import { GameTemplateService } from './services/game-template-service/game-template.service.upgrade';
+import { RoundTypeService } from './services/round-type-service/round-type.service.upgrade';
+import { HybridModule } from './hybrid/hybrid.module';
 
-const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
-
-// AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/app/translations/', '.json');
 }
@@ -82,59 +87,71 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     FacebookModule.forRoot(),
     BootstrapModalModule.forRoot({ container: document.body }),
+    UpgradeModule,
+    AngularJsProvider.forRoot(),
+    HybridModule
   ],
-  entryComponents: [ConfirmComponent],
-  providers: [BackupService, LoginService, NotificationService, CustomConfirmationService]
+  entryComponents: [
+    ConfirmComponent,
+    NavbarComponent,
+    GameTemplateComponent,
+    CurrentTemplateComponent,
+    AuctionRoundTypeComponent,
+    HintRoundTypeComponent,
+    NotificationPanelComponent,
+    FacebookShareComponent,
+    ConfirmComponent,
+    CaptainRoundTypeComponent,
+    SwitcherComponent
+  ],
+  providers: [
+    BackupService,
+    LoginService,
+    NotificationService,
+    CustomConfirmationService,
+    TeamService,
+    InternationalisationService,
+    UserAuthService,
+    GameTemplateService,
+    RoundTypeService,
+    GameService,
+    ResultService
+  ]
 })
 export class HybridAppModule {
-  private mhsAdminModule = angular.module('mhs.admin');
-
-  constructor(private fb: FacebookService) {
-    this.upgradeOldProviders();
-    this.downgradeNewComponents();
+  constructor(private upgradeModule: UpgradeModule, private hybridModule: HybridModule, private fb: FacebookService) {
     this.downgradeNewProviders();
+
+    this.hybridModule.downgradeComponents('mhs.admin', {
+      appNavbar: NavbarComponent,
+      appGameTemplate: GameTemplateComponent,
+      appCurrentTemplate: CurrentTemplateComponent,
+      appAuctionRoundType: AuctionRoundTypeComponent,
+      appHintRoundType: HintRoundTypeComponent,
+      notificationPanel: NotificationPanelComponent,
+      mhsFacebookShare: FacebookShareComponent,
+      appConfirmComponent: ConfirmComponent,
+      appCaptainRoundType: CaptainRoundTypeComponent,
+      appSwitcher: SwitcherComponent
+    });
 
     this.initFacebook();
   }
 
   ngDoBootstrap() {
-    upgradeAdapter.bootstrap(document.documentElement, ['mhs'], { strictDi: false });
-  }
-
-  private upgradeOldProviders() {
-    upgradeAdapter.upgradeNg1Provider('TeamServiceFactory');
-    upgradeAdapter.upgradeNg1Provider('InternationalisationServiceFactory');
-    upgradeAdapter.upgradeNg1Provider('userAuthService');
-    upgradeAdapter.upgradeNg1Provider('$routeParams');
-    upgradeAdapter.upgradeNg1Provider('$location');
-    upgradeAdapter.upgradeNg1Provider('gameTemplateServiceFactory');
-    upgradeAdapter.upgradeNg1Provider('roundTypeService');
-    upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
-    upgradeAdapter.upgradeNg1Provider('$translate');
-    upgradeAdapter.upgradeNg1Provider('ResultServiceFactory');
-  }
-
-  private downgradeNewComponents() {
-    this.mhsAdminModule.directive('appNavbar', upgradeAdapter.downgradeNg2Component(NavbarComponent));
-    this.mhsAdminModule.directive('appGameTemplate', upgradeAdapter.downgradeNg2Component(GameTemplateComponent));
-    this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
-    this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
-    this.mhsAdminModule.directive('appHintRoundType', upgradeAdapter.downgradeNg2Component(HintRoundTypeComponent));
-    this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
-    this.mhsAdminModule.directive('mhsFacebookShare', upgradeAdapter.downgradeNg2Component(FacebookShareComponent));
-    this.mhsAdminModule.directive('appConfirmComponent', upgradeAdapter.downgradeNg2Component(ConfirmComponent));
-    this.mhsAdminModule.directive('appCaptainRoundType', upgradeAdapter.downgradeNg2Component(CaptainRoundTypeComponent));
-    this.mhsAdminModule.directive('appSwitcher', upgradeAdapter.downgradeNg2Component(SwitcherComponent));
+    this.upgradeModule.bootstrap(document.documentElement, ['mhs'], { strictDi: false });
   }
 
   private downgradeNewProviders() {
-    this.mhsAdminModule.service('backup', upgradeAdapter.downgradeNg2Provider(BackupService));
-    this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
-    this.mhsAdminModule.service('NotificationService', upgradeAdapter.downgradeNg2Provider(NotificationService));
-    this.mhsAdminModule.service('CustomConfirmationService', upgradeAdapter.downgradeNg2Provider(CustomConfirmationService));
+    const mhsAdminModule = angular.module('mhs.admin');
+    mhsAdminModule.service('backup', downgradeInjectable(BackupService));
+    mhsAdminModule.service('login', downgradeInjectable(LoginService));
+    mhsAdminModule.service('NotificationService', downgradeInjectable(NotificationService));
+    mhsAdminModule.service('CustomConfirmationService', downgradeInjectable(CustomConfirmationService));
   }
 
   private initFacebook() {
+    console.log('fb init');
     this.fb.init({
       appId: environment.facebookAppId,
       xfbml: true,

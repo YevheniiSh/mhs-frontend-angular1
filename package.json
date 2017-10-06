@@ -44,6 +44,7 @@
     "@angular/cli": "^1.4.4",
     "@angular/compiler-cli": "^4.3.6",
     "@angular/language-service": "^4.3.6",
+    "@types/angular": "^1.6.32",
     "@types/jasmine": "^2.5.54",
     "@types/jasminewd2": "^2.0.3",
     "@types/node": "^8.0.26",

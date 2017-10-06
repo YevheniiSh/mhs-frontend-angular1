@@ -1,5 +1,3 @@
-import * as angular from 'angular';
-
 export function upgradeDirective(moduleName, invokedName) {
   angular.module(moduleName).config(config);
 
