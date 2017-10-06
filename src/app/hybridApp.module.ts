@@ -47,7 +47,8 @@ import { CreateGameComponent } from './admin/create-game/create-game.component';
 import { EditGameComponent } from './admin/edit-game/edit-game.component';
 import { defineLocale } from 'ngx-bootstrap/bs-moment';
 import { enGb, ru } from 'ngx-bootstrap/locale';
-import { uk } from './translations/uk'
+import { uk } from './translations/uk';
+import { PrivateGameComponent } from './admin/private-game/private-game.component'
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
@@ -82,7 +83,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CaptainRoundTypeComponent,
     SwitcherComponent,
     ConfirmComponent,
-    FacebookShareComponent
+    FacebookShareComponent,
+    PrivateGameComponent
   ],
   imports: [
     FormsModule,
@@ -161,6 +163,7 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appSwitcher', upgradeAdapter.downgradeNg2Component(SwitcherComponent));
     this.mhsAdminModule.directive('appCreateGame', upgradeAdapter.downgradeNg2Component(CreateGameComponent));
     this.mhsAdminModule.directive('appEditGame', upgradeAdapter.downgradeNg2Component(EditGameComponent));
+    this.mhsAdminModule.directive('privateGameComponent', upgradeAdapter.downgradeNg2Component(PrivateGameComponent));
 
   }
 
