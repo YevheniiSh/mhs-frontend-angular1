@@ -1,9 +1,9 @@
-import {forwardRef, NgModule} from '@angular/core';
-import {UpgradeAdapter} from '@angular/upgrade';
-import {BrowserModule} from '@angular/platform-browser';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { forwardRef, NgModule } from '@angular/core';
+import { UpgradeAdapter } from '@angular/upgrade';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -13,7 +13,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppModule } from './app.module';
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
 import { NavbarComponent } from './admin/navbar/navbar.component';
 import { LoginPanelComponentUpgrade } from './admin/login-panel/login-panel.component.upgrade';
@@ -28,6 +27,16 @@ import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type
 import { OrderByPipe } from './pipe/order-by.pipe';
 import { NotificationService } from './services/notification-service/notification.service';
 import { NotificationPanelComponent } from './notification/notification-panel.component';
+import { FacebookModule, FacebookService } from 'ngx-facebook';
+import { FacebookShareComponent } from './facebook-share/facebook-share.component';
+import { environment } from '../environments/environment';
+import { CustomConfirmationService } from './services/confirmation-service/confirmation.service';
+import { CaptainRoundTypeComponent } from './admin/round-type/captain-round-type/captain-round-type.component';
+import { HintRoundTypeComponent } from './admin/round-type/hint-round-type/hint-round-type.component';
+import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/switcher.component';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { ConfirmComponent } from './admin/confirm/confirm.component';
+
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -48,6 +57,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoundBuilderComponentUpgrade,
     GameTemplateComponent,
     CurrentTemplateComponent,
+    HintRoundTypeComponent,
+    CaptainRoundTypeComponent,
+    SwitcherComponent,
+    ConfirmComponent,
+    FacebookShareComponent
   ],
   imports: [
     FormsModule,
@@ -67,18 +81,25 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    AppModule
+    FacebookModule.forRoot(),
+    BootstrapModalModule.forRoot({ container: document.body }),
   ],
-  entryComponents: [],
-  providers: [BackupService, LoginService, NotificationService]
+  entryComponents: [ConfirmComponent],
+  providers: [BackupService, LoginService, NotificationService, CustomConfirmationService]
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');
 
-  constructor() {
+  constructor(private fb: FacebookService) {
     this.upgradeOldProviders();
     this.downgradeNewComponents();
     this.downgradeNewProviders();
+
+    this.fb.init({
+      appId: environment.facebookAppId,
+      xfbml: true,
+      version: 'v2.10'
+    });
   }
 
   ngDoBootstrap() {
@@ -95,7 +116,7 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('roundTypeService');
     upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
     upgradeAdapter.upgradeNg1Provider('$translate');
-
+    upgradeAdapter.upgradeNg1Provider('ResultServiceFactory');
   }
 
   private downgradeNewComponents() {
@@ -103,13 +124,19 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appGameTemplate', upgradeAdapter.downgradeNg2Component(GameTemplateComponent));
     this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
     this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
+    this.mhsAdminModule.directive('appHintRoundType', upgradeAdapter.downgradeNg2Component(HintRoundTypeComponent));
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
+    this.mhsAdminModule.directive('mhsFacebookShare', upgradeAdapter.downgradeNg2Component(FacebookShareComponent));
+    this.mhsAdminModule.directive('appConfirmComponent', upgradeAdapter.downgradeNg2Component(ConfirmComponent));
+    this.mhsAdminModule.directive('appCaptainRoundType', upgradeAdapter.downgradeNg2Component(CaptainRoundTypeComponent));
+    this.mhsAdminModule.directive('appSwitcher', upgradeAdapter.downgradeNg2Component(SwitcherComponent));
   }
 
   private downgradeNewProviders() {
     this.mhsAdminModule.service('backup', upgradeAdapter.downgradeNg2Provider(BackupService));
     this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
     this.mhsAdminModule.service('NotificationService', upgradeAdapter.downgradeNg2Provider(NotificationService));
+    this.mhsAdminModule.service('CustomConfirmationService', upgradeAdapter.downgradeNg2Provider(CustomConfirmationService));
   }
 }
 

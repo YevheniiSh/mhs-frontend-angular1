@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {AngularFireAuth} from 'angularfire2/auth';
-import {AngularFireDatabase} from 'angularfire2/database';
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 export class LoginService {
@@ -10,17 +10,8 @@ export class LoginService {
 
   login(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        return this.isAuthorisedUser(user.uid).subscribe(firebaseObject => {
-            firebaseObject;
-          },
-          error => {
-            this.logout();
-            throw "rulesError"
-          })
-
-      })
-
+      .then((user) => this.isAuthorisedUser(user.uid))
+      .catch(() => this.logout());
   }
 
   logout() {

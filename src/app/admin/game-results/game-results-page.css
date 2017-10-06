@@ -1,16 +1,5 @@
-#fb-share-button {
+mhs-facebook-share {
   float: right;
-  background: #3b5998;
-  border-radius: 3px;
-  font-weight: 600;
-  padding: 5px 8px;
-  height: 33px;
-  display: inline-block;
-  position: static;
-}
-
-.fa-facebook {
-  color: white;
 }
 
 .photos-link {
@@ -26,34 +15,18 @@
   display: inline;
 }
 
-#fb-share-button:hover {
-  cursor: pointer;
-  background: #213A6F
-}
-
-#fb-share-button span {
-  vertical-align: middle;
-  color: white;
-  font-size: 14px;
-  padding: 0 3px
-}
-
 td.td-cell {
   font-size: 20px;
   cursor: pointer;
 }
 
-
-
 td.round-score, td.total-score, th.total-title {
   text-align: right;
 }
 
-
 h1#game-results {
   padding-bottom: 1%;
   border-bottom: solid 1px;
-  text-align: center;
 }
 
 .link-icon {
@@ -81,27 +54,30 @@ a {
   cursor: pointer;
 }
 
-@media screen and (min-width: 0px) and (max-width: 500px) {
-  td.td-cell { font-size: 16px; }
-  #game-results{ font-size: 16px; }
-
+@media screen and (max-width: 720px) {
   game-results-page .btn-panel {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  game-results-page .table > tbody > tr > td,
+  game-results-page .table > thead > tr > th {
+    padding: 8px 15px 8px 15px;
+  }
+
+  game-results-page td.td-cell {
+    font-size: 16px;
   }
 
   game-results-page .photos-link {
     float: none;
     margin: auto;
-    text-align: center;
   }
 
-}
-
-@media screen and (max-width: 720px) {
-  game-results-page .btn-panel {
-    padding-left: 5px;
-    padding-right: 5px;
+  game-results-page #game-results {
+    font-size: 16px;
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
@@ -109,6 +85,7 @@ a {
   table .td-cell.ng-binding {
     font-size: 20px;
   }
+
   table th.th-cell {
     font-size: 20px;
   }

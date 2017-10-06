@@ -7,9 +7,11 @@
             controller: OpenGameList
         });
 
-    OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location', 'userAuthService', 'gameRequestServiceFactory', '$uibModal','NotificationService'];
+  OpenGameList.$inject = ['OpenGameServiceFactory', 'GameServiceFactory', '$rootScope', '$location',
+    'userAuthService', 'gameRequestServiceFactory', '$uibModal', 'NotificationService', 'CustomConfirmationService'];
 
-    function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location, userService, gameRequestService, $uibModal,notificationService) {
+  function OpenGameList(openGameFactory, gameServiceFactory, $rootScope, $location,
+                        userService, gameRequestService, $uibModal, notificationService, customConfirmationService) {
         let vm = this;
         vm.$onInit = onInit;
 
@@ -61,17 +63,10 @@
         };
 
         vm.deleteGame = function (game) {
-            delete game.isDeleteGameRequested;
-            openGameFactory.removeOpenGame(game.$id)
-        };
-
-        vm.deleteGameRequest = function (game) {
-            game.isDeleteGameRequested = true;
-        };
-
-        vm.cancelDeleteGameRequest = function (game) {
-            game.isDeleteGameRequested = false;
-            delete game.isDeleteGameRequested;
+          customConfirmationService.create('DELETE_OPEN_GAME_CONFIRMATION_TITLE', 'DELETE_GAME_ALERT')
+            .then(() => {
+              openGameFactory.removeOpenGame(game.$id)
+            });
         };
 
         vm.auth = false;
