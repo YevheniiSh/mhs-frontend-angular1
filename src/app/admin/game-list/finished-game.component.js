@@ -6,9 +6,9 @@
       css: 'app/admin/game-list/finished-game.css',
       controller: FinishedGameListController
     });
-  FinishedGameListController.$inject = ['GameServiceFactory', '$location', 'seasonService'];
+  FinishedGameListController.$inject = ['GameServiceFactory', '$location', 'seasonService', 'userAuthService'];
 
-  function FinishedGameListController(gameFactory, $location, seasonService) {
+  function FinishedGameListController(gameFactory, $location, seasonService, userService) {
     let vm = this;
     vm.$onInit = onInit;
 
@@ -46,5 +46,14 @@
         item.date = new Date(item.date);
       });
     };
+    vm.auth = false;
+
+    userService.currentUser()
+      .then(() => {
+        vm.auth = true;
+      })
+      .catch(() => {
+        vm.auth = false;
+      });
   }
 })();
