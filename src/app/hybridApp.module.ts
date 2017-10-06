@@ -36,6 +36,8 @@ import { HintRoundTypeComponent } from './admin/round-type/hint-round-type/hint-
 import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/switcher.component';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
+import { UploadService } from './services/upload-service/upload.service';
+import { FileUploadComponent } from './admin/file-upload/file-upload.component';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -60,7 +62,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CaptainRoundTypeComponent,
     SwitcherComponent,
     ConfirmComponent,
-    FacebookShareComponent
+    FacebookShareComponent,
+    FileUploadComponent
   ],
   imports: [
     FormsModule,
@@ -84,7 +87,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BootstrapModalModule.forRoot({ container: document.body }),
   ],
   entryComponents: [ConfirmComponent],
-  providers: [BackupService, LoginService, NotificationService, CustomConfirmationService]
+  providers: [BackupService, LoginService, NotificationService, CustomConfirmationService, UploadService]
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');

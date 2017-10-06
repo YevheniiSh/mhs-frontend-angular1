@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "deploy": "npm run prod-build && firebase deploy"
   },
   "private": true,
   "dependencies": {
