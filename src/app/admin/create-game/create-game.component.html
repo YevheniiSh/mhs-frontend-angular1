@@ -21,7 +21,9 @@
       <app-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
                          (currentSeason)="setSeason($event)" #seasonPicker></app-season-picker>
     </div>
-    <mhs-private-game></mhs-private-game>
+    <mhs-private-game (isPrivate)="setIsPrivateGame($event)"
+                      [isPrivateGame]="isPrivateGame">
+    </mhs-private-game>
     <button id="game-build" type="submit" class=" btn btn-info"
             (click)="createNewGame()" [disabled]="gameLocationInput.errors || seasonPicker.isSeasonEditor">
       {{'CREATE_GAME_BUTTON' | translate}}

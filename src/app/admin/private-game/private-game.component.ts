@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'mhs-private-game',
@@ -7,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivateGameComponent implements OnInit {
 
+  @Output() isPrivate = new EventEmitter<any>();
+  @Input() isPrivateGame;
+
   constructor() {
   }
 
   ngOnInit() {
   }
 
+  checkboxUpdate(isSwitched) {
+    this.isPrivate.emit(isSwitched);
+  }
 }

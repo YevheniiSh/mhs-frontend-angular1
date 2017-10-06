@@ -15,11 +15,13 @@ export class CreateGameComponent implements OnInit {
 
   defaultTime = new Date();
   defaultDate = new Date();
+  isPrivateGame = false;
 
   createNewGame = function () {
     let gameBuider = this.gameBuild.addDate(this.gameDate)
       .addTime(this.gameTime)
-      .addLocation(this.location);
+      .addLocation(this.location)
+      .addPrivate(this.isPrivateGame);
     if (this.isSeasonGame) {
       gameBuider.addSeason({ id: this.season.$id, name: this.season.name });
     } else {
@@ -29,10 +31,10 @@ export class CreateGameComponent implements OnInit {
     this.openGameService.createNewGame(game)
       .then((gameId) => {
         if (this.isSeasonGame) {
-          this.seasonService.addGameToSeason(this.season.$id, gameId)
+          this.seasonService.addGameToSeason(this.season.$id, gameId);
         }
         this.location = null;
-      })
+      });
 
   };
   setGameDate = function (date) {
@@ -47,6 +49,9 @@ export class CreateGameComponent implements OnInit {
   setIsSeasonGame = function (isSeasonGame) {
     this.isSeasonGame = isSeasonGame;
   };
+  setIsPrivateGame = function (isPrivateGame) {
+    this.isPrivateGame = isPrivateGame;
+  }
 
   constructor(@Inject('OpenGameServiceFactory') private openGameService,
               @Inject('gameBuildServiceFactory') private gameBuild,
