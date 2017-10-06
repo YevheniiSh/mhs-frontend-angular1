@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 @Component({
   selector: 'mhs-round-status',
   templateUrl: './round-status.component.html',
   styleUrls: ['./round-status.component.css']
 })
-export class RoundStatusComponent implements OnInit {
+export class RoundStatusComponent {
 
   gameId: string;
   gameStatus: string;
@@ -22,6 +22,21 @@ export class RoundStatusComponent implements OnInit {
               @Inject('ResultServiceFactory') private ResultService,
               @Inject('seasonService') private seasonService) {
     this.gameId = $routeParams.gameId;
+    this.initRounds(GameService, RoundStatusService);
+    this.getGameStatus()
+      .then((status) => {
+        this.gameStatus = status;
+        if (status !== 'current') {
+          this.$location.path('/games');
+        }
+      });
+  }
+
+  private getGameStatus() {
+    return this.GameService.getGameStatus(this.gameId);
+  }
+
+  private initRounds(GameService, RoundStatusService) {
     let roundNum;
     GameService.getCurrentRound(this.gameId)
       .then((res) => {
@@ -34,16 +49,6 @@ export class RoundStatusComponent implements OnInit {
         });
         if (this.prevRounds.length === rounds.length) {
           this.checked = true;
-        }
-      });
-  }
-
-  ngOnInit() {
-    this.GameService.getGameStatus(this.gameId)
-      .then((status) => {
-        this.gameStatus = status;
-        if (status === 'finished') {
-          this.$location.path('/games');
         }
       });
   }
@@ -61,7 +66,7 @@ export class RoundStatusComponent implements OnInit {
   onFinished() {
     this.ResultService.setGameWinner(this.gameStatus, this.gameId)
       .then(() => {
-        this.ResultService.setTeamPosition(this.gameId);
+        return this.ResultService.setTeamPosition(this.gameId);
       })
       .then(() => {
         this.GameService.finishGame(this.gameId);
