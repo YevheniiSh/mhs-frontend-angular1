@@ -16,8 +16,9 @@
         <div class="season-cell">{{'GAME_SEASON_LABEL' | translate}}</div>
       </div>
     </li>
-    <li ng-repeat="game in $ctrl.games | filter:$ctrl.selectedSeason.id |orderBy:'-date'"
-        ng-click="$ctrl.openGameInfo(game.$id)">
+    <li
+      ng-repeat="game in $ctrl.games |filter:$ctrl.selectedSeason.id | filter:(!$ctrl.auth ? {'isPrivate':false} : '') |orderBy:'-date'"
+      ng-click="$ctrl.openGameInfo(game.$id)">
       <div class="row game-list-item">
         <div class="game-date-cell">{{game.date | date:'d MMM y'}}</div>
         <div class="winner-cell">

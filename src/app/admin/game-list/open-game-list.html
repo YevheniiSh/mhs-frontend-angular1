@@ -12,7 +12,7 @@
       <div class="buttons-panel"></div>
     </div>
   </li>
-  <li ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
+  <li ng-repeat="openGame in $ctrl.openGames | filter:(!$ctrl.auth ? {'isPrivate':false}  : '')| orderBy:'-date'">
     <div  class="row game-list-item">
       <div class="game-date">{{openGame.date | date:'d MMM y'}}</div>
       <div class="game-time">{{openGame.time}}</div>
