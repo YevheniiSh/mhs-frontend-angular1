@@ -7,7 +7,7 @@ export class BackupService {
   constructor(private db: AngularFireDatabase) {
   }
 
-  public getBackupBlob(): FirebaseObjectObservable<any> {
+  public getDataBase(): FirebaseObjectObservable<any> {
     return this.db.object('/');
   }
 

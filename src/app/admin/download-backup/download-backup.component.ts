@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BackupService } from '../../services/backup/backup.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'mhs-download-backup',
@@ -9,9 +9,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class DownloadBackupComponent implements OnInit {
 
-  @ViewChild('link') link: ElementRef;
-  url;
-  fileName;
+  @ViewChild('downloadLink') link: ElementRef;
+  url: SafeResourceUrl;
+  fileName: string;
 
   constructor(private backupService: BackupService,
               private sanitizer: DomSanitizer) {
@@ -21,7 +21,7 @@ export class DownloadBackupComponent implements OnInit {
   }
 
   getBackup() {
-    this.backupService.getBackupBlob()
+    this.backupService.getDataBase()
       .subscribe((res) => {
         this.initFile(res);
         this.downloadFile();

@@ -1,0 +1,18 @@
+.btn-round-panel {
+  width: 100%;
+  margin: 3px 0 3px;
+  font-size: 16px;
+}
+
+.round-button-panel {
+  padding-top: 2%;
+}
+
+.start-ico {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.round-panel {
+  padding: 0 20px 0 20px;
+}

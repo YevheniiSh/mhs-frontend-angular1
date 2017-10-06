@@ -11,13 +11,9 @@ export class RoundStatusComponent implements OnInit {
   gameStatus: string;
   nextRounds = [];
   prevRounds = [];
-  currentRound;
-  url;
-  date;
-  startRoundTooltip = false;
+  currentRound = [];
   checked = false;
   disableFinished: boolean;
-  isCreateBackupChecked: boolean;
 
   constructor(@Inject('$routeParams') private $routeParams,
               @Inject('$location') private $location,
@@ -54,22 +50,23 @@ export class RoundStatusComponent implements OnInit {
 
   private setRound(round, roundNum) {
     if (+round.$id === +roundNum) {
-      this.currentRound = round;
+      this.currentRound.push(round);
+    } else if (round.$id < roundNum) {
+      this.prevRounds.push(round);
     } else {
-      (round.$id < roundNum) ? this.prevRounds.push(round) : this.nextRounds.push(round);
+      this.nextRounds.push(round);
     }
-
   }
 
-  // onFinished() {
-  //   this.ResultService.setGameWinner(this.gameStatus, this.gameId)
-  //     .then(() => {
-  //       this.ResultService.setTeamPosition(this.gameId);
-  //     })
-  //     .then(() => {
-  //       this.GameService.finishGame(this.gameId);
-  //       this.seasonService.finishGame(this.gameId);
-  //     })
-  //     .then(this.$location.path(`games/${this.gameId}/results`));
-  // }
+  onFinished() {
+    this.ResultService.setGameWinner(this.gameStatus, this.gameId)
+      .then(() => {
+        this.ResultService.setTeamPosition(this.gameId);
+      })
+      .then(() => {
+        this.GameService.finishGame(this.gameId);
+        this.seasonService.finishGame(this.gameId);
+      })
+      .then(this.$location.path(`games/${this.gameId}/results`));
+  }
 }

@@ -38,6 +38,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
 import { RoundStatusComponent } from './admin/round-status/round-status.component';
 import { DownloadBackupComponent } from './admin/download-backup/download-backup.component';
+import { RoundPanelComponent } from './admin/round-status/round-panel/round-panel.component';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -64,7 +65,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConfirmComponent,
     FacebookShareComponent,
     RoundStatusComponent,
-    DownloadBackupComponent
+    DownloadBackupComponent,
+    RoundPanelComponent
   ],
   imports: [
     FormsModule,
