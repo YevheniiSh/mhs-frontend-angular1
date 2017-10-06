@@ -234,7 +234,7 @@ angular
                 }
 
                 return clearWinners(gameId, ref).then(() => {
-                    resultFactory.getGameWinner(gameId)
+                  return resultFactory.getGameWinner(gameId)
                         .then((res) => {
                             res.forEach((item) => {
                                 let obj = new $firebaseObject(ref.child(`${gameId}/winner/${item.teamId}`));

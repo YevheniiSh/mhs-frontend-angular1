@@ -52,10 +52,6 @@
 
         };
 
-        vm.onPublished = function () {
-            GameService.publishGame(vm.gameId);
-        };
-
         GameService
             .getCurrentRound($routeParams.gameId)
             .then((currentRound) => {
