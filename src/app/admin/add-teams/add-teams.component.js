@@ -21,12 +21,16 @@
 
     function onInit() {
       vm.gameId = $routeParams.gameId;
+      openGameService.getOpenGameById(vm.gameId)
+        .then((res) => {
+          vm.game = res;
+        });
       vm.getRequests();
       vm.getTeams();
     }
 
     vm.addTeamToGame = function (request) {
-      if (!request.teamId) {
+      if (!request.teamId && !vm.game.isPrivate) {
         teamService.save({name: request.teamName})
           .then(res => {
             res.requestId = request.$id;
@@ -41,7 +45,7 @@
             gameRequestService.updateTeamId(vm.gameId, request)
             teamRequestService.save(request)
           })
-      } else {
+      } else if (request.teamId && !vm.game.isPrivate) {
         gameService.addTeamToGame(vm.gameId,
           {
             name: request.teamName,
@@ -54,6 +58,18 @@
           teamService.addGameToTeam(id, vm.gameId);
         });
         teamRequestService.save(request)
+        gameRequestService.setConfirmedStatus(vm.gameId, request.$id)
+      }
+      else if (vm.game.isPrivate) {
+        gameService.addTeamToGame(vm.gameId,
+          {
+            name: request.teamName,
+            requestId: request.$id,
+            key: request.$id,
+            fullName: request.fullName,
+            teamSize: request.teamSize,
+            phone: request.phone
+          });
         gameRequestService.setConfirmedStatus(vm.gameId, request.$id)
       }
     };
