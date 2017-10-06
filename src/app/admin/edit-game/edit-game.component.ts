@@ -48,7 +48,6 @@ export class EditGameComponent implements OnInit {
 
     this.openGameService.getTime(this.gameId).then((res) => {
       this.currentGameTime = new Date(res);
-      console.log(this.currentGameTime);
     });
   }
 
@@ -74,7 +73,7 @@ export class EditGameComponent implements OnInit {
   }
 
   setIsPrivate(isPrivate) {
-    this.isPrivate = this.isPrivate;
+    this.isPrivate = isPrivate;
     this.openGameService.changeIsPrivate(this.gameId, this.isPrivate)
       .then(() => {
         this.notificationService.showSuccess('GAME_STATUS_SAVE');
