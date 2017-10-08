@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Downgrade } from '../../../hybrid/downgrade-component';
 
 @Component({
   selector: 'app-hint-round-type',
   templateUrl: './hint-round-type.component.html',
   styleUrls: ['./hint-round-type.component.css']
 })
+@Downgrade()
 export class HintRoundTypeComponent implements OnInit {
 
   step;
@@ -25,7 +27,7 @@ export class HintRoundTypeComponent implements OnInit {
   initPreviousQuizResults() {
     return this.resultServiceFactory.filter({ by: 'round', val: this.routeParams.roundNumber }, this.routeParams.gameId)
       .then(results => {
-        let res = {};
+        const res = {};
         results.forEach(result => {
           res[result.teamId] = {};
           res[result.teamId].quizNumber = result.quiz;

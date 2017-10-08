@@ -1,12 +1,14 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Template } from '../template';
 import { NotificationService } from '../../../services/notification-service/notification.service';
+import { Downgrade } from '../../../hybrid/downgrade-component';
 
 @Component({
   selector: 'app-current-template',
   templateUrl: './current-template.component.html',
   styleUrls: ['./current-template.component.css']
 })
+@Downgrade()
 export class CurrentTemplateComponent implements OnInit {
   roundCountError;
   templateSaved;

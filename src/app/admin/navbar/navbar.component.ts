@@ -3,12 +3,15 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase/app';
+import { Downgrade } from '../../hybrid/downgrade-component';
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+@Downgrade()
 export class NavbarComponent implements OnInit {
 
   currentUser;

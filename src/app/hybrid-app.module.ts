@@ -10,7 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { downgradeInjectable, UpgradeModule } from '@angular/upgrade/static';
+import { UpgradeModule } from '@angular/upgrade/static';
 import { environment } from '../environments/environment';
 
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
@@ -44,6 +44,7 @@ import { UserAuthService } from './services/user-auth-service/user-auth.upgrade'
 import { GameTemplateService } from './services/game-template-service/game-template.service.upgrade';
 import { RoundTypeService } from './services/round-type-service/round-type.service.upgrade';
 import { HybridModule } from './hybrid/hybrid.module';
+import { DowngradeProvider } from './hybrid/downgrade-provider';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/app/translations/', '.json');
@@ -89,7 +90,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BootstrapModalModule.forRoot({ container: document.body }),
     UpgradeModule,
     AngularJsProvider.forRoot(),
-    HybridModule
+    HybridModule,
+    DowngradeProvider
   ],
   entryComponents: [
     ConfirmComponent,
@@ -119,35 +121,13 @@ export function HttpLoaderFactory(http: HttpClient) {
   ]
 })
 export class HybridAppModule {
-  constructor(private upgradeModule: UpgradeModule, private hybridModule: HybridModule, private fb: FacebookService) {
-    this.downgradeNewProviders();
-
-    this.hybridModule.downgradeComponents('mhs.admin', {
-      appNavbar: NavbarComponent,
-      appGameTemplate: GameTemplateComponent,
-      appCurrentTemplate: CurrentTemplateComponent,
-      appAuctionRoundType: AuctionRoundTypeComponent,
-      appHintRoundType: HintRoundTypeComponent,
-      notificationPanel: NotificationPanelComponent,
-      mhsFacebookShare: FacebookShareComponent,
-      appConfirmComponent: ConfirmComponent,
-      appCaptainRoundType: CaptainRoundTypeComponent,
-      appSwitcher: SwitcherComponent
-    });
-
+  constructor(private upgradeModule: UpgradeModule, private fb: FacebookService, private dp: DowngradeProvider) {
     this.initFacebook();
+    this.dp.forRoot(HybridAppModule);
   }
 
   ngDoBootstrap() {
     this.upgradeModule.bootstrap(document.documentElement, ['mhs'], { strictDi: false });
-  }
-
-  private downgradeNewProviders() {
-    const mhsAdminModule = angular.module('mhs.admin');
-    mhsAdminModule.service('backup', downgradeInjectable(BackupService));
-    mhsAdminModule.service('login', downgradeInjectable(LoginService));
-    mhsAdminModule.service('NotificationService', downgradeInjectable(NotificationService));
-    mhsAdminModule.service('CustomConfirmationService', downgradeInjectable(CustomConfirmationService));
   }
 
   private initFacebook() {

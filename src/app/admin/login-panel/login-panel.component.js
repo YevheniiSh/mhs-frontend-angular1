@@ -6,7 +6,7 @@
             controller: LoginPanel
         });
 
-  LoginPanel.$inject = ['userAuthService', '$location', '$rootScope', 'login'];
+  LoginPanel.$inject = ['userAuthService', '$location', '$rootScope', 'LoginService'];
 
   function LoginPanel(userAuthService, $location, $rootScope, loginService) {
         this.logOut = function () {

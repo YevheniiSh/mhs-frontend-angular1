@@ -1,7 +1,9 @@
-import { Inject, Injectable} from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr';
+import { Downgrade } from '../../hybrid/downgrade-component';
 
 @Injectable()
+@Downgrade()
 export class NotificationService {
 
   private config = { showCloseButton: true, toastLife: 2000 };
