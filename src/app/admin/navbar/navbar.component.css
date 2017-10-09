@@ -12,6 +12,10 @@
   padding: 10px 15px;
 }
 
+#online-flag{
+  padding-top: 15px;
+}
+
 ul.navbar-nav {
   margin-bottom: 0px;
   margin-top: 0px;
@@ -19,6 +23,14 @@ ul.navbar-nav {
 
 login-panel {
   margin-top: 5px;
+}
+
+.online{
+  color: #5cb85c;
+}
+
+.offline {
+  color: #d9534f;
 }
 
 @media screen and (max-width: 720px) {

@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { ConnectionService } from '../../services/connection-service/connection.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  isOffline: boolean;
 
   currentUser;
   locale: string;
@@ -29,11 +31,15 @@ export class NavbarComponent implements OnInit {
   constructor(@Inject('InternationalisationServiceFactory') InternationalisationServiceFactory,
               @Inject('userAuthService') UserAuthService,
               translate: TranslateService,
-              public afAuth: AngularFireAuth) {
+              public afAuth: AngularFireAuth,
+              private connectionService: ConnectionService) {
     this.i18nFactory = InternationalisationServiceFactory;
     this.userAuthService = UserAuthService;
     this.translate = translate;
     this.user = afAuth.authState;
+    this.connectionService.online.subscribe((isOnline) => {
+      this.isOffline = !isOnline;
+    });
   }
 
   ngOnInit() {

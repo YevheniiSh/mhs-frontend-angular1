@@ -1,3 +1,4 @@
+///<reference path="services/connection-service/connection.service.ts"/>
 import { forwardRef, NgModule } from '@angular/core';
 import { UpgradeAdapter } from '@angular/upgrade';
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,6 +38,7 @@ import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/s
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
 import { CustomOption } from './services/notification-service/CustomOption';
+import { ConnectionService } from './services/connection-service/connection.service';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -86,6 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [ConfirmComponent],
   providers: [
+    ConnectionService,
     BackupService,
     LoginService,
     NotificationService,

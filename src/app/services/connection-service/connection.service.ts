@@ -15,7 +15,7 @@ export class ConnectionService {
 
   constructor() {
     this.online = IntervalObservable
-      .create(2000)
+      .create(5000)
       .switchMap((onlineStatus) => Observable.fromPromise(this.checkOnline()))
       .distinctUntilChanged();
   }
