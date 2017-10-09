@@ -12,8 +12,6 @@ angular
 
 function firebaseOfflineService() {
 
-  initData();
-
   return {
     initData: initData
   };
