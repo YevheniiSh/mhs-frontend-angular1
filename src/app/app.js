@@ -28,5 +28,5 @@ angular.module('mhs', [
       $routeProvider.otherwise({redirectTo: '/games'});
     }])
   .run(['firebaseOfflineService', (firebaseOfflineService) => {
-    firebaseOfflineService.enableOffline();
+    firebaseOfflineService.initData();
   }]);
