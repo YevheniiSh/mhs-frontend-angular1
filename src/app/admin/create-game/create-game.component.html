@@ -19,7 +19,9 @@
     </div>
     <div class="col-md-3">
       <app-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
-                         (currentSeason)="setSeason($event)" #seasonPicker></app-season-picker>
+                         (currentSeason)="setSeason($event)"
+                         #seasonPicker>
+      </app-season-picker>
     </div>
     <button id="game-build" type="submit" class=" btn btn-info"
             (click)="createNewGame()" [disabled]="gameLocationInput.errors || seasonPicker.isSeasonEditor">

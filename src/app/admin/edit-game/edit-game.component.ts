@@ -75,19 +75,13 @@ export class EditGameComponent implements OnInit {
 
   setIsSeasonGame(isSeasonGame) {
     this.isSeasonGame = isSeasonGame;
+    let seasonInGame = { id: this.season.$id, name: this.season.name };
     if (this.isSeasonGame) {
-      let seasonInGame = { id: this.season.$id, name: this.season.name };
       this.openGameService.changeSeason(this.gameId, seasonInGame)
-        .then(() => {
-          return this.seasonService.addGameToSeason(this.season.$id, this.gameId)
-        })
         .then(this.showSuccess('SAVE_SEASON_MESSAGE'));
     }
     else {
-      this.openGameService.deleteSeason(this.gameId)
-        .then(() => {
-          return this.seasonService.deleteGameFromSeason(this.season.$id, this.gameId);
-        })
+      this.openGameService.deleteSeason(this.gameId, seasonInGame)
         .then(this.showSuccess('SAVE_SEASON_MESSAGE'));
     }
   }

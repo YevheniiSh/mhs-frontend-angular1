@@ -26,13 +26,15 @@ export class CreateGameComponent implements OnInit {
       delete gameBuider.game.season;
     }
     let game = gameBuider.buildGame();
-    this.openGameService.createNewGame(game)
-      .then((gameId) => {
-        if (this.isSeasonGame) {
-          this.seasonService.addGameToSeason(this.season.$id, gameId)
-        }
-        this.location = null;
-      })
+
+    if (this.isSeasonGame) {
+      this.openGameService.createNewGame(game, this.season);
+    }
+    else {
+      this.openGameService.createNewGame(game);
+    }
+
+    this.location = null;
 
   };
   setGameDate = function (date) {

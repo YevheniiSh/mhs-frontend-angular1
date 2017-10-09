@@ -9,6 +9,7 @@
 
         let openGamesRef = firebaseDataService.openGames;
         let seasonsRef = firebaseDataService.seasons;
+      let root = firebaseDataService.root;
 
         return {
             getAllOpenGames: getAllOpenGames,
@@ -42,13 +43,17 @@
             return new $firebaseObject(openGamesRef.child(gameId)).$loaded()
         }
 
-        function createNewGame(game) {
-            let obj = new $firebaseObject(openGamesRef.push());
-            obj.$value = game;
-            obj.$save();
-            return obj.$loaded().then(() => {
-                return obj.$id;
-            });
+      function createNewGame(game, season) {
+        let key = openGamesRef.push().key;
+        var updates = {};
+
+        updates[`/games/open/${key}`] = game;
+        if (season !== undefined) {
+          updates[`/seasons/${season.$id}/games/${key}`] = {finished: false};
+        }
+
+        return root.update(updates);
+
         }
 
         function getDate(gameId) {
@@ -179,16 +184,19 @@
       }
 
       function changeSeason(gameId, season) {
-        let obj = new $firebaseObject(openGamesRef.child(`${gameId}/season`));
-        obj.$value = season
-        obj.$save();
-        return obj.$loaded();
+        let updates = {};
+        updates[`/games/open/${gameId}/season`] = season;
+        updates[`/seasons/${season.id}/games/${gameId}`] = {finished: false};
+
+        return root.update(updates);
       }
 
-      function deleteSeason(gameId) {
-        let obj = new $firebaseObject(openGamesRef.child(`${gameId}/season`));
-        obj.$remove();
-        return obj.$loaded();
+      function deleteSeason(gameId, season) {
+        let updates = {};
+        updates[`/games/open/${gameId}/season`] = null;
+        updates[`/seasons/${season.id}/games/${gameId}`] = null;
+
+        return root.update(updates);
       }
     }
 })();
