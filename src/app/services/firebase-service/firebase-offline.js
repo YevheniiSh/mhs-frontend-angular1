@@ -15,24 +15,8 @@ function firebaseOfflineService() {
   initData();
 
   return {
-    enableOffline: enableOffline
+    initData: initData
   };
-
-  function enableOffline() {
-    let gameId = localStorage.getItem('currentGameId');
-    updateGameFromStorage(gameId, getLocalGame());
-  }
-
-  function getLocalGame() {
-    return JSON.parse(localStorage.getItem('currentGame'));
-  }
-
-  function updateGameFromStorage(gameId, localGame) {
-    let game = {};
-    game[gameId] = localGame;
-    let currentGamesRef = firebase.database().ref('games/current');
-    return currentGamesRef.update(game);
-  }
 
   function initData(){
     let ref = firebase.database().ref();
@@ -44,5 +28,6 @@ function firebaseOfflineService() {
     ref.child('roundTypes/').on('value', () => {});
     ref.child('teamsRequests/').on('value', () => {});
   }
+
 }
 
