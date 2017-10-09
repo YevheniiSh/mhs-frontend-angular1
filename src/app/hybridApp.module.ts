@@ -38,6 +38,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
 import { UploadService } from './services/upload-service/upload.service';
 import { FileUploadComponent } from './admin/file-upload/file-upload.component';
+import { ImageService } from './services/image-service/image.service';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -87,7 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BootstrapModalModule.forRoot({ container: document.body }),
   ],
   entryComponents: [ConfirmComponent],
-  providers: [BackupService, LoginService, NotificationService, CustomConfirmationService, UploadService]
+  providers: [BackupService, LoginService, NotificationService, CustomConfirmationService, UploadService, ImageService]
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');

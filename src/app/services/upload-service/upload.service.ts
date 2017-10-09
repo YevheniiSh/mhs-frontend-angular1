@@ -18,7 +18,8 @@ export class UploadService {
   }
 
   private createRef(ref, file) {
-    return ref + new Date + file.name;
+    let date =  new Date;
+    return ref + date.toString().replace(/ /g, '_') + file.name;
   }
 
 }

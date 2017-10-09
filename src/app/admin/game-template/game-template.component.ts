@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Template } from './template';
 import { CustomConfirmationService } from '../../services/confirmation-service/confirmation.service';
+import { ImageService } from '../../services/image-service/image.service';
 
 @Component({
   selector: 'app-game-template',
@@ -13,10 +14,11 @@ export class GameTemplateComponent implements OnInit {
   isNewTemplate: boolean;
   private templateId: string;
 
-  constructor(@Inject('$routeParams')private $routeParams,
-              @Inject('$location')private $location,
-              @Inject('gameTemplateServiceFactory')private templateService,
-              private confirmation: CustomConfirmationService) {
+  constructor(@Inject('$routeParams') private $routeParams,
+              @Inject('$location') private $location,
+              @Inject('gameTemplateServiceFactory') private templateService,
+              private confirmation: CustomConfirmationService,
+              private imageService: ImageService) {
     if ($routeParams.hasOwnProperty('templateId')) {
       this.templateId = $routeParams.templateId;
       this.getTemplate();
@@ -56,6 +58,15 @@ export class GameTemplateComponent implements OnInit {
       .then(() => {
         this.templateService.remove(templateId);
         this.$location.path(`/templates`);
+      });
+  }
+
+  test(event) {
+    console.log(event);
+    this.imageService.setImgUrlToSeason(event, '-KtWQR_i9Is-rZgTKCq3aa');
+    this.imageService.getImgUrlFromSeason('-KtWQR_i9Is-rZgTKCq3aaa')
+      .subscribe((url) => {
+        console.log(url);
       });
   }
 }
