@@ -37,6 +37,7 @@ open-game-list div.buttons-panel > .btn {
 
 open-game-list .game-date,
 open-game-list .game-time{
+  position: relative;
   width: 17%;
 }
 
@@ -55,6 +56,12 @@ open-game-list .buttons-panel {
 
 open-game-list .wide-panel {
   width: 45%;
+}
+
+open-game-list .privacy-icon {
+  position: absolute;
+  left: -10px;
+  top: 3px;
 }
 
 @media screen and (max-width: 750px) {

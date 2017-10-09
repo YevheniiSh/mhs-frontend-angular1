@@ -20,7 +20,10 @@
       ng-repeat="game in $ctrl.games |filter:$ctrl.selectedSeason.id | filter:(!$ctrl.auth ? {'isPrivate':false} : '') |orderBy:'-date'"
       ng-click="$ctrl.openGameInfo(game.$id)">
       <div class="row game-list-item">
-        <div class="game-date-cell">{{game.date | date:'d MMM y'}}</div>
+        <div class="game-date-cell">
+          <i ng-if="game.isPrivate" class="fa fa-lock privacy-icon" aria-hidden="true"></i>
+          {{game.date | date:'d MMM y'}}
+        </div>
         <div class="winner-cell">
           <div ng-repeat="winner in game.winner">
             <i class="fa fa-trophy trophy"></i>

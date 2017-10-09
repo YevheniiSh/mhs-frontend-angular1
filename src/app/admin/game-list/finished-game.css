@@ -44,6 +44,7 @@ finished-game-list .winner-cell{
 }
 
 finished-game-list .game-date-cell{
+  position: relative;
   width: 25%
 }
 
@@ -58,6 +59,12 @@ finished-game-list .season-cell{
 
 finished-game-list .trophy {
   color: goldenrod;
+}
+
+finished-game-list .privacy-icon {
+  position: absolute;
+  left: -10px;
+  top: 3px;
 }
 
 @media screen and (max-width: 720px){
