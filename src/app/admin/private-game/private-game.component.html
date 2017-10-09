@@ -1,7 +1,14 @@
-<label class="form-check-label">
+<label id="is-private-game"
+       class="form-check-label">
   <input class="form-check-input"
          type="checkbox"
          [ngModel]="isPrivateGame"
-         (ngModelChange)="checkboxUpdate($event)">
+         (ngModelChange)="checkboxUpdate($event)"
+         hidden>
+  <i id="lock"
+     class="fa"
+     aria-hidden="true"
+     [ngClass]="{'fa-lock':isPrivateGame,'fa-unlock':!isPrivateGame}">
+  </i>
   {{'PRIVATE_GAME_LABEL'|translate}}
 </label>

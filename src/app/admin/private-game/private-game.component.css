@@ -1,0 +1,10 @@
+#is-private-game {
+  padding: 0px 15px;
+  position: relative;
+}
+
+#lock {
+  position: absolute;
+  left: -10px;
+  font-size: 1.5em;
+}
