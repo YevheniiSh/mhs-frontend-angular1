@@ -1,8 +1,8 @@
 <div class="col-md-2">
-  <app-date-picker (date)="setGameDate($event)" [gameDate]="currentGameDate"></app-date-picker>
+  <app-date-picker (date)="setGameDate($event)" [defaultDate]="currentGameDate"></app-date-picker>
 </div>
 <div class="col-md-2">
-  <app-time-picker (time)="setGameTime($event)" [currentGameTime]="currentGameTime"></app-time-picker>
+  <app-time-picker (time)="setGameTime($event)" [defaultTime]="currentGameTime"></app-time-picker>
 </div>
 <div class="col-md-2">
   <div class="location">
@@ -19,5 +19,6 @@
 <div class="col-md-3">
   <app-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
                      [isSeasonGame]="isSeasonGame"
-                     (currentSeason)="setSeason($event)" #seasonPicker></app-season-picker>
+                     (currentSeason)="setSeason($event)" #seasonPicker>
+  </app-season-picker>
 </div>
