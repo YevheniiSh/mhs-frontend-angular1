@@ -15,7 +15,7 @@ export class NotificationService {
   showSuccess(message: string) {
     this.translateMessage(message)
       .then(mess => {
-        this.toastrService.success(mess, null);
+         this.toastrService.success(mess, null);
       });
   }
 
@@ -24,6 +24,10 @@ export class NotificationService {
       .then(mess => {
         this.toastrService.error(mess, null);
       });
+  }
+
+  createControlledWarning(message: string) {
+        return this.toastrService.warning(message, null, {dismiss: 'controlled', showCloseButton: false});
   }
 
   showWarning(message: string) {

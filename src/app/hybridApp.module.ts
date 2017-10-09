@@ -36,8 +36,7 @@ import { HintRoundTypeComponent } from './admin/round-type/hint-round-type/hint-
 import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/switcher.component';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
-
-import { CustomOption } from "./services/notification-service/customOption";
+import { CustomOption } from './services/notification-service/CustomOption';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -86,7 +85,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     BootstrapModalModule.forRoot({ container: document.body }),
   ],
   entryComponents: [ConfirmComponent],
-  providers: [BackupService, LoginService, NotificationService, CustomConfirmationService]
+  providers: [
+    BackupService,
+    LoginService,
+    NotificationService,
+    {provide: ToastOptions, useClass: CustomOption},
+    CustomConfirmationService]
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');
