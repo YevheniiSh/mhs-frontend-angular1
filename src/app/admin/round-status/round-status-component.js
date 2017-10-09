@@ -40,8 +40,13 @@
         vm.onFinished = function () {
             ResultService.setGameWinner(vm.status, vm.gameId)
                 .then(() => {
-                    return ResultService.setTeamPosition(vm.gameId)
+                  return GameService.isGamePrivate(vm.gameId)
                 })
+              .then(isPrivate => {
+                if (!isPrivate) {
+                  return ResultService.setTeamPosition(vm.gameId)
+                }
+              })
                 .then(() => {
                     GameService.finishGame(vm.gameId);
                     seasonService.finishGame(vm.gameId);
