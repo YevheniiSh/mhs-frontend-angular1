@@ -55,7 +55,8 @@ export class EditGameComponent implements OnInit {
   }
 
 
-  setGameLocation() {
+  setGameLocation(location) {
+    this.location = location;
     this.openGameService.changeLocation(this.gameId, this.location)
       .then(this.showSuccess('SAVE_LOCATION_MESSAGE'));
   }

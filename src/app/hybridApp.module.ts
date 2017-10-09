@@ -3,7 +3,7 @@ import { UpgradeAdapter } from '@angular/upgrade';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -47,7 +47,8 @@ import { CreateGameComponent } from './admin/create-game/create-game.component';
 import { EditGameComponent } from './admin/edit-game/edit-game.component';
 import { defineLocale } from 'ngx-bootstrap/bs-moment';
 import { enGb, ru } from 'ngx-bootstrap/locale';
-import { uk } from './translations/uk'
+import { uk } from './translations/uk';
+import { GameSetupComponent } from './admin/game-setup/game-setup.component'
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
@@ -82,10 +83,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     CaptainRoundTypeComponent,
     SwitcherComponent,
     ConfirmComponent,
-    FacebookShareComponent
+    FacebookShareComponent,
+    GameSetupComponent
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

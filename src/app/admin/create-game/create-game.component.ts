@@ -37,18 +37,26 @@ export class CreateGameComponent implements OnInit {
     this.location = null;
 
   };
-  setGameDate = function (date) {
+
+  setGameDate(date) {
     this.gameDate = date;
   };
-  setGameTime = function (time) {
+
+  setGameTime(time) {
     this.gameTime = time;
   };
-  setSeason = function (season) {
+
+  setSeason(season) {
     this.season = season;
   };
-  setIsSeasonGame = function (isSeasonGame) {
+
+  setIsSeasonGame(isSeasonGame) {
     this.isSeasonGame = isSeasonGame;
   };
+
+  setGameLocation(location) {
+    this.location = location;
+  }
 
   constructor(@Inject('OpenGameServiceFactory') private openGameService,
               @Inject('gameBuildServiceFactory') private gameBuild,
