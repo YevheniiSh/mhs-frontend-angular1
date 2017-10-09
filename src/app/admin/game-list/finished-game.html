@@ -1,6 +1,4 @@
-<div ng-if="$ctrl.games.length == 0" class="no-games-label" colspan="4">{{'NO_FINISHED_GAME_PLACEHOLDER' | translate}}
-</div>
-<div ng-if="$ctrl.games.length != 0 && $ctrl.games.length !== undefined">
+<div ng-if="$ctrl.games.length != 0 && $ctrl.games.length !== undefined && $ctrl.filteredGames.length != 0">
   <div class="row" id="select-season-container" >
     <select id="select-season" class="form-control" ng-model="$ctrl.selectedSeason"
             ng-options="season.name for season in $ctrl.seasons">
@@ -17,7 +15,7 @@
       </div>
     </li>
     <li
-      ng-repeat="game in $ctrl.games |filter:$ctrl.selectedSeason.id | filter:(!$ctrl.auth ? {'isPrivate':false} : '') |orderBy:'-date'"
+      ng-repeat="game in $ctrl.filteredGames = ($ctrl.games |filter:$ctrl.selectedSeason.id | filter:(!$ctrl.auth ? {'isPrivate':false} : '') |orderBy:'-date' ) "
       ng-click="$ctrl.openGameInfo(game.$id)">
       <div class="row game-list-item">
         <div class="game-date-cell">
@@ -40,3 +38,5 @@
     </li>
   </ul>
 </div>
+<div ng-if="$ctrl.filteredGames.length == 0" class="no-games-label">{{'NO_FINISHED_GAME_PLACEHOLDER' | translate}}</div>
+

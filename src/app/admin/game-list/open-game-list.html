@@ -1,8 +1,7 @@
-<!--<create-game ng-if="$ctrl.auth"></create-game>-->
 <app-create-game ng-if="$ctrl.auth"></app-create-game>
-<div ng-if="$ctrl.openGames.length == 0" class="no-games-label">{{'NO_OPEN_GAME_PLACEHOLDER' | translate}}</div>
 
-<ul class="game-list" ng-if="$ctrl.openGames.length != 0 && $ctrl.openGames.length !== undefined">
+<ul class="game-list"
+    ng-if="$ctrl.openGames.length != 0 && $ctrl.openGames.length !== undefined && $ctrl.filteredGames.length != 0">
   <li>
     <div  class="row game-list-item header">
       <div class="game-date">{{'DATE_LABEL' | translate}}</div>
@@ -12,7 +11,8 @@
       <div class="buttons-panel"></div>
     </div>
   </li>
-  <li ng-repeat="openGame in $ctrl.openGames | filter:(!$ctrl.auth ? {'isPrivate':false}  : '')| orderBy:'-date'">
+  <li
+    ng-repeat="openGame in $ctrl.filteredGames = ($ctrl.openGames| filter:(!$ctrl.auth ? {'isPrivate':false}  : '') | orderBy:'-date')">
     <div  class="row game-list-item">
       <div class="game-date">
         <i ng-if="openGame.isPrivate" class="fa fa-lock privacy-icon" aria-hidden="true"></i>
@@ -53,4 +53,5 @@
     </div>
   </li>
 </ul>
+<div ng-if="$ctrl.filteredGames.length === 0" class="no-games-label">{{'NO_OPEN_GAME_PLACEHOLDER' | translate}}</div>
 

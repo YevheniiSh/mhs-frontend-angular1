@@ -73,6 +73,7 @@
 
         userService.currentUser()
             .then(() => {
+              vm.filteredGames = undefined;
                 vm.auth = true;
             })
             .catch(() => {
