@@ -1,6 +1,6 @@
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Component, ViewContainerRef } from '@angular/core';
-import { Downgrade } from '../hybrid/downgrade-component';
+import { Downgrade } from '../hybrid/downgrade';
 
 @Component({
   selector: 'notification-panel',

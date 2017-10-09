@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-import { Downgrade } from '../../../hybrid/downgrade-component';
+import { Downgrade } from '../../../hybrid/downgrade';
 
 @Component({
   selector: 'app-hint-round-type',

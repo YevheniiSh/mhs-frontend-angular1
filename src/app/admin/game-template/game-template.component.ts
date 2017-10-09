@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Template } from './template';
 import { CustomConfirmationService } from '../../services/confirmation-service/confirmation.service';
-import { Downgrade } from '../../hybrid/downgrade-component';
+import { Downgrade } from '../../hybrid/downgrade';
 
 @Component({
   selector: 'app-game-template',

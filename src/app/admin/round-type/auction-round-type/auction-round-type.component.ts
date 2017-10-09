@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
 import { trigger } from '@angular/animations';
-import { Downgrade } from '../../../hybrid/downgrade-component';
+import { Downgrade } from '../../../hybrid/downgrade';
 
 @Component({
   selector: 'app-auction-round-type',

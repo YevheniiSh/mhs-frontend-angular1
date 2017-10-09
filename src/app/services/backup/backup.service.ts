@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Downgrade } from '../../hybrid/downgrade-component';
+import { Downgrade } from '../../hybrid/downgrade';
 
 @Injectable()
-@Downgrade()
+@Downgrade('mhs.admin')
 export class BackupService {
 
   constructor() {

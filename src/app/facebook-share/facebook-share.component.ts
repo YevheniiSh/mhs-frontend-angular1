@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FacebookService } from 'ngx-facebook';
-import { Downgrade } from '../hybrid/downgrade-component';
+import { Downgrade } from '../hybrid/downgrade';
 
 @Component({
   selector: 'mhs-facebook-share',
@@ -32,6 +32,18 @@ export class FacebookShareComponent {
       })
     };
 
-    this.fb.ui(shareOptions);
+    // this.fb.ui(shareOptions);
+    this.postInGroup();
+  }
+
+  postInGroup() {
+    this.fb.login();
+    this.fb.api(
+      '/119692302046800/feed',
+      'post',
+      {
+        'message': 'This is a test message'
+      },
+    );
   }
 }

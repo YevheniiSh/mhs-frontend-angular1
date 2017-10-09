@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
-import { Downgrade } from '../../hybrid/downgrade-component';
+import { Downgrade } from '../../hybrid/downgrade';
 
 export interface ConfirmModel {
   title: string;

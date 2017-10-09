@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase/app';
-import { Downgrade } from '../../hybrid/downgrade-component';
+import { Downgrade } from '../../hybrid/downgrade';
 
 
 @Component({

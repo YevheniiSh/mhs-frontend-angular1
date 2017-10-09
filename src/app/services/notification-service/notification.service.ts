@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr';
-import { Downgrade } from '../../hybrid/downgrade-component';
+import { Downgrade } from '../../hybrid/downgrade';
 
 @Injectable()
 @Downgrade()
