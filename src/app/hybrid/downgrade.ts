@@ -1,3 +1,6 @@
+declare let Reflect: any;
+const _reflect: any = Reflect;
+
 export class DowngradeEntity {
   constructor(private _module?: string) {
   }
@@ -6,9 +9,6 @@ export class DowngradeEntity {
     return this._module;
   }
 }
-
-declare let Reflect: any;
-const _reflect: any = Reflect;
 
 export function Downgrade(module?: string) {
   return function (cls: any) {

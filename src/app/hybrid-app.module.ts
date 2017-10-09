@@ -11,7 +11,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UpgradeModule } from '@angular/upgrade/static';
-import { environment } from '../environments/environment';
 
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
 import { NavbarComponent } from './admin/navbar/navbar.component';
@@ -36,7 +35,7 @@ import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/s
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
 import { ResultService } from './services/result-service/result.service.upgrade';
-import { AngularJsProvider } from './hybrid/AngularJsProvider';
+import { AngularJsProvider } from './hybrid/angular-js.provider';
 import { TeamService } from './services/team-service/team.service.upgrade';
 import { InternationalisationService } from './internalisation/internalisation.upgrade';
 import { GameService } from './services/game-service/game.service.upgrade';
@@ -123,9 +122,9 @@ export class HybridAppModule {
   constructor(private upgradeModule: UpgradeModule, private fb: FacebookService, private dp: DowngradeProvider) {
     this.initFacebook();
     this.dp.init(HybridAppModule, {
-      defaultComponentAngularJsModule: 'mhs.admin',
-      defaultProviderAngularJsModule: 'mhs.admin',
-      componentPrefix: 'app'
+      defaultAngularJsModuleForComponents: 'mhs.admin',
+      defaultAngularJsModuleForProviders: 'mhs.admin',
+      componentPrefix: 'mhs'
     });
   }
 
@@ -136,8 +135,9 @@ export class HybridAppModule {
   private initFacebook() {
     console.log('fb init');
     this.fb.init({
-      appId: environment.facebookAppId,
+      appId: '345296772581625',
       xfbml: true,
+      cookie: true,
       version: 'v2.10'
     });
   }

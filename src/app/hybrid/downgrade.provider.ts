@@ -1,14 +1,9 @@
 import { NgModule, Type } from '@angular/core';
 import { HybridHelper } from './hybrid.helper';
 import { DowngradeEntity } from './downgrade';
+import { DowngradeProviderConfig } from './downgrade-provider.config';
 
 declare let Reflect: any;
-
-export interface DowngradeProviderConfig {
-  defaultComponentAngularJsModule: string;
-  defaultProviderAngularJsModule: string;
-  componentPrefix: string;
-}
 
 interface DownedEntity {
   downgradeDecorator: DowngradeEntity;
@@ -22,30 +17,25 @@ export class DowngradeProvider {
   constructor(private hybridHelper: HybridHelper) {
   }
 
-  private DowngradeType = {
-    COMPONENT: this.hybridHelper.downgradeComponent.bind(this.hybridHelper),
-    PROVIDER: this.hybridHelper.downgradeProvider.bind(this.hybridHelper)
-  };
-
   init(module: Type<any>, config: DowngradeProviderConfig): void {
     this.hybridHelper.componentPrefix = config.componentPrefix;
 
     for (const classDecorator of Reflect.getMetadata('annotations', module)) {
       this.downgrade(
         this.getDownedEntities(classDecorator.providers),
-        config.defaultProviderAngularJsModule,
-        this.DowngradeType.PROVIDER
+        config.defaultAngularJsModuleForProviders,
+        this.hybridHelper.downgradeProvider.bind(this.hybridHelper)
       );
 
       this.downgrade(
         this.getDownedEntities(classDecorator.declarations),
-        config.defaultComponentAngularJsModule,
-        this.DowngradeType.COMPONENT
+        config.defaultAngularJsModuleForComponents,
+        this.hybridHelper.downgradeComponent.bind(this.hybridHelper)
       );
     }
   }
 
-  private downgrade(downedEntities: DownedEntity[], moduleName, downgradeWorker) {
+  private downgrade(downedEntities: DownedEntity[], moduleName: string, downgradeWorker) {
     downedEntities.forEach(downedEntity => {
       downgradeWorker(downedEntity.downgradeDecorator.module || moduleName, downedEntity.originalEntity);
     });
