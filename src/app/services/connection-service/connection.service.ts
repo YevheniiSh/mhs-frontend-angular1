@@ -6,11 +6,10 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 
-
 @Injectable()
 export class ConnectionService {
 
-  private url = '/favicon.ico';
+  private url = '/assets/connection.json';
 
   public online: Observable<boolean>;
 
@@ -28,7 +27,7 @@ export class ConnectionService {
         resolve(true);
       };
       xhr.onerror = () => {
-        reject(false);
+        resolve(false);
       };
       xhr.open('GET', this.url, true);
       xhr.send();
