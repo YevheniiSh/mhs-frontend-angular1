@@ -1,11 +1,5 @@
 'use strict';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromPromise';
-import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/distinctUntilChanged';
-
 angular
   .module('firebaseDataService')
   .factory('firebaseOfflineService',firebaseOfflineService);
