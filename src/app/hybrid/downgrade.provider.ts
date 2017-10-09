@@ -12,44 +12,37 @@ export interface DowngradeProviderConfig {
 
 interface DownedEntity {
   downgradeDecorator: DowngradeEntity;
-  originalEntity: any;
+  originalEntity: Type<any>;
 }
 
 @NgModule({
   imports: [HybridHelper]
 })
 export class DowngradeProvider {
-  constructor(private hybridModule: HybridHelper) {
+  constructor(private hybridHelper: HybridHelper) {
   }
 
   private DowngradeType = {
-    COMPONENT: this.hybridModule.downgradeComponent.bind(this.hybridModule),
-    PROVIDER: this.hybridModule.downgradeProvider.bind(this.hybridModule)
+    COMPONENT: this.hybridHelper.downgradeComponent.bind(this.hybridHelper),
+    PROVIDER: this.hybridHelper.downgradeProvider.bind(this.hybridHelper)
   };
 
   init(module: Type<any>, config: DowngradeProviderConfig): void {
-    this.hybridModule.componentPrefix = config.componentPrefix;
+    this.hybridHelper.componentPrefix = config.componentPrefix;
 
     for (const classDecorator of Reflect.getMetadata('annotations', module)) {
-      this.downgradeDeclarations(classDecorator.declarations, config);
-      this.downgradeProviders(classDecorator.providers, config);
+      this.downgrade(
+        this.getDownedEntities(classDecorator.providers),
+        config.defaultProviderAngularJsModule,
+        this.DowngradeType.PROVIDER
+      );
+
+      this.downgrade(
+        this.getDownedEntities(classDecorator.declarations),
+        config.defaultComponentAngularJsModule,
+        this.DowngradeType.COMPONENT
+      );
     }
-  }
-
-  private downgradeProviders(providers, config: DowngradeProviderConfig) {
-    this.downgrade(
-      this.getDownedEntities(providers),
-      config.defaultProviderAngularJsModule,
-      this.DowngradeType.PROVIDER
-    );
-  }
-
-  private downgradeDeclarations(declarations, config: DowngradeProviderConfig) {
-    this.downgrade(
-      this.getDownedEntities(declarations),
-      config.defaultComponentAngularJsModule,
-      this.DowngradeType.COMPONENT
-    );
   }
 
   private downgrade(downedEntities: DownedEntity[], moduleName, downgradeWorker) {
@@ -59,7 +52,7 @@ export class DowngradeProvider {
   }
 
   private getDownedEntities(entities): DownedEntity[] {
-    const res = [];
+    const res: DownedEntity[] = [];
     for (const entity of entities) {
       const entityDecorators = Reflect.getMetadata('annotations', entity);
       if (entityDecorators) {
@@ -72,5 +65,4 @@ export class DowngradeProvider {
     }
     return res;
   }
-
 }
