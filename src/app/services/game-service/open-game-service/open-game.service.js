@@ -42,6 +42,11 @@
 
         function getOpenGameById(gameId) {
             return new $firebaseObject(openGamesRef.child(gameId)).$loaded()
+              .then((openGame)=>{
+              console.log(openGame)
+                  openGame.time = convertService.convertTimeFromFirebase(openGame.time);
+                  return openGame;
+              })
         }
 
       function createNewGame(game, season) {
