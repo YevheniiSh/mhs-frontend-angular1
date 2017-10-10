@@ -18,11 +18,11 @@ export class GameProgressComponent {
   constructor(@Inject('$routeParams') private $routeParams,
               @Inject('$location') private $location,
               @Inject('GameServiceFactory') private gameService,
-              @Inject('RoundStatusService') private roundStatusService,
+              @Inject('RoundStatusService') private roundService,
               @Inject('ResultServiceFactory') private resultService,
               @Inject('seasonService') private seasonService) {
     this.gameId = $routeParams.gameId;
-    this.initRounds(gameService, roundStatusService);
+    this.initRounds(gameService, roundService);
     this.getGameStatus()
       .then((status) => {
         this.gameStatus = status;
@@ -36,9 +36,9 @@ export class GameProgressComponent {
     return this.gameService.getGameStatus(this.gameId);
   }
 
-  private initRounds(gameService, roundStatusService) {
+  private initRounds(gameService, roundService) {
     let getCurrentRoundNumber = gameService.getCurrentRound(this.gameId);
-    let getRounds = roundStatusService.getRounds(this.gameId);
+    let getRounds = roundService.getRounds(this.gameId);
     Promise.all([getRounds, getCurrentRoundNumber])
       .then(values => {
         let rounds = values[0];
