@@ -12,12 +12,14 @@ export class GameSetupComponent implements OnInit {
   @Input() defaultTime;
   @Input() defaultLocation;
   @Input() defaultIsSeasonGame;
+  @Input() defaultIsPrivateGame;
 
   @Output() location = new EventEmitter<string>();
   @Output() time = new EventEmitter<Date>();
   @Output() date = new EventEmitter<Date>();
   @Output() season = new EventEmitter<any>();
   @Output() isSeasonGame = new EventEmitter<boolean>();
+  @Output() isPrivateGame = new EventEmitter<boolean>();
 
   locationInput = new FormGroup({
     location: new FormControl('', [Validators.required, Validators.minLength(3)])
@@ -47,5 +49,9 @@ export class GameSetupComponent implements OnInit {
 
   setSeason(event) {
     this.season.emit(event);
+  }
+
+  setIsPrivateGame(event) {
+    this.isPrivateGame.emit(event);
   }
 }

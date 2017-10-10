@@ -20,3 +20,9 @@
                      (currentSeason)="setSeason($event)" #seasonPicker>
   </app-season-picker>
 </div>
+<div id="private-game">
+  <mhs-private-game (isPrivate)="setIsPrivateGame($event)"
+                    [isPrivateGame]="defaultIsPrivateGame">
+  </mhs-private-game>
+</div>
+
