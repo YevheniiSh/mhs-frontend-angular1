@@ -55,7 +55,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationPanelComponent,
     AuctionRoundTypeComponent,
     OrderByPipe,
-    LoginPanelComponentUpgrade,
     RoundBuilderComponentUpgrade,
     GameTemplateComponent,
     CurrentTemplateComponent,
@@ -106,11 +105,7 @@ export class HybridAppModule {
     this.downgradeNewProviders();
     this.firebaseOfflineService.initData();
 
-    this.fb.init({
-      appId: environment.facebookAppId,
-      xfbml: true,
-      version: 'v2.10'
-    });
+    this.initFacebook();
   }
 
   ngDoBootstrap() {
@@ -128,6 +123,7 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
     upgradeAdapter.upgradeNg1Provider('$translate');
     upgradeAdapter.upgradeNg1Provider('ResultServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('$css');
     upgradeAdapter.upgradeNg1Provider('firebaseOfflineService');
   }
 
@@ -149,6 +145,14 @@ export class HybridAppModule {
     this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
     this.mhsAdminModule.service('NotificationService', upgradeAdapter.downgradeNg2Provider(NotificationService));
     this.mhsAdminModule.service('CustomConfirmationService', upgradeAdapter.downgradeNg2Provider(CustomConfirmationService));
+  }
+
+  private initFacebook() {
+    this.fb.init({
+      appId: environment.facebookAppId,
+      xfbml: true,
+      version: 'v2.10'
+    });
   }
 }
 
