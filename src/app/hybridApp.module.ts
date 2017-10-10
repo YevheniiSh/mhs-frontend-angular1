@@ -5,10 +5,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { CollapseModule } from 'ngx-bootstrap-base/dist/collapse';
+import { BsDropdownModule } from 'ngx-bootstrap-base/dist/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap-base/dist/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap-base/dist/timepicker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireModule } from 'angularfire2';
@@ -45,10 +45,11 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { SeasonPickerComponent } from './admin/season-picker/season-picker.component';
 import { CreateGameComponent } from './admin/create-game/create-game.component';
 import { EditGameComponent } from './admin/edit-game/edit-game.component';
-import { defineLocale } from 'ngx-bootstrap/bs-moment';
-import { enGb, ru } from 'ngx-bootstrap/locale';
-import { uk } from './translations/uk';
-import { GameSetupComponent } from './admin/game-setup/game-setup.component'
+import { defineLocale } from 'ngx-bootstrap-base/dist/bs-moment';
+
+import { enGb, ru, uk } from 'ngx-bootstrap-base/dist/locale';
+
+import { GameSetupComponent } from './admin/game-setup/game-setup.component';
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
