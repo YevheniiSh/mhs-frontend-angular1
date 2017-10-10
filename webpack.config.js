@@ -24,14 +24,14 @@ const minimizeCss = false;
 const externalStyles = [
   "./node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
   "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-  "./src/app/bower_components/components-font-awesome/css/font-awesome.min.css",
+  "./bower_components/components-font-awesome/css/font-awesome.min.css",
   "./src/styles.css",
   "./src/app/public/css/spinner.css",
-  "./src/app/bower_components/html5-boilerplate/dist/css/normalize.css",
-  "./src/app/bower_components/html5-boilerplate/dist/css/main.css",
+  "./bower_components/html5-boilerplate/dist/css/normalize.css",
+  "./bower_components/html5-boilerplate/dist/css/main.css",
   "./src/app/app.css",
   "./src/app/public/css/bootstrapSilverButton.css",
-  "./src/app/bower_components/angucomplete-alt/angucomplete-alt.css",
+  "./bower_components/angucomplete-alt/angucomplete-alt.css",
 ];
 
 const environmentFiles = {
@@ -84,22 +84,21 @@ module.exports = {
       "./src/polyfills.ts"
     ],
     "styles": [
-      "./node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
-      "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-      "./src/app/bower_components/components-font-awesome/css/font-awesome.min.css",
-      "./src/styles.css",
-      "./src/app/public/css/spinner.css",
-      "./src/app/bower_components/html5-boilerplate/dist/css/normalize.css",
-      "./src/app/bower_components/html5-boilerplate/dist/css/main.css",
-      "./src/app/app.css",
-      "./src/app/public/css/bootstrapSilverButton.css",
-      "./src/app/bower_components/angucomplete-alt/angucomplete-alt.css"
+      externalStyles[0],
+      externalStyles[1],
+      externalStyles[2],
+      externalStyles[3],
+      externalStyles[4],
+      externalStyles[5],
+      externalStyles[6],
+      externalStyles[7],
+      externalStyles[8],
+      externalStyles[9]
     ]
   },
   "output": {
-    "path": path.join(process.cwd(), "dist"),
-    "filename": "[name].bundle.js",
-    "chunkFilename": "[id].chunk.js"
+    "filename": "[name].[chunkhash].bundle.js",
+    path: path.resolve(__dirname, 'dist')
   },
   "module": {
     "rules": [
@@ -188,33 +187,35 @@ module.exports = {
   },
   "plugins": [
     new UglifyJSPlugin({
-      exclude: "main.bundle.js",
+      exclude: /main\.\w+.*/,
       sourceMap: false,
-      ecma: 5
+      ecma: 5,
+      output: {
+        comments: false
+      }
     }),
     new NoEmitOnErrorsPlugin(),
     new ConcatPlugin({
       "uglify": false,
       "sourceMap": false,
       "name": "scripts",
-      "fileName": "[name].bundle.js",
+      "fileName": "[name].[hash].bundle.js",
       "filesToConcat": [
         "node_modules/systemjs/dist/system.js",
         "node_modules/firebase/firebase.js",
-        "src/app/bower_components/angular/angular.min.js",
-        "src/app/bower_components/angular-messages/angular-messages.js",
-        "src/app/bower_components/angular-translate/angular-translate.js",
-        "src/app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
-        "src/app/bower_components/angular-bootstrap/ui-bootstrap.min.js",
-        "src/app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
-        "src/app/bower_components/angular-animate/angular-animate.min.js",
-        "src/app/bower_components/ngMask/dist/ngMask.min.js",
-        "src/app/bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js",
-        "src/app/bower_components/angular-dynamic-locale/dist/tmhDynamicLocale.min.js",
-        "src/app/bower_components/angularfire/dist/angularfire.min.js",
-        "src/app/bower_components/angular-route/angular-route.min.js",
-        "src/app/bower_components/angular-css/angular-css.min.js",
-        "src/app/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js",
+        "./bower_components/angular/angular.min.js",
+        "./bower_components/angular-translate/angular-translate.js",
+        "./bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
+        "./bower_components/angular-bootstrap/ui-bootstrap.min.js",
+        "./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+        "./bower_components/angular-animate/angular-animate.min.js",
+        "./bower_components/ngMask/dist/ngMask.min.js",
+        "./bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js",
+        "./bower_components/angular-dynamic-locale/dist/tmhDynamicLocale.min.js",
+        "./bower_components/angularfire/dist/angularfire.min.js",
+        "./bower_components/angular-route/angular-route.min.js",
+        "./bower_components/angular-css/angular-css.min.js",
+        "./bower_components/angucomplete-alt/dist/angucomplete-alt.min.js",
         "node_modules/ng2-toastr/bundles/ng2-toastr.min.js"
       ]
     }),
@@ -242,14 +243,6 @@ module.exports = {
         "context": "src/app/",
         "to": "./app/",
         "from": {
-          "glob": "**/*.html",
-          "dot": true
-        }
-      },
-      {
-        "context": "src/app/",
-        "to": "./app/",
-        "from": {
           "glob": "**/*.css",
           "dot": true
         }
@@ -262,14 +255,6 @@ module.exports = {
           "dot": true
         }
       },
-      {
-        "context": "src/app/",
-        "to": "./app/",
-        "from": {
-          "glob": "**/bower_components/angular-i18n/*",
-          "dot": true
-        }
-      }
     ], {
       "ignore": [
         ".gitkeep"
@@ -361,8 +346,5 @@ module.exports = {
     "module": false,
     "clearImmediate": false,
     "setImmediate": false
-  },
-  "devServer": {
-    "historyApiFallback": true
   }
 };
