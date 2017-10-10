@@ -1,4 +1,3 @@
-///<reference path="services/connection-service/connection.service.ts"/>
 import { forwardRef, NgModule } from '@angular/core';
 import { UpgradeAdapter } from '@angular/upgrade';
 import { BrowserModule } from '@angular/platform-browser';
@@ -39,6 +38,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
 import { CustomOption } from './services/notification-service/CustomOption';
 import { ConnectionService } from './services/connection-service/connection.service';
+import { FirebaseOfflineService } from './services/firebase-service/firebase-offline.service';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -88,20 +88,23 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [ConfirmComponent],
   providers: [
-    ConnectionService,
     BackupService,
     LoginService,
     NotificationService,
     {provide: ToastOptions, useClass: CustomOption},
-    CustomConfirmationService]
+    CustomConfirmationService,
+    ConnectionService,
+    FirebaseOfflineService
+  ]
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');
 
-  constructor(private fb: FacebookService) {
+  constructor(private fb: FacebookService, private firebaseOfflineService: FirebaseOfflineService) {
     this.upgradeOldProviders();
     this.downgradeNewComponents();
     this.downgradeNewProviders();
+    this.firebaseOfflineService.initData();
 
     this.fb.init({
       appId: environment.facebookAppId,

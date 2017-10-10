@@ -25,7 +25,6 @@ import 'app/admin/round-builder/round-builder.component.js';
 import 'app/admin/team-list/team-list.module.js';
 import 'app/admin/team-list/team-list.component.js';
 import 'app/app.js';
-import 'app/services/firebase-service/firebase-offline.js';
 import 'app/player/player.js';
 import 'app/admin/admin.js';
 import 'app/spinner/spinner.service.js';
