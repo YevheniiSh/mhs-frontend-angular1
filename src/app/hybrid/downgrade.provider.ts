@@ -21,17 +21,21 @@ export class DowngradeProvider {
     this.hybridHelper.componentPrefix = config.componentPrefix;
 
     for (const classDecorator of Reflect.getMetadata('annotations', module)) {
-      this.downgrade(
-        this.getDownedEntities(classDecorator.providers),
-        config.defaultAngularJsModuleForProviders,
-        this.hybridHelper.downgradeProvider.bind(this.hybridHelper)
-      );
+      if (classDecorator.providers) {
+        this.downgrade(
+          this.getDownedEntities(classDecorator.providers),
+          config.defaultAngularJsModuleForProviders,
+          this.hybridHelper.downgradeProvider.bind(this.hybridHelper)
+        );
+      }
 
-      this.downgrade(
-        this.getDownedEntities(classDecorator.declarations),
-        config.defaultAngularJsModuleForComponents,
-        this.hybridHelper.downgradeComponent.bind(this.hybridHelper)
-      );
+      if (classDecorator.entryComponents) {
+        this.downgrade(
+          this.getDownedEntities(classDecorator.declarations),
+          config.defaultAngularJsModuleForComponents,
+          this.hybridHelper.downgradeComponent.bind(this.hybridHelper)
+        );
+      }
     }
   }
 
