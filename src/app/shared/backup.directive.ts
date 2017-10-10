@@ -1,16 +1,18 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 import { firebaseConfig } from '../services/firebase-service/firebase-config';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @Directive({
-  selector: '[mhsBackup]'
+  selector: '[mhsBackup]',
+  providers: [DatePipe]
 })
 export class BackupDirective {
 
   private idToken: string;
 
-  constructor(private el: ElementRef, private http: HttpClient) {
-    el.nativeElement.style.cursor  = 'pointer';
+  constructor(private el: ElementRef, private http: HttpClient, public datePipe: DatePipe) {
+    el.nativeElement.style.cursor = 'pointer';
     firebase.auth().currentUser.getToken()
       .then((idToken) => {
         this.idToken = idToken;
@@ -30,7 +32,8 @@ export class BackupDirective {
   private downloadBackup(url) {
     let a = document.createElement('a');
     a.setAttribute('href', url);
-    a.setAttribute('download', `backupMHS${new Date()}.json`);
+    let fileName = this.datePipe.transform(new Date(), 'medium');
+    a.setAttribute('download', `backupMHS${fileName}.json`);
     a.click();
   }
 

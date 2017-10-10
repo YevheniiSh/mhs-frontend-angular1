@@ -37,14 +37,14 @@ export class GameProgressComponent {
   }
 
   private initRounds(gameService, roundService) {
-    let getCurrentRoundNumber = gameService.getCurrentRound(this.gameId);
-    let getRounds = roundService.getRounds(this.gameId);
-    Promise.all([getRounds, getCurrentRoundNumber])
-      .then(values => {
-        let rounds = values[0];
-        let roundNum = values[1];
-        rounds.forEach((item) => {
-          this.addRound(item, roundNum);
+
+    Promise.all([
+      roundService.getRounds(this.gameId),
+      gameService.getCurrentRound(this.gameId)
+    ])
+      .then(([rounds, roundNum])  => {
+        rounds.forEach((r) => {
+          this.addRound(r, roundNum);
         });
         if (this.prevRounds.length === rounds.length) {
           this.checked = true;
