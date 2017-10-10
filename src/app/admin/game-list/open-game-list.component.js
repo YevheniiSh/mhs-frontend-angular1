@@ -65,7 +65,7 @@
         vm.deleteGame = function (game) {
           customConfirmationService.create('DELETE_OPEN_GAME_CONFIRMATION_TITLE', 'DELETE_GAME_ALERT')
             .then(() => {
-              openGameFactory.removeOpenGame(game.$id)
+                openGameFactory.removeOpenGame(game.$id)
             });
         };
 
@@ -73,7 +73,7 @@
 
         userService.currentUser()
             .then(() => {
-              vm.filteredGames = undefined;
+                vm.filteredGames = undefined;
                 vm.auth = true;
             })
             .catch(() => {

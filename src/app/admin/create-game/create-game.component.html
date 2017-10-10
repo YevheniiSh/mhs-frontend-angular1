@@ -11,7 +11,8 @@
                   (location)="setGameLocation($event)"
                   #gameSetup>
   </mhs-game-setup>
-    <button id="game-build" type="submit"
+    <button id="game-build"
+            type="submit"
             class=" btn btn-info"
             (click)="createNewGame()"
             [disabled]="gameSetup.locationInput.invalid">

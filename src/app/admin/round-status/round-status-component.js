@@ -42,11 +42,11 @@
                 .then(() => {
                   return GameService.isGamePrivate(vm.gameId)
                 })
-              .then(isPrivate => {
-                if (!isPrivate) {
-                  return ResultService.setTeamPosition(vm.gameId)
-                }
-              })
+                .then(isPrivate => {
+                    if (!isPrivate) {
+                      return ResultService.setTeamPosition(vm.gameId)
+                    }
+                })
                 .then(() => {
                     GameService.finishGame(vm.gameId);
                     seasonService.finishGame(vm.gameId);
@@ -60,7 +60,6 @@
         GameService
             .getCurrentRound($routeParams.gameId)
             .then((currentRound) => {
-
                 RoundStatusService
                     .getRounds($routeParams.gameId)
                     .then((rounds) => {
