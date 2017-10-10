@@ -3,10 +3,12 @@ import { UpgradeAdapter } from '@angular/upgrade';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import * as angular from 'angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CollapseModule } from 'ngx-bootstrap-base/dist/collapse';
+import { BsDropdownModule } from 'ngx-bootstrap-base/dist/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap-base/dist/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap-base/dist/timepicker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireModule } from 'angularfire2';
@@ -39,6 +41,23 @@ import { GameProgressComponent } from './admin/game-progress/game-progress.compo
 import { RoundPanelComponent } from './admin/game-progress/round-panel/round-panel.component';
 import { BackupDirective } from './shared/backup.directive';
 
+import { DatePickerComponent } from './admin/date-picker/date-picker.component';
+import { TimePickerComponent } from './admin/time-picker/time-picker.component';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { SeasonPickerComponent } from './admin/season-picker/season-picker.component';
+import { CreateGameComponent } from './admin/create-game/create-game.component';
+import { EditGameComponent } from './admin/edit-game/edit-game.component';
+import { defineLocale } from 'ngx-bootstrap-base/dist/bs-moment';
+
+import { enGb, ru, uk } from 'ngx-bootstrap-base/dist/locale';
+
+import { GameSetupComponent } from './admin/game-setup/game-setup.component';
+
+defineLocale('ru', ru);
+defineLocale('en', enGb);
+defineLocale('uk', uk);
+
+
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
 // AoT requires an exported function for factories
@@ -57,6 +76,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoundBuilderComponentUpgrade,
     GameTemplateComponent,
     CurrentTemplateComponent,
+    CreateGameComponent,
+    DatePickerComponent,
+    TimePickerComponent,
+    SeasonPickerComponent,
+    EditGameComponent,
     HintRoundTypeComponent,
     CaptainRoundTypeComponent,
     SwitcherComponent,
@@ -64,15 +88,20 @@ export function HttpLoaderFactory(http: HttpClient) {
     FacebookShareComponent,
     GameProgressComponent,
     RoundPanelComponent,
-    BackupDirective
+    BackupDirective,
+    FacebookShareComponent,
+    GameSetupComponent
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     CollapseModule.forRoot(),
+    TimepickerModule.forRoot(),
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -86,6 +115,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     FacebookModule.forRoot(),
     BootstrapModalModule.forRoot({ container: document.body }),
+    ClickOutsideModule,
   ],
   entryComponents: [ConfirmComponent],
   providers: [ LoginService, NotificationService, CustomConfirmationService]
@@ -116,6 +146,11 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('GameServiceFactory');
     upgradeAdapter.upgradeNg1Provider('$translate');
     upgradeAdapter.upgradeNg1Provider('ResultServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('convertServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('seasonService');
+    upgradeAdapter.upgradeNg1Provider('OpenGameServiceFactory');
+    upgradeAdapter.upgradeNg1Provider('gameBuildServiceFactory');
+
     upgradeAdapter.upgradeNg1Provider('$css');
     upgradeAdapter.upgradeNg1Provider('seasonService');
     upgradeAdapter.upgradeNg1Provider('RoundStatusService');
@@ -133,6 +168,9 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appConfirmComponent', upgradeAdapter.downgradeNg2Component(ConfirmComponent));
     this.mhsAdminModule.directive('appCaptainRoundType', upgradeAdapter.downgradeNg2Component(CaptainRoundTypeComponent));
     this.mhsAdminModule.directive('appSwitcher', upgradeAdapter.downgradeNg2Component(SwitcherComponent));
+    this.mhsAdminModule.directive('appCreateGame', upgradeAdapter.downgradeNg2Component(CreateGameComponent));
+    this.mhsAdminModule.directive('appEditGame', upgradeAdapter.downgradeNg2Component(EditGameComponent));
+
   }
 
   private downgradeNewProviders() {

@@ -9,7 +9,6 @@ angular
     'login',
     'login-panel',
     'game-list',
-    'createGame',
     'configGame',
     'roundBuilder',
     'ui.bootstrap',

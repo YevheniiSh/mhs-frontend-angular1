@@ -59,7 +59,6 @@ const postcssPlugins = function () {
   ].concat(minimizeCss ? [cssnano(minimizeOptions)] : []);
 };
 
-
 module.exports = {
   "resolve": {
     "extensions": [
@@ -83,18 +82,7 @@ module.exports = {
     "polyfills": [
       "./src/polyfills.ts"
     ],
-    "styles": [
-      externalStyles[0],
-      externalStyles[1],
-      externalStyles[2],
-      externalStyles[3],
-      externalStyles[4],
-      externalStyles[5],
-      externalStyles[6],
-      externalStyles[7],
-      externalStyles[8],
-      externalStyles[9]
-    ]
+    "styles": externalStyles
   },
   "output": {
     "filename": "[name].[chunkhash].bundle.js",
@@ -115,18 +103,7 @@ module.exports = {
         "loader": "url-loader?name=[name].[hash:20].[ext]&limit=10000"
       },
       {
-        "exclude": [
-          path.join(process.cwd(), externalStyles[0]),
-          path.join(process.cwd(), externalStyles[1]),
-          path.join(process.cwd(), externalStyles[2]),
-          path.join(process.cwd(), externalStyles[3]),
-          path.join(process.cwd(), externalStyles[4]),
-          path.join(process.cwd(), externalStyles[5]),
-          path.join(process.cwd(), externalStyles[6]),
-          path.join(process.cwd(), externalStyles[7]),
-          path.join(process.cwd(), externalStyles[8]),
-          path.join(process.cwd(), externalStyles[9])
-        ],
+        "exclude": externalStyles.map(externalStyle => path.join(process.cwd(), externalStyle)),
         "test": /\.css$/,
         "use": [
           "exports-loader?module.exports.toString()",
@@ -146,20 +123,8 @@ module.exports = {
           }
         ]
       },
-
       {
-        "include": [
-          path.join(process.cwd(), externalStyles[0]),
-          path.join(process.cwd(), externalStyles[1]),
-          path.join(process.cwd(), externalStyles[2]),
-          path.join(process.cwd(), externalStyles[3]),
-          path.join(process.cwd(), externalStyles[4]),
-          path.join(process.cwd(), externalStyles[5]),
-          path.join(process.cwd(), externalStyles[6]),
-          path.join(process.cwd(), externalStyles[7]),
-          path.join(process.cwd(), externalStyles[8]),
-          path.join(process.cwd(), externalStyles[9])
-        ],
+        "include": externalStyles.map(externalStyle => path.join(process.cwd(), externalStyle)),
         "test": /\.css$/,
         "use": [
           "style-loader",
@@ -336,15 +301,4 @@ module.exports = {
       "skipCodeGeneration": true
     })
   ],
-  "node": {
-    "fs": "empty",
-    "global": true,
-    "crypto": "empty",
-    "tls": "empty",
-    "net": "empty",
-    "process": true,
-    "module": false,
-    "clearImmediate": false,
-    "setImmediate": false
-  }
 };
