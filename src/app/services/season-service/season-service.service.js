@@ -263,7 +263,6 @@ angular.module('seasonService')
             }
 
             function sortGamesArray(arr) {
-                console.log(arr);
                 arr.forEach((item) => {
                     item.gamesArr.sort((a, b) => {
                         return ((a.gameId > b.gameId) ? 1 : (b.gameId > a.gameId) ? -1 : 0);
@@ -322,7 +321,6 @@ angular.module('seasonService')
                     }
                     item.positionTeam = positionTeam;
                 });
-                console.log(score);
                 return score;
             }
 

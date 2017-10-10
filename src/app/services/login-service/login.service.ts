@@ -20,7 +20,6 @@ export class LoginService {
 
   isAuthorisedUser(userId) {
     const isUserAuthorised = this.db.object(`/users/${userId}`);
-    console.log(isUserAuthorised);
     return isUserAuthorised;
   }
 }
