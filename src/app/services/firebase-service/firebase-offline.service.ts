@@ -64,4 +64,18 @@ export class FirebaseOfflineService {
     }
   }
 
+  private enableReloadAlert() {
+    window.addEventListener('beforeunload', function (e) {
+      const confirmationMessage = ' ';
+      (e || window.event).returnValue = confirmationMessage;
+      return confirmationMessage;
+    });
+  }
+
+  private disableReloadAlert() {
+    window.addEventListener('beforeunload', function (e) {
+      e.preventDefault();
+    });
+  }
+
 }
