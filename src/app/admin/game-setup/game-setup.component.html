@@ -17,6 +17,7 @@
 <div class="col-md-3">
   <app-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
                      [isSeasonGame]="defaultIsSeasonGame"
+                     [isDisabled] = "defaultIsPrivateGame"
                      (currentSeason)="setSeason($event)" #seasonPicker>
   </app-season-picker>
 </div>
