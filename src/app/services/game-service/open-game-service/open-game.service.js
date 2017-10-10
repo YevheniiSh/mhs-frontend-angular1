@@ -45,7 +45,7 @@
 
       function createNewGame(game, season) {
         let key = openGamesRef.push().key;
-        var updates = {};
+        let updates = {};
 
         updates[`/games/open/${key}`] = game;
         if (season !== undefined) {
@@ -53,8 +53,7 @@
         }
 
         return root.update(updates);
-
-        }
+      }
 
         function getDate(gameId) {
             return new $firebaseObject(openGamesRef.child(gameId).child('date'))
