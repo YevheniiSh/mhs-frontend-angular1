@@ -71,7 +71,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationPanelComponent,
     AuctionRoundTypeComponent,
     OrderByPipe,
-    LoginPanelComponentUpgrade,
     RoundBuilderComponentUpgrade,
     GameTemplateComponent,
     CurrentTemplateComponent,
@@ -146,6 +145,7 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('OpenGameServiceFactory');
     upgradeAdapter.upgradeNg1Provider('gameBuildServiceFactory');
 
+    upgradeAdapter.upgradeNg1Provider('$css');
   }
 
   private downgradeNewComponents() {
