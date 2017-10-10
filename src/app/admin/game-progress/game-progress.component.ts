@@ -1,11 +1,11 @@
 import { Component, Inject } from '@angular/core';
 
 @Component({
-  selector: 'mhs-round-status',
-  templateUrl: './round-status.component.html',
-  styleUrls: ['./round-status.component.css']
+  selector: 'mhs-game-progress',
+  templateUrl: './game-progress.component.html',
+  styleUrls: ['./game-progress.component.css']
 })
-export class RoundStatusComponent {
+export class GameProgressComponent {
 
   gameId: string;
   gameStatus: string;
@@ -17,12 +17,12 @@ export class RoundStatusComponent {
 
   constructor(@Inject('$routeParams') private $routeParams,
               @Inject('$location') private $location,
-              @Inject('GameServiceFactory') private GameService,
-              @Inject('RoundStatusService') private RoundStatusService,
-              @Inject('ResultServiceFactory') private ResultService,
+              @Inject('GameServiceFactory') private gameService,
+              @Inject('RoundStatusService') private roundStatusService,
+              @Inject('ResultServiceFactory') private resultService,
               @Inject('seasonService') private seasonService) {
     this.gameId = $routeParams.gameId;
-    this.initRounds(GameService, RoundStatusService);
+    this.initRounds(gameService, roundStatusService);
     this.getGameStatus()
       .then((status) => {
         this.gameStatus = status;
@@ -33,19 +33,18 @@ export class RoundStatusComponent {
   }
 
   private getGameStatus() {
-    return this.GameService.getGameStatus(this.gameId);
+    return this.gameService.getGameStatus(this.gameId);
   }
 
-  private initRounds(GameService, RoundStatusService) {
-    let roundNum;
-    GameService.getCurrentRound(this.gameId)
-      .then((res) => {
-        roundNum = res;
-        return RoundStatusService.getRounds(this.gameId);
-      })
-      .then((rounds) => {
+  private initRounds(gameService, roundStatusService) {
+    let getCurrentRoundNumber = gameService.getCurrentRound(this.gameId);
+    let getRounds = roundStatusService.getRounds(this.gameId);
+    Promise.all([getRounds, getCurrentRoundNumber])
+      .then(values => {
+        let rounds = values[0];
+        let roundNum = values[1];
         rounds.forEach((item) => {
-          this.setRound(item, roundNum);
+          this.addRound(item, roundNum);
         });
         if (this.prevRounds.length === rounds.length) {
           this.checked = true;
@@ -53,7 +52,7 @@ export class RoundStatusComponent {
       });
   }
 
-  private setRound(round, roundNum) {
+  private addRound(round, roundNum) {
     if (+round.$id === +roundNum) {
       this.currentRound.push(round);
     } else if (round.$id < roundNum) {
@@ -63,13 +62,13 @@ export class RoundStatusComponent {
     }
   }
 
-  onFinished() {
-    this.ResultService.setGameWinner(this.gameStatus, this.gameId)
+  finishRound() {
+    this.resultService.setGameWinner(this.gameStatus, this.gameId)
       .then(() => {
-        return this.ResultService.setTeamPosition(this.gameId);
+        return this.resultService.setTeamPosition(this.gameId);
       })
       .then(() => {
-        this.GameService.finishGame(this.gameId);
+        this.gameService.finishGame(this.gameId);
         this.seasonService.finishGame(this.gameId);
       })
       .then(this.$location.path(`games/${this.gameId}/results`));

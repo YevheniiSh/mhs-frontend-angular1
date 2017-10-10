@@ -27,7 +27,7 @@ angular
       resolve: isAuth
     });
     $routeProvider.when('/games/:gameId/rounds', {
-      template: '<mhs-round-status></mhs-round-status>',
+      template: '<mhs-game-progress></mhs-game-progress>',
       resolve: isAuth
     });
     $routeProvider.when('/login', {

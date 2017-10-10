@@ -18,7 +18,7 @@
           <li><a href="/#!/games">{{'NAVBAR_GAME_LIST_BUTTON' | translate}}</a></li>
           <li><a href="/#!/teams">{{'NAVBAR_TEAM_EDIT_BUTTON' | translate}}</a></li>
           <li *ngIf="(user | async)"><a href="/#!/templates">{{'NAVBAR_GAME_TEMPLATES' | translate}}</a></li>
-          <li *ngIf="(user | async)"><a><mhs-download-backup></mhs-download-backup> </a></li>
+          <li *ngIf="(user | async)"><a mhsBackup translate="{{'DOWNLOAD_BACKUP'}}"></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>

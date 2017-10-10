@@ -22,7 +22,7 @@ export class RoundPanelComponent implements OnInit {
 
   redirectToRound(round) {
     if (this.hasLink) {
-      this.$location.path(`games/${ this.gameId }/rounds/${ round.$id}/1`);
+      this.$location.path(`games/${this.gameId}/rounds/${round.$id}/1`);
     }
   }
 

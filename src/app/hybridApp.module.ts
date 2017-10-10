@@ -16,7 +16,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
 import { NavbarComponent } from './admin/navbar/navbar.component';
 import { LoginPanelComponentUpgrade } from './admin/login-panel/login-panel.component.upgrade';
-import { BackupService } from './services/backup/backup.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginService } from './services/login-service/login.service';
 import { firebaseConfig } from './services/firebase-service/firebase-config';
@@ -36,9 +35,9 @@ import { HintRoundTypeComponent } from './admin/round-type/hint-round-type/hint-
 import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/switcher.component';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
-import { RoundStatusComponent } from './admin/round-status/round-status.component';
-import { DownloadBackupComponent } from './admin/download-backup/download-backup.component';
-import { RoundPanelComponent } from './admin/round-status/round-panel/round-panel.component';
+import { GameProgressComponent } from './admin/game-progress/game-progress.component';
+import { RoundPanelComponent } from './admin/game-progress/round-panel/round-panel.component';
+import { BackupDirective } from './shared/backup.directive';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -64,9 +63,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     SwitcherComponent,
     ConfirmComponent,
     FacebookShareComponent,
-    RoundStatusComponent,
-    DownloadBackupComponent,
-    RoundPanelComponent
+    GameProgressComponent,
+    RoundPanelComponent,
+    BackupDirective
   ],
   imports: [
     FormsModule,
@@ -90,7 +89,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BootstrapModalModule.forRoot({ container: document.body }),
   ],
   entryComponents: [ConfirmComponent],
-  providers: [BackupService, LoginService, NotificationService, CustomConfirmationService]
+  providers: [ LoginService, NotificationService, CustomConfirmationService]
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');
@@ -124,7 +123,7 @@ export class HybridAppModule {
 
   private downgradeNewComponents() {
     this.mhsAdminModule.directive('appNavbar', upgradeAdapter.downgradeNg2Component(NavbarComponent));
-    this.mhsAdminModule.directive('mhsRoundStatus', upgradeAdapter.downgradeNg2Component(RoundStatusComponent));
+    this.mhsAdminModule.directive('mhsGameProgress', upgradeAdapter.downgradeNg2Component(GameProgressComponent));
     this.mhsAdminModule.directive('appGameTemplate', upgradeAdapter.downgradeNg2Component(GameTemplateComponent));
     this.mhsAdminModule.directive('appCurrentTemplate', upgradeAdapter.downgradeNg2Component(CurrentTemplateComponent));
     this.mhsAdminModule.directive('appAuctionRoundType', upgradeAdapter.downgradeNg2Component(AuctionRoundTypeComponent));
@@ -134,11 +133,9 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appConfirmComponent', upgradeAdapter.downgradeNg2Component(ConfirmComponent));
     this.mhsAdminModule.directive('appCaptainRoundType', upgradeAdapter.downgradeNg2Component(CaptainRoundTypeComponent));
     this.mhsAdminModule.directive('appSwitcher', upgradeAdapter.downgradeNg2Component(SwitcherComponent));
-    this.mhsAdminModule.directive('mhsDownloadBackup', upgradeAdapter.downgradeNg2Component(DownloadBackupComponent));
   }
 
   private downgradeNewProviders() {
-    this.mhsAdminModule.service('backup', upgradeAdapter.downgradeNg2Provider(BackupService));
     this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
     this.mhsAdminModule.service('NotificationService', upgradeAdapter.downgradeNg2Provider(NotificationService));
     this.mhsAdminModule.service('CustomConfirmationService', upgradeAdapter.downgradeNg2Provider(CustomConfirmationService));
