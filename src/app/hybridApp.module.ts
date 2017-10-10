@@ -37,7 +37,6 @@ import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/s
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
 
-
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
 // AoT requires an exported function for factories
@@ -94,11 +93,7 @@ export class HybridAppModule {
     this.downgradeNewComponents();
     this.downgradeNewProviders();
 
-    this.fb.init({
-      appId: environment.facebookAppId,
-      xfbml: true,
-      version: 'v2.10'
-    });
+    this.initFacebook();
   }
 
   ngDoBootstrap() {
@@ -137,6 +132,14 @@ export class HybridAppModule {
     this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
     this.mhsAdminModule.service('NotificationService', upgradeAdapter.downgradeNg2Provider(NotificationService));
     this.mhsAdminModule.service('CustomConfirmationService', upgradeAdapter.downgradeNg2Provider(CustomConfirmationService));
+  }
+
+  private initFacebook() {
+    this.fb.init({
+      appId: environment.facebookAppId,
+      xfbml: true,
+      version: 'v2.10'
+    });
   }
 }
 
