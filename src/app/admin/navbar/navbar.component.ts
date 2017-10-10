@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { ConnectionService } from '../../services/connection-service/connection.service';
+import { NotificationService } from "../../services/notification-service/notification.service";
 
 @Component({
   selector: 'app-navbar',
@@ -32,14 +33,13 @@ export class NavbarComponent implements OnInit {
               @Inject('userAuthService') UserAuthService,
               translate: TranslateService,
               public afAuth: AngularFireAuth,
-              private connectionService: ConnectionService) {
+              private connectionService: ConnectionService,
+              private notificationService: NotificationService) {
     this.i18nFactory = InternationalisationServiceFactory;
     this.userAuthService = UserAuthService;
     this.translate = translate;
     this.user = afAuth.authState;
-    this.connectionService.online.subscribe((isOnline) => {
-      this.isOffline = !isOnline;
-    });
+    this.checkOffline();
   }
 
   ngOnInit() {
@@ -54,6 +54,12 @@ export class NavbarComponent implements OnInit {
     this.locale = locale;
     this.i18nFactory.changeLanguage(locale);
     this.translate.use(locale);
+  }
+
+  checkOffline() {
+    this.connectionService.online.subscribe((isOnline) => {
+      this.isOffline = !isOnline;
+    });
   }
 
 }
