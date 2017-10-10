@@ -57,7 +57,7 @@ export class NavbarComponent implements OnInit {
   }
 
   checkOffline() {
-    this.connectionService.online.subscribe((isOnline) => {
+    this.connectionService.connectionState$.subscribe((isOnline) => {
       this.isOffline = !isOnline;
     });
   }

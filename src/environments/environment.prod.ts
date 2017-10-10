@@ -25,7 +25,6 @@ import '../../lib/admin/round-builder/round-builder.component.js';
 import '../../lib/admin/team-list/team-list.module.js';
 import '../../lib/admin/team-list/team-list.component.js';
 import '../../lib/app.js';
-import '../../lib/reload-alert.js';
 import '../../lib/player/player.js';
 import '../../lib/admin/admin.js';
 import '../../lib/spinner/spinner.service.js';
