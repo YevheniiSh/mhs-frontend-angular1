@@ -46,59 +46,61 @@ export class EditGameComponent implements OnInit {
         this.isPrivate = game.isPrivate;
       });
 
-    this.openGameService.getTime(this.gameId).then((res) => {
+    this.openGameService.getTime(this.gameId)
+      .then((res) => {
       this.currentGameTime = new Date(res);
     });
   }
 
 
-  setGameLocation() {
-    this.openGameService.changeLocation(this.gameId, this.location).then(() => {
-      this.notificationService.showSuccess('SAVE_LOCATION_MESSAGE');
-    });
+  setGameLocation(location) {
+    this.location = location;
+    this.openGameService.changeLocation(this.gameId, this.location)
+      .then(this.showSuccess('SAVE_LOCATION_MESSAGE'));
   }
 
   setGameDate(gameDate) {
     this.gameDate = gameDate;
-    this.openGameService.changeDate(this.gameId, this.gameDate).then(() => {
-      this.notificationService.showSuccess('SAVE_DATE_MESSAGE');
-    });
+    this.openGameService.changeDate(this.gameId, this.gameDate)
+      .then(this.showSuccess('SAVE_DATE_MESSAGE'));
   }
 
   setGameTime(gameTime) {
     this.gameTime = gameTime;
-    this.openGameService.changeTime(this.gameId, this.gameTime).then(() => {
-      this.notificationService.showSuccess('SAVE_TIME_MESSAGE');
-    });
+    this.openGameService.changeTime(this.gameId, this.gameTime)
+      .then(this.showSuccess('SAVE_TIME_MESSAGE'));
+
   }
 
   setIsPrivate(isPrivate) {
     this.isPrivate = isPrivate;
     this.openGameService.changeIsPrivate(this.gameId, this.isPrivate)
       .then(() => {
-        this.notificationService.showSuccess('GAME_STATUS_SAVE');
+        this.showSuccess('GAME_STATUS_SAVE');
       });
   }
 
   setIsSeasonGame(isSeasonGame) {
     this.isSeasonGame = isSeasonGame;
+    let seasonInGame = { id: this.season.$id, name: this.season.name };
     if (this.isSeasonGame) {
-      const seasonInGame = { id: this.season.$id, name: this.season.name };
-      this.openGameService.changeSeason(this.gameId, seasonInGame).then(() => {
-        this.notificationService.showSuccess('SAVE_SEASON_MESSAGE');
-        this.seasonService.addGameToSeason(this.season.$id, this.gameId);
-      });
+      this.openGameService.changeSeason(this.gameId, seasonInGame)
+        .then(this.showSuccess('SAVE_SEASON_MESSAGE'));
     }
     else {
-      this.openGameService.deleteSeason(this.gameId).then(() => {
-        this.notificationService.showSuccess('SAVE_SEASON_MESSAGE');
-        this.seasonService.deleteGameFromSeason(this.season.$id, this.gameId);
-      });
+      this.openGameService.deleteSeason(this.gameId, seasonInGame)
+        .then(this.showSuccess('SAVE_SEASON_MESSAGE'));
     }
   }
 
   setSeason(season) {
     this.season = season;
+  }
+
+  showSuccess(message) {
+    return () => {
+      this.notificationService.showSuccess(message);
+    }
   }
 
 }

@@ -1,33 +1,16 @@
 <div id="create-game-comp" class="container">
-  <form #createForm>
-    <div class="col-md-2">
-      <app-date-picker (date)="setGameDate($event)" [gameDate]="defaultDate"></app-date-picker>
-    </div>
-    <div class="col-md-2">
-      <app-time-picker (time)="setGameTime($event)" [currentGameTime]="defaultTime"></app-time-picker>
-    </div>
-    <div class="col-md-2">
-      <div class="location">
-        <input class="form-control"
-               [(ngModel)]="location"
-               name="location"
-               minlength="3"
-               required
-               placeholder="{{'LOCATION_PLACEHOLDER' | translate}}"
-               #gameLocationInput="ngModel">
-      </div>
-    </div>
-    <div class="col-md-3">
-      <app-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
-                         (currentSeason)="setSeason($event)" #seasonPicker></app-season-picker>
-    </div>
-    <mhs-private-game (isPrivate)="setIsPrivateGame($event)"
-                      [isPrivateGame]="isPrivateGame">
-    </mhs-private-game>
+  <mhs-game-setup [defaultDate]="defaultDate"
+                  [defaultTime]="defaultTime"
+                  [defaultLocation]="location"
+                  (date)="setGameDate($event)"
+                  (time)="setGameTime($event)"
+                  (isSeasonGame)="setIsSeasonGame($event)"
+                  (season)="setSeason($event)"
+                  (location)="setGameLocation($event)"
+                  #gameSetup>
+  </mhs-game-setup>
     <button id="game-build" type="submit" class=" btn btn-info"
-            (click)="createNewGame()" [disabled]="gameLocationInput.errors || seasonPicker.isSeasonEditor">
+            (click)="createNewGame()" [disabled]="gameSetup.locationInput.invalid">
       {{'CREATE_GAME_BUTTON' | translate}}
     </button>
-
-  </form>
 </div>

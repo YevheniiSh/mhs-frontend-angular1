@@ -1,28 +1,10 @@
-<div class="col-md-2">
-  <app-date-picker (date)="setGameDate($event)" [gameDate]="currentGameDate"></app-date-picker>
-</div>
-<div class="col-md-2">
-  <app-time-picker (time)="setGameTime($event)" [currentGameTime]="currentGameTime"></app-time-picker>
-</div>
-<div class="col-md-2">
-  <div class="location">
-    <input class="form-control"
-           [(ngModel)]="location"
-           (blur)="setGameLocation()"
-           name="location"
-           minlength="3"
-           required
-           placeholder="{{'LOCATION_PLACEHOLDER' | translate}}"
-           #gameLocationInput="ngModel">
-  </div>
-</div>
-<div class="col-md-3">
-  <app-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
-                     [isSeasonGame]="isSeasonGame"
-                     (currentSeason)="setSeason($event)" #seasonPicker></app-season-picker>
-</div>
-<div class="col-md-2" style="padding-top: 8px;">
-  <mhs-private-game (isPrivate)="setIsPrivate($event)"
-                    [isPrivateGame]="isPrivate">
-  </mhs-private-game>
-</div>
+<mhs-game-setup [defaultDate]="currentGameDate"
+                [defaultTime]="currentGameTime"
+                [defaultLocation]="location"
+                [defaultIsSeasonGame]="isSeasonGame"
+                (date)="setGameDate($event)"
+                (time)="setGameTime($event)"
+                (isSeasonGame)="setIsSeasonGame($event)"
+                (season)="setSeason($event)"
+                (location)="setGameLocation($event)">
+</mhs-game-setup>

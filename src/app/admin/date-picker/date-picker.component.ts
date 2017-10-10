@@ -7,8 +7,8 @@ import { TranslateService } from "@ngx-translate/core";
   styleUrls: ['./date-picker.component.css']
 })
 export class DatePickerComponent implements OnInit, OnChanges {
-  @Output() date = new EventEmitter<any>();
-  @Input() gameDate;
+  @Output() date = new EventEmitter<Date>();
+  @Input() defaultDate;
   bsConfig;
   minDate = new Date();
 
@@ -27,7 +27,7 @@ export class DatePickerComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     for (let prop in changes) {
-      if (prop === "gameDate") {
+      if (prop === "defaultDate") {
         this._bsValue = changes[prop].currentValue;
       }
     }

@@ -12,10 +12,11 @@
       </div>
     </div>
   </div>
-  <timepicker [ngModel]="gametime"
+  <timepicker [ngModel]="selectedTime"
               (ngModelChange)="updateTime($event)"
               [showMeridian]="false"
               class="time-picker-popup well well-sm"
               [minuteStep]="1"
-              *ngIf="isPopupVisible"></timepicker>
+              *ngIf="isPopupVisible">
+  </timepicker>
 </div>

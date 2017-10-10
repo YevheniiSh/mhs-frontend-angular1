@@ -18,7 +18,7 @@ export class CreateGameComponent implements OnInit {
   isPrivateGame = false;
 
   createNewGame = function () {
-    let gameBuider = this.gameBuild.addDate(this.gameDate)
+    const gameBuider = this.gameBuild.addDate(this.gameDate)
       .addTime(this.gameTime)
       .addLocation(this.location)
       .addPrivate(this.isPrivateGame);
@@ -27,30 +27,41 @@ export class CreateGameComponent implements OnInit {
     } else {
       delete gameBuider.game.season;
     }
-    let game = gameBuider.buildGame();
-    this.openGameService.createNewGame(game)
-      .then((gameId) => {
-        if (this.isSeasonGame) {
-          this.seasonService.addGameToSeason(this.season.$id, gameId);
-        }
-        this.location = null;
-      });
+    const game = gameBuider.buildGame();
+
+    if (this.isSeasonGame) {
+      this.openGameService.createNewGame(game, this.season);
+    }
+    else {
+      this.openGameService.createNewGame(game);
+    }
+
+    this.location = null;
 
   };
-  setGameDate = function (date) {
+
+  setGameDate(date) {
     this.gameDate = date;
   };
-  setGameTime = function (time) {
+
+  setGameTime(time) {
     this.gameTime = time;
   };
-  setSeason = function (season) {
+
+  setSeason(season) {
     this.season = season;
   };
-  setIsSeasonGame = function (isSeasonGame) {
+
+  setIsSeasonGame(isSeasonGame) {
     this.isSeasonGame = isSeasonGame;
-  };
+  }
+
   setIsPrivateGame = function (isPrivateGame) {
     this.isPrivateGame = isPrivateGame;
+  };
+
+  setGameLocation(location) {
+    this.location = location;
   }
 
   constructor(@Inject('OpenGameServiceFactory') private openGameService,

@@ -6,16 +6,16 @@ import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, Simp
   styleUrls: ['./time-picker.component.css'],
 })
 export class TimePickerComponent implements OnInit, OnChanges {
-  @Input() currentGameTime;
+  @Input() defaultTime;
+  @Output() time = new EventEmitter<Date>();
 
-  @Output() time = new EventEmitter<any>();
-  private gametime: Date = new Date;
+  private selectedTime: Date = new Date;
 
   ngOnChanges(changes: SimpleChanges): void {
     for (let prop in changes) {
-      if (prop === "currentGameTime") {
+      if (prop === "defaultTime") {
         if (changes[prop].currentValue !== undefined) {
-          this.gametime = changes[prop].currentValue;
+          this.selectedTime = changes[prop].currentValue;
         }
         this.getTimeForView();
       }
@@ -36,13 +36,13 @@ export class TimePickerComponent implements OnInit, OnChanges {
   }
 
   getTimeForView() {
-    this.visibleTime = this.convertServiceFactory.convertTimeForView(this.gametime)
+    this.visibleTime = this.convertServiceFactory.convertTimeForView(this.selectedTime)
   };
 
   updateTime(event) {
-    this.gametime = event;
+    this.selectedTime = event;
     this.getTimeForView();
-    this.time.emit(this.gametime);
+    this.time.emit(this.selectedTime);
   }
 
   closeTimePiker() {
