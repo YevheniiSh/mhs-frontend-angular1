@@ -38,5 +38,7 @@
     </li>
   </ul>
 </div>
-<div ng-if="$ctrl.filteredGames.length == 0" class="no-games-label">{{'NO_FINISHED_GAME_PLACEHOLDER' | translate}}</div>
+<div ng-if="$ctrl.games.length === 0 || $ctrl.filteredGames.length == 0" class="no-games-label">
+  {{'NO_FINISHED_GAME_PLACEHOLDER' | translate}}
+</div>
 
