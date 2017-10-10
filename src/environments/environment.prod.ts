@@ -87,6 +87,9 @@ import '../../lib/services/season-service/season-service.service.js';
 import '../../lib/services/round-type-service/round-type-service.module.js';
 import '../../lib/services/round-type-service/round-type-service.service.js';
 
+import '../../tmp/admin-template-cache.min.js';
+import '../../tmp/player-template-cache.min.js';
+
 export const environment = {
   production: true,
   facebookAppId: '150159422250915'
