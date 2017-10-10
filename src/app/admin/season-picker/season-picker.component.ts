@@ -26,7 +26,7 @@ export class SeasonPickerComponent implements OnInit, OnChanges{
 
   ngOnChanges() {
     if (this.isDisabled) {
-      this.checkboxUpdate(false);
+      this.isSeasonGame = false;
     }
   }
 
