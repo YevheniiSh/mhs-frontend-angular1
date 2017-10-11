@@ -26,8 +26,6 @@ import { AuctionRoundTypeComponent } from './admin/round-type/auction-round-type
 import { OrderByPipe } from './pipe/order-by.pipe';
 import { NotificationService } from './services/notification-service/notification.service';
 import { NotificationPanelComponent } from './notification/notification-panel.component';
-import { FacebookModule, FacebookService } from 'ngx-facebook';
-import { FacebookShareComponent } from './facebook-share/facebook-share.component';
 import { CustomConfirmationService } from './services/confirmation-service/confirmation.service';
 import { CaptainRoundTypeComponent } from './admin/round-type/captain-round-type/captain-round-type.component';
 import { HintRoundTypeComponent } from './admin/round-type/hint-round-type/hint-round-type.component';
@@ -43,6 +41,10 @@ import { UserAuthService } from './services/user-auth-service/user-auth.upgrade'
 import { GameTemplateService } from './services/game-template-service/game-template.service.upgrade';
 import { RoundTypeService } from './services/round-type-service/round-type.service.upgrade';
 import { DowngradeProvider } from './hybrid/downgrade.provider';
+import { environment } from '../environments/environment';
+import { TranslateService } from './services/translate-service/translate.service.upgrade';
+import { FacebookModule, FacebookService } from 'ngx-facebook';
+import { FacebookShareComponent } from './facebook-share/facebook-share.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/app/translations/', '.json');
@@ -64,7 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CaptainRoundTypeComponent,
     SwitcherComponent,
     ConfirmComponent,
-    FacebookShareComponent
+    FacebookShareComponent,
   ],
   imports: [
     FormsModule,
@@ -98,10 +100,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuctionRoundTypeComponent,
     HintRoundTypeComponent,
     NotificationPanelComponent,
-    FacebookShareComponent,
     ConfirmComponent,
     CaptainRoundTypeComponent,
-    SwitcherComponent
+    SwitcherComponent,
+    FacebookShareComponent,
   ],
   providers: [
     BackupService,
@@ -114,8 +116,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     GameTemplateService,
     RoundTypeService,
     GameService,
-    ResultService
-  ]
+    ResultService,
+    TranslateService,
+  ],
 })
 export class HybridAppModule {
 
@@ -133,9 +136,8 @@ export class HybridAppModule {
   }
 
   private initFacebook() {
-    console.log('fb init');
     this.fb.init({
-      appId: '345296772581625',
+      appId: environment.facebookAppId,
       xfbml: true,
       cookie: true,
       version: 'v2.10'
