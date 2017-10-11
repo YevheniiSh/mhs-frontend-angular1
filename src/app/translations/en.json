@@ -173,5 +173,6 @@
   "FINISH_HINTS_ROUND_CONFIRMATION": "All teams answered, do you want to finish round?",
   "GAME_STATUS_SAVE": "Game status saved",
   "PRIVATE_GAME_LABEL": "Private game",
-  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?"
+  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?",
+  "DOWNLOAD_BACKUP": "Download backup"
 }

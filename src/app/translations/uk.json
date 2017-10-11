@@ -172,5 +172,6 @@
   "GAME_STATUS_SAVE": "Статус гри збережено",
   "PRIVATE_GAME_LABEL": "Приватна гра",
   "FINISH_HINTS_ROUND_CONFIRMATION": "Всі команди відповіли, закінчити раунд?",
-  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Усі капітани вибули, завершити раунд?"
+  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Усі капітани вибули, завершити раунд?",
+  "DOWNLOAD_BACKUP": "Скачати backup"
 }

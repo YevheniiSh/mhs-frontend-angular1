@@ -18,7 +18,8 @@ angular.module('mhs', [
   'gameBuildService',
   'convertService',
   'roundTypeService',
-  'seasonService'
+  'seasonService',
+  'roundService'
 ])
   .config(['$locationProvider', '$routeProvider', '$animateProvider',
     function ($locationProvider, $routeProvider, $animateProvider) {
