@@ -177,5 +177,6 @@
   "FACEBOOK_GROUP_POST_ERROR": "Произошла ошибка при отправке поста в группу в Facebook",
   "FACEBOOK_GROUP_POST_SUCCESS": "Пост опубликован",
   "FACEBOOK_GROUP_POST_PROMPT_TITLE": "Пошарить ссылку регистрации на игру в группу Facebook",
-  "FACEBOOK_GROUP_POST_PROMPT_DESCRIPTION": "Напишите сообщение для поста в группу Facebook"
+  "FACEBOOK_GROUP_POST_PROMPT_DESCRIPTION": "Напишите сообщение для поста в группу Facebook",
+  "FACEBOOK_GROUP_POST_BUTTON": "Поделиться в группе"
 }

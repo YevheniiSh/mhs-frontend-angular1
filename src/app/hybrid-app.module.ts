@@ -100,7 +100,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoundPanelComponent,
     BackupDirective,
     FacebookShareComponent,
-    GameSetupComponent
+    GameSetupComponent,
     PromptComponent,
     FacebookGroupPostComponent,
   ],
