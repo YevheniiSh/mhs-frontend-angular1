@@ -3,8 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CollapseModule } from 'ngx-bootstrap-base/dist/collapse';
+import { BsDropdownModule } from 'ngx-bootstrap-base/dist/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap-base/dist/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap-base/dist/timepicker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireModule } from 'angularfire2';
@@ -15,7 +17,6 @@ import { UpgradeModule } from '@angular/upgrade/static';
 import { TeamListComponentUpgrade } from './admin/team-list/team-list.component.upgrade';
 import { NavbarComponent } from './admin/navbar/navbar.component';
 import { LoginPanelComponentUpgrade } from './admin/login-panel/login-panel.component.upgrade';
-import { BackupService } from './services/backup/backup.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginService } from './services/login-service/login.service';
 import { firebaseConfig } from './services/firebase-service/firebase-config';
@@ -45,6 +46,26 @@ import { environment } from '../environments/environment';
 import { TranslateService } from './services/translate-service/translate.service.upgrade';
 import { FacebookModule, FacebookService } from 'ngx-facebook';
 import { FacebookShareComponent } from './facebook-share/facebook-share.component';
+import { GameProgressComponent } from './admin/game-progress/game-progress.component';
+import { RoundPanelComponent } from './admin/game-progress/round-panel/round-panel.component';
+import { BackupDirective } from './shared/backup.directive';
+
+import { DatePickerComponent } from './admin/date-picker/date-picker.component';
+import { TimePickerComponent } from './admin/time-picker/time-picker.component';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { SeasonPickerComponent } from './admin/season-picker/season-picker.component';
+import { CreateGameComponent } from './admin/create-game/create-game.component';
+import { EditGameComponent } from './admin/edit-game/edit-game.component';
+import { defineLocale } from 'ngx-bootstrap-base/dist/bs-moment';
+
+import { enGb, ru, uk } from 'ngx-bootstrap-base/dist/locale';
+
+import { GameSetupComponent } from './admin/game-setup/game-setup.component';
+
+defineLocale('ru', ru);
+defineLocale('en', enGb);
+defineLocale('uk', uk);
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/app/translations/', '.json');
@@ -58,23 +79,36 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationPanelComponent,
     AuctionRoundTypeComponent,
     OrderByPipe,
-    LoginPanelComponentUpgrade,
     RoundBuilderComponentUpgrade,
     GameTemplateComponent,
     CurrentTemplateComponent,
+    CreateGameComponent,
+    DatePickerComponent,
+    TimePickerComponent,
+    SeasonPickerComponent,
+    EditGameComponent,
     HintRoundTypeComponent,
     CaptainRoundTypeComponent,
     SwitcherComponent,
     ConfirmComponent,
     FacebookShareComponent,
+    FacebookShareComponent,
+    GameProgressComponent,
+    RoundPanelComponent,
+    BackupDirective,
+    FacebookShareComponent,
+    GameSetupComponent
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     CollapseModule.forRoot(),
+    TimepickerModule.forRoot(),
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -91,6 +125,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UpgradeModule,
     AngularJsProvider.forRoot(),
     DowngradeProvider
+    ClickOutsideModule,
   ],
   entryComponents: [
     ConfirmComponent,
@@ -106,7 +141,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     FacebookShareComponent,
   ],
   providers: [
-    BackupService,
     LoginService,
     NotificationService,
     CustomConfirmationService,

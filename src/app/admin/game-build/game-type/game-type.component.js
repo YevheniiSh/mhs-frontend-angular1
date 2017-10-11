@@ -87,7 +87,6 @@ function GameType(gameTemplateService, openGameService, $routeParams, Notificati
     });
 
     gameTemplateService.getTemplateName(templateId).then(templateName => {
-      console.log(templateName);
       vm.templateName = templateName;
     });
   };

@@ -1,6 +1,5 @@
 import { Directive, ElementRef, Injector } from "@angular/core";
 import { UpgradeComponent } from "@angular/upgrade/static";
-import { upgradeDirective } from "../../template.loader";
 
 @Directive({
   selector: 'team-list',
@@ -11,4 +10,3 @@ export class TeamListComponentUpgrade extends UpgradeComponent {
   }
 }
 
-upgradeDirective('mhs.admin', 'teamList');

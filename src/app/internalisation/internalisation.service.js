@@ -20,7 +20,7 @@ angular
       .useMissingTranslationHandlerLog();
 
     tmhDynamicLocaleProvider.defaultLocale(locale);
-    tmhDynamicLocaleProvider.localeLocationPattern(`app/bower_components/angular-i18n/angular-locale_{{locale}}.js`);
+    tmhDynamicLocaleProvider.localeLocationPattern(`app/translations/angular-locale_{{locale}}.js`);
 
   }]);
 

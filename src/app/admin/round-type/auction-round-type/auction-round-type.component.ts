@@ -28,9 +28,6 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.showInputs = true;
-    console.log(this.routeParams.gameId);
-
-
     this.gameServiceFactory.getRoundByGameAndId(this.routeParams.gameId, this.routeParams.roundNumber)
       .then((round) => {
         this.round = round;
@@ -47,7 +44,6 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
 
   onSave(result) {
     result.score = result.rate * this.getCheckboxValue(result.status);
-    console.log(result);
     this.saved.emit(result);
   }
 
