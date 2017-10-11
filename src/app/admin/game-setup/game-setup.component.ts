@@ -52,6 +52,10 @@ export class GameSetupComponent implements OnInit {
   }
 
   setIsPrivateGame(event) {
+    if (event) {
+      this.defaultIsSeasonGame = false;
+      this.setIsSeasonGame(false);
+    }
     this.isPrivateGame.emit(event);
   }
 }
