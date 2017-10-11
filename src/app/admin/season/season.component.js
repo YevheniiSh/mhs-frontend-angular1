@@ -9,10 +9,10 @@
     });
 
   seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService',
-    'NotificationService', 'CustomConfirmationService'];
+    'NotificationService', 'CustomConfirmationService', 'ImageService'];
 
   function seasonsController($location, seasonService, $routeParams, $window, userAuthService,
-                             notificationService, customConfirmationService) {
+                             notificationService, customConfirmationService, imageService) {
 
     let vm = this;
 
@@ -23,6 +23,7 @@
     vm.$onInit = onInit;
 
     function onInit() {
+      vm.imageSaveRef = 'img/';
 
       seasonService.getContenderTeams(seasonId).then((res) => {
         vm.seasonTeams = res;
@@ -34,6 +35,7 @@
 
       seasonService.getCurrentSeason().then(season => {
         if (season) {
+          vm.season = season;
           if (season.$id === seasonId) {
             vm.isCurrentSeason = true;
 
@@ -63,6 +65,10 @@
           vm.isCurrentSeason = seasonStatus
         });
     }
+
+    vm.setImgUrl = function (url) {
+      imageService.setImgUrlToSeason(url, seasonId);
+    };
 
     vm.onBack = function () {
       $window.history.back();

@@ -4,10 +4,19 @@
     <button ng-if="$ctrl.user" class="btn btn-info" ng-click="$ctrl.teamResults()">{{'SHOW_RESULTS_BUTTON'|translate}}
     </button>
 
-    <mhs-facebook-share ng-if="$ctrl.gameFinished"
-                        [url]="$ctrl.shareURL"
-                        [title]="'Mad Head Show ' + '(' + $ctrl.date + ')'"
-                        [image-url]="'https://i.imgur.com/BJL1FjQ.png'"></mhs-facebook-share>
+    <mhs-facebook-share
+      ng-if="$ctrl.gameFinished"
+      [url]="$ctrl.shareURL"
+      [title]="'Mad Head Show ' + '(' + $ctrl.date + ')'"
+      [image-url]="$ctrl.shareImgUrl">
+    </mhs-facebook-share>
+
+
+    <mhs-file-upload
+      ng-if="$ctrl.gameFinished"
+      (saved)="$ctrl.setImgUrl($event)"
+      [save-ref]="$ctrl.imageSaveRef">
+    </mhs-file-upload>
 
     <div class="photos-link" ng-if="$ctrl.gameFinished && !$ctrl.linkEditor">
       <span class="no-photos-link" ng-if="$ctrl.photosUrl=='' || $ctrl.photosUrl==null">{{'NO_LINK_TO_PHOTOS_LABEL' | translate}}</span>

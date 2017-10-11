@@ -1,6 +1,10 @@
 mhs-facebook-share {
   float: right;
 }
+mhs-file-upload{
+  margin-right: 10px;
+  float: right;
+}
 
 .photos-link {
   line-height: 280%;

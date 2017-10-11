@@ -12,12 +12,16 @@ export class ImageService {
     this.db.object(`/seasons/${seasonId}`).update({ imgUrl });
   }
 
-  setImgUrlToOpenGame(imgUrl, gameId) {
+  setImgUrlToRegistration(imgUrl, gameId) {
     this.db.object(`/games/open/${gameId}`).update({ imgUrl });
   }
 
+  setImgUrlToFinishedGame(imgUrl, gameId) {
+    this.db.object(`/games/finished/${gameId}`).update({ imgUrl });
+  }
+
   getImgUrlFromSeason(seasonId): Observable<string> {
-    let url = new Observable((obs) => {
+    const url = new Observable((obs) => {
       this.db.object(`/seasons/${seasonId}/imgUrl`)
         .subscribe((res) => {
           obs.next(res.$value);
@@ -26,16 +30,9 @@ export class ImageService {
     return url;
   }
 
-  getImgUrlFromOpenGame(seasonId) {
-    return this.db.object(`/games/open/${seasonId}/imgUrl`)
-      .subscribe((res) => {
-        return res.$value;
-      });
-  }
-
-  getImgUrlFroGame(seasonId): Observable<string> {
-    let url = new Observable((obs) => {
-      this.db.object(`/seasons/${seasonId}/imgUrl`)
+  getImgUrlFromOpenGame(gameId): Observable<string> {
+    const url = new Observable((obs) => {
+      this.db.object(`/games/open/${gameId}/imgUrl`)
         .subscribe((res) => {
           obs.next(res.$value);
         });
@@ -43,4 +40,20 @@ export class ImageService {
     return url;
   }
 
+  getImgUrlFromFinishedGame(gameId): Observable<string> {
+    const url = new Observable((obs) => {
+      this.db.object(`/games/finished/${gameId}/imgUrl`)
+        .subscribe((res) => {
+          obs.next(res.$value);
+        });
+    });
+    return url;
+  }
+
+  getImgUrlFromSeasonAndGame(gameId, seasonId): Observable<string[]> {
+    return Observable.combineLatest(
+      this.getImgUrlFromFinishedGame(gameId),
+      this.getImgUrlFromSeason(seasonId)
+    );
+  }
 }

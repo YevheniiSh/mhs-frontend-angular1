@@ -22,8 +22,9 @@ export class FileUploadComponent implements OnInit {
   }
 
   uploadFile() {
-    this.uploadService.uploadFile(this.inputFile.files[0], this.saveRef).then((res) => {
-      this.saved.emit(res);
-    });
+    this.uploadService.uploadFile(this.inputFile.files[0], this.saveRef)
+      .then((res) => {
+        this.saved.emit(res);
+      });
   }
 }

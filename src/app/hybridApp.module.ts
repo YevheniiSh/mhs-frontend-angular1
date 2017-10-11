@@ -126,6 +126,7 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appHintRoundType', upgradeAdapter.downgradeNg2Component(HintRoundTypeComponent));
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
     this.mhsAdminModule.directive('mhsFacebookShare', upgradeAdapter.downgradeNg2Component(FacebookShareComponent));
+    this.mhsAdminModule.directive('mhsFileUpload', upgradeAdapter.downgradeNg2Component(FileUploadComponent));
     this.mhsAdminModule.directive('appConfirmComponent', upgradeAdapter.downgradeNg2Component(ConfirmComponent));
     this.mhsAdminModule.directive('appCaptainRoundType', upgradeAdapter.downgradeNg2Component(CaptainRoundTypeComponent));
     this.mhsAdminModule.directive('appSwitcher', upgradeAdapter.downgradeNg2Component(SwitcherComponent));
@@ -136,6 +137,7 @@ export class HybridAppModule {
     this.mhsAdminModule.service('login', upgradeAdapter.downgradeNg2Provider(LoginService));
     this.mhsAdminModule.service('NotificationService', upgradeAdapter.downgradeNg2Provider(NotificationService));
     this.mhsAdminModule.service('CustomConfirmationService', upgradeAdapter.downgradeNg2Provider(CustomConfirmationService));
+    this.mhsAdminModule.service('ImageService', upgradeAdapter.downgradeNg2Provider(ImageService));
   }
 
   private initFacebook() {

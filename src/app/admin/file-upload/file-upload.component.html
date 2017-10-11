@@ -1,2 +1,9 @@
-<input type='file' accept='image/*' (change)='setFile($event)'><br>
-<button (click)="uploadFile()">Upload</button>
+<span class="content">
+  <input type='file'
+         accept='image/*'
+         (change)='setFile($event)'>
+  <button class="btn btn-info"
+          (click)="uploadFile()"
+          translate="{{'UPLOAD_IMAGE'}}">
+  </button>
+</span>

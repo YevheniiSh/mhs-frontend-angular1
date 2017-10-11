@@ -7,9 +7,11 @@
       controller: GameResultsPageController
     });
 
-  GameResultsPageController.$inject = ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$location', '$window', 'userAuthService'];
+  GameResultsPageController.$inject = ['ResultServiceFactory', 'GameServiceFactory', '$routeParams',
+    '$location', '$window', 'userAuthService', 'ImageService', 'seasonService'];
 
-  function GameResultsPageController(ResultService, GameService, $routeParams, $location, $window, userAuthService) {
+  function GameResultsPageController(ResultService, GameService, $routeParams,
+                                     $location, $window, userAuthService, imageService, seasonService) {
 
     let vm = this;
 
@@ -18,6 +20,7 @@
     let gameId = $routeParams.gameId;
 
     function onInit() {
+      vm.imageSaveRef = 'img/';
       vm.gameId = $routeParams.gameId;
 
       vm.isGameCurrent = true;
@@ -49,8 +52,44 @@
       userAuthService.currentUser()
         .then((res) => {
           vm.user = res;
+        });
+
+      seasonService.getSeasonIdByGameId(vm.gameId)
+        .then((seasonId) => {
+          console.log('seasonId');
+          console.log(seasonId);
+          if (seasonId) {
+            getUrlFromGameAndSeason(vm.gameId, seasonId)
+          } else setGameImg()
         })
     }
+
+    let getUrlFromGameAndSeason = function (gameId, seasonId) {
+      imageService.getImgUrlFromSeasonAndGame(gameId, seasonId)
+        .subscribe(([gameImgUrl, seasonImgUrl]) => {
+          console.log('gameImgUrl '+ gameImgUrl);
+          console.log('seasonImgUrl ' + seasonImgUrl);
+          if (gameImgUrl) {
+            console.log('used gameImgUrl');
+            vm.shareImgUrl = gameImgUrl;
+          } else if (seasonImgUrl){
+            console.log('used seasonImgUrl');
+            vm.shareImgUrl = seasonImgUrl;
+          }
+          console.log('__');
+        })
+    };
+
+    let setGameImg = function () {
+      imageService.getImgUrlFromFinishedGame(vm.gameId)
+        .subscribe((url) => {
+          console.log('gameUrl');
+          if (url) {
+            console.log('gameUrl');
+            vm.shareImgUrl = url;
+          }
+        });
+    };
 
     vm.shareURL = $location.absUrl();
 
@@ -72,6 +111,10 @@
       let photosUrlPath = photosUrlArray[3];
       let photosUrlLastCharacters = link.substring(link.length - 6);
       return photosUrlDomain + "/" + photosUrlPath + "/..." + photosUrlLastCharacters;
+    };
+
+    vm.setImgUrl = function (url) {
+      imageService.setImgUrlToFinishedGame(url, vm.gameId);
     };
 
     vm.onBack = function () {
