@@ -58,12 +58,6 @@ open-game-list .wide-panel {
   width: 45%;
 }
 
-open-game-list .privacy-icon {
-  position: absolute;
-  left: -10px;
-  top: 3px;
-}
-
 @media screen and (max-width: 750px) {
   open-game-list .game-date {
     width: 25%;

@@ -61,12 +61,6 @@ finished-game-list .trophy {
   color: goldenrod;
 }
 
-finished-game-list .privacy-icon {
-  position: absolute;
-  left: -10px;
-  top: 3px;
-}
-
 @media screen and (max-width: 720px){
   finished-game-list .winner-cell{
     width: 37%;
