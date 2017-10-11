@@ -5,8 +5,8 @@ import { Downgrade } from '../../hybrid/downgrade';
 
 const options = { closeByClickingOutside: true, backdropColor: 'rgba(0,0,0,0.5)' };
 
-@Injectable()
 @Downgrade()
+@Injectable()
 export class CustomConfirmationService {
 
   constructor(private confirmation: DialogService) {
