@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 import { Downgrade } from '../../../hybrid/downgrade';
 
 @Component({
-  selector: 'app-hint-round-type',
+  selector: 'mhs-hint-round-type',
   templateUrl: './hint-round-type.component.html',
   styleUrls: ['./hint-round-type.component.css']
 })

@@ -8,7 +8,7 @@ export interface ConfirmModel {
 }
 
 @Component({
-  selector: 'app-confirm-component',
+  selector: 'mhs-confirm-component',
   templateUrl: './confirm.component.html'
 })
 @Downgrade()

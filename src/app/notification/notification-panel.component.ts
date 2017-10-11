@@ -3,7 +3,7 @@ import { Component, ViewContainerRef } from '@angular/core';
 import { Downgrade } from '../hybrid/downgrade';
 
 @Component({
-  selector: 'notification-panel',
+  selector: 'mhs-notification-panel',
   templateUrl: 'notification-panel.component.html'
 })
 @Downgrade()

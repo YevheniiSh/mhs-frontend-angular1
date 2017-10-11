@@ -7,7 +7,7 @@ import { Downgrade } from '../../hybrid/downgrade';
 
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'mhs-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })

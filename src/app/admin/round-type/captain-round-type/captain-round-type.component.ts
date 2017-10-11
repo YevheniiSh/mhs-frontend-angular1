@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 import { Downgrade } from '../../../hybrid/downgrade';
 
 @Component({
-  selector: 'app-captain-round-type',
+  selector: 'mhs-captain-round-type',
   templateUrl: './captain-round-type.component.html',
   styleUrls: ['./captain-round-type.component.css']
 })

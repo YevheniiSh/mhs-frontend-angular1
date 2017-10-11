@@ -4,7 +4,7 @@ import { CustomConfirmationService } from '../../services/confirmation-service/c
 import { Downgrade } from '../../hybrid/downgrade';
 
 @Component({
-  selector: 'app-game-template',
+  selector: 'mhs-game-template',
   templateUrl: './game-template.component.html',
   styleUrls: ['./game-template.component.css']
 })

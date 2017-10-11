@@ -3,7 +3,7 @@ import { trigger } from '@angular/animations';
 import { Downgrade } from '../../../hybrid/downgrade';
 
 @Component({
-  selector: 'app-auction-round-type',
+  selector: 'mhs-auction-round-type',
   templateUrl: './auction-round-type.component.html',
   styleUrls: ['./auction-round-type.component.css'],
   animations: [

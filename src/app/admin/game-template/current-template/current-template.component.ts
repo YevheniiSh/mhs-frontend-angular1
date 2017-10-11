@@ -4,7 +4,7 @@ import { NotificationService } from '../../../services/notification-service/noti
 import { Downgrade } from '../../../hybrid/downgrade';
 
 @Component({
-  selector: 'app-current-template',
+  selector: 'mhs-current-template',
   templateUrl: './current-template.component.html',
   styleUrls: ['./current-template.component.css']
 })

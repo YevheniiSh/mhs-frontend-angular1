@@ -65,10 +65,10 @@ angular
       template: '<team-results></team-results>',
     });
     $routeProvider.when('/templates', {
-      template: '<app-game-template></app-game-template>',
+      template: '<mhs-game-template></mhs-game-template>',
     });
     $routeProvider.when('/templates/:templateId', {
-      template: '<app-game-template></app-game-template>',
+      template: '<mhs-game-template></mhs-game-template>',
     });
     $routeProvider.when('/seasons', {
       template: '<season-list></season-list>'

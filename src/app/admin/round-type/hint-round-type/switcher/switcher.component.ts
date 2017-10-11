@@ -3,7 +3,7 @@ import { trigger } from '@angular/animations';
 import { Downgrade } from '../../../../hybrid/downgrade';
 
 @Component({
-  selector: 'app-switcher',
+  selector: 'mhs-switcher',
   templateUrl: './switcher.component.html',
   styleUrls: ['./switcher.component.css'],
   animations: [
