@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { Downgrade } from '../../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
   selector: 'mhs-hint-round-type',
   templateUrl: './hint-round-type.component.html',
   styleUrls: ['./hint-round-type.component.css']
 })
-@Downgrade()
 export class HintRoundTypeComponent implements OnInit {
 
   step;

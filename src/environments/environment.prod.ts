@@ -18,7 +18,6 @@ import '../../lib/services/game-service/game-service.service.js';
 import '../../lib/services/result-service/result-service.module.js';
 import '../../lib/services/game-request-service/game-request-service.module.js';
 import '../../lib/services/game-request-service/game-request-service.service.js';
-import '../../lib/admin/create-game/create-game.module.js';
 import '../../lib/services/result-service/result-service.service.js';
 import '../../lib/admin/round-builder/round-builder.module.js';
 import '../../lib/admin/round-builder/round-builder.component.js';
@@ -45,7 +44,6 @@ import '../../lib/admin/season/season.component.js';
 import '../../lib/admin/season/season-list/season-list.component.js';
 import '../../lib/services/team-request-service/team-request-service.module.js';
 import '../../lib/services/team-request-service/team-request-service.service.js';
-import '../../lib/admin/create-game/create-game.component.js';
 import '../../lib/admin/team-results/team-results.module.js';
 import '../../lib/admin/team-results/team-results.component.js';
 import '../../lib/admin/team-result-types/auction-result/auction-result.component.js';
@@ -64,8 +62,6 @@ import '../../lib/admin/game-build/config-game/config-game.component.js';
 import '../../lib/admin/add-teams/add-teams.component.js';
 import '../../lib/admin/round-type/default/default-round.component.js';
 import '../../lib/admin/round-type/default/default-round.service.js';
-import '../../lib/admin/round-status/round-status.module.js';
-import '../../lib/admin/round-status/round-status-component.js';
 import '../../lib/admin/login/login.module.js';
 import '../../lib/admin/login/login.component.js';
 import '../../lib/admin/login-panel/login-panel.module.js';
@@ -86,6 +82,9 @@ import '../../lib/services/season-service/season-service.module.js';
 import '../../lib/services/season-service/season-service.service.js';
 import '../../lib/services/round-type-service/round-type-service.module.js';
 import '../../lib/services/round-type-service/round-type-service.service.js';
+
+import '../../tmp/admin-template-cache.min.js';
+import '../../tmp/player-template-cache.min.js';
 
 export const environment = {
   production: true,

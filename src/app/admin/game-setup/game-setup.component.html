@@ -1,0 +1,22 @@
+<div class="col-md-2">
+  <mhs-date-picker (date)="setGameDate($event)" [defaultDate]="defaultDate"></mhs-date-picker>
+</div>
+<div class="col-md-2">
+  <mhs-time-picker (time)="setGameTime($event)" [defaultTime]="defaultTime"></mhs-time-picker>
+</div>
+<div class="col-md-2">
+  <div class="location" [formGroup]="locationInput">
+    <input class="form-control"
+           formControlName="location"
+           [(ngModel)]="defaultLocation"
+           (blur)="setGameLocation()"
+           name="location"
+           placeholder="{{'LOCATION_PLACEHOLDER' | translate}}">
+  </div>
+</div>
+<div class="col-md-3">
+  <mhs-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
+                     [isSeasonGame]="defaultIsSeasonGame"
+                     (currentSeason)="setSeason($event)" #seasonPicker>
+  </mhs-season-picker>
+</div>

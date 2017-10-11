@@ -1,3 +1,5 @@
+import { environment } from '../environments/environment';
+
 export function upgradeDirective(moduleName, invokedName) {
   angular.module(moduleName).config(config);
 
@@ -6,27 +8,25 @@ export function upgradeDirective(moduleName, invokedName) {
   }
 
   function decorator($delegate) {
-    let directive = $delegate[0];
+    const directive = $delegate[0];
 
     if (directive.hasOwnProperty('compile')) {
       delete directive.compile;
     }
 
-    if (directive.hasOwnProperty('replace')) {
-      delete directive.replace;
-    }
+    if (!environment.production) {
+      if (directive.hasOwnProperty('templateUrl')) {
+        const directiveTemplateUrl = directive.templateUrl.substring(directive.templateUrl.indexOf('app/'));
 
-    if (directive.hasOwnProperty('templateUrl')) {
-      let directiveTemplateUrl = directive.templateUrl.substring(directive.templateUrl.indexOf('app/'));
+        delete directive.templateUrl;
 
-      delete directive.templateUrl;
+        directive.template = readTextFile(directiveTemplateUrl);
+      }
 
-      directive.template = readTextFile(directiveTemplateUrl);
-    }
-
-    if (directive.hasOwnProperty('css')) {
-      let cssUrl = directive.css.substring(directive.css.indexOf('app/'));
-      directive.template = directive.template.replace(/^/, '<link href="' + cssUrl + '" rel="stylesheet">');
+      if (directive.hasOwnProperty('css')) {
+        const cssUrl = directive.css.substring(directive.css.indexOf('app/'));
+        directive.template = directive.template.replace(/^/, '<link href="' + cssUrl + '" rel="stylesheet">');
+      }
     }
 
     return $delegate;
@@ -34,8 +34,8 @@ export function upgradeDirective(moduleName, invokedName) {
 }
 
 function readTextFile(file) {
-  let rawFile = new XMLHttpRequest();
-  rawFile.open("GET", file, false);
+  const rawFile = new XMLHttpRequest();
+  rawFile.open('GET', file, false);
   rawFile.send(null);
   return rawFile.responseText;
 }

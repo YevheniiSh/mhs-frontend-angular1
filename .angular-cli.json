@@ -24,11 +24,6 @@
           "glob": "**/translations/*",
           "input": "./app/",
           "output": "./app/"
-        },
-        {
-          "glob": "**/bower_components/angular-i18n/*",
-          "input": "./app/",
-          "output": "./app/"
         }
       ],
       "index": "index.html",
@@ -41,6 +36,7 @@
       "styles": [
         "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/ngx-bootstrap-base/dist/datepicker/bs-datepicker.css",
         "../bower_components/components-font-awesome/css/font-awesome.min.css",
         "styles.css",
         "app/public/css/spinner.css",
@@ -54,7 +50,6 @@
         "../node_modules/systemjs/dist/system.js",
         "../node_modules/firebase/firebase.js",
         "../bower_components/angular/angular.js",
-        "../bower_components/angular-messages/angular-messages.js",
         "../bower_components/angular-translate/angular-translate.js",
         "../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
         "../bower_components/angular-bootstrap/ui-bootstrap.js",

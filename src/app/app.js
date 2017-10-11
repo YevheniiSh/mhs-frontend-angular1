@@ -2,7 +2,6 @@
 
 angular.module('mhs', [
   'ngRoute',
-  'ngMessages',
   'mhs.admin',
   'mhs.player',
   'angularCSS',
@@ -19,7 +18,8 @@ angular.module('mhs', [
   'gameBuildService',
   'convertService',
   'roundTypeService',
-  'seasonService'
+  'seasonService',
+  'roundService'
 ])
   .config(['$locationProvider', '$routeProvider', '$animateProvider',
     function ($locationProvider, $routeProvider, $animateProvider) {

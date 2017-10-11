@@ -1,0 +1,49 @@
+<div class="container">
+  <header id="round-header">
+    <h1 translate="{{'ROUNDS_HEADER'}}"></h1>
+  </header>
+  <div>
+    <div class="row">
+      <div id="round-status-panel">
+
+        <mhs-round-panel
+          [title]="'PREVIOUS_ROUNDS_TITLE'"
+          [btnClass]="'btn-success'"
+          [rounds]="prevRounds">
+        </mhs-round-panel>
+
+        <mhs-round-panel
+          [title]="'CURRENT_ROUND_TITLE'"
+          [btnClass]="'btn-warning'"
+          [rounds]="currentRound"
+          [hasLink]="true">
+        </mhs-round-panel>
+
+        <mhs-round-panel
+          [title]="'NEXT_ROUNDS_TITLE'"
+          [btnClass]="'btn-silver'"
+          [rounds]="nextRounds">
+        </mhs-round-panel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 round-button-panel">
+        <a class="btn btn-info btn-lg btn-block"
+           href="#!/games/{{gameId}}/results"
+           translate="{{'SHOW_RESULTS_BUTTON'}}">
+        </a>
+      </div>
+      <div class="col-md-4 col-md-offset-4 round-button-panel"
+           *ngIf="checked">
+        <button (click)="finishRound()"
+                [disabled]="disableFinished"
+                class="btn btn-warning btn-lg btn-block">
+          <span class="start-ico"
+                translate="{{'FINISH_GAME_BUTTON'}}">
+          </span>
+          <i class="fa fa-flag-checkered"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

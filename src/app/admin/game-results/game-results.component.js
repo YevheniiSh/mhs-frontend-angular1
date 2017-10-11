@@ -35,7 +35,6 @@
       let parsedScore = Number(score);
       if (isInteger(score)){
         Math.round(parsedScore);
-        console.log(parsedScore);
       }
       return parsedScore;
     }

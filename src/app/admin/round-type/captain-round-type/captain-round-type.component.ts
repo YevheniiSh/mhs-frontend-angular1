@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { Downgrade } from '../../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
   selector: 'mhs-captain-round-type',
   templateUrl: './captain-round-type.component.html',
   styleUrls: ['./captain-round-type.component.css']
 })
-@Downgrade()
 export class CaptainRoundTypeComponent implements OnInit {
   @Input() results;
   @Input() quizWeight;

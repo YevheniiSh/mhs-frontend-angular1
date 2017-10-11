@@ -1,0 +1,41 @@
+<div class="season-name" *ngIf="!season">
+  <span id="no-season"
+        class="clickable"
+        *ngIf="!isSeasonEditor"
+        (click)="isSeasonEditor = true">
+    <span>{{'NO_SEASON_LABEL'| translate}}</span>
+    <i class="fa fa-pencil link-pencil link-icon" aria-hidden="true"></i>
+  </span>
+  <span class="season-name-editor" *ngIf="isSeasonEditor">
+    <input id="season-name-input"
+           class="form-control"
+           (focus)="showSeasonNameValidation = false"
+           (change)="showSeasonNameValidation = false"
+           [ngClass]="{'invalid-season-name':showSeasonNameValidation}"
+           (keyup.esc)="closeSeasonEditor()"
+           (keyup.enter)="saveSeason()"
+           focused="true"
+           [(ngModel)]="newSeasonName"
+           autocomplete="off" type="text">
+    <i class="fa fa-check link-icon" (click)="saveSeason()"></i>
+    <i class="fa fa-times link-icon" (click)="closeSeasonEditor()"></i>
+  </span>
+  <div class="empty-season-name"
+       *ngIf="showSeasonNameValidation">
+    {{'EMPTY_FIELD_MASSAGE' | translate}}
+  </div>
+</div>
+<div *ngIf="season">
+  <label class="switch">
+    <input id="season-switch"
+           type="checkbox"
+           [ngModel]="isSeasonGame"
+           (ngModelChange)="checkboxUpdate($event)">
+    <span class="slider round"></span>
+  </label>
+  <label id="season-name-switch"
+         [ngClass]="{'disabled' : !isSeasonGame, 'enabled':isSeasonGame}"
+         for="season-switch">
+    {{season.name}}
+  </label>
+</div>

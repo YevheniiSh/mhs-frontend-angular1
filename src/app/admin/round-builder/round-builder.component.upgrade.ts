@@ -13,4 +13,4 @@ export class RoundBuilderComponentUpgrade extends UpgradeComponent {
   }
 }
 
-upgradeDirective('mhs.admin', 'roundBuilder');
+upgradeDirective('roundBuilder', 'roundBuilder');
