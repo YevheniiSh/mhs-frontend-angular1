@@ -5,12 +5,10 @@ angular
     'addTeams',
     'gameType',
     'gameResultsPage',
-    'roundStatus',
     'teamResults',
     'login',
     'login-panel',
     'game-list',
-    'createGame',
     'configGame',
     'roundBuilder',
     'ui.bootstrap',
@@ -28,7 +26,7 @@ angular
       resolve: isAuth
     });
     $routeProvider.when('/games/:gameId/rounds', {
-      template: '<round-status></round-status>',
+      template: '<mhs-game-progress></mhs-game-progress>',
       resolve: isAuth
     });
     $routeProvider.when('/login', {

@@ -1,0 +1,10 @@
+<mhs-game-setup [defaultDate]="currentGameDate"
+                [defaultTime]="currentGameTime"
+                [defaultLocation]="location"
+                [defaultIsSeasonGame]="isSeasonGame"
+                (date)="setGameDate($event)"
+                (time)="setGameTime($event)"
+                (isSeasonGame)="setIsSeasonGame($event)"
+                (season)="setSeason($event)"
+                (location)="setGameLocation($event)">
+</mhs-game-setup>

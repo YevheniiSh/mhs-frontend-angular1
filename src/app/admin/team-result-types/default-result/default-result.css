@@ -19,7 +19,7 @@ default-result .result{
 }
 
 @media screen and (min-width: 721px){
-  default-result .result-label:nth-child(5) {
+  default-result .result-label:nth-child(5n+5) {
     margin-right: 20px;
   }
 }
