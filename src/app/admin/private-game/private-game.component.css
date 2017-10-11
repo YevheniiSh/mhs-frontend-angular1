@@ -1,7 +1,8 @@
 #is-private-game {
-  margin-top: 7.5px;
+  margin-top: 7px;
   padding: 0px 15px;
   position: relative;
+  cursor: pointer;
 }
 
 #lock {
