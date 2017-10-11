@@ -2,6 +2,7 @@ import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange
 import { trigger } from '@angular/animations';
 import { Downgrade } from '../../../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
   selector: 'mhs-switcher',
   templateUrl: './switcher.component.html',
@@ -9,9 +10,7 @@ import { Downgrade } from '../../../../hybrid/downgrade';
   animations: [
     trigger('myRadio', [])]
 })
-@Downgrade()
 export class SwitcherComponent implements OnChanges {
-
 
   @Input() result;
   @Input() index;

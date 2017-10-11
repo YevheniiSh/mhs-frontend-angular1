@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Injector, Input } from '@angular/core';
 import { UpgradeComponent } from '@angular/upgrade/static';
-import { upgradeDirective } from "../../template.loader";
+import { upgradeDirective } from '../../template.loader';
 
 @Directive({
   selector: 'round-builder',

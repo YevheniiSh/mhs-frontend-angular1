@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr';
 import { CollapseModule } from 'ngx-bootstrap-base/dist/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap-base/dist/dropdown';
@@ -57,10 +57,13 @@ import { SeasonPickerComponent } from './admin/season-picker/season-picker.compo
 import { CreateGameComponent } from './admin/create-game/create-game.component';
 import { EditGameComponent } from './admin/edit-game/edit-game.component';
 import { defineLocale } from 'ngx-bootstrap-base/dist/bs-moment';
-
 import { enGb, ru, uk } from 'ngx-bootstrap-base/dist/locale';
-
 import { GameSetupComponent } from './admin/game-setup/game-setup.component';
+import { OpenGameService } from './services/game-service/open-game-service/open-game.service.upgrade';
+import { SeasonService } from './services/season-service/season.service.upgrade';
+import { ConvertService } from './services/convert-service/convert.service.upgrade';
+import { GameBuildService } from './services/game-build-service/game-build.service.upgrade';
+import { RoundStatusService } from './services/round-service/round-status.service.upgrade';
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
@@ -124,7 +127,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BootstrapModalModule.forRoot({ container: document.body }),
     UpgradeModule,
     AngularJsProvider.forRoot(),
-    DowngradeProvider
+    DowngradeProvider,
     ClickOutsideModule,
   ],
   entryComponents: [
@@ -139,6 +142,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     CaptainRoundTypeComponent,
     SwitcherComponent,
     FacebookShareComponent,
+    CreateGameComponent,
+    SeasonPickerComponent,
+    EditGameComponent,
+    GameProgressComponent
   ],
   providers: [
     LoginService,
@@ -152,6 +159,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     GameService,
     ResultService,
     TranslateService,
+    OpenGameService,
+    SeasonService,
+    ConvertService,
+    GameBuildService,
+    RoundStatusService
   ],
 })
 export class HybridAppModule {

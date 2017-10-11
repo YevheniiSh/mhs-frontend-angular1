@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { Downgrade } from '../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
-  selector: 'app-create-game',
+  selector: 'mhs-create-game',
   templateUrl: './create-game.component.html',
   styleUrls: ['./create-game.component.css']
 })
@@ -17,7 +19,7 @@ export class CreateGameComponent implements OnInit {
   defaultDate = new Date();
 
   createNewGame = function () {
-    let gameBuider = this.gameBuild.addDate(this.gameDate)
+    const gameBuider = this.gameBuild.addDate(this.gameDate)
       .addTime(this.gameTime)
       .addLocation(this.location);
     if (this.isSeasonGame) {
@@ -25,12 +27,11 @@ export class CreateGameComponent implements OnInit {
     } else {
       delete gameBuider.game.season;
     }
-    let game = gameBuider.buildGame();
+    const game = gameBuider.buildGame();
 
     if (this.isSeasonGame) {
       this.openGameService.createNewGame(game, this.season);
-    }
-    else {
+    } else {
       this.openGameService.createNewGame(game);
     }
 
@@ -40,19 +41,19 @@ export class CreateGameComponent implements OnInit {
 
   setGameDate(date) {
     this.gameDate = date;
-  };
+  }
 
   setGameTime(time) {
     this.gameTime = time;
-  };
+  }
 
   setSeason(season) {
     this.season = season;
-  };
+  }
 
   setIsSeasonGame(isSeasonGame) {
     this.isSeasonGame = isSeasonGame;
-  };
+  }
 
   setGameLocation(location) {
     this.location = location;

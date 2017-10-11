@@ -1,8 +1,10 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { NotificationService } from "../../services/notification-service/notification.service";
+import { NotificationService } from '../../services/notification-service/notification.service';
+import { Downgrade } from '../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
-  selector: 'app-edit-game',
+  selector: 'mhs-edit-game',
   templateUrl: './edit-game.component.html',
   styleUrls: ['./edit-game.component.css']
 })
@@ -76,12 +78,11 @@ export class EditGameComponent implements OnInit {
 
   setIsSeasonGame(isSeasonGame) {
     this.isSeasonGame = isSeasonGame;
-    let seasonInGame = { id: this.season.$id, name: this.season.name };
+    const seasonInGame = { id: this.season.$id, name: this.season.name };
     if (this.isSeasonGame) {
       this.openGameService.changeSeason(this.gameId, seasonInGame)
         .then(this.showSuccess('SAVE_SEASON_MESSAGE'));
-    }
-    else {
+    } else {
       this.openGameService.deleteSeason(this.gameId, seasonInGame)
         .then(this.showSuccess('SAVE_SEASON_MESSAGE'));
     }
@@ -94,7 +95,7 @@ export class EditGameComponent implements OnInit {
   showSuccess(message) {
     return () => {
       this.notificationService.showSuccess(message);
-    }
+    };
   }
 
 }

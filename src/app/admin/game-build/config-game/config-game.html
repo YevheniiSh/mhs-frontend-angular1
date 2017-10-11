@@ -3,7 +3,7 @@
     <button id="button-back" class="btn btn-success" ng-click="$ctrl.onBack()">{{'BACK_BUTTON' | translate}}
     </button>
   </div>
-  <app-edit-game [game-id]="$ctrl.gameId"></app-edit-game>
+  <mhs-edit-game [game-id]="$ctrl.gameId"></mhs-edit-game>
   <div class="row"></div>
   <uib-tabset active="$ctrl.activeTab">
     <uib-tab index="$ctrl.tabs[0]" heading="{{'TEAMS_TAB_NAME' | translate}}"
