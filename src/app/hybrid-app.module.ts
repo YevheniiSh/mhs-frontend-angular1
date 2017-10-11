@@ -44,7 +44,10 @@ import { DowngradeProvider } from './hybrid/downgrade.provider';
 import { environment } from '../environments/environment';
 import { TranslateService } from './services/translate-service/translate.service.upgrade';
 import { FacebookModule, FacebookService } from 'ngx-facebook';
-import { FacebookShareComponent } from './facebook-share/facebook-share.component';
+import { FacebookShareComponent } from './common/facebook/share/facebook-share.component';
+import { PromptComponent } from './common/modal-prompt/prompt.component';
+import { FacebookGroupPostComponent } from './common/facebook/group-post/facebook-group-post.component';
+import { FacebookGroupPostService } from './common/facebook/group-post/facebook-group-post.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/app/translations/', '.json');
@@ -67,6 +70,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SwitcherComponent,
     ConfirmComponent,
     FacebookShareComponent,
+    PromptComponent,
+    FacebookGroupPostComponent,
   ],
   imports: [
     FormsModule,
@@ -104,6 +109,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CaptainRoundTypeComponent,
     SwitcherComponent,
     FacebookShareComponent,
+    PromptComponent,
+    FacebookGroupPostComponent,
   ],
   providers: [
     BackupService,
@@ -118,6 +125,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     GameService,
     ResultService,
     TranslateService,
+    FacebookGroupPostService
   ],
 })
 export class HybridAppModule {

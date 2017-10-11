@@ -89,6 +89,9 @@ import '../../lib/services/round-type-service/round-type-service.service.js';
 
 export const environment = {
   production: true,
-  facebookAppId: '150159422250915'
+  // facebookAppId: '345296772581625',
+  // facebookGroupId: '119692302046800'
+  facebookAppId: '150159422250915',
+  facebookGroupId: '1184122571644840'
 };
 

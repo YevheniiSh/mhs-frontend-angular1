@@ -170,5 +170,10 @@
   "FINISH_ROUND_CONFIRMATION_TITLE": "Закончить раунд?",
   "CLOSE_SEASON_CONFIRMATION_TITLE": "Закрыть сезон?",
   "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?",
-  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?"
+  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?",
+  "FACEBOOK_AUTH_ERROR": "Ошибка при входе в Facebook",
+  "FACEBOOK_GROUP_POST_ERROR": "Произошла ошибка при отправке поста в группу в Facebook",
+  "FACEBOOK_GROUP_POST_SUCCESS": "Пост опубликован",
+  "FACEBOOK_GROUP_POST_PROMPT_TITLE": "Пошарить ссылку регистрации на игру в группу Facebook",
+  "FACEBOOK_GROUP_POST_PROMPT_DESCRIPTION": "Напишите сообщение для поста в группу Facebook"
 }

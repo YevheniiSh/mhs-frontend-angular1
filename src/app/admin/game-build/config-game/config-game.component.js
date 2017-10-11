@@ -24,6 +24,7 @@
       vm.options.minDate = new Date();
       vm.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
       vm.isMeridian = false;
+      vm.currentGameRegisterPath = getGameRegisterAbsUrl();
 
       OpenGameService.getDate(gameId).then((res) => {
         vm.gameDate = new Date(res);
@@ -38,6 +39,11 @@
       });
 
       getIndexTab();
+    }
+
+    function getGameRegisterAbsUrl() {
+      const baseLen = $location.absUrl().length - $location.url().length;
+      return $location.absUrl().substr(0, baseLen) + '/games/' + gameId + '/registration';
     }
 
     function getIndexTab() {
