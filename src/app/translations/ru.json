@@ -172,5 +172,6 @@
   "CLOSE_SEASON_CONFIRMATION_TITLE": "Закрыть сезон?",
   "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?",
-  "UPLOAD_IMAGE": "Загрузить"
+  "UPLOAD_IMAGE": "Загрузить",
+  "DOWNLOAD_BACKUP": "Скачать backup"
 }
