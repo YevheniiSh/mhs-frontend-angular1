@@ -1,9 +1,19 @@
-<span class="content">
+<span *ngIf="(user | async)"
+      class="content">
   <input type='file'
+         #inputFile
+         id="file-upload"
          accept='image/*'
          (change)='setFile($event)'>
-  <button class="btn btn-info"
-          (click)="uploadFile()"
-          translate="{{'UPLOAD_IMAGE'}}">
+
+   <button class="btn btn-info choose-img"
+           (click)="chooseFile()"
+           translate="{{'CHOOSE_IMAGE'}}">
   </button>
+
+  <!--<button *ngIf="isFileVadlid"-->
+          <!--class="btn btn-info"-->
+          <!--(click)="uploadFile()"-->
+          <!--translate="{{'UPLOAD_IMAGE'}}">-->
+  <!--</button>-->
 </span>

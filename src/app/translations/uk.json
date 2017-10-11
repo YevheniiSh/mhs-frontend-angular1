@@ -172,5 +172,8 @@
   "FINISH_HINTS_ROUND_CONFIRMATION": "Всі команди відповіли, закінчити раунд?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Усі капітани вибули, завершити раунд?",
   "UPLOAD_IMAGE": "Завантажити",
+  "CHOOSE_IMAGE": "Вибрати зображння",
+  "FILE_TYPE_ERR": "Невірний формат файлу",
+  "FILE_SUCCESS_SAVED": "Зображення збережено",
   "DOWNLOAD_BACKUP": "Скачати backup"
 }

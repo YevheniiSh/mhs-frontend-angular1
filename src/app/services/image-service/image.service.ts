@@ -30,7 +30,7 @@ export class ImageService {
     return url;
   }
 
-  getImgUrlFromOpenGame(gameId): Observable<string> {
+  getRegistrationImg(gameId): Observable<string> {
     const url = new Observable((obs) => {
       this.db.object(`/games/open/${gameId}/imgUrl`)
         .subscribe((res) => {
@@ -55,5 +55,9 @@ export class ImageService {
       this.getImgUrlFromFinishedGame(gameId),
       this.getImgUrlFromSeason(seasonId)
     );
+  }
+
+  deleteImgFromSeason(seasonId) {
+    this.db.object(`/seasons/${seasonId}/imgUrl`).remove()
   }
 }

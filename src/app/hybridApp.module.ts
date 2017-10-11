@@ -124,7 +124,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ClickOutsideModule,
   ],
   entryComponents: [ConfirmComponent],
-  providers: [ LoginService, NotificationService, CustomConfirmationService]
+  providers: [ LoginService, NotificationService, CustomConfirmationService, UploadService, ImageService]
 })
 export class HybridAppModule {
   private mhsAdminModule = angular.module('mhs.admin');

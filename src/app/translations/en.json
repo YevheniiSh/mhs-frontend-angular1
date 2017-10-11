@@ -172,6 +172,9 @@
   "CLOSE_SEASON_CONFIRMATION_TITLE": "Close season?",
   "FINISH_HINTS_ROUND_CONFIRMATION": "All teams answered, do you want to finish round?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?",
-  "DOWNLOAD_BACKUP": "Download backup",
-  "UPLOAD_IMAGE": "Upload"
+  "UPLOAD_IMAGE": "Upload",
+  "CHOOSE_IMAGE": "Choose image",
+  "FILE_TYPE_ERR": "Wrong file format",
+  "FILE_SUCCESS_SAVED": "Image saved",
+  "DOWNLOAD_BACKUP": "Download backup"
 }
