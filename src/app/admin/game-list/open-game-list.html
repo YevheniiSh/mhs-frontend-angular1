@@ -1,7 +1,7 @@
 <app-create-game ng-if="$ctrl.auth"></app-create-game>
 
 <ul class="game-list"
-    ng-if="$ctrl.hasGames()">
+    ng-if="$ctrl.hasVisibleGames()">
   <li>
     <div  class="row game-list-item header">
       <div class="game-date">{{'DATE_LABEL' | translate}}</div>
@@ -53,7 +53,7 @@
     </div>
   </li>
 </ul>
-<div ng-if="!$ctrl.hasGames()" class="no-games-label">
+<div ng-if="!$ctrl.hasVisibleGames()" class="no-games-label">
   {{'NO_OPEN_GAME_PLACEHOLDER' | translate}}
 </div>
 

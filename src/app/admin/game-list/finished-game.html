@@ -1,4 +1,4 @@
-<div ng-if="$ctrl.hasGames()">
+<div ng-if="$ctrl.hasVisibleGames()">
   <div class="row" id="select-season-container" >
     <select id="select-season" class="form-control" ng-model="$ctrl.selectedSeason"
             ng-options="season.name for season in $ctrl.seasons">
@@ -38,7 +38,7 @@
     </li>
   </ul>
 </div>
-<div ng-if="!$ctrl.hasGames()" class="no-games-label">
+<div ng-if="!$ctrl.hasVisibleGames()" class="no-games-label">
   {{'NO_FINISHED_GAME_PLACEHOLDER' | translate}}
 </div>
 

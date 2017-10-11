@@ -58,7 +58,7 @@
         vm.auth = false;
       });
 
-    vm.hasGames = function () {
+    vm.hasVisibleGames = function () {
       if (vm.games !== undefined) {
         return vm.games.length !== 0 && vm.games.length !== undefined && vm.filteredGames.length !== 0;
       } else {
