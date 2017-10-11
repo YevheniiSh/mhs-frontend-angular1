@@ -92,7 +92,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoundPanelComponent,
     BackupDirective,
     FacebookShareComponent,
-    GameSetupComponent
+    GameSetupComponent,
+    GameProgressComponent
   ],
   imports: [
     FormsModule,
