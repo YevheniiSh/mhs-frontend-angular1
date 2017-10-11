@@ -28,7 +28,6 @@ angular.module('userAuthService')
             let fbObj = $firebaseObject(usersRef.child(uid));
             return fbObj.$loaded()
               .then((res) => {
-                console.log(res);
                 if (res.$value) {
                   return res.$value;
                 }
