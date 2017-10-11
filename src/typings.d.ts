@@ -1,6 +1,6 @@
 /* SystemJS module definition */
 declare var module: NodeModule;
-
-interface NodeModule {
+declare const firebase: any;
+  interface NodeModule {
   id: string;
 }
