@@ -21,6 +21,7 @@
         .getAllFinishedGames()
         .then((games) => {
           vm.games = games;
+          vm.filteredGames = games;
 
           vm.parseDate();
           vm.games.forEach((item) => {
@@ -50,11 +51,19 @@
 
     userService.currentUser()
       .then(() => {
-        vm.filteredGames = undefined;
+        vm.filteredGames = vm.games;
         vm.auth = true;
       })
       .catch(() => {
         vm.auth = false;
       });
+
+    vm.hasGames = function () {
+      if (vm.games !== undefined) {
+        return vm.games.length !== 0 && vm.games.length !== undefined && vm.filteredGames.length !== 0;
+      } else {
+        return true;
+      }
+    };
   }
 })();

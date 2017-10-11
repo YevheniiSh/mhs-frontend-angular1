@@ -18,6 +18,7 @@
         function onInit() {
             openGameFactory.getAllOpenGames().then((games) => {
                 vm.openGames = games;
+              vm.filteredGames = games;
                 vm.parseDate();
 
                 vm.openGames.$watch(() => {
@@ -73,7 +74,7 @@
 
         userService.currentUser()
             .then(() => {
-                vm.filteredGames = undefined;
+              vm.filteredGames = vm.openGames;
                 vm.auth = true;
             })
             .catch(() => {
@@ -113,5 +114,13 @@
         function cancel() {
           vm.modalInstance.close();
         }
+
+    vm.hasGames = function () {
+      if (vm.openGames !== undefined) {
+        return vm.openGames.length !== 0 && vm.openGames.length !== undefined && vm.filteredGames.length !== 0
+      } else {
+        return true;
+      }
+    }
     }
 })();
