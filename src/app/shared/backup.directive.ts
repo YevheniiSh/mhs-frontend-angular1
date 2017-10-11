@@ -23,16 +23,16 @@ export class BackupDirective {
   onClick() {
     this.http.get(`${firebaseConfig.databaseURL}/.json?auth=${this.idToken}`, { responseType: 'text' })
       .subscribe(data => {
-        const file = new Blob([data], { type: 'text/json' });
-        const url = window.URL.createObjectURL(file);
+        let file = new Blob([data], { type: 'text/json' });
+        let url = window.URL.createObjectURL(file);
         this.downloadBackup(url);
       });
   }
 
   private downloadBackup(url) {
-    const a = document.createElement('a');
+    let a = document.createElement('a');
     a.setAttribute('href', url);
-    const date = this.datePipe.transform(new Date(), 'medium');
+    let date = this.datePipe.transform(new Date(), 'medium');
     a.setAttribute('download', `${date}_backupMHS.json`);
     a.click();
   }
