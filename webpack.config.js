@@ -24,9 +24,9 @@ const minimizeCss = false;
 const externalStyles = [
   "./node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
   "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "./node_modules/ngx-bootstrap-base/dist/datepicker/bs-datepicker.css",
   "./bower_components/components-font-awesome/css/font-awesome.min.css",
   "./src/styles.css",
-  "./src/app/public/css/spinner.css",
   "./bower_components/html5-boilerplate/dist/css/normalize.css",
   "./bower_components/html5-boilerplate/dist/css/main.css",
   "./src/app/app.css",
