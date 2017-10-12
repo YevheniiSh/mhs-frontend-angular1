@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
+import { Downgrade } from '../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
   selector: 'mhs-game-progress',
   templateUrl: './game-progress.component.html',

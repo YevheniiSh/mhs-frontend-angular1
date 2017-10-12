@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-time-picker',
+  selector: 'mhs-time-picker',
   templateUrl: './time-picker.component.html',
   styleUrls: ['./time-picker.component.css'],
 })
@@ -10,21 +10,21 @@ export class TimePickerComponent implements OnInit, OnChanges {
   @Output() time = new EventEmitter<Date>();
 
   private selectedTime: Date = new Date;
+  private visibleTime;
+  private isPopupVisible: boolean;
+
+  constructor(@Inject('convertServiceFactory') private convertServiceFactory) {
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    for (let prop in changes) {
-      if (prop === "defaultTime") {
+    for (const prop in changes) {
+      if (prop === 'defaultTime') {
         if (changes[prop].currentValue !== undefined) {
           this.selectedTime = changes[prop].currentValue;
         }
         this.getTimeForView();
       }
     }
-  }
-  private visibleTime;
-  private isPopupVisible: boolean;
-
-  constructor(@Inject('convertServiceFactory') private convertServiceFactory) {
   }
 
   ngOnInit() {
@@ -36,8 +36,8 @@ export class TimePickerComponent implements OnInit, OnChanges {
   }
 
   getTimeForView() {
-    this.visibleTime = this.convertServiceFactory.convertTimeForView(this.selectedTime)
-  };
+    this.visibleTime = this.convertServiceFactory.convertTimeForView(this.selectedTime);
+  }
 
   updateTime(event) {
     this.selectedTime = event;
