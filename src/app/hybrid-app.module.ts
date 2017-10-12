@@ -59,6 +59,7 @@ import { EditGameComponent } from './admin/edit-game/edit-game.component';
 import { defineLocale } from 'ngx-bootstrap-base/dist/bs-moment';
 import { enGb, ru, uk } from 'ngx-bootstrap-base/dist/locale';
 import { GameSetupComponent } from './admin/game-setup/game-setup.component';
+import { PrivateGameComponent } from './admin/private-game/private-game.component';
 import { OpenGameService } from './services/game-service/open-game-service/open-game.service.upgrade';
 import { SeasonService } from './services/season-service/season.service.upgrade';
 import { ConvertService } from './services/convert-service/convert.service.upgrade';
@@ -95,12 +96,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     SwitcherComponent,
     ConfirmComponent,
     FacebookShareComponent,
-    FacebookShareComponent,
-    GameProgressComponent,
+    PrivateGameComponent,
     RoundPanelComponent,
     BackupDirective,
-    FacebookShareComponent,
-    GameSetupComponent
+    GameSetupComponent,
+    GameProgressComponent
   ],
   imports: [
     FormsModule,

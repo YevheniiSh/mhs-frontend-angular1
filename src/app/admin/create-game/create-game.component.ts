@@ -17,11 +17,13 @@ export class CreateGameComponent implements OnInit {
 
   defaultTime = new Date();
   defaultDate = new Date();
+  isPrivateGame = false;
 
   createNewGame = function () {
     const gameBuider = this.gameBuild.addDate(this.gameDate)
       .addTime(this.gameTime)
-      .addLocation(this.location);
+      .addLocation(this.location)
+      .addPrivate(this.isPrivateGame);
     if (this.isSeasonGame) {
       gameBuider.addSeason({ id: this.season.$id, name: this.season.name });
     } else {
@@ -54,6 +56,10 @@ export class CreateGameComponent implements OnInit {
   setIsSeasonGame(isSeasonGame) {
     this.isSeasonGame = isSeasonGame;
   }
+
+  setIsPrivateGame = function (isPrivateGame) {
+    this.isPrivateGame = isPrivateGame;
+  };
 
   setGameLocation(location) {
     this.location = location;
