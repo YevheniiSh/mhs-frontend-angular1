@@ -20,7 +20,7 @@
       "finished": {
         ".read": true,
         "$gameId": {
-          ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
+          ".write": "auth != null && root.child('users/'+auth.uid).val() === true && (data.child('isPrivate').val()===true || newData.exists())"
         }
       }
     },

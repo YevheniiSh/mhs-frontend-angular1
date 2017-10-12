@@ -50,11 +50,16 @@ finished-game-list .game-date-cell{
 
 finished-game-list .team-count-cell{
   text-align: center;
-  width: 30%;
+  width: 25%;
 }
 
 finished-game-list .season-cell{
   width: 15%;
+}
+
+finished-game-list .game-delete-btn{
+  padding: 0 5px;
+  float: right;
 }
 
 finished-game-list .trophy {

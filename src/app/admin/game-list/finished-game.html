@@ -5,7 +5,7 @@
       <option value="">{{'ALL_SEASONS_SELECT'|translate}}</option>
     </select>
   </div>
-  <ul class="game-list">
+  <ul class="game-list" ng-mouseleave="$ctrl.setMouseOverGameId()">
     <li>
       <div class="row game-list-item header">
         <div class="game-date-cell">{{'DATE_LABEL' | translate}}</div>
@@ -16,6 +16,7 @@
     </li>
     <li
       ng-repeat="game in $ctrl.filteredGames = ($ctrl.games |filter:$ctrl.selectedSeason.id | filter:(!$ctrl.auth ? {'isPrivate':false} : '') |orderBy:'-date' ) "
+      ng-mouseover="$ctrl.setMouseOverGameId(game.$id)"
       ng-click="$ctrl.openGameInfo(game.$id)">
       <div class="row game-list-item">
         <div class="game-date-cell">
@@ -34,6 +35,11 @@
             {{game.season.name}}
           </a>
         </div>
+        <button class="btn btn-danger btn-xs game-delete-btn"
+                ng-if="$ctrl.showDeleteButton(game)"
+                ng-click="$event.stopPropagation(); $ctrl.deletePrivateGame(game);">
+          <i class="fa fa-trash-o fa-1" aria-hidden="true"></i>
+        </button>
       </div>
     </li>
   </ul>
