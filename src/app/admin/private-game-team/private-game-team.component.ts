@@ -19,7 +19,7 @@ export class PrivateGameTeamComponent implements OnInit {
     this.gameId = $routeParams.gameId;
     this.openGameService.getTeams(this.gameId)
       .then(teams => {
-        this.teams = teams.map(team => team.name);
+        this.teams = teams.map(team => new Team(team.name));
         console.log(this.teams)
       });
   }
@@ -28,7 +28,7 @@ export class PrivateGameTeamComponent implements OnInit {
   }
 
   addTeam() {
-    this.openGameService.addTeamToPrivateGame(this.gameId, new Team().name = this.newTeamName);
+    this.openGameService.addTeamToPrivateGame(this.gameId, new Team(this.newTeamName));
     this.newTeamName = '';
   }
 
