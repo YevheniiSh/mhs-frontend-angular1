@@ -1,8 +1,10 @@
-import {Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange} from '@angular/core';
-import {trigger} from "@angular/animations";
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
+import { trigger } from '@angular/animations';
+import { Downgrade } from '../../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
-  selector: 'app-auction-round-type',
+  selector: 'mhs-auction-round-type',
   templateUrl: './auction-round-type.component.html',
   styleUrls: ['./auction-round-type.component.css'],
   animations: [
@@ -33,7 +35,7 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }): void {
-    for (let propName in changes) {
+    for (const propName in changes) {
       if (propName === 'disableNext') {
         this.switchEditState();
       }
@@ -55,20 +57,17 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
       this.results.forEach((item) => {
         if (item.status === false) {
           item.checked = false;
-        }
-        else {
+        } else {
           item.checked = true;
         }
       });
-    }
-    else {
+    } else {
       this.results.forEach((item) => {
-        delete item["auction"];
+        delete item['auction'];
 
         if (item.score !== 0 && item.score !== undefined) {
           item.checked = true;
-        }
-        else {
+        } else {
           item.checked = false;
         }
       });

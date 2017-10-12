@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Downgrade } from '../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
-  selector: 'app-season-picker',
+  selector: 'mhs-season-picker',
   templateUrl: './season-picker.component.html',
   styleUrls: ['./season-picker.component.css']
 })
@@ -49,16 +51,16 @@ export class SeasonPickerComponent implements OnInit, OnChanges{
           this.isSeasonGame = false;
           this.checkboxUpdate(false);
           this.getCurrentSeasonFromDb();
-        })
+        });
     } else {
       this.showSeasonNameValidation = true;
     }
-  };
+  }
 
   closeSeasonEditor() {
     this.showSeasonNameValidation = false;
     this.isSeasonEditor = false;
-  };
+  }
 
   checkboxUpdate(isSwitched) {
     this.isSeasonGame = isSwitched;
