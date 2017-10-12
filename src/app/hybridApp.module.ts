@@ -37,8 +37,9 @@ import { SwitcherComponent } from './admin/round-type/hint-round-type/switcher/s
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from './admin/confirm/confirm.component';
 import { CustomOption } from './services/notification-service/CustomOption';
-import { ConnectionService } from './services/connection-service/connection.service';
 import { FirebaseOfflineService } from './services/firebase-service/firebase-offline.service';
+import { ConnectivityService } from './services/connectivity-service/connectivity.service';
+import { FirebasePrefetchService } from './services/firebase-service/firebase-prefetch.service';
 
 const upgradeAdapter = new UpgradeAdapter(forwardRef(() => HybridAppModule));
 
@@ -92,7 +93,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationService,
     {provide: ToastOptions, useClass: CustomOption},
     CustomConfirmationService,
-    ConnectionService,
+    FirebasePrefetchService,
+    ConnectivityService,
     FirebaseOfflineService
   ]
 })
@@ -103,8 +105,6 @@ export class HybridAppModule {
     this.upgradeOldProviders();
     this.downgradeNewComponents();
     this.downgradeNewProviders();
-    this.firebaseOfflineService.initData();
-
     this.initFacebook();
   }
 
@@ -124,7 +124,6 @@ export class HybridAppModule {
     upgradeAdapter.upgradeNg1Provider('$translate');
     upgradeAdapter.upgradeNg1Provider('ResultServiceFactory');
     upgradeAdapter.upgradeNg1Provider('$css');
-    upgradeAdapter.upgradeNg1Provider('firebaseOfflineService');
   }
 
   private downgradeNewComponents() {
@@ -155,5 +154,3 @@ export class HybridAppModule {
     });
   }
 }
-
-

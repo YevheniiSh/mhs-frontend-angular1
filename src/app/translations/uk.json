@@ -171,5 +171,7 @@
   "FINISH_HINTS_ROUND_CONFIRMATION": "Всі команди відповіли, закінчити раунд?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Усі капітани вибули, завершити раунд?",
   "GAME_SAVING": "Гра зберігається. Будь ласка зачекайте...",
-  "GAME_SAVED": "Гру збережено!"
+  "GAME_SAVED": "Гру збережено!",
+  "CONNECTION_LOST": "З'єднання втрачено!",
+  "CONNECTION_RESTORED": "З'єднання відновлено!"
 }

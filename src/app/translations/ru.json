@@ -172,5 +172,7 @@
   "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?",
   "GAME_SAVING": "Игра сохраняется. Пожалуйста подождите...",
-  "GAME_SAVED": "Игра сохранена!"
+  "GAME_SAVED": "Игра сохранена!",
+  "CONNECTION_LOST": "Соеденение потеряно!",
+  "CONNECTION_RESTORED": "Соединение восстановлено!"
 }

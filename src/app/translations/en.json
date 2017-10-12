@@ -172,5 +172,7 @@
   "FINISH_HINTS_ROUND_CONFIRMATION": "All teams answered, do you want to finish round?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?",
   "GAME_SAVING": "Game saving. Please wait...",
-  "GAME_SAVED": "Game saved!"
+  "GAME_SAVED": "Game saved!",
+  "CONNECTION_LOST": "Connection lost!",
+  "CONNECTION_RESTORED": "Connection restored!"
 }

@@ -43,6 +43,10 @@
       ".read": "true",
       ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
     },
+    "tick": {
+      ".read": "true",
+      ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
+    },
     "users": {
       ".read": "root.child('users/'+auth.uid).val() === true",
       ".write": "false"
