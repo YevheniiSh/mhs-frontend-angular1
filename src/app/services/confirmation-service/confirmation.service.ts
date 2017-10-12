@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { ConfirmComponent } from '../../admin/confirm/confirm.component';
+import { Downgrade } from '../../hybrid/downgrade';
 
 const options = { closeByClickingOutside: true, backdropColor: 'rgba(0,0,0,0.5)' };
 
+@Downgrade()
 @Injectable()
 export class CustomConfirmationService {
 

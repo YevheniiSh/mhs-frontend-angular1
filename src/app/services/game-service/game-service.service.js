@@ -30,8 +30,21 @@ angular
         reOpenGame: reOpenGame,
         addTeamToGame: addTeamToGame,
         getGameTeamsNumber: getGameTeamsNumber,
-        getRoundByGameAndId: getRoundByGameAndId
+        getRoundByGameAndId: getRoundByGameAndId,
+        isGamePrivate: isGamePrivate
       };
+
+      function isGamePrivate(gameId) {
+        return getGameRef(gameId).then((ref) => {
+          return $firebaseObject(ref.child(`/${gameId}/isPrivate`))
+            .$loaded()
+            .then((res) => {
+              return res.$value;
+            }, (err) => {
+              return err;
+            });
+        });
+      }
 
       function startGame(gameId) {
         openGameServiceFactory.getOpenGameById(gameId).then((res) => {

@@ -37,6 +37,7 @@ open-game-list div.buttons-panel > .btn {
 
 open-game-list .game-date,
 open-game-list .game-time{
+  position: relative;
   width: 17%;
 }
 

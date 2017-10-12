@@ -1,8 +1,10 @@
-import {Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange} from '@angular/core';
-import {trigger} from "@angular/animations";
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
+import { trigger } from '@angular/animations';
+import { Downgrade } from '../../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
-  selector: 'app-auction-round-type',
+  selector: 'mhs-auction-round-type',
   templateUrl: './auction-round-type.component.html',
   styleUrls: ['./auction-round-type.component.css'],
   animations: [
@@ -26,9 +28,6 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.showInputs = true;
-    console.log(this.routeParams.gameId);
-
-
     this.gameServiceFactory.getRoundByGameAndId(this.routeParams.gameId, this.routeParams.roundNumber)
       .then((round) => {
         this.round = round;
@@ -36,16 +35,15 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }): void {
-    for (let propName in changes) {
+    for (const propName in changes) {
       if (propName === 'disableNext') {
-        this.switchEditState()
+        this.switchEditState();
       }
     }
   }
 
   onSave(result) {
     result.score = result.rate * this.getCheckboxValue(result.status);
-    console.log(result);
     this.saved.emit(result);
   }
 
@@ -59,20 +57,17 @@ export class AuctionRoundTypeComponent implements OnInit, OnChanges {
       this.results.forEach((item) => {
         if (item.status === false) {
           item.checked = false;
-        }
-        else {
+        } else {
           item.checked = true;
         }
       });
-    }
-    else {
+    } else {
       this.results.forEach((item) => {
-        delete item["auction"];
+        delete item['auction'];
 
         if (item.score !== 0 && item.score !== undefined) {
           item.checked = true;
-        }
-        else {
+        } else {
           item.checked = false;
         }
       });

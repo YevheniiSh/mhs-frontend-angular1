@@ -2,12 +2,14 @@ import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import { User } from 'firebase/app';
+import { Downgrade } from '../../hybrid/downgrade';
 import { NotificationService } from '../../services/notification-service/notification.service';
 import { ConnectivityService } from '../../services/connectivity-service/connectivity.service';
 
+@Downgrade()
 @Component({
-  selector: 'app-navbar',
+  selector: 'mhs-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -20,7 +22,7 @@ export class NavbarComponent implements OnInit {
   i18nFactory;
   userAuthService;
   translate: TranslateService;
-  user: Observable<firebase.User>;
+  user: Observable<User>;
 
   @HostListener('document:click', ['$event'])
   click(event) {

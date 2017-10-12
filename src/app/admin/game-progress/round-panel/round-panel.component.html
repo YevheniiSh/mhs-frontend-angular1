@@ -1,0 +1,15 @@
+<div class="col-md-4 round-panel">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title" translate="{{title}}"></h3>
+    </div>
+    <div class="panel-body past">
+      <a *ngFor="let round of rounds "
+         class="btn btn-round-panel"
+         [ngClass]="btnClass"
+         (click)="redirectToRound(round)">
+        {{round.$id}}. {{round.name}}
+      </a>
+    </div>
+  </div>
+</div>
