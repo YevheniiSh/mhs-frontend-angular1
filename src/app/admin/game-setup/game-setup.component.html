@@ -1,8 +1,8 @@
 <div class="col-md-2">
-  <app-date-picker (date)="setGameDate($event)" [defaultDate]="defaultDate"></app-date-picker>
+  <mhs-date-picker (date)="setGameDate($event)" [defaultDate]="defaultDate"></mhs-date-picker>
 </div>
 <div class="col-md-2">
-  <app-time-picker (time)="setGameTime($event)" [defaultTime]="defaultTime"></app-time-picker>
+  <mhs-time-picker (time)="setGameTime($event)" [defaultTime]="defaultTime"></mhs-time-picker>
 </div>
 <div class="col-md-2">
   <div class="location" [formGroup]="locationInput">
@@ -15,8 +15,15 @@
   </div>
 </div>
 <div class="col-md-3">
-  <app-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
+  <mhs-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
                      [isSeasonGame]="defaultIsSeasonGame"
+                     [isDisabled] = "defaultIsPrivateGame"
                      (currentSeason)="setSeason($event)" #seasonPicker>
-  </app-season-picker>
+  </mhs-season-picker>
 </div>
+<div id="private-game">
+  <mhs-private-game (isPrivate)="setIsPrivateGame($event)"
+                    [isPrivateGame]="defaultIsPrivateGame">
+  </mhs-private-game>
+</div>
+

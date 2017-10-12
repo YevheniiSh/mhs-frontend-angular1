@@ -1,9 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Template } from './template';
 import { CustomConfirmationService } from '../../services/confirmation-service/confirmation.service';
+import { Downgrade } from '../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
-  selector: 'app-game-template',
+  selector: 'mhs-game-template',
   templateUrl: './game-template.component.html',
   styleUrls: ['./game-template.component.css']
 })

@@ -1,15 +1,16 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange } from '@angular/core';
 import { trigger } from '@angular/animations';
+import { Downgrade } from '../../../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
-  selector: 'app-switcher',
+  selector: 'mhs-switcher',
   templateUrl: './switcher.component.html',
   styleUrls: ['./switcher.component.css'],
   animations: [
     trigger('myRadio', [])]
 })
 export class SwitcherComponent implements OnChanges {
-
 
   @Input() result;
   @Input() index;
@@ -28,7 +29,7 @@ export class SwitcherComponent implements OnChanges {
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }): void {
-    for (let propName in changes) {
+    for (const propName in changes) {
       if (propName === 'previousQuizResults' && changes[propName].currentValue !== undefined) {
         this.setDisableStatuses();
       }
