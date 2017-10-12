@@ -13,7 +13,7 @@ interface DownedEntity {
 @NgModule({
   imports: [HybridHelper]
 })
-export class DowngradeProvider {
+export class DowngradeModule {
   constructor(private hybridHelper: HybridHelper) {
   }
 

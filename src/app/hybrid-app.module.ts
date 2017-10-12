@@ -41,7 +41,7 @@ import { GameService } from './services/game-service/game.service.upgrade';
 import { UserAuthService } from './services/user-auth-service/user-auth.upgrade';
 import { GameTemplateService } from './services/game-template-service/game-template.service.upgrade';
 import { RoundTypeService } from './services/round-type-service/round-type.service.upgrade';
-import { DowngradeProvider } from './hybrid/downgrade.provider';
+import { DowngradeModule } from './hybrid/downgrade.module';
 import { environment } from '../environments/environment';
 import { TranslateService } from './services/translate-service/translate.service.upgrade';
 import { FacebookModule, FacebookService } from 'ngx-facebook';
@@ -127,7 +127,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BootstrapModalModule.forRoot({ container: document.body }),
     UpgradeModule,
     AngularJsProvider.forRoot(),
-    DowngradeProvider,
+    DowngradeModule,
     ClickOutsideModule,
   ],
   entryComponents: [
@@ -168,7 +168,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 })
 export class HybridAppModule {
 
-  constructor(private upgradeModule: UpgradeModule, private fb: FacebookService, private dp: DowngradeProvider) {
+  constructor(private upgradeModule: UpgradeModule, private fb: FacebookService, private dp: DowngradeModule) {
     this.initFacebook();
     this.dp.init(HybridAppModule, {
       defaultAngularJsModuleForComponents: 'mhs.admin',
