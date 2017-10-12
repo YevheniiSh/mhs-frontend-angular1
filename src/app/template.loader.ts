@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import { environment } from '../environments/environment';
 
 export function upgradeDirective(moduleName, invokedName) {
