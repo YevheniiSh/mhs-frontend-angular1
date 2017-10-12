@@ -32,24 +32,6 @@ export class FacebookShareComponent {
       })
     };
 
-    // this.fb.ui(shareOptions);
-    this.postInGroup();
-  }
-
-  postInGroup() {
-    this.fb.getLoginStatus().then((status) => {
-      console.log(status)
-    });
-    this.fb.login({ scope: 'public_profile,email,user_groups,publish_actions' }).then(() => {
-      this.fb.api(
-        '/119692302046800/feed',
-        'post',
-        {
-          'access_token': this.fb.getAuthResponse().accessToken,
-          'message': 'This is a test message',
-          'scope': 'publish_actions, user_groups'
-        },
-      );
-    });
+    this.fb.ui(shareOptions);
   }
 }

@@ -185,7 +185,6 @@ export class HybridAppModule {
     this.fb.init({
       appId: environment.facebookAppId,
       xfbml: true,
-      cookie: true,
       version: 'v2.10'
     });
   }
