@@ -212,11 +212,8 @@
         return obj.$loaded();
       }
 
-      function isPrivate(gameId) {
-        return openGamesRef.child(`/${gameId}/isPrivate`).once('value')
-          .then(isPrivate=>{
-            return isPrivate.val();
-          });
+      function isPrivate(gameId, callback) {
+        return openGamesRef.child(`/${gameId}/isPrivate`).on('value', callback);
       }
 
       function addTeamsToPrivateGame(gameId, teams) {
