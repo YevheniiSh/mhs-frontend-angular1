@@ -3,8 +3,8 @@ import { ToastsManager } from 'ng2-toastr';
 import { Downgrade } from '../../hybrid/downgrade';
 import { TranslateService } from '../translate-service/translate.service.upgrade';
 
-@Injectable()
 @Downgrade()
+@Injectable()
 export class NotificationService {
 
   private config = { showCloseButton: true, toastLife: 2000 };
