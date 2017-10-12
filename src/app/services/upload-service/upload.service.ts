@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Downgrade } from '../../hybrid/downgrade';
 
 declare let firebase: any;
 const ref = 'upload-files/';
+@Downgrade()
 @Injectable()
 export class UploadService {
   private storage: any;

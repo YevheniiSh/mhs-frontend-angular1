@@ -6,7 +6,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import * as firebase from 'firebase/app';
 import { ImageService } from '../../services/image-service/image.service';
+import { Downgrade } from '../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
   selector: 'mhs-attachment',
   templateUrl: './attachment.component.html',

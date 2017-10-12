@@ -49,7 +49,6 @@ import { FacebookShareComponent } from './facebook-share/facebook-share.componen
 import { GameProgressComponent } from './admin/game-progress/game-progress.component';
 import { RoundPanelComponent } from './admin/game-progress/round-panel/round-panel.component';
 import { BackupDirective } from './shared/backup.directive';
-import { UploadService } from './services/upload-service/upload.service';
 import { ImageService } from './services/image-service/image.service';
 
 import { DatePickerComponent } from './admin/date-picker/date-picker.component';
@@ -68,6 +67,7 @@ import { ConvertService } from './services/convert-service/convert.service.upgra
 import { GameBuildService } from './services/game-build-service/game-build.service.upgrade';
 import { RoundStatusService } from './services/round-service/round-status.service.upgrade';
 import { AttachmentComponent } from './admin/attachment/attachment.component';
+import { UploadService } from "./services/upload-service/upload.service";
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
@@ -169,7 +169,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConvertService,
     GameBuildService,
     RoundStatusService,
-    ImageService
+    ImageService,
+    UploadService
   ],
 })
 export class HybridAppModule {
