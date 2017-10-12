@@ -147,7 +147,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CreateGameComponent,
     SeasonPickerComponent,
     EditGameComponent,
-    GameProgressComponent
+    GameProgressComponent,
+    PrivateGameTeamComponent
   ],
   providers: [
     LoginService,

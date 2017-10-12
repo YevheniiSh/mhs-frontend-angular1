@@ -1,7 +1,11 @@
 export class Team {
-  name: string;
+  public name: string;
 
-  constructor(name: string) {
-    this.name = name;
+  // constructor(name: string) {
+  //   this.name = name;
+  // }
+
+
+  constructor() {
   }
 }
