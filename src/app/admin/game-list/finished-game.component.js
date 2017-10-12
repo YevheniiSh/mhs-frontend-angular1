@@ -72,13 +72,5 @@
           gameFactory.deleteFinishedGameById(game.$id);
         });
     };
-
-    vm.setMouseOverGameId = function (gameId) {
-      vm.mouseOverGameId = gameId;
-    };
-
-    vm.showDeleteButton = function (game) {
-      return game.isPrivate && game.$id === vm.mouseOverGameId
-    }
   }
 })();
