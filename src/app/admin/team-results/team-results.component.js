@@ -65,11 +65,10 @@ angular.module('teamResults')
                         });
 
                     GameService.getGameTeams(vm.gameId)
-                        .then((res) => {
-                            console.log(res);
-                            res.forEach((item) => {
-                                if(item.teamId === $routeParams.teamId){
-                                    vm.teamName = item.name;
+                        .then((teams) => {
+                            teams.forEach((team) => {
+                                if(team.teamId === $routeParams.teamId){
+                                    vm.teamName = team.name;
                                 }
                             })
                         });
