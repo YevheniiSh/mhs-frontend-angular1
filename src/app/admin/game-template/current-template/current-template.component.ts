@@ -3,15 +3,13 @@ import { Template } from '../template';
 import { NotificationService } from '../../../services/notification-service/notification.service';
 import { Downgrade } from '../../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
   selector: 'mhs-current-template',
   templateUrl: './current-template.component.html',
   styleUrls: ['./current-template.component.css']
 })
-@Downgrade()
 export class CurrentTemplateComponent implements OnInit {
-  roundCountError;
-  templateSaved;
   name;
   @Input() template: Template;
   @Input() isNewTemplate: boolean;

@@ -3,12 +3,12 @@ import { Template } from './template';
 import { CustomConfirmationService } from '../../services/confirmation-service/confirmation.service';
 import { Downgrade } from '../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
   selector: 'mhs-game-template',
   templateUrl: './game-template.component.html',
   styleUrls: ['./game-template.component.css']
 })
-@Downgrade()
 export class GameTemplateComponent implements OnInit {
   template: Template;
   templates: Template[];

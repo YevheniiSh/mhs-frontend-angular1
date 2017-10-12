@@ -8,6 +8,7 @@ angular.module('gameBuildService')
                 addTime: addTime,
                 addLocation: addLocation,
                 addSeason: addSeason,
+                addPrivate: addPrivate,
                 buildGame: buildGame
             };
 
@@ -29,6 +30,11 @@ angular.module('gameBuildService')
             function addSeason(season) {
                 this.game.season = season;
                 return this
+            }
+
+            function addPrivate(isPrivate) {
+                this.game.isPrivate = isPrivate;
+                return this;
             }
 
             function buildGame() {

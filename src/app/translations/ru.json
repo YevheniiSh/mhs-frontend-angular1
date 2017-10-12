@@ -170,6 +170,8 @@
   "DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE": "Удалить шаблон?",
   "FINISH_ROUND_CONFIRMATION_TITLE": "Закончить раунд?",
   "CLOSE_SEASON_CONFIRMATION_TITLE": "Закрыть сезон?",
+  "GAME_STATUS_SAVE": "Статус игры сохранен",
+  "PRIVATE_GAME_LABEL": "Приватная игра",
   "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?",
   "DOWNLOAD_BACKUP": "Скачать backup",

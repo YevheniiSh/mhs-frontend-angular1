@@ -22,6 +22,7 @@ export class EditGameComponent implements OnInit {
   isSeasonGame;
   seasonId;
   season;
+  isPrivate: boolean;
 
   constructor(@Inject('OpenGameServiceFactory') private openGameService,
               @Inject('seasonService') private seasonService,
@@ -40,19 +41,12 @@ export class EditGameComponent implements OnInit {
   }
 
   setupGameInfo() {
-    this.openGameService.getDate(this.gameId)
-      .then((res) => {
-        this.currentGameDate = new Date(res);
-      });
-
-    this.openGameService.getTime(this.gameId)
-      .then((res) => {
-        this.currentGameTime = new Date(res);
-      });
-
-    this.openGameService.getLocation(this.gameId)
-      .then((res) => {
-        this.location = res;
+    this.openGameService.getOpenGameById(this.gameId)
+      .then(game => {
+        this.currentGameDate = new Date(game.date);
+        this.location = game.location;
+        this.isPrivate = game.isPrivate;
+        this.currentGameTime = new Date(game.time);
       });
   }
 
@@ -74,6 +68,12 @@ export class EditGameComponent implements OnInit {
     this.openGameService.changeTime(this.gameId, this.gameTime)
       .then(this.showSuccess('SAVE_TIME_MESSAGE'));
 
+  }
+
+  setIsPrivate(isPrivate) {
+    this.isPrivate = isPrivate;
+    this.openGameService.changeIsPrivate(this.gameId, this.isPrivate)
+      .then(this.showSuccess('GAME_STATUS_SAVE'));
   }
 
   setIsSeasonGame(isSeasonGame) {

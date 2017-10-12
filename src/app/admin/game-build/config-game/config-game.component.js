@@ -31,7 +31,6 @@
 
     function getIndexTab() {
       vm.tabs = ['teams', 'rounds'];
-
       vm.activeTab = Object.keys($location.search()).find(k => /teams|rounds/.test(k));
       if (vm.activeTab === undefined) vm.activeTab = 'teams';
     }
@@ -70,7 +69,6 @@
     vm.closeTimePiker = function () {
       isTimePikerOpen();
     };
-
 
     function isTimePikerOpen() {
       if (vm.isTimeVisible) {

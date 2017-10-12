@@ -5,13 +5,12 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase/app';
 import { Downgrade } from '../../hybrid/downgrade';
 
-
+@Downgrade()
 @Component({
   selector: 'mhs-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-@Downgrade()
 export class NavbarComponent implements OnInit {
 
   currentUser;

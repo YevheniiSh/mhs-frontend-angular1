@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Downgrade } from '../../hybrid/downgrade';
 
 @Downgrade()
@@ -7,12 +7,13 @@ import { Downgrade } from '../../hybrid/downgrade';
   templateUrl: './season-picker.component.html',
   styleUrls: ['./season-picker.component.css']
 })
-export class SeasonPickerComponent implements OnInit {
+export class SeasonPickerComponent implements OnInit, OnChanges{
 
   season;
   newSeasonName = '';
   isSeasonEditor;
   @Input() isSeasonGame = false;
+  @Input() isDisabled: boolean;
   showSeasonNameValidation;
 
   @Output() isSeasonGameEvent = new EventEmitter<any>();
@@ -23,6 +24,12 @@ export class SeasonPickerComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentSeasonFromDb();
+  }
+
+  ngOnChanges() {
+    if (this.isDisabled) {
+      this.isSeasonGame = false;
+    }
   }
 
   getCurrentSeasonFromDb() {

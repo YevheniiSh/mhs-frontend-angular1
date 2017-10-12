@@ -1,7 +1,8 @@
 <mhs-create-game ng-if="$ctrl.auth"></mhs-create-game>
 <div ng-if="$ctrl.openGames.length == 0" class="no-games-label">{{'NO_OPEN_GAME_PLACEHOLDER' | translate}}</div>
 
-<ul class="game-list" ng-if="$ctrl.openGames.length != 0 && $ctrl.openGames.length !== undefined">
+<ul class="game-list"
+    ng-if="$ctrl.hasVisibleGames()">
   <li>
     <div  class="row game-list-item header">
       <div class="game-date">{{'DATE_LABEL' | translate}}</div>
@@ -11,9 +12,13 @@
       <div class="buttons-panel"></div>
     </div>
   </li>
-  <li ng-repeat="openGame in $ctrl.openGames | orderBy:'-date'">
+  <li
+    ng-repeat="openGame in $ctrl.filteredGames = ($ctrl.openGames| filter:(!$ctrl.auth ? {'isPrivate':false}  : '') | orderBy:'-date')">
     <div  class="row game-list-item">
-      <div class="game-date">{{openGame.date | date:'d MMM y'}}</div>
+      <div class="game-date">
+        <i ng-if="openGame.isPrivate" class="fa fa-lock privacy-icon" aria-hidden="true"></i>
+        {{openGame.date | date:'d MMM y'}}
+      </div>
       <div class="game-time">{{openGame.time}}</div>
       <div class="game-location">{{openGame.location}}</div>
       <div class="game-season" ng-click="$event.stopPropagation();">
@@ -49,4 +54,7 @@
     </div>
   </li>
 </ul>
+<div ng-if="!$ctrl.hasVisibleGames()" class="no-games-label">
+  {{'NO_OPEN_GAME_PLACEHOLDER' | translate}}
+</div>
 

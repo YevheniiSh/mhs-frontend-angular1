@@ -30,7 +30,8 @@
     <input id="season-switch"
            type="checkbox"
            [ngModel]="isSeasonGame"
-           (ngModelChange)="checkboxUpdate($event)">
+           (ngModelChange)="checkboxUpdate($event)"
+           [disabled]="isDisabled">
     <span class="slider round"></span>
   </label>
   <label id="season-name-switch"

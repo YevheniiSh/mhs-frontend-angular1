@@ -41,7 +41,7 @@ import { GameService } from './services/game-service/game.service.upgrade';
 import { UserAuthService } from './services/user-auth-service/user-auth.upgrade';
 import { GameTemplateService } from './services/game-template-service/game-template.service.upgrade';
 import { RoundTypeService } from './services/round-type-service/round-type.service.upgrade';
-import { DowngradeProvider } from './hybrid/downgrade.provider';
+import { DowngradeModule } from './hybrid/downgrade.module';
 import { environment } from '../environments/environment';
 import { TranslateService } from './services/translate-service/translate.service.upgrade';
 import { FacebookModule, FacebookService } from 'ngx-facebook';
@@ -58,6 +58,7 @@ import { EditGameComponent } from './admin/edit-game/edit-game.component';
 import { defineLocale } from 'ngx-bootstrap-base/dist/bs-moment';
 import { enGb, ru, uk } from 'ngx-bootstrap-base/dist/locale';
 import { GameSetupComponent } from './admin/game-setup/game-setup.component';
+import { PrivateGameComponent } from './admin/private-game/private-game.component';
 import { OpenGameService } from './services/game-service/open-game-service/open-game.service.upgrade';
 import { SeasonService } from './services/season-service/season.service.upgrade';
 import { ConvertService } from './services/convert-service/convert.service.upgrade';
@@ -96,10 +97,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     SwitcherComponent,
     ConfirmComponent,
     FacebookShareComponent,
+    PrivateGameComponent,
     GameProgressComponent,
     RoundPanelComponent,
     BackupDirective,
-    FacebookShareComponent,
     GameSetupComponent,
     PromptComponent,
     FacebookGroupPostComponent,
@@ -129,7 +130,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BootstrapModalModule.forRoot({ container: document.body }),
     UpgradeModule,
     AngularJsProvider.forRoot(),
-    DowngradeProvider,
+    DowngradeModule,
     ClickOutsideModule,
   ],
   entryComponents: [
@@ -173,7 +174,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 })
 export class HybridAppModule {
 
-  constructor(private upgradeModule: UpgradeModule, private fb: FacebookService, private dp: DowngradeProvider) {
+  constructor(private upgradeModule: UpgradeModule, private fb: FacebookService, private dp: DowngradeModule) {
     this.initFacebook();
     this.dp.init(HybridAppModule, {
       defaultAngularJsModuleForComponents: 'mhs.admin',

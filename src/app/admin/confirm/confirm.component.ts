@@ -7,11 +7,11 @@ export interface ConfirmModel {
   message: string;
 }
 
+@Downgrade()
 @Component({
   selector: 'mhs-confirm-component',
   templateUrl: './confirm.component.html'
 })
-@Downgrade()
 export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
   title: string;
   message: string;

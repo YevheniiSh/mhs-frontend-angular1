@@ -3,8 +3,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Downgrade } from '../../hybrid/downgrade';
 
-@Injectable()
 @Downgrade()
+@Injectable()
 export class LoginService {
 
   constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase) {

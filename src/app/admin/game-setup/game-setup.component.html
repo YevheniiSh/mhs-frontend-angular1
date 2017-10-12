@@ -17,6 +17,13 @@
 <div class="col-md-3">
   <mhs-season-picker (isSeasonGameEvent)="setIsSeasonGame($event)"
                      [isSeasonGame]="defaultIsSeasonGame"
+                     [isDisabled] = "defaultIsPrivateGame"
                      (currentSeason)="setSeason($event)" #seasonPicker>
   </mhs-season-picker>
 </div>
+<div id="private-game">
+  <mhs-private-game (isPrivate)="setIsPrivateGame($event)"
+                    [isPrivateGame]="defaultIsPrivateGame">
+  </mhs-private-game>
+</div>
+
