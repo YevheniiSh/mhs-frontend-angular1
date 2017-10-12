@@ -14,11 +14,14 @@
         {{'CLOSE_SEASON_BUTTON' | translate}}
       </button>
     </div>
+
+    <mhs-attachment
+      [file-type]="$ctrl.fileType"
+      [resource]="$ctrl.fileResource"
+      [url-property]="$ctrl.urlProperty">
+    </mhs-attachment>
   </div>
-  <mhs-file-upload
-    (saved)="$ctrl.setImgUrl($event)"
-    [save-ref]="$ctrl.imageSaveRef">
-  </mhs-file-upload>
+
 
   <table ng-if=" $ctrl.seasonTeams.length != 0" class="table table-sm table-striped table-hover">
     <caption class="table-header">{{'TEAMS_IN_SEASON' | translate}}</caption>

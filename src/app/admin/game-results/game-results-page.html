@@ -5,18 +5,19 @@
     </button>
 
     <mhs-facebook-share
-      ng-if="$ctrl.gameFinished"
+      *ngIf="$ctrl.gameFinished"
       [url]="$ctrl.shareURL"
       [title]="'Mad Head Show ' + '(' + $ctrl.date + ')'"
       [image-url]="$ctrl.shareImgUrl">
     </mhs-facebook-share>
 
+    <mhs-attachment
+      *ngIf="$ctrl.gameFinished"
+      [file-type]="$ctrl.fileType"
+      [resource]="$ctrl.gameFileResource"
+      [url-property]="$ctrl.urlProperty">
+    </mhs-attachment>
 
-    <mhs-file-upload
-      ng-if="$ctrl.gameFinished"
-      (saved)="$ctrl.setImgUrl($event)"
-      [save-ref]="$ctrl.imageSaveRef">
-    </mhs-file-upload>
 
     <div class="photos-link" ng-if="$ctrl.gameFinished && !$ctrl.linkEditor">
       <span class="no-photos-link" ng-if="$ctrl.photosUrl=='' || $ctrl.photosUrl==null">{{'NO_LINK_TO_PHOTOS_LABEL' | translate}}</span>

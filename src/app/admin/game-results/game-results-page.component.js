@@ -20,8 +20,10 @@
     let gameId = $routeParams.gameId;
 
     function onInit() {
-      vm.imageSaveRef = 'img/';
-      vm.gameId = $routeParams.gameId;
+      vm.urlProperty = 'imageUrl';
+      vm.gameFileResource = `games/finished/${gameId}`;
+      vm.fileType = 'image';
+      console.log('seasonId');
 
       vm.isGameCurrent = true;
       vm.photosUrl = '';
@@ -30,11 +32,11 @@
         $window.open($window.location.origin + `/#!/games/${gameId}/results-presentation`, ``, `width=${screen.availWidth},height=${screen.availHeight}`);
       };
 
-      GameService.getGameStatus(this.gameId).then(status => {
-        GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString());
+      GameService.getGameStatus(gameId).then(status => {
+        GameService.getDate(status, gameId).then(v => this.date = new Date(v.$value).toLocaleDateString());
       });
 
-      ResultService.getParsedResults(this.gameId)
+      ResultService.getParsedResults(gameId)
         .then((result) => {
           vm.results = result;
         });
@@ -54,38 +56,30 @@
           vm.user = res;
         });
 
-      seasonService.getSeasonIdByGameId(vm.gameId)
+      seasonService.getSeasonIdByGameId(gameId)
         .then((seasonId) => {
-          console.log('seasonId');
-          console.log(seasonId);
           if (seasonId) {
-            getUrlFromGameAndSeason(vm.gameId, seasonId)
+            let seasonFileResource = `seasons/${seasonId}`;
+            getUrlFromGameAndSeason(seasonFileResource)
           } else setGameImg()
         })
     }
 
-    let getUrlFromGameAndSeason = function (gameId, seasonId) {
-      imageService.getImgUrlFromSeasonAndGame(gameId, seasonId)
+    let getUrlFromGameAndSeason = function (seasonFileResource) {
+      imageService.getCombinedUrlProperty(vm.gameFileResource, vm.urlProperty, seasonFileResource, vm.urlProperty)
         .subscribe(([gameImgUrl, seasonImgUrl]) => {
-          console.log('gameImgUrl '+ gameImgUrl);
-          console.log('seasonImgUrl ' + seasonImgUrl);
           if (gameImgUrl) {
-            console.log('used gameImgUrl');
             vm.shareImgUrl = gameImgUrl;
-          } else if (seasonImgUrl){
-            console.log('used seasonImgUrl');
+          } else if (seasonImgUrl) {
             vm.shareImgUrl = seasonImgUrl;
           }
-          console.log('__');
         })
     };
 
     let setGameImg = function () {
-      imageService.getImgUrlFromFinishedGame(vm.gameId)
+      imageService.getUrlProperty(vm.gameFileResource, vm.urlProperty)
         .subscribe((url) => {
-          console.log('gameUrl');
           if (url) {
-            console.log('gameUrl');
             vm.shareImgUrl = url;
           }
         });
@@ -111,10 +105,6 @@
       let photosUrlPath = photosUrlArray[3];
       let photosUrlLastCharacters = link.substring(link.length - 6);
       return photosUrlDomain + "/" + photosUrlPath + "/..." + photosUrlLastCharacters;
-    };
-
-    vm.setImgUrl = function (url) {
-      imageService.setImgUrlToFinishedGame(url, vm.gameId);
     };
 
     vm.onBack = function () {

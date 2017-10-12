@@ -41,7 +41,6 @@ import { GameProgressComponent } from './admin/game-progress/game-progress.compo
 import { RoundPanelComponent } from './admin/game-progress/round-panel/round-panel.component';
 import { BackupDirective } from './shared/backup.directive';
 import { UploadService } from './services/upload-service/upload.service';
-import { FileUploadComponent } from './admin/file-upload/file-upload.component';
 import { ImageService } from './services/image-service/image.service';
 
 import { DatePickerComponent } from './admin/date-picker/date-picker.component';
@@ -55,6 +54,7 @@ import { defineLocale } from 'ngx-bootstrap-base/dist/bs-moment';
 import { enGb, ru, uk } from 'ngx-bootstrap-base/dist/locale';
 
 import { GameSetupComponent } from './admin/game-setup/game-setup.component';
+import { AttachmentComponent } from './admin/attachment/attachment.component';
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
@@ -91,12 +91,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     FacebookShareComponent,
     FacebookShareComponent,
     GameSetupComponent,
-    FileUploadComponent,
     GameProgressComponent,
     RoundPanelComponent,
     BackupDirective,
     FacebookShareComponent,
-    GameSetupComponent
+    GameSetupComponent,
+    AttachmentComponent
   ],
   imports: [
     FormsModule,
@@ -171,7 +171,7 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appHintRoundType', upgradeAdapter.downgradeNg2Component(HintRoundTypeComponent));
     this.mhsAdminModule.directive('notificationPanel', upgradeAdapter.downgradeNg2Component(NotificationPanelComponent));
     this.mhsAdminModule.directive('mhsFacebookShare', upgradeAdapter.downgradeNg2Component(FacebookShareComponent));
-    this.mhsAdminModule.directive('mhsFileUpload', upgradeAdapter.downgradeNg2Component(FileUploadComponent));
+    this.mhsAdminModule.directive('mhsAttachment', upgradeAdapter.downgradeNg2Component(AttachmentComponent));
     this.mhsAdminModule.directive('appConfirmComponent', upgradeAdapter.downgradeNg2Component(ConfirmComponent));
     this.mhsAdminModule.directive('appCaptainRoundType', upgradeAdapter.downgradeNg2Component(CaptainRoundTypeComponent));
     this.mhsAdminModule.directive('appSwitcher', upgradeAdapter.downgradeNg2Component(SwitcherComponent));

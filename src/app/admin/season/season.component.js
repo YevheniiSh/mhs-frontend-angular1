@@ -23,7 +23,9 @@
     vm.$onInit = onInit;
 
     function onInit() {
-      vm.imageSaveRef = 'img/';
+      vm.urlProperty = 'imageUrl';
+      vm.fileResource = `seasons/${seasonId}`;
+      vm.fileType ='image';
 
       seasonService.getContenderTeams(seasonId).then((res) => {
         vm.seasonTeams = res;

@@ -1,4 +1,5 @@
-season mhs-file-upload{
+season mhs-file-upload {
+  display: inline-block;
   margin-right: 10px;
   float: right;
 }
@@ -29,9 +30,9 @@ season #season-name {
 }
 
 season #close-season-panel {
-  width: 33.3%;
-  display: inline-block;
-  float: right;
+  /*width: 33.3%;*/
+  /*display: inline-block;*/
+  /*float: right;*/
 }
 
 season #close-season-btn {
@@ -57,8 +58,8 @@ season .game-result {
   width: 8%;
 }
 
-season .missed-game{
-  color:red;
+season .missed-game {
+  color: red;
 }
 
 @media screen and (max-width: 720px) {
@@ -72,12 +73,12 @@ season .missed-game{
     padding-left: 15px;
   }
 
-  season .table>tbody>tr>td,
-  season .table>thead>tr>th{
+  season .table > tbody > tr > td,
+  season .table > thead > tr > th {
     padding: 8px 15px;
   }
 
-  season .table-header{
+  season .table-header {
     padding-left: 15px;
   }
 }
