@@ -18,16 +18,21 @@ export class ConnectivityService {
   public connectionDown$: Observable<boolean>;
 
   constructor() {
+    this.initConnectionState();
+    this.online$ = this.connectionState$.filter(state => state);
+    this.offline$ = this.connectionState$.filter(state => !state);
+    this.connectionUp$ = this.online$.skipUntil(this.offline$);
+    this.connectionDown$ = this.offline$.skipUntil(this.online$);
+  }
+
+  private initConnectionState() {
     this.connectionState$ = new Subject<boolean>();
+
     Observable
       .interval(5000)
       .switchMap(i => this.checkOnline())
       .distinctUntilChanged()
       .subscribe(this.connectionState$);
-    this.online$ = this.connectionState$.filter(state => state);
-    this.offline$ = this.connectionState$.filter(state => !state);
-    this.connectionUp$ = this.online$.skipUntil(this.offline$);
-    this.connectionDown$ = this.offline$.skipUntil(this.online$);
   }
 
   private checkOnline() {
