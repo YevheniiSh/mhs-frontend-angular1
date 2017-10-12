@@ -1,81 +1,44 @@
 import { Injectable } from '@angular/core';
-import { ConnectionService } from '../connection-service/connection.service';
+
+import { Observable } from 'rxjs/Observable';
+import { ConnectivityService } from '../connectivity-service/connectivity.service';
+import { FirebasePrefetchService } from './firebase-prefetch.service';
 
 @Injectable()
 export class FirebaseOfflineService {
 
   private firebaseRef;
-  private interval;
-  private tickValue: number;
 
-  private dataReferences = [
-    'games/current/',
-    'games/open/',
-    'teams/',
-    'seasons/',
-    'gameTemplates/',
-    'roundTypes/',
-    'teamsRequests/'
-  ];
+  constructor(private connectivityService: ConnectivityService,
+              private firebasePrefetchService: FirebasePrefetchService) {
 
-  constructor(private connectionService: ConnectionService) {
+    this.firebasePrefetchService.initData();
     this.firebaseRef = firebase.database().ref();
+
+    this.connectivityService = new ConnectivityService();
+
+    const down$ = this.connectivityService.connectionDown$;
+    const up$ = this.connectivityService.connectionUp$;
+
+    up$.subscribe(() => { this.setTimeStamp(); });
+
+    const pageLeave$ = Observable.fromEvent(window, 'beforeunload');
+
+    down$
+      .switchMap(c => pageLeave$.takeUntil(up$))
+      .subscribe(preventPageLeave);
   }
 
-  public initData() {
-    this.dataReferences
-      .forEach((reference) => {
-      this.subscribeOnData(reference);
-    });
-    this.enableOffline();
+  private setTimeStamp() {
+    return this.firebaseRef
+      .child('tick')
+      .push(firebase.database.ServerValue.TIMESTAMP);
   }
 
-  private subscribeOnData(reference: string) {
-    this.firebaseRef.child(reference).on('value', () => {});
-  }
+}
 
-  public enableOffline() {
-    this.connectionService.online.subscribe((snap) => this.pushTick(snap));
-  }
-
-  private enableTickPusher() {
-    this.interval = setInterval(() => {
-      this.firebaseRef.child('/tick').set(this.tickValue);
-      this.tickValue++;
-    }, 5000);
-  }
-
-  private saveData() {
-    firebase.database().ref().child('tick/')
-      .on('value', snap => {
-        if (snap.val() === this.tickValue) {
-          console.log('changes saved');
-        }
-      });
-  }
-
-  private pushTick(isOnline: boolean) {
-    this.tickValue = 0;
-    if (!isOnline) {
-      this.enableTickPusher();
-    } else {
-      clearInterval(this.interval);
-      this.saveData();
-    }
-  }
-
-  private enableReloadAlert() {
-    window.addEventListener('beforeunload', function (e) {
-      const confirmationMessage = ' ';
-      (e || window.event).returnValue = confirmationMessage;
-      return confirmationMessage;
-    });
-  }
-
-  private disableReloadAlert() {
-    window.addEventListener('beforeunload', function (e) {
-      e.preventDefault();
-    });
-  }
-
+function preventPageLeave(e: BeforeUnloadEvent) {
+  const confirmationMessage = '\o/';
+  e.returnValue = confirmationMessage;
+  return confirmationMessage;
 }
