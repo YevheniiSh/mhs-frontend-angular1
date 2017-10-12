@@ -12,7 +12,8 @@
   function ConfigGameController($location, OpenGameService, $routeParams, $locale, convertService, NotificationService) {
     let vm = this;
     vm.gameId = $routeParams.gameId;
-    this.location = "";
+    vm.location = "";
+    vm.isPrivateGame = false;
 
     vm.$onInit = onInit;
 
@@ -25,6 +26,11 @@
       vm.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
       vm.isMeridian = false;
       getIndexTab();
+      OpenGameService.isPrivate(vm.gameId)
+        .then(isPrivate=>{
+          vm.isPrivateGame = isPrivate;
+        });
+
     }
 
     function getIndexTab() {

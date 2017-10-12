@@ -53,6 +53,7 @@ import { enGb, ru, uk } from 'ngx-bootstrap-base/dist/locale';
 
 import { GameSetupComponent } from './admin/game-setup/game-setup.component';
 import { PrivateGameComponent } from './admin/private-game/private-game.component';
+import { PrivateGameTeamComponent } from './admin/private-game-team/private-game-team.component';
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
@@ -93,7 +94,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BackupDirective,
     FacebookShareComponent,
     GameSetupComponent,
-    GameProgressComponent
+    GameProgressComponent,
+    PrivateGameTeamComponent
   ],
   imports: [
     FormsModule,
@@ -174,6 +176,7 @@ export class HybridAppModule {
     this.mhsAdminModule.directive('appCreateGame', upgradeAdapter.downgradeNg2Component(CreateGameComponent));
     this.mhsAdminModule.directive('appEditGame', upgradeAdapter.downgradeNg2Component(EditGameComponent));
     this.mhsAdminModule.directive('privateGameComponent', upgradeAdapter.downgradeNg2Component(PrivateGameComponent));
+    this.mhsAdminModule.directive('mhsPrivateGameTeam', upgradeAdapter.downgradeNg2Component(PrivateGameTeamComponent));
 
   }
 

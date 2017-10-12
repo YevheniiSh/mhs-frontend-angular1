@@ -1,0 +1,31 @@
+<ul>
+  <li *ngFor="let team of teams">
+    <div>
+      <div form-group style="display: inline-block">
+        <label>
+          Название команды
+          <input class="form-control"
+                 [(ngModel)]="team.name"
+                 required>
+        </label>
+      </div>
+      <div style="display: inline-block">
+        <span class="btn btn-danger">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+  </li>
+</ul>
+<div class="form-group">
+  <label>
+    Назва команды
+    <input class="form-control"
+           type="text"
+           [(ngModel)]="newTeamName"
+           required>
+  </label>
+</div>
+<button class="btn btn-info" (click)="addTeam()">Добавить команду</button>
+<button class="btn btn-success" (click)="saveTeams()">Сохранить</button>
+

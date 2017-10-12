@@ -33,7 +33,9 @@
             setTemplateName: setTemplateName,
             getSeason: getSeason,
             changeSeason: changeSeason,
-            deleteSeason: deleteSeason
+            isPrivate: isPrivate,
+            deleteSeason: deleteSeason,
+            addTeamsToPrivateGame:addTeamsToPrivateGame
         };
 
         function getAllOpenGames() {
@@ -208,6 +210,20 @@
         obj.$value = isPrivate;
         obj.$save();
         return obj.$loaded();
+      }
+
+      function isPrivate(gameId) {
+        return openGamesRef.child(`/${gameId}/isPrivate`).once('value')
+          .then(isPrivate=>{
+            return isPrivate.val();
+          });
+      }
+
+      function addTeamsToPrivateGame(gameId, teams) {
+          let obj = new $firebaseArray(openGamesRef.child(gameId).child('teams'));
+          obj.$value = teams;
+          obj.$save();
+          return obj.$loaded();
       }
     }
 })();
