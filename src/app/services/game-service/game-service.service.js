@@ -31,7 +31,8 @@ angular
         addTeamToGame: addTeamToGame,
         getGameTeamsNumber: getGameTeamsNumber,
         getRoundByGameAndId: getRoundByGameAndId,
-        isGamePrivate: isGamePrivate
+        isGamePrivate: isGamePrivate,
+        deleteFinishedGameById: deleteFinishedGameById
       };
 
       function isGamePrivate(gameId) {
@@ -262,6 +263,10 @@ angular
           .then((res) => {
             return res.length;
           })
+      }
+
+      function deleteFinishedGameById(gameId) {
+        return finishedGameRef.child(gameId).remove();
       }
 
     }]);

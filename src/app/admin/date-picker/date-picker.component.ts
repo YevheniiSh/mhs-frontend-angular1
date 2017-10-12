@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-date-picker',
+  selector: 'mhs-date-picker',
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.css']
 })
@@ -10,7 +10,6 @@ export class DatePickerComponent implements OnInit, OnChanges {
   @Output() date = new EventEmitter<Date>();
   @Input() defaultDate;
   bsConfig;
-  minDate = new Date();
 
   constructor(private translate: TranslateService) {
   }
@@ -26,8 +25,8 @@ export class DatePickerComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    for (let prop in changes) {
-      if (prop === "defaultDate") {
+    for (const prop in changes) {
+      if (prop === 'defaultDate') {
         this._bsValue = changes[prop].currentValue;
       }
     }
@@ -38,12 +37,12 @@ export class DatePickerComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.bsConfig = Object.assign({}, { containerClass: "theme-blue" });
-    let locale = this.translate.currentLang;
+    this.bsConfig = Object.assign({}, { containerClass: 'theme-blue' });
+    const locale = this.translate.currentLang;
     this.translate.onLangChange.subscribe((event) => {
       this.applyLocale(event.lang);
     });
-    this.applyLocale(locale)
+    this.applyLocale(locale);
   }
 
   applyLocale(locale) {

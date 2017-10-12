@@ -79,7 +79,7 @@
   left: 3px;
 }
 
-app-hint-round-type .team-name {
+mhs-hint-round-type .team-name {
   overflow: hidden;
   word-wrap: break-word;
   display: block;
