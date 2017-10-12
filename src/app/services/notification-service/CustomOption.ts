@@ -4,4 +4,5 @@ export class CustomOption extends ToastOptions {
   newestOnTop = false;
   showCloseButton = true;
   toastLife: 2000;
+  enableHTML = true;
 }
