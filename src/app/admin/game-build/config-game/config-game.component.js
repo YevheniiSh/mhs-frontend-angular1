@@ -24,15 +24,11 @@
       vm.options.minDate = new Date();
       vm.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
       vm.isMeridian = false;
-
-
-
       getIndexTab();
     }
 
     function getIndexTab() {
       vm.tabs = ['teams', 'rounds'];
-
       vm.activeTab = Object.keys($location.search()).find(k => /teams|rounds/.test(k));
       if (vm.activeTab === undefined) vm.activeTab = 'teams';
     }
@@ -60,7 +56,6 @@
       saveLocation();
     };
 
-
     vm.openCalendarPiker = function () {
       if (!isCalendarPikerOpen()) vm.isCalendarVisible = true;
     };
@@ -76,7 +71,6 @@
     vm.closeTimePiker = function () {
       isTimePikerOpen();
     };
-
 
     function isTimePikerOpen() {
       if (vm.isTimeVisible) {
