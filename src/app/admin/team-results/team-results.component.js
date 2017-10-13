@@ -64,13 +64,9 @@ angular.module('teamResults')
                             vm.setTeamTotal();
                         });
 
-                    GameService.getGameTeams(vm.gameId)
-                        .then((teams) => {
-                            teams.forEach((team) => {
-                                if(team.teamId === $routeParams.teamId){
-                                    vm.teamName = team.name;
-                                }
-                            })
+                    GameService.getGameTeamNameById(vm.gameId, $routeParams.teamId)
+                        .then((teamName) => {
+                            vm.teamName = teamName;
                         });
                 };
 
