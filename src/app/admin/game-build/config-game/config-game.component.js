@@ -26,8 +26,8 @@
       vm.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
       vm.isMeridian = false;
       getIndexTab();
-      OpenGameService.isPrivate(vm.gameId, (snapshot) => {
-        vm.isPrivateGame = snapshot.val();
+      OpenGameService.isPrivate(vm.gameId, (isPrivate) => {
+        vm.isPrivateGame = isPrivate;
       });
 
     }

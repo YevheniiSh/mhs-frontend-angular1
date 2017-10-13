@@ -215,7 +215,10 @@
       }
 
       function isPrivate(gameId, callback) {
-        return openGamesRef.child(`/${gameId}/isPrivate`).on('value', callback);
+        return openGamesRef.child(`/${gameId}/isPrivate`)
+          .on('value', (snapshot) => {
+            callback(snapshot.val());
+          });
       }
 
       function getPrivateGameTeams(gameId){
