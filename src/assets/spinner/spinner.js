@@ -1,3 +1,3 @@
 window.onload = function () {
-  document.getElementById("coverScreen").style.display = "none";
+  document.getElementById("cover-screen").style.display = "none";
 };

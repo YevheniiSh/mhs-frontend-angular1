@@ -17,12 +17,11 @@
   </script>
 </head>
 <body>
-<div id="coverScreen" class="LockOn"></div>
-
+<div id="cover-screen" class="lock-on"></div>
 <div class="container" ng-class="{'presentation-mode': presentationMode}">
-  <mhs-navbar ng-if="!presentationMode && !loading"></mhs-navbar>
+  <mhs-navbar ng-if="!presentationMode"></mhs-navbar>
   <mhs-notification-panel></mhs-notification-panel>
-  <div ng-show="!loading" ng-view></div>
+  <div ng-view></div>
 </div>
 </body>
 </html>
