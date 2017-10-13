@@ -65,6 +65,7 @@ import { SeasonService } from './services/season-service/season.service.upgrade'
 import { ConvertService } from './services/convert-service/convert.service.upgrade';
 import { GameBuildService } from './services/game-build-service/game-build.service.upgrade';
 import { RoundStatusService } from './services/round-service/round-status.service.upgrade';
+import { PrivateGameTeamComponent } from './admin/private-game-team/private-game-team.component';
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
@@ -100,7 +101,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoundPanelComponent,
     BackupDirective,
     GameSetupComponent,
-    GameProgressComponent
+    GameProgressComponent,
+    PrivateGameTeamComponent
   ],
   imports: [
     FormsModule,
@@ -145,7 +147,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CreateGameComponent,
     SeasonPickerComponent,
     EditGameComponent,
-    GameProgressComponent
+    GameProgressComponent,
+    PrivateGameTeamComponent
   ],
   providers: [
     LoginService,

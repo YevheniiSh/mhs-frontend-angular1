@@ -1,0 +1,40 @@
+<div class="col-md-4 col-md-offset-4">
+  <ul>
+    <li *ngFor="let team of teams; let i = index">
+      <div class="team col-md-12">
+        <label class="col-md-10">
+          <p translate="{{'TEAM_NAME_LABEL'}}"></p>
+          <input class="form-control"
+                 [(ngModel)]="team.name"
+                 required>
+        </label>
+        <div class="col-md2">
+           <span class="btn btn-danger delete-button"
+                 (click)="removeTeam(i)">
+             <i class="fa fa-trash-o"
+                aria-hidden="true"></i>
+           </span>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <form ngNativeValidate (submit)="addTeam()">
+    <label class="team-input">
+      <p translate="{{'TEAM_NAME_LABEL'}}"></p>
+      <input class="form-control"
+             name="team-name"
+             type="text"
+             [(ngModel)]="newTeamName"
+             required>
+    </label>
+    <button class="btn btn-info btn-block"
+            type="submit"
+            translate="{{'ADD_TEAM_BUTTON'}}"
+            name="add-button">
+    </button>
+  </form>
+  <button class="btn btn-success btn-block save-button"
+          (click)="saveTeams()"
+          translate="{{'SAVE_TEAMS_BUTTON'}}">
+  </button>
+</div>
