@@ -10,10 +10,10 @@ export class ImageService {
   constructor(private db: AngularFireDatabase) {
   }
 
-  getCombinedUrlProperty(ref, property, ref2, property2): Observable<string[]> {
+  getCombinedUrlProperty(obj1, obj2): Observable<string[]> {
     return Observable.combineLatest(
-      this.getUrlProperty(ref, property),
-      this.getUrlProperty(ref2, property2));
+      this.getUrlProperty(obj1.ref, obj1.property),
+      this.getUrlProperty(obj2.ref, obj2.property));
   }
 
   setUrlProperty(ref, property, url) {

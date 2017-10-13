@@ -60,13 +60,23 @@
         .then((seasonId) => {
           if (seasonId) {
             let seasonFileResource = `seasons/${seasonId}`;
-            getUrlFromGameAndSeason(seasonFileResource)
+            getImageUrlFromGameAndSeason(seasonFileResource)
           } else setGameImg()
         })
     }
 
-    let getUrlFromGameAndSeason = function (seasonFileResource) {
-      imageService.getCombinedUrlProperty(vm.gameFileResource, vm.urlProperty, seasonFileResource, vm.urlProperty)
+    let getImageUrlFromGameAndSeason = function (seasonFileResource) {
+      let seasonImgUrl = {
+        ref: seasonFileResource,
+        property: vm.urlProperty
+      };
+
+      let gameImgUrl = {
+        ref: vm.gameFileResource,
+        property: vm.urlProperty
+      };
+
+      imageService.getCombinedUrlProperty(gameImgUrl, seasonImgUrl)
         .subscribe(([gameImgUrl, seasonImgUrl]) => {
           if (gameImgUrl) {
             vm.shareImgUrl = gameImgUrl;

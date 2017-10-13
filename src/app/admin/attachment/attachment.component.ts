@@ -1,10 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { UploadService } from '../../services/upload-service/upload.service';
 import { NotificationService } from '../../services/notification-service/notification.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-
-import * as firebase from 'firebase/app';
 import { ImageService } from '../../services/image-service/image.service';
 import { Downgrade } from '../../hybrid/downgrade';
 
@@ -17,7 +14,7 @@ import { Downgrade } from '../../hybrid/downgrade';
 export class AttachmentComponent implements OnInit {
   file;
   fileUrl;
-  user: Observable<firebase.User>;
+  user;
   @Input() resource;
   @Input() urlProperty;
   @Input() fileType;

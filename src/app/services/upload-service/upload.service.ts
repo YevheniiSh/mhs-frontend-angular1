@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Downgrade } from '../../hybrid/downgrade';
 
-declare let firebase: any;
-const ref = 'upload-files/';
+
 @Downgrade()
 @Injectable()
 export class UploadService {
   private storage: any;
-
+  private ref = 'upload-files/';
   constructor() {
     this.storage = firebase.storage();
   }
@@ -20,8 +19,8 @@ export class UploadService {
   }
 
   private createRef(file) {
-    let date =  new Date;
-    return ref + date.toString().replace(/ /g, '_') + file.name;
+    const date = new Date;
+    return this.ref + date.toString().replace(/ /g, '_') + file.name;
   }
 
 }
