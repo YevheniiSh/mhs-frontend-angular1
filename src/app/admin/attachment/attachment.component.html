@@ -6,16 +6,16 @@
          accept='image/*'
          (change)='setFile($event)'>
 
-   <button class="btn btn-info choose-img"
-           (click)="chooseFile()"
-           translate="{{'CHOOSE_IMAGE'}}">
+  <button class="btn btn-info choose-img"
+          (click)="chooseFile()"
+          translate="{{'CHOOSE_IMAGE'}}">
   </button>
 
   <a *ngIf="fileUrl"
      id="file-link"
      [href]="fileUrl"
      target="_blank"
-     translate="{{'IMAGE_LINK'}}">
+     translate="IMAGE_LINK">
   </a>
 
   <button *ngIf="fileUrl"

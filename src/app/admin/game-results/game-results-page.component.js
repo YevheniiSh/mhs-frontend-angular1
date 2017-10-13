@@ -1,3 +1,6 @@
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/operator/combineLatest';
+
 (function () {
   angular
     .module('gameResultsPage')
@@ -60,7 +63,7 @@
           if (seasonId) {
             let seasonFileResource = `seasons/${seasonId}`;
             getImageUrlFromGameAndSeason(seasonFileResource)
-          } else setGameImg()
+          } else setGameImgUrl()
         })
     }
 
@@ -75,22 +78,24 @@
         property: vm.urlProperty
       };
 
-      attachmentService.getCombinedProperty(gameImgUrl, seasonImgUrl)
+      getSeasonAndGameFileUrls(gameImgUrl, seasonImgUrl)
         .subscribe(([gameImgUrl, seasonImgUrl]) => {
-          if (gameImgUrl) {
-            vm.shareImgUrl = gameImgUrl;
-          } else if (seasonImgUrl) {
-            vm.shareImgUrl = seasonImgUrl;
-          }
+          gameImgUrl ? vm.shareImgUrl = gameImgUrl : vm.shareImgUrl = seasonImgUrl;
+          if (!vm.shareImgUrl)
+            vm.shareImgUrl = undefined;
         })
     };
 
-    let setGameImg = function () {
-      attachmentService.getProperty(vm.gameFileResource, vm.urlProperty)
+    let getSeasonAndGameFileUrls = function (game, season) {
+      return Observable.combineLatest(
+        attachmentService.getFileUrl(game.ref, game.property),
+        attachmentService.getFileUrl(season.ref, season.property));
+    };
+
+    let setGameImgUrl = function () {
+      attachmentService.getFileUrl(vm.gameFileResource, vm.urlProperty)
         .subscribe((url) => {
-          if (url) {
-            vm.shareImgUrl = url;
-          }
+          (url) ? vm.shareImgUrl = url : vm.shareImgUrl = undefined;
         });
     };
 

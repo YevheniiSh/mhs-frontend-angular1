@@ -17,8 +17,12 @@ export class AttachmentService {
   attachFile(file, dbResource, property): Promise<any> {
     return this.storage.ref(this.createRef(file)).put(file)
       .then((res) => {
-        return this.db.object(`${dbResource}/${property}`).set(res.metadata.downloadURLs[0]);
+        return this.setFileUrl(dbResource, property, res.metadata.downloadURLs[0]);
       });
+  }
+
+  private setFileUrl(dbResource, property, url) {
+    return this.db.object(`${dbResource}/${property}`).set(url);
   }
 
   private createRef(file) {
@@ -26,22 +30,12 @@ export class AttachmentService {
     return this.ref + date.toString().replace(/ /g, '_') + file.name;
   }
 
-  getProperty(ref, property): Observable<any> {
-    return new Observable((obs) => {
-      this.db.object(`${ref}/${property}`)
-        .subscribe((res) => {
-          obs.next(res.$value);
-        });
-    });
+  getFileUrl(ref, property): Observable<any> {
+    return this.db.object(`${ref}/${property}`)
+      .map(res => res.$value);
   }
 
-  getCombinedProperty(obj1, obj2): Observable<string[]> {
-    return Observable.combineLatest(
-      this.getProperty(obj1.ref, obj1.property),
-      this.getProperty(obj2.ref, obj2.property));
-  }
-
-  removeProperty(ref, property) {
+  removeFile(ref, property) {
     return this.db.object(`${ref}/${property}`).remove();
   }
 

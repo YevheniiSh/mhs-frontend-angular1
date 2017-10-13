@@ -52,14 +52,14 @@ export class AttachmentComponent implements OnInit {
   }
 
   getFileUrl() {
-    this.attachmentService.getProperty(this.resource, this.urlProperty)
-      .subscribe((res) => {
-        this.fileUrl = res;
+    this.attachmentService.getFileUrl(this.resource, this.urlProperty)
+      .subscribe((url) => {
+        this.fileUrl = url;
       });
   }
 
   removeFileUrl() {
-    this.attachmentService.removeProperty(this.resource, this.urlProperty);
+    this.attachmentService.removeFile(this.resource, this.urlProperty);
   }
 
 }
