@@ -5,7 +5,8 @@
         {{'BACK_BUTTON' | translate}}
       </button>
     </div>
-    <span id="season-name">{{$ctrl.selectedSeason.name}}</span>
+    <span id="season-name">{{$ctrl.season.name}}</span>
+
     <div id="close-season-panel">
       <button id="close-season-btn" class="btn btn-danger"
               ng-if="$ctrl.isCurrentSeason && $ctrl.admin && !$ctrl.showCloseSeasonAlert"
@@ -13,6 +14,12 @@
         {{'CLOSE_SEASON_BUTTON' | translate}}
       </button>
     </div>
+
+    <mhs-attachment
+      [file-type]="$ctrl.fileType"
+      [resource]="$ctrl.fileResource"
+      [url-property]="$ctrl.urlProperty">
+    </mhs-attachment>
   </div>
 
   <table ng-if=" $ctrl.seasonTeams.length != 0" class="table table-sm table-striped table-hover">

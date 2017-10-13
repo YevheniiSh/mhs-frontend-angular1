@@ -68,6 +68,8 @@ import { FirebaseOfflineService } from './services/firebase-service/firebase-off
 import { ConnectivityService } from './services/connectivity-service/connectivity.service';
 import { FirebasePrefetchService } from './services/firebase-service/firebase-prefetch.service';
 import { CustomOption } from './services/notification-service/CustomOption';
+import { AttachmentComponent } from './admin/attachment/attachment.component';
+import { AttachmentService } from './services/attachment-service/attachment.service';
 import { PrivateGameTeamComponent } from './admin/private-game-team/private-game-team.component';
 import { FacebookShareComponent } from './common/facebook/share/facebook-share.component';
 import { PromptComponent } from './common/modal-prompt/prompt.component';
@@ -110,7 +112,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     GameSetupComponent,
     PromptComponent,
     FacebookGroupPostComponent,
-    PrivateGameTeamComponent
+    PrivateGameTeamComponent,
+    GameProgressComponent,
+    AttachmentComponent
   ],
   imports: [
     FormsModule,
@@ -156,6 +160,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SeasonPickerComponent,
     EditGameComponent,
     GameProgressComponent,
+    AttachmentComponent,
     PromptComponent,
     FacebookGroupPostComponent,
     PrivateGameTeamComponent
@@ -177,6 +182,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SeasonService,
     ConvertService,
     GameBuildService,
+    RoundStatusService,
+    AttachmentService,
     RoundStatusService,
     FacebookGroupPostService,
     RoundStatusService,

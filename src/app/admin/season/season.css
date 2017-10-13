@@ -1,3 +1,8 @@
+season mhs-attachment {
+  float: right;
+  margin-right: 10px;
+}
+
 season .season-alert {
   font-size: 3em;
   text-align: center;
@@ -24,12 +29,6 @@ season #season-name {
   float: left;
 }
 
-season #close-season-panel {
-  width: 33.3%;
-  display: inline-block;
-  float: right;
-}
-
 season #close-season-btn {
   float: right;
 }
@@ -53,8 +52,8 @@ season .game-result {
   width: 8%;
 }
 
-season .missed-game{
-  color:red;
+season .missed-game {
+  color: red;
 }
 
 @media screen and (max-width: 720px) {
@@ -68,12 +67,12 @@ season .missed-game{
     padding-left: 15px;
   }
 
-  season .table>tbody>tr>td,
-  season .table>thead>tr>th{
+  season .table > tbody > tr > td,
+  season .table > thead > tr > th {
     padding: 8px 15px;
   }
 
-  season .table-header{
+  season .table-header {
     padding-left: 15px;
   }
 }

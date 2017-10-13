@@ -1,0 +1,27 @@
+<div *ngIf="(user | async)"
+     class="content">
+  <input type='file'
+         #inputFile
+         id="file-upload"
+         accept='image/*'
+         (change)='setFile($event)'>
+
+  <button class="btn btn-info choose-img"
+          (click)="chooseFile()"
+          translate="{{'CHOOSE_IMAGE'}}">
+  </button>
+
+  <a *ngIf="fileUrl"
+     class="btn file-link"
+     [href]="fileUrl"
+     target="_blank">
+    <i class="fa fa-picture-o fa-2x"></i>
+  </a>
+
+  <button *ngIf="fileUrl"
+          id="delete-file"
+          class="btn btn-danger"
+          (click)="removeFileUrl()">
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+  </button>
+</div>

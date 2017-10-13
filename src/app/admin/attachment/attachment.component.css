@@ -1,0 +1,15 @@
+#file-upload {
+  display: none;
+}
+
+.file-link {
+  padding: 0px;
+}
+
+#delete-file {
+  margin-left: 5px;
+}
+
+.choose-img {
+  margin-right: 10px;
+}

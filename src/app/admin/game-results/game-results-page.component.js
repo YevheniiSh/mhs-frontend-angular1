@@ -1,3 +1,6 @@
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/operator/combineLatest';
+
 (function () {
   angular
     .module('gameResultsPage')
@@ -7,9 +10,11 @@
       controller: GameResultsPageController
     });
 
-  GameResultsPageController.$inject = ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$location', '$window', 'userAuthService', '$translate'];
+  GameResultsPageController.$inject = ['ResultServiceFactory', 'GameServiceFactory', '$routeParams',
+    '$location', '$window', 'userAuthService', 'AttachmentService', 'seasonService', '$translate'];
 
-  function GameResultsPageController(ResultService, GameService, $routeParams, $location, $window, userAuthService, $translate) {
+  function GameResultsPageController(ResultService, GameService, $routeParams,
+                                     $location, $window, userAuthService, attachmentService, seasonService, $translate) {
 
     let vm = this;
 
@@ -18,7 +23,9 @@
     let gameId = $routeParams.gameId;
 
     function onInit() {
-      vm.gameId = $routeParams.gameId;
+      vm.urlProperty = 'imageUrl';
+      vm.gameFileResource = `games/finished/${gameId}`;
+      vm.fileType = 'image';
 
       vm.isGameCurrent = true;
       vm.photosUrl = '';
@@ -30,11 +37,11 @@
         $window.open($window.location.origin + `/#!/games/${gameId}/results-presentation`, ``, `width=${screen.availWidth},height=${screen.availHeight}`);
       };
 
-      GameService.getGameStatus(this.gameId).then(status => {
-        GameService.getDate(status, this.gameId).then(v => this.date = new Date(v.$value).toLocaleDateString());
+      GameService.getGameStatus(gameId).then(status => {
+        GameService.getDate(status, gameId).then(v => this.date = new Date(v.$value).toLocaleDateString());
       });
 
-      ResultService.getParsedResults(this.gameId)
+      ResultService.getParsedResults(gameId)
         .then((result) => {
           vm.results = result;
         });
@@ -52,8 +59,48 @@
       userAuthService.currentUser()
         .then((res) => {
           vm.user = res;
+        });
+
+      seasonService.getSeasonIdByGameId(gameId)
+        .then((seasonId) => {
+          if (seasonId) {
+            let seasonFileResource = `seasons/${seasonId}`;
+            getImageUrlFromGameAndSeason(seasonFileResource)
+          } else setGameImgUrl()
         })
     }
+
+    let getImageUrlFromGameAndSeason = function (seasonFileResource) {
+      let seasonImgUrl = {
+        ref: seasonFileResource,
+        property: vm.urlProperty
+      };
+
+      let gameImgUrl = {
+        ref: vm.gameFileResource,
+        property: vm.urlProperty
+      };
+
+      getSeasonAndGameFileUrls(gameImgUrl, seasonImgUrl)
+        .subscribe(([gameImgUrl, seasonImgUrl]) => {
+          gameImgUrl ? vm.shareImgUrl = gameImgUrl : vm.shareImgUrl = seasonImgUrl;
+          if (!vm.shareImgUrl)
+            vm.shareImgUrl = undefined;
+        })
+    };
+
+    let getSeasonAndGameFileUrls = function (game, season) {
+      return Observable.combineLatest(
+        attachmentService.getFileUrl(game.ref, game.property),
+        attachmentService.getFileUrl(season.ref, season.property));
+    };
+
+    let setGameImgUrl = function () {
+      attachmentService.getFileUrl(vm.gameFileResource, vm.urlProperty)
+        .subscribe((url) => {
+          (url) ? vm.shareImgUrl = url : vm.shareImgUrl = undefined;
+        });
+    };
 
     vm.shareURL = $location.absUrl();
 

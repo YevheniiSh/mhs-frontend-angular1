@@ -2,6 +2,11 @@ mhs-facebook-share {
   float: right;
 }
 
+mhs-attachment {
+  margin-right: 10px;
+  float: right;
+}
+
 .photos-link {
   line-height: 280%;
   float: right;

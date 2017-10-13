@@ -8,11 +8,9 @@
       controller: seasonsController
     });
 
-  seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService',
-    'NotificationService', 'CustomConfirmationService'];
+  seasonsController.$inject = ['$location', 'seasonService', '$routeParams', '$window', 'userAuthService', 'NotificationService', 'CustomConfirmationService'];
 
-  function seasonsController($location, seasonService, $routeParams, $window, userAuthService,
-                             notificationService, customConfirmationService) {
+  function seasonsController($location, seasonService, $routeParams, $window, userAuthService, notificationService, customConfirmationService) {
 
     let vm = this;
 
@@ -23,6 +21,9 @@
     vm.$onInit = onInit;
 
     function onInit() {
+      vm.urlProperty = 'imageUrl';
+      vm.fileResource = `seasons/${seasonId}`;
+      vm.fileType ='image';
 
       seasonService.getContenderTeams(seasonId).then((res) => {
         vm.seasonTeams = res;
@@ -34,6 +35,7 @@
 
       seasonService.getCurrentSeason().then(season => {
         if (season) {
+          vm.season = season;
           if (season.$id === seasonId) {
             vm.isCurrentSeason = true;
 
