@@ -9,7 +9,10 @@
   </div>
   <mhs-edit-game [game-id]="$ctrl.gameId"></mhs-edit-game>
   <div class="col-md-2 facebook-group-post">
-    <mhs-facebook-group-post [url]="$ctrl.currentGameRegisterPath" ng-if="$root.currentUser"></mhs-facebook-group-post>
+    <mhs-facebook-group-post
+      [url]="$ctrl.currentGameRegisterPath"
+      ng-if="$root.currentUser">
+    </mhs-facebook-group-post>
   </div>
   <div class="row"></div>
   <uib-tabset active="$ctrl.activeTab">
