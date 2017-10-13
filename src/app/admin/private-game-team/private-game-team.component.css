@@ -1,24 +1,24 @@
-ul{
+ul {
   list-style: none;
   padding: 0;
 }
 
-.team{
+.team {
   border: 1px solid lightgrey;
   margin-top: 5px;
   border-radius: 10px;
   padding: 5px;
 }
 
-.delete-button{
+.delete-button {
   margin-top: 29px;
 }
 
-.team-input{
+.team-input {
   margin: 10px 0px;
   width: 100%;
 }
 
-.save-button{
+.save-button {
   margin: 10px 0px;
 }

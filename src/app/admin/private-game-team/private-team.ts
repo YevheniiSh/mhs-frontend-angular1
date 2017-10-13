@@ -1,4 +1,4 @@
-export class Team {
+export class PrivateTeam {
   name: string;
 
   constructor(name: string) {
