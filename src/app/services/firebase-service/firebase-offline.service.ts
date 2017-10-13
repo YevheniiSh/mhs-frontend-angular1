@@ -1,44 +1,75 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
 import { ConnectivityService } from '../connectivity-service/connectivity.service';
 import { FirebasePrefetchService } from './firebase-prefetch.service';
+import { NotificationService } from '../notification-service/notification.service';
 
 @Injectable()
 export class FirebaseOfflineService {
 
   private firebaseRef;
+  private upToDate: boolean;
 
   constructor(private connectivityService: ConnectivityService,
-              private firebasePrefetchService: FirebasePrefetchService) {
+              private firebasePrefetchService: FirebasePrefetchService,
+              private notificationService: NotificationService) {
 
     this.firebasePrefetchService.initData();
     this.firebaseRef = firebase.database().ref();
+    this.upToDate = true;
 
-    this.connectivityService = new ConnectivityService();
-
+    const connectionState$ = this.connectivityService.connectionState$;
     const down$ = this.connectivityService.connectionDown$;
     const up$ = this.connectivityService.connectionUp$;
 
-    up$.subscribe(() => { this.setTimeStamp(); });
+    down$.subscribe(() => this.notificationService.showError('CONNECTION_LOST'));
 
-    const pageLeave$ = Observable.fromEvent(window, 'beforeunload');
+    up$.subscribe(() => { this.checkFirebaseConnection(); });
 
-    down$
-      .switchMap(c => pageLeave$.takeUntil(up$))
-      .subscribe(preventPageLeave);
+    window.addEventListener('beforeunload', this.onPageLeave());
+
+    connectionState$.subscribe(state => this.upToDate = state);
+
+  }
+
+  private onPageLeave() {
+    return (e: BeforeUnloadEvent) => {
+      if (this.upToDate) {
+        return;
+      }
+      const confirmationMessage = '\o/';
+      e.returnValue = confirmationMessage;
+      return confirmationMessage;
+    };
+  }
+
+  private checkFirebaseConnection() {
+    return this.notificationService.showControlledWarning('CONNECTION_RESTORING')
+      .zip(this.setTimeStamp())
+      .delay(2000)
+      .subscribe(([toast, timeStampId]) => {
+          this.notificationService.toastrService.dismissToast(toast);
+          this.removeTimestamp(timeStampId)
+            .then(() => {
+            this.notificationService.showSuccess('CONNECTION_RESTORED');
+          });
+        }
+      );
   }
 
   private setTimeStamp() {
     return this.firebaseRef
-      .child('tick')
-      .push(firebase.database.ServerValue.TIMESTAMP);
+      .child('connectionTimestamps/')
+      .push(firebase.database.ServerValue.TIMESTAMP)
+      .then((timestamp) => {
+        return timestamp.key;
+      });
   }
 
-}
+  private removeTimestamp(id) {
+    return this.firebaseRef
+      .child(`connectionTimestamps/${id}`)
+      .remove();
+  }
 
-function preventPageLeave(e: BeforeUnloadEvent) {
-  const confirmationMessage = '\o/';
-  e.returnValue = confirmationMessage;
-  return confirmationMessage;
 }

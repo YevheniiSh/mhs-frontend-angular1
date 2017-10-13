@@ -5,7 +5,6 @@ import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-
 @Injectable()
 export class ConnectivityService {
 

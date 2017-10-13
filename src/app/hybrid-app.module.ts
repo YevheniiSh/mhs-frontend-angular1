@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToastModule } from 'ng2-toastr';
+import { ToastModule, ToastOptions } from 'ng2-toastr';
 import { CollapseModule } from 'ngx-bootstrap-base/dist/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap-base/dist/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap-base/dist/datepicker';
@@ -65,6 +65,10 @@ import { SeasonService } from './services/season-service/season.service.upgrade'
 import { ConvertService } from './services/convert-service/convert.service.upgrade';
 import { GameBuildService } from './services/game-build-service/game-build.service.upgrade';
 import { RoundStatusService } from './services/round-service/round-status.service.upgrade';
+import { FirebaseOfflineService } from './services/firebase-service/firebase-offline.service';
+import { ConnectivityService } from './services/connectivity-service/connectivity.service';
+import { FirebasePrefetchService } from './services/firebase-service/firebase-prefetch.service';
+import { CustomOption } from './services/notification-service/CustomOption';
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
@@ -124,7 +128,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     FacebookModule.forRoot(),
-    BootstrapModalModule.forRoot({ container: document.body }),
+    BootstrapModalModule.forRoot({container: document.body}),
     UpgradeModule,
     AngularJsProvider.forRoot(),
     DowngradeModule,
@@ -149,6 +153,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     LoginService,
+    {provide: ToastOptions, useClass: CustomOption},
     NotificationService,
     CustomConfirmationService,
     TeamService,
@@ -163,12 +168,18 @@ export function HttpLoaderFactory(http: HttpClient) {
     SeasonService,
     ConvertService,
     GameBuildService,
-    RoundStatusService
+    RoundStatusService,
+    FirebasePrefetchService,
+    ConnectivityService,
+    FirebaseOfflineService
   ],
 })
 export class HybridAppModule {
 
-  constructor(private upgradeModule: UpgradeModule, private fb: FacebookService, private dp: DowngradeModule) {
+  constructor(private upgradeModule: UpgradeModule,
+              private fb: FacebookService,
+              private dp: DowngradeModule,
+              private firebaseOfflineService: FirebaseOfflineService) {
     this.initFacebook();
     this.dp.init(HybridAppModule, {
       defaultAngularJsModuleForComponents: 'mhs.admin',
@@ -178,7 +189,7 @@ export class HybridAppModule {
   }
 
   ngDoBootstrap() {
-    this.upgradeModule.bootstrap(document.documentElement, ['mhs'], { strictDi: false });
+    this.upgradeModule.bootstrap(document.documentElement, ['mhs'], {strictDi: false});
   }
 
   private initFacebook() {

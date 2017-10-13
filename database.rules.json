@@ -44,7 +44,7 @@
       ".read": "true",
       ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
     },
-    "tick": {
+    "connectionTimestamps": {
       ".read": "true",
       ".write": "auth != null && root.child('users/'+auth.uid).val() === true"
     },
