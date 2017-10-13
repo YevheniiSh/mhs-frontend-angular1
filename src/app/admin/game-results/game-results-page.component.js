@@ -8,10 +8,10 @@
     });
 
   GameResultsPageController.$inject = ['ResultServiceFactory', 'GameServiceFactory', '$routeParams',
-    '$location', '$window', 'userAuthService', 'ImageService', 'seasonService'];
+    '$location', '$window', 'userAuthService', 'AttachmentService', 'seasonService'];
 
   function GameResultsPageController(ResultService, GameService, $routeParams,
-                                     $location, $window, userAuthService, imageService, seasonService) {
+                                     $location, $window, userAuthService, attachmentService, seasonService) {
 
     let vm = this;
 
@@ -23,7 +23,6 @@
       vm.urlProperty = 'imageUrl';
       vm.gameFileResource = `games/finished/${gameId}`;
       vm.fileType = 'image';
-      console.log('seasonId');
 
       vm.isGameCurrent = true;
       vm.photosUrl = '';
@@ -76,7 +75,7 @@
         property: vm.urlProperty
       };
 
-      imageService.getCombinedUrlProperty(gameImgUrl, seasonImgUrl)
+      attachmentService.getCombinedProperty(gameImgUrl, seasonImgUrl)
         .subscribe(([gameImgUrl, seasonImgUrl]) => {
           if (gameImgUrl) {
             vm.shareImgUrl = gameImgUrl;
@@ -87,7 +86,7 @@
     };
 
     let setGameImg = function () {
-      imageService.getUrlProperty(vm.gameFileResource, vm.urlProperty)
+      attachmentService.getProperty(vm.gameFileResource, vm.urlProperty)
         .subscribe((url) => {
           if (url) {
             vm.shareImgUrl = url;

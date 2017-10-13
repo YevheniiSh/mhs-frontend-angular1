@@ -1,8 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { UploadService } from '../../services/upload-service/upload.service';
 import { NotificationService } from '../../services/notification-service/notification.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { ImageService } from '../../services/image-service/image.service';
+import { AttachmentService } from '../../services/attachment-service/attachment.service';
 import { Downgrade } from '../../hybrid/downgrade';
 
 @Downgrade()
@@ -20,8 +19,7 @@ export class AttachmentComponent implements OnInit {
   @Input() fileType;
   @ViewChild('inputFile') inputFile: ElementRef;
 
-  constructor(private uploadService: UploadService,
-              private imageService: ImageService,
+  constructor(private attachmentService: AttachmentService,
               private afAuth: AngularFireAuth,
               private notifications: NotificationService) {
     this.user = afAuth.authState;
@@ -46,24 +44,22 @@ export class AttachmentComponent implements OnInit {
     this.inputFile.nativeElement.click();
   }
 
-
   uploadFile() {
-    this.uploadService.uploadFile(this.file)
+    this.attachmentService.attachFile(this.file, this.resource, this.urlProperty)
       .then((url) => {
-        this.imageService.setUrlProperty(this.resource, this.urlProperty, url);
         this.notifications.showSuccess('FILE_SUCCESS_SAVED');
       });
   }
 
   getFileUrl() {
-    this.imageService.getUrlProperty(this.resource, this.urlProperty)
+    this.attachmentService.getProperty(this.resource, this.urlProperty)
       .subscribe((res) => {
         this.fileUrl = res;
       });
   }
 
   removeFileUrl() {
-    this.imageService.removeUrlProperty(this.resource, this.urlProperty);
+    this.attachmentService.removeProperty(this.resource, this.urlProperty);
   }
 
 }

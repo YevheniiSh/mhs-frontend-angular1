@@ -18,7 +18,6 @@
       [url-property]="$ctrl.urlProperty">
     </mhs-attachment>
 
-
     <div class="photos-link" ng-if="$ctrl.gameFinished && !$ctrl.linkEditor">
       <span class="no-photos-link" ng-if="$ctrl.photosUrl=='' || $ctrl.photosUrl==null">{{'NO_LINK_TO_PHOTOS_LABEL' | translate}}</span>
       <a ng-if="$ctrl.photosUrl!='' && $ctrl.photosUrl!=null"
