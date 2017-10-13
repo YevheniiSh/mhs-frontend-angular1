@@ -133,6 +133,9 @@
                                 vm.isCorrectLastDigits = false;
                             }
                         }
+                      if (!vm.isCorrectLastDigits) {
+                        NotificationService.showError('INCORRECT_LAST_NUMBERS_ERROR');
+                      }
                     })
             }
         }

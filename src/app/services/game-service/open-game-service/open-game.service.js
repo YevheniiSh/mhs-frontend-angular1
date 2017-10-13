@@ -9,6 +9,7 @@
 
         let openGamesRef = firebaseDataService.openGames;
         let seasonsRef = firebaseDataService.seasons;
+      let root = firebaseDataService.root;
 
         return {
             getAllOpenGames: getAllOpenGames,
@@ -22,13 +23,17 @@
             changeDate: changeDate,
             changeLocation: changeLocation,
             changeTime: changeTime,
+            changeIsPrivate: changeIsPrivate,
             getRounds: getRounds,
             getTeams: getTeams,
             updateTeamSize: updateTeamSize,
             getOpenGameById: getOpenGameById,
             removeOpenGame: removeOpenGame,
             getTemplateName:getTemplateName,
-            setTemplateName:setTemplateName
+            setTemplateName: setTemplateName,
+            getSeason: getSeason,
+            changeSeason: changeSeason,
+            deleteSeason: deleteSeason
         };
 
         function getAllOpenGames() {
@@ -37,16 +42,23 @@
 
         function getOpenGameById(gameId) {
             return new $firebaseObject(openGamesRef.child(gameId)).$loaded()
+                .then((openGame)=>{
+                    openGame.time = convertService.convertTimeFromFirebase(openGame.time);
+                    return openGame;
+                })
         }
 
-        function createNewGame(game) {
-            let obj = new $firebaseObject(openGamesRef.push());
-            obj.$value = game;
-            obj.$save();
-            return obj.$loaded().then(() => {
-                return obj.$id;
-            });
+      function createNewGame(game, season) {
+        let key = openGamesRef.push().key;
+        let updates = {};
+
+        updates[`/games/open/${key}`] = game;
+        if (season !== undefined) {
+          updates[`/seasons/${season.$id}/games/${key}`] = {finished: false};
         }
+
+        return root.update(updates);
+      }
 
         function getDate(gameId) {
             return new $firebaseObject(openGamesRef.child(gameId).child('date'))
@@ -167,5 +179,35 @@
                     }
                 })
         }
+
+      function getSeason(gameId) {
+        return new $firebaseObject(openGamesRef.child(`${gameId}/season`)).$loaded()
+          .then((season) => {
+            return season.id;
+          });
+      }
+
+      function changeSeason(gameId, season) {
+        let updates = {};
+        updates[`/games/open/${gameId}/season`] = season;
+        updates[`/seasons/${season.id}/games/${gameId}`] = {finished: false};
+
+        return root.update(updates);
+      }
+
+      function deleteSeason(gameId, season) {
+        let updates = {};
+        updates[`/games/open/${gameId}/season`] = null;
+        updates[`/seasons/${season.id}/games/${gameId}`] = null;
+
+        return root.update(updates);
+      }
+
+      function changeIsPrivate(gameId, isPrivate) {
+        let obj = new $firebaseObject(openGamesRef.child(`${gameId}/isPrivate`));
+        obj.$value = isPrivate;
+        obj.$save();
+        return obj.$loaded();
+      }
     }
 })();

@@ -165,10 +165,14 @@
   "CHANGES_SAVED": "Изменения сохранены",
   "NUMBER_OF_POINTS":"Количество балов за ответ",
   "CHANGES_DISCARDED": "Изменения отклонены",
-  "DELETE_OPEN_GAME_CONFIRMATION_TITLE": "Удалить игру?",
+  "SAVE_SEASON_MESSAGE": "Сезон сохранен",
+  "DELETE_GAME_CONFIRMATION_TITLE": "Удалить игру?",
   "DELETE_GAME_TEMPLATE_CONFIRMATION_TITLE": "Удалить шаблон?",
   "FINISH_ROUND_CONFIRMATION_TITLE": "Закончить раунд?",
   "CLOSE_SEASON_CONFIRMATION_TITLE": "Закрыть сезон?",
+  "GAME_STATUS_SAVE": "Статус игры сохранен",
+  "PRIVATE_GAME_LABEL": "Приватная игра",
   "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?",
-  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?"
+  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?",
+  "DOWNLOAD_BACKUP": "Скачать backup"
 }

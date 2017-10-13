@@ -49,3 +49,4 @@ logs/*
 bower_components/
 .firebaserc
 /src/app/services/firebase-service/firebase-config.ts
+/service-worker.js
