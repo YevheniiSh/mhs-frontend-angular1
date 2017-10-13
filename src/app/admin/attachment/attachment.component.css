@@ -1,11 +1,15 @@
-.content{
-  display: inline-flex;
-}
-
-#file-upload{
+#file-upload {
   display: none;
 }
 
-.choose-img{
+#file-link {
+  padding-top: 7px;
+}
+
+#delete-file {
+  margin-left: 5px;
+}
+
+.choose-img {
   margin-right: 10px;
 }

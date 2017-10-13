@@ -176,6 +176,7 @@
   "UPLOAD_IMAGE": "Завантажити",
   "CHOOSE_IMAGE": "Вибрати зображння",
   "FILE_TYPE_ERR": "Невірний формат файлу",
+  "IMAGE_LINK": "Відкрити зображення",
   "FILE_SUCCESS_SAVED": "Зображення збережено",
   "DOWNLOAD_BACKUP": "Скачати backup"
 }

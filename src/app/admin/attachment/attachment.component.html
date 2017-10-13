@@ -12,12 +12,14 @@
   </button>
 
   <a *ngIf="fileUrl"
+     id="file-link"
      [href]="fileUrl"
-     target="_blank">
-    image
+     target="_blank"
+     translate="{{'IMAGE_LINK'}}">
   </a>
 
   <button *ngIf="fileUrl"
+          id="delete-file"
           class="btn btn-danger"
           (click)="removeFileUrl()">
     <i class="fa fa-trash-o" aria-hidden="true"></i>

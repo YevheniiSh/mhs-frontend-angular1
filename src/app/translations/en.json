@@ -176,6 +176,7 @@
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?",
   "UPLOAD_IMAGE": "Upload",
   "CHOOSE_IMAGE": "Choose image",
+  "IMAGE_LINK": "Open image",
   "FILE_TYPE_ERR": "Wrong file format",
   "FILE_SUCCESS_SAVED": "Image saved",
   "DOWNLOAD_BACKUP": "Download backup"
