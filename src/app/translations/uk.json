@@ -176,5 +176,12 @@
   "SAVE_TEAMS_BUTTON": "Зберегти",
   "ADD_TEAM_BUTTON": "Додати команду",
   "TEAM_SAVE_MESSAGE":"Команди збережені",
-  "DOWNLOAD_BACKUP": "Скачати backup"
+  "DOWNLOAD_BACKUP": "Скачати backup",
+  "FACEBOOK_AUTH_ERROR": "Помилка при вході в Facebook",
+  "FACEBOOK_GROUP_POST_ERROR": "Виникла помилка при відправці посту в групу в Facebook",
+  "FACEBOOK_GROUP_POST_SUCCESS": "Пост опубліковано",
+  "FACEBOOK_GROUP_POST_PROMPT_TITLE": "Пошарити посилання реєстраціі на гру в групу Facebook",
+  "FACEBOOK_GROUP_POST_PROMPT_DESCRIPTION": "Напишіть повідомлення для посту в групу Facebook",
+  "FACEBOOK_GROUP_POST_BUTTON": "Поширити в группі",
+  "FACEBOOK_SHARE_GAME_RESULT_TITLE": "Результати гри за: "
 }
