@@ -1,8 +1,8 @@
-season mhs-file-upload {
-  display: inline-block;
-  margin-right: 10px;
+season mhs-attachment {
   float: right;
+  margin-right: 10px;
 }
+
 season .season-alert {
   font-size: 3em;
   text-align: center;
