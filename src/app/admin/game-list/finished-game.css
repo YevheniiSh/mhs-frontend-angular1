@@ -50,15 +50,25 @@ finished-game-list .game-date-cell{
 
 finished-game-list .team-count-cell{
   text-align: center;
-  width: 30%;
+  width: 25%;
 }
 
 finished-game-list .season-cell{
   width: 15%;
 }
 
+finished-game-list .game-delete-btn{
+  padding: 0 5px;
+  float: right;
+  display: none;
+}
+
 finished-game-list .trophy {
   color: goldenrod;
+}
+
+finished-game-list li:hover .game-delete-btn{
+  display: inline-block;
 }
 
 @media screen and (max-width: 720px){
@@ -82,6 +92,10 @@ finished-game-list .trophy {
   finished-game-list #select-season {
     margin: 10px 15px;
     width: -webkit-fill-available;
+  }
+
+  finished-game-list li:hover .game-delete-btn{
+    display: none;
   }
 }
 
