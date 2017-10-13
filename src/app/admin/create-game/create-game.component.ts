@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { Downgrade } from '../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
-  selector: 'app-create-game',
+  selector: 'mhs-create-game',
   templateUrl: './create-game.component.html',
   styleUrls: ['./create-game.component.css']
 })
@@ -15,22 +17,23 @@ export class CreateGameComponent implements OnInit {
 
   defaultTime = new Date();
   defaultDate = new Date();
+  isPrivateGame = false;
 
   createNewGame = function () {
-    let gameBuider = this.gameBuild.addDate(this.gameDate)
+    const gameBuider = this.gameBuild.addDate(this.gameDate)
       .addTime(this.gameTime)
-      .addLocation(this.location);
+      .addLocation(this.location)
+      .addPrivate(this.isPrivateGame);
     if (this.isSeasonGame) {
       gameBuider.addSeason({ id: this.season.$id, name: this.season.name });
     } else {
       delete gameBuider.game.season;
     }
-    let game = gameBuider.buildGame();
+    const game = gameBuider.buildGame();
 
     if (this.isSeasonGame) {
       this.openGameService.createNewGame(game, this.season);
-    }
-    else {
+    } else {
       this.openGameService.createNewGame(game);
     }
 
@@ -40,18 +43,22 @@ export class CreateGameComponent implements OnInit {
 
   setGameDate(date) {
     this.gameDate = date;
-  };
+  }
 
   setGameTime(time) {
     this.gameTime = time;
-  };
+  }
 
   setSeason(season) {
     this.season = season;
-  };
+  }
 
   setIsSeasonGame(isSeasonGame) {
     this.isSeasonGame = isSeasonGame;
+  }
+
+  setIsPrivateGame = function (isPrivateGame) {
+    this.isPrivateGame = isPrivateGame;
   };
 
   setGameLocation(location) {

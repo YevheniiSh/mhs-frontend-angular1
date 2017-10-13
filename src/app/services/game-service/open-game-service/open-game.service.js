@@ -23,16 +23,17 @@
             changeDate: changeDate,
             changeLocation: changeLocation,
             changeTime: changeTime,
+            changeIsPrivate: changeIsPrivate,
             getRounds: getRounds,
             getTeams: getTeams,
             updateTeamSize: updateTeamSize,
             getOpenGameById: getOpenGameById,
             removeOpenGame: removeOpenGame,
             getTemplateName:getTemplateName,
-          setTemplateName: setTemplateName,
-          getSeason: getSeason,
-          changeSeason: changeSeason,
-          deleteSeason: deleteSeason
+            setTemplateName: setTemplateName,
+            getSeason: getSeason,
+            changeSeason: changeSeason,
+            deleteSeason: deleteSeason
         };
 
         function getAllOpenGames() {
@@ -41,6 +42,10 @@
 
         function getOpenGameById(gameId) {
             return new $firebaseObject(openGamesRef.child(gameId)).$loaded()
+                .then((openGame)=>{
+                    openGame.time = convertService.convertTimeFromFirebase(openGame.time);
+                    return openGame;
+                })
         }
 
       function createNewGame(game, season) {
@@ -196,6 +201,13 @@
         updates[`/seasons/${season.id}/games/${gameId}`] = null;
 
         return root.update(updates);
+      }
+
+      function changeIsPrivate(gameId, isPrivate) {
+        let obj = new $firebaseObject(openGamesRef.child(`${gameId}/isPrivate`));
+        obj.$value = isPrivate;
+        obj.$save();
+        return obj.$loaded();
       }
     }
 })();

@@ -18,6 +18,7 @@
         function onInit() {
             openGameFactory.getAllOpenGames().then((games) => {
                 vm.openGames = games;
+                vm.filteredGames = games;
                 vm.parseDate();
 
                 vm.openGames.$watch(() => {
@@ -63,9 +64,9 @@
         };
 
         vm.deleteGame = function (game) {
-          customConfirmationService.create('DELETE_OPEN_GAME_CONFIRMATION_TITLE', 'DELETE_GAME_ALERT')
+          customConfirmationService.create('DELETE_GAME_CONFIRMATION_TITLE', 'DELETE_GAME_ALERT')
             .then(() => {
-              openGameFactory.removeOpenGame(game.$id)
+                openGameFactory.removeOpenGame(game.$id)
             });
         };
 
@@ -73,6 +74,7 @@
 
         userService.currentUser()
             .then(() => {
+              vm.filteredGames = vm.openGames;
                 vm.auth = true;
             })
             .catch(() => {
@@ -111,6 +113,14 @@
 
         function cancel() {
           vm.modalInstance.close();
+        }
+
+        vm.hasVisibleGames = function () {
+          if (vm.openGames !== undefined) {
+            return vm.openGames.length !== 0 && vm.openGames.length !== undefined && vm.filteredGames.length !== 0
+          } else {
+            return true;
+          }
         }
     }
 })();

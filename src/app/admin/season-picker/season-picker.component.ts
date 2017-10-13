@@ -1,16 +1,19 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Downgrade } from '../../hybrid/downgrade';
 
+@Downgrade()
 @Component({
-  selector: 'app-season-picker',
+  selector: 'mhs-season-picker',
   templateUrl: './season-picker.component.html',
   styleUrls: ['./season-picker.component.css']
 })
-export class SeasonPickerComponent implements OnInit {
+export class SeasonPickerComponent implements OnInit, OnChanges{
 
   season;
   newSeasonName = '';
   isSeasonEditor;
   @Input() isSeasonGame = false;
+  @Input() isDisabled: boolean;
   showSeasonNameValidation;
 
   @Output() isSeasonGameEvent = new EventEmitter<any>();
@@ -23,6 +26,12 @@ export class SeasonPickerComponent implements OnInit {
     this.getCurrentSeasonFromDb();
   }
 
+  ngOnChanges() {
+    if (this.isDisabled) {
+      this.isSeasonGame = false;
+    }
+  }
+
   getCurrentSeasonFromDb() {
     this.seasonService.getCurrentSeason()
       .then(season => {
@@ -30,7 +39,7 @@ export class SeasonPickerComponent implements OnInit {
           this.season = season;
           this.currentSeason.emit(season);
         }
-      })
+      });
   }
 
   saveSeason() {
@@ -42,16 +51,16 @@ export class SeasonPickerComponent implements OnInit {
           this.isSeasonGame = false;
           this.checkboxUpdate(false);
           this.getCurrentSeasonFromDb();
-        })
+        });
     } else {
       this.showSeasonNameValidation = true;
     }
-  };
+  }
 
   closeSeasonEditor() {
     this.showSeasonNameValidation = false;
     this.isSeasonEditor = false;
-  };
+  }
 
   checkboxUpdate(isSwitched) {
     this.isSeasonGame = isSwitched;

@@ -15,17 +15,14 @@
     '$routeParams',
     'DefaultRoundFactory',
     'resultSetupService',
-    '$scope',
     'RoundStatusService',
     'ResultServiceFactory'
   ];
 
-  function DefaultRoundController(
-    $routeParams, DefaultRoundFactory,
-    resultSetupService,
-    $scope,
-    RoundService,
-    resultServiceFactory) {
+  function DefaultRoundController($routeParams, DefaultRoundFactory,
+                                  resultSetupService,
+                                  RoundService,
+                                  resultServiceFactory) {
     let vm = this;
 
     vm.$onInit = onInit;
@@ -33,8 +30,8 @@
     function onInit() {
       vm.selectedQuiz = $routeParams.quizNumber;
       vm.weightOfResponse = 0.1;
-      vm.results.forEach(result=>{
-        if(result.score){
+      vm.results.forEach(result => {
+        if (result.score) {
           result.checked = 1;
         }
       });
@@ -101,7 +98,7 @@
         result.score = calculateScore(result);
         result.weightOfResponse = vm.weightOfResponse;
       }
-      resultServiceFactory.saveQuizResults('current',vm.results,$routeParams.gameId);
+      resultServiceFactory.saveQuizResults('current', vm.results, $routeParams.gameId);
       RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, {weight: vm.weightOfResponse});
     };
 
@@ -123,7 +120,7 @@
       deleteQuizResults();
       if (vm.isManualInput) {
         RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, {weight: vm.weightOfResponse});
-      }else {
+      } else {
         RoundService.setQuizStatus($routeParams.gameId, $routeParams.roundNumber, vm.selectedQuiz, null);
       }
     }
