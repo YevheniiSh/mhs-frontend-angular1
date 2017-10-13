@@ -156,8 +156,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SeasonPickerComponent,
     EditGameComponent,
     GameProgressComponent,
-    AttachmentComponent.
-    GameProgressComponent,
+    AttachmentComponent,
     PromptComponent,
     FacebookGroupPostComponent,
     PrivateGameTeamComponent
