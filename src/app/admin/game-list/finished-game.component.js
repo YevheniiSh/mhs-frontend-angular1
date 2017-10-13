@@ -6,9 +6,9 @@
       css: 'app/admin/game-list/finished-game.css',
       controller: FinishedGameListController
     });
-  FinishedGameListController.$inject = ['GameServiceFactory', '$location', 'seasonService'];
+  FinishedGameListController.$inject = ['GameServiceFactory', '$location', 'seasonService', 'userAuthService', 'CustomConfirmationService'];
 
-  function FinishedGameListController(gameFactory, $location, seasonService) {
+  function FinishedGameListController(gameFactory, $location, seasonService, userService, customConfirmationService) {
     let vm = this;
     vm.$onInit = onInit;
 
@@ -21,6 +21,7 @@
         .getAllFinishedGames()
         .then((games) => {
           vm.games = games;
+          vm.filteredGames = games;
 
           vm.parseDate();
           vm.games.forEach((item) => {
@@ -45,6 +46,31 @@
       vm.games.forEach((item) => {
         item.date = new Date(item.date);
       });
+    };
+    vm.auth = false;
+
+    userService.currentUser()
+      .then(() => {
+        vm.filteredGames = vm.games;
+        vm.auth = true;
+      })
+      .catch(() => {
+        vm.auth = false;
+      });
+
+    vm.hasVisibleGames = function () {
+      if (vm.games !== undefined) {
+        return vm.games.length !== 0 && vm.games.length !== undefined && vm.filteredGames.length !== 0;
+      } else {
+        return true;
+      }
+    };
+
+    vm.deletePrivateGame = function(game){
+      customConfirmationService.create('DELETE_GAME_CONFIRMATION_TITLE', 'DELETE_GAME_ALERT')
+        .then(() => {
+          gameFactory.deleteFinishedGameById(game.$id);
+        });
     };
   }
 })();

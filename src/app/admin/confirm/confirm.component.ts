@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
+import { Downgrade } from '../../hybrid/downgrade';
 
 export interface ConfirmModel {
   title: string;
   message: string;
 }
 
+@Downgrade()
 @Component({
-  selector: 'app-confirm-component',
+  selector: 'mhs-confirm-component',
   templateUrl: './confirm.component.html'
 })
 export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {

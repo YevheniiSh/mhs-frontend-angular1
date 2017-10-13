@@ -11,7 +11,7 @@
 
   function ConfigGameController($location, OpenGameService, $routeParams, $locale, convertService, NotificationService) {
     let vm = this;
-    let gameId = $routeParams.gameId;
+    vm.gameId = $routeParams.gameId;
     this.location = "";
 
     vm.$onInit = onInit;
@@ -24,25 +24,11 @@
       vm.options.minDate = new Date();
       vm.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
       vm.isMeridian = false;
-
-      OpenGameService.getDate(gameId).then((res) => {
-        vm.gameDate = new Date(res);
-      });
-
-      OpenGameService.getTime(gameId).then((res) => {
-        vm.gameTime = res;
-      });
-
-      OpenGameService.getLocation(gameId).then((res) => {
-        vm.location = res;
-      });
-
       getIndexTab();
     }
 
     function getIndexTab() {
       vm.tabs = ['teams', 'rounds'];
-
       vm.activeTab = Object.keys($location.search()).find(k => /teams|rounds/.test(k));
       if (vm.activeTab === undefined) vm.activeTab = 'teams';
     }
@@ -52,9 +38,9 @@
     };
 
     vm.updateDateAndLocation = function () {
-      OpenGameService.changeLocation(gameId, vm.location);
-      OpenGameService.changeDate(gameId, vm.gameDate);
-      OpenGameService.changeTime(gameId, vm.gameTime);
+      OpenGameService.changeLocation(vm.gameId, vm.location);
+      OpenGameService.changeDate(vm.gameId, vm.gameDate);
+      OpenGameService.changeTime(vm.gameId, vm.gameTime);
       vm.saved = true;
     };
 
@@ -69,24 +55,6 @@
     vm.changeLocation = function () {
       saveLocation();
     };
-
-    function saveLocation() {
-      OpenGameService.changeLocation(gameId, vm.location).then(() => {
-        NotificationService.showSuccess('SAVE_LOCATION_MESSAGE');
-      });
-    }
-
-    function saveDate() {
-      OpenGameService.changeDate(gameId, vm.gameDate).then(() => {
-        NotificationService.showSuccess('SAVE_DATE_MESSAGE');
-      });
-    }
-
-    function saveTime() {
-      OpenGameService.changeTime(gameId, vm.gameTime).then(() => {
-        NotificationService.showSuccess('SAVE_TIME_MESSAGE');
-      });
-    }
 
     vm.openCalendarPiker = function () {
       if (!isCalendarPikerOpen()) vm.isCalendarVisible = true;
@@ -103,7 +71,6 @@
     vm.closeTimePiker = function () {
       isTimePikerOpen();
     };
-
 
     function isTimePikerOpen() {
       if (vm.isTimeVisible) {

@@ -6,7 +6,7 @@
       controller: loginController
     });
 
-  loginController.$inject = ['userAuthService', '$location', '$rootScope', 'login'];
+  loginController.$inject = ['userAuthService', '$location', '$rootScope', 'LoginService'];
 
   function loginController(auth, $location, $rootScope, loginService) {
     this.login = function () {

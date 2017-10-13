@@ -21,42 +21,62 @@
 
     function onInit() {
       vm.gameId = $routeParams.gameId;
+      openGameService.getOpenGameById(vm.gameId)
+        .then((res) => {
+          vm.game = res;
+        });
       vm.getRequests();
       vm.getTeams();
     }
 
     vm.addTeamToGame = function (request) {
-      if (!request.teamId) {
-        teamService.save({name: request.teamName})
-          .then(res => {
-            res.requestId = request.$id;
-            res.fullName = request.fullName;
-            res.phone = request.phone;
-            res.teamSize = request.teamSize;
-            gameService.addTeamToGame(vm.gameId, res).then((id) => {
-              teamService.addGameToTeam(id, vm.gameId);
-            });
-            gameRequestService.setConfirmedStatus(vm.gameId, request.$id);
-            request.teamId = res.key;
-            gameRequestService.updateTeamId(vm.gameId, request)
-            teamRequestService.save(request)
-          })
-      } else {
-        gameService.addTeamToGame(vm.gameId,
-          {
-            name: request.teamName,
-            requestId: request.$id,
-            key: request.teamId,
-            fullName: request.fullName,
-            teamSize: request.teamSize,
-            phone: request.phone
-          }).then((id) => {
-          teamService.addGameToTeam(id, vm.gameId);
-        });
-        teamRequestService.save(request)
-        gameRequestService.setConfirmedStatus(vm.gameId, request.$id)
+      let team = convertRequestToTeam(request);
+      if (!request.teamId && !vm.game.isPrivate) {
+        addNewTeamOnGame(team, request);
+      } else if (request.teamId && !vm.game.isPrivate) {
+        addExistTeamOnGame(team, request);
+      } else if (vm.game.isPrivate) {
+        addTeamOnPrivateGame(team,request);
       }
     };
+
+    function convertRequestToTeam(request){
+      return {
+        requestId: request.$id,
+        fullName: request.fullName,
+        phone: request.phone,
+        teamSize: request.teamSize,
+        name: request.teamName,
+        key: request.teamId
+      };
+    }
+
+    function addTeamOnPrivateGame(team,request){
+      gameService.addTeamToGame(vm.gameId,team);
+      gameRequestService.setConfirmedStatus(vm.gameId, request.$id)
+    }
+
+    function addExistTeamOnGame(team, request){
+      gameService.addTeamToGame(vm.gameId, team)
+        .then((id) => {
+          teamService.addGameToTeam(id, vm.gameId);
+        });
+      teamRequestService.save(request);
+      gameRequestService.setConfirmedStatus(vm.gameId, request.$id);
+    }
+
+    function addNewTeamOnGame(team, request){
+      teamService.save({name: request.teamName})
+        .then(res => {
+          gameService.addTeamToGame(vm.gameId, team).then((id) => {
+            teamService.addGameToTeam(id, vm.gameId);
+          });
+          gameRequestService.setConfirmedStatus(vm.gameId, request.$id);
+          request.teamId = res.key;
+          gameRequestService.updateTeamId(vm.gameId, request)
+          teamRequestService.save(request);
+        })
+    }
 
     vm.getRequests = function () {
       gameRequestService.getAllTeamRequestsByGameId(vm.gameId)
