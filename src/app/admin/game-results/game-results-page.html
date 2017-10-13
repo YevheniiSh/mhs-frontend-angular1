@@ -7,7 +7,8 @@
     <mhs-facebook-share ng-if="$ctrl.gameFinished"
                         [url]="$ctrl.shareURL"
                         [title]="$ctrl.facebookShareTitle + '(' + $ctrl.date + ')'"
-                        [image-url]="'https://i.imgur.com/BJL1FjQ.png'"></mhs-facebook-share>
+                        [image-url]="'https://i.imgur.com/BJL1FjQ.png'">
+    </mhs-facebook-share>
 
     <div class="photos-link" ng-if="$ctrl.gameFinished && !$ctrl.linkEditor">
       <span class="no-photos-link" ng-if="$ctrl.photosUrl=='' || $ctrl.photosUrl==null">{{'NO_LINK_TO_PHOTOS_LABEL' | translate}}</span>
