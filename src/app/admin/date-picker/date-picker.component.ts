@@ -10,6 +10,7 @@ export class DatePickerComponent implements OnInit, OnChanges {
   @Output() date = new EventEmitter<Date>();
   @Input() defaultDate;
   bsConfig;
+  minDate = new Date();
 
   constructor(private translate: TranslateService) {
   }
