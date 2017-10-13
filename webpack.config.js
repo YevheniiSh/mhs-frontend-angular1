@@ -174,13 +174,13 @@ module.exports = {
         "./bower_components/angular-bootstrap/ui-bootstrap.min.js",
         "./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
         "./bower_components/angular-animate/angular-animate.min.js",
-        "./bower_components/ngMask/dist/ngMask.min.js",
         "./bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js",
         "./bower_components/angular-dynamic-locale/dist/tmhDynamicLocale.min.js",
         "./bower_components/angularfire/dist/angularfire.min.js",
         "./bower_components/angular-route/angular-route.min.js",
         "./bower_components/angular-css/angular-css.min.js",
         "./bower_components/angucomplete-alt/dist/angucomplete-alt.min.js",
+        "./bower_components/angular-ui-mask/dist/mask.js",
         "node_modules/ng2-toastr/bundles/ng2-toastr.min.js"
       ]
     }),

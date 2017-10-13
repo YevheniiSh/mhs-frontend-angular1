@@ -64,6 +64,7 @@ import { SeasonService } from './services/season-service/season.service.upgrade'
 import { ConvertService } from './services/convert-service/convert.service.upgrade';
 import { GameBuildService } from './services/game-build-service/game-build.service.upgrade';
 import { RoundStatusService } from './services/round-service/round-status.service.upgrade';
+import { PrivateGameTeamComponent } from './admin/private-game-team/private-game-team.component';
 import { FacebookShareComponent } from './common/facebook/share/facebook-share.component';
 import { PromptComponent } from './common/modal-prompt/prompt.component';
 import { FacebookGroupPostComponent } from './common/facebook/group-post/facebook-group-post.component';
@@ -72,6 +73,7 @@ import { FacebookGroupPostService } from './common/facebook/group-post/facebook-
 defineLocale('ru', ru);
 defineLocale('en', enGb);
 defineLocale('uk', uk);
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/app/translations/', '.json');
 }
@@ -104,6 +106,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     GameSetupComponent,
     PromptComponent,
     FacebookGroupPostComponent,
+    PrivateGameTeamComponent
   ],
   imports: [
     FormsModule,
@@ -151,6 +154,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     GameProgressComponent,
     PromptComponent,
     FacebookGroupPostComponent,
+    PrivateGameTeamComponent
   ],
   providers: [
     LoginService,

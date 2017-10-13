@@ -17,7 +17,8 @@
              heading="{{'TEAMS_TAB_NAME' | translate}}"
              ng-click="$ctrl.updateUrlPath($ctrl.tabs[0])">
       <div id="add-team-panel">
-        <add-teams></add-teams>
+        <add-teams ng-if="!$ctrl.isPrivateGame"></add-teams>
+        <mhs-private-game-team ng-if="$ctrl.isPrivateGame"></mhs-private-game-team>
       </div>
     </uib-tab>
     <uib-tab index="$ctrl.tabs[1]"

@@ -26,7 +26,6 @@ import 'app/admin/team-list/team-list.component.js';
 import 'app/app.js';
 import 'app/player/player.js';
 import 'app/admin/admin.js';
-import 'app/spinner/spinner.service.js';
 import 'app/shared/outsideClick.js';
 import 'app/player/team-register-form/team-register-form.module.js';
 import 'app/player/team-register-form/team-register-form.component.js';

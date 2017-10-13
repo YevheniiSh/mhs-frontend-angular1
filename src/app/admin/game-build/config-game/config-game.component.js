@@ -12,7 +12,8 @@
   function ConfigGameController($location, OpenGameService, $routeParams, $locale, convertService, NotificationService) {
     let vm = this;
     vm.gameId = $routeParams.gameId;
-    this.location = "";
+    vm.location = "";
+    vm.isPrivateGame = false;
 
     vm.$onInit = onInit;
 
@@ -27,6 +28,10 @@
       vm.currentGameRegisterPath = getGameRegisterAbsUrl();
 
       getIndexTab();
+      OpenGameService.isPrivate(vm.gameId, (isPrivate) => {
+        vm.isPrivateGame = isPrivate;
+      });
+
     }
 
     function getIndexTab() {

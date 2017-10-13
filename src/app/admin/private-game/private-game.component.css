@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.is-public{
+  color: #ccc;
+}
+
 #lock {
   position: absolute;
   left: -10px;

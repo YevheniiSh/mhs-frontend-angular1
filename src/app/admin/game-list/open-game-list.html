@@ -45,7 +45,8 @@
                 ng-if="$ctrl.auth">
           <i class="fa fa-play" aria-hidden="true"></i>
         </button>
-        <a class="btn btn-info register-button"
+        <a ng-if="!openGame.isPrivate"
+           class="btn btn-info register-button"
            ng-href="/#!/games/{{openGame.$id}}/registration">
           {{'REGISTER_BUTTON' | translate}}
         </a>
