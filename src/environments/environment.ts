@@ -84,5 +84,6 @@ import 'app/services/round-type-service/round-type-service.service.js';
 
 export const environment = {
   production: false,
-  facebookAppId: ''
+  facebookAppId: '',
+  facebookGroupId: ''
 };
