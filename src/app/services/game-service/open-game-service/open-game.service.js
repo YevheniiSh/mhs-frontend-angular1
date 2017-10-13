@@ -108,7 +108,6 @@
       return obj.$loaded();
     }
 
-
     function addTeams(gameId, teams) {
       let obj = new $firebaseObject(openGamesRef.child(gameId).child('teams'));
       let team = convertService.convertTeamsForFirebase(teams);
@@ -214,7 +213,10 @@
     }
 
     function isPrivate(gameId, callback) {
-      return openGamesRef.child(`/${gameId}/isPrivate`).on('value', callback);
+      return openGamesRef.child(`/${gameId}/isPrivate`)
+        .on('value', (snapshot) => {
+          callback(snapshot.val());
+        });
     }
 
     function getPrivateGameTeams(gameId) {
