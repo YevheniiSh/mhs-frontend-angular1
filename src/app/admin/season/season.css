@@ -29,12 +29,6 @@ season #season-name {
   float: left;
 }
 
-season #close-season-panel {
-  /*width: 33.3%;*/
-  /*display: inline-block;*/
-  /*float: right;*/
-}
-
 season #close-season-btn {
   float: right;
 }

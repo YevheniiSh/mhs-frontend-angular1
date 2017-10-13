@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UploadService } from '../../services/upload-service/upload.service';
 import { NotificationService } from '../../services/notification-service/notification.service';
@@ -21,7 +21,6 @@ export class AttachmentComponent implements OnInit {
   @Input() resource;
   @Input() urlProperty;
   @Input() fileType;
-  @Output() saved: EventEmitter<any> = new EventEmitter();
   @ViewChild('inputFile') inputFile: ElementRef;
 
   constructor(private uploadService: UploadService,
@@ -56,7 +55,6 @@ export class AttachmentComponent implements OnInit {
       .then((url) => {
         this.imageService.setUrlProperty(this.resource, this.urlProperty, url);
         this.notifications.showSuccess('FILE_SUCCESS_SAVED');
-        // this.saved.emit(url);
       });
   }
 
