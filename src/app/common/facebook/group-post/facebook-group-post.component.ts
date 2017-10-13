@@ -27,12 +27,9 @@ export class FacebookGroupPostComponent {
 
     this.fb
       .login(loginOptions)
-      .then(() => this.postService
-        .getPostPrompt()
-        .subscribe(
-          message => this.send(message),
-          () => this.notificationService.showError('FACEBOOK_AUTH_ERROR')
-        ));
+      .then(() => this.postService.getPostPrompt()
+        .subscribe(message => this.send(message)))
+      .catch(() => this.notificationService.showError('FACEBOOK_AUTH_ERROR'));
   }
 
   private send(message) {
