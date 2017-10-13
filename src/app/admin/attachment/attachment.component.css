@@ -2,8 +2,8 @@
   display: none;
 }
 
-#file-link {
-  padding-top: 7px;
+.file-link {
+  padding: 0px;
 }
 
 #delete-file {

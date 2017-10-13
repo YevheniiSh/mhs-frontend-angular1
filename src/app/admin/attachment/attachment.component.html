@@ -1,5 +1,5 @@
-<span *ngIf="(user | async)"
-      class="content">
+<div *ngIf="(user | async)"
+     class="content">
   <input type='file'
          #inputFile
          id="file-upload"
@@ -12,11 +12,12 @@
   </button>
 
   <a *ngIf="fileUrl"
-     id="file-link"
+     class="btn file-link"
      [href]="fileUrl"
-     target="_blank"
-     translate="IMAGE_LINK">
+     target="_blank">
+    <i class="fa fa-picture-o fa-2x"></i>
   </a>
+
 
   <button *ngIf="fileUrl"
           id="delete-file"
@@ -24,4 +25,4 @@
           (click)="removeFileUrl()">
     <i class="fa fa-trash-o" aria-hidden="true"></i>
   </button>
-</span>
+</div>
