@@ -30,9 +30,7 @@ export class FacebookGroupPostComponent {
       .then(() => this.postService
         .getPostPrompt()
         .subscribe(
-          message => this.send(message)
-            .then(() => this.notificationService
-              .showSuccess('FACEBOOK_GROUP_POST_SUCCESS')),
+          message => this.send(message),
           () => this.notificationService.showError('FACEBOOK_AUTH_ERROR')
         ));
   }
@@ -47,6 +45,7 @@ export class FacebookGroupPostComponent {
           'link': this.url
         },
       )
+      .then(() => this.notificationService.showSuccess('FACEBOOK_GROUP_POST_SUCCESS'))
       .catch(() => this.notificationService.showError('FACEBOOK_GROUP_POST_ERROR'));
   }
 }
