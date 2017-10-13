@@ -223,7 +223,11 @@
     }
 
     function setPrivateGameTeams(gameId, teams) {
-      return openGamesRef.child(`/${gameId}/teams`).set(teams);
+      let promises = [];
+      teams.forEach(team => {
+        promises.push(openGamesRef.child(`/${gameId}/teams`).push(team));
+      });
+      return Promise.all(promises);
     }
   }
 })();
