@@ -22,7 +22,7 @@
         .then((games) => {
           vm.games = games;
           vm.filteredGames = games;
-
+          console.log(vm.games);
           vm.parseDate();
           vm.games.forEach((item) => {
             gameFactory.getGameTeamsNumber(item.$id)

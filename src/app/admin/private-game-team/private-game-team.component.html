@@ -1,16 +1,17 @@
 <div class="col-md-4 col-md-offset-4">
   <ul>
-    <li *ngFor="let team of teams; let i = index">
+    <li *ngFor="let team of teams">
       <div class="team col-md-12">
         <label class="col-md-10">
           <p translate="{{'TEAM_NAME_LABEL'}}"></p>
           <input class="form-control"
                  [(ngModel)]="team.name"
+                 (change)="updateTeam(team)"
                  required>
         </label>
         <div class="col-md2">
            <span class="btn btn-danger delete-button"
-                 (click)="removeTeam(i)">
+                 (click)="removeTeam(team)">
              <i class="fa fa-trash-o"
                 aria-hidden="true"></i>
            </span>
@@ -33,8 +34,4 @@
             name="add-button">
     </button>
   </form>
-  <button class="btn btn-success btn-block save-button"
-          (click)="saveTeams()"
-          translate="{{'SAVE_TEAMS_BUTTON'}}">
-  </button>
 </div>
