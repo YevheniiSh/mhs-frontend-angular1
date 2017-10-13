@@ -176,6 +176,7 @@
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?",
   "SAVE_TEAMS_BUTTON": "Сохранить",
   "ADD_TEAM_BUTTON": "Добавить команду",
-  "TEAM_SAVE_MESSAGE":"Команды сохранены",
+  "TEAM_SAVE_MESSAGE": "Команда сохранена",
+  "TEAM_REMOVE_MESSAGE": "Команда удалена",
   "DOWNLOAD_BACKUP": "Скачать backup"
 }
