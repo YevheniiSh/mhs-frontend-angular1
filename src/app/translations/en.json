@@ -174,5 +174,8 @@
   "GAME_STATUS_SAVE": "Game status saved",
   "PRIVATE_GAME_LABEL": "Private game",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?",
+  "SAVE_TEAMS_BUTTON": "Save",
+  "ADD_TEAM_BUTTON": "Add team",
+  "TEAM_SAVE_MESSAGE":"Teams are saved",
   "DOWNLOAD_BACKUP": "Download backup"
 }

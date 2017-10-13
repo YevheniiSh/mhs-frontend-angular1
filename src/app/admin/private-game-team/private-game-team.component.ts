@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Team } from './team';
 import { Downgrade } from '../../hybrid/downgrade';
+import { NotificationService } from "../../services/notification-service/notification.service";
 
 @Downgrade()
 @Component({
@@ -15,7 +16,8 @@ export class PrivateGameTeamComponent implements OnInit {
   gameId: string;
 
   constructor(@Inject('$routeParams') private $routeParams,
-              @Inject('OpenGameServiceFactory') private openGameService) {
+              @Inject('OpenGameServiceFactory') private openGameService,
+              private notificationService: NotificationService) {
     this.gameId = $routeParams.gameId;
     this.openGameService.getPrivateGameTeams(this.gameId)
       .then(teams => {
@@ -36,6 +38,9 @@ export class PrivateGameTeamComponent implements OnInit {
   }
 
   saveTeams() {
-    this.openGameService.setPrivateGameTeams(this.gameId, this.teams);
+    this.openGameService.setPrivateGameTeams(this.gameId, this.teams)
+      .then(() => {
+        this.notificationService.showSuccess('TEAM_SAVE_MESSAGE');
+      });
   }
 }

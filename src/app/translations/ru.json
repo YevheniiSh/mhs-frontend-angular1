@@ -174,5 +174,8 @@
   "PRIVATE_GAME_LABEL": "Приватная игра",
   "FINISH_HINTS_ROUND_CONFIRMATION": "Все команды ответили, закончить раунд?",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "Все капитаны выбыли, закончить раунд?",
+  "SAVE_TEAMS_BUTTON": "Сохранить",
+  "ADD_TEAM_BUTTON": "Добавить команду",
+  "TEAM_SAVE_MESSAGE":"Команды сохранены",
   "DOWNLOAD_BACKUP": "Скачать backup"
 }

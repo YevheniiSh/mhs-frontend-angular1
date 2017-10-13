@@ -226,7 +226,7 @@
       }
 
       function setPrivateGameTeams(gameId, teams){
-        openGamesRef.child(`/${gameId}/teams`).set(teams);
+        return openGamesRef.child(`/${gameId}/teams`).set(teams);
       }
     }
 })();
