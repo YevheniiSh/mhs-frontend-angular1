@@ -35,8 +35,9 @@
       changeSeason: changeSeason,
       isPrivate: isPrivate,
       deleteSeason: deleteSeason,
-      getPrivateGameTeams: getPrivateGameTeams,
-      setPrivateGameTeams: setPrivateGameTeams
+      addPrivateTeam: addPrivateTeam,
+      updatePrivateTeam: updatePrivateTeam,
+      deletePrivateTeam: deletePrivateTeam
     };
 
     function getAllOpenGames() {
@@ -215,15 +216,19 @@
         });
     }
 
-    function getPrivateGameTeams(gameId) {
-      return openGamesRef.child(`/${gameId}/teams`).once('value')
-        .then(teams => {
-          return convertService.convertArrayFromFirebase(teams.val());
-        })
+    function updatePrivateTeam(gameId, team) {
+      let teamPath = `${gameId}/teams/${team.$id}`;
+      return openGamesRef.child(teamPath).set({name: team.name});
     }
 
-    function setPrivateGameTeams(gameId, teams) {
-      return openGamesRef.child(`/${gameId}/teams`).set(teams);
+    function addPrivateTeam(gameId, team) {
+      let teamsPath = `/${gameId}/teams`;
+      return openGamesRef.child(teamsPath).push(team);
+    }
+
+    function deletePrivateTeam(gameId, team) {
+      let teamPath = `${gameId}/teams/${team.$id}`;
+      return openGamesRef.child(teamPath).remove();
     }
   }
 })();

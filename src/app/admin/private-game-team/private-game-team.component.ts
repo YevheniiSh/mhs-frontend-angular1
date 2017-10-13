@@ -19,7 +19,7 @@ export class PrivateGameTeamComponent implements OnInit {
               @Inject('OpenGameServiceFactory') private openGameService,
               private notificationService: NotificationService) {
     this.gameId = $routeParams.gameId;
-    this.openGameService.getPrivateGameTeams(this.gameId)
+    this.openGameService.getTeams(this.gameId)
       .then(teams => {
         this.teams = teams;
       });
@@ -29,18 +29,32 @@ export class PrivateGameTeamComponent implements OnInit {
   }
 
   addTeam() {
-    this.teams.push(new PrivateTeam(this.newTeamName));
+    this.openGameService.addPrivateTeam(this.gameId, new PrivateTeam(this.newTeamName))
+      .then(() => {
+        this.showSavedNotification();
+      });
     this.newTeamName = '';
   }
 
-  removeTeam(teamId) {
-    this.teams.splice(teamId, 1);
+  removeTeam(team) {
+    this.openGameService.deletePrivateTeam(this.gameId, team)
+      .then(() => {
+        this.showRemoveNotification();
+      });
   }
 
-  saveTeams() {
-    this.openGameService.setPrivateGameTeams(this.gameId, this.teams)
+  updateTeam(team) {
+    this.openGameService.updatePrivateTeam(this.gameId, team)
       .then(() => {
-        this.notificationService.showSuccess('TEAM_SAVE_MESSAGE');
+        this.showSavedNotification();
       });
+  }
+
+  private showSavedNotification() {
+    this.notificationService.showSuccess('TEAM_SAVE_MESSAGE');
+  }
+
+  private showRemoveNotification() {
+    this.notificationService.showError('TEAM_REMOVE_MESSAGE');
   }
 }

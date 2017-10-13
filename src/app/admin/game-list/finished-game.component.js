@@ -22,7 +22,6 @@
         .then((games) => {
           vm.games = games;
           vm.filteredGames = games;
-
           vm.parseDate();
           vm.games.forEach((item) => {
             gameFactory.getGameTeamsNumber(item.$id)
