@@ -37,10 +37,11 @@
 }
 
 .facebook-group-post {
-  float: right;
-  padding: 0;
+  position: relative;
 }
 
 mhs-facebook-group-post {
-  float: right;
+  position: absolute;
+  top: 20px;
+  right: 0;
 }
