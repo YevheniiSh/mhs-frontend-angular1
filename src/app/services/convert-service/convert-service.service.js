@@ -10,8 +10,9 @@ angular.module('convertService')
                 convertTime: convertTime,
                 buildTemplateForFirebase: buildTemplateForFirebase,
                 convertTimeFromFirebase: convertTimeFromFirebase,
-              getSimpleObjectFromFirebaseObject: getSimpleObjectFromFirebaseObject,
-                convertTimeForView: convertTimeForView
+                getSimpleObjectFromFirebaseObject: getSimpleObjectFromFirebaseObject,
+                convertTimeForView: convertTimeForView,
+                convertArrayFromFirebase:convertArrayFromFirebase
             };
 
             function convertTeamsForFirebase(teams) {
@@ -104,6 +105,14 @@ angular.module('convertService')
                 return hours + ':' + minutes;
             }
 
+
+            function convertArrayFromFirebase(arrayObj){
+              let array = [];
+              for(key in arrayObj){
+                array.push(arrayObj[key]);
+              }
+              return array;
+            }
 
         }]
     );
