@@ -31,7 +31,7 @@ export class PrivateGameTeamComponent implements OnInit {
   addTeam() {
     this.openGameService.addPrivateTeam(this.gameId, new PrivateTeam(this.newTeamName))
       .then(() => {
-        this.notificationService.showSuccess('TEAM_SAVE_MESSAGE');
+        this.showSavedNotification();
       });
     this.newTeamName = '';
   }
@@ -39,14 +39,22 @@ export class PrivateGameTeamComponent implements OnInit {
   removeTeam(team) {
     this.openGameService.deletePrivateTeam(this.gameId, team)
       .then(() => {
-        this.notificationService.showError('TEAM_REMOVE_MESSAGE');
+        this.showRemoveNotification();
       });
   }
 
   updateTeam(team) {
     this.openGameService.updatePrivateTeam(this.gameId, team)
       .then(() => {
-        this.notificationService.showSuccess('TEAM_SAVE_MESSAGE');
+        this.showSavedNotification();
       });
+  }
+
+  private showSavedNotification() {
+    this.notificationService.showSuccess('TEAM_SAVE_MESSAGE');
+  }
+
+  private showRemoveNotification() {
+    this.notificationService.showError('TEAM_REMOVE_MESSAGE');
   }
 }

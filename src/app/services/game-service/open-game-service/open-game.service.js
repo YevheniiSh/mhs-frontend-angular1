@@ -217,18 +217,18 @@
     }
 
     function updatePrivateTeam(gameId, team) {
-      let updates = {};
-      updates[`/games/open/${gameId}/teams/${team.$id}/name`] = team.name;
-
-      return root.update(updates);
+      let teamPath = `${gameId}/teams/${team.$id}`;
+      return openGamesRef.child(teamPath).set({name: team.name});
     }
 
     function addPrivateTeam(gameId, team) {
-      return openGamesRef.child(`/${gameId}/teams`).push(team);
+      let teamsPath = `/${gameId}/teams`;
+      return openGamesRef.child(teamsPath).push(team);
     }
 
     function deletePrivateTeam(gameId, team) {
-      return openGamesRef.child(`/${gameId}/teams/${team.$id}`).remove();
+      let teamPath = `${gameId}/teams/${team.$id}`;
+      return openGamesRef.child(teamPath).remove();
     }
   }
 })();
