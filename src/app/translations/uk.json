@@ -177,7 +177,6 @@
   "ADD_TEAM_BUTTON": "Додати команду",
   "TEAM_SAVE_MESSAGE": "Команду збережено",
   "TEAM_REMOVE_MESSAGE": "Команда видалена",
-  "DOWNLOAD_BACKUP": "Скачати backup",
   "FACEBOOK_AUTH_ERROR": "Помилка при вході в Facebook",
   "FACEBOOK_GROUP_POST_ERROR": "Виникла помилка при відправці посту в групу в Facebook",
   "FACEBOOK_GROUP_POST_SUCCESS": "Пост опубліковано",
@@ -189,5 +188,11 @@
   "CHOOSE_IMAGE": "Вибрати зображння",
   "FILE_TYPE_ERR": "Невірний формат файлу",
   "IMAGE_LINK": "Відкрити зображення",
-  "FILE_SUCCESS_SAVED": "Зображення збережено"
+  "FILE_SUCCESS_SAVED": "Зображення збережено",
+  "DOWNLOAD_BACKUP": "Скачати backup",
+  "GAME_SAVING": "Гра зберігається. Будь ласка зачекайте...",
+  "GAME_SAVED": "Гру збережено!",
+  "CONNECTION_LOST": "З'єднання втрачено!",
+  "CONNECTION_RESTORING": "З'єднання відновлюється...",
+  "CONNECTION_RESTORED": "З'єднання відновлено!"
 }

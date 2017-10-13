@@ -190,5 +190,10 @@
   "CHOOSE_IMAGE": "Choose image",
   "IMAGE_LINK": "Open image",
   "FILE_TYPE_ERR": "Wrong file format",
-  "FILE_SUCCESS_SAVED": "Image saved"
+  "FILE_SUCCESS_SAVED": "Image saved",
+  "GAME_SAVING": "Game saving. Please wait...",
+  "GAME_SAVED": "Game saved!",
+  "CONNECTION_LOST": "Connection lost!",
+  "CONNECTION_RESTORING": "Restoring connection...",
+  "CONNECTION_RESTORED": "Connection restored!"
 }

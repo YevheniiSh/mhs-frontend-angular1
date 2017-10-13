@@ -95,7 +95,6 @@ angular
           .then((res) => {
             if (res.$value !== null) {
               return ref = currentGameRef;
-
             }
             else {
               return ref = finishedGameRef;
@@ -106,13 +105,11 @@ angular
           });
       }
 
-
       function getGameStatus(gameId) {
         return getCurrentGameById(gameId)
           .then((res) => {
             if (res.$value !== null) {
               return 'current';
-
             }
             else {
               return 'finished';

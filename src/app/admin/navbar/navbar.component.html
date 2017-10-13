@@ -21,6 +21,12 @@
           <li *ngIf="(user | async)"><a mhsBackup translate="{{'DOWNLOAD_BACKUP'}}"></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <li id="online-flag" *ngIf="(user | async)">
+            <i [ngClass] = "{'online':!isOffline,'offline':isOffline}"
+               class="fa fa-circle"
+               aria-hidden="true">
+            </i>
+          </li>
           <li>
             <login-panel id="login-button"></login-panel>
           </li>
