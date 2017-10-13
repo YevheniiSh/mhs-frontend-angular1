@@ -88,6 +88,6 @@ import '../../tmp/player-template-cache.min.js';
 
 export const environment = {
   production: true,
-  facebookAppId: '150017352164079'
+  facebookAppId: '150159422250915'
 };
 
