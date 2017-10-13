@@ -175,4 +175,9 @@
   "PRIVATE_GAME_LABEL": "Private game",
   "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?",
   "DOWNLOAD_BACKUP": "Download backup"
+  "FINISH_CAPTAIN_ROUND_CONFIRMATION": "All captains are left, do you want to finish round?",
+  "GAME_SAVING": "Game saving. Please wait...",
+  "GAME_SAVED": "Game saved!",
+  "CONNECTION_LOST": "Connection lost!",
+  "CONNECTION_RESTORED": "Connection restored!"
 }
