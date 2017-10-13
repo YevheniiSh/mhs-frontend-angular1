@@ -1,37 +1,47 @@
 #button-back {
-    position: relative;
-    left: 0px;
-    margin-bottom: 10px;
+  position: relative;
+  left: 0px;
+  margin-bottom: 10px;
 }
 
 #button-panel {
-    padding: 0px;
+  padding: 0px;
 }
 
 #add-team-panel {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .picker {
-    position: fixed;
-    display: inline-block;
-    z-index: 100;
+  position: fixed;
+  display: inline-block;
+  z-index: 100;
 }
 
 .alert-sm {
-    padding-bottom: 6px;
-    padding-top: 6px;
-    margin-bottom: 0px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+  margin-bottom: 0px;
 }
 
 .date-picker {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .time-picker {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .data-picker-label {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.facebook-group-post {
+  position: relative;
+}
+
+mhs-facebook-group-post {
+  position: absolute;
+  top: 20px;
+  right: 0;
 }

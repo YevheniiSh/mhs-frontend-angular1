@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Mad Head Show</title>
+  <link rel="stylesheet" href="assets/spinner/spinner.css">
+  <script src="assets/spinner/spinner.js" type="text/javascript"></script>
   <script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script>
   <base href="/">
 
@@ -15,10 +17,11 @@
   </script>
 </head>
 <body>
+<div id="cover-screen" class="lock-on"></div>
 <div class="container" ng-class="{'presentation-mode': presentationMode}">
-  <mhs-navbar ng-if="!presentationMode && !loading"></mhs-navbar>
+  <mhs-navbar ng-if="!presentationMode"></mhs-navbar>
   <mhs-notification-panel></mhs-notification-panel>
-  <div ng-show="!loading" ng-view></div>
+  <div ng-view></div>
 </div>
 </body>
 </html>

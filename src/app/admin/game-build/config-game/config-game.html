@@ -8,13 +8,20 @@
     </button>
   </div>
   <mhs-edit-game [game-id]="$ctrl.gameId"></mhs-edit-game>
+  <div class="col-md-2 facebook-group-post">
+    <mhs-facebook-group-post
+      [url]="$ctrl.currentGameRegisterPath"
+      ng-if="$root.currentUser">
+    </mhs-facebook-group-post>
+  </div>
   <div class="row"></div>
   <uib-tabset active="$ctrl.activeTab">
     <uib-tab index="$ctrl.tabs[0]"
              heading="{{'TEAMS_TAB_NAME' | translate}}"
              ng-click="$ctrl.updateUrlPath($ctrl.tabs[0])">
       <div id="add-team-panel">
-        <add-teams></add-teams>
+        <add-teams ng-if="!$ctrl.isPrivateGame"></add-teams>
+        <mhs-private-game-team ng-if="$ctrl.isPrivateGame"></mhs-private-game-team>
       </div>
     </uib-tab>
     <uib-tab index="$ctrl.tabs[1]"

@@ -45,7 +45,6 @@ import { DowngradeModule } from './hybrid/downgrade.module';
 import { environment } from '../environments/environment';
 import { TranslateService } from './services/translate-service/translate.service.upgrade';
 import { FacebookModule, FacebookService } from 'ngx-facebook';
-import { FacebookShareComponent } from './facebook-share/facebook-share.component';
 import { GameProgressComponent } from './admin/game-progress/game-progress.component';
 import { RoundPanelComponent } from './admin/game-progress/round-panel/round-panel.component';
 import { BackupDirective } from './shared/backup.directive';
@@ -67,11 +66,15 @@ import { GameBuildService } from './services/game-build-service/game-build.servi
 import { RoundStatusService } from './services/round-service/round-status.service.upgrade';
 import { AttachmentComponent } from './admin/attachment/attachment.component';
 import { AttachmentService } from './services/attachment-service/attachment.service';
+import { PrivateGameTeamComponent } from './admin/private-game-team/private-game-team.component';
+import { FacebookShareComponent } from './common/facebook/share/facebook-share.component';
+import { PromptComponent } from './common/modal-prompt/prompt.component';
+import { FacebookGroupPostComponent } from './common/facebook/group-post/facebook-group-post.component';
+import { FacebookGroupPostService } from './common/facebook/group-post/facebook-group-post.service';
 
 defineLocale('ru', ru);
 defineLocale('en', enGb);
 defineLocale('uk', uk);
-
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/app/translations/', '.json');
@@ -99,9 +102,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConfirmComponent,
     FacebookShareComponent,
     PrivateGameComponent,
+    GameProgressComponent,
     RoundPanelComponent,
     BackupDirective,
     GameSetupComponent,
+    PromptComponent,
+    FacebookGroupPostComponent,
+    PrivateGameTeamComponent,
     GameProgressComponent,
     AttachmentComponent
   ],
@@ -149,7 +156,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     SeasonPickerComponent,
     EditGameComponent,
     GameProgressComponent,
-    AttachmentComponent
+    AttachmentComponent.
+    GameProgressComponent,
+    PromptComponent,
+    FacebookGroupPostComponent,
+    PrivateGameTeamComponent
   ],
   providers: [
     LoginService,
@@ -169,6 +180,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     GameBuildService,
     RoundStatusService,
     AttachmentService,
+    RoundStatusService,
+    FacebookGroupPostService
   ],
 })
 export class HybridAppModule {
@@ -190,6 +203,7 @@ export class HybridAppModule {
     this.fb.init({
       appId: environment.facebookAppId,
       xfbml: true,
+      cookie: true,
       version: 'v2.10'
     });
   }

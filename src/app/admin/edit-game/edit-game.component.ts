@@ -46,7 +46,10 @@ export class EditGameComponent implements OnInit {
         this.currentGameDate = new Date(game.date);
         this.location = game.location;
         this.isPrivate = game.isPrivate;
-        this.currentGameTime = new Date(game.time);
+      });
+    this.openGameService.getTime(this.gameId)
+      .then(time => {
+        this.currentGameTime = new Date(time);
       });
   }
 

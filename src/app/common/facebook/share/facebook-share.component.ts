@@ -1,15 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { FacebookService } from 'ngx-facebook';
-import { Downgrade } from '../hybrid/downgrade';
+import { Downgrade } from '../../../hybrid/downgrade';
 
 @Downgrade()
 @Component({
   selector: 'mhs-facebook-share',
   templateUrl: './facebook-share.component.html',
-  styleUrls: ['./facebook-share.component.css']
+  styleUrls: ['../facebook-button.css']
 })
 export class FacebookShareComponent {
-
   @Input() url: string;
   @Input() title: string;
   @Input() description: string;
