@@ -31,7 +31,9 @@ angular
         addTeamToGame: addTeamToGame,
         getGameTeamsNumber: getGameTeamsNumber,
         getRoundByGameAndId: getRoundByGameAndId,
-        isGamePrivate: isGamePrivate
+        isGamePrivate: isGamePrivate,
+        deleteFinishedGameById: deleteFinishedGameById,
+        getGameTeamNameById: getGameTeamNameById
       };
 
       function isGamePrivate(gameId) {
@@ -276,4 +278,16 @@ angular
           })
       }
 
+      function deleteFinishedGameById(gameId) {
+        return finishedGameRef.child(gameId).remove();
+      }
+
+      function getGameTeamNameById(gameId, teamId) {
+        return getGameRef(gameId).then((ref) => {
+          return ref.child(`${gameId}/teams/${teamId}/name`).once('value')
+            .then((snapshot) => {
+              return snapshot.val();
+            })
+        })
+      }
     }]);

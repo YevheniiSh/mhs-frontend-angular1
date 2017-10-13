@@ -64,7 +64,7 @@
         };
 
         vm.deleteGame = function (game) {
-          customConfirmationService.create('DELETE_OPEN_GAME_CONFIRMATION_TITLE', 'DELETE_GAME_ALERT')
+          customConfirmationService.create('DELETE_GAME_CONFIRMATION_TITLE', 'DELETE_GAME_ALERT')
             .then(() => {
                 openGameFactory.removeOpenGame(game.$id)
             });

@@ -12,7 +12,8 @@
   function ConfigGameController($location, OpenGameService, $routeParams, $locale, convertService, NotificationService) {
     let vm = this;
     vm.gameId = $routeParams.gameId;
-    this.location = "";
+    vm.location = "";
+    vm.isPrivateGame = false;
 
     vm.$onInit = onInit;
 
@@ -24,7 +25,13 @@
       vm.options.minDate = new Date();
       vm.options.startingDay = $locale.DATETIME_FORMATS.DAY.FIRSTDAYOFWEEK = 1;
       vm.isMeridian = false;
+      vm.currentGameRegisterPath = getGameRegisterAbsUrl();
+
       getIndexTab();
+      OpenGameService.isPrivate(vm.gameId, (isPrivate) => {
+        vm.isPrivateGame = isPrivate;
+      });
+
     }
 
     function getIndexTab() {
@@ -52,10 +59,6 @@
       $location.search(key);
     };
 
-    vm.changeLocation = function () {
-      saveLocation();
-    };
-
     vm.openCalendarPiker = function () {
       if (!isCalendarPikerOpen()) vm.isCalendarVisible = true;
     };
@@ -74,7 +77,6 @@
 
     function isTimePikerOpen() {
       if (vm.isTimeVisible) {
-        saveTime();
         vm.isTimeVisible = false;
         return true;
       }
@@ -83,11 +85,15 @@
 
     function isCalendarPikerOpen() {
       if (vm.isCalendarVisible) {
-        saveDate();
         vm.isCalendarVisible = false;
         return true;
       }
       return false;
+    }
+
+    function getGameRegisterAbsUrl() {
+      const baseLen = $location.absUrl().length - $location.url().length;
+      return $location.absUrl().substr(0, baseLen) + '/games/' + vm.gameId + '/registration';
     }
   }
 })();

@@ -7,9 +7,9 @@
       controller: GameResultsPageController
     });
 
-  GameResultsPageController.$inject = ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$location', '$window', 'userAuthService'];
+  GameResultsPageController.$inject = ['ResultServiceFactory', 'GameServiceFactory', '$routeParams', '$location', '$window', 'userAuthService', '$translate'];
 
-  function GameResultsPageController(ResultService, GameService, $routeParams, $location, $window, userAuthService) {
+  function GameResultsPageController(ResultService, GameService, $routeParams, $location, $window, userAuthService, $translate) {
 
     let vm = this;
 
@@ -22,6 +22,9 @@
 
       vm.isGameCurrent = true;
       vm.photosUrl = '';
+      vm.facebookShareTitle = '';
+
+      $translate('FACEBOOK_SHARE_GAME_RESULT_TITLE').then(res => vm.facebookShareTitle = res);
 
       vm.teamResults = function () {
         $window.open($window.location.origin + `/#!/games/${gameId}/results-presentation`, ``, `width=${screen.availWidth},height=${screen.availHeight}`);
