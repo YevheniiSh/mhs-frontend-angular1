@@ -35,13 +35,13 @@ export class NavbarComponent implements OnInit {
               @Inject('userAuthService') UserAuthService,
               translate: TranslateService,
               public afAuth: AngularFireAuth,
-              private connectivityService: ConnectivityService,
-              private notificationService: NotificationService) {
+              private connectivityService: ConnectivityService) {
     this.i18nFactory = InternationalisationServiceFactory;
     this.userAuthService = UserAuthService;
     this.translate = translate;
     this.user = afAuth.authState;
-    this.checkOffline();
+
+    this.connState$ = this.connectivityService.connectionState$.map(s => s ? 'online' : 'offline');
   }
 
   ngOnInit() {
@@ -56,10 +56,6 @@ export class NavbarComponent implements OnInit {
     this.locale = locale;
     this.i18nFactory.changeLanguage(locale);
     this.translate.use(locale);
-  }
-
-  checkOffline() {
-    this.connState$ = this.connectivityService.connectionState$.map(s => s ? 'online' : 'offline');
   }
 
 }
