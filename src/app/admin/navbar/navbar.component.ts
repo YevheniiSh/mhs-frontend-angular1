@@ -14,7 +14,6 @@ import { ConnectivityService } from '../../services/connectivity-service/connect
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isOffline: boolean;
 
   currentUser;
   locale: string;
@@ -23,6 +22,7 @@ export class NavbarComponent implements OnInit {
   userAuthService;
   translate: TranslateService;
   user: Observable<User>;
+  connState$: Observable<string>
 
   @HostListener('document:click', ['$event'])
   click(event) {
@@ -59,9 +59,7 @@ export class NavbarComponent implements OnInit {
   }
 
   checkOffline() {
-    this.connectivityService.connectionState$.subscribe((isOnline) => {
-      this.isOffline = !isOnline;
-    });
+    this.connState$ = this.connectivityService.connectionState$.map(s => s ? 'online' : 'offline');
   }
 
 }
