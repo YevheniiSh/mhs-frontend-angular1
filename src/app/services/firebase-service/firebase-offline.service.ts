@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {ConnectivityService} from '../connectivity-service/connectivity.service';
-import {FirebasePrefetchService} from './firebase-prefetch.service';
-import {NotificationService} from '../notification-service/notification.service';
+import { ConnectivityService } from '../connectivity-service/connectivity.service';
+import { FirebasePrefetchService } from './firebase-prefetch.service';
+import { NotificationService } from '../notification-service/notification.service';
 
 
 @Injectable()

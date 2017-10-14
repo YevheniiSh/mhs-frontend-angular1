@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase/app';
 import { Downgrade } from '../../hybrid/downgrade';
-import { NotificationService } from '../../services/notification-service/notification.service';
 import { ConnectivityService } from '../../services/connectivity-service/connectivity.service';
 
 @Downgrade()
