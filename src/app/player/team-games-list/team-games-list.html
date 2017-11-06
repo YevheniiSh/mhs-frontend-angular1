@@ -13,7 +13,7 @@
     </thead>
     <tbody>
     <tr style="padding: 15px"
-        ng-repeat="game in $ctrl.teamGames"
+        ng-repeat="game in $ctrl.teamGames | orderBy: '-date'"
         ng-if="game.position"
         ng-click="$ctrl.onClicked(game.$id)">
       <td>{{game.date}}</td>
