@@ -68,6 +68,8 @@
     function addNewTeamOnGame(team, request){
       teamService.save({name: request.teamName})
         .then(res => {
+          team.key = res.key;
+
           gameService.addTeamToGame(vm.gameId, team).then((id) => {
             teamService.addGameToTeam(id, vm.gameId);
           });
