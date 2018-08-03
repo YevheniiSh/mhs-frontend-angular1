@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase/app';
 import { Downgrade } from '../../hybrid/downgrade';
-import { NotificationService } from '../../services/notification-service/notification.service';
 import { ConnectivityService } from '../../services/connectivity-service/connectivity.service';
 
 @Downgrade()
@@ -14,7 +13,6 @@ import { ConnectivityService } from '../../services/connectivity-service/connect
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isOffline: boolean;
 
   currentUser;
   locale: string;
@@ -23,6 +21,7 @@ export class NavbarComponent implements OnInit {
   userAuthService;
   translate: TranslateService;
   user: Observable<User>;
+  connState$: Observable<string>
 
   @HostListener('document:click', ['$event'])
   click(event) {
@@ -35,13 +34,13 @@ export class NavbarComponent implements OnInit {
               @Inject('userAuthService') UserAuthService,
               translate: TranslateService,
               public afAuth: AngularFireAuth,
-              private connectivityService: ConnectivityService,
-              private notificationService: NotificationService) {
+              private connectivityService: ConnectivityService) {
     this.i18nFactory = InternationalisationServiceFactory;
     this.userAuthService = UserAuthService;
     this.translate = translate;
     this.user = afAuth.authState;
-    this.checkOffline();
+
+    this.connState$ = this.connectivityService.connectionState$.map(s => s ? 'online' : 'offline');
   }
 
   ngOnInit() {
@@ -56,12 +55,6 @@ export class NavbarComponent implements OnInit {
     this.locale = locale;
     this.i18nFactory.changeLanguage(locale);
     this.translate.use(locale);
-  }
-
-  checkOffline() {
-    this.connectivityService.connectionState$.subscribe((isOnline) => {
-      this.isOffline = !isOnline;
-    });
   }
 
 }

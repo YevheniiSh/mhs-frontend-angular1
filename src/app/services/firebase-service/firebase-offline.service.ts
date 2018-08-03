@@ -4,6 +4,7 @@ import { ConnectivityService } from '../connectivity-service/connectivity.servic
 import { FirebasePrefetchService } from './firebase-prefetch.service';
 import { NotificationService } from '../notification-service/notification.service';
 
+
 @Injectable()
 export class FirebaseOfflineService {
 
@@ -18,17 +19,19 @@ export class FirebaseOfflineService {
     this.firebaseRef = firebase.database().ref();
     this.upToDate = true;
 
-    const connectionState$ = this.connectivityService.connectionState$;
+    const offline$ = this.connectivityService.offline$;
     const down$ = this.connectivityService.connectionDown$;
     const up$ = this.connectivityService.connectionUp$;
 
     down$.subscribe(() => this.notificationService.showError('CONNECTION_LOST'));
 
-    up$.subscribe(() => { this.checkFirebaseConnection(); });
+    up$.subscribe(() => {
+      this.checkFirebaseConnection();
+    });
 
     window.addEventListener('beforeunload', this.onPageLeave());
 
-    connectionState$.subscribe(state => this.upToDate = state);
+    offline$.subscribe(state => this.upToDate = state);
 
   }
 
@@ -51,8 +54,9 @@ export class FirebaseOfflineService {
           this.notificationService.toastrService.dismissToast(toast);
           this.removeTimestamp(timeStampId)
             .then(() => {
-            this.notificationService.showSuccess('CONNECTION_RESTORED');
-          });
+              this.notificationService.showSuccess('CONNECTION_RESTORED');
+              this.upToDate = true;
+            });
         }
       );
   }

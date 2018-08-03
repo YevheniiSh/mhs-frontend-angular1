@@ -22,7 +22,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li id="online-flag" *ngIf="(user | async)">
-            <i [ngClass] = "{'online':!isOffline,'offline':isOffline}"
+            <i [ngClass] = "connState$ | async"
                class="fa fa-circle"
                aria-hidden="true">
             </i>
